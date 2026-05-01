@@ -7,22 +7,78 @@ dist/
 # Dependencies
 node_modules/
 
-# Env
+# ─────────────────────────────────────────────
+# 🔒 Secrets & API Keys — 절대 커밋 금지
+# 위반 시 pre-commit hook이 차단 + CI gitleaks가 재검증
+# ─────────────────────────────────────────────
+# 환경변수 파일 (실제 키 보관)
 .env
 .env.local
 .env.*.local
+.env.production
+.env.development
 !.env.example
+!.env.local.example
+
+# 인증서·키 파일
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+*.jks
+*.keystore
+
+# 클라우드·API 자격증명
+credentials.json
+service-account*.json
+gcp-key*.json
+aws-credentials
+.aws/
+.gcloud/
+
+# 비밀 디렉토리·파일 패턴
+secrets/
+**/secrets/
+*.secret
+*.secrets
+**/*-secret.*
+**/*.secret.*
+
+# 백업·임시 (의도치 않은 키 노출 방지)
+*.bak
+*.backup
+*.tmp
+*.swp
+*.~lock.*
+.history/
 
 # Editor
 .vscode/
 .idea/
-*.swp
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Logs
+# Logs (API 응답 캐시 노출 방지)
 *.log
 npm-debug.log*
 pnpm-debug.log*
+.npm/
+.pnpm-store/
+
+# Coverage·테스트 산출물
+coverage/
+.nyc_output/
+
+# Playwright·E2E
+playwright-report/
+test-results/
+.last-run.json
+
+# 임시 데이터·캐시
+.data-cache/
+.fetch-cache/
+*.cache
