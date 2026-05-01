@@ -25,7 +25,8 @@
     "article": "node scripts/article-pipeline.mjs",
     "refine": "node scripts/refine-existing.mjs",
     "prepare": "node scripts/install-hooks.mjs",
-    "secrets:scan": "node scripts/secrets-scan.mjs"
+    "secrets:scan": "node scripts/secrets-scan.mjs",
+    "setup:env": "node scripts/setup-env.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
