@@ -63,28 +63,9 @@ const VALID_CLUSTERS = [
 ];
 
 // ─────────────────────────────────────────────
-// 3. 신뢰 도메인 화이트리스트 (scripts/geo-audit.mjs 동일)
+// 3. 신뢰 도메인 화이트리스트 (scripts/lib/trusted-domains.mjs — 단일 진실 공급원)
 // ─────────────────────────────────────────────
-const TRUSTED_DOMAINS = [
-  'data.go.kr', 'law.go.kr', 'hometax.go.kr', 'bokjiro.go.kr', 'ecos.bok.or.kr',
-  'fss.or.kr', 'work24.go.kr', 'nps.or.kr', 'nhis.or.kr', 'kostat.go.kr',
-  'hipension.or.kr', 'korea.kr', 'bok.or.kr', 'molit.go.kr', 'moel.go.kr',
-  'nts.go.kr', 'mss.go.kr', 'gov.kr',
-];
-// suffix 매칭도 허용 (.go.kr, .or.kr 으로 끝나면 신뢰)
-const TRUSTED_SUFFIXES = ['.go.kr', '.or.kr'];
-
-function isTrustedUrl(url) {
-  try {
-    const u = new URL(url);
-    const host = u.hostname.toLowerCase();
-    if (TRUSTED_DOMAINS.includes(host)) return true;
-    if (TRUSTED_SUFFIXES.some((s) => host.endsWith(s))) return true;
-    return false;
-  } catch {
-    return false;
-  }
-}
+import { isTrustedUrl } from './lib/trusted-domains.mjs';
 
 // ─────────────────────────────────────────────
 // 4. Zod 스키마 (inline)
