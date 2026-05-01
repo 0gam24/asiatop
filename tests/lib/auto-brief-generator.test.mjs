@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { generateBriefSkeleton } from '../../scripts/lib/auto-brief-generator.mjs';
+import { generateBriefSkeleton, briefToArticleFrontmatter } from '../../scripts/lib/auto-brief-generator.mjs';
 
 describe('auto-brief-generator — generateBriefSkeleton', () => {
   const baseInput = {
@@ -102,5 +102,42 @@ describe('auto-brief-generator — generateBriefSkeleton', () => {
   it('next_review_date > scheduled_publish', () => {
     const b = generateBriefSkeleton(baseInput);
     expect(b.verification.next_review_date > b.meta.scheduled_publish).toBe(true);
+  });
+});
+
+describe('auto-brief-generator — briefToArticleFrontmatter', () => {
+  const brief = {
+    meta: { brief_id: '2026-05-08-test' },
+    verification: { next_review_date: '2026-11-15' },
+    source_question: {
+      hash: 'abc123def456',
+      source_url: 'https://kin.naver.com/qna/x',
+      original_text: '원문 (사용 안 함)',
+    },
+  };
+
+  it('brief_id frontmatter inject', () => {
+    const r = briefToArticleFrontmatter(brief);
+    expect(r.brief_id).toBe('2026-05-08-test');
+  });
+
+  it('source_question_url 매핑', () => {
+    const r = briefToArticleFrontmatter(brief);
+    expect(r.source_question_url).toBe('https://kin.naver.com/qna/x');
+  });
+
+  it('rephrased_question 옵션 시 source_question_text 매핑', () => {
+    const r = briefToArticleFrontmatter(brief, { rephrased_question: '의역된 질문 본문' });
+    expect(r.source_question_text).toBe('의역된 질문 본문');
+  });
+
+  it('rephrased_question 미제공 시 source_question_text 미주입 (저작권 보호)', () => {
+    const r = briefToArticleFrontmatter(brief);
+    expect(r.source_question_text).toBeUndefined();
+  });
+
+  it('next_review_date 매핑', () => {
+    const r = briefToArticleFrontmatter(brief);
+    expect(r.next_review_date).toBe('2026-11-15');
   });
 });

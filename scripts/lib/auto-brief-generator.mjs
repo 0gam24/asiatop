@@ -258,6 +258,39 @@ export function generateBriefSkeleton({
 }
 
 /**
+ * brief → article frontmatter 매핑 (article-pipeline 통합 시 사용).
+ *
+ * brief의 source_question 정보를 article.frontmatter로 변환.
+ * 변환 시 의역(rewriting)된 질문만 사용 — 원문 직접 인용 X (네이버 ToS).
+ *
+ * @param {object} brief 검증 통과된 brief 객체
+ * @param {{ rephrased_question?: string }} options 의역된 질문 (LLM이 채움)
+ * @returns {object} article frontmatter inject용 필드 매핑
+ */
+export function briefToArticleFrontmatter(brief, options = {}) {
+  const inject = {
+    brief_id: brief.meta?.brief_id,
+  };
+
+  if (brief.verification?.next_review_date) {
+    inject.next_review_date = brief.verification.next_review_date;
+  }
+  if (brief.source_question?.hash) {
+    inject.source_question_hash = brief.source_question.hash;
+  }
+  if (brief.source_question?.source_url) {
+    inject.source_question_url = brief.source_question.source_url;
+  }
+  // 의역된 질문이 제공되면 frontmatter에 노출 (QAPage Schema에서 사용)
+  // 원본 텍스트는 노출 X (저작권·ToS 보호)
+  if (options.rephrased_question) {
+    inject.source_question_text = options.rephrased_question;
+  }
+
+  return inject;
+}
+
+/**
  * brief 골격을 _pool/_pending/<hash>.yaml 로 저장.
  * @returns {string} 저장된 절대 경로
  */
