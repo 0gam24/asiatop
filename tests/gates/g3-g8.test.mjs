@@ -149,6 +149,22 @@ describe('G7 — checkPlagiarism', () => {
     const r = checkPlagiarism(mdx, question);
     expect(r.pass).toBe(true);
   });
+
+  it('5단어+ 매칭 3건 이상 → multi-overlap 차단', () => {
+    const question = '청년월세지원 신청 자격이 어떻게 되나요 그리고 신청 절차가 어떻게 되나요 추가로 소득 기준이 어떻게 되나요';
+    const body = `${'청년월세지원 신청 자격이 어떻게 되나요'} ... 별도 ${'그리고 신청 절차가 어떻게 되나요'} ... 또한 ${'추가로 소득 기준이 어떻게 되나요'}`;
+    const mdx = `---\ntitle: t\n---\n\n${body}`;
+    const r = checkPlagiarism(mdx, question);
+    // 같은 8단어+ 매칭이 발견되면 hard overlap; 아니면 soft 3+
+    expect(r.pass).toBe(false);
+  });
+
+  it('meta 정보는 항상 반환 (디버깅용)', () => {
+    const r = checkPlagiarism('---\ntitle: t\n---\n\n본문 내용', '질문 본문 내용 청년월세 자격');
+    expect(r.meta).toBeDefined();
+    expect(r.meta.body_word_count).toBeGreaterThan(0);
+    expect(r.meta.question_word_count).toBeGreaterThan(0);
+  });
 });
 
 describe('G8 — checkAILikeness', () => {
