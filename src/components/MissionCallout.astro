@@ -1,0 +1,158 @@
+---
+/**
+ * MissionCallout — 사이트 미션 시각화 (자동 Q&A 검증)
+ *
+ * 홈페이지에 노출:
+ *   "지식인 질문 → 권위 데이터 검증 → 자동 발행" 3단계 + 임팩트 수치
+ *
+ * 데이터 소스:
+ *   sources_verified=true 글 카운트 (props로 전달)
+ *   verified_facts_count 합계 (props)
+ *
+ * 검증된 글이 0건이어도 노출 (미션 자체 설명).
+ */
+interface Props {
+  verifiedArticleCount?: number;
+  totalFactsVerified?: number;
+}
+const { verifiedArticleCount = 0, totalFactsVerified = 0 } = Astro.props;
+---
+
+<aside class="mission-callout" aria-label="사이트 운영 방식">
+  <div class="mission-callout__inner">
+    <div class="mission-callout__title">
+      <span class="mission-callout__badge" aria-hidden="true">새로운</span>
+      <h2>지식인 질문 → 공신력 데이터 검증 답변</h2>
+    </div>
+    <ol class="mission-callout__steps">
+      <li>
+        <span class="step-num">1</span>
+        <div>
+          <strong>실제 검색자 질문</strong>
+          <p>네이버 지식iN에서 매일 새 질문 자동 수집</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <div>
+          <strong>권위 데이터로 1:1 검증</strong>
+          <p>data.go.kr·법제처·BOK ECOS·고용24 등 정부 1차 자료</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <div>
+          <strong>매칭 100%만 발행</strong>
+          <p>환각·근거 없는 수치는 자동 폐기 — 8단계 안전 게이트</p>
+        </div>
+      </li>
+    </ol>
+    {verifiedArticleCount > 0 && (
+      <p class="mission-callout__stats">
+        <span><strong>{verifiedArticleCount}편</strong> 검증 발행</span>
+        <span aria-hidden="true">·</span>
+        <span><strong>{totalFactsVerified}건</strong> 사실 매칭</span>
+      </p>
+    )}
+  </div>
+</aside>
+
+<style>
+  .mission-callout {
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+    max-width: 900px;
+  }
+  .mission-callout__inner {
+    padding: 1.6rem 1.4rem;
+    border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+    border-radius: 14px;
+    background: color-mix(in srgb, #00C896 5%, transparent);
+  }
+  .mission-callout__title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .mission-callout__title h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+  .mission-callout__badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: #00A77F;
+    border-radius: 4px;
+  }
+  .mission-callout__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  @media (min-width: 720px) {
+    .mission-callout__steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  }
+  .mission-callout__steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .mission-callout__steps strong {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 0.2rem;
+  }
+  .mission-callout__steps p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: color-mix(in srgb, currentColor 70%, transparent);
+  }
+  .step-num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: #00C896;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .mission-callout__stats {
+    margin: 1rem 0 0;
+    padding-top: 0.85rem;
+    border-top: 1px dashed color-mix(in srgb, currentColor 15%, transparent);
+    font-size: 0.85rem;
+    color: color-mix(in srgb, currentColor 70%, transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .mission-callout__stats strong {
+    color: #00A77F;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-color-scheme: dark) {
+    .mission-callout__inner {
+      background: color-mix(in srgb, #00C896 12%, transparent);
+    }
+  }
+</style>
