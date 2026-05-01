@@ -2,7 +2,7 @@
 
 > 사용자가 잠든 사이 자동 진행된 라운드 누적 보고.
 > branch: `feature/brief-system` (PR #1).
-> 마지막 commit: `1cb8e4a` 시점 (Round 27 — Gap 2 Step 2 milestone).
+> 마지막 commit: `5406f65` 시점 (Round 30 — Gap 2 Step 5 milestone).
 
 ---
 
@@ -10,9 +10,9 @@
 
 | 지표 | 값 |
 |---|---|
-| 누적 commit (Round 2 이후) | **27** |
+| 누적 commit (Round 2 이후) | **30** |
 | 단위 테스트 | **255 / 255 통과** |
-| 빌드 시간 | 20.04s (안정) |
+| 빌드 시간 | 22.50s (안정) |
 | 페이지 | 136 (108 article + 28 정적) |
 | 회귀 | **0건** |
 | 신규 npm 의존성 | **0** (transitive만 사용) |
@@ -50,6 +50,22 @@
 | 25 | `0efcec3` | seo | QAPage Schema.org 자동 생성 (자동 발행 글) |
 | 26 | `2088a69` | brief | briefToArticleFrontmatter helper |
 | 27 | `1cb8e4a` | **pipeline** | **article-pipeline --brief 통합 (Gap 2 Step 2)** ⭐ |
+| 28 | `94ecd96` | docs | AUTOMATION-PROGRESS Round 24~27 갱신 |
+| 29 | `467ee9c` | pipeline | G4 fact-verifier를 PASS 5로 통합 |
+| 30 | `5406f65` | **pipeline** | **G5·G6·G7·G8 PASS 6 통합 (Gap 2 Step 5 완성)** ⭐ |
+
+---
+
+## Gap 2 진행 매트릭스 (Plan agent #1 spec 기반)
+
+| Step | 내용 | 상태 | 라운드 |
+|---|---|:---:|---|
+| 1 | validate-brief를 lib/brief-loader.mjs로 export | ✅ | Round 5 |
+| 2 | article-pipeline.mjs --brief 인자 통합 | ✅ | Round 27 |
+| 3 | brief 9개 섹션을 LLM 프롬프트에 주입 | ⏳ | (다음) |
+| 4 | 출력 frontmatter brief 메타 inject | ✅ | Round 26~29 |
+| 5 | G4~G8을 article-pipeline에 통합 | ✅ | Round 29~30 |
+| 6 | brief vs legacy 회귀 테스트 강화 | ⏳ | (다음) |
 
 ---
 
