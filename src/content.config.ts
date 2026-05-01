@@ -32,6 +32,8 @@ const articles = defineCollection({
     ai_likeness: z.number().min(0).max(10).optional(),
     ai_signals: z.array(z.string()).optional(),
     source_question_hash: z.string().optional(),
+    source_question_text: z.string().optional(),
+    source_question_url: z.string().url().optional(),
   }),
 });
 

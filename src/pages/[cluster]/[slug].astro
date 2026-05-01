@@ -245,7 +245,44 @@ const faqSchema = article.data.faq && article.data.faq.length > 0
     }
   : null;
 
-const jsonLdList = [breadcrumbSchema, articleSchema, ...(faqSchema ? [faqSchema] : [])];
+// QAPage — 자동 발행 글에 source_question 메타데이터 있으면 자동 생성
+// AI 검색 엔진(Perplexity·ChatGPT)의 인용 가능성 ↑.
+// 단, 지식인 원문 인용 X (네이버 ToS) — 질문은 의역 재작성된 frontmatter 값만 사용.
+const qaSchema = article.data.source_question_text
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'QAPage',
+      mainEntity: {
+        '@type': 'Question',
+        name: article.data.source_question_text,
+        text: article.data.source_question_text,
+        upvoteCount: article.data.source_signal?.unmet_market_score ?? 0,
+        answerCount: 1,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: article.data.description,
+          author: { '@id': `${authorUrl}#author` },
+          dateCreated: article.data.publishedAt.toISOString(),
+          ...(article.data.sources_verified
+            ? {
+                citation: article.data.sources.map((s) => ({
+                  '@type': 'CreativeWork',
+                  name: s.title,
+                  url: s.url,
+                })),
+              }
+            : {}),
+        },
+      },
+    }
+  : null;
+
+const jsonLdList = [
+  breadcrumbSchema,
+  articleSchema,
+  ...(faqSchema ? [faqSchema] : []),
+  ...(qaSchema ? [qaSchema] : []),
+];
 
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
 const updateStr = article.data.updatedAt
