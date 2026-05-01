@@ -79,9 +79,17 @@ echo "$STAGED_FILES" | while IFS= read -r f; do
   fi
 done || EXIT_CODE=1
 
+# 화이트리스트: 의도적으로 예시 값을 보여주는 문서·스크립트
+DOC_WHITELIST_REGEX='^(docs/(KEY-WALKTHROUGH|KEY-ISSUANCE-GUIDE)\.md|SECURITY\.md|\.env\.example|scripts/(secrets-scan\.mjs|git-hooks/pre-commit))$'
+
 # (2) 본문 시크릿 패턴 스캔
 for f in $STAGED_FILES; do
   if [ ! -f "$f" ]; then continue; fi
+
+  # 화이트리스트는 스캔 제외 (가이드·정책 문서엔 의도적 예시 포함)
+  if echo "$f" | grep -qE "$DOC_WHITELIST_REGEX"; then
+    continue
+  fi
 
   # 텍스트 파일만 스캔 (바이너리 패스)
   if ! file -b --mime-encoding "$f" 2>/dev/null | grep -qE 'utf-8|ascii|us-ascii'; then
