@@ -10,6 +10,15 @@ export interface Cluster {
   accent: string;
   seedKeywords: string[];
   cpcTier: '하' | '중' | '상' | '최상';
+  /**
+   * 자동 발행 파이프라인용 — Plan agent #2 spec 기반
+   * authorityCoverage: 권위 소스 API로 답변 가능한 비율 (0~1)
+   *   < 0.7 클러스터는 ad_policy.contains_financial_advice=true 자동 체크 + framing="explainer" 강제
+   *   AdSense 위험 사전 차단
+   * adRiskTier: AdSense 정책 위반 가능성 ('low' | 'medium' | 'high')
+   */
+  authorityCoverage?: number;
+  adRiskTier?: 'low' | 'medium' | 'high';
 }
 
 export const clusters: readonly Cluster[] = [
@@ -23,6 +32,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#00C896',
     seedKeywords: ['청년월세지원', '근로장려금', '자녀장려금', '청년도약계좌'],
     cpcTier: '중',
+    authorityCoverage: 0.9,
+    adRiskTier: 'low',
   },
   {
     slug: 'tax',
@@ -34,6 +45,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#FFB800',
     seedKeywords: ['연말정산', '세금환급', '종합소득세', '인적공제'],
     cpcTier: '상',
+    authorityCoverage: 0.95,
+    adRiskTier: 'low',
   },
   {
     slug: 'realestate',
@@ -45,6 +58,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#5B8DEF',
     seedKeywords: ['전세보증금', '청약통장', '디딤돌대출', '버팀목전세대출'],
     cpcTier: '상',
+    authorityCoverage: 0.8,
+    adRiskTier: 'medium',
   },
   {
     slug: 'unemployment',
@@ -56,6 +71,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#FF6B35',
     seedKeywords: ['실업급여', '퇴직금계산기', '구직급여', '실업인정'],
     cpcTier: '중',
+    authorityCoverage: 0.95,
+    adRiskTier: 'low',
   },
   {
     slug: 'savings',
@@ -67,6 +84,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#00C896',
     seedKeywords: ['ISA계좌', 'CMA통장', '청년도약계좌', '청년희망적금'],
     cpcTier: '상',
+    authorityCoverage: 0.7,
+    adRiskTier: 'high',
   },
   {
     slug: 'insurance-labor',
@@ -78,6 +97,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#0F1B2D',
     seedKeywords: ['건강보험료', '국민연금', '연차수당', '주휴수당'],
     cpcTier: '중',
+    authorityCoverage: 0.9,
+    adRiskTier: 'low',
   },
   {
     slug: 'auto',
@@ -89,6 +110,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#5B8DEF',
     seedKeywords: ['자동차세', '자동차보험비교', '면허취득세', '자동차세연납'],
     cpcTier: '상',
+    authorityCoverage: 0.6,
+    adRiskTier: 'high',
   },
   {
     slug: 'public-services',
@@ -100,6 +123,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#7C4DFF',
     seedKeywords: ['주민등록등본', '전입신고', '정부24', '복지로'],
     cpcTier: '하',
+    authorityCoverage: 0.95,
+    adRiskTier: 'low',
   },
   {
     slug: 'office-tips',
@@ -111,6 +136,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#FFB800',
     seedKeywords: ['연차계산', '식대비과세', '출장비', '야근수당'],
     cpcTier: '중',
+    authorityCoverage: 0.85,
+    adRiskTier: 'low',
   },
   {
     slug: 'credit-loan',
@@ -122,6 +149,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#FF6B35',
     seedKeywords: ['신용점수올리기', '마이너스통장', '햇살론', '신용대출'],
     cpcTier: '최상',
+    authorityCoverage: 0.5,
+    adRiskTier: 'high',
   },
   {
     slug: 'insurance-personal',
@@ -133,6 +162,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#5B8DEF',
     seedKeywords: ['실손보험', '운전자보험', '치아보험', '암보험'],
     cpcTier: '최상',
+    authorityCoverage: 0.55,
+    adRiskTier: 'high',
   },
   {
     slug: 'pension',
@@ -144,6 +175,8 @@ export const clusters: readonly Cluster[] = [
     accent: '#00A77F',
     seedKeywords: ['국민연금수령', '퇴직연금IRP', '개인연금', '연금저축펀드'],
     cpcTier: '상',
+    authorityCoverage: 0.8,
+    adRiskTier: 'medium',
   },
 ] as const;
 
@@ -156,4 +189,24 @@ export const findCluster = (slug: string): Cluster | undefined =>
  */
 export function clusterAccentDark(accent: string): string {
   return accent === '#0F1B2D' ? '#5B8DEF' : accent;
+}
+
+/**
+ * 자동 발행 파이프라인 — cluster의 권위 답변 가능률에 따라 ad_policy 자동 권고.
+ *
+ *   coverage < 0.7 → contains_financial_advice=true 자동 체크 (금융 자문 면책 강화)
+ *   coverage < 0.6 → framing="explainer" 강제 (decision-guide 금지)
+ *
+ * Plan agent #2 spec 기반 — savings·auto·credit-loan·insurance-personal 보호.
+ */
+export function recommendedAdPolicy(slug: string): {
+  contains_financial_advice: boolean;
+  forced_framing: 'explainer' | null;
+} {
+  const c = findCluster(slug);
+  const cov = c?.authorityCoverage ?? 1;
+  return {
+    contains_financial_advice: cov < 0.7,
+    forced_framing: cov < 0.6 ? 'explainer' : null,
+  };
 }
