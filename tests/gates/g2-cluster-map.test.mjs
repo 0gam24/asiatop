@@ -57,4 +57,24 @@ describe('G2 — mapCluster', () => {
     expect(r.ranking[0].cluster).toBe('gov-support');
     expect(r.ranking[0].matched.length).toBeGreaterThan(0);
   });
+
+  // ─── 12 cluster 정확도 매트릭스 (확장된 키워드 사전 검증) ───
+  it.each([
+    ['credit-loan', 'KCB 신용점수 올리는 방법 마이너스통장 한도'],
+    ['insurance-personal', '실손보험 4세대 갱신 운전자보험 필요할까요'],
+    ['savings', 'ISA 일반형 서민형 차이 CMA 통장 비교'],
+    ['insurance-labor', '주휴수당 주 15시간 미만 사업장 적용'],
+    ['auto', '자동차세 연납 할인 다이렉트 자동차보험 비교'],
+    ['public-services', '공동인증서 만료 정부24 재발급'],
+    ['office-tips', '식대 비과세 한도 야근수당 통상임금'],
+    ['tax', '월세세액공제 한도 13월의 월급 환급'],
+    ['gov-support', '근로장려금 자녀장려금 EITC CTC'],
+    ['pension', '국민연금 임의가입 추납 노령연금 수령'],
+    ['unemployment', '권고사직 자발적 퇴사 실업급여 받을 수 있나요'],
+    ['realestate', 'HUG 전세보증보험 청구 디딤돌대출 청약통장'],
+  ])('cluster=%s 매핑 정확', (expectedCluster, question) => {
+    const r = mapCluster(question);
+    expect(r.pass).toBe(true);
+    expect(r.cluster).toBe(expectedCluster);
+  });
 });

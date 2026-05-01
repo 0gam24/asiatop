@@ -22,7 +22,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const KEYWORDS_PATH = resolve(__dirname, '..', '..', 'data', 'cluster-keywords.json');
 
 const SCORE_THRESHOLD = 0.3;        // 절대 임계
-const AMBIGUITY_MARGIN = 1.0;       // Top-1과 Top-2 score 차이 최소
+const AMBIGUITY_RATIO = 0.25;       // Top-1 대비 (Top1-Top2) / Top1 비율 최소
+const AMBIGUITY_MIN_GAP = 0.5;      // 절대 차이 최소 (작은 score 영역에서 비율 noise 방지)
 
 let _keywordsCache = null;
 function loadKeywords() {
@@ -51,7 +52,8 @@ function scoreCluster(text, keywords) {
   let score = 0;
   const matched = [];
   for (const kw of keywords) {
-    if (text.includes(kw)) {
+    const kwLower = kw.toLowerCase();
+    if (text.includes(kwLower)) {
       // 긴 키워드(공백·복합어 포함)는 가중치 높음
       const weight = kw.includes(' ') ? 2.0 : Math.min(1.5, 0.5 + kw.length / 8);
       score += weight;
@@ -95,14 +97,19 @@ export function mapCluster(text) {
   if (top1.score < SCORE_THRESHOLD) {
     return { pass: false, cluster: null, score: top1.score, reasons: ['g2-low-score'], ranking };
   }
-  if (top2 && top1.score - top2.score < AMBIGUITY_MARGIN) {
-    return {
-      pass: false,
-      cluster: null,
-      score: top1.score,
-      reasons: [`g2-ambiguous:${top1.cluster}-vs-${top2.cluster}`],
-      ranking,
-    };
+  if (top2 && top2.score > 0) {
+    const gap = top1.score - top2.score;
+    const ratio = gap / top1.score;
+    // 절대 차이 + 상대 비율 둘 중 하나라도 충족하면 통과
+    if (gap < AMBIGUITY_MIN_GAP && ratio < AMBIGUITY_RATIO) {
+      return {
+        pass: false,
+        cluster: null,
+        score: top1.score,
+        reasons: [`g2-ambiguous:${top1.cluster}-vs-${top2.cluster}`],
+        ranking,
+      };
+    }
   }
 
   return {
