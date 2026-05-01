@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "query": { "keywords": ["청년수당"], "expected_facts": ["월 20만원"] },
+    "purpose": "복지로 청년수당 sample",
+    "source": "복지로 OpenAPI"
+  },
+  "raw": {
+    "policyName": "서울 청년수당",
+    "monthlyAmount": "300,000원",
+    "supportPeriod": "최대 6개월",
+    "minAge": "19세",
+    "maxAge": "34세",
+    "incomeLimit": "중위소득 150% 이하"
+  },
+  "facts": []
+}

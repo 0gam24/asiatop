@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "query": { "keywords": ["실업급여", "구직급여"], "expected_facts": ["180일", "50% ~ 67%", "소정급여일수"] },
+    "purpose": "실업급여 표준 응답 sample",
+    "source": "고용24 OpenAPI 가정"
+  },
+  "raw": {
+    "scheme": "구직급여",
+    "minDays": "120일",
+    "maxDays": "270일",
+    "averageDays": "180일",
+    "wageRate": "이직 전 평균임금의 60%",
+    "lawBasis": "고용보험법 제48조",
+    "minWageReference": "2026년 최저임금"
+  },
+  "facts": []
+}

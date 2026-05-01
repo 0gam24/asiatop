@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "query": { "keywords": ["근로기준법", "연차"], "expected_facts": ["근로기준법 제60조", "15일"] },
+    "purpose": "근로기준법 연차 조항",
+    "source": "법제처 OpenAPI"
+  },
+  "raw": {
+    "LawService": {
+      "Law": {
+        "lawName": "근로기준법",
+        "article": "제60조",
+        "title": "연차 유급휴가",
+        "content": "사용자는 1년간 80퍼센트 이상 출근한 근로자에게 15일의 유급휴가를 주어야 한다.",
+        "effectiveDate": "2024-01-01"
+      }
+    }
+  },
+  "facts": []
+}
