@@ -550,6 +550,71 @@ function saveArticle(mdx) {
     console.log(`   ✅ sources_verified=true · verified_facts_count=${factResult.matched.length}`);
   }
 
+  // ----- PASS 6 — G5·G6·G7·G8 순차 (brief 모드만) -------------------------
+  if (brief) {
+    const { checkAdSensePolicy } = await import('./gates/g5-adsense-policy.mjs');
+    const { attachAndVerifyDisclosures } = await import('./gates/g6-disclosure-attach.mjs');
+    const { checkPlagiarism } = await import('./gates/g7-plagiarism.mjs');
+    const { checkAILikeness } = await import('./gates/g8-ai-likeness.mjs');
+
+    // G5 AdSense
+    console.log('\n🛡️  G5 — AdSense 정책 검사…');
+    const g5 = checkAdSensePolicy(mdx, brief);
+    if (g5.warnings.length) {
+      g5.warnings.forEach((w) => console.log(`   ⚠️  ${w}`));
+    }
+    if (!g5.pass) {
+      console.log('❌ G5 미통과:');
+      g5.reasons.forEach((r) => console.log(`   · ${r}`));
+      console.log('🚫 자동 폐기 (AdSense 위반 사전 차단).');
+      process.exit(3);
+    }
+    console.log(`   ✅ 외부 링크 ${g5.meta.external_url_count}개`);
+
+    // G6 면책·AI 공시 부착 (mdx mutate)
+    console.log('\n📋 G6 — YMYL 면책·AI 공시 부착…');
+    const g6 = attachAndVerifyDisclosures(mdx, brief);
+    if (!g6.pass) {
+      console.log('❌ G6 부착 실패:');
+      g6.reasons.forEach((r) => console.log(`   · ${r}`));
+      process.exit(4);
+    }
+    mdx = g6.mdx;
+    console.log('   ✅ 면책·공시 부착 완료');
+
+    // G7 표절 검사 (지식인 원문이 있을 때만)
+    const questionText = brief.source_question?.original_text;
+    if (questionText) {
+      console.log('\n🔍 G7 — 표절·저작권 검사…');
+      const g7 = checkPlagiarism(mdx, questionText);
+      if (!g7.pass) {
+        console.log('❌ G7 미통과 — 지식인 원문 인용 발견:');
+        g7.reasons.forEach((r) => console.log(`   · ${r}`));
+        if (g7.overlaps.length > 0) {
+          console.log(`   매칭 window: "${g7.overlaps[0].window.slice(0, 50)}..."`);
+        }
+        console.log('🚫 자동 폐기 (네이버 ToS·저작권 보호).');
+        process.exit(5);
+      }
+      console.log(`   ✅ hard overlap 0건, soft overlap ${g7.meta.soft_overlap_count}건`);
+    }
+
+    // G8 AI-likeness
+    console.log('\n🤖 G8 — AI-likeness scorer…');
+    const g8 = checkAILikeness(mdx);
+    console.log(`   score: ${g8.score.toFixed(1)} / threshold ${g8.threshold}`);
+    if (!g8.pass) {
+      console.log(`❌ G8 미통과 — score ${g8.score} >= ${g8.threshold}`);
+      console.log('   힌트:');
+      g8.hints.forEach((h) => console.log(`   · ${h}`));
+      console.log('🚫 자동 폐기 (AI 티 검출).');
+      process.exit(6);
+    }
+    // G8 결과 frontmatter에 기록
+    briefFrontmatterInject.ai_likeness = g8.score;
+    if (g8.signals.length > 0) briefFrontmatterInject.ai_signals = JSON.stringify(g8.signals);
+  }
+
   const target = saveArticle(mdx);
   console.log(`\n✅ 게이트 통과. 저장: ${target}`);
   console.log('   다음: pnpm build → pnpm validate:schema → pnpm audit:geo');
