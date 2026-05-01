@@ -32,6 +32,39 @@ import yaml from 'js-yaml';
 import { questionHash } from './dedup-index.mjs';
 import { redactPII } from '../gates/g1-question-sanitize.mjs';
 
+// cluster 권위 답변 가능률 매트릭스 (src/data/clusters.ts와 동기화 — 자동 발행 파이프라인 측 캐시)
+// 의존성 회피: src/data/clusters.ts는 .ts라 mjs에서 import 어려움 → JSON 매핑 inline.
+const CLUSTER_AUTHORITY_COVERAGE = Object.freeze({
+  'gov-support': 0.9,
+  'tax': 0.95,
+  'realestate': 0.8,
+  'unemployment': 0.95,
+  'savings': 0.7,
+  'insurance-labor': 0.9,
+  'auto': 0.6,
+  'public-services': 0.95,
+  'office-tips': 0.85,
+  'credit-loan': 0.5,
+  'insurance-personal': 0.55,
+  'pension': 0.8,
+});
+
+function autoAdPolicy(cluster) {
+  const cov = CLUSTER_AUTHORITY_COVERAGE[cluster] ?? 1;
+  return {
+    promotes_specific_loan: false,
+    contains_high_interest_loan_promotion: false,
+    contains_financial_advice: cov < 0.7,   // savings·credit-loan·insurance-personal·auto 자동 체크
+    google_compliant: true,
+  };
+}
+
+function autoFraming(cluster) {
+  const cov = CLUSTER_AUTHORITY_COVERAGE[cluster] ?? 1;
+  // coverage < 0.6 (auto·credit-loan) → explainer 강제 (decision-guide 금지)
+  return cov < 0.6 ? 'explainer' : 'explainer';  // 현재 V1: 모두 explainer 시작 (안전 측)
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const POOL_PENDING = resolve(__dirname, '..', '..', 'briefs', '_pool', '_pending');
 
@@ -165,7 +198,7 @@ export function generateBriefSkeleton({
     },
     content_angle: {
       one_line_pitch: '<TODO: 이 글의 차별점>',
-      framing: 'explainer',
+      framing: autoFraming(cluster),
       not_framing: '<TODO: 이 글이 아닌 것>',
       unique_value: ['<TODO 1>', '<TODO 2>'],
       citable_sentences: [
@@ -206,12 +239,7 @@ export function generateBriefSkeleton({
       ymyl_disclaimer: true,
       ai_assistance_disclosure: true,
     },
-    ad_policy: {
-      promotes_specific_loan: false,
-      contains_high_interest_loan_promotion: false,
-      contains_financial_advice: false,
-      google_compliant: true,
-    },
+    ad_policy: autoAdPolicy(cluster),
     success_metric: {
       target_pv_30d: 1000,
       target_avg_dwell_seconds: 120,

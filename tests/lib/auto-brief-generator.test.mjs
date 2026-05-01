@@ -79,6 +79,21 @@ describe('auto-brief-generator — generateBriefSkeleton', () => {
     expect(b.ad_policy.promotes_specific_loan).toBe(false);
   });
 
+  it('coverage 0.5 cluster (credit-loan) → contains_financial_advice 자동 true', () => {
+    const b = generateBriefSkeleton({ ...baseInput, cluster: 'credit-loan' });
+    expect(b.ad_policy.contains_financial_advice).toBe(true);
+  });
+
+  it('coverage 0.9 cluster (gov-support) → contains_financial_advice false', () => {
+    const b = generateBriefSkeleton({ ...baseInput, cluster: 'gov-support' });
+    expect(b.ad_policy.contains_financial_advice).toBe(false);
+  });
+
+  it('coverage 0.55 cluster (insurance-personal) → contains_financial_advice true (안전 측)', () => {
+    const b = generateBriefSkeleton({ ...baseInput, cluster: 'insurance-personal' });
+    expect(b.ad_policy.contains_financial_advice).toBe(true);
+  });
+
   it('structure.sections 7개 (Zod min 충족)', () => {
     const b = generateBriefSkeleton(baseInput);
     expect(b.structure.sections.length).toBe(7);
