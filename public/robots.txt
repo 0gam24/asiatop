@@ -35,10 +35,23 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
 # 미발행/드래프트 차단
 Disallow: /draft/
 Disallow: /preview/
 Disallow: /admin/
+Disallow: /briefs/_pool/
 
 # 검색 결과·디자인 시스템 — thin/duplicate content 회피
 Disallow: /search
