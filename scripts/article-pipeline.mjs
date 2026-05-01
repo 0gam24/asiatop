@@ -180,14 +180,30 @@ faq:
 
 // ----- 1) DeepSeek 호출 ---------------------------------------------------
 
-async function callDeepSeek(topic) {
+async function callDeepSeek(topic, briefArg = null) {
+  // brief 모드일 때 SYSTEM·USER prompt 확장. legacy 모드는 byte-identical.
+  let systemPrompt = SYSTEM_PROMPT;
+  let userPrompt = `토픽: ${topic}\n위 시스템 규칙대로 머니룩 글 1편을 출력하세요.`;
+  let maxTokens = 6000;
+
+  if (briefArg) {
+    const { buildSystemPromptAdditions, buildUserPromptFromBrief } =
+      await import('./lib/brief-prompt-builder.mjs');
+    const sysAdd = buildSystemPromptAdditions(briefArg);
+    if (sysAdd) systemPrompt = `${SYSTEM_PROMPT}\n\n${sysAdd}`;
+    userPrompt = buildUserPromptFromBrief(briefArg);
+    // word_count_max > 3000 시 max_tokens 동적 상향 (긴 글 안전)
+    const wcMax = briefArg.structure?.word_count_max ?? 0;
+    if (wcMax > 3000) maxTokens = 8000;
+  }
+
   const key = process.env.DEEPSEEK_API_KEY;
   if (!key) {
     console.warn('⚠️  DEEPSEEK_API_KEY 미설정 — prompt만 출력하고 종료');
     console.log('\n=== SYSTEM PROMPT ===\n');
-    console.log(SYSTEM_PROMPT);
+    console.log(systemPrompt);
     console.log('\n=== USER PROMPT ===\n');
-    console.log(`토픽: ${topic}\n위 시스템 규칙대로 머니룩 글 1편을 출력하세요.`);
+    console.log(userPrompt);
     process.exit(0);
   }
 
@@ -200,11 +216,11 @@ async function callDeepSeek(topic) {
     body: JSON.stringify({
       model: 'deepseek-chat',
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: `토픽: ${topic}\n위 시스템 규칙대로 머니룩 글 1편을 출력하세요.` },
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
       ],
       temperature: 0.6,
-      max_tokens: 6000,
+      max_tokens: maxTokens,
     }),
   });
 
@@ -283,11 +299,22 @@ const REFINE_PROMPT = `다음은 머니룩(MoneyLook) 미디어용 MDX 글 초�
 {ORIGINAL}
 [원본 끝]`;
 
-async function refineWithClaude(mdx) {
+async function refineWithClaude(mdx, briefArg = null) {
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
     console.warn('⚠️  ANTHROPIC_API_KEY 미설정 — Pass 3 스킵 (자연화 미적용)');
     return mdx;
+  }
+
+  // brief 모드 추가 보존 룰 append
+  let prompt = REFINE_PROMPT.replace('{ORIGINAL}', mdx);
+  if (briefArg) {
+    const { buildRefineAdditions } = await import('./lib/brief-prompt-builder.mjs');
+    const refineAdd = buildRefineAdditions(briefArg);
+    if (refineAdd) {
+      // 원본 끝 다음에 브리프 룰 append
+      prompt = prompt.replace('[원본 끝]', `[원본 끝]\n\n${refineAdd}`);
+    }
   }
 
   const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -302,7 +329,7 @@ async function refineWithClaude(mdx) {
       max_tokens: 8000,
       temperature: 0.3,
       messages: [
-        { role: 'user', content: REFINE_PROMPT.replace('{ORIGINAL}', mdx) },
+        { role: 'user', content: prompt },
       ],
     }),
   });
@@ -466,7 +493,7 @@ function saveArticle(mdx) {
   console.log('📝 PASS 1 — DeepSeek 초안 생성…');
   let mdx;
   try {
-    mdx = await callDeepSeek(TOPIC);
+    mdx = await callDeepSeek(TOPIC, brief);
   } catch (e) {
     console.error(`❌ PASS 1 실패: ${e.message}`);
     process.exit(1);
@@ -478,7 +505,7 @@ function saveArticle(mdx) {
 
   // PASS 3
   console.log('✨ PASS 3 — Claude 자연화 (자기정정·LLM 머리말 제거)…');
-  mdx = await refineWithClaude(mdx);
+  mdx = await refineWithClaude(mdx, brief);
   mdx = normalizeFormat(mdx); // 자연화 후 재검증
 
   // PASS 4
