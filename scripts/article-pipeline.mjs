@@ -511,6 +511,45 @@ function saveArticle(mdx) {
     process.exit(1);
   }
 
+  // ----- PASS 5 — G4 fact-verifier (brief 모드만) ------------------------
+  // brief.primary_sources의 expected_facts와 본문 사실 토큰을 1:1 매칭.
+  // 환각·근거 없는 수치 발견 시 폐기 (재시도 X).
+  // legacy 모드(--topic --cluster --slug)는 brief 없으므로 PASS 5 스킵.
+  if (brief) {
+    console.log('\n🔬 PASS 5 — G4 fact-verifier (권위 데이터 1:1 매칭)…');
+    const { verifyFacts, summarizeForAudit } = await import('./lib/fact-verifier.mjs');
+    const { fetchAllForCluster } = await import('./lib/authority-sources/index.mjs');
+
+    const factResult = await verifyFacts(mdx, brief, {
+      authorityFetch: (cluster, query) => fetchAllForCluster(cluster, query, {
+        mock: process.env.MOCK_AUTHORITY !== '0',
+      }),
+      mock: process.env.MOCK_AUTHORITY !== '0',
+    });
+
+    console.log(`   매칭률: ${(factResult.match_rate * 100).toFixed(1)}%`);
+    console.log(`   매칭: ${factResult.matched.length}건 / 미매칭: ${factResult.unmatched.length}건 / 근사: ${factResult.approximate.length}건`);
+
+    if (!factResult.pass) {
+      console.log('\n❌ G4 fact-verifier 미통과 — 환각·근거 없는 수치 발견:');
+      const audit = summarizeForAudit(factResult);
+      audit.unmatched.slice(0, 5).forEach((u) => {
+        console.log(`   · [${u.type}] "${u.raw}" (line ${u.line}) — ${u.reason}`);
+      });
+      console.log('\n🚫 자동 폐기 정책: 재시도 X. 다음 cron이 새 질문 픽업.');
+      // DRAFT 모드는 _drafts/ 저장 (디버깅용), 정식은 폐기
+      if (DRAFT) {
+        const target = saveArticle(mdx);
+        console.log(`📄 (디버깅용 draft 저장) ${target}`);
+      }
+      process.exit(2);
+    }
+
+    // G4 통과 시 frontmatter에 검증 메타 inject
+    Object.assign(briefFrontmatterInject, factResult.injected_frontmatter);
+    console.log(`   ✅ sources_verified=true · verified_facts_count=${factResult.matched.length}`);
+  }
+
   const target = saveArticle(mdx);
   console.log(`\n✅ 게이트 통과. 저장: ${target}`);
   console.log('   다음: pnpm build → pnpm validate:schema → pnpm audit:geo');
