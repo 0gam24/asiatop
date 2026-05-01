@@ -42,6 +42,28 @@ describe('naver-kin-collector — searchKinBulk', () => {
     const links = items.map((i) => i.link);
     expect(new Set(links).size).toBe(links.length);
   });
+
+  it('다양한 cluster query 동시 검색 (6 cluster fixture 활용)', async () => {
+    const items = await searchKinBulk(
+      ['청년월세지원', '실업급여', '연말정산', '전세보증금', '국민연금', '연차수당'],
+      { mock: true },
+    );
+    // 6 cluster 합산 ≥ 13개 sample
+    expect(items.length).toBeGreaterThanOrEqual(13);
+    // 모든 link 고유
+    const links = items.map((i) => i.link);
+    expect(new Set(links).size).toBe(links.length);
+  });
+
+  it('일부 query fixture 누락이어도 다른 query 결과 보존', async () => {
+    const items = await searchKinBulk(
+      ['청년월세지원', 'no-fixture-zzz', '실업급여'],
+      { mock: true },
+    );
+    // fixture 있는 2개 cluster만 결과
+    expect(items.length).toBeGreaterThan(0);
+    expect(items.every((i) => i.query !== 'no-fixture-zzz')).toBe(true);
+  });
 });
 
 describe('naver-kin-collector — extractSourceSignal', () => {
