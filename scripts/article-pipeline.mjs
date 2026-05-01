@@ -31,25 +31,76 @@ const ROOT = join(__dirname, '..');
 const args = process.argv.slice(2);
 function arg(name, def) {
   const i = args.indexOf(`--${name}`);
-  if (i < 0) return def;
+  if (i < 0) {
+    // `--name=value` 형식도 지원
+    for (const a of args) {
+      if (a.startsWith(`--${name}=`)) return a.slice(name.length + 3);
+    }
+    return def;
+  }
   return args[i + 1] ?? true;
 }
-const TOPIC = arg('topic');
-const CLUSTER = arg('cluster');
-const SLUG = arg('slug');
+let TOPIC = arg('topic');
+let CLUSTER = arg('cluster');
+let SLUG = arg('slug');
+const BRIEF_PATH = arg('brief');
 const DRAFT = args.includes('--draft');
 const PROMPT_ONLY = args.includes('--prompt-only');
-
-if (!TOPIC) {
-  console.error('❌ --topic 필수 (예: --topic "2026년 청년 월세 세액공제")');
-  process.exit(1);
-}
 
 const VALID_CLUSTERS = [
   'gov-support', 'tax', 'realestate', 'unemployment', 'savings',
   'insurance-labor', 'auto', 'public-services', 'office-tips',
   'credit-loan', 'insurance-personal', 'pension',
 ];
+
+// ----- brief 모드 (Gap 2 통합) --------------------------------------------
+// --brief <path> 사용 시 brief.yaml에서 cluster·slug·topic 자동 파생.
+// 기존 legacy 경로 (--topic --cluster --slug) 100% 호환.
+let brief = null;
+let briefFrontmatterInject = {};
+if (BRIEF_PATH && typeof BRIEF_PATH === 'string') {
+  const { loadBrief, BriefIsTemplateError } = await import('./lib/brief-loader.mjs');
+  const { briefToArticleFrontmatter } = await import('./lib/auto-brief-generator.mjs');
+  try {
+    brief = loadBrief(BRIEF_PATH);
+  } catch (e) {
+    if (e instanceof BriefIsTemplateError) {
+      console.error('❌ _template.yaml 은 직접 사용 불가. pnpm brief:new 로 생성 후 채워서 사용하세요.');
+    } else {
+      console.error(`❌ brief 로드 실패: ${e.message}`);
+      if (e.issues) {
+        for (const iss of e.issues.slice(0, 8)) {
+          console.error(`   ${iss.path}: ${iss.message}`);
+        }
+      }
+    }
+    process.exit(1);
+  }
+
+  // 인자 충돌 검사
+  if (CLUSTER && CLUSTER !== brief.meta.cluster) {
+    console.error(`❌ cluster 불일치: --cluster=${CLUSTER}, brief=${brief.meta.cluster}`);
+    process.exit(1);
+  }
+  if (SLUG && SLUG !== brief.meta.slug) {
+    console.error(`❌ slug 불일치: --slug=${SLUG}, brief=${brief.meta.slug}`);
+    process.exit(1);
+  }
+  if (TOPIC) {
+    console.warn('⚠️  --topic 무시: brief.content_angle.one_line_pitch 사용');
+  }
+
+  CLUSTER = brief.meta.cluster;
+  SLUG = brief.meta.slug;
+  TOPIC = brief.content_angle.one_line_pitch;
+  briefFrontmatterInject = briefToArticleFrontmatter(brief);
+}
+
+if (!TOPIC) {
+  console.error('❌ --topic 또는 --brief 필수 (예: --topic "2026년 청년 월세 세액공제" / --brief briefs/...yaml)');
+  process.exit(1);
+}
+
 if (!CLUSTER || !VALID_CLUSTERS.includes(CLUSTER)) {
   console.error(`❌ --cluster 필수 (다음 중 하나): ${VALID_CLUSTERS.join(', ')}`);
   process.exit(1);
@@ -356,6 +407,38 @@ function gateCheck(mdx) {
 
 // ----- 5) 저장 ------------------------------------------------------------
 
+/**
+ * brief 모드일 때 frontmatter에 brief 메타 inject.
+ * (brief_id, next_review_date, source_question_*, sources_verified 등)
+ * 기존 frontmatter에 동일 키가 있으면 brief 우선 (감사 추적성).
+ */
+function injectBriefFrontmatter(mdx, inject) {
+  if (!inject || Object.keys(inject).length === 0) return mdx;
+  const fmMatch = mdx.match(/^(---\n)([\s\S]*?)(\n---\n)([\s\S]*)$/);
+  if (!fmMatch) return mdx;
+  const [, open, fmBody, close, body] = fmMatch;
+
+  // 기존 라인 보존 + 신규 키 추가 (단순 라인 기반 — yaml 의존 X)
+  const existingKeys = new Set(
+    fmBody.split('\n')
+      .map((l) => l.match(/^([a-z_][a-z0-9_]*)\s*:/i)?.[1])
+      .filter(Boolean),
+  );
+
+  const newLines = [];
+  for (const [k, v] of Object.entries(inject)) {
+    if (v === undefined || v === null || v === '') continue;
+    if (existingKeys.has(k)) continue; // 충돌 시 brief 우선이 안전이지만 V1은 conservative
+    const formatted = typeof v === 'string'
+      ? `${k}: "${v.replace(/"/g, '\\"')}"`
+      : `${k}: ${v}`;
+    newLines.push(formatted);
+  }
+  if (newLines.length === 0) return mdx;
+
+  return `${open}${fmBody}\n${newLines.join('\n')}${close}${body}`;
+}
+
 function saveArticle(mdx) {
   const targetDir = DRAFT
     ? join(ROOT, 'src/content/articles/_drafts')
@@ -366,7 +449,9 @@ function saveArticle(mdx) {
     console.error(`❌ 이미 존재: ${target}`);
     process.exit(1);
   }
-  writeFileSync(target, mdx, 'utf-8');
+  // brief 메타 inject (brief 모드만)
+  const finalMdx = injectBriefFrontmatter(mdx, briefFrontmatterInject);
+  writeFileSync(target, finalMdx, 'utf-8');
   return target;
 }
 
