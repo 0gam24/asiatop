@@ -59,6 +59,36 @@ describe('brief-loader — validateBrief (non-throw API)', () => {
   });
 });
 
+describe('brief-loader — sample fixture', () => {
+  it('tests/fixtures/briefs/sample-filled.yaml 정상 로드 + 검증 통과', () => {
+    const r = validateBrief('tests/fixtures/briefs/sample-filled.yaml');
+    expect(r.pass).toBe(true);
+    expect(r.errors).toEqual([]);
+    expect(r.brief.meta.cluster).toBe('gov-support');
+    expect(r.brief.niche.life_stage).toBe('early-career');
+    expect(r.brief.niche.competing_options.length).toBeGreaterThan(0);
+    expect(r.brief.source_question.allow_quote).toBe(false);
+  });
+
+  it('sample brief의 niche 8차원 모두 채워짐', () => {
+    const r = validateBrief('tests/fixtures/briefs/sample-filled.yaml');
+    const n = r.brief.niche;
+    expect(n.search_timing.month).toBeTruthy();
+    expect(n.life_stage).not.toBe('unspecified');
+    expect(n.employment_type).not.toBe('unspecified');
+    expect(n.region).not.toBe('nationwide');
+    expect(n.hidden_anxiety_tags.length).toBeGreaterThan(0);
+    expect(n.source_signal.unmet_market_score).toBeGreaterThanOrEqual(0);
+  });
+
+  it('sample brief는 fact-verifier가 사용할 토큰을 가진 expected_facts 포함', () => {
+    const r = validateBrief('tests/fixtures/briefs/sample-filled.yaml');
+    const facts = r.brief.primary_sources.flatMap((s) => s.expected_facts);
+    expect(facts.some((f) => /\d+원/.test(f) || /원/.test(f))).toBe(true);
+    expect(facts.some((f) => /\d+개월|\d+년|\d+세/.test(f))).toBe(true);
+  });
+});
+
 describe('brief-loader — validateBusinessRules', () => {
   const validBrief = {
     meta: {
