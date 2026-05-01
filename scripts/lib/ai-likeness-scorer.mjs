@@ -24,7 +24,8 @@
 
 import { stripFrontmatter } from './mdx-utils.mjs';
 
-const SIGNAL_MAX = 11.5;
+// V1: S1~S10 (max 11.5), V2 (Round 38): S11~S15 추가 (max +4.5 → 16.0)
+const SIGNAL_MAX = 16.0;
 
 function extractParagraphs(body) {
   return body
@@ -196,6 +197,88 @@ function scoreEditorVoiceAbsence(body) {
   return re.test(body) ? 0 : 1.5;
 }
 
+// ─────────────────────────────────────────────
+// V2 시그널 (Round 38) — 한국어 자연체 추가 패턴
+// ─────────────────────────────────────────────
+
+// S11 — 종결어미 분포 (~합니다 80%+ = AI)
+function scoreSentenceEndings(body) {
+  const sentences = body.split(/[.!?]\s+|[.!?]$/m).filter((s) => s.trim().length > 5);
+  if (sentences.length < 5) return 0;
+
+  let formal = 0;        // ~합니다·~습니다·~입니다
+  let informal = 0;      // ~예요·~죠·~네요
+  let question = 0;      // ~?·~까요·~나요
+  for (const s of sentences) {
+    const last = s.trim().slice(-15);
+    if (/[?]\s*$|까요\s*$|나요\s*$/.test(last)) question++;
+    else if (/(예요|죠|네요|더라고요)\s*$/.test(last)) informal++;
+    else if (/(합니다|습니다|입니다|시다)\s*$/.test(last)) formal++;
+  }
+  const total = formal + informal + question;
+  if (total === 0) return 0;
+  const formalRatio = formal / total;
+  if (formalRatio >= 0.9) return 1.0;
+  if (formalRatio >= 0.8) return 0.7;
+  if (formalRatio >= 0.7) return 0.3;
+  return 0;
+}
+
+// S12 — 부사 도치 부재 (자연체는 "이건, 정확히 말하면, ~" 등 도치)
+function scoreAdverbInversionAbsence(body) {
+  // 도치 패턴 — 부사가 문두에 콤마와 함께 등장
+  const inversionRe = /(^|\n)\s*(정확히|솔직히|특히|결국|사실상|이론적으로|실제로|일반적으로|보통은)\s*[,]/gm;
+  const matches = (body.match(inversionRe) || []).length;
+  // 본문 1000자당 1회 미만이면 도치 부재
+  const per1000 = matches / Math.max(1, body.length / 1000);
+  if (per1000 < 0.3) return 0.8;
+  if (per1000 < 0.7) return 0.4;
+  return 0;
+}
+
+// S13 — 정형 접속사 클리셰 (또한·더불어·한편 다발)
+function scoreClicheConjunction(body) {
+  const conjunctions = ['또한', '더불어', '한편', '아울러', '나아가'];
+  let count = 0;
+  for (const c of conjunctions) {
+    const re = new RegExp(`(^|\\s|\\.)${c}[,\\s]`, 'g');
+    count += (body.match(re) || []).length;
+  }
+  const per1000 = count / Math.max(1, body.length / 1000);
+  if (per1000 >= 5) return 1.0;
+  if (per1000 >= 3) return 0.6;
+  if (per1000 >= 2) return 0.3;
+  return 0;
+}
+
+// S14 — 단문(15어절 이하) 비율 < 15%
+function scoreShortSentenceAbsence(body) {
+  const sentences = body.split(/[.!?]\s+|[.!?]$/m)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 5);
+  if (sentences.length < 5) return 0;
+
+  const shortCount = sentences.filter((s) => wordCount(s) <= 15).length;
+  const ratio = shortCount / sentences.length;
+  if (ratio < 0.05) return 1.0;
+  if (ratio < 0.10) return 0.7;
+  if (ratio < 0.15) return 0.4;
+  return 0;
+}
+
+// S15 — 지시어·연결어 클리셰 ("이러한", "다음과 같은", "위와 같이")
+function scoreDeicticCliche(body) {
+  const cliches = ['이러한', '이와 같은', '다음과 같은', '위와 같이', '아래와 같이', '이와 같이'];
+  let count = 0;
+  for (const c of cliches) {
+    count += (body.match(new RegExp(c, 'g')) || []).length;
+  }
+  const per1000 = count / Math.max(1, body.length / 1000);
+  if (per1000 >= 4) return 0.7;
+  if (per1000 >= 2) return 0.4;
+  return 0;
+}
+
 /**
  * 본문 분석 → AI-likeness score.
  * @param {string} text MDX (frontmatter 포함 가능)
@@ -224,6 +307,12 @@ export function scoreAILikeness(text, options = {}) {
     h2_pattern: scoreH2Pattern(body),
     loanword_density: scoreLoanwordDensity(body),
     editor_voice_absence: scoreEditorVoiceAbsence(body),
+    // V2 (Round 38)
+    sentence_endings: scoreSentenceEndings(body),
+    adverb_inversion_absence: scoreAdverbInversionAbsence(body),
+    cliche_conjunction: scoreClicheConjunction(body),
+    short_sentence_absence: scoreShortSentenceAbsence(body),
+    deictic_cliche: scoreDeicticCliche(body),
   };
 
   const raw_score = Object.values(breakdown).reduce((a, b) => a + b, 0);
@@ -244,6 +333,11 @@ export function scoreAILikeness(text, options = {}) {
   if (breakdown.h2_pattern > 0) hints.push('H2에 의문문·구체 수치·동사 1개 이상 포함');
   if (breakdown.loanword_density > 0) hints.push('외래어 (니즈·팁·포인트) 1000자당 5회 미만');
   if (breakdown.editor_voice_absence > 0) hints.push('1인칭 편집자 보이스 1~2회 자연 삽입');
+  if (breakdown.sentence_endings > 0.5) hints.push('종결어미 분포 — ~합니다 80%+ → ~예요·~죠·의문문 혼합 (60/30/10 권장)');
+  if (breakdown.adverb_inversion_absence > 0.5) hints.push('부사 도치 추가 — "정확히 말하면, ~" 같은 패턴 1~2회');
+  if (breakdown.cliche_conjunction > 0.5) hints.push('"또한·더불어·한편" 정형 접속사 1000자당 3회 미만');
+  if (breakdown.short_sentence_absence > 0.5) hints.push('단문(15어절 이하) 비율 15%+ 강제 — 평균 길이 변주');
+  if (breakdown.deictic_cliche > 0.3) hints.push('"이러한·다음과 같은" 지시어 클리셰 줄이기');
 
   return {
     score,
