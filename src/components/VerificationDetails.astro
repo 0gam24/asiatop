@@ -1,0 +1,149 @@
+---
+/**
+ * VerificationDetails — 글 하단 검증 상세
+ *
+ * 표시:
+ *   - 권위 데이터 검증 통과 사실 수
+ *   - 근사 표현 수
+ *   - 검증 시각 (data 기준일 별도)
+ *   - AI-likeness 점수 (자체 자연체 검사)
+ *
+ * 표시 조건: sources_verified=true 글에만 노출.
+ * 자동 발행 파이프라인 (G4·G8) 통과 메타데이터 가시화.
+ */
+interface Props {
+  verified?: boolean;
+  factsCount?: number;
+  approximateCount?: number;
+  verificationAt?: string;
+  aiLikeness?: number;
+  dataValidAsOf?: string;
+}
+const {
+  verified,
+  factsCount,
+  approximateCount,
+  verificationAt,
+  aiLikeness,
+  dataValidAsOf,
+} = Astro.props;
+
+const verifiedAt = verificationAt
+  ? new Date(verificationAt).toISOString().slice(0, 10)
+  : null;
+---
+
+{verified && (
+  <aside class="verification-details" id="verification" aria-label="검증 상세">
+    <h3 class="verification-details__title">
+      <span aria-hidden="true">✓</span> 권위 데이터 검증 결과
+    </h3>
+    <dl class="verification-details__list">
+      {factsCount !== undefined && (
+        <div class="verification-details__row">
+          <dt>매칭된 사실</dt>
+          <dd><strong>{factsCount}</strong>건 (수치·날짜·법령)</dd>
+        </div>
+      )}
+      {approximateCount !== undefined && approximateCount > 0 && (
+        <div class="verification-details__row">
+          <dt>근사 표현</dt>
+          <dd>{approximateCount}건 (참고용 수치)</dd>
+        </div>
+      )}
+      {dataValidAsOf && (
+        <div class="verification-details__row">
+          <dt>데이터 기준일</dt>
+          <dd>{dataValidAsOf}</dd>
+        </div>
+      )}
+      {verifiedAt && (
+        <div class="verification-details__row">
+          <dt>검증 시각</dt>
+          <dd>{verifiedAt}</dd>
+        </div>
+      )}
+      {aiLikeness !== undefined && (
+        <div class="verification-details__row">
+          <dt>AI 자연체 점수</dt>
+          <dd>
+            <strong>{aiLikeness.toFixed(1)}</strong> / 10
+            <span class="verification-details__hint">
+              (낮을수록 자연체. 임계 5.0 미만만 발행)
+            </span>
+          </dd>
+        </div>
+      )}
+    </dl>
+    <p class="verification-details__note">
+      본 글의 모든 수치·날짜·법령은 정부 공식 데이터(법제처·data.go.kr·BOK ECOS·고용24 등)와 1:1 매칭 검증됐습니다.
+      매칭 실패 시 발행되지 않습니다.
+    </p>
+  </aside>
+)}
+
+<style>
+  .verification-details {
+    margin: 2.5rem 0 1.5rem;
+    padding: 1.25rem 1.4rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, #00C896 6%, transparent);
+    border: 1px solid color-mix(in srgb, #00C896 22%, transparent);
+  }
+  .verification-details__title {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #00A77F;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .verification-details__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+  }
+  @media (min-width: 600px) {
+    .verification-details__list {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.4rem;
+    }
+  }
+  .verification-details__row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .verification-details__row dt {
+    color: color-mix(in srgb, currentColor 60%, transparent);
+    flex-shrink: 0;
+  }
+  .verification-details__row dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .verification-details__row strong {
+    color: #00A77F;
+  }
+  .verification-details__hint {
+    margin-left: 0.4rem;
+    font-size: 0.78rem;
+    color: color-mix(in srgb, currentColor 55%, transparent);
+  }
+  .verification-details__note {
+    margin: 0;
+    padding-top: 0.85rem;
+    border-top: 1px dashed color-mix(in srgb, currentColor 18%, transparent);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: color-mix(in srgb, currentColor 70%, transparent);
+  }
+  @media (prefers-color-scheme: dark) {
+    .verification-details {
+      background: color-mix(in srgb, #00C896 14%, transparent);
+    }
+  }
+</style>
