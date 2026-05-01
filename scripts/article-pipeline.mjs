@@ -270,7 +270,7 @@ async function refineWithClaude(mdx) {
 
 // ----- 4) 게이트 검증 -----------------------------------------------------
 
-const GOV = ['data.go.kr','law.go.kr','hometax.go.kr','bokjiro.go.kr','ecos.bok.or.kr','fss.or.kr','work24.go.kr','nps.or.kr','nhis.or.kr','kostat.go.kr','korea.kr','molit.go.kr','moel.go.kr','nts.go.kr','.go.kr','.or.kr'];
+import { isTrustedUrl } from './lib/trusted-domains.mjs';
 
 function gateCheck(mdx) {
   const errors = [];
@@ -303,7 +303,7 @@ function gateCheck(mdx) {
   // sources count + .gov.kr
   const sourceUrls = [...fm.matchAll(/url:\s*"(https?:\/\/[^"]+)"/g)].map((m) => m[1]);
   if (sourceUrls.length < 3) errors.push(`sources ${sourceUrls.length}개 (≥3 필요)`);
-  const govCount = sourceUrls.filter((u) => GOV.some((d) => u.includes(d))).length;
+  const govCount = sourceUrls.filter((u) => isTrustedUrl(u)).length;
   if (govCount < 1) errors.push('sources에 .gov.kr / .or.kr 1차 자료 0개');
 
   // aiCitationQuestions count
