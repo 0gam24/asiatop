@@ -25,7 +25,7 @@ export async function GET(context: APIContext) {
 
   const items = articles.slice(0, 50).map((article) => {
     const slug = article.id.replace(/\.mdx?$/, '');
-    const pageUrl = new URL(`/${article.data.cluster}/${slug}`, context.site).toString();
+    const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
     const cluster = findCluster(article.data.cluster);
     return {
       id: pageUrl,
@@ -51,7 +51,7 @@ export async function GET(context: APIContext) {
     language: 'ko',
     icon: new URL('/og-default.png', context.site).toString(),
     favicon: new URL('/favicon.svg', context.site).toString(),
-    authors: [{ name: '머니룩 편집팀', url: new URL('/about', context.site).toString() }],
+    authors: [{ name: '머니룩 편집팀', url: new URL('/about/', context.site).toString() }],
     hubs: [{ type: 'WebSub', url: 'https://pubsubhubbub.appspot.com/' }],
     items,
   };

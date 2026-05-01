@@ -39,14 +39,14 @@ const idx = sameClusterSorted.findIndex((a) => a.id === article.id);
 const prevArticle = idx > 0 ? sameClusterSorted[idx - 1] : null;
 const nextArticle = idx < sameClusterSorted.length - 1 ? sameClusterSorted[idx + 1] : null;
 const prevUrl = prevArticle
-  ? new URL(`/${prevArticle.data.cluster}/${prevArticle.id.replace(/\.mdx?$/, '')}`, Astro.site).toString()
+  ? new URL(`/${prevArticle.data.cluster}/${prevArticle.id.replace(/\.mdx?$/, '')}/`, Astro.site).toString()
   : null;
 const nextUrl = nextArticle
-  ? new URL(`/${nextArticle.data.cluster}/${nextArticle.id.replace(/\.mdx?$/, '')}`, Astro.site).toString()
+  ? new URL(`/${nextArticle.data.cluster}/${nextArticle.id.replace(/\.mdx?$/, '')}/`, Astro.site).toString()
   : null;
 
 const slug = article.id.replace(/\.mdx?$/, '');
-const url = new URL(`/${article.data.cluster}/${slug}`, Astro.site).toString();
+const url = new URL(`/${article.data.cluster}/${slug}/`, Astro.site).toString();
 const ogImagePath = `/og/${article.data.cluster}/${slug}.png`;
 const heroImage = new URL(`/og/${article.data.cluster}/${slug}.png`, Astro.site).toString();
 const heroImageSvg = new URL(`/og/${article.data.cluster}/${slug}.svg`, Astro.site).toString();
@@ -56,14 +56,14 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
-    { '@type': 'ListItem', position: 2, name: cluster?.title ?? '', item: new URL(`/${article.data.cluster}`, Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: cluster?.title ?? '', item: new URL(`/${article.data.cluster}/`, Astro.site).toString() },
     { '@type': 'ListItem', position: 3, name: article.data.title, item: url },
   ],
 };
 
 const authorUrl = authorEntry
-  ? new URL(`/author/${authorEntry.id}`, Astro.site).toString()
-  : new URL('/about', Astro.site).toString();
+  ? new URL(`/author/${authorEntry.id}/`, Astro.site).toString()
+  : new URL('/about/', Astro.site).toString();
 const authorSchema = authorEntry
   ? {
       '@type': authorEntry.data.isOrganization ? 'Organization' : 'Person',
@@ -81,7 +81,7 @@ const authorSchema = authorEntry
   : {
       '@type': 'Organization',
       name: '머니룩 편집팀',
-      url: new URL('/about', Astro.site).toString(),
+      url: new URL('/about/', Astro.site).toString(),
     };
 
 // wordCount: 한국어 기준 어절 단위 (공백 분리). MDX 마크다운 syntax/HTML/코드블록 제거 후 계수.
@@ -197,7 +197,7 @@ const articleSchema = {
     : undefined,
   copyrightYear: article.data.publishedAt.getFullYear(),
   copyrightHolder: { '@id': new URL('#organization', Astro.site).toString() },
-  license: new URL('/terms', Astro.site).toString(),
+  license: new URL('/terms/', Astro.site).toString(),
   audience: {
     '@type': 'Audience',
     audienceType: '한국 직장인·청년',
@@ -222,7 +222,7 @@ const articleSchema = {
   isPartOf: {
     '@type': 'CollectionPage',
     name: cluster?.title,
-    url: new URL(`/${article.data.cluster}`, Astro.site).toString(),
+    url: new URL(`/${article.data.cluster}/`, Astro.site).toString(),
   },
   // 음성 어시스턴트(Google Assistant·Alexa) — 다루는 질문 + lede 우선 음성 출력
   speakable: {
@@ -381,7 +381,7 @@ const ageMonths = Math.floor(ageInDays / 30);
           <div class="related-grid">
             {relatedArticles.map((a) => (
               <ArticleCard
-                href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+                href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`}
                 title={a.data.title}
                 description={a.data.description}
                 cluster={a.data.cluster}

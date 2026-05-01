@@ -141,7 +141,7 @@ const recent = articles.slice(3, 11);
         <div class="feature-grid">
           {featured.map((a) => (
             <ArticleCard
-              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`}
               title={a.data.title}
               description={a.data.description}
               cluster={a.data.cluster}
@@ -164,7 +164,7 @@ const recent = articles.slice(3, 11);
         <div class="recent-grid">
           {recent.map((a) => (
             <ArticleCard
-              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`}
               title={a.data.title}
               description={a.data.description}
               cluster={a.data.cluster}

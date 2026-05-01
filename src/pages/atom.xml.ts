@@ -38,7 +38,7 @@ export async function GET(context: APIContext) {
   const entries = recent
     .map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
-      const pageUrl = new URL(`/${article.data.cluster}/${slug}`, context.site).toString();
+      const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
       const cluster = findCluster(article.data.cluster);
       return `  <entry>
     <id>${escapeXml(pageUrl)}</id>

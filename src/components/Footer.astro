@@ -22,13 +22,13 @@ const year = new Date().getFullYear();
       <div>
         <h2>카테고리</h2>
         <ul class="links">
-          {clusters.slice(0, 6).map((c) => <li><a href={`/${c.slug}`}>{c.shortTitle}</a></li>)}
+          {clusters.slice(0, 6).map((c) => <li><a href={`/${c.slug}/`}>{c.shortTitle}</a></li>)}
         </ul>
       </div>
       <div>
         <h2>&nbsp;</h2>
         <ul class="links">
-          {clusters.slice(6).map((c) => <li><a href={`/${c.slug}`}>{c.shortTitle}</a></li>)}
+          {clusters.slice(6).map((c) => <li><a href={`/${c.slug}/`}>{c.shortTitle}</a></li>)}
         </ul>
       </div>
       <div>

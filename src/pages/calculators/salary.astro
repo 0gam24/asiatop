@@ -3,14 +3,14 @@ import Base from '../../layouts/Base.astro';
 import SalaryCalculator from '../../components/SalaryCalculator';
 import AdSlot from '../../components/AdSlot.astro';
 
-const url = new URL('/calculators/salary', Astro.site).toString();
+const url = new URL('/calculators/salary/', Astro.site).toString();
 
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
-    { '@type': 'ListItem', position: 2, name: '계산기', item: new URL('/calculators', Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: '계산기', item: new URL('/calculators/', Astro.site).toString() },
     { '@type': 'ListItem', position: 3, name: '연봉 실수령액 계산기', item: url },
   ],
 };

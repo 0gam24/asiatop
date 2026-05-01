@@ -48,7 +48,7 @@ for (const list of monthGroups.values()) {
   list.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 }
 
-const url = new URL('/clusters', Astro.site).toString();
+const url = new URL('/clusters/', Astro.site).toString();
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -66,7 +66,7 @@ const clusterListSchema = {
   itemListElement: clusters.map((c, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: new URL(`/${c.slug}`, Astro.site).toString(),
+    url: new URL(`/${c.slug}/`, Astro.site).toString(),
     name: c.title,
   })),
 };
@@ -78,7 +78,7 @@ const articleListSchema = {
   itemListElement: articles.map((a, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: new URL(`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`, Astro.site).toString(),
+    url: new URL(`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`, Astro.site).toString(),
     name: a.data.title,
   })),
 };
@@ -122,7 +122,7 @@ function fmtDate(d: Date): string {
           <li>
             <a
               class="cluster-card"
-              href={`/${c.slug}`}
+              href={`/${c.slug}/`}
               style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}
             >
               <span class="icon-chip" aria-hidden="true">
@@ -152,7 +152,7 @@ function fmtDate(d: Date): string {
             {list.map((a) => {
               const c = findCluster(a.data.cluster);
               const slug = a.id.replace(/\.mdx?$/, '');
-              const href = `/${a.data.cluster}/${slug}`;
+              const href = `/${a.data.cluster}/${slug}/`;
               const minutes = readingMinutes(a.body);
               return (
                 <li

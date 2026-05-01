@@ -51,7 +51,7 @@ export async function GET(context: APIContext) {
   const { article } = context.props as ArticleProps;
   const cluster = findCluster(article.data.cluster);
   const slug = article.id.replace(/\.mdx?$/, '');
-  const url = new URL(`/${article.data.cluster}/${slug}`, context.site).toString();
+  const url = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
 
   const lines: string[] = [];
   lines.push(`# ${article.data.title}`);

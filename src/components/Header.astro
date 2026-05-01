@@ -11,7 +11,7 @@ import { clusters } from '../data/clusters';
       <ul>
         {clusters.slice(0, 6).map((c) => (
           <li>
-            <a href={`/${c.slug}`}>{c.shortTitle}</a>
+            <a href={`/${c.slug}/`}>{c.shortTitle}</a>
           </li>
         ))}
         <li><a href="/clusters" class="nav-more">전체 +</a></li>

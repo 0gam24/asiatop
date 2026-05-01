@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { clusters } from '../data/clusters';
 
-const url = new URL('/about', Astro.site).toString();
+const url = new URL('/about/', Astro.site).toString();
 const aboutSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',

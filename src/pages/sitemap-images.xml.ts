@@ -26,7 +26,7 @@ export async function GET(context: APIContext) {
 
   const urls = articles.map((article) => {
     const slug = article.id.replace(/\.mdx?$/, '');
-    const pageUrl = new URL(`/${article.data.cluster}/${slug}`, context.site).toString();
+    const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
     const imageUrl = new URL(`/og/${article.data.cluster}/${slug}.png`, context.site).toString();
     return `  <url>
     <loc>${escapeXml(pageUrl)}</loc>

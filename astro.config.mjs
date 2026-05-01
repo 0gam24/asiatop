@@ -9,7 +9,9 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://asiatop.co.kr',
   output: 'static',
-  trailingSlash: 'never',
+  // CF Pages가 format:'directory' 출력에서 /path/ 형태로 서빙하므로
+  // trailingSlash:'always'로 맞춰 canonical·sitemap·OG URL을 실제 URL과 일치
+  trailingSlash: 'always',
   build: {
     format: 'directory',
     inlineStylesheets: 'auto',

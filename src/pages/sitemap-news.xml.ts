@@ -40,7 +40,7 @@ export async function GET(context: APIContext) {
 
   const urls = fresh.map((article) => {
     const slug = article.id.replace(/\.mdx?$/, '');
-    const url = new URL(`/${article.data.cluster}/${slug}`, context.site).toString();
+    const url = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
     const pubDate = article.data.publishedAt.toISOString();
     return `  <url>
     <loc>${escapeXml(url)}</loc>

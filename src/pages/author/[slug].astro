@@ -28,7 +28,7 @@ try {
 }
 articles.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
-const url = new URL(`/author/${author.id}`, Astro.site).toString();
+const url = new URL(`/author/${author.id}/`, Astro.site).toString();
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -48,7 +48,7 @@ const breadcrumb = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
-    { '@type': 'ListItem', position: 2, name: '저자', item: new URL('/author', Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: '저자', item: new URL('/author/', Astro.site).toString() },
     { '@type': 'ListItem', position: 3, name: author.data.name, item: url },
   ],
 };
@@ -86,7 +86,7 @@ const topicClusters = author.data.topicAuthority
         <h2>주요 토픽</h2>
         <div class="clusters">
           {topicClusters.map((c) => (
-            <a class="cluster" href={`/${c.slug}`} style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}>
+            <a class="cluster" href={`/${c.slug}/`} style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}>
               <ClusterIcon cluster={c.slug} size={16} />
               <span>{c.shortTitle}</span>
             </a>
@@ -112,7 +112,7 @@ const topicClusters = author.data.topicAuthority
         <div class="grid">
           {articles.map((a) => (
             <ArticleCard
-              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`}
               title={a.data.title}
               description={a.data.description}
               cluster={a.data.cluster}

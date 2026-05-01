@@ -27,7 +27,7 @@ import ClusterIcon from '../components/ClusterIcon.astro';
     <ul class="cluster-list">
       {clusters.map((c) => (
         <li>
-          <a href={`/${c.slug}`} style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}>
+          <a href={`/${c.slug}/`} style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}>
             <span class="icon-chip" aria-hidden="true">
               <ClusterIcon cluster={c.slug} size={18} />
             </span>

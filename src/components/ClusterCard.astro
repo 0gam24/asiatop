@@ -9,7 +9,7 @@ interface Props {
 const { cluster } = Astro.props;
 const accentDark = clusterAccentDark(cluster.accent);
 ---
-<a class="cluster-card" href={`/${cluster.slug}`} style={`--accent-light: ${cluster.accent}; --accent-dark: ${accentDark}`}>
+<a class="cluster-card" href={`/${cluster.slug}/`} style={`--accent-light: ${cluster.accent}; --accent-dark: ${accentDark}`}>
   <div class="icon-chip" aria-hidden="true">
     <ClusterIcon cluster={cluster.slug} size={22} />
   </div>
