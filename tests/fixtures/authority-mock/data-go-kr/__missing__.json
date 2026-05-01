@@ -1,0 +1,8 @@
+{
+  "_meta": {
+    "purpose": "fixture 누락 시 폴백. fact-verifier가 사용할 수 있는 빈 응답.",
+    "policy": "실제 cluster 검증을 위해서는 query hash별 fixture 작성 필요"
+  },
+  "raw": null,
+  "facts": []
+}

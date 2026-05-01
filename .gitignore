@@ -82,3 +82,7 @@ test-results/
 .data-cache/
 .fetch-cache/
 *.cache
+
+# 자동 발행 파이프라인 — 테스트 dedup state (prod state는 git tracked)
+briefs/_pool/.test-dedup-index.json
+logs/fact-verifier/

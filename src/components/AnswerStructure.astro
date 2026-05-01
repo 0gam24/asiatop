@@ -1,0 +1,77 @@
+---
+/**
+ * AnswerStructure — 지식인 질문 → 답변 구조 시각화
+ *
+ * 자동 발행 글의 BLUF(결론 우선) 구조를 강조.
+ * frontmatter aiCitationQuestions[] 첫 항목을 "원 질문"으로 노출.
+ *
+ * GEO 인용 가능성 ↑ — AI 검색이 단락 단위로 추출 시 의미 보존.
+ */
+interface Props {
+  question?: string;
+  bluf?: string;
+  showLabel?: boolean;
+}
+const { question, bluf, showLabel = true } = Astro.props;
+---
+
+{question && (
+  <aside class="answer-structure" aria-label="질문과 결론 요약">
+    {showLabel && <span class="answer-structure__label">검색자가 묻는 것</span>}
+    <p class="answer-structure__question">{question}</p>
+    {bluf && (
+      <>
+        {showLabel && <span class="answer-structure__label answer-structure__label--bluf">결론부터</span>}
+        <p class="answer-structure__bluf">{bluf}</p>
+      </>
+    )}
+  </aside>
+)}
+
+<style>
+  .answer-structure {
+    margin: 1.5rem 0 2rem;
+    padding: 1.1rem 1.25rem;
+    border-left: 3px solid #00C896;
+    background: color-mix(in srgb, #00C896 6%, transparent);
+    border-radius: 0 8px 8px 0;
+  }
+  .answer-structure__label {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: #00A77F;
+    background: color-mix(in srgb, #00C896 16%, transparent);
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .answer-structure__label--bluf {
+    margin-top: 0.85rem;
+    color: #0F1B2D;
+    background: color-mix(in srgb, #0F1B2D 10%, transparent);
+  }
+  .answer-structure__question {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  .answer-structure__bluf {
+    margin: 0.35rem 0 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, currentColor 90%, transparent);
+  }
+  @media (prefers-color-scheme: dark) {
+    .answer-structure {
+      background: color-mix(in srgb, #00C896 12%, transparent);
+    }
+    .answer-structure__label--bluf {
+      color: #5B8DEF;
+      background: color-mix(in srgb, #5B8DEF 16%, transparent);
+    }
+  }
+</style>

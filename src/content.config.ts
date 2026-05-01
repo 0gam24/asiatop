@@ -22,6 +22,16 @@ const articles = defineCollection({
       .min(1),
     dataValidAsOf: z.string(),
     draft: z.boolean().default(false),
+    // ── 자동 발행 파이프라인 추적 (Gap 1·2·3 통합) ──
+    brief_id: z.string().optional(),
+    next_review_date: z.coerce.date().optional(),
+    sources_verified: z.boolean().optional(),
+    verified_facts_count: z.number().int().min(0).optional(),
+    approximate_facts_count: z.number().int().min(0).optional(),
+    fact_verification_at: z.string().optional(),
+    ai_likeness: z.number().min(0).max(10).optional(),
+    ai_signals: z.array(z.string()).optional(),
+    source_question_hash: z.string().optional(),
   }),
 });
 

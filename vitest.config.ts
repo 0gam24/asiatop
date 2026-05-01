@@ -4,7 +4,12 @@ import { getViteConfig } from 'astro/config';
 export default getViteConfig({
   test: {
     environment: 'happy-dom',
-    include: ['tests/unit/**/*.test.ts', 'src/**/*.test.ts'],
+    include: [
+      'tests/unit/**/*.test.ts',
+      'tests/gates/**/*.test.mjs',
+      'tests/lib/**/*.test.mjs',
+      'src/**/*.test.ts',
+    ],
     exclude: ['tests/e2e/**', 'node_modules/**', 'dist/**', '.astro/**'],
     coverage: {
       provider: 'v8',

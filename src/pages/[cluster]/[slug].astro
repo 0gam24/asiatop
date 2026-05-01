@@ -5,6 +5,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import AdSlot from '../../components/AdSlot.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import HeroIllustration from '../../components/HeroIllustration.astro';
+import SourceVerificationBadge from '../../components/SourceVerificationBadge.astro';
 import { getRelatedArticles } from '../../lib/related-articles';
 
 export async function getStaticPaths() {
@@ -304,6 +305,16 @@ const ageMonths = Math.floor(ageInDays / 30);
             · {readingMinutes}분 읽기
           </span>
         </div>
+        {article.data.sources_verified && (
+          <div class="verified-row">
+            <SourceVerificationBadge
+              verified={article.data.sources_verified}
+              factsCount={article.data.verified_facts_count}
+              approximateCount={article.data.approximate_facts_count}
+              verificationAt={article.data.fact_verification_at}
+            />
+          </div>
+        )}
       </header>
 
       <!-- 갱신 필요 배너 (180일 경과 시) -->
@@ -518,6 +529,13 @@ const ageMonths = Math.floor(ageInDays / 30);
 .reading-time {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+.verified-row {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 .cite-questions h2 {
   font-size: 0.82rem;

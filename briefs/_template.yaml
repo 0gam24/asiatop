@@ -44,6 +44,27 @@ niche:
     - ""                     # 예: "내 집 마련은 무리예요"
     - ""                     # 예: "전세가 더 싸요"
 
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  # 8차원 질문자 프로파일링 (자동 추출 또는 작성자 입력)
+  # 결정적 차원(1·5·6·8) 미충족 시 brief 우선순위 강등 또는 폐기.
+  # 권고 차원(2·3·4·7) 누락 허용 — 본문 톤만 일반화.
+  # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  search_timing:             # 차원 1 — 결정적
+    month: ""                # "01"~"12" 또는 ""
+    weekday: ""              # "Mon"~"Sun" 또는 ""
+    policy_proximity: ""     # 예: "T-7d:종소세" / "T+30d:청년월세-2차" / null
+  life_stage: "unspecified"  # 차원 2 — 권고. enum: early-career | pre-marriage | new-parent | career-transition | pre-retirement | unspecified
+  employment_type: "unspecified"  # 차원 3 — 권고. enum: salaried | freelance | self-employed | public | part-time | unspecified
+  region: "nationwide"       # 차원 4 — 권고. ISO 시도코드 또는 "nationwide"
+  prior_attempts: []         # 차원 5 — 결정적. enum 배열: rejected | reapply | first-time | doc-incomplete | timing-missed
+  competing_options: []      # 차원 6 — 결정적. 화이트리스트 매칭 제도·상품 (≥2개 시 비교표 자동 트리거)
+  hidden_anxiety_tags: []    # 차원 7 — 권고. enum 배열: 자격_미달_공포 | 기회_상실_공포 | 가족_부담 | 타이밍_놓침 | 서류_복잡성 | 정보_과부하 | 사기_피해_공포 | 낙인_공포 | 소득_노출_공포 | 세무조사_공포 | 이혼_재산_공포 | 해고_공포
+  source_signal:             # 차원 8 — 결정적
+    description_length: 0    # 네이버 API description 길이 (문자)
+    answer_count: 0          # 답변 개수 (지식인)
+    repeat_count: 0          # 같은 의미 질문 90일 누적
+    unmet_market_score: 0    # 0~3 (높을수록 시장 미해결 페인)
+
 # ─────────────────────────────────────────────
 # 검색 의도 — 이 글이 답해야 할 질문
 # ─────────────────────────────────────────────

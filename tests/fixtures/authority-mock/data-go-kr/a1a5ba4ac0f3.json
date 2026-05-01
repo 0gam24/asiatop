@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "query": {
+      "keywords": ["청년월세"],
+      "expected_facts": [
+        "월 20만원 지원",
+        "12개월 한도",
+        "2025년 7월 1일 시행",
+        "소득세법 제59조 제2항",
+        "만 19세부터 신청"
+      ]
+    },
+    "purpose": "통합 테스트용 청년월세지원 sample 응답"
+  },
+  "raw": {
+    "policyName": "청년월세 한시 특별지원",
+    "monthlyAmount": "200,000원",
+    "supportPeriod": "12개월",
+    "effectiveDate": "2025-07-01",
+    "minAge": "19세",
+    "lawBasis": "소득세법 제59조 제2항"
+  },
+  "facts": []
+}
