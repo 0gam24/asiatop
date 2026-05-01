@@ -1,0 +1,23 @@
+{
+  "_meta": {
+    "purpose": "naver-kin sample fixture (sort=date, query=청년월세지원)",
+    "source": "https://openapi.naver.com/v1/search/kin.json"
+  },
+  "items": [
+    {
+      "title": "<b>청년월세지원</b> 자격이 어떻게 되나요?",
+      "description": "만 19세 이상 34세 이하 청년이고, 부모님과 따로 거주하면서 소득 기준이 맞으면 신청 가능합니다. 정확한 자격은 복지로에서...",
+      "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=4040108&docId=99999001"
+    },
+    {
+      "title": "<b>청년월세지원</b> 신청 거절당했는데 다시 받을 수 있나요",
+      "description": "이미 신청해서 거절당하면 다음 분기에 재신청 가능합니다. 거절 사유에 따라 처리 방법이 다른데요...",
+      "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=4040108&docId=99999002"
+    },
+    {
+      "title": "<b>청년월세지원</b> 부모님 소득 봐서 거절 됨",
+      "description": "원가구 중위소득 100% 기준이 들어있어서요.",
+      "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=4040108&docId=99999003"
+    }
+  ]
+}
