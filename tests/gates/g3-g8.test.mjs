@@ -120,6 +120,27 @@ describe('G6 — attachAndVerifyDisclosures', () => {
     const r = attachAndVerifyDisclosures('---\ntitle: t\n---\n\n본문.', brief);
     expect(r.mdx).toContain('2026-04-01');
   });
+
+  it('frontmatter 보존 (---으로 시작·끝)', () => {
+    const mdx = '---\ntitle: 제목\nauthor: editor\n---\n\n본문 텍스트.';
+    const r = attachAndVerifyDisclosures(mdx, brief);
+    expect(r.mdx.startsWith('---\ntitle: 제목')).toBe(true);
+    expect(r.mdx).toContain('---\n\n본문');
+  });
+
+  it('YMYL 부착 시 본문 마지막 단락 다음에 위치', () => {
+    const mdx = '---\ntitle: t\n---\n\n첫 단락.\n\n둘째 단락 마지막.';
+    const r = attachAndVerifyDisclosures(mdx, brief);
+    const ymylIdx = r.mdx.indexOf('ymyl-disclaimer');
+    const lastBodyIdx = r.mdx.lastIndexOf('둘째 단락 마지막');
+    expect(ymylIdx).toBeGreaterThan(lastBodyIdx);
+  });
+
+  it('mdx 마지막 줄에 trailing newline 보존', () => {
+    const mdx = '---\ntitle: t\n---\n\n본문.';
+    const r = attachAndVerifyDisclosures(mdx, brief);
+    expect(r.mdx.endsWith('\n')).toBe(true);
+  });
 });
 
 describe('G7 — checkPlagiarism', () => {
