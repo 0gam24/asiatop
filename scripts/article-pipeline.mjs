@@ -47,11 +47,7 @@ const BRIEF_PATH = arg('brief');
 const DRAFT = args.includes('--draft');
 const PROMPT_ONLY = args.includes('--prompt-only');
 
-const VALID_CLUSTERS = [
-  'gov-support', 'tax', 'realestate', 'unemployment', 'savings',
-  'insurance-labor', 'auto', 'public-services', 'office-tips',
-  'credit-loan', 'insurance-personal', 'pension',
-];
+const { VALID_CLUSTERS } = await import('./lib/brief-loader.mjs');
 
 // ----- brief 모드 (Gap 2 통합) --------------------------------------------
 // --brief <path> 사용 시 brief.yaml에서 cluster·slug·topic 자동 파생.

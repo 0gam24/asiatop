@@ -13,17 +13,7 @@
  */
 import { extractFactTokens, extractFactsFromObject } from './fact-extract.mjs';
 import { classifyTokens } from './fact-match.mjs';
-
-/**
- * 본문에서 frontmatter 제외하고 본문만 추출.
- */
-function stripFrontmatter(mdx) {
-  if (typeof mdx !== 'string') return '';
-  if (!mdx.startsWith('---')) return mdx;
-  const end = mdx.indexOf('\n---', 3);
-  if (end < 0) return mdx;
-  return mdx.slice(end + 4).trimStart();
-}
+import { stripFrontmatter } from './mdx-utils.mjs';
 
 /**
  * brief.primary_sources[*].expected_facts (자유 텍스트)에서 토큰 추출.

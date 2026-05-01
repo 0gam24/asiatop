@@ -24,16 +24,7 @@ function buildAIDisclosure() {
 > **AI 보조 공시**: 본 글의 초안은 AI(DeepSeek-V3 + Claude Haiku)의 보조로 작성되었으며, 머니룩 편집팀이 1차 자료 검증·편집·승인 후 발행했습니다.`;
 }
 
-function stripFrontmatter(text) {
-  if (typeof text !== 'string') return '';
-  if (!text.startsWith('---')) return { fm: '', body: text };
-  const end = text.indexOf('\n---', 3);
-  if (end < 0) return { fm: '', body: text };
-  return {
-    fm: text.slice(0, end + 4),
-    body: text.slice(end + 4),
-  };
-}
+import { splitFrontmatter as stripFrontmatter } from '../lib/mdx-utils.mjs';
 
 /**
  * G6 본체. mdx에 면책·공시 부착 후 검증.

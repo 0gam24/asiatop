@@ -37,11 +37,7 @@ const fail = (m) => { console.error(`${C.red}❌${C.reset} ${m}`); process.exit(
 const info = (m) => console.log(`${C.blue}ℹ${C.reset}  ${m}`);
 const dim = (m) => console.log(`${C.dim}${m}${C.reset}`);
 
-const VALID_CLUSTERS = [
-  'gov-support', 'tax', 'realestate', 'unemployment', 'savings',
-  'insurance-labor', 'auto', 'public-services', 'office-tips',
-  'credit-loan', 'insurance-personal', 'pension',
-];
+import { VALID_CLUSTERS } from './lib/brief-loader.mjs';
 
 // ─────────────────────────────────────────────
 // 1. 입력 수집 (CLI 인자 우선, 부족하면 인터랙티브)

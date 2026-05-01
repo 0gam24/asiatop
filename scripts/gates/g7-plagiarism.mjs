@@ -24,13 +24,7 @@ function tokenizeKorean(text) {
     .filter(Boolean);
 }
 
-function stripFrontmatter(text) {
-  if (typeof text !== 'string') return '';
-  if (!text.startsWith('---')) return text;
-  const end = text.indexOf('\n---', 3);
-  if (end < 0) return text;
-  return text.slice(end + 4);
-}
+import { stripFrontmatter } from '../lib/mdx-utils.mjs';
 
 /**
  * 두 토큰 리스트의 최대 연속 매칭 길이 + 매칭 위치 반환.

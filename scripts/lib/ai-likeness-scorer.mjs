@@ -22,15 +22,9 @@
  * frontmatter는 분석에서 제외 (yaml은 신호가 아님).
  */
 
-const SIGNAL_MAX = 11.5;
+import { stripFrontmatter } from './mdx-utils.mjs';
 
-function stripFrontmatter(text) {
-  if (typeof text !== 'string') return '';
-  if (!text.startsWith('---')) return text;
-  const end = text.indexOf('\n---', 3);
-  if (end < 0) return text;
-  return text.slice(end + 4).trimStart();
-}
+const SIGNAL_MAX = 11.5;
 
 function extractParagraphs(body) {
   return body

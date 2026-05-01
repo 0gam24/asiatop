@@ -34,13 +34,7 @@ const AFFILIATE_DOMAIN_DENY = Object.freeze([
   'dabang-loan', 'badcredit-loan',
 ]);
 
-function stripFrontmatter(text) {
-  if (typeof text !== 'string') return '';
-  if (!text.startsWith('---')) return text;
-  const end = text.indexOf('\n---', 3);
-  if (end < 0) return text;
-  return text.slice(end + 4);
-}
+import { stripFrontmatter } from '../lib/mdx-utils.mjs';
 
 function extractExternalUrls(body) {
   const urls = [];

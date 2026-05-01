@@ -56,16 +56,12 @@ if (!existsSync(absPath)) {
 // ─────────────────────────────────────────────
 // 2. 클러스터 enum (src/data/clusters.ts 와 동기화)
 // ─────────────────────────────────────────────
-const VALID_CLUSTERS = [
-  'gov-support', 'tax', 'realestate', 'unemployment', 'savings',
-  'insurance-labor', 'auto', 'public-services', 'office-tips',
-  'credit-loan', 'insurance-personal', 'pension',
-];
+import { VALID_CLUSTERS } from './lib/brief-loader.mjs';
 
 // ─────────────────────────────────────────────
 // 3. 신뢰 도메인 화이트리스트 (scripts/lib/trusted-domains.mjs — 단일 진실 공급원)
 // ─────────────────────────────────────────────
-import { isTrustedUrl } from './lib/trusted-domains.mjs';
+import { isTrustedUrl, TRUSTED_DOMAINS } from './lib/trusted-domains.mjs';
 
 // ─────────────────────────────────────────────
 // 4. Zod 스키마 (inline)
