@@ -66,14 +66,15 @@ describe('authority-sources — fetchAllForCluster mock 모드', () => {
     expect(dataGoKr.raw?.policyName).toContain('청년월세');
   });
 
-  it('fixture 누락 시 __missing__ 폴백 (raw=null, facts=[])', async () => {
+  it('fixture 누락 시 __missing__ 폴백 (stub raw + facts=[])', async () => {
     const responses = await fetchAllForCluster(
       'gov-support',
       { keywords: ['no-fixture-keyword'], expected_facts: ['nothing'] },
       { mock: true },
     );
     const dataGoKr = responses.find((r) => r.source_id === 'data-go-kr');
-    expect(dataGoKr.raw).toBeNull();
+    expect(dataGoKr.raw).not.toBeNull();
+    expect(dataGoKr.facts).toEqual([]);
   });
 
   it('미지의 cluster는 빈 배열', async () => {

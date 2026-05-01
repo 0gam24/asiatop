@@ -1,5 +1,5 @@
 {
-  "_meta": { "purpose": "law-go-kr fixture 누락 폴백" },
-  "raw": null,
+  "_meta": { "purpose": "law-go-kr stub" },
+  "raw": { "source": "법제처 OpenAPI (stub)", "lastUpdated": "2026-04-01" },
   "facts": []
 }

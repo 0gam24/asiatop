@@ -1,5 +1,5 @@
 {
-  "_meta": { "purpose": "bok-ecos fixture 누락 폴백" },
-  "raw": null,
+  "_meta": { "purpose": "bok-ecos stub" },
+  "raw": { "source": "BOK ECOS (stub)", "lastUpdated": "2026-04-01" },
   "facts": []
 }

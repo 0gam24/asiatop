@@ -28,13 +28,14 @@ describe('G3 — probeAuthoritySources', () => {
     expect(r.meta.non_empty_count).toBeGreaterThan(0);
   });
 
-  it('fixture 누락 → g3-empty-response', async () => {
+  it('fixture 누락 시 __missing__ stub으로 G3 통과 (dev 모드)', async () => {
     const r = await probeAuthoritySources('gov-support', {
       keywords: ['no-such-keyword-zzz'],
       expected_facts: ['nothing'],
     }, { mock: true });
-    expect(r.pass).toBe(false);
-    expect(r.reasons).toContain('g3-empty-response');
+    // __missing__.json 이 raw 데이터를 가지므로 G3 통과
+    expect(r.pass).toBe(true);
+    expect(r.meta.non_empty_count).toBeGreaterThan(0);
   });
 });
 

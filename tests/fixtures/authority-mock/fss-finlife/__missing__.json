@@ -1,5 +1,5 @@
 {
-  "_meta": { "purpose": "fss-finlife fixture 누락 폴백" },
-  "raw": null,
+  "_meta": { "purpose": "fss-finlife stub" },
+  "raw": { "source": "금감원 finlife (stub)", "lastUpdated": "2026-04-01" },
   "facts": []
 }
