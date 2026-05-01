@@ -1,0 +1,608 @@
+---
+import Base from '../../layouts/Base.astro';
+import { findCluster, clusterAccentDark } from '../../data/clusters';
+import { getCollection, getEntry, render } from 'astro:content';
+import AdSlot from '../../components/AdSlot.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import HeroIllustration from '../../components/HeroIllustration.astro';
+import { getRelatedArticles } from '../../lib/related-articles';
+
+export async function getStaticPaths() {
+  let articles: Awaited<ReturnType<typeof getCollection>> = [];
+  try {
+    articles = await getCollection('articles', ({ data }) => !data.draft);
+  } catch {
+    return [];
+  }
+  return articles.map((article) => ({
+    params: {
+      cluster: article.data.cluster,
+      slug: article.id.replace(/\.mdx?$/, ''),
+    },
+    props: { article, allArticles: articles },
+  }));
+}
+
+const { article, allArticles } = Astro.props;
+const cluster = findCluster(article.data.cluster);
+const { Content } = await render(article);
+
+const authorEntry = await getEntry('authors', article.data.author).catch(() => undefined);
+
+const relatedArticles = getRelatedArticles(article, allArticles, 6);
+
+// 같은 클러스터 내 publishedAt 기준 prev/next — Schema.org Article previousItem/nextItem
+const sameClusterSorted = allArticles
+  .filter((a) => a.data.cluster === article.data.cluster && !a.data.draft)
+  .sort((a, b) => a.data.publishedAt.valueOf() - b.data.publishedAt.valueOf());
+const idx = sameClusterSorted.findIndex((a) => a.id === article.id);
+const prevArticle = idx > 0 ? sameClusterSorted[idx - 1] : null;
+const nextArticle = idx < sameClusterSorted.length - 1 ? sameClusterSorted[idx + 1] : null;
+const prevUrl = prevArticle
+  ? new URL(`/${prevArticle.data.cluster}/${prevArticle.id.replace(/\.mdx?$/, '')}`, Astro.site).toString()
+  : null;
+const nextUrl = nextArticle
+  ? new URL(`/${nextArticle.data.cluster}/${nextArticle.id.replace(/\.mdx?$/, '')}`, Astro.site).toString()
+  : null;
+
+const slug = article.id.replace(/\.mdx?$/, '');
+const url = new URL(`/${article.data.cluster}/${slug}`, Astro.site).toString();
+const ogImagePath = `/og/${article.data.cluster}/${slug}.png`;
+const heroImage = new URL(`/og/${article.data.cluster}/${slug}.png`, Astro.site).toString();
+const heroImageSvg = new URL(`/og/${article.data.cluster}/${slug}.svg`, Astro.site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: cluster?.title ?? '', item: new URL(`/${article.data.cluster}`, Astro.site).toString() },
+    { '@type': 'ListItem', position: 3, name: article.data.title, item: url },
+  ],
+};
+
+const authorUrl = authorEntry
+  ? new URL(`/author/${authorEntry.id}`, Astro.site).toString()
+  : new URL('/about', Astro.site).toString();
+const authorSchema = authorEntry
+  ? {
+      '@type': authorEntry.data.isOrganization ? 'Organization' : 'Person',
+      '@id': `${authorUrl}#author`,
+      name: authorEntry.data.name,
+      jobTitle: authorEntry.data.jobTitle,
+      url: authorUrl,
+      description: authorEntry.data.bio,
+      knowsAbout: authorEntry.data.expertise,
+      sameAs: authorEntry.data.sameAs,
+      ...(authorEntry.data.isOrganization
+        ? {}
+        : { worksFor: { '@id': new URL('#organization', Astro.site).toString() } }),
+    }
+  : {
+      '@type': 'Organization',
+      name: '머니룩 편집팀',
+      url: new URL('/about', Astro.site).toString(),
+    };
+
+// wordCount: 한국어 기준 어절 단위 (공백 분리). MDX 마크다운 syntax/HTML/코드블록 제거 후 계수.
+const cleanBody = (article.body ?? '')
+  .replace(/```[\s\S]*?```/g, ' ')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+  .replace(/[#*_`>~|-]/g, ' ');
+const wordCount = cleanBody.trim().split(/\s+/).filter(Boolean).length;
+const articleBodyExcerpt = cleanBody.replace(/\s+/g, ' ').trim().slice(0, 500);
+
+// 한국어 평독 속도 ≈ 350 어절/분 (한국어능력검정 기준 평균). 분 단위 반올림, 최소 1분.
+const readingMinutes = Math.max(1, Math.round(wordCount / 350));
+const timeRequiredISO = `PT${readingMinutes}M`;
+
+// Article.citation — 본문 출처 URL을 schema citation으로 노출 (E-E-A-T 강화)
+const citationList = article.data.sources.map((s) => ({
+  '@type': 'CreativeWork',
+  name: s.title,
+  url: s.url,
+}));
+
+// ToC: MDX 본문에서 ## H2 추출 (코드블록 내부 ## 제외).
+// 슬러그는 Astro MDX의 기본 GitHub-flavored slugger와 일치 — 공백 → 하이픈, ? . ! 등 제거.
+function slugify(text: string): string {
+  return text
+    .trim()
+    .replace(/[?!.,:;'"`()[\]{}]/g, '')
+    .replace(/\s+/g, '-')
+    .toLowerCase();
+}
+const tocItems: { text: string; slug: string }[] = [];
+{
+  const body = article.body ?? '';
+  let inFence = false;
+  for (const line of body.split(/\r?\n/)) {
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const m = line.match(/^##\s+(.+?)\s*$/);
+    if (m && m[1]) {
+      const text = m[1].replace(/[*_`]/g, '');
+      tocItems.push({ text, slug: slugify(text) });
+    }
+  }
+}
+
+// Article.hasPart — ToC 항목을 schema 챕터로 노출
+const hasPartList = tocItems.map((t) => ({
+  '@type': 'WebPageElement',
+  name: t.text,
+  url: `${url}#${t.slug}`,
+}));
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': article.data.articleType ?? 'Article',
+  headline: article.data.title,
+  description: article.data.description,
+  url,
+  image: [heroImage, heroImageSvg],
+  thumbnailUrl: heroImage,
+  datePublished: article.data.publishedAt.toISOString(),
+  dateModified: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),
+  inLanguage: 'ko-KR',
+  wordCount,
+  timeRequired: timeRequiredISO,
+  // dataValidAsOf("2026년 4월")을 ISO 월 형식("2026-04-01")으로 변환해 lastReviewed로 노출.
+  // YMYL 콘텐츠에서 "최근 검토일"은 dateModified와 별도 신선도 신호.
+  ...(article.data.dataValidAsOf
+    ? (() => {
+        const m = article.data.dataValidAsOf.match(/^(\d{4})년\s*(\d{1,2})월$/);
+        return m
+          ? { lastReviewed: `${m[1]}-${m[2].padStart(2, '0')}-01` }
+          : {};
+      })()
+    : {}),
+  articleBody: articleBodyExcerpt,
+  citation: citationList,
+  hasPart: hasPartList,
+  ...(prevUrl
+    ? {
+        previousItem: {
+          '@type': 'Article',
+          url: prevUrl,
+          name: prevArticle!.data.title,
+        },
+      }
+    : {}),
+  ...(nextUrl
+    ? {
+        nextItem: {
+          '@type': 'Article',
+          url: nextUrl,
+          name: nextArticle!.data.title,
+        },
+      }
+    : {}),
+  // mainEntity — 글의 핵심 Q&A (AI Overviews·Perplexity 인용 가능성 ↑)
+  mainEntity: article.data.aiCitationQuestions[0]
+    ? {
+        '@type': 'Question',
+        name: article.data.aiCitationQuestions[0],
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: article.data.description,
+          url,
+        },
+      }
+    : undefined,
+  copyrightYear: article.data.publishedAt.getFullYear(),
+  copyrightHolder: { '@id': new URL('#organization', Astro.site).toString() },
+  license: new URL('/terms', Astro.site).toString(),
+  audience: {
+    '@type': 'Audience',
+    audienceType: '한국 직장인·청년',
+    geographicArea: { '@type': 'Country', name: 'South Korea' },
+  },
+  author: authorSchema,
+  publisher: {
+    '@type': 'Organization',
+    '@id': new URL('#organization', Astro.site).toString(),
+    name: '머니룩',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/logo.svg', Astro.site).toString(),
+      width: 600,
+      height: 60,
+    },
+  },
+  mainEntityOfPage: url,
+  about: article.data.keywords.map((k) => ({ '@type': 'Thing', name: k })),
+  keywords: article.data.keywords.join(', '),
+  articleSection: cluster?.title,
+  isPartOf: {
+    '@type': 'CollectionPage',
+    name: cluster?.title,
+    url: new URL(`/${article.data.cluster}`, Astro.site).toString(),
+  },
+  // 음성 어시스턴트(Google Assistant·Alexa) — 다루는 질문 + lede 우선 음성 출력
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.cite-questions', '.lede', 'h1'],
+  },
+};
+
+const faqSchema = article.data.faq && article.data.faq.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: article.data.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+
+const jsonLdList = [breadcrumbSchema, articleSchema, ...(faqSchema ? [faqSchema] : [])];
+
+const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
+const updateStr = article.data.updatedAt
+  ? new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.updatedAt)
+  : null;
+
+const referenceDate = article.data.updatedAt ?? article.data.publishedAt;
+const ageInDays = Math.floor((Date.now() - referenceDate.valueOf()) / (1000 * 60 * 60 * 24));
+const isStale = ageInDays > 180;
+const isVeryStale = ageInDays > 365;
+const ageMonths = Math.floor(ageInDays / 30);
+---
+<Base
+  title={article.data.title}
+  description={article.data.description}
+  ogType="article"
+  ogImage={ogImagePath}
+  jsonLd={jsonLdList}
+  articleMeta={{
+    section: cluster?.title,
+    tags: article.data.keywords as string[],
+    publishedTime: article.data.publishedAt.toISOString(),
+    modifiedTime: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),
+    author: authorEntry?.data.name ?? '머니룩 편집팀',
+  }}
+  prevHref={prevUrl ?? undefined}
+  nextHref={nextUrl ?? undefined}
+  newsKeywords={article.data.keywords as string[]}
+>
+  <article
+    class="article"
+    data-pagefind-body
+    data-pagefind-filter={`cluster:${cluster?.title ?? ''}`}
+    data-pagefind-meta={`cluster:${cluster?.shortTitle ?? ''},date:${article.data.publishedAt.toISOString().slice(0, 10)}`}
+  >
+    <div class="container narrow">
+      <nav aria-label="breadcrumb" class="crumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href={`/${article.data.cluster}`}>{cluster?.title}</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{article.data.title.slice(0, 18)}…</span>
+      </nav>
+
+      <header class="article-header">
+        {cluster && (
+          <span class="cluster-tag" style={`--accent-light: ${cluster.accent}; --accent-dark: ${clusterAccentDark(cluster.accent)};`}>
+            {cluster.shortTitle}
+          </span>
+        )}
+        <h1>{article.data.title}</h1>
+        <p class="lede">{article.data.description}</p>
+        <div class="meta">
+          <span>{dateStr} 발행</span>
+          {updateStr && <span> · {updateStr} 갱신</span>}
+          <span> · 데이터 기준 {article.data.dataValidAsOf}</span>
+          <span class="reading-time" aria-label={`예상 읽기 시간 ${readingMinutes}분`}>
+            · {readingMinutes}분 읽기
+          </span>
+        </div>
+      </header>
+
+      <!-- 갱신 필요 배너 (180일 경과 시) -->
+      {isStale && (
+        <aside class={`stale-banner ${isVeryStale ? 'very-stale' : ''}`} role="status" aria-label="갱신 알림">
+          <span class="icon" aria-hidden="true">{isVeryStale ? '⚠️' : '🕐'}</span>
+          <div>
+            <strong>{isVeryStale ? '1년 이상 갱신되지 않은 글입니다' : '6개월 이상 갱신되지 않은 글입니다'}</strong>
+            <p>마지막 갱신 후 {ageMonths}개월 경과. 정책·요율은 변경됐을 수 있으니 신청 직전 공식 출처에서 재확인하세요.</p>
+          </div>
+        </aside>
+      )}
+
+      <!-- AI 인용 시나리오 (GEO 청킹) -->
+      <aside class="cite-questions" aria-label="이 글이 다루는 질문">
+        <h2>이 글이 다루는 질문</h2>
+        <ul>
+          {article.data.aiCitationQuestions.map((q) => <li>{q}</li>)}
+        </ul>
+      </aside>
+
+      <!-- 본문 hero 일러스트 (perf: first-fold 아래 + content-visibility: auto) -->
+      <HeroIllustration cluster={article.data.cluster} title={article.data.title} />
+
+      <!-- 목차 (ToC) — H2 ≥ 3개일 때만 노출. AI 인용·스크린리더 내비게이션 강화. -->
+      {tocItems.length >= 3 && (
+        <nav class="toc" aria-label="이 글의 목차" data-pagefind-ignore>
+          <p class="toc-label">목차</p>
+          <ol>
+            {tocItems.map((t) => (
+              <li><a href={`#${t.slug}`}>{t.text}</a></li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
+      <!-- 본문 (MDX 렌더) -->
+      <div class="prose">
+        <Content />
+      </div>
+
+      <!-- 광고 -->
+      <div class="ad-wrap"><AdSlot format="in-feed" /></div>
+
+      <!-- FAQ -->
+      {article.data.faq && article.data.faq.length > 0 && (
+        <section class="faq">
+          <h2>자주 묻는 질문</h2>
+          {article.data.faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )}
+
+      <!-- 출처 -->
+      <section class="sources">
+        <h2>출처·참고자료</h2>
+        <ul>
+          {article.data.sources.map((s) => (
+            <li><a href={s.url} rel="noopener noreferrer" target="_blank">{s.title}</a></li>
+          ))}
+        </ul>
+        <p class="disclaimer">
+          본 글의 정책·요율·법령은 변경될 수 있습니다. 신청 직전 위 공식 출처에서 재확인하세요.
+          머니룩의 모든 글은 사람 편집자가 사실 확인 후 발행합니다.
+        </p>
+      </section>
+
+      {relatedArticles.length > 0 && (
+        <section class="related" data-pagefind-ignore>
+          <h2>이 글과 함께 보면 좋은 글</h2>
+          <div class="related-grid">
+            {relatedArticles.map((a) => (
+              <ArticleCard
+                href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+                title={a.data.title}
+                description={a.data.description}
+                cluster={a.data.cluster}
+                publishedAt={a.data.publishedAt}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+</Base>
+
+<style>
+.container {
+  max-width: 1200px;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+.narrow { max-width: 720px; }
+
+.article { padding-block: 2rem 4rem; }
+
+.crumb {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.crumb a:hover { color: var(--color-primary-700); }
+.crumb [aria-current="page"] { color: var(--color-text); }
+
+.article-header { margin-bottom: 1.75rem; }
+.cluster-tag {
+  --accent: var(--accent-light);
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding-inline: 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+}
+[data-theme="dark"] .cluster-tag { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cluster-tag { --accent: var(--accent-dark); }
+}
+.article-header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  line-height: 1.25;
+  margin: 0 0 0.85rem;
+}
+.lede {
+  font-size: 1.06rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin: 0 0 0.75rem;
+}
+.meta {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.stale-banner {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  background: color-mix(in oklab, var(--color-accent) 10%, var(--color-bg));
+  border: 1px solid color-mix(in oklab, var(--color-accent) 35%, transparent);
+  border-radius: var(--radius-card);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.stale-banner.very-stale {
+  background: color-mix(in oklab, var(--color-warn) 10%, var(--color-bg));
+  border-color: color-mix(in oklab, var(--color-warn) 40%, transparent);
+}
+.stale-banner .icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+.stale-banner strong { display: block; color: var(--color-text); margin-bottom: 0.25rem; }
+.stale-banner p { color: var(--color-muted); margin: 0; }
+
+.cite-questions {
+  background: linear-gradient(135deg, var(--color-tldr-from) 0%, var(--color-tldr-to) 100%);
+  border: 1px solid color-mix(in oklab, var(--color-primary) 25%, transparent);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.toc {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.toc-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+.toc ol {
+  list-style: decimal inside;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+.toc li::marker { color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.toc a {
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.toc a:hover {
+  color: var(--color-primary-700);
+  border-bottom-color: var(--color-primary);
+}
+
+.reading-time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.cite-questions h2 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-700);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+.cite-questions ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.ad-wrap { margin-block: 2rem; }
+
+.faq h2, .sources h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  margin: 2.5rem 0 0.85rem;
+  letter-spacing: -0.025em;
+}
+.faq details {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--color-bg);
+}
+.faq summary {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: " +"; color: var(--color-primary); }
+.faq details[open] summary::after { content: " −"; }
+.faq details p {
+  margin: 0.6rem 0 0;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.sources ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+.sources a {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.disclaimer {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  background: var(--color-surface);
+  padding: 0.85rem 1rem;
+  border-left: 3px solid var(--color-primary);
+  border-radius: 4px;
+  line-height: 1.65;
+}
+
+.related {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+.related h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  margin: 0 0 1rem;
+  letter-spacing: -0.025em;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 600px) {
+  .related-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>

@@ -1,0 +1,61 @@
+# Cloudflare Pages 리다이렉트
+# 형식: <from> <to> <status>
+# 와일드카드: /path/* → :splat 으로 캡처
+
+# 짧은 별칭 → 정규 경로
+/rss          /rss.xml             301
+/feed         /rss.xml             301
+/atom         /atom.xml            301
+/json         /feed.json           301
+/sitemap      /sitemap-index.xml   301
+/sitemap.xml  /sitemap-index.xml   301
+/feeds        /rss.xml             301
+
+# 카테고리·아카이브 통합 — /archive·/posts·/all → /clusters (#archive 앵커)
+/archive      /clusters#archive    301
+/posts        /clusters#archive    301
+/all          /clusters            301
+
+# 저자 인덱스 페이지 미존재 → about
+/author       /about               302
+/authors      /about               302
+
+# 태그 호환성 (구 URL 또는 외부 링크 대응) → 검색
+/tag/*        /search?q=:splat     302
+/tags/*       /search?q=:splat     302
+
+# 자주 잘못 입력되는 경로
+/index        /                    301
+/home         /                    301
+/blog         /                    301
+/posts        /                    301
+/category/*   /:splat              301
+
+# 영문 약어 호환
+/about-us     /about               301
+/contact-us   /contact             301
+/privacy-policy /privacy           301
+/tos          /terms               301
+
+# ──────────────────────────────────────────────────────────
+# Legacy asiatop.co.kr 경로 정리 (2026-05-01 도메인 인계)
+# 과거 운영: 노트북·전자제품 e-커머스 (~2023). 도박/성인/스팸 이력 0.
+# Wayback CDX에서 발견된 잔존 인덱스 경로를 410(Gone)으로 명시 → Google·Naver 빠른 색인 제거.
+# ──────────────────────────────────────────────────────────
+/boardPost/*       /404            410
+/product/*         /404            410
+/upload/*          /404            410
+/uploadedFiles/*   /404            410
+/v2/mall/*         /404            410
+/cgi-sys/*         /404            410
+/display/*         /404            410
+/2021_new          /404            410
+/best              /404            410
+/cos               /404            410
+/lgnotebook        /404            410
+/policy            /404            410
+/question          /404            410
+/review            /404            410
+/shop              /404            410
+/soft01            /404            410
+/tip               /404            410

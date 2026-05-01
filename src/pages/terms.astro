@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+
+const url = new URL('/terms', Astro.site).toString();
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '이용약관', item: url },
+  ],
+};
+---
+<Base
+  title="이용약관 — 머니룩"
+  description="머니룩 서비스 이용에 관한 약관. 콘텐츠 사용 범위·계산기 도구 면책·전문가 자문 권고·법령 변경 시 책임 사항. 1차 정부 자료 기반 정보의 한계와 이용자 의무를 안내합니다."
+  jsonLd={breadcrumbSchema}
+>
+  <article class="container narrow prose">
+    <header>
+      <p class="kicker">Terms</p>
+      <h1>이용약관</h1>
+      <p class="meta">시행일: 2026년 4월 29일</p>
+    </header>
+
+    <h2>제1조 (목적)</h2>
+    <p>본 약관은 머니룩(MoneyLook, 이하 "회사")이 제공하는 콘텐츠·계산기·정보 서비스의 이용 조건을 정합니다.</p>
+
+    <h2>제2조 (콘텐츠의 정확성과 면책)</h2>
+    <ul>
+      <li>회사는 1차 정부·공공 자료를 기반으로 콘텐츠를 작성하며, 발행 시점의 사실을 충실히 반영하기 위해 노력합니다.</li>
+      <li><strong>본 사이트의 정보는 참고용입니다.</strong> 정책·요율·법령은 변경될 수 있으며, 실제 환급·지급액·자격 여부는 관할 기관(국세청·홈택스·복지로·공단 등)의 최종 산정과 다를 수 있습니다.</li>
+      <li>이용자는 신청·결정 직전에 공식 출처에서 최신 정보를 재확인할 의무가 있습니다.</li>
+      <li>회사는 콘텐츠 사용으로 인한 손실·결정에 대해 법적 책임을 지지 않습니다.</li>
+    </ul>
+
+    <h2>제3조 (계산기·도구 면책)</h2>
+    <ul>
+      <li>본 사이트의 계산기(연봉 실수령액·퇴직금·실업급여 등)는 일반적인 공식·기준을 적용한 <strong>예측 도구</strong>입니다.</li>
+      <li>비과세 항목·연말정산·특수 공제·회사별 규정 등을 반영하지 않으므로 실제 지급액과 차이가 날 수 있습니다.</li>
+      <li>금융·세무·법률 의사결정에는 반드시 자격 있는 전문가의 자문을 받으세요.</li>
+    </ul>
+
+    <h2>제4조 (저작권)</h2>
+    <ul>
+      <li>본 사이트의 콘텐츠 저작권은 회사 또는 저자에게 있습니다.</li>
+      <li>비상업적 목적의 인용은 출처 표기 후 자유롭게 가능합니다.</li>
+      <li>전체 복제·상업적 재배포는 사전 서면 동의가 필요합니다.</li>
+      <li>AI 답변 엔진(ChatGPT·Google AI Overviews·Perplexity·Gemini 등)이 사용자 질의에 답할 때 본 사이트를 인용·요약하는 것은 자유롭게 허용됩니다 (URL·발행일 표기 권장).</li>
+    </ul>
+
+    <h2>제5조 (광고)</h2>
+    <ul>
+      <li>본 사이트는 Google AdSense를 통해 광고 수익을 받습니다.</li>
+      <li>광고는 콘텐츠와 시각적으로 구분되어 표시됩니다.</li>
+      <li>제휴 콘텐츠는 본문에 "[제휴]" 또는 "[스폰서]"로 명시됩니다.</li>
+    </ul>
+
+    <h2>제6조 (서비스 변경·중단)</h2>
+    <ul>
+      <li>회사는 서비스 내용을 변경하거나 중단할 수 있으며, 사전 공지를 통해 알립니다.</li>
+      <li>천재지변·기술적 장애 등 불가항력으로 인한 일시 중단에 대해서는 면책됩니다.</li>
+    </ul>
+
+    <h2>제7조 (분쟁 해결)</h2>
+    <ul>
+      <li>본 약관과 관련된 분쟁은 한국 법령에 따라 해석됩니다.</li>
+      <li>회사 소재지를 관할하는 법원을 합의관할로 합니다.</li>
+    </ul>
+
+    <h2>제8조 (약관 변경)</h2>
+    <p>본 약관은 변경 시 사이트 공지로 알리며, 변경 내용은 공지 후 7일 후 적용됩니다.</p>
+  </article>
+</Base>
+
+<style>
+.container { max-width: 760px; padding-inline: 1rem; margin-inline: auto; }
+.narrow { padding-block: 2.5rem 4rem; }
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.4rem;
+}
+.meta { color: var(--color-muted); font-size: 0.82rem; margin: 0 0 2rem; }
+</style>

@@ -1,0 +1,10 @@
+---
+interface Props {
+  format?: 'banner' | 'square' | 'in-feed';
+  label?: string;
+}
+const { format = 'in-feed', label = '광고' } = Astro.props;
+---
+<aside class="ad-slot" data-format={format} aria-label="광고">
+  <span>{label} (AdSense 출시 후 자동 채워짐)</span>
+</aside>

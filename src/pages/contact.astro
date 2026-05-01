@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+
+const url = new URL('/contact', Astro.site).toString();
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  url,
+  name: '머니룩 문의·제휴',
+  inLanguage: 'ko-KR',
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '문의·제휴', item: url },
+  ],
+};
+---
+<Base
+  title="문의·제휴·정정 요청 — 머니룩"
+  description="머니룩 콘텐츠 정정 요청·제휴·기고·취재·자격 문의 등 운영진에게 연락하는 방법. 사실 오류·법령 변경 제보는 24시간 이내 검토 후 회신합니다."
+  jsonLd={[breadcrumbSchema, contactSchema]}
+>
+  <article class="container narrow prose">
+    <header>
+      <p class="kicker">Contact</p>
+      <h1>이렇게 문의주세요</h1>
+      <p class="lede">정정 요청·제휴·기고·자격 문의·취재·기타 의견 모두 환영합니다.</p>
+    </header>
+
+    <div class="cards">
+      <a class="card" href="mailto:smartdatashop@gmail.com?subject=%5B%ED%8E%B8%EC%A7%91%2F%EC%A0%95%EC%A0%95%5D%20">
+        <h3>편집·정정 요청</h3>
+        <p>사실 오류·법령 변경·통계 갱신 제보. 24시간 이내 검토 후 회신.</p>
+        <span class="email">smartdatashop@gmail.com</span>
+      </a>
+      <a class="card" href="mailto:smartdatashop@gmail.com?subject=%5B%EC%A0%9C%ED%9C%B4%2F%EA%B8%B0%EA%B3%A0%5D%20">
+        <h3>제휴·광고·기고</h3>
+        <p>금융기관·핀테크·세무·노무 전문가 제휴, 칼럼 기고, 스폰서 콘텐츠 문의.</p>
+        <span class="email">smartdatashop@gmail.com</span>
+      </a>
+      <a class="card" href="mailto:smartdatashop@gmail.com?subject=%5B%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%2F%EB%B2%95%EB%AC%B4%5D%20">
+        <h3>개인정보·법무</h3>
+        <p>개인정보처리방침·이용약관·법적 통지 관련 문의.</p>
+        <span class="email">smartdatashop@gmail.com</span>
+      </a>
+    </div>
+
+    <p class="note">
+      ※ 모든 문의는 단일 이메일 <a href="mailto:smartdatashop@gmail.com">smartdatashop@gmail.com</a>로 접수되며, 메일 제목 분류로 담당 처리합니다.
+    </p>
+
+    <h2>응답 SLA</h2>
+    <ul>
+      <li><strong>정정 요청</strong>: 24시간 이내 검토, 사실 확인 후 24시간 이내 반영</li>
+      <li><strong>제휴·기고</strong>: 영업일 기준 3일 이내 1차 회신</li>
+      <li><strong>법무·개인정보</strong>: 영업일 기준 7일 이내 회신 (한국 개인정보보호법 권고 기간 내)</li>
+    </ul>
+  </article>
+</Base>
+
+<style>
+.container { max-width: 760px; padding-inline: 1rem; margin-inline: auto; }
+.narrow { padding-block: 2.5rem 4rem; }
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.85rem;
+}
+.lede { color: var(--color-muted); font-size: 1rem; line-height: 1.65; margin: 0 0 2rem; }
+.cards { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+@media (min-width: 768px) { .cards { grid-template-columns: 1fr 1fr 1fr; } }
+.card {
+  display: block;
+  padding: 1rem 1.1rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: border-color 150ms;
+}
+.card:hover { border-color: var(--color-primary); }
+.card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.025em;
+}
+.card p { font-size: 0.85rem; color: var(--color-muted); line-height: 1.55; margin: 0 0 0.6rem; }
+.email {
+  font-size: 0.78rem;
+  color: var(--color-primary-700);
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+.note {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  background: var(--color-surface);
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-primary);
+  border-radius: 4px;
+  line-height: 1.6;
+}
+.note a { color: var(--color-primary-700); text-decoration: underline; }
+</style>

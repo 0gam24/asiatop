@@ -1,0 +1,115 @@
+# Cloudflare Pages _headers
+#
+# 이 파일을 public/_headers에 배치하면 빌드 시 dist/_headers로 복사되어
+# Cloudflare Pages가 자동으로 적용합니다.
+#
+# 적용 항목:
+# - 정적 자산: 1년 immutable 캐시
+# - HTML: 짧은 브라우저 캐시 + 긴 엣지 캐시 + stale-while-revalidate
+# - 보안 헤더 전체 (HSTS, CSP, X-Content-Type-Options 등)
+# - robots.txt / sitemap.xml / llms.txt: 1시간 캐시
+
+# ===========================================
+# 정적 자산 (immutable 영구 캐시)
+# ===========================================
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/_image/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# ===========================================
+# robots.txt / sitemap / llms.txt (1시간 캐시)
+# ===========================================
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+/sitemap-*.xml
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+/llms.txt
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+/llms-full.txt
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+/.well-known/security.txt
+  Cache-Control: public, max-age=3600
+  X-Content-Type-Options: nosniff
+
+# ===========================================
+# 모든 페이지에 보안 헤더 적용
+# (HTML 캐시는 짧은 브라우저 캐시 + 긴 엣지 캐시)
+# ===========================================
+
+/*
+  # 캐싱
+  Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800
+
+  # MIME 스니핑 방지
+  X-Content-Type-Options: nosniff
+
+  # 클릭재킹 방지 (CSP frame-ancestors가 더 강력하지만 호환용)
+  X-Frame-Options: SAMEORIGIN
+
+  # Referrer 누출 제한
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # 사용 안 하는 브라우저 기능 비활성
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()
+
+  # HTTPS 강제 (HSTS) — 2년, 서브도메인 포함, preload 자격
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # XSS 방어 — CSP
+  # ⚠️ 'unsafe-inline'은 보안 약화. 가능하면 nonce 방식으로 전환할 것.
+  # GA4 사용 시 google-analytics 도메인 추가됨.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+
+  # 다른 origin과 격리
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# ===========================================
+# 검증
+# ===========================================
+# 배포 후 다음 도구로 A+ 등급 확인:
+# - https://securityheaders.com/?q=https://example.com
+# - https://observatory.mozilla.org/analyze/example.com
+#
+# CSP 위반 발생 시 브라우저 콘솔 확인 → 필요한 도메인을 화이트리스트에 추가.
+# 'unsafe-inline'을 제거하려면 nonce 방식으로 전환 (Astro middleware 또는 CF Functions).

@@ -1,0 +1,185 @@
+# 기본 CI 워크플로 — lint, type-check, unit test, e2e, security audit
+#
+# 사용법:
+# 1. 이 파일을 .github/workflows/ci.yml에 배치
+# 2. PR/push마다 자동 실행
+# 3. 모든 잡 통과해야 머지 가능 (브랜치 보호 규칙에서 필수 체크로 지정)
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# 동일 브랜치의 이전 워크플로 자동 취소 (자원 절약)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    name: Lint, type-check, unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (Biome)
+        run: pnpm dlx @biomejs/biome ci .
+        # 또는 ESLint 사용 시:
+        # run: pnpm lint
+
+      - name: Type check
+        run: pnpm tsc --noEmit
+
+      - name: Unit tests with coverage
+        run: pnpm vitest run --coverage
+
+      - name: Knip (unused code detection)
+        run: pnpm dlx knip --reporter compact
+        continue-on-error: true  # 경고만, 차단은 안 함
+
+      - name: Upload coverage
+        if: success()
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+        continue-on-error: true
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          SITE_URL: http://localhost:4321
+
+      - name: Verify dist/
+        run: |
+          test -d dist || (echo "❌ dist/ 생성 안 됨" && exit 1)
+          test -f dist/index.html || (echo "❌ dist/index.html 없음" && exit 1)
+          echo "✅ 빌드 결과 확인"
+
+      - name: SEO regression tests
+        run: pnpm vitest run tests/seo --reporter=verbose
+        continue-on-error: false
+
+      - name: AI crawler simulation
+        run: |
+          pnpm dlx serve dist -p 4321 &
+          sleep 3
+          # GPTBot 시뮬레이션
+          gptbot_response=$(curl -sA "GPTBot/1.0" http://localhost:4321/)
+          if ! echo "$gptbot_response" | grep -q "<h1"; then
+            echo "❌ GPTBot이 핵심 콘텐츠를 볼 수 없음"
+            exit 1
+          fi
+          # ClaudeBot 시뮬레이션
+          claudebot_response=$(curl -sA "ClaudeBot/1.0" http://localhost:4321/)
+          if ! echo "$claudebot_response" | grep -q "<main"; then
+            echo "❌ ClaudeBot이 main 영역을 볼 수 없음"
+            exit 1
+          fi
+          echo "✅ AI 크롤러 시뮬레이션 통과"
+
+      - name: Check broken links
+        run: |
+          pnpm dlx linkinator http://localhost:4321 \
+            --recurse --silent --skip "external" || true
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ github.run_id }}
+          path: dist/
+          retention-days: 7
+
+  e2e:
+    name: E2E tests (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm dlx playwright install --with-deps chromium webkit
+
+      - name: Run Playwright tests
+        run: pnpm playwright test
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 30
+
+  security:
+    name: Security audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: pnpm audit
+        run: pnpm audit --audit-level=moderate
+        continue-on-error: false
+
+      - name: Secret scanning (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true

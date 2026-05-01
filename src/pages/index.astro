@@ -1,0 +1,375 @@
+---
+import Base from '../layouts/Base.astro';
+import { clusters } from '../data/clusters';
+import ClusterCard from '../components/ClusterCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import AdSlot from '../components/AdSlot.astro';
+import Experiment from '../components/Experiment.astro';
+import { getCollection } from 'astro:content';
+
+let articles: Awaited<ReturnType<typeof getCollection>> = [];
+try {
+  articles = await getCollection('articles', ({ data }) => !data.draft);
+} catch {
+  articles = [];
+}
+articles.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const featured = articles.slice(0, 3);
+const recent = articles.slice(3, 11);
+---
+<Base
+  title="머니룩 — 직장인·청년 생활금융 종합 가이드"
+  description="정부지원금·세금환급·재테크·부동산·실업급여·노동·신용대출·보험·연금. 한국 직장인이 매일 마주치는 돈 문제, 한곳에서 해결."
+  ogType="website"
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">
+        <span class="dot"></span>
+        2026 정부지원·세제·금리 최신 반영
+      </p>
+      {/*
+        SSR: 단일 <h1> + 단일 lede만 렌더 (크롤러가 H1 1개만 보도록).
+        클라이언트: data-headline-variants의 변형 중 하나를 선택해 텍스트를 스왑.
+        baseline 텍스트는 H1·lede 본문에 그대로 박혀 있어 JS 미실행 시에도 정상 표시.
+      */}
+      <div
+        class="hero-headline"
+        data-headline-experiment="hero_headline"
+        data-headline-variants={JSON.stringify([
+          {
+            id: 'baseline',
+            h1: '월급 받고 나면 사라지는 그 돈,<br>어디로 갔는지 알려드릴게요.',
+            lede: '정부지원금·연말정산·실업급여·재테크·부동산·신용대출·보험·연금까지.<br class="hide-sm">한국 직장인·청년이 진짜 궁금한 생활금융을 한곳에서.',
+          },
+          {
+            id: 'urgent',
+            h1: '못 받고 사라지는 환급금,<br>평균 23만원 1분 안에 찾기.',
+            lede: '국세청 통계상 직장인 5명 중 1명이 매년 평균 23만원의 환급을 놓칩니다.<br class="hide-sm">본인 환급 가능 금액을 지금 바로 확인하세요.',
+          },
+          {
+            id: 'specific',
+            h1: '연봉 4천만원 직장인,<br>월 실수령 295만원 받는 법.',
+            lede: '연봉 입력 → 4대보험·소득세 자동 계산 → 누락 공제 8가지까지.<br class="hide-sm">세후 정확한 손에 잡히는 금액을 1분 안에 확인하세요.',
+          },
+        ])}
+      >
+        <h1 data-headline-h1>월급 받고 나면 사라지는 그 돈,<br/>어디로 갔는지 알려드릴게요.</h1>
+        <p class="lede" data-headline-lede>
+          정부지원금·연말정산·실업급여·재테크·부동산·신용대출·보험·연금까지.<br class="hide-sm"/>
+          한국 직장인·청년이 진짜 궁금한 생활금융을 한곳에서.
+        </p>
+      </div>
+
+      <script is:inline>
+        (() => {
+          const root = document.querySelector('[data-headline-experiment]');
+          if (!root) return;
+          const id = root.dataset.headlineExperiment;
+          let variants = [];
+          try { variants = JSON.parse(root.dataset.headlineVariants || '[]'); } catch { return; }
+          if (!Array.isArray(variants) || variants.length === 0) return;
+
+          const key = `exp:${id}`;
+          let chosenId;
+          try { chosenId = localStorage.getItem(key); } catch {}
+          if (!chosenId || !variants.some((v) => v.id === chosenId)) {
+            chosenId = variants[Math.floor(Math.random() * variants.length)].id;
+            try { localStorage.setItem(key, chosenId); } catch {}
+          }
+          const chosen = variants.find((v) => v.id === chosenId) || variants[0];
+          if (chosen.id !== variants[0].id) {
+            const h1 = root.querySelector('[data-headline-h1]');
+            const lede = root.querySelector('[data-headline-lede]');
+            if (h1) h1.innerHTML = chosen.h1;
+            if (lede) lede.innerHTML = chosen.lede;
+          }
+          if (window.gtag) {
+            window.gtag('event', 'experiment_view', { experiment_id: id, variant: chosen.id });
+          }
+          root.dataset.activeVariant = chosen.id;
+        })();
+      </script>
+      <Experiment id="hero_cta" variants={['calculator_first', 'support_first']}>
+        <div data-variant="calculator_first" class="hero-cta">
+          <a href="/calculators/salary" class="btn-primary" data-track="hero_cta_click" data-track-prop-target="salary_calculator" data-track-prop-variant="calculator_first">
+            내 연봉 실수령액 계산하기 →
+          </a>
+          <a href="/gov-support" class="btn-ghost" data-track="hero_cta_click" data-track-prop-target="gov_support" data-track-prop-variant="calculator_first">
+            받을 수 있는 지원금 보기
+          </a>
+        </div>
+        <div data-variant="support_first" class="hero-cta">
+          <a href="/gov-support" class="btn-primary" data-track="hero_cta_click" data-track-prop-target="gov_support" data-track-prop-variant="support_first">
+            지금 받을 수 있는 지원금 →
+          </a>
+          <a href="/calculators/salary" class="btn-ghost" data-track="hero_cta_click" data-track-prop-target="salary_calculator" data-track-prop-variant="support_first">
+            연봉 실수령액 계산
+          </a>
+        </div>
+      </Experiment>
+    </div>
+  </section>
+
+  <!-- 카테고리 그리드 -->
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <h2>오늘 뭐부터 챙길까요?</h2>
+        <p>12개 카테고리에서 직장인·청년이 매일 검색하는 돈 문제를 정리했습니다.</p>
+      </header>
+      <div class="cluster-grid">
+        {clusters.map((c) => <ClusterCard cluster={c} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 광고 슬롯 -->
+  <div class="container ad-wrap">
+    <AdSlot format="banner" />
+  </div>
+
+  <!-- 인기 글 -->
+  {featured.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2>이번 주 가장 많이 읽은 글</h2>
+          <p>직장인이 가장 많이 검색한 질문에 답합니다.</p>
+        </header>
+        <div class="feature-grid">
+          {featured.map((a) => (
+            <ArticleCard
+              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+              title={a.data.title}
+              description={a.data.description}
+              cluster={a.data.cluster}
+              publishedAt={a.data.publishedAt}
+              size="lg"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 최신 글 -->
+  {recent.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2>새로 올라온 글</h2>
+        </header>
+        <div class="recent-grid">
+          {recent.map((a) => (
+            <ArticleCard
+              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+              title={a.data.title}
+              description={a.data.description}
+              cluster={a.data.cluster}
+              publishedAt={a.data.publishedAt}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 빈 상태 메시지 (콘텐츠 없을 때) -->
+  {articles.length === 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="empty-state">
+          <div class="hero-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="9" y1="13" x2="15" y2="13" />
+              <line x1="9" y1="17" x2="13" y2="17" />
+            </svg>
+          </div>
+          <h2>곧 첫 글을 올립니다</h2>
+          <p>샘플 글이 1편 발행되었습니다. 아래에서 GEO 청킹·E-E-A-T 표준이 어떻게 적용되었는지 확인하세요.</p>
+          <a href="/tax/yearend-tax-2026-checklist" class="btn-primary">
+            샘플 글 보기 →
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+.container {
+  max-width: 1200px;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .container { padding-inline: 2rem; }
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(180deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
+  padding-block: 3rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+@media (min-width: 768px) {
+  .hero { padding-block: 4.5rem 3.5rem; }
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 28px;
+  padding-inline: 0.65rem;
+  background: var(--color-mint-bg);
+  border: 1px solid var(--color-mint-border);
+  color: var(--color-mint-text);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+.kicker .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+.hero h1 {
+  font-size: clamp(1.75rem, 5.5vw, 2.75rem);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 1rem;
+  max-width: 30ch;
+}
+.hero .lede {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  max-width: 40rem;
+  margin: 0 0 1.75rem;
+}
+@media (min-width: 768px) {
+  .hero .lede { font-size: 1.1rem; }
+}
+.hide-sm { display: none; }
+@media (min-width: 768px) {
+  .hide-sm { display: inline; }
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding-inline: 1.1rem;
+  background: var(--color-secondary);
+  color: var(--color-bg);
+  font-weight: 700;
+  border-radius: var(--radius-btn);
+  font-size: 0.95rem;
+  transition: transform 150ms, background 150ms;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  background: color-mix(in oklab, var(--color-secondary) 80%, var(--color-primary));
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding-inline: 1.1rem;
+  background: transparent;
+  color: var(--color-secondary);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  font-size: 0.95rem;
+}
+.btn-ghost:hover { border-color: var(--color-primary); color: var(--color-primary-700); }
+
+/* Sections */
+.section { padding-block: 2.5rem; }
+@media (min-width: 768px) { .section { padding-block: 4rem; } }
+.section-header {
+  margin-bottom: 1.5rem;
+}
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  letter-spacing: -0.03em;
+  margin: 0 0 0.4rem;
+}
+@media (min-width: 768px) { .section-header h2 { font-size: 1.85rem; } }
+.section-header p {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.cluster-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 480px) { .cluster-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 768px) { .cluster-grid { grid-template-columns: 1fr 1fr 1fr; } }
+@media (min-width: 1024px) { .cluster-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) { .feature-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 480px) { .recent-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .recent-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+
+.ad-wrap {
+  padding-block: 1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+.empty-state .hero-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.85rem;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  color: var(--color-primary-700);
+}
+.empty-state .hero-icon svg { width: 28px; height: 28px; }
+.empty-state h2 { font-size: 1.4rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--color-secondary); }
+.empty-state p { color: var(--color-muted); margin: 0 auto 1.25rem; max-width: 30rem; }
+.empty-state .btn-primary { background: var(--color-primary); }
+.empty-state .btn-primary:hover { background: var(--color-primary-600); }
+</style>

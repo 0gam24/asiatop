@@ -1,0 +1,85 @@
+# Cloudflare Pages 헤더 — 머니룩
+
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://partytown.builder.io; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://pagead2.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; report-uri /api/csp-report
+  X-DNS-Prefetch-Control: on
+  X-Robots-Tag: max-image-preview:large, max-snippet:-1, max-video-preview:-1
+
+# 이미지·폰트·JS·CSS — 1년 immutable (해시된 파일명)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# AVIF (Discover hero 이미지 — Vary: Accept으로 CDN 분리 캐시)
+/_astro/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+  Cross-Origin-Resource-Policy: cross-origin
+  Vary: Accept
+
+# WebP 폴백
+/_astro/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Cross-Origin-Resource-Policy: cross-origin
+
+# PNG/JPG (OG 이미지 + 폴백)
+/_astro/*.png
+  Cache-Control: public, max-age=31536000, immutable
+  Cross-Origin-Resource-Policy: cross-origin
+
+/_astro/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  Cross-Origin-Resource-Policy: cross-origin
+
+# OG 이미지 (글별 동적 PNG·SVG)
+/og/*
+  Cache-Control: public, max-age=3600, s-maxage=86400
+  Cross-Origin-Resource-Policy: cross-origin
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# llms.txt / .md — 짧은 캐시, AI 인용 정확도 유지
+/llms.txt
+  Cache-Control: public, max-age=300, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/llms-full.txt
+  Cache-Control: public, max-age=300, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/llms-cluster-*.txt
+  Cache-Control: public, max-age=300, s-maxage=3600
+  Content-Type: text/plain; charset=utf-8
+  X-Robots-Tag: index, follow
+
+/*.md
+  Cache-Control: public, max-age=300, s-maxage=3600
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: index, follow
+
+# RSS·Atom·sitemap
+/rss.xml
+  Cache-Control: public, max-age=300, s-maxage=1800
+  Content-Type: application/rss+xml; charset=utf-8
+
+/sitemap-index.xml
+  Cache-Control: public, max-age=600, s-maxage=3600
+
+/sitemap-*.xml
+  Cache-Control: public, max-age=600, s-maxage=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+# HTML — 짧은 엣지 캐시 + revalidate
+/*.html
+  Cache-Control: public, max-age=0, s-maxage=300, must-revalidate

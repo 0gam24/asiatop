@@ -1,0 +1,73 @@
+---
+interface Props {
+  id: string;
+  variants: string[];
+  weights?: number[];
+}
+
+const { id, variants, weights } = Astro.props;
+const w = weights ?? variants.map(() => 1);
+---
+<div
+  class="experiment"
+  data-experiment-id={id}
+  data-variants={JSON.stringify(variants)}
+  data-weights={JSON.stringify(w)}
+>
+  <slot />
+</div>
+
+<script is:inline>
+  (() => {
+    const roots = document.querySelectorAll('[data-experiment-id]');
+    roots.forEach((root) => {
+      if (root.dataset.expInit === '1') return;
+      root.dataset.expInit = '1';
+
+      const id = root.dataset.experimentId;
+      let variants;
+      let weights;
+      try {
+        variants = JSON.parse(root.dataset.variants || '[]');
+        weights = JSON.parse(root.dataset.weights || '[]');
+      } catch { return; }
+      if (!Array.isArray(variants) || variants.length === 0) return;
+
+      const storageKey = `exp:${id}`;
+      let chosen;
+      try { chosen = localStorage.getItem(storageKey); } catch {}
+
+      if (!chosen || !variants.includes(chosen)) {
+        const totalWeight = weights.reduce((a, b) => a + b, 0) || variants.length;
+        let r = Math.random() * totalWeight;
+        for (let i = 0; i < variants.length; i++) {
+          r -= (weights[i] ?? 1);
+          if (r <= 0) { chosen = variants[i]; break; }
+        }
+        chosen = chosen || variants[0];
+        try { localStorage.setItem(storageKey, chosen); } catch {}
+      }
+
+      const children = root.querySelectorAll('[data-variant]');
+      children.forEach((el) => {
+        el.hidden = el.dataset.variant !== chosen;
+      });
+
+      if (window.gtag) {
+        window.gtag('event', 'experiment_view', { experiment_id: id, variant: chosen });
+      }
+
+      root.addEventListener('click', (e) => {
+        const link = e.target.closest('a, button');
+        if (!link) return;
+        if (window.gtag) {
+          window.gtag('event', 'experiment_click', { experiment_id: id, variant: chosen });
+        }
+      }, { passive: true });
+    });
+  })();
+</script>
+
+<style>
+.experiment > [data-variant][hidden] { display: none; }
+</style>

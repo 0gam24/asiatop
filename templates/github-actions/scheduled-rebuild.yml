@@ -1,0 +1,70 @@
+# Cloudflare Pages 정기 재빌드 트리거
+#
+# 사용법:
+# 1. Cloudflare 대시보드 → 프로젝트 → Settings → Builds & deployments → Deploy hooks
+# 2. Hook 생성 (Branch: main) → URL 복사
+# 3. GitHub 저장소 → Settings → Secrets → Actions → New repository secret
+#    - Name: CF_DEPLOY_HOOK
+#    - Value: <복사한 URL>
+# 4. 이 파일을 .github/workflows/scheduled-rebuild.yml에 배치
+# 5. 아래 cron 표현식을 PROJECT.md의 재빌드 주기에 맞게 수정
+
+name: Scheduled rebuild
+
+on:
+  schedule:
+    # === PROJECT.md §D의 재빌드 주기에 맞춰 다음 중 하나 선택 ===
+    # 4시간마다:
+    # - cron: '0 */4 * * *'
+    #
+    # 6시간마다 (기본 권장):
+    - cron: '0 */6 * * *'
+    #
+    # 12시간마다:
+    # - cron: '0 */12 * * *'
+    #
+    # 24시간마다 (매일 자정 KST = 매일 15시 UTC):
+    # - cron: '0 15 * * *'
+    #
+    # ⚠️ GitHub Actions cron은 UTC 기준. KST = UTC + 9시간.
+
+  # 수동 트리거도 허용 (대시보드에서 "Run workflow" 버튼)
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate secret
+        run: |
+          if [ -z "${{ secrets.CF_DEPLOY_HOOK }}" ]; then
+            echo "❌ CF_DEPLOY_HOOK secret이 설정되지 않았습니다."
+            echo "GitHub 저장소 Settings → Secrets and variables → Actions에서 추가하세요."
+            exit 1
+          fi
+          echo "✅ Secret 확인 완료"
+
+      - name: Trigger Cloudflare Pages rebuild
+        run: |
+          set -e
+          response=$(curl -s -o response.txt -w "%{http_code}" \
+            -X POST "${{ secrets.CF_DEPLOY_HOOK }}")
+
+          echo "HTTP Status: $response"
+          echo "Response body:"
+          cat response.txt
+          echo ""
+
+          if [ "$response" != "200" ]; then
+            echo "❌ Deploy hook 실패 (HTTP $response)"
+            exit 1
+          fi
+
+          echo "✅ Cloudflare Pages 재빌드 트리거 완료"
+          echo "📊 빌드 진행 상황은 Cloudflare 대시보드에서 확인하세요."
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Scheduled rebuild 실패. CF_DEPLOY_HOOK secret 또는 Cloudflare 상태를 확인하세요."

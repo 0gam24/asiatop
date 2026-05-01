@@ -1,0 +1,317 @@
+---
+import Base from '../../layouts/Base.astro';
+import SalaryCalculator from '../../components/SalaryCalculator';
+import AdSlot from '../../components/AdSlot.astro';
+
+const url = new URL('/calculators/salary', Astro.site).toString();
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '계산기', item: new URL('/calculators', Astro.site).toString() },
+    { '@type': 'ListItem', position: 3, name: '연봉 실수령액 계산기', item: url },
+  ],
+};
+
+const tool = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '연봉 실수령액 계산기',
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'All',
+  url,
+  description: '2026년 4대보험·근로소득세 기준 직장인 연봉 실수령액 즉시 계산.',
+  inLanguage: 'ko-KR',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
+};
+
+const faq = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '연봉 4천만원 직장인 월 실수령액은 얼마인가요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '부양가족 1명 기준 약 295만원입니다. 4대보험 약 32만원과 소득세·지방세 약 7만원이 차감되어 세전 333만원에서 약 295만원이 손에 들어옵니다. 회사의 비과세 식대·복리후생에 따라 차이날 수 있습니다.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '연봉이 오르면 실수령액이 거의 안 오르는 이유는?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '한국 소득세는 누진세 구조라 연봉이 일정 구간을 넘으면 세율이 6%→15%→24%→35%로 단계적으로 상승합니다. 그래서 연봉 1억 직전·이후에서 추가 인상분의 세율이 24~35%로 높아져 체감 실수령 인상률이 낮아집니다.',
+      },
+    },
+  ],
+};
+
+const howTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '연봉 실수령액 1분 안에 계산하는 법',
+  description: '연봉만 입력하면 4대보험·소득세를 자동 차감해 월 실수령액을 알려주는 절차.',
+  totalTime: 'PT1M',
+  inLanguage: 'ko-KR',
+  tool: [{ '@type': 'HowToTool', name: '머니룩 연봉 실수령액 계산기' }],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: '연봉(세전) 입력',
+      text: '근로계약서·연봉계약서에 명시된 연 환산 총급여를 만원 단위로 입력합니다. 예: 4,200만원.',
+      url: `${url}#step-salary`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: '부양가족 수 선택',
+      text: '본인 포함 부양가족 수를 선택합니다. 자녀·배우자가 있으면 인적공제로 세금이 줄어듭니다.',
+      url: `${url}#step-dependents`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: '월 실수령액 확인',
+      text: '입력 즉시 4대보험·근로소득세·지방세를 차감한 월 실수령액과 항목별 차감 내역이 표로 표시됩니다.',
+      url: `${url}#step-result`,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: '비과세·연말정산 영향 확인',
+      text: '본 계산은 비과세 항목(식대·자가운전보조금)을 미반영합니다. 회사 급여명세서와 차이가 나면 비과세 적용 여부와 간이세액표 비율(80/100/120%) 선택을 확인하세요.',
+      url: `${url}#explainer`,
+    },
+  ],
+};
+---
+<Base
+  title="연봉 실수령액 계산기 — 2026년 4대보험·세금 즉시 계산"
+  description="연봉 입력만 하면 2026년 4대보험·근로소득세·지방세를 즉시 계산해 월 실수령액을 알려드립니다. 부양가족 인적공제 반영. 참고용."
+  jsonLd={[breadcrumb, tool, howTo, faq]}
+>
+  <section class="hero">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="crumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">연봉 실수령액 계산기</span>
+      </nav>
+      <h1>연봉 실수령액 계산기</h1>
+      <p class="lede">
+        2026년 기준 4대보험·근로소득세 간이세액표·지방소득세를 적용해 월 실수령액을 즉시 계산합니다.
+        연봉만 입력하면 끝.
+      </p>
+    </div>
+  </section>
+
+  <section class="container body">
+    <SalaryCalculator client:visible />
+
+    <div class="ad-wrap"><AdSlot format="banner" /></div>
+
+    <article class="explainer">
+      <h2>이 계산기는 어떤 항목을 반영하나요?</h2>
+      <p>
+        2026년 1월 기준 4대보험 요율(국민연금 4.5%, 건강보험 3.545%, 장기요양 건강보험료의 12.95%, 고용보험 0.9%)과
+        근로소득세 간이세액표를 적용합니다. 부양가족 1명당 월 4,000원의 세액공제를 반영합니다.
+      </p>
+      <h2>실제 급여명세서와 차이가 날 수 있는 이유는?</h2>
+      <ul>
+        <li>비과세 항목(식대 월 20만원, 자가운전보조금 월 20만원, 보육수당 등) 반영 여부</li>
+        <li>회사가 적용하는 간이세액표 비율(80%·100%·120%) 선택</li>
+        <li>연말정산으로 환급·추가 납부되는 금액</li>
+        <li>임원·고소득자의 국민연금 상한 적용</li>
+      </ul>
+      <p class="disclaimer">
+        본 계산은 <strong>참고용</strong>입니다. 정확한 실수령액은 회사 급여명세서 또는
+        <a href="https://www.nts.go.kr" rel="noopener" target="_blank">국세청 홈택스</a>·
+        <a href="https://www.nps.or.kr" rel="noopener" target="_blank">국민연금공단</a> 공식 계산기를 참고하세요.
+      </p>
+    </article>
+  </section>
+</Base>
+
+<style>
+.container { max-width: 800px; padding-inline: 1rem; margin-inline: auto; }
+@media (min-width: 768px) { .container { padding-inline: 2rem; } }
+
+.hero {
+  background: linear-gradient(180deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
+  padding-block: 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.crumb {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+.crumb a:hover { color: var(--color-primary-700); }
+.hero h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.lede {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 36rem;
+}
+
+.body { padding-block: 2rem 4rem; }
+.ad-wrap { margin-block: 2rem; }
+
+.explainer h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--color-secondary);
+  letter-spacing: -0.025em;
+}
+.explainer p, .explainer ul {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.explainer ul { padding-left: 1.25rem; }
+.explainer .disclaimer {
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-primary);
+  padding: 0.85rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 1.25rem;
+}
+.explainer a { color: var(--color-primary-700); text-decoration: underline; }
+
+/* Calc styles */
+:global(.calc) {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+:global(.calc-controls) {
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 600px) {
+  :global(.calc-controls) { grid-template-columns: 2fr 1fr; }
+}
+:global(.calc .field label) {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 0.4rem;
+}
+:global(.calc .field input) {
+  width: 100%;
+  height: 44px;
+  padding-inline: 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+:global(.calc .field input:focus) {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0;
+  border-color: var(--color-primary);
+}
+:global(.calc .presets) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+:global(.calc .presets button) {
+  height: 30px;
+  padding-inline: 0.65rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+:global(.calc .presets button.active),
+:global(.calc .presets button:hover) {
+  border-color: var(--color-primary);
+  color: var(--color-primary-700);
+  background: var(--color-mint-bg);
+}
+:global(.calc .result) { padding: 1.25rem; }
+:global(.calc .result-headline) {
+  text-align: center;
+  padding-block: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+}
+:global(.calc .result-headline .label) {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin: 0 0 0.25rem;
+}
+:global(.calc .result-headline .value) {
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  font-weight: 800;
+  color: var(--color-primary-700);
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+:global(.calc .result-headline .value span) { font-size: 0.5em; margin-left: 0.15em; color: var(--color-muted); font-weight: 700; }
+:global(.calc .result-headline .sub) {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin: 0.25rem 0 0;
+}
+:global(.calc .breakdown) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+:global(.calc .breakdown th) {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+}
+:global(.calc .breakdown th:last-child),
+:global(.calc .breakdown td:last-child) { text-align: right; font-variant-numeric: tabular-nums; }
+:global(.calc .breakdown td) { padding: 0.5rem 0.4rem; border-bottom: 1px solid var(--color-border); }
+:global(.calc .breakdown tr.total td) { font-weight: 600; background: var(--color-surface); }
+:global(.calc .breakdown tr.net td) {
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 1rem;
+}
+:global(.calc .note) {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-top: 1rem;
+  padding-block: 0.75rem 0;
+  border-top: 1px dashed var(--color-border);
+}
+</style>

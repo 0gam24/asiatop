@@ -1,0 +1,195 @@
+---
+import Base from './Base.astro';
+import AdSlot from '../components/AdSlot.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pageTitle: string;
+  lede: string;
+  jsonLd: Record<string, unknown> | Record<string, unknown>[];
+}
+const { title, description, pageTitle, lede, jsonLd } = Astro.props;
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="crumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="/calculators">계산기</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{pageTitle}</span>
+      </nav>
+      <h1>{pageTitle}</h1>
+      <p class="lede">{lede}</p>
+    </div>
+  </section>
+
+  <section class="container body">
+    <slot />
+    <div class="ad-wrap"><AdSlot format="banner" /></div>
+    <slot name="explainer" />
+  </section>
+</Base>
+
+<style>
+.container { max-width: 800px; padding-inline: 1rem; margin-inline: auto; }
+@media (min-width: 768px) { .container { padding-inline: 2rem; } }
+
+.hero {
+  background: linear-gradient(180deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
+  padding-block: 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.crumb {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.crumb a:hover { color: var(--color-primary-700); }
+.hero h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.lede {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 36rem;
+}
+.body { padding-block: 2rem 4rem; }
+.ad-wrap { margin-block: 2rem; }
+
+/* Calc shared styles (extracted) */
+:global(.calc) {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+:global(.calc-controls) {
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 600px) {
+  :global(.calc-controls) { grid-template-columns: 1fr 1fr; }
+}
+:global(.calc .field label) {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 0.4rem;
+}
+:global(.calc .field input) {
+  width: 100%;
+  height: 44px;
+  padding-inline: 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+:global(.calc .field input:focus) {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0;
+  border-color: var(--color-primary);
+}
+:global(.calc .field .hint) {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  margin: 0.35rem 0 0;
+}
+:global(.calc .presets) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+:global(.calc .presets button) {
+  height: 30px;
+  padding-inline: 0.65rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+:global(.calc .presets button.active),
+:global(.calc .presets button:hover) {
+  border-color: var(--color-primary);
+  color: var(--color-primary-700);
+  background: var(--color-mint-bg);
+}
+:global(.calc .result) { padding: 1.25rem; }
+:global(.calc .result-headline) {
+  text-align: center;
+  padding-block: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+}
+:global(.calc .result-headline .label) {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin: 0 0 0.25rem;
+}
+:global(.calc .result-headline .value) {
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  font-weight: 800;
+  color: var(--color-primary-700);
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+:global(.calc .result-headline .value span) { font-size: 0.5em; margin-left: 0.15em; color: var(--color-muted); font-weight: 700; }
+:global(.calc .result-headline .sub) {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin: 0.25rem 0 0;
+}
+:global(.calc .breakdown) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+:global(.calc .breakdown th) {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+}
+:global(.calc .breakdown th:last-child),
+:global(.calc .breakdown td:last-child) { text-align: right; font-variant-numeric: tabular-nums; }
+:global(.calc .breakdown td) { padding: 0.5rem 0.4rem; border-bottom: 1px solid var(--color-border); }
+:global(.calc .breakdown tr.total td) { font-weight: 600; background: var(--color-surface); }
+:global(.calc .breakdown tr.net td) {
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 1rem;
+}
+:global(.calc .note) {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-top: 1rem;
+  padding-block: 0.75rem 0;
+  border-top: 1px dashed var(--color-border);
+}
+:global(.calc .note a) { color: var(--color-primary-700); text-decoration: underline; }
+</style>

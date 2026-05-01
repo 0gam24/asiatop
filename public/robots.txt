@@ -1,0 +1,50 @@
+User-agent: *
+Allow: /
+
+# AI 답변 엔진 명시적 허용 (PROJECT.md §B-3 정책)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# 미발행/드래프트 차단
+Disallow: /draft/
+Disallow: /preview/
+Disallow: /admin/
+
+# 검색 결과·디자인 시스템 — thin/duplicate content 회피
+Disallow: /search
+Disallow: /search?
+Disallow: /design-system
+
+Sitemap: https://asiatop.co.kr/sitemap-index.xml
+Sitemap: https://asiatop.co.kr/sitemap-news.xml
+Sitemap: https://asiatop.co.kr/sitemap-images.xml

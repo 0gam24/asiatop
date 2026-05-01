@@ -1,0 +1,410 @@
+---
+import Base from '../layouts/Base.astro';
+import { clusters, findCluster, clusterAccentDark } from '../data/clusters';
+import ClusterIcon from '../components/ClusterIcon.astro';
+import { getCollection } from 'astro:content';
+
+let articles: Awaited<ReturnType<typeof getCollection>> = [];
+try {
+  articles = await getCollection('articles', ({ data }) => !data.draft);
+} catch {
+  articles = [];
+}
+articles.sort(
+  (a, b) =>
+    (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
+    (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
+);
+
+// 클러스터별 글 수
+const countByCluster = articles.reduce<Record<string, number>>((acc, a) => {
+  acc[a.data.cluster] = (acc[a.data.cluster] ?? 0) + 1;
+  return acc;
+}, {});
+
+// 한국어 평독 속도 ≈ 350 어절/분
+function readingMinutes(body?: string): number {
+  if (!body) return 1;
+  const clean = body
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[#*_`>~|-]/g, ' ');
+  const words = clean.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 350));
+}
+
+// YYYY년 MM월 그룹 (publishedAt 기준)
+type Article = (typeof articles)[number];
+const monthGroups = new Map<string, Article[]>();
+for (const a of articles) {
+  const d = a.data.publishedAt;
+  const key = `${d.getFullYear()}년 ${String(d.getMonth() + 1).padStart(2, '0')}월`;
+  if (!monthGroups.has(key)) monthGroups.set(key, []);
+  monthGroups.get(key)!.push(a);
+}
+for (const list of monthGroups.values()) {
+  list.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+}
+
+const url = new URL('/clusters', Astro.site).toString();
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '전체', item: url },
+  ],
+};
+
+const clusterListSchema = {
+  '@type': 'ItemList',
+  name: '카테고리',
+  numberOfItems: clusters.length,
+  itemListElement: clusters.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/${c.slug}`, Astro.site).toString(),
+    name: c.title,
+  })),
+};
+
+const articleListSchema = {
+  '@type': 'ItemList',
+  name: '전체 글 (최신순)',
+  numberOfItems: articles.length,
+  itemListElement: articles.map((a, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`, Astro.site).toString(),
+    name: a.data.title,
+  })),
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: '전체 — 카테고리 + 최신글 | 머니룩',
+  description: `머니룩 전체 카테고리와 모든 글을 한 페이지에서. 카테고리별 분류 + 월별 최신순 아카이브.`,
+  url,
+  inLanguage: 'ko-KR',
+  hasPart: [clusterListSchema, articleListSchema],
+};
+
+function fmtDate(d: Date): string {
+  return d.toISOString().slice(0, 10);
+}
+---
+<Base
+  title="전체 — 카테고리 + 최신글 | 머니룩"
+  description={`머니룩 전체 카테고리와 모든 글을 한 페이지에서. 카테고리별 분류 + 월별 최신순 아카이브.`}
+  jsonLd={[breadcrumbSchema, collectionSchema]}
+>
+  <article class="container narrow">
+    <header class="page-header">
+      <p class="kicker">All</p>
+      <h1>전체</h1>
+      <p class="lede">
+        머니룩의 모든 카테고리와 글을 한곳에서. 위는 카테고리별 분류, 아래는 월별 최신순.
+      </p>
+      <nav class="anchor-nav" aria-label="페이지 내비">
+        <a href="#categories">카테고리 ↓</a>
+        <a href="#archive">최신글 ↓</a>
+      </nav>
+    </header>
+
+    <section id="categories" class="categories">
+      <h2 class="section-head">카테고리별 보기</h2>
+      <ul class="cluster-grid">
+        {clusters.map((c) => (
+          <li>
+            <a
+              class="cluster-card"
+              href={`/${c.slug}`}
+              style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}
+            >
+              <span class="icon-chip" aria-hidden="true">
+                <ClusterIcon cluster={c.slug} size={20} />
+              </span>
+              <div class="card-body">
+                <strong>{c.title}</strong>
+                <p>{c.description}</p>
+                <div class="meta">
+                  <span class="count">{countByCluster[c.slug] ?? 0}편</span>
+                  <span class="seeds">{c.seedKeywords.slice(0, 3).join(' · ')}</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="archive" class="archive">
+      <h2 class="section-head">최신글</h2>
+
+      {[...monthGroups.entries()].map(([month, list]) => (
+        <div class="month">
+          <h3 class="month-head">{month}</h3>
+          <ul class="post-list">
+            {list.map((a) => {
+              const c = findCluster(a.data.cluster);
+              const slug = a.id.replace(/\.mdx?$/, '');
+              const href = `/${a.data.cluster}/${slug}`;
+              const minutes = readingMinutes(a.body);
+              return (
+                <li
+                  class="post"
+                  style={c ? `--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};` : ''}
+                >
+                  <a href={href} class="post-link">
+                    <div class="post-meta">
+                      {c && <span class="tag">{c.shortTitle}</span>}
+                      <time datetime={a.data.publishedAt.toISOString()}>{fmtDate(a.data.publishedAt)}</time>
+                      <span class="reading" aria-label={`예상 읽기 ${minutes}분`}>
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect x="9" y="2" width="6" height="4" rx="1" />
+                          <rect x="4" y="6" width="16" height="16" rx="2" />
+                          <line x1="9" y1="12" x2="15" y2="12" />
+                          <line x1="9" y1="16" x2="13" y2="16" />
+                        </svg>
+                        {minutes}분
+                      </span>
+                    </div>
+                    <h4 class="post-title">
+                      {a.data.title}
+                      <span class="arrow" aria-hidden="true">→</span>
+                    </h4>
+                    <p class="post-desc">{a.data.description}</p>
+                    <ul class="hashtags">
+                      {a.data.keywords.slice(0, 4).map((k) => (
+                        <li>#{k}</li>
+                      ))}
+                    </ul>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+
+      {articles.length === 0 && <p class="empty">아직 발행된 글이 없습니다.</p>}
+    </section>
+  </article>
+</Base>
+
+<style>
+.container { max-width: 960px; padding-inline: 1rem; margin-inline: auto; }
+.narrow { padding-block: 2.5rem 4rem; }
+
+.page-header { margin-bottom: 2.25rem; }
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  align-items: center;
+  background: var(--color-mint-bg);
+  color: var(--color-mint-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.lede { font-size: 1rem; color: var(--color-muted); line-height: 1.65; margin: 0 0 1rem; max-width: 38rem; }
+.lede strong { color: var(--color-text); font-weight: 700; }
+.anchor-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.anchor-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding-inline: 0.7rem;
+  font-size: 0.8rem;
+  color: var(--color-mint-text);
+  font-weight: 600;
+  border: 1px solid var(--color-mint-border);
+  background: var(--color-mint-bg);
+  border-radius: 999px;
+}
+.anchor-nav a:hover { background: color-mix(in oklab, var(--color-mint-text) 12%, transparent); }
+
+.section-head {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  letter-spacing: -0.025em;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.categories { margin-bottom: 3rem; scroll-margin-top: 4rem; }
+.cluster-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 600px) { .cluster-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .cluster-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.cluster-card {
+  --accent: var(--accent-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: border-color 150ms, transform 150ms;
+}
+.cluster-card:hover { border-color: var(--accent, var(--color-primary)); transform: translateY(-1px); }
+[data-theme="dark"] .cluster-card { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cluster-card { --accent: var(--accent-dark); }
+}
+.icon-chip {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: var(--accent);
+}
+.card-body { flex: 1; min-width: 0; }
+.card-body strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.3rem;
+}
+.card-body p {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin: 0 0 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.meta { display: flex; flex-wrap: wrap; gap: 0.4rem 0.7rem; font-size: 0.74rem; }
+.count {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding-inline: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.seeds { color: var(--color-muted); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.archive { scroll-margin-top: 4rem; }
+.month { margin-bottom: 2rem; }
+.month-head {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.post-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.65rem; }
+.post {
+  --accent: var(--accent-light, var(--color-primary));
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  transition: border-color 150ms, box-shadow 150ms, transform 150ms;
+}
+[data-theme="dark"] .post { --accent: var(--accent-dark, var(--color-primary)); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .post { --accent: var(--accent-dark, var(--color-primary)); }
+}
+.post:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px -8px color-mix(in oklab, var(--accent) 40%, transparent);
+  transform: translateY(-1px);
+}
+.post-link { display: block; padding: 0.95rem 1.1rem; color: inherit; }
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding-inline: 0.55rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+}
+.reading { display: inline-flex; align-items: center; gap: 0.25rem; font-variant-numeric: tabular-nums; }
+.reading svg { color: var(--color-muted); }
+
+.post-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  margin: 0 0 0.3rem;
+}
+.arrow { color: var(--color-muted); margin-left: 0.35rem; transition: transform 150ms, color 150ms; display: inline-block; }
+.post-link:hover .arrow { color: var(--accent); transform: translateX(3px); }
+
+.post-desc {
+  font-size: 0.88rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0 0 0.55rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hashtags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; font-size: 0.72rem; }
+.hashtags li {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding-inline: 0.5rem;
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-muted);
+}
+.empty { color: var(--color-muted); text-align: center; padding-block: 3rem; }
+</style>

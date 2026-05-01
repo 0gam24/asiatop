@@ -1,0 +1,77 @@
+---
+import Calculator from '../../layouts/Calculator.astro';
+import AnnualLeaveCalculator from '../../components/AnnualLeaveCalculator';
+
+const url = new URL('/calculators/annual-leave', Astro.site).toString();
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+      { '@type': 'ListItem', position: 2, name: '계산기', item: new URL('/calculators', Astro.site).toString() },
+      { '@type': 'ListItem', position: 3, name: '연차·미사용 수당 계산기', item: url },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: '연차·미사용 수당 계산기',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'All',
+    url,
+    description: '근로기준법 제60조 기준 발생 연차 + 미사용 수당 즉시 계산.',
+    inLanguage: 'ko-KR',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: '연차·미사용 수당 계산하는 법',
+    description: '근속 개월과 통상임금을 입력해 근로기준법 제60조에 따른 발생 연차 일수와 미사용 수당을 즉시 산정.',
+    totalTime: 'PT1M',
+    inLanguage: 'ko-KR',
+    tool: [{ '@type': 'HowToTool', name: '머니룩 연차·수당 계산기' }],
+    step: [
+      { '@type': 'HowToStep', position: 1, name: '근속 개월 입력', text: '입사일 ~ 기준일까지의 총 근속 개월을 입력합니다. 1년 미만은 1개월 만근당 1일이 발생합니다.', url: `${url}#step-tenure` },
+      { '@type': 'HowToStep', position: 2, name: '통상임금(시급/일급) 입력', text: '미사용 수당 환산을 위해 통상임금 시급 또는 일급을 입력합니다.', url: `${url}#step-wage` },
+      { '@type': 'HowToStep', position: 3, name: '결과 확인', text: '발생 연차 일수와 미사용 시 수당(일급 × 미사용 일수)을 표시합니다.', url: `${url}#step-result` },
+    ],
+  },
+];
+---
+<Calculator
+  title="연차·미사용 수당 계산기 — 근로기준법 제60조 기준"
+  description="근속 개월·통상임금 입력만으로 발생 연차 일수와 미사용 시 수당을 즉시 계산. 1년 미만·이상 모두 지원."
+  pageTitle="연차·미사용 수당 계산기"
+  lede="근로기준법 제60조 기준 발생 연차 일수와 미사용 시 수당 환산액을 즉시 계산합니다."
+  jsonLd={jsonLd}
+>
+  <AnnualLeaveCalculator client:visible />
+
+  <article slot="explainer" class="explainer">
+    <h2>연차는 언제부터 몇 개 발생하나요?</h2>
+    <ul>
+      <li><strong>1년 미만</strong>: 매월 만근 시 1일씩, 최대 11일</li>
+      <li><strong>1년 이상</strong>: 기본 15일</li>
+      <li><strong>3년차부터</strong>: 2년마다 1일씩 가산, 최대 25일까지</li>
+    </ul>
+    <p>1년 미만 근로자에게 매월 발생한 연차의 사용기한은 <strong>입사일로부터 1년</strong>이며, 1년 이상 근로자의 연차는 <strong>발생일로부터 1년</strong>입니다.</p>
+
+    <h2>미사용 연차수당은 어떻게 계산되나요?</h2>
+    <p>미사용 수당 = <strong>통상임금 1일분 × 잔여 연차일수</strong>입니다. 통상임금은 기본급 + 고정수당의 시간당 금액 × 일 8시간으로 계산합니다.</p>
+
+    <h2>5인 미만 사업장도 적용되나요?</h2>
+    <p>2018년 5월 29일 이후, 상시 5인 이상 사업장에 적용됩니다. 5인 미만 사업장은 근로기준법 연차 규정이 강제되지 않으므로 회사 단체협약·취업규칙을 확인하세요.</p>
+
+    <h2>연차촉진제도란 무엇인가요?</h2>
+    <p>회사가 사용 시한 6개월 전과 2개월 전에 서면으로 연차 사용을 촉진하면, 근로자가 자발적으로 사용하지 않은 연차에 대해서는 미사용 수당을 지급할 의무가 면제됩니다. <a href="https://www.moel.go.kr" rel="noopener" target="_blank">고용노동부 가이드</a>를 참고하세요.</p>
+  </article>
+</Calculator>
+
+<style>
+.explainer h2 { font-size: 1.15rem; font-weight: 800; margin: 1.75rem 0 0.5rem; color: var(--color-secondary); letter-spacing: -0.025em; }
+.explainer p, .explainer ul { font-size: 0.95rem; line-height: 1.7; color: var(--color-text); }
+.explainer ul { padding-left: 1.25rem; }
+.explainer a { color: var(--color-primary-700); text-decoration: underline; }
+</style>

@@ -1,0 +1,31 @@
+{
+  "name": "김세무",
+  "jobTitle": "세무사 · 직장인 세무 컨설턴트",
+  "bio": "12년차 세무사로 직장인·프리랜서 연말정산·종합소득세·세금환급을 1차 자료(국세청·홈택스·법제처) 기반으로 검증해 풀어 설명합니다. 누락 공제·기한후 신청·중소기업 감면 등 직장인이 매년 놓치는 환급 포인트를 짚는 데 집중합니다.",
+  "expertise": [
+    "연말정산",
+    "종합소득세",
+    "세금환급",
+    "인적공제",
+    "세무 컨설팅",
+    "중소기업 감면"
+  ],
+  "sameAs": [
+    "https://asiatop.co.kr/author/kim-finance",
+    "https://www.kacpta.or.kr",
+    "https://www.kicpa.or.kr"
+  ],
+  "topicAuthority": [
+    "tax",
+    "office-tips",
+    "gov-support"
+  ],
+  "credentials": [
+    "세무사 자격증 (한국세무사회)",
+    "재경관리사",
+    "AICPA(미국공인회계사) 합격"
+  ],
+  "yearsOfExperience": 12,
+  "isOrganization": false,
+  "knowsLanguage": ["ko", "en"]
+}

@@ -1,0 +1,120 @@
+---
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
+---
+{ga4Id && (
+  <>
+    <!-- Google Consent Mode v2 — default deny until user opts in -->
+    <script is:inline define:vars={{ ga4Id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500,
+      });
+      try {
+        const stored = localStorage.getItem('consent');
+        if (stored === 'granted') {
+          gtag('consent', 'update', {
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            analytics_storage: 'granted',
+          });
+        }
+      } catch {}
+      gtag('js', new Date());
+      gtag('config', ga4Id, { send_page_view: true, anonymize_ip: true });
+    </script>
+    <script
+      type="text/partytown"
+      src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+    ></script>
+  </>
+)}
+
+{adsenseClient && (
+  <script
+    type="text/partytown"
+    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
+    crossorigin="anonymous"
+    data-strategy="idle"
+  ></script>
+)}
+
+<!--
+  Site-wide click tracking helper.
+  ClientRouter swap 시 inline script가 다시 실행되므로 단일 등록 가드 필수
+  (없으면 페이지 이동마다 listener 누적 → GA 이벤트가 N배 전송됨).
+-->
+<script is:inline>
+  (() => {
+    if (window.__trackClickInit) return;
+    window.__trackClickInit = true;
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest && e.target.closest('[data-track]');
+      if (!target) return;
+      const event = target.dataset.track;
+      const props = {};
+      for (const [k, v] of Object.entries(target.dataset)) {
+        if (k.startsWith('trackProp')) {
+          const propName = k.replace('trackProp', '').toLowerCase();
+          props[propName] = v;
+        }
+      }
+      if (window.gtag) window.gtag('event', event, props);
+      if (window.dataLayer) window.dataLayer.push({ event, ...props });
+    }, { passive: true });
+  })();
+</script>
+
+<!-- Web Vitals RUM — analytics_storage=granted 동의 시에만 로드. ClientRouter 재실행 안전. -->
+<script>
+  import { initVitals } from '../lib/vitals';
+
+  type GuardedWindow = Window & { __vitalsBootstrap?: boolean };
+  const w = window as GuardedWindow;
+
+  function maybeInit() {
+    let granted = false;
+    try {
+      granted = localStorage.getItem('consent') === 'granted';
+    } catch {}
+    if (granted) initVitals();
+  }
+
+  maybeInit();
+
+  if (!w.__vitalsBootstrap) {
+    w.__vitalsBootstrap = true;
+    window.addEventListener('consent:granted', maybeInit, { once: false });
+  }
+</script>
+
+<!--
+  Sentry 에러 추적 — DSN 설정 시에만 lazy 로드. initSentry 내부 가드로 멱등.
+-->
+<script>
+  import { initSentry } from '../lib/error-tracking';
+
+  type IdleWindow = Window & {
+    __sentryBootstrap?: boolean;
+    requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+  };
+  const w = window as IdleWindow;
+  if (!w.__sentryBootstrap) {
+    w.__sentryBootstrap = true;
+    const start = () => initSentry().catch(() => {});
+    if (typeof w.requestIdleCallback === 'function') {
+      w.requestIdleCallback(start, { timeout: 3000 });
+    } else {
+      setTimeout(start, 1500);
+    }
+  }
+</script>

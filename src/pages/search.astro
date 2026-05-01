@@ -1,0 +1,306 @@
+---
+import Base from '../layouts/Base.astro';
+import { POPULAR_QUERIES, getSeasonalQueries } from '../data/popular-queries';
+import { findCluster, clusterAccentDark } from '../data/clusters';
+
+const seasonal = getSeasonalQueries();
+const popular = POPULAR_QUERIES;
+const monthLabel = new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(new Date());
+---
+<Base
+  title="검색 — 머니룩"
+  description="머니룩 전체 글에서 키워드로 검색. 정부지원·세금·재테크·실업급여·신용대출 등 12개 카테고리 통합 검색."
+  noIndex={true}
+>
+  <section class="container">
+    <header>
+      <p class="kicker">Search</p>
+      <h1>무엇을 찾고 계신가요?</h1>
+      <p class="lede">
+        12개 카테고리 전체 글에서 검색합니다.
+        <br/>예: <a href="/search?q=청년월세지원">청년월세지원</a> · <a href="/search?q=연말정산">연말정산</a> · <a href="/search?q=신용점수">신용점수</a>
+      </p>
+    </header>
+
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <div id="search" data-pagefind-ui></div>
+
+    <!-- 빈 상태 추천 (Pagefind 결과 없을 때 자동 노출 with JS) -->
+    <aside id="empty-state" class="empty-state" hidden>
+      <section class="seasonal">
+        <h2>
+          <svg class="h-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          {monthLabel} 시즌 추천
+        </h2>
+        <ul class="chips">
+          {seasonal.map((s) => {
+            const c = s.cluster ? findCluster(s.cluster) : null;
+            return (
+              <li>
+                <a href={`/search?q=${encodeURIComponent(s.q)}`} data-track="search_suggestion_click" data-track-prop-source="seasonal" data-track-prop-query={s.q}>
+                  <strong>{s.q}</strong>
+                  {s.hint && <span class="hint">{s.hint}</span>}
+                  {c && <span class="cat" style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};`}>{c.shortTitle}</span>}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <section class="popular">
+        <h2>
+          <svg class="h-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+            <polyline points="16 7 22 7 22 13" />
+          </svg>
+          인기 검색어
+        </h2>
+        <ul class="chips">
+          {popular.map((s) => {
+            const c = s.cluster ? findCluster(s.cluster) : null;
+            return (
+              <li>
+                <a href={`/search?q=${encodeURIComponent(s.q)}`} data-track="search_suggestion_click" data-track-prop-source="popular" data-track-prop-query={s.q}>
+                  <strong>{s.q}</strong>
+                  {s.hint && <span class="hint">{s.hint}</span>}
+                  {c && <span class="cat" style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};`}>{c.shortTitle}</span>}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    </aside>
+
+    <noscript>
+      <p class="noscript-msg">
+        검색 기능은 자바스크립트가 필요합니다. JavaScript를 활성화하거나
+        <a href="/">홈에서 카테고리</a>를 통해 글을 찾아보세요.
+      </p>
+    </noscript>
+
+    <div id="search-fallback" class="fallback" hidden>
+      <h2>검색 인덱스가 아직 생성되지 않았습니다</h2>
+      <p>
+        검색은 빌드 후에만 동작합니다. 개발 환경에서는 카테고리를 통해 글을 탐색해보세요:
+      </p>
+      <ul class="fallback-links">
+        <li><a href="/gov-support">정부지원·청년정책</a></li>
+        <li><a href="/tax">연말정산·세금</a></li>
+        <li><a href="/credit-loan">신용·대출</a></li>
+        <li><a href="/calculators">계산기</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <script type="module" is:inline>
+    const tryLoad = async () => {
+      try {
+        await import('/pagefind/pagefind-ui.js');
+        if (typeof PagefindUI !== 'undefined') {
+          let lastQuery = '';
+          let queryDebounce;
+          const trackQuery = (term) => {
+            if (!term || term.length < 2) return;
+            if (term === lastQuery) return;
+            lastQuery = term;
+            if (window.gtag) {
+              window.gtag('event', 'search', { search_term: term });
+            }
+          };
+
+          new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            showImages: false,
+            showEmptyFilters: false,
+            processTerm: (term) => {
+              clearTimeout(queryDebounce);
+              queryDebounce = setTimeout(() => trackQuery(term), 1200);
+              return term;
+            },
+            processResult: (result) => {
+              if (window.gtag && result?.url) {
+                window.gtag('event', 'search_result_view', {
+                  url: result.url,
+                  search_term: lastQuery,
+                });
+              }
+              return result;
+            },
+            translations: {
+              placeholder: '키워드를 입력하세요 (예: 연말정산, 청년월세, 신용점수)',
+              clear_search: '지우기',
+              load_more: '더 보기',
+              search_label: '검색',
+              filters_label: '필터',
+              zero_results: '\'[SEARCH_TERM]\'에 대한 결과가 없습니다.',
+              many_results: '[COUNT] 결과 (\'[SEARCH_TERM]\')',
+              one_result: '결과 1개 (\'[SEARCH_TERM]\')',
+              alt_search: '\'[SEARCH_TERM]\' 결과 없음. 대신 \'[DIFFERENT_TERM]\' 결과:',
+              search_suggestion: '\'[SEARCH_TERM]\' 결과 없음. 다음 단어를 시도:',
+              searching: '\'[SEARCH_TERM]\' 검색 중...',
+            },
+          });
+          const emptyState = document.getElementById('empty-state');
+          const input = document.querySelector('#search input');
+
+          // 자동 포커스 (모바일 키보드 자동 노출 회피 위해 desktop만)
+          if (input && window.matchMedia('(min-width: 768px)').matches) {
+            setTimeout(() => input.focus(), 100);
+          }
+
+          // 빈 상태 토글 — 입력 없을 때 추천 노출, 입력 시 숨김
+          const toggleEmpty = () => {
+            if (!emptyState || !input) return;
+            emptyState.hidden = (input.value || '').trim().length > 0;
+          };
+          toggleEmpty();
+          if (input) {
+            input.addEventListener('input', toggleEmpty, { passive: true });
+            // ESC 키로 검색 클리어
+            input.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape' && input.value) {
+                input.value = '';
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+                e.preventDefault();
+              }
+            });
+          }
+
+          const params = new URLSearchParams(location.search);
+          const q = params.get('q');
+          if (q && input) {
+            input.value = q;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      } catch (e) {
+        document.getElementById('search-fallback').hidden = false;
+      }
+    };
+    tryLoad();
+  </script>
+</Base>
+
+<style>
+.container { max-width: 760px; padding-inline: 1rem; margin-inline: auto; padding-block: 2.5rem 4rem; }
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.85rem;
+}
+.lede { color: var(--color-muted); font-size: 1rem; line-height: 1.65; margin: 0 0 2rem; }
+.lede a { color: var(--color-primary-700); text-decoration: underline; text-underline-offset: 3px; }
+#search { margin-bottom: 1.5rem; }
+.noscript-msg, .fallback {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+.fallback h2 { margin: 0 0 0.5rem; font-size: 1.1rem; color: var(--color-secondary); }
+.fallback-links { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0.85rem 0 0; list-style: none; }
+.fallback-links a {
+  display: inline-flex;
+  height: 36px;
+  padding-inline: 0.85rem;
+  align-items: center;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.fallback-links a:hover { border-color: var(--color-primary); color: var(--color-primary-700); }
+
+.empty-state { margin-top: 0.5rem; }
+.empty-state section { margin-bottom: 1.75rem; }
+.empty-state h2 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 0.85rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.empty-state h2 .h-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary-700);
+  flex-shrink: 0;
+}
+.empty-state .chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.empty-state .chips a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.65rem 0.85rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.92rem;
+  transition: border-color 150ms;
+}
+.empty-state .chips a:hover {
+  border-color: var(--color-primary);
+}
+.empty-state strong { font-weight: 700; color: var(--color-secondary); }
+.empty-state .hint {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  flex: 1;
+}
+.empty-state .cat {
+  --accent: var(--accent-light);
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding-inline: 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  color: var(--accent);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .empty-state .cat { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .empty-state .cat { --accent: var(--accent-dark); }
+}
+</style>

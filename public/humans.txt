@@ -1,0 +1,46 @@
+/* TEAM */
+
+  편집팀 (Editorial Team)
+  Site: 머니룩 (MoneyLook)
+  Operator: 스마트데이터샵 (대표: 김준혁)
+  Business Reg: 406-06-34485
+  Contact: smartdatashop [at] gmail.com
+  Location: Incheon, Republic of Korea
+  Languages: 한국어 (ko), English (en)
+
+  머니룩의 모든 글은 사람 편집자가 1차 정부·공공 자료
+  (공공데이터포털·법제처·홈택스·복지로·한국은행 ECOS·금융감독원)를
+  교차 확인한 뒤 발행하며, 정책·요율 변경 시 즉시 갱신합니다.
+  AI 단독 무편집 발행은 절대 금지(편집정책 §AI 사용).
+
+
+/* SITE */
+
+  Site: 머니룩 (MoneyLook)
+  URL: https://asiatop.co.kr
+  Description: 한국 직장인·청년을 위한 생활금융 종합 가이드 — 정부지원금·세금·재테크·노동·부동산·신용대출·보험·연금.
+  Standards: HTML5, CSS3, ES2022, WCAG 2.2 AA, Schema.org JSON-LD
+  Doctype: HTML5
+  Last update: 2026-04-30
+
+
+/* TECHNOLOGY */
+
+  Framework: Astro 6 (Static Site Generation)
+  Hosting: Cloudflare Pages (global edge network)
+  Typography: Pretendard Variable (셀프 호스팅, size-adjust로 CLS 0)
+  Styling: Tailwind CSS 4
+  Search: Pagefind (정적 인덱스, 클라이언트 검색)
+  Performance: Partytown (3rd-party 스크립트 워커 격리)
+  RUM: web-vitals (LCP·INP·CLS·FCP·TTFB)
+  Error Tracking: Sentry (Browser SDK, lazy load)
+  Build: pnpm + Vite
+  CDN: Cloudflare
+
+
+                                          _    _
+       _ __ ___   ___  _ __   ___ _   _  | |  | |
+      | '_ ` _ \ / _ \| '_ \ / _ \ | | | | |  | |
+      | | | | | | (_) | | | |  __/ |_| | | |__| |
+      |_| |_| |_|\___/|_| |_|\___|\__, | |_____|
+                                   |___/  머니룩

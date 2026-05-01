@@ -1,0 +1,164 @@
+---
+import { clusters } from '../data/clusters';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div class="brand-col">
+        <div class="brand">
+          <span>머니룩</span>
+          <span class="dot" aria-hidden="true"></span>
+        </div>
+        <p class="tagline">한국 직장인·청년을 위한 생활금융 종합 가이드</p>
+        <p class="disclaimer">
+          본 사이트의 정책·요율·법령 정보는 변경될 수 있습니다.
+          신청 직전 <a href="https://www.gov.kr" rel="noopener" target="_blank">정부24</a>·
+          <a href="https://www.hometax.go.kr" rel="noopener" target="_blank">홈택스</a>·
+          <a href="https://www.bokjiro.go.kr" rel="noopener" target="_blank">복지로</a>
+          공식 출처에서 재확인하세요.
+        </p>
+      </div>
+      <div>
+        <h2>카테고리</h2>
+        <ul class="links">
+          {clusters.slice(0, 6).map((c) => <li><a href={`/${c.slug}`}>{c.shortTitle}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>&nbsp;</h2>
+        <ul class="links">
+          {clusters.slice(6).map((c) => <li><a href={`/${c.slug}`}>{c.shortTitle}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>운영 정보</h2>
+        <ul class="links">
+          <li><a href="/clusters">전체 글 보기</a></li>
+          <li><a href="/about">머니룩 소개</a></li>
+          <li><a href="/editorial-policy">편집 정책</a></li>
+          <li><a href="/privacy">개인정보처리방침</a></li>
+          <li><a href="/terms">이용약관</a></li>
+          <li><a href="/contact">문의·제휴</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="biz-info">
+      <strong>사업자 정보</strong>
+      <ul>
+        <li>상호: 스마트데이터샵 <span class="sep">·</span> 서비스명: 머니룩 (MoneyLook)</li>
+        <li>대표: 김준혁</li>
+        <li>사업자등록번호: 406-06-34485</li>
+        <li>주소: 인천광역시 계양구 새벌로 88</li>
+        <li>이메일: <a href="mailto:smartdatashop@gmail.com">smartdatashop@gmail.com</a></li>
+      </ul>
+    </div>
+    <div class="bottom">
+      <small>© {year} 머니룩 (MoneyLook). All rights reserved.</small>
+      <small>광고: 본 사이트는 Google AdSense를 통해 광고 수익을 받으며, 본문과 명확히 구분됩니다.</small>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-fg);
+  padding-block: 3rem 1.5rem;
+  margin-top: 4rem;
+}
+.site-footer .container {
+  max-width: 1200px;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-footer-strong);
+  letter-spacing: -0.03em;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.tagline { margin: 0.5rem 0 0.75rem; color: var(--color-footer-muted); font-size: 0.9rem; }
+.disclaimer { font-size: 0.8rem; line-height: 1.65; color: var(--color-footer-muted); max-width: 36rem; }
+.disclaimer a { color: var(--color-primary); text-decoration: underline; }
+
+.site-footer h2 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-footer-strong);
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.links a {
+  font-size: 0.875rem;
+  color: var(--color-footer-fg);
+}
+.links a:hover { color: var(--color-primary); }
+
+.biz-info {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-footer-border);
+  font-size: 0.78rem;
+  color: var(--color-footer-muted);
+  line-height: 1.65;
+}
+.biz-info strong {
+  display: block;
+  color: var(--color-footer-strong);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.biz-info ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+.biz-info .sep { color: var(--color-footer-muted); margin: 0 0.25rem; opacity: 0.5; }
+.biz-info a { color: var(--color-primary); }
+.biz-info a:hover { text-decoration: underline; }
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-footer-border);
+  font-size: 0.75rem;
+  color: var(--color-footer-muted);
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; }
+}
+</style>

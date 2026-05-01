@@ -1,0 +1,208 @@
+---
+import Base from '../../layouts/Base.astro';
+import { clusters, findCluster, clusterAccentDark } from '../../data/clusters';
+import ArticleCard from '../../components/ArticleCard.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import HeroIllustration from '../../components/HeroIllustration.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return clusters.map((c) => ({ params: { cluster: c.slug } }));
+}
+
+const { cluster: clusterSlug } = Astro.params;
+const cluster = findCluster(clusterSlug!);
+if (!cluster) {
+  return Astro.redirect('/404');
+}
+
+let articles: Awaited<ReturnType<typeof getCollection>> = [];
+try {
+  articles = await getCollection('articles', ({ data }) => data.cluster === clusterSlug && !data.draft);
+} catch {
+  articles = [];
+}
+articles.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: cluster.title, item: new URL(`/${cluster.slug}`, Astro.site).toString() },
+  ],
+};
+
+const itemListSchema = {
+  '@type': 'ItemList',
+  numberOfItems: articles.length,
+  itemListElement: articles.slice(0, 30).map((a, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`, Astro.site).toString(),
+    name: a.data.title,
+  })),
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${cluster.title} | 머니룩`,
+  description: cluster.metaDescription,
+  url: new URL(`/${cluster.slug}`, Astro.site).toString(),
+  inLanguage: 'ko-KR',
+  about: cluster.seedKeywords.map((k) => ({ '@type': 'Thing', name: k })),
+  mainEntity: itemListSchema,
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.cluster-hero h1', '.cluster-hero p'],
+  },
+};
+---
+<Base
+  title={`${cluster.title} | 머니룩`}
+  description={cluster.metaDescription}
+  jsonLd={[breadcrumbSchema, collectionSchema]}
+>
+  <div class="cluster-hero" style={`--accent-light: ${cluster.accent}; --accent-dark: ${clusterAccentDark(cluster.accent)}`}>
+    <div class="container">
+      <nav aria-label="breadcrumb" class="crumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{cluster.title}</span>
+      </nav>
+      <HeroIllustration cluster={cluster.slug} title={cluster.description} variant="hub" />
+      <div class="hero-row hero-row-compact">
+        <div>
+          <h1>{cluster.title}</h1>
+          <p>{cluster.description}</p>
+        </div>
+      </div>
+      <ul class="seed">
+        {cluster.seedKeywords.map((k) => <li>{k}</li>)}
+      </ul>
+    </div>
+  </div>
+
+  <section class="container section">
+    {articles.length > 0 ? (
+      <div class="grid">
+        {articles.map((a) => (
+          <ArticleCard
+            href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+            title={a.data.title}
+            description={a.data.description}
+            cluster={a.data.cluster}
+            publishedAt={a.data.publishedAt}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty">
+        <p>곧 새로운 글이 올라옵니다.</p>
+        <p class="muted">위 키워드의 가이드를 준비 중입니다. 다른 카테고리도 둘러보세요.</p>
+        <a href="/" class="btn">홈으로 돌아가기</a>
+      </div>
+    )}
+
+    <div class="ad-wrap"><AdSlot format="banner" /></div>
+  </section>
+</Base>
+
+<style>
+.container {
+  max-width: 1200px;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+@media (min-width: 768px) { .container { padding-inline: 2rem; } }
+
+.cluster-hero {
+  --accent: var(--accent-light);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, var(--color-bg)) 0%, var(--color-bg) 100%);
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+[data-theme="dark"] .cluster-hero { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cluster-hero { --accent: var(--accent-dark); }
+}
+.crumb {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+.crumb a:hover { color: var(--accent); }
+.hero-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+.cluster-hero h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.4rem;
+}
+.cluster-hero p {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+.seed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.seed li {
+  height: 28px;
+  padding-inline: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-bg);
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  /* 라이트: accent를 어둡게 섞어 가독성 ↑ / 다크: 본문 텍스트 색 사용 */
+  color: color-mix(in oklab, var(--accent) 80%, var(--color-text));
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.section { padding-block: 2.5rem; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 480px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+.empty p { margin: 0 0 0.5rem; }
+.empty .muted { color: var(--color-muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding-inline: 1rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.btn:hover { background: var(--color-primary-600); }
+.ad-wrap { margin-top: 2rem; }
+</style>

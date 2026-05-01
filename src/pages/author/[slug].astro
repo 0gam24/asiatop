@@ -1,0 +1,215 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { findCluster, clusterAccentDark } from '../../data/clusters';
+import ArticleCard from '../../components/ArticleCard.astro';
+import ClusterIcon from '../../components/ClusterIcon.astro';
+
+export async function getStaticPaths() {
+  let authors: Awaited<ReturnType<typeof getCollection>> = [];
+  try {
+    authors = await getCollection('authors');
+  } catch {
+    return [];
+  }
+  return authors.map((author) => ({
+    params: { slug: author.id },
+    props: { author },
+  }));
+}
+
+const { author } = Astro.props;
+
+let articles: Awaited<ReturnType<typeof getCollection>> = [];
+try {
+  articles = await getCollection('articles', ({ data }) => data.author === author.id && !data.draft);
+} catch {
+  articles = [];
+}
+articles.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const url = new URL(`/author/${author.id}`, Astro.site).toString();
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': author.data.isOrganization ? 'Organization' : 'Person',
+  name: author.data.name,
+  jobTitle: author.data.jobTitle,
+  description: author.data.bio,
+  url,
+  sameAs: author.data.sameAs,
+  knowsAbout: author.data.expertise,
+  knowsLanguage: author.data.knowsLanguage ?? ['ko'],
+  worksFor: author.data.isOrganization ? undefined : { '@id': new URL('#organization', Astro.site).toString() },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '저자', item: new URL('/author', Astro.site).toString() },
+    { '@type': 'ListItem', position: 3, name: author.data.name, item: url },
+  ],
+};
+
+const topicClusters = author.data.topicAuthority
+  .map((slug: string) => findCluster(slug))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+---
+<Base
+  title={`${author.data.name} | 머니룩 저자`}
+  description={author.data.bio.slice(0, 160)}
+  jsonLd={[breadcrumb, personSchema]}
+>
+  <article class="container narrow">
+    <header class="profile">
+      <div class="profile-row">
+        <div class="avatar" aria-hidden="true">{author.data.name.slice(0, 1)}</div>
+        <div>
+          <h1>{author.data.name}</h1>
+          <p class="job">{author.data.jobTitle}</p>
+        </div>
+      </div>
+      <p class="bio">{author.data.bio}</p>
+    </header>
+
+    <section>
+      <h2>전문 분야</h2>
+      <ul class="tags">
+        {author.data.expertise.map((e: string) => <li>{e}</li>)}
+      </ul>
+    </section>
+
+    {topicClusters.length > 0 && (
+      <section>
+        <h2>주요 토픽</h2>
+        <div class="clusters">
+          {topicClusters.map((c) => (
+            <a class="cluster" href={`/${c.slug}`} style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}>
+              <ClusterIcon cluster={c.slug} size={16} />
+              <span>{c.shortTitle}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {author.data.sameAs && author.data.sameAs.length > 0 && (
+      <section>
+        <h2>외부 링크</h2>
+        <ul class="links">
+          {author.data.sameAs.map((href: string) => (
+            <li><a href={href} rel="me noopener" target={href.startsWith('https://moneylook') ? '_self' : '_blank'}>{href.replace(/^https?:\/\//, '')}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section>
+      <h2>작성 글 ({articles.length}개)</h2>
+      {articles.length > 0 ? (
+        <div class="grid">
+          {articles.map((a) => (
+            <ArticleCard
+              href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}`}
+              title={a.data.title}
+              description={a.data.description}
+              cluster={a.data.cluster}
+              publishedAt={a.data.publishedAt}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty">아직 발행된 글이 없습니다.</p>
+      )}
+    </section>
+  </article>
+</Base>
+
+<style>
+.container { max-width: 760px; padding-inline: 1rem; margin-inline: auto; }
+.narrow { padding-block: 2.5rem 4rem; }
+.profile { padding-block: 1rem 2rem; border-bottom: 1px solid var(--color-border); margin-bottom: 2rem; }
+.profile-row { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.profile h1 {
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.2rem;
+}
+.profile .job { color: var(--color-muted); font-size: 0.95rem; margin: 0; }
+.bio { font-size: 1rem; line-height: 1.75; color: var(--color-text); margin: 0; }
+
+h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--color-muted);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.tags li {
+  height: 30px;
+  padding-inline: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--color-text);
+}
+
+.clusters { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.cluster {
+  --accent: var(--accent-light);
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  height: 32px;
+  padding-inline: 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+.cluster :global(.cluster-icon) { color: var(--accent); flex-shrink: 0; }
+.cluster:hover { border-color: var(--accent); color: var(--accent); }
+[data-theme="dark"] .cluster { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cluster { --accent: var(--accent-dark); }
+}
+
+.links { list-style: none; padding: 0; margin: 0; }
+.links li { margin-bottom: 0.4rem; }
+.links a { color: var(--color-primary-700); text-decoration: underline; font-size: 0.9rem; word-break: break-all; }
+
+.grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+@media (min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
+.empty { color: var(--color-muted); font-size: 0.9rem; }
+</style>

@@ -1,0 +1,61 @@
+{
+  "name": "머니룩 — 직장인·청년 생활금융 가이드",
+  "short_name": "머니룩",
+  "description": "정부지원금·세금환급·재테크·부동산·실업급여·노동·신용대출·보험·연금. 한국 직장인이 매일 마주치는 돈 문제를 한곳에서.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "id": "/?source=pwa",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "theme_color": "#00C896",
+  "background_color": "#FFFFFF",
+  "categories": ["finance", "news", "education", "government"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/og-default.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "연봉 실수령액 계산기",
+      "short_name": "실수령 계산",
+      "description": "2026년 4대보험·소득세 즉시 계산",
+      "url": "/calculators/salary?source=pwa",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "정부지원금 모아보기",
+      "short_name": "정부지원",
+      "description": "청년·직장인 정부 지원금 통합 가이드",
+      "url": "/gov-support?source=pwa",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "연말정산 가이드",
+      "short_name": "연말정산",
+      "description": "13월의 월급 한 푼도 빠뜨리지 않기",
+      "url": "/tax?source=pwa",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "검색",
+      "short_name": "검색",
+      "description": "전체 글 통합 검색",
+      "url": "/search?source=pwa",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

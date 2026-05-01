@@ -1,0 +1,101 @@
+# Lighthouse CI — PR마다 모바일·데스크톱 성능 검증
+#
+# 사용법:
+# 1. 이 파일을 .github/workflows/lighthouse-ci.yml에 배치
+# 2. 프로젝트 루트에 lighthouserc.json (모바일) + lighthouserc.desktop.json 생성
+# 3. (선택) Lighthouse CI GitHub App 설치: https://github.com/apps/lighthouse-ci
+#    설치 후 토큰을 LHCI_GITHUB_APP_TOKEN secret으로 등록
+# 4. PR 마다 자동 실행, 임계값 미달 시 머지 차단
+
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    name: Lighthouse (${{ matrix.preset }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        preset: [mobile, desktop]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+        env:
+          # 빌드 시 필요한 환경변수
+          # 시크릿이면 GitHub Secrets에 등록 후 여기서 참조
+          API_KEY: ${{ secrets.API_KEY }}
+          SITE_URL: http://localhost:4321
+
+      - name: Serve dist/
+        run: |
+          pnpm dlx serve dist -p 4321 &
+          sleep 3
+          curl -fsS http://localhost:4321/ > /dev/null
+          echo "✅ 서버 시작 확인"
+
+      - name: Lighthouse CI (${{ matrix.preset }})
+        run: |
+          if [ "${{ matrix.preset }}" = "mobile" ]; then
+            pnpm dlx @lhci/cli@0.13.x autorun --config=./lighthouserc.json
+          else
+            pnpm dlx @lhci/cli@0.13.x autorun --config=./lighthouserc.desktop.json
+          fi
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-${{ matrix.preset }}-${{ github.run_id }}
+          path: .lighthouseci/
+          retention-days: 30
+
+  size-limit:
+    name: Bundle size check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+      - name: Size limit
+        uses: andresz1/size-limit-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_step: install
+          build_script: build

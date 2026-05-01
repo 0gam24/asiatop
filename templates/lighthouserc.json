@@ -1,0 +1,47 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost:4321/",
+        "http://localhost:4321/about"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "desktop",
+        "_comment": "모바일 모드는 기본값. desktop preset은 lighthouserc.desktop.json 참조"
+      }
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.95 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["error", { "minScore": 0.95 }],
+        "categories:seo": ["error", { "minScore": 1.0 }],
+
+        "first-contentful-paint": ["error", { "maxNumericValue": 1800 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "interaction-to-next-paint": ["error", { "maxNumericValue": 150 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["error", { "maxNumericValue": 200 }],
+        "server-response-time": ["error", { "maxNumericValue": 600 }],
+        "speed-index": ["error", { "maxNumericValue": 3400 }],
+
+        "render-blocking-resources": ["error", { "maxNumericValue": 0 }],
+        "uses-optimized-images": ["error", { "minScore": 1 }],
+        "modern-image-formats": ["error", { "minScore": 1 }],
+        "uses-text-compression": ["error", { "minScore": 1 }],
+        "efficient-animated-content": ["error", { "minScore": 1 }],
+
+        "unused-javascript": ["warn", { "maxNumericValue": 50000 }],
+        "unused-css-rules": ["warn", { "maxNumericValue": 20000 }],
+
+        "is-on-https": ["off", {}],
+        "uses-http2": ["off", {}]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

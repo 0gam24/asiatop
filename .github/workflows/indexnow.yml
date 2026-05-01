@@ -1,0 +1,168 @@
+name: SEO Submit (IndexNow + Sitemap + RSS Ping)
+
+# 글 포스팅 시 자동으로 검색엔진·피드 디스커버리에 알림.
+# - IndexNow: Bing·Yandex·Naver(IndexNow 지원분) 즉시 색인 요청
+# - Sitemap URL 동시 제출 (검색엔진이 sitemap 재크롤 트리거)
+# - RSS PubSubHubbub: 구글 푸시·피드 리더 즉시 갱신
+# - Naver Search Advisor 사이트맵 ping (옵션, NAVER_SEARCH_ADVISOR_TOKEN 설정 시)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/articles/**'
+      - 'src/pages/**'
+  workflow_dispatch:
+    inputs:
+      url_list:
+        description: '강제 제출할 URL 목록 (쉼표 구분, 비우면 git diff 사용)'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed article slugs
+        id: changes
+        run: |
+          if [ -n "${{ github.event.inputs.url_list }}" ]; then
+            echo "urls=${{ github.event.inputs.url_list }}" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            BEFORE="HEAD~1"
+          fi
+
+          changed=$(git diff --name-only "$BEFORE" "$AFTER" -- 'src/content/articles/' | grep -E '\.mdx?$' || true)
+
+          urls=""
+          for f in $changed; do
+            slug=$(basename "$f" | sed 's/\.mdx\?$//')
+            cluster=$(grep -m1 '^cluster:' "$f" 2>/dev/null | sed 's/^cluster:[[:space:]]*//; s/^["'\'']//; s/["'\'']$//' || true)
+            if [ -z "$cluster" ]; then continue; fi
+            urls="${urls}https://asiatop.co.kr/${cluster}/${slug},"
+          done
+
+          urls="${urls%,}"
+          if [ -z "$urls" ]; then
+            echo "No article URL changes detected. Submitting homepage."
+            urls="https://asiatop.co.kr/"
+          fi
+
+          echo "urls=$urls" >> $GITHUB_OUTPUT
+          echo "Detected URLs: $urls"
+
+      - name: Submit changed URLs + Sitemaps + RSS to IndexNow
+        if: ${{ steps.changes.outputs.urls != '' }}
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          if [ -z "$INDEXNOW_KEY" ]; then
+            echo "::warning::INDEXNOW_KEY not set. Skipping submission. Set it in GitHub Secrets after deploying public/<key>.txt."
+            exit 0
+          fi
+
+          # 변경 글 + 사이트맵 + RSS·Atom·JSON Feed를 한 번에 제출
+          # 사이트맵·피드를 함께 제출하면 검색엔진이 sitemap 재크롤 트리거
+          IFS=',' read -ra URL_ARR <<< "${{ steps.changes.outputs.urls }}"
+          extra_urls=(
+            "https://asiatop.co.kr/sitemap-index.xml"
+            "https://asiatop.co.kr/sitemap-news.xml"
+            "https://asiatop.co.kr/sitemap-images.xml"
+            "https://asiatop.co.kr/rss.xml"
+            "https://asiatop.co.kr/atom.xml"
+            "https://asiatop.co.kr/feed.json"
+          )
+          ALL_URLS=("${URL_ARR[@]}" "${extra_urls[@]}")
+          url_json=$(printf '"%s",' "${ALL_URLS[@]}")
+          url_json="[${url_json%,}]"
+
+          payload=$(cat <<EOF
+          {
+            "host": "asiatop.co.kr",
+            "key": "${INDEXNOW_KEY}",
+            "keyLocation": "https://asiatop.co.kr/${INDEXNOW_KEY}.txt",
+            "urlList": ${url_json}
+          }
+          EOF
+          )
+
+          echo "Payload (글 + 사이트맵 + RSS):"
+          echo "$payload"
+
+          response=$(curl -s -o /tmp/indexnow.body -w "%{http_code}" \
+            -X POST "https://api.indexnow.org/IndexNow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$payload")
+
+          echo "HTTP $response"
+          cat /tmp/indexnow.body || true
+
+          if [ "$response" -ge 200 ] && [ "$response" -lt 300 ]; then
+            echo "✅ IndexNow accepted (글 + sitemap + RSS 동시 제출)"
+          else
+            echo "::warning::IndexNow returned HTTP $response"
+          fi
+
+      - name: PubSubHubbub ping (RSS·Atom 즉시 푸시)
+        if: ${{ steps.changes.outputs.urls != '' }}
+        run: |
+          # 구글 PubSubHubbub Hub은 2024년 종료 → Superfeedr 무료 hub 사용
+          # 피드 리더·뉴스 애그리게이터에 즉시 갱신 알림
+          for hub in "https://pubsubhubbub.appspot.com/" "https://pubsubhubbub.superfeedr.com/"; do
+            for feed in "https://asiatop.co.kr/rss.xml" "https://asiatop.co.kr/atom.xml"; do
+              echo "Pinging $hub for $feed"
+              curl -s -X POST "$hub" \
+                -d "hub.mode=publish" \
+                --data-urlencode "hub.url=$feed" \
+                -o /tmp/hub.body -w "HTTP %{http_code}\n" || true
+            done
+          done
+          echo "✅ Hub ping 완료"
+
+      - name: Naver Search Advisor sitemap ping (옵션)
+        if: ${{ steps.changes.outputs.urls != '' }}
+        env:
+          NAVER_SEARCH_ADVISOR_TOKEN: ${{ secrets.NAVER_SEARCH_ADVISOR_TOKEN }}
+        run: |
+          if [ -z "$NAVER_SEARCH_ADVISOR_TOKEN" ]; then
+            echo "::notice::NAVER_SEARCH_ADVISOR_TOKEN 미설정 → Naver 자동 제출 스킵 (수동: searchadvisor.naver.com)"
+            exit 0
+          fi
+          # Naver Search Advisor는 OpenAPI 미공개 — 토큰 기반 webhook 또는 수동 ping
+          # 토큰 설정 시 사이트맵 등록 webhook 호출 (사용자가 별도 환경 구성 필요)
+          response=$(curl -s -o /tmp/naver.body -w "%{http_code}" \
+            -X POST "https://searchadvisor.naver.com/indexnow" \
+            -H "Authorization: Bearer ${NAVER_SEARCH_ADVISOR_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "{\"host\":\"asiatop.co.kr\",\"sitemap\":\"https://asiatop.co.kr/sitemap-index.xml\"}")
+          echo "Naver HTTP $response"
+          cat /tmp/naver.body || true
+
+      - name: Bing URL Submission API (옵션)
+        if: ${{ steps.changes.outputs.urls != '' }}
+        env:
+          BING_API_KEY: ${{ secrets.BING_API_KEY }}
+        run: |
+          if [ -z "$BING_API_KEY" ]; then
+            echo "::notice::BING_API_KEY 미설정 → IndexNow로만 Bing 제출 (이미 위에서 처리됨)"
+            exit 0
+          fi
+          IFS=',' read -ra URL_ARR <<< "${{ steps.changes.outputs.urls }}"
+          url_json=$(printf '"%s",' "${URL_ARR[@]}")
+          url_json="[${url_json%,}]"
+          curl -s -X POST "https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlBatch?apikey=${BING_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d "{\"siteUrl\":\"https://asiatop.co.kr\",\"urlList\":${url_json}}" \
+            -o /tmp/bing.body -w "HTTP %{http_code}\n" || true
+          cat /tmp/bing.body || true

@@ -1,0 +1,177 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const url = new URL('/calculators', Astro.site).toString();
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '계산기', item: url },
+  ],
+};
+
+interface IconShape {
+  paths: readonly string[];
+  circles?: readonly { cx: number; cy: number; r: number }[];
+  lines?: readonly { x1: number; y1: number; x2: number; y2: number }[];
+}
+
+const items: { href: string; title: string; desc: string; icon: IconShape; accent: string }[] = [
+  {
+    href: '/calculators/salary',
+    title: '연봉 실수령액 계산기',
+    desc: '2026년 4대보험·근로소득세·지방세 적용. 연봉만 입력하면 끝.',
+    accent: '#00C896',
+    icon: {
+      paths: [
+        'M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16',
+        'M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z',
+      ],
+    },
+  },
+  {
+    href: '/calculators/severance-pay',
+    title: '퇴직금 계산기',
+    desc: '근속연수·평균임금 기준 법정 퇴직금 + 예상 퇴직소득세 계산.',
+    accent: '#F59E0B',
+    icon: {
+      paths: [
+        'M12 6v12',
+        'M16 10c0-1.5-1.5-2-4-2s-4 .5-4 2 1.5 2 4 2 4 .5 4 2-1.5 2-4 2-4-.5-4-2',
+      ],
+      circles: [{ cx: 12, cy: 12, r: 9 }],
+    },
+  },
+  {
+    href: '/calculators/annual-leave',
+    title: '연차·미사용 수당 계산기',
+    desc: '근로기준법 제60조 기준 발생 연차 + 미사용 시 수당 환산.',
+    accent: '#5B8DEF',
+    icon: {
+      paths: [
+        'M3 5h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
+        'M3 11h18',
+        'M9 16l2 2 4-4',
+      ],
+      lines: [
+        { x1: 8, y1: 2, x2: 8, y2: 6 },
+        { x1: 16, y1: 2, x2: 16, y2: 6 },
+      ],
+    },
+  },
+  {
+    href: '/calculators/unemployment-benefit',
+    title: '실업급여 계산기',
+    desc: '직전 3개월 평균임금·연령·고용보험 가입기간 기반 예상 수령액.',
+    accent: '#A78BFA',
+    icon: {
+      paths: [
+        'M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z',
+        'M5 5h14a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
+        'M8 12h8',
+        'M8 16h6',
+      ],
+    },
+  },
+];
+---
+<Base
+  title="머니룩 계산기 — 연봉·퇴직금·연차·실업급여 즉시 계산"
+  description="직장인이 자주 찾는 4가지 생활금융 계산기. 연봉 실수령·퇴직금·연차수당·실업급여를 2026년 기준으로 즉시 계산."
+  jsonLd={breadcrumb}
+>
+  <section class="hero">
+    <div class="container">
+      <p class="kicker">Calculators</p>
+      <h1>직장인이 가장 많이 찾는 계산기 4종</h1>
+      <p class="lede">2026년 기준 4대보험·근로기준법·고용보험 요율을 모두 반영했습니다. 모두 무료, 가입·로그인 없음.</p>
+    </div>
+  </section>
+
+  <section class="container body">
+    <div class="grid">
+      {items.map((it) => (
+        <a class="card" href={it.href} style={`--accent: ${it.accent}`}>
+          <span class="icon-chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              {it.icon.paths.map((d) => <path d={d} />)}
+              {it.icon.circles?.map((c) => <circle cx={c.cx} cy={c.cy} r={c.r} />)}
+              {it.icon.lines?.map((l) => <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} />)}
+            </svg>
+          </span>
+          <div>
+            <h2>{it.title}</h2>
+            <p>{it.desc}</p>
+            <span class="cta">계산하기 →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+.container { max-width: 900px; padding-inline: 1rem; margin-inline: auto; }
+@media (min-width: 768px) { .container { padding-inline: 2rem; } }
+.hero {
+  background: linear-gradient(180deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
+  padding-block: 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+.hero h1 {
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.lede { color: var(--color-muted); font-size: 1rem; line-height: 1.65; margin: 0; max-width: 36rem; }
+.body { padding-block: 2rem 4rem; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+@media (min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
+.card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: transform 150ms, border-color 150ms;
+}
+.card:hover { transform: translateY(-2px); border-color: var(--accent, var(--color-primary)); }
+.icon-chip {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--accent, var(--color-primary)) 12%, transparent);
+  color: var(--accent, var(--color-primary));
+}
+.card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-secondary);
+  margin: 0 0 0.3rem;
+}
+.card p { font-size: 0.85rem; color: var(--color-muted); line-height: 1.55; margin: 0 0 0.5rem; }
+.cta { font-size: 0.78rem; color: var(--color-primary-700); font-weight: 600; }
+</style>

@@ -1,0 +1,154 @@
+name: Go-Live Check
+
+# docs/22-go-live-checklist.md 자동 검증
+# - 빌드 산출물에 대한 정적 분석 (메타·스키마·헤더·sitemap 일관성·H1·skip link 등)
+# - 깨진 링크 검사 (linkinator)
+# - 접근성 검사 (axe-core)
+# - 의존성 audit
+#
+# Trigger:
+# - 수동 실행 (workflow_dispatch)
+# - PR에 'release' 라벨이 붙으면 자동 실행
+# - main에 push될 때마다 실행 (배포 직전 게이트)
+
+on:
+  workflow_dispatch: {}
+  pull_request:
+    types: [labeled, synchronize, opened]
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  go-live-check:
+    # PR이면 release 라벨일 때만, push/dispatch는 항상 실행
+    if: |
+      github.event_name == 'workflow_dispatch'
+      || github.event_name == 'push'
+      || (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'release'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm build
+
+      - name: Static go-live verification
+        run: node scripts/go-live-check.mjs
+
+      - name: Schema.org Rich Results validation
+        run: node scripts/validate-schema.mjs
+
+      - name: GEO/E-E-A-T 컴플라이언스 (sources·gov.kr·aiCitationQ·dataValidAsOf)
+        run: node scripts/geo-audit.mjs
+
+      - name: Dependency audit (moderate+) — 차단 게이트
+        run: pnpm audit --audit-level=moderate
+
+      - name: Start static server
+        run: |
+          npx -y http-server dist -p 4173 -s &
+          echo $! > .server.pid
+          # 서버 기동 대기 (최대 30초)
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:4173/ > /dev/null; then
+              echo "Server up after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Broken link check (linkinator)
+        run: |
+          npx -y linkinator@6 \
+            http://localhost:4173/ \
+            --recurse \
+            --skip "^https?:" \
+            --skip "/og/" \
+            --skip "/pagefind/" \
+            --concurrency 10 \
+            --silent \
+            --format json > linkinator.json || true
+
+          fail=$(node -e '
+            const r = JSON.parse(require("fs").readFileSync("linkinator.json","utf-8"));
+            const broken = (r.links || []).filter(l => l.state === "BROKEN");
+            console.log(broken.length);
+            for (const b of broken.slice(0, 30)) {
+              console.error(`BROKEN ${b.status} ${b.url} (parent: ${b.parent})`);
+            }
+          ')
+          if [ "$fail" != "0" ]; then
+            echo "::error::깨진 내부 링크 ${fail}건 감지"
+            exit 1
+          fi
+          echo "✅ 깨진 내부 링크 0건"
+
+      - name: AI crawler simulation (GPTBot/ClaudeBot/PerplexityBot)
+        run: |
+          set -e
+          fail=0
+          for ua in "GPTBot/1.0" "ClaudeBot/1.0" "PerplexityBot/1.0"; do
+            for path in "/" "/tax/yearend-tax-2026-checklist" "/about"; do
+              body=$(curl -sf -A "$ua" "http://localhost:4173${path}" || echo "")
+              if [ -z "$body" ]; then
+                echo "::error::$ua $path — 응답 비어 있음"
+                fail=1
+                continue
+              fi
+              if ! echo "$body" | grep -q "<h1"; then
+                echo "::error::$ua $path — H1 누락"
+                fail=1
+              fi
+              if ! echo "$body" | grep -q "application/ld+json"; then
+                echo "::error::$ua $path — JSON-LD 누락"
+                fail=1
+              fi
+            done
+          done
+          if [ "$fail" = "1" ]; then exit 1; fi
+          echo "✅ AI 크롤러 시뮬레이션 통과"
+
+      - name: Accessibility check (axe-core)
+        run: |
+          npx -y @axe-core/cli@4 \
+            http://localhost:4173/ \
+            http://localhost:4173/tax/yearend-tax-2026-checklist \
+            http://localhost:4173/calculators/salary \
+            http://localhost:4173/about \
+            http://localhost:4173/editorial-policy \
+            --exit \
+            --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa
+        continue-on-error: false
+
+      - name: Stop static server
+        if: always()
+        run: |
+          if [ -f .server.pid ]; then
+            kill $(cat .server.pid) 2>/dev/null || true
+          fi
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: go-live-reports
+          path: |
+            linkinator.json
+            dist/_headers
+            dist/robots.txt
+            dist/llms.txt
+            dist/sitemap-index.xml
+          retention-days: 30

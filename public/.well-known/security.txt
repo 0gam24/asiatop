@@ -1,0 +1,9 @@
+Contact: mailto:smartdatashop@gmail.com
+Expires: 2027-04-30T00:00:00.000Z
+Preferred-Languages: ko, en
+Canonical: https://asiatop.co.kr/.well-known/security.txt
+Policy: https://asiatop.co.kr/editorial-policy
+
+# 머니룩(MoneyLook) 보안 취약점 제보 안내
+# 보안 이슈 발견 시 위 이메일로 제보 부탁드립니다.
+# 책임 있는 공개(Responsible Disclosure)에 따라 처리합니다.

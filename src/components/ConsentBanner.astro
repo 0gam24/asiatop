@@ -1,0 +1,102 @@
+---
+// Cookie consent banner — Consent Mode v2 compatible
+---
+<div id="consent-banner" class="consent-banner" hidden>
+  <div class="banner-inner">
+    <div class="text">
+      <strong>쿠키와 광고 동의 안내</strong>
+      <p>
+        머니룩은 사이트 분석(Google Analytics)과 맞춤형 광고(Google AdSense)를 위해 쿠키를 사용합니다.
+        동의하지 않으셔도 사이트를 정상적으로 이용할 수 있으며, 광고는 비개인화 형태로 제공됩니다.
+        <a href="/privacy">개인정보처리방침</a>
+      </p>
+    </div>
+    <div class="actions">
+      <button type="button" data-consent="denied" class="btn-deny">동의 안 함</button>
+      <button type="button" data-consent="granted" class="btn-accept">동의</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  // ClientRouter 재실행 안전 — 배너 DOM은 transition:persist로 유지되므로
+  // listener는 한 번만 등록한다. hidden 상태 결정은 매 navigation 마다 갱신.
+  (() => {
+    const banner = document.getElementById('consent-banner');
+    if (!banner) return;
+    let stored;
+    try { stored = localStorage.getItem('consent'); } catch {}
+    banner.hidden = (stored === 'granted' || stored === 'denied');
+
+    if (window.__consentBannerInit) return;
+    window.__consentBannerInit = true;
+
+    banner.addEventListener('click', (e) => {
+      const target = e.target.closest && e.target.closest('[data-consent]');
+      if (!target) return;
+      const choice = target.dataset.consent;
+      try { localStorage.setItem('consent', choice); } catch {}
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          ad_storage: choice,
+          ad_user_data: choice,
+          ad_personalization: choice,
+          analytics_storage: choice,
+        });
+        window.gtag('event', 'consent_choice', { value: choice });
+      }
+      // Web Vitals RUM 활성화 신호 (Analytics.astro의 vitals 부트스트랩이 구독)
+      if (choice === 'granted') {
+        window.dispatchEvent(new CustomEvent('consent:granted'));
+      }
+      banner.hidden = true;
+    });
+  })();
+</script>
+
+<style>
+.consent-banner {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  max-width: 720px;
+  margin-inline: auto;
+  z-index: 100;
+  background: #0F1B2D;
+  color: #E5E9EF;
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+.banner-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+@media (min-width: 640px) {
+  .banner-inner { flex-direction: row; align-items: center; gap: 1.25rem; }
+  .text { flex: 1; }
+}
+.text strong { display: block; color: #fff; font-size: 0.92rem; margin-bottom: 0.2rem; }
+.text p { margin: 0; font-size: 0.82rem; line-height: 1.55; color: #C8D0DD; }
+.text a { color: var(--color-primary); text-decoration: underline; }
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.actions button {
+  height: 38px;
+  padding-inline: 1rem;
+  border-radius: var(--radius-btn);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+}
+.btn-deny { background: transparent; color: #C8D0DD; border: 1px solid rgba(255,255,255,0.18); }
+.btn-deny:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.btn-accept { background: var(--color-primary); color: var(--color-secondary); }
+.btn-accept:hover { background: var(--color-primary-600); color: #fff; }
+</style>

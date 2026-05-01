@@ -1,0 +1,20 @@
+name: Scheduled Rebuild (CF Deploy Hook)
+
+on:
+  schedule:
+    # 6시간마다 (UTC) — 한국시간 09:00, 15:00, 21:00, 03:00
+    - cron: '0 */6 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages Deploy Hook
+        run: |
+          if [ -z "${{ secrets.CF_DEPLOY_HOOK }}" ]; then
+            echo "::warning::CF_DEPLOY_HOOK secret not set — skipping rebuild trigger."
+            exit 0
+          fi
+          curl -X POST "${{ secrets.CF_DEPLOY_HOOK }}"
+          echo "✅ Cloudflare Pages rebuild triggered."

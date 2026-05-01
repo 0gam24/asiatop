@@ -1,0 +1,84 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separateMajorReleases",
+    ":automergePatch",
+    ":automergeDigest",
+    ":prHourlyLimit2",
+    ":timezone(Asia/Seoul)"
+  ],
+  "schedule": ["after 9pm on monday", "before 5am on tuesday"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "digest"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "matchPackagePatterns": ["^astro", "^@astrojs/"],
+      "groupName": "Astro ecosystem",
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "matchPackagePatterns": ["^react", "^@types/react"],
+      "groupName": "React ecosystem"
+    },
+    {
+      "matchPackagePatterns": ["^@tailwindcss/", "^tailwindcss"],
+      "groupName": "Tailwind ecosystem"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "devDependencies (non-major)",
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies", "major-update"],
+      "reviewers": []
+    },
+    {
+      "matchPackageNames": ["pagefind"],
+      "automerge": false,
+      "description": "Pagefind 메이저 변경 시 검색 UI 회귀 가능"
+    },
+    {
+      "matchPackageNames": ["pretendard", "web-vitals"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true,
+      "automergeType": "branch",
+      "description": "런타임 안정성 검증된 패키지 — minor 까지 자동 머지"
+    },
+    {
+      "matchPackageNames": ["@sentry/browser"],
+      "matchUpdateTypes": ["patch", "digest"],
+      "automerge": true,
+      "automergeType": "branch",
+      "description": "Sentry는 patch만 자동 머지, minor/major는 PR 검토"
+    },
+    {
+      "matchPackagePatterns": ["^@types/"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "branch",
+      "description": "타입 정의는 런타임 영향 없음 — minor 까지 자동"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"]
+  },
+  "ignoreDeps": [],
+  "rangeStrategy": "bump"
+}

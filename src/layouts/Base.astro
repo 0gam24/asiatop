@@ -1,0 +1,229 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Analytics from '../components/Analytics.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import { clusters } from '../data/clusters';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noIndex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** OG article 메타 — ogType="article" 일 때 사용 */
+  articleMeta?: {
+    section?: string;
+    tags?: string[];
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+  };
+  /** 같은 시리즈 내 이전/다음 글 (Article previousItem/nextItem과 짝) */
+  prevHref?: string;
+  nextHref?: string;
+  /** Google News 전용 news_keywords (쉼표 구분) */
+  newsKeywords?: string[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-default.svg',
+  ogType = 'website',
+  noIndex = false,
+  jsonLd,
+  articleMeta,
+  prevHref,
+  nextHref,
+  newsKeywords,
+} = Astro.props;
+
+const siteName = '머니룩';
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': new URL('#organization', Astro.site).toString(),
+  name: '머니룩',
+  alternateName: 'MoneyLook',
+  url: Astro.site?.toString(),
+  logo: new URL('/logo.svg', Astro.site).toString(),
+  description: '한국 직장인·청년을 위한 생활금융 종합 가이드. 정부지원금·세금·재테크·부동산·노동·신용대출·보험·연금.',
+  inLanguage: 'ko-KR',
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': new URL('#website', Astro.site).toString(),
+  url: Astro.site?.toString(),
+  name: '머니룩',
+  publisher: { '@id': new URL('#organization', Astro.site).toString() },
+  inLanguage: 'ko-KR',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: new URL('/search?q={search_term_string}', Astro.site).toString(),
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+// Header 내비게이션을 SiteNavigationElement로 노출 — Google sitelinks 생성에 활용
+const siteNavSchema = clusters.map((c, i) => ({
+  '@type': 'SiteNavigationElement',
+  '@id': new URL(`#nav-${c.slug}`, Astro.site).toString(),
+  position: i + 1,
+  name: c.shortTitle,
+  description: c.description,
+  url: new URL(`/${c.slug}`, Astro.site).toString(),
+}));
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#00C896" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {newsKeywords && newsKeywords.length > 0 && (
+      <meta name="news_keywords" content={newsKeywords.join(', ')} />
+    )}
+    <link rel="canonical" href={canonicalUrl} />
+    {prevHref && <link rel="prev" href={prevHref} />}
+    {nextHref && <link rel="next" href={nextHref} />}
+
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:image:alt" content={`${fullTitle} — 머니룩 OG 카드`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="ko_KR" />
+
+    {ogType === 'article' && articleMeta && (
+      <>
+        {articleMeta.section && <meta property="article:section" content={articleMeta.section} />}
+        {articleMeta.publishedTime && <meta property="article:published_time" content={articleMeta.publishedTime} />}
+        {articleMeta.modifiedTime && <meta property="article:modified_time" content={articleMeta.modifiedTime} />}
+        {articleMeta.author && <meta property="article:author" content={articleMeta.author} />}
+        {articleMeta.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
+      </>
+    )}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@moneylook_kr" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta name="twitter:image:alt" content={`${fullTitle} — 머니룩 OG 카드`} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="머니룩 전체 글" href="/rss.xml" />
+    <link rel="alternate" type="application/atom+xml" title="머니룩 Atom" href="/atom.xml" />
+    <link rel="alternate" type="application/feed+json" title="머니룩 JSON Feed" href="/feed.json" />
+
+    <!-- Performance: 3rd-party origin preconnect (consent 후 어차피 호출됨) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+    <JsonLd data={[organizationSchema, websiteSchema, ...siteNavSchema]} />
+    {jsonLd && <JsonLd data={jsonLd} />}
+
+    <script is:inline data-astro-rerun>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') {
+            document.documentElement.dataset.theme = stored;
+          }
+        } catch {}
+      })();
+    </script>
+
+    <ClientRouter fallback="swap" />
+    <Analytics />
+  </head>
+  <body>
+    <a href="#main" class="sr-only">본문 바로가기</a>
+    <Header transition:persist="site-header" />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer transition:persist="site-footer" />
+    <ConsentBanner transition:persist="consent-banner" />
+
+    <script is:inline>
+      // ClientRouter(View Transitions)는 페이지 이동 시 inline 스크립트를 다시 실행하지만
+      // transition:persist된 헤더의 버튼 DOM은 유지된다 → addEventListener 중복 등록되어
+      // 토글이 짝수 번 실행돼 원위치로 보임. document delegation + 단일 등록 가드로 해결.
+      (() => {
+        if (window.__themeToggleInit) return;
+        window.__themeToggleInit = true;
+
+        function readStoredTheme() {
+          try {
+            const v = localStorage.getItem('theme');
+            return v === 'dark' || v === 'light' ? v : null;
+          } catch { return null; }
+        }
+
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest && e.target.closest('[data-theme-toggle]');
+          if (!btn) return;
+          const root = document.documentElement;
+          const stored = readStoredTheme();
+          const current = stored
+            ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          const next = current === 'dark' ? 'light' : 'dark';
+          root.dataset.theme = next;
+          try { localStorage.setItem('theme', next); } catch {}
+          // 다른 탭으로도 즉시 동기화하기 위한 storage 이벤트 트리거(StorageEvent는 setItem만으론 자기 탭엔 안 옴, 다른 탭엔 자동 전송됨)
+        }, { passive: true });
+
+        // ClientRouter swap 시 새 문서의 <html>은 data-theme 없이 들어와 덮어쓰므로,
+        // swap 직전에 새 문서의 documentElement에 테마를 주입해 FOUC 없이 유지한다.
+        document.addEventListener('astro:before-swap', (e) => {
+          const t = readStoredTheme();
+          if (t && e.newDocument && e.newDocument.documentElement) {
+            e.newDocument.documentElement.dataset.theme = t;
+          }
+        });
+
+        // 다른 탭에서 토글했을 때 현재 탭에도 반영
+        window.addEventListener('storage', (e) => {
+          if (e.key !== 'theme') return;
+          const root = document.documentElement;
+          if (e.newValue === 'dark' || e.newValue === 'light') {
+            root.dataset.theme = e.newValue;
+          } else {
+            delete root.dataset.theme;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+
+const url = new URL('/privacy', Astro.site).toString();
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '개인정보처리방침', item: url },
+  ],
+};
+---
+<Base
+  title="개인정보처리방침 — 머니룩"
+  description="머니룩의 개인정보 수집·이용·보관·파기·제3자 제공 정책. 한국 개인정보보호법·정보통신망법 준수, GDPR 권고 사항 반영. 쿠키·GA4·AdSense 동의 처리 안내."
+  jsonLd={breadcrumbSchema}
+>
+  <article class="container narrow prose">
+    <header>
+      <p class="kicker">Privacy</p>
+      <h1>개인정보처리방침</h1>
+      <p class="meta">시행일: 2026년 4월 29일</p>
+    </header>
+
+    <p>
+      머니룩(MoneyLook, 이하 "회사")은 한국 개인정보보호법, 정보통신망 이용촉진 및 정보보호 등에
+      관한 법률을 준수하며, 이용자의 개인정보를 다음과 같이 처리합니다.
+    </p>
+
+    <h2>1. 수집하는 개인정보 항목</h2>
+    <ul>
+      <li><strong>자동 수집</strong>: IP 주소, 쿠키, 접속 로그, 기기 정보, 브라우저 정보, 페이지 방문 기록</li>
+      <li><strong>이용자 제공</strong>: 문의·제보 시 이메일·이름(선택)</li>
+    </ul>
+    <p>로그인·회원가입 기능은 운영하지 않으므로 별도 회원 정보는 수집하지 않습니다.</p>
+
+    <h2>2. 수집·이용 목적</h2>
+    <ul>
+      <li>서비스 운영·개선 (방문 통계, 인기 콘텐츠 분석)</li>
+      <li>맞춤형 광고 (Google AdSense, 동의 기반)</li>
+      <li>문의 응대 및 정정 처리</li>
+      <li>법령상 의무 이행</li>
+    </ul>
+
+    <h2>3. 제3자 제공 및 위탁</h2>
+    <p>회사는 다음 서비스를 통해 일부 정보를 위탁 처리합니다:</p>
+    <table>
+      <thead>
+        <tr><th>위탁받는 자</th><th>위탁 목적</th><th>제공 정보</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cloudflare, Inc.</td><td>호스팅·CDN·보안</td><td>IP, 접속 로그</td></tr>
+        <tr><td>Google LLC (GA4)</td><td>방문 통계 분석</td><td>익명화된 IP, 페이지 경로, 디바이스 정보</td></tr>
+        <tr><td>Google AdSense</td><td>맞춤형 광고 노출</td><td>쿠키 기반 광고 ID (동의 시)</td></tr>
+      </tbody>
+    </table>
+    <p>위 사업자들은 각자의 개인정보처리방침에 따라 정보를 처리하며, 회사는 동의 없이 제3자에게 정보를 양도하지 않습니다.</p>
+
+    <h2>4. 쿠키 사용 및 동의</h2>
+    <ul>
+      <li>본 사이트는 GA4·AdSense 운영을 위해 쿠키를 사용합니다.</li>
+      <li>이용자는 첫 방문 시 동의 배너를 통해 분석·광고 쿠키를 선택할 수 있습니다 (Google Consent Mode v2).</li>
+      <li>동의 거부 시 광고는 비개인화 광고로 제공되며, 분석 쿠키는 작동하지 않습니다.</li>
+      <li>브라우저 설정에서 언제든 쿠키를 차단할 수 있습니다.</li>
+    </ul>
+
+    <h2>5. 보유·이용 기간</h2>
+    <ul>
+      <li>접속 로그: 통신비밀보호법에 따라 3개월</li>
+      <li>GA4 데이터: 14개월 (Google 기본 보존 기간)</li>
+      <li>문의 응대 기록: 3년 (전자상거래법 준용)</li>
+    </ul>
+
+    <h2>6. 이용자 권리</h2>
+    <p>이용자는 언제든 자신의 개인정보에 대해 다음 권리를 행사할 수 있습니다:</p>
+    <ul>
+      <li>열람·정정·삭제 요청</li>
+      <li>처리 정지 요청</li>
+      <li>동의 철회 (쿠키·광고)</li>
+    </ul>
+    <p>요청은 <a href="/contact">문의 페이지</a> 또는 본 페이지 하단 이메일로 보내주세요.</p>
+
+    <h2>7. 안전성 확보 조치</h2>
+    <ul>
+      <li>HTTPS·HSTS 강제 적용</li>
+      <li>관리자 접근 권한 최소화</li>
+      <li>공격 방어 (WAF, Rate Limiting)</li>
+      <li>정기 보안 감사</li>
+    </ul>
+
+    <h2>8. 개인정보보호책임자</h2>
+    <ul>
+      <li>상호: 스마트데이터샵 (서비스명: 머니룩 MoneyLook)</li>
+      <li>대표·개인정보보호책임자: 김준혁</li>
+      <li>사업자등록번호: 406-06-34485</li>
+      <li>주소: 인천광역시 계양구 새벌로 88</li>
+      <li>이메일: <a href="mailto:smartdatashop@gmail.com">smartdatashop@gmail.com</a></li>
+      <li>응답 기간: 영업일 기준 7일 이내 (한국 개인정보보호법 권고)</li>
+    </ul>
+
+    <h2>9. 정책 변경</h2>
+    <p>본 방침이 변경될 경우 사이트 공지를 통해 알리며, 변경 내용은 공지 후 7일 후 적용됩니다.</p>
+  </article>
+</Base>
+
+<style>
+.container { max-width: 760px; padding-inline: 1rem; margin-inline: auto; }
+.narrow { padding-block: 2.5rem 4rem; }
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.4rem;
+}
+.meta { color: var(--color-muted); font-size: 0.82rem; margin: 0 0 2rem; }
+.muted-note {
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0.5rem 0 1.5rem;
+}
+</style>

@@ -1,0 +1,136 @@
+---
+import { findCluster } from '../data/clusters';
+import { getClusterIcon } from '../data/cluster-icons';
+
+interface Props {
+  cluster: string;
+  title: string;
+  variant?: 'article' | 'hub';
+}
+
+const { cluster: clusterSlug, title, variant = 'article' } = Astro.props;
+const cluster = findCluster(clusterSlug);
+const accent = cluster?.accent ?? '#00C896';
+const clusterTitle = cluster?.title ?? '';
+const shortTitle = cluster?.shortTitle ?? '';
+const icon = getClusterIcon(clusterSlug);
+
+const isDark = accent === '#0F1B2D';
+const fallbackAccent = isDark ? '#5B8DEF' : accent;
+
+const truncatedTitle = title.length > 50 ? `${title.slice(0, 48)}…` : title;
+const altText =
+  variant === 'hub'
+    ? `${clusterTitle} 카테고리 허브 일러스트`
+    : `${clusterTitle} 카테고리 일러스트 — ${truncatedTitle}`;
+
+const gradientId = `hero-grad-${variant}-${clusterSlug}`;
+const blurId = `hero-blur-${variant}-${clusterSlug}`;
+const patternId = `hero-pattern-${variant}-${clusterSlug}`;
+
+const isHub = variant === 'hub';
+const viewBoxH = isHub ? 300 : 600;
+const blob1 = isHub ? { cx: 100, cy: 60, r: 130 } : { cx: 180, cy: 120, r: 180 };
+const blob2 = isHub ? { cx: 1100, cy: 280, r: 160 } : { cx: 1020, cy: 500, r: 220 };
+
+const iconSize = isHub ? 160 : 280;
+const iconCx = isHub ? 200 : 600;
+const iconCy = isHub ? 150 : 300;
+const iconScale = iconSize / 24;
+const iconStrokePx = isHub ? 1.4 : 1.2;
+const iconStroke = iconStrokePx / iconScale;
+const iconTranslateX = iconCx - iconSize / 2;
+const iconTranslateY = iconCy - iconSize / 2;
+---
+<figure class={`hero-illustration variant-${variant}`} aria-label={altText}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox={`0 0 1200 ${viewBoxH}`}
+    width="1200"
+    height={viewBoxH}
+    role="img"
+    aria-label={altText}
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <defs>
+      <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color={fallbackAccent} stop-opacity="0.85" />
+        <stop offset="50%" stop-color={fallbackAccent} stop-opacity="0.55" />
+        <stop offset="100%" stop-color="#0F1B2D" stop-opacity="0.95" />
+      </linearGradient>
+
+      <filter id={blurId} x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation={isHub ? 40 : 60} />
+      </filter>
+
+      <pattern id={patternId} width="48" height="48" patternUnits="userSpaceOnUse">
+        <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+      </pattern>
+    </defs>
+
+    <rect width="1200" height={viewBoxH} fill={`url(#${gradientId})`} />
+    <rect width="1200" height={viewBoxH} fill={`url(#${patternId})`} />
+
+    <circle cx={blob1.cx} cy={blob1.cy} r={blob1.r} fill="rgba(255,255,255,0.18)" filter={`url(#${blurId})`} />
+    <circle cx={blob2.cx} cy={blob2.cy} r={blob2.r} fill={fallbackAccent} filter={`url(#${blurId})`} opacity="0.55" />
+
+    <g
+      transform={`translate(${iconTranslateX} ${iconTranslateY}) scale(${iconScale})`}
+      fill="none"
+      stroke="rgba(255,255,255,0.95)"
+      stroke-width={iconStroke}
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.22));"
+    >
+      {icon.paths.map((d) => <path d={d} />)}
+      {icon.circles?.map((c) => <circle cx={c.cx} cy={c.cy} r={c.r} />)}
+      {icon.lines?.map((l) => <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} />)}
+    </g>
+
+    {!isHub && (
+      <g opacity="0.85" font-family="Pretendard Variable, -apple-system, BlinkMacSystemFont, sans-serif">
+        <text x="60" y="68" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="-0.02em">머니룩</text>
+        <circle cx="124" cy="58" r="6" fill="#00C896" />
+        <text x="60" y="98" font-size="14" font-weight="500" fill="rgba(255,255,255,0.65)" letter-spacing="0.04em">{shortTitle}</text>
+      </g>
+    )}
+  </svg>
+</figure>
+
+<style>
+.hero-illustration {
+  display: block;
+  margin: 1.5rem 0 2rem;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 12px 40px -16px rgba(15, 27, 45, 0.18);
+  background: var(--color-surface);
+  content-visibility: auto;
+}
+.hero-illustration.variant-article {
+  aspect-ratio: 1200 / 600;
+  contain-intrinsic-size: auto 600px;
+}
+.hero-illustration.variant-hub {
+  aspect-ratio: 1200 / 300;
+  contain-intrinsic-size: auto 300px;
+  margin: 0 0 1rem;
+}
+.hero-illustration svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 480px) {
+  .hero-illustration.variant-hub {
+    aspect-ratio: 1200 / 200;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-illustration svg {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+</style>

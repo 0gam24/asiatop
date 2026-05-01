@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import { clusters, clusterAccentDark } from '../data/clusters';
+import ClusterIcon from '../components/ClusterIcon.astro';
+---
+<Base
+  title="페이지를 찾을 수 없어요"
+  description="요청하신 페이지를 찾을 수 없습니다. 머니룩 12개 카테고리 — 정부지원·세금·재테크·실업급여·신용대출·보험·연금 — 중 원하는 곳으로 이동하세요."
+  noIndex={true}
+>
+  <section class="container wrap">
+    <div class="hero-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+    </div>
+    <h1>이 페이지는 사라졌나봐요</h1>
+    <p class="lede">URL이 변경되었거나, 글이 비공개 처리된 것 같습니다. 아래 카테고리에서 찾으시는 정보를 골라보세요.</p>
+
+    <div class="cta-row">
+      <a href="/" class="btn">홈으로 가기</a>
+      <a href="/calculators/salary" class="btn btn-ghost">실수령 계산기</a>
+    </div>
+
+    <h2>주요 카테고리</h2>
+    <ul class="cluster-list">
+      {clusters.map((c) => (
+        <li>
+          <a href={`/${c.slug}`} style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)}`}>
+            <span class="icon-chip" aria-hidden="true">
+              <ClusterIcon cluster={c.slug} size={18} />
+            </span>
+            <strong>{c.title}</strong>
+            <em>{c.description}</em>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+.container { max-width: 760px; padding-inline: 1rem; margin-inline: auto; }
+.wrap { padding-block: 3rem 4rem; text-align: center; }
+.hero-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.25rem;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  color: var(--color-primary-700);
+}
+.hero-icon svg { width: 32px; height: 32px; }
+h1 {
+  font-size: clamp(1.7rem, 5vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.lede { font-size: 1rem; color: var(--color-muted); margin: 0 auto 1.5rem; max-width: 28rem; line-height: 1.65; }
+.cta-row { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn { display: inline-flex; align-items: center; height: 44px; padding-inline: 1rem; background: var(--color-primary); color: var(--color-on-primary); font-weight: 600; border-radius: var(--radius-btn); }
+.btn:hover { background: var(--color-primary-600); }
+.btn-ghost { background: transparent; color: var(--color-secondary); border: 1px solid var(--color-border); }
+.btn-ghost:hover { border-color: var(--color-primary); color: var(--color-primary-700); }
+h2 { font-size: 1.05rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 0.85rem; text-align: left; }
+.cluster-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  text-align: left;
+}
+@media (min-width: 600px) { .cluster-list { grid-template-columns: 1fr 1fr; } }
+.cluster-list a {
+  --accent: var(--accent-light);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  font-size: 0.88rem;
+}
+.cluster-list a:hover { border-color: var(--accent, var(--color-primary)); }
+[data-theme="dark"] .cluster-list a { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cluster-list a { --accent: var(--accent-dark); }
+}
+.cluster-list .icon-chip {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.cluster-list strong { color: var(--color-secondary); font-weight: 700; }
+.cluster-list em { color: var(--color-muted); font-style: normal; font-size: 0.78rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+</style>

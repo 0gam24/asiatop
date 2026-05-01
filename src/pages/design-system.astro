@@ -1,0 +1,288 @@
+---
+import Base from '../layouts/Base.astro';
+import { clusters } from '../data/clusters';
+import ClusterCard from '../components/ClusterCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import AdSlot from '../components/AdSlot.astro';
+import Experiment from '../components/Experiment.astro';
+---
+<Base
+  title="디자인 시스템 — 머니룩 컴포넌트 카탈로그"
+  description="머니룩 디자인 토큰·컴포넌트·인터랙션 시각화 페이지. 개발자·디자이너가 일관성을 검토하는 단일 소스 페이지."
+  noIndex={true}
+>
+  <article class="container">
+    <header class="page-header">
+      <p class="kicker">Design System</p>
+      <h1>머니룩 디자인 시스템</h1>
+      <p class="lede">
+        모든 컴포넌트·토큰·인터랙션을 한 페이지에서 검토합니다. 라이트·다크 테마 전환을 헤더에서 직접 시도해 보세요.
+        본 페이지는 noindex 처리되어 검색·AI 크롤러에 노출되지 않습니다.
+      </p>
+    </header>
+
+    <section>
+      <h2>컬러 토큰</h2>
+      <div class="swatches">
+        {[
+          { name: 'primary', label: 'Primary' },
+          { name: 'primary-600', label: 'Primary 600' },
+          { name: 'primary-700', label: 'Primary 700' },
+          { name: 'secondary', label: 'Secondary' },
+          { name: 'accent', label: 'Accent' },
+          { name: 'surface', label: 'Surface' },
+          { name: 'bg', label: 'Background' },
+          { name: 'text', label: 'Text' },
+          { name: 'muted', label: 'Muted' },
+          { name: 'border', label: 'Border' },
+        ].map(({ name, label }) => (
+          <div class="swatch">
+            <div class="chip" style={`background: var(--color-${name});`}></div>
+            <code>--color-{name}</code>
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>타이포그래피</h2>
+      <div class="typo">
+        <p class="t-display">Display 48 — 머니룩</p>
+        <p class="t-h1">H1 — 직장인·청년 생활금융 가이드</p>
+        <p class="t-h2">H2 — 이번 주 가장 많이 읽은 글</p>
+        <p class="t-h3">H3 — 청년월세지원 신청 자격</p>
+        <p class="t-body">본문 — Pretendard Variable로 한국어 가독성 최적화. 행간 1.625, 자간 -0.018em.</p>
+        <p class="t-small">Small — 보조 텍스트 / 메타 / 면책 조항</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>버튼</h2>
+      <div class="buttons">
+        <button type="button" class="btn-primary">Primary 버튼</button>
+        <button type="button" class="btn-ghost">Ghost 버튼</button>
+        <a href="#" class="link-cta">텍스트 링크 →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>클러스터 카드 (그리드 4열)</h2>
+      <div class="cluster-grid">
+        {clusters.slice(0, 4).map((c) => <ClusterCard cluster={c} />)}
+      </div>
+    </section>
+
+    <section>
+      <h2>글 카드</h2>
+      <div class="article-grid">
+        <ArticleCard
+          href="/credit-loan/credit-score-improvement"
+          title="신용점수 빨리 올리는 방법 — KCB·NICE 모두 통하는 8가지 실전 전략"
+          description="KCB·NICE 두 신용평가사의 점수 산정 기준과 단기·중장기 점수 향상 전략 8가지."
+          cluster="credit-loan"
+          publishedAt={new Date('2026-04-06')}
+        />
+        <ArticleCard
+          href="/savings/youth-leap-account-simulation"
+          title="청년도약계좌 5년 만기 시뮬레이션"
+          description="청년도약계좌 가입 자격, 매월 70만원 납입 시 5년 만기 수령액 시뮬레이션."
+          cluster="savings"
+          publishedAt={new Date('2026-04-19')}
+        />
+      </div>
+    </section>
+
+    <section>
+      <h2>AdSense 광고 슬롯 (CLS 0 예약)</h2>
+      <div class="ad-row">
+        <AdSlot format="banner" />
+      </div>
+      <div class="ad-row">
+        <AdSlot format="square" />
+      </div>
+      <div class="ad-row">
+        <AdSlot format="in-feed" />
+      </div>
+    </section>
+
+    <section>
+      <h2>알림 배너 (글 갱신 표시)</h2>
+      <aside class="stale-demo">
+        <span class="icon">🕐</span>
+        <div>
+          <strong>6개월 이상 갱신되지 않은 글입니다</strong>
+          <p>마지막 갱신 후 N개월 경과. 정책·요율은 변경됐을 수 있으니 신청 직전 공식 출처에서 재확인하세요.</p>
+        </div>
+      </aside>
+      <aside class="stale-demo very-stale">
+        <span class="icon">⚠️</span>
+        <div>
+          <strong>1년 이상 갱신되지 않은 글입니다</strong>
+          <p>마지막 갱신 후 N개월 경과. 정책·요율은 변경됐을 수 있으니 신청 직전 공식 출처에서 재확인하세요.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section>
+      <h2>A/B 테스트 컴포넌트</h2>
+      <p class="muted">아래 영역은 무작위로 한 가지만 표시됩니다 (localStorage에 영구 저장). 페이지 새로고침해도 같은 variant 유지.</p>
+      <Experiment id="hero_cta" variants={['baseline', 'urgent', 'specific']}>
+        <div data-variant="baseline" class="exp-card">
+          <strong>Variant A — Baseline</strong>
+          <p>"내 연봉 실수령액 계산하기"</p>
+        </div>
+        <div data-variant="urgent" class="exp-card">
+          <strong>Variant B — Urgent</strong>
+          <p>"숨은 환급금 1분 안에 찾기"</p>
+        </div>
+        <div data-variant="specific" class="exp-card">
+          <strong>Variant C — Specific</strong>
+          <p>"평균 23만원 더 받는 방법"</p>
+        </div>
+      </Experiment>
+    </section>
+
+    <section>
+      <h2>간격 스케일 (4px 그리드)</h2>
+      <div class="spacing">
+        {[2, 4, 8, 12, 16, 24, 32, 48, 64].map((n) => (
+          <div class="space-row">
+            <code>{n}px</code>
+            <div class="bar" style={`width: ${n}px;`}></div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+.container { max-width: 920px; padding-inline: 1rem; margin-inline: auto; padding-block: 2.5rem 5rem; }
+.page-header { margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); }
+.kicker {
+  display: inline-flex;
+  height: 26px;
+  padding-inline: 0.6rem;
+  background: var(--color-mint-bg);
+  color: var(--color-primary-700);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.lede { color: var(--color-muted); line-height: 1.65; margin: 0; max-width: 38rem; }
+section { margin-bottom: 3rem; }
+section h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  margin: 0 0 1rem;
+  letter-spacing: -0.025em;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+@media (min-width: 600px) { .swatches { grid-template-columns: repeat(4, 1fr); } }
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+}
+.chip {
+  width: 100%;
+  height: 48px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+.swatch code {
+  font-size: 0.74rem;
+  color: var(--color-text);
+  font-family: ui-monospace, monospace;
+}
+.swatch span { font-size: 0.78rem; color: var(--color-muted); }
+
+.typo p { margin: 0.5rem 0; color: var(--color-text); }
+.t-display { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; }
+.t-h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.035em; }
+.t-h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
+.t-h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.025em; }
+.t-body { font-size: 1rem; line-height: 1.625; }
+.t-small { font-size: 0.85rem; color: var(--color-muted); }
+
+.buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.btn-primary {
+  display: inline-flex; align-items: center; height: 44px;
+  padding-inline: 1.1rem;
+  background: var(--color-primary); color: var(--color-on-primary);
+  border-radius: var(--radius-btn); font-weight: 600; border: 0;
+}
+.btn-primary:hover { background: var(--color-primary-600); }
+.btn-ghost {
+  display: inline-flex; align-items: center; height: 44px;
+  padding-inline: 1.1rem;
+  background: transparent; color: var(--color-secondary);
+  border: 1px solid var(--color-border); border-radius: var(--radius-btn);
+  font-weight: 600;
+}
+.btn-ghost:hover { border-color: var(--color-primary); color: var(--color-primary-700); }
+.link-cta { color: var(--color-primary-700); font-weight: 600; }
+
+.cluster-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+@media (min-width: 768px) { .cluster-grid { grid-template-columns: repeat(4, 1fr); } }
+.article-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+@media (min-width: 600px) { .article-grid { grid-template-columns: 1fr 1fr; } }
+
+.ad-row { margin-block: 1rem; }
+
+.stale-demo, .stale-demo.very-stale {
+  display: flex; gap: 0.85rem; align-items: flex-start;
+  border-radius: var(--radius-card);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.stale-demo {
+  background: color-mix(in oklab, var(--color-accent) 10%, var(--color-bg));
+  border: 1px solid color-mix(in oklab, var(--color-accent) 35%, transparent);
+}
+.stale-demo.very-stale {
+  background: color-mix(in oklab, var(--color-warn) 10%, var(--color-bg));
+  border-color: color-mix(in oklab, var(--color-warn) 40%, transparent);
+}
+.stale-demo .icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+.stale-demo strong { display: block; color: var(--color-text); margin-bottom: 0.25rem; }
+.stale-demo p { color: var(--color-muted); margin: 0; }
+
+.muted { color: var(--color-muted); font-size: 0.88rem; margin-bottom: 0.75rem; }
+.exp-card {
+  background: var(--color-surface);
+  border: 1px dashed color-mix(in oklab, var(--color-primary) 50%, transparent);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+}
+.exp-card strong { color: var(--color-primary-700); display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+.exp-card p { margin: 0; color: var(--color-text); font-weight: 600; }
+
+.spacing { display: flex; flex-direction: column; gap: 0.4rem; }
+.space-row { display: flex; align-items: center; gap: 0.85rem; font-size: 0.85rem; }
+.space-row code { width: 50px; color: var(--color-muted); font-family: ui-monospace, monospace; }
+.space-row .bar { height: 16px; background: var(--color-primary); border-radius: 4px; }
+</style>

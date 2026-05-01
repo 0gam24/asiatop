@@ -1,0 +1,121 @@
+name: Weekly Security Audit
+
+# 매주 월요일 오전 9시 KST (UTC 0시)에 의존성 취약점 스캔.
+# 발견 시 GitHub Issue 자동 생성·갱신.
+# 수동 실행: workflow_dispatch.
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run pnpm audit (low+) JSON
+        id: audit
+        run: |
+          set +e
+          pnpm audit --audit-level=low --json > audit.json
+          code=$?
+          set -e
+          counts=$(node -e '
+            const r = JSON.parse(require("fs").readFileSync("audit.json","utf-8"));
+            const v = r.metadata?.vulnerabilities || {};
+            console.log(JSON.stringify({
+              info: v.info||0, low: v.low||0, moderate: v.moderate||0, high: v.high||0, critical: v.critical||0
+            }));
+          ')
+          echo "counts=$counts" >> $GITHUB_OUTPUT
+          echo "exit_code=$code" >> $GITHUB_OUTPUT
+          echo "Audit counts: $counts"
+
+      - name: Open or update tracking issue
+        if: steps.audit.outputs.exit_code != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const audit = JSON.parse(fs.readFileSync('audit.json', 'utf-8'));
+            const adv = Object.values(audit.advisories || {});
+            if (adv.length === 0) return;
+
+            const today = new Date().toISOString().slice(0, 10);
+            const counts = audit.metadata?.vulnerabilities || {};
+            const total = Object.values(counts).reduce((a, b) => a + b, 0);
+            const sevHi = (counts.critical || 0) + (counts.high || 0);
+            const title = `[자동] 의존성 취약점 ${total}건 (${today})`;
+
+            let body = `## 의존성 취약점 자동 스캔 (${today})\n\n`;
+            body += `- 합계: **${total}건** (critical ${counts.critical||0} · high ${counts.high||0} · moderate ${counts.moderate||0} · low ${counts.low||0} · info ${counts.info||0})\n`;
+            body += `- 차단 임계값(moderate+) 초과: ${sevHi + (counts.moderate||0) > 0 ? '✅ 예' : '❌ 아니오'}\n\n`;
+            body += `## 항목\n\n`;
+            for (const a of adv.sort((x, y) => {
+              const order = { critical: 0, high: 1, moderate: 2, low: 3, info: 4 };
+              return (order[x.severity] ?? 9) - (order[y.severity] ?? 9);
+            })) {
+              const cves = (a.cves || []).join(', ') || '—';
+              const fix = a.recommendation || '';
+              body += `### [${a.severity}] ${a.module_name} — ${a.title}\n`;
+              body += `- CVE: ${cves}\n`;
+              body += `- 영향 범위: \`${a.vulnerable_versions}\`\n`;
+              body += `- 권장: ${fix}\n`;
+              body += `- 링크: ${a.url}\n\n`;
+            }
+            body += `## 권장 조치\n\n`;
+            body += `1. moderate+ 항목은 \`pnpm update <package>@<patched>\` 또는 메이저 업데이트로 해결\n`;
+            body += `2. 우회 불가능한 경우 본 이슈에 면책 사유와 보완책을 댓글로 기록\n`;
+            body += `3. main 머지 전 \`pnpm audit --audit-level=moderate\`가 통과해야 함 (go-live-check.yml 게이트)\n\n`;
+            body += `_본 이슈는 매주 월요일 자동 갱신됩니다._`;
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'security,automated',
+            });
+
+            if (issues.length > 0) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues[0].number,
+                title,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['security', 'automated', 'dependencies'],
+              });
+            }
+
+      - name: Upload audit JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report
+          path: audit.json
+          retention-days: 90

@@ -1,0 +1,49 @@
+---
+import { getClusterIcon } from '../data/cluster-icons';
+
+interface Props {
+  cluster: string;
+  size?: number;
+  strokeWidth?: number;
+  class?: string;
+  ariaHidden?: boolean;
+  ariaLabel?: string;
+}
+
+const {
+  cluster,
+  size = 24,
+  strokeWidth = 1.75,
+  class: className,
+  ariaHidden = true,
+  ariaLabel,
+} = Astro.props;
+
+const icon = getClusterIcon(cluster);
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={`cluster-icon ${className ?? ''}`}
+  role={ariaLabel ? 'img' : undefined}
+  aria-hidden={ariaLabel ? undefined : ariaHidden ? 'true' : undefined}
+  aria-label={ariaLabel}
+>
+  {icon.paths.map((d) => <path d={d} />)}
+  {icon.circles?.map((c) => <circle cx={c.cx} cy={c.cy} r={c.r} />)}
+  {icon.lines?.map((l) => <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} />)}
+</svg>
+
+<style>
+.cluster-icon {
+  display: block;
+  flex-shrink: 0;
+}
+</style>
