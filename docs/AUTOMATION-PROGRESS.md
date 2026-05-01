@@ -2,7 +2,7 @@
 
 > 사용자가 잠든 사이 자동 진행된 라운드 누적 보고.
 > branch: `feature/brief-system` (PR #1).
-> 마지막 commit: `2577855` 시점.
+> 마지막 commit: `f9908ee` 시점 (Round 23).
 
 ---
 
@@ -10,9 +10,9 @@
 
 | 지표 | 값 |
 |---|---|
-| 누적 commit (Round 2 이후) | **19** |
-| 단위 테스트 | **248 / 248 통과** |
-| 빌드 시간 | 20.05s (안정) |
+| 누적 commit (Round 2 이후) | **23** |
+| 단위 테스트 | **250 / 250 통과** |
+| 빌드 시간 | 19.97s (안정) |
 | 페이지 | 136 (108 article + 28 정적) |
 | 회귀 | **0건** |
 | 신규 npm 의존성 | **0** (transitive만 사용) |
@@ -42,6 +42,10 @@
 | 17 | `4eb07ef` | test | sample-filled brief fixture (e2e demo 기반) |
 | 18 | `61f92c9` | test | G6 면책 부착 위치·frontmatter 보존 |
 | 19 | `2577855` | audit | scripts/audit/rejection-stats.mjs |
+| 20 | `4adb6a8` | docs | AUTOMATION-PROGRESS.md (본 문서 초판) |
+| 21 | `4a121a0` | fixture | naver-kin 5 cluster 추가 sample |
+| 22 | `1ab6f1f` | test | searchKinBulk 6 cluster 동시 검색 |
+| 23 | `f9908ee` | refactor | article-pipeline trusted-domains 통합 (3곳 → 1) |
 
 ---
 
@@ -143,7 +147,7 @@
 ## 8. 알려진 한계 (다음 라운드 작업)
 
 - **article-pipeline.mjs Gap 2 통합**: brief-loader는 export 됐으나 article-pipeline의 `--brief` 인자 통합은 미완료. LLM 4-pass에 brief 전체 주입 필요.
-- **trusted-domains 3곳 중 1곳 잔여**: `article-pipeline.mjs L273 GOV` 마이그레이션 필요.
+- ~~**trusted-domains 3곳 중 1곳 잔여**~~: ✅ Round 23에서 article-pipeline.mjs까지 완료.
 - **AI-likeness 임계 5.0 단계화**: 현재 default 5.0 / auto-publish.yml은 7.0. 운영 1주 후 단계 강화.
 - **fact-verifier 통화·환율**: 현재 KRW만 정규화. 외환 등 다국어 통화 V2.
 - **PR 자동 생성**: 현재 auto-publish.yml은 게이트 트레이스만 출력. PR 생성·머지는 LLM 4-pass 통합 후 활성.
