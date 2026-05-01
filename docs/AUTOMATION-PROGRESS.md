@@ -2,7 +2,7 @@
 
 > 사용자가 잠든 사이 자동 진행된 라운드 누적 보고.
 > branch: `feature/brief-system` (PR #1).
-> 마지막 commit: `f9908ee` 시점 (Round 23).
+> 마지막 commit: `1cb8e4a` 시점 (Round 27 — Gap 2 Step 2 milestone).
 
 ---
 
@@ -10,9 +10,9 @@
 
 | 지표 | 값 |
 |---|---|
-| 누적 commit (Round 2 이후) | **23** |
-| 단위 테스트 | **250 / 250 통과** |
-| 빌드 시간 | 19.97s (안정) |
+| 누적 commit (Round 2 이후) | **27** |
+| 단위 테스트 | **255 / 255 통과** |
+| 빌드 시간 | 20.04s (안정) |
 | 페이지 | 136 (108 article + 28 정적) |
 | 회귀 | **0건** |
 | 신규 npm 의존성 | **0** (transitive만 사용) |
@@ -46,6 +46,10 @@
 | 21 | `4a121a0` | fixture | naver-kin 5 cluster 추가 sample |
 | 22 | `1ab6f1f` | test | searchKinBulk 6 cluster 동시 검색 |
 | 23 | `f9908ee` | refactor | article-pipeline trusted-domains 통합 (3곳 → 1) |
+| 24 | `eb1a431` | docs | AUTOMATION-PROGRESS Round 23 갱신 |
+| 25 | `0efcec3` | seo | QAPage Schema.org 자동 생성 (자동 발행 글) |
+| 26 | `2088a69` | brief | briefToArticleFrontmatter helper |
+| 27 | `1cb8e4a` | **pipeline** | **article-pipeline --brief 통합 (Gap 2 Step 2)** ⭐ |
 
 ---
 
@@ -146,7 +150,8 @@
 
 ## 8. 알려진 한계 (다음 라운드 작업)
 
-- **article-pipeline.mjs Gap 2 통합**: brief-loader는 export 됐으나 article-pipeline의 `--brief` 인자 통합은 미완료. LLM 4-pass에 brief 전체 주입 필요.
+- **Gap 2 Step 3+ 잔여**: Step 1·2 완료. Step 3 (brief 9개 섹션을 LLM 프롬프트에 주입), Step 5 (G4~G8 article-pipeline 통합), Step 6 (회귀 테스트) 남음.
+- ~~**article-pipeline.mjs Gap 2 통합**~~: ✅ Round 27에서 `--brief` CLI + frontmatter inject 완료. brief 모드 작동 검증.
 - ~~**trusted-domains 3곳 중 1곳 잔여**~~: ✅ Round 23에서 article-pipeline.mjs까지 완료.
 - **AI-likeness 임계 5.0 단계화**: 현재 default 5.0 / auto-publish.yml은 7.0. 운영 1주 후 단계 강화.
 - **fact-verifier 통화·환율**: 현재 KRW만 정규화. 외환 등 다국어 통화 V2.
