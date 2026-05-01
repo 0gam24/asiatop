@@ -55,16 +55,9 @@ if (!CLUSTER || !VALID_CLUSTERS.includes(CLUSTER)) {
   process.exit(1);
 }
 
-// 클러스터 → 저자 매핑
-const CLUSTER_TO_AUTHOR = {
-  tax: 'kim-finance',
-  'office-tips': 'kim-finance',
-  savings: 'park-finance',
-  pension: 'park-finance',
-  'credit-loan': 'park-finance',
-  'insurance-personal': 'park-finance',
-};
-const AUTHOR = CLUSTER_TO_AUTHOR[CLUSTER] ?? 'editor-team';
+// 모든 글 저자 = editor-team (머니룩 편집팀)
+// 가상 전문가 페르소나(가짜 저자) 사용 금지 — editorial-policy.astro 정책
+const AUTHOR = 'editor-team';
 
 const SLUG_FINAL = SLUG ?? slugifyTopic(TOPIC);
 

@@ -26,11 +26,15 @@ const breadcrumbSchema = {
     <h2>사실 확인 절차</h2>
     <p>모든 글은 발행 전 다음 절차를 거칩니다:</p>
     <ol>
-      <li><strong>1차 자료 확인</strong> — 공공데이터포털(data.go.kr)·법제처(law.go.kr)·홈택스·복지로·한국은행 ECOS·금융감독원 공시 등 공식 출처를 우선 인용합니다.</li>
+      <li><strong>1차 자료 직접 확인</strong> — 공공데이터포털(data.go.kr)·법제처(law.go.kr)·홈택스·복지로·한국은행 ECOS·금융감독원 공시 등 공식 출처를 우선 인용합니다. 모든 출처 URL을 본문에 명시해 누구나 검증할 수 있도록 합니다.</li>
       <li><strong>통계·수치 검증</strong> — 모든 통계는 발행 시점·단위·출처 URL을 명시합니다. 출처 없는 수치는 사용하지 않습니다.</li>
-      <li><strong>법령·정책 시점 표기</strong> — 본문 상단에 "데이터 기준 YYYY년 M월" 형식으로 시점을 명시합니다.</li>
-      <li><strong>전문가 검수</strong> — 세무·노무·재무·법률 등 YMYL 분야는 해당 자격 보유 전문가의 검수를 거칩니다.</li>
+      <li><strong>법령·정책 시점 표기</strong> — 본문 상단에 "데이터 기준 YYYY년 M월" 형식으로 시점을 명시합니다. 발행 후 180일 경과 시 자동으로 갱신 알림 배너를 노출합니다.</li>
+      <li><strong>편집팀 교차 검증</strong> — 편집팀이 1차 자료와 본문 인용 수치·법령을 직접 대조해 일치 여부를 확인합니다.</li>
     </ol>
+
+    <p class="disclaimer-box">
+      <strong>중요 — 자격 보유 전문가의 직접 검수는 받지 않습니다.</strong> 머니룩 편집팀은 자격 보유 세무사·노무사·재무설계사가 아니며, 따라서 본 글은 일반 정보 제공이지 세무·법률·재무 자문이 아닙니다. 정확한 신청 자격·요율은 신청 직전 해당 기관(국세청·복지부·고용노동부·금감원 등)의 공식 안내에서 재확인하시기 바랍니다.
+    </p>
 
     <h2>정정 정책</h2>
     <ul>
@@ -72,17 +76,10 @@ const breadcrumbSchema = {
 
     <h2>저자 정책</h2>
     <ul>
-      <li>모든 글에 <strong>실명 저자 또는 자격 보유 전문가</strong>를 표기합니다.</li>
-      <li>"편집팀" 단독 명의 발행은 짧은 안내문(공지·정책 페이지)에만 사용합니다.</li>
-      <li>저자 페이지에 학력·자격·외부 프로필(LinkedIn·자격증 발행기관 등록부)을 명시합니다.</li>
-      <li>저자 카테고리별 자격 요건은 다음과 같습니다:
-        <ul>
-          <li>세금·연말정산: 세무사·공인회계사 또는 5년 이상 세무 실무</li>
-          <li>재테크·신용대출·보험·연금: AFPK·CFP 또는 5년 이상 자산관리 실무</li>
-          <li>부동산: 공인중개사 또는 5년 이상 부동산 실무</li>
-          <li>4대보험·노동: 공인노무사 또는 노동부 출신·5년 이상 노무 실무</li>
-        </ul>
-      </li>
+      <li>모든 글의 저자는 <strong>"머니룩 편집팀"</strong>(스마트데이터샵 운영진)으로 표기됩니다.</li>
+      <li>가상 인물·AI 페르소나로 자격 보유자를 사칭하지 않습니다.</li>
+      <li>외부 자격 보유 전문가(세무사·노무사·CFP 등)의 글이 게재될 경우 그분의 실명·자격증 등록 사실·연락처를 함께 명시합니다.</li>
+      <li>제휴·후원 콘텐츠는 본문 상단에 명시 라벨을 부착합니다.</li>
     </ul>
 
     <h2>윤리 강령</h2>
@@ -129,4 +126,15 @@ h1 {
   margin: 0 0 0.4rem;
 }
 .meta { color: var(--color-muted); font-size: 0.82rem; margin: 0 0 2rem; }
+.disclaimer-box {
+  background: color-mix(in oklab, var(--color-accent) 8%, var(--color-bg));
+  border: 1px solid color-mix(in oklab, var(--color-accent) 35%, transparent);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin: 1.25rem 0 0;
+}
+.disclaimer-box strong { color: var(--color-secondary); }
 </style>
