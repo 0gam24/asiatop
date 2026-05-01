@@ -26,7 +26,9 @@
     "refine": "node scripts/refine-existing.mjs",
     "prepare": "node scripts/install-hooks.mjs",
     "secrets:scan": "node scripts/secrets-scan.mjs",
-    "setup:env": "node scripts/setup-env.mjs"
+    "setup:env": "node scripts/setup-env.mjs",
+    "brief:validate": "node scripts/validate-brief.mjs",
+    "brief:new": "node scripts/new-brief.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
