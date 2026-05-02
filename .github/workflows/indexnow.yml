@@ -37,7 +37,7 @@ jobs:
         id: changes
         run: |
           if [ -n "${{ github.event.inputs.url_list }}" ]; then
-            echo "urls=${{ github.event.inputs.url_list }}" >> $GITHUB_OUTPUT
+            echo "urls=${{ github.event.inputs.url_list }}" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -63,7 +63,7 @@ jobs:
             urls="https://asiatop.co.kr/"
           fi
 
-          echo "urls=$urls" >> $GITHUB_OUTPUT
+          echo "urls=$urls" >> "$GITHUB_OUTPUT"
           echo "Detected URLs: $urls"
 
       - name: Submit changed URLs + Sitemaps + RSS to IndexNow

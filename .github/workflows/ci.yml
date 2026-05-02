@@ -17,13 +17,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run actionlint
-        # actionlint 본 목적: workflow YAML 표현식·트리거·actor guard·fromJSON 파싱 오타 차단.
-        # shellcheck SC* 룰(quoting·ls|grep 등)은 별도 ROI 영역 — info/style 위주라 본 게이트에서는 무시.
-        # 진짜 위험(actor guard if 표현식 1글자 오타로 권한 우회 등)은 actionlint 자체 룰이 잡음.
+        # actionlint + shellcheck 통합 검증.
+        # 본 게이트의 본 목적: actor guard if 표현식·fromJSON 파싱·트리거·permissions 오타 차단.
+        # shellcheck SC* 룰도 활성 — quoting·ls|grep 등 워크플로 셸 회귀 차단.
         run: |
           set -euo pipefail
           bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
-          ./actionlint -color -ignore 'shellcheck reported issue'
+          ./actionlint -color
 
   unit:
     name: Unit + component tests

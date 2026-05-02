@@ -79,21 +79,21 @@ jobs:
           # 안전 카운트 사전 검증 (음수·NaN 방지)
           if ! [[ "$OPEN_PRS" =~ ^[0-9]+$ ]] || ! [[ "$TODAY_PUBS" =~ ^[0-9]+$ ]]; then
             echo "::error::카운트 파싱 실패 — fail-closed"
-            echo "proceed=false" >> $GITHUB_OUTPUT
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
             exit 1
           fi
 
           if [ "$OPEN_PRS" -ge 3 ]; then
             echo "::warning::PR 동시 상한(3) 도달. cron skip"
-            echo "proceed=false" >> $GITHUB_OUTPUT
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           if [ "$TODAY_PUBS" -ge 5 ]; then
             echo "::warning::하루 발행 상한(5) 도달. cron skip"
-            echo "proceed=false" >> $GITHUB_OUTPUT
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          echo "proceed=true" >> $GITHUB_OUTPUT
+          echo "proceed=true" >> "$GITHUB_OUTPUT"
 
   pre-llm-gates:
     name: Pre-LLM 게이트 (G0~G3)
@@ -122,15 +122,20 @@ jobs:
         run: |
           if [ -n "${{ inputs.question }}" ]; then
             echo "${{ inputs.question }}" > /tmp/question.txt
-          elif [ -d briefs/_pool/_pending ] && [ "$(ls -A briefs/_pool/_pending 2>/dev/null | grep -v gitkeep | head -1)" ]; then
-            FIRST=$(ls briefs/_pool/_pending | grep -v gitkeep | head -1)
-            head -1 "briefs/_pool/_pending/$FIRST" > /tmp/question.txt
           else
-            echo "::notice::pending 큐 비어있음. cron skip"
-            echo "skip=true" >> $GITHUB_OUTPUT
-            exit 0
+            FIRST=""
+            if [ -d briefs/_pool/_pending ]; then
+              FIRST=$(find briefs/_pool/_pending -maxdepth 1 -type f ! -name '.gitkeep' 2>/dev/null | head -n 1)
+            fi
+            if [ -n "$FIRST" ]; then
+              head -1 "$FIRST" > /tmp/question.txt
+            else
+              echo "::notice::pending 큐 비어있음. cron skip"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
           fi
-          echo "skip=false" >> $GITHUB_OUTPUT
+          echo "skip=false" >> "$GITHUB_OUTPUT"
 
       - name: 자동 발행 러너 실행 (Pre-LLM 게이트)
         if: steps.pick.outputs.skip == 'false'
@@ -138,13 +143,18 @@ jobs:
           MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
           AI_LIKENESS_THRESHOLD: '7.0'   # 초기 관대 임계
         run: |
-          ARGS="--question-file /tmp/question.txt"
-          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
-          node scripts/auto-publish.mjs $ARGS | tee /tmp/result.json
-          echo "## 게이트 실행 결과" >> $GITHUB_STEP_SUMMARY
-          echo '```json' >> $GITHUB_STEP_SUMMARY
-          cat /tmp/result.json >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          # ARGS는 단순 플래그 array — quoting 분리로 word-splitting 안전.
+          args=(--question-file /tmp/question.txt)
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          node scripts/auto-publish.mjs "${args[@]}" | tee /tmp/result.json
+          {
+            echo "## 게이트 실행 결과"
+            echo '```json'
+            cat /tmp/result.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: dedup·rejected audit 커밋 (변경 시)
         if: steps.pick.outputs.skip == 'false'
