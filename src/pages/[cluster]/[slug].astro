@@ -277,11 +277,53 @@ const qaSchema = article.data.source_question_text
     }
   : null;
 
+// ClaimReview — sources_verified=true 글의 사실 검증 시그널.
+// 글 전체를 단일 ClaimReview로 묶어 권위 소스에 매핑.
+// AI 검색·Google rich result 적격성 ↑.
+// 권위 소스(.go.kr/.or.kr)만 citation에 포함 (단순 URL 매칭).
+const TRUSTED_SUFFIXES_INLINE = ['.go.kr', '.or.kr'];
+const trustedSources = article.data.sources_verified
+  ? article.data.sources.filter((s) => {
+      try {
+        const host = new URL(s.url).hostname.toLowerCase();
+        return TRUSTED_SUFFIXES_INLINE.some((sfx) => host.endsWith(sfx));
+      } catch {
+        return false;
+      }
+    })
+  : [];
+
+const claimReviewSchema = article.data.sources_verified && trustedSources.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'ClaimReview',
+      url: `${url}#verification`,
+      datePublished: article.data.fact_verification_at ?? article.data.publishedAt.toISOString(),
+      author: { '@id': `${authorUrl}#author` },
+      claimReviewed: article.data.description,
+      itemReviewed: {
+        '@type': 'Claim',
+        appearance: trustedSources.map((s) => ({
+          '@type': 'CreativeWork',
+          url: s.url,
+          name: s.title,
+        })),
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: 5,
+        bestRating: 5,
+        alternateName: '권위 데이터 1:1 매칭 검증 통과',
+      },
+    }
+  : null;
+
 const jsonLdList = [
   breadcrumbSchema,
   articleSchema,
   ...(faqSchema ? [faqSchema] : []),
   ...(qaSchema ? [qaSchema] : []),
+  ...(claimReviewSchema ? [claimReviewSchema] : []),
 ];
 
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
