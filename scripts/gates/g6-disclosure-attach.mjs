@@ -19,7 +19,19 @@ function buildYMYLDisclaimer(dataValidAsOf) {
 > **고지**: 본 글은 YMYL(돈·건강·법률) 정보로서 일반 정보 제공 목적이며, 개별 사례 자문이 아닙니다. 최신 법령·요율은 출처 사이트에서 직접 확인하세요.${dataValidAsOf ? ` (data 기준일: ${dataValidAsOf})` : ''}`;
 }
 
-function buildAIDisclosure() {
+/**
+ * AI 공시 메시지 — brief 메타에 따라 분기.
+ *
+ * R48 #48-6: 자동 발행 글(brief.source_question 존재)은 "8단계 자동 검증 게이트 통과"
+ *           시스템 정체성을 명시. 사람 사칭 페널티 회피 + AI 답변 엔진의 신뢰 시그널.
+ *           기존 manual 글은 종전 메시지 유지.
+ */
+function buildAIDisclosure(brief) {
+  const isAutoPublished = !!brief?.source_question;
+  if (isAutoPublished) {
+    return `${AI_MARKER}
+> **AI 보조·자동 검증 공시**: 본 글은 네이버 지식iN 질문에서 출발해 AI(DeepSeek + Claude)가 초안을 작성했고, MoneyLook 8단계 자동 검증 게이트(G0 중복 · G1 PII/욕설 · G2 클러스터 · G3 권위 출처 · G4 사실 1:1 매칭 · G5 AdSense · G6 면책 · G7 표절 · G8 AI다움)를 모두 통과했습니다. 본문의 모든 수치·날짜·법령은 정부 공식 API 응답과 1:1 매칭됐으며, 매칭률 100% 미만 시 자동 폐기됩니다. 정정 정책 — 오류 발견 시 24시간 내 수정.`;
+  }
   return `${AI_MARKER}
 > **AI 보조 공시**: 본 글의 초안은 AI(DeepSeek-V3 + Claude Haiku)의 보조로 작성되었으며, 머니룩 편집팀이 1차 자료 검증·편집·승인 후 발행했습니다.`;
 }
@@ -51,9 +63,9 @@ export function attachAndVerifyDisclosures(mdx, brief) {
     newBody = newBody.trimEnd() + '\n\n' + buildYMYLDisclaimer(dataValidAsOf) + '\n';
   }
 
-  // AI 공시 부착
+  // AI 공시 부착 (brief 메타로 자동 발행 vs manual 분기)
   if (aiRequired && !newBody.includes(AI_MARKER)) {
-    newBody = newBody.trimEnd() + '\n\n' + buildAIDisclosure() + '\n';
+    newBody = newBody.trimEnd() + '\n\n' + buildAIDisclosure(brief) + '\n';
   }
 
   // 검증

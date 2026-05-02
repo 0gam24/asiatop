@@ -119,6 +119,9 @@ function renderClusterFile(slug, articles) {
     ].join('\n');
 
     if (bytes(out + block) > MAX_BYTES) {
+      // 본문은 토큰 한도로 제외하되 URL+제목 1줄은 fallback 인덱스로 보장.
+      // R49 #49-5 자동 등록 하네스: "모든 발행 글이 채널에 등장" 정책 — URL 누락 0.
+      out += `- [${a.title}](${url}) — _본문은 토큰 한도로 제외, 페이지에서 확인_\n`;
       excluded++;
       continue;
     }
@@ -127,8 +130,8 @@ function renderClusterFile(slug, articles) {
   }
 
   if (excluded > 0) {
-    console.warn(`[llms] ⚠️ ${slug}: ${excluded} articles excluded (50KB limit)`);
-    out += `\n_${excluded}개 글이 토큰 한도로 제외됨 — 개별 글 페이지에서 확인하세요._\n`;
+    console.warn(`[llms] ⚠️ ${slug}: ${excluded} articles excluded body (50KB limit, URL fallback 유지)`);
+    out += `\n_위 ${excluded}개 글은 토큰 한도로 본문 제외 — URL만 노출. 개별 페이지에서 본문 확인._\n`;
   }
 
   return { content: out, included, excluded };

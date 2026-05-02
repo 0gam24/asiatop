@@ -49,16 +49,42 @@ const siteName = '머니룩';
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
+// R48 #48-2 — NewsMediaOrganization 업그레이드.
+// Google News·Discover 진입 + AI 답변 엔진(ChatGPT·Perplexity·Gemini) "사실 확인 매체" 분류.
+// 기존 Organization 필드 유지 + 정책·검증 시그널 8종 + Korea 지역·언어·Q&A 검증 사이트 정체성.
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'NewsMediaOrganization',
   '@id': new URL('#organization', Astro.site).toString(),
   name: '머니룩',
   alternateName: 'MoneyLook',
   url: Astro.site?.toString(),
-  logo: new URL('/logo.svg', Astro.site).toString(),
-  description: '한국 직장인·청년을 위한 생활금융 종합 가이드. 정부지원금·세금·재테크·부동산·노동·신용대출·보험·연금.',
+  logo: {
+    '@type': 'ImageObject',
+    url: new URL('/logo.svg', Astro.site).toString(),
+    width: 600,
+    height: 60,
+  },
+  description: '한국 직장인·청년을 위한 생활금융 종합 가이드. 정부지원금·세금·재테크·부동산·노동·신용대출·보험·연금. 네이버 지식iN 질문을 정부 1차 자료(공공데이터·법제처·홈택스·복지로·한국은행)와 1:1 매칭해 8단계 자동 검증 게이트(G0~G8) 통과 글만 발행.',
   inLanguage: 'ko-KR',
+  foundingDate: '2024',
+  knowsLanguage: ['ko-KR'],
+  knowsAbout: clusters.map((c) => c.title),
+  areaServed: {
+    '@type': 'Country',
+    name: 'South Korea',
+    sameAs: 'https://www.wikidata.org/wiki/Q884',
+  },
+  // E-E-A-T 정책 시그널 — Google News 자격·NewsMediaOrganization 핵심 필드.
+  // 모든 정책 섹션은 /editorial-policy 단일 페이지 앵커로 통일 (SSoT).
+  publishingPrinciples: new URL('/editorial-policy/', Astro.site).toString(),
+  verificationFactCheckingPolicy: new URL('/editorial-policy/#verification', Astro.site).toString(),
+  correctionsPolicy: new URL('/editorial-policy/#corrections', Astro.site).toString(),
+  ownershipFundingInfo: new URL('/editorial-policy/#ownership', Astro.site).toString(),
+  ethicsPolicy: new URL('/editorial-policy/#ethics', Astro.site).toString(),
+  unnamedSourcesPolicy: new URL('/editorial-policy/#sources', Astro.site).toString(),
+  // 대표 페이지 — Google KG 자기 등록 + sameAs 진입.
+  mainEntityOfPage: new URL('/about/', Astro.site).toString(),
 };
 
 const websiteSchema = {
@@ -105,6 +131,26 @@ const siteNavSchema = clusters.map((c, i) => ({
     <link rel="canonical" href={canonicalUrl} />
     {prevHref && <link rel="prev" href={prevHref} />}
     {nextHref && <link rel="next" href={nextHref} />}
+
+    {/* R49 #49-2 — hreflang ko-KR self + x-default. 단일 언어라도 GSC 권장 시그널, ko 외 노출 차단 */}
+    <link rel="alternate" hreflang="ko-KR" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    {/* R49 #49-2 — 검색 엔진 소유권 인증. env로 주입 (값 없으면 meta 자체 생략). */}
+    {import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION && (
+      <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION} />
+    )}
+    {import.meta.env.PUBLIC_NAVER_SITE_VERIFICATION && (
+      <meta name="naver-site-verification" content={import.meta.env.PUBLIC_NAVER_SITE_VERIFICATION} />
+    )}
+    {import.meta.env.PUBLIC_BING_SITE_VERIFICATION && (
+      <meta name="msvalidate.01" content={import.meta.env.PUBLIC_BING_SITE_VERIFICATION} />
+    )}
+
+    {/* R49 #49-2 — RSS·Atom·JSON Feed 자동 디스커버리 (브라우저·RSS 리더·AI 크롤러 발견용) */}
+    <link rel="alternate" type="application/rss+xml" title="머니룩 RSS" href="/rss.xml" />
+    <link rel="alternate" type="application/atom+xml" title="머니룩 Atom" href="/atom.xml" />
+    <link rel="alternate" type="application/feed+json" title="머니룩 JSON Feed" href="/feed.json" />
 
     {noIndex && <meta name="robots" content="noindex, nofollow" />}
 

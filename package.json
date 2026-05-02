@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/svg-to-png.mjs && node scripts/generate-llms.mjs && pnpm pagefind",
+    "build": "astro build && node scripts/svg-to-png.mjs && node scripts/generate-llms.mjs && pnpm pagefind && node scripts/post-build/sitemap-lastmod.mjs && node scripts/post-build/sitemap-index.mjs && node scripts/audit/auto-registration.mjs",
+    "audit:auto-reg": "node scripts/audit/auto-registration.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check && tsc --noEmit",

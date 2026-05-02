@@ -1,0 +1,32 @@
+{
+  "name": "MoneyLook 자동검증시스템",
+  "jobTitle": "8단계 자동 검증 파이프라인 (G0~G8)",
+  "bio": "MoneyLook 자동검증시스템은 한국 직장인·청년이 매일 마주치는 생활금융 질문(네이버 지식iN)을 출발점으로, 정부·공공 1차 자료(공공데이터포털·법제처·홈택스·복지로·한국은행 ECOS·금융감독원·국민연금공단·고용24)에서 사실을 fetch한 뒤 G0(중복 차단) → G1(PII·욕설·정치) → G2(클러스터 매핑) → G3(권위 출처 가용성) → G4(사실 1:1 매칭, 100% 미만 자동 폐기) → G5(AdSense 정책) → G6(YMYL·AI 면책 자동 부착) → G7(표절·8단어/5단어 다중 매칭) → G8(AI-likeness 15 시그널) 8단계 자동 검증을 모두 통과한 글만 자동으로 PR 생성·머지·발행합니다. 사람 편집자는 이 게이트 룰을 작성·유지하며, 발행 후 정정·재검증 책임을 집니다. 본문에 등장하는 모든 수치·날짜·법령은 발행 시점 정부 공식 API 응답과 1:1 매칭됐으며, 정책 변경 감지 시 next_review_date에 따라 자동 재검증·갱신됩니다. 정보 제공 목적이며 세무·법률·재무 자문이 아닙니다.",
+  "expertise": [
+    "정부 1차 자료 자동 인용·교차 검증",
+    "법령·요율·신청 자격 1:1 사실 매칭",
+    "AdSense YMYL 정책 자동 준수",
+    "표절·AI 다움·면책 자동 게이트",
+    "정책 변경 자동 감지·재검증"
+  ],
+  "sameAs": [
+    "https://asiatop.co.kr/about/",
+    "https://asiatop.co.kr/editorial-policy/",
+    "https://asiatop.co.kr/about/verification-pipeline/"
+  ],
+  "topicAuthority": [
+    "gov-support",
+    "tax",
+    "realestate",
+    "unemployment",
+    "savings",
+    "insurance-labor",
+    "auto",
+    "public-services",
+    "office-tips",
+    "credit-loan",
+    "insurance-personal",
+    "pension"
+  ],
+  "isOrganization": true
+}

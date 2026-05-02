@@ -8,6 +8,7 @@ import HeroIllustration from '../../components/HeroIllustration.astro';
 import SourceVerificationBadge from '../../components/SourceVerificationBadge.astro';
 import VerificationDetails from '../../components/VerificationDetails.astro';
 import { getRelatedArticles } from '../../lib/related-articles';
+import { isTrustedUrl } from '../../../scripts/lib/trusted-domains.mjs';
 
 export async function getStaticPaths() {
   let articles: Awaited<ReturnType<typeof getCollection>> = [];
@@ -154,9 +155,13 @@ const articleSchema = {
   inLanguage: 'ko-KR',
   wordCount,
   timeRequired: timeRequiredISO,
-  // dataValidAsOf("2026년 4월")을 ISO 월 형식("2026-04-01")으로 변환해 lastReviewed로 노출.
-  // YMYL 콘텐츠에서 "최근 검토일"은 dateModified와 별도 신선도 신호.
-  ...(article.data.dataValidAsOf
+  // R48 #48-3 — lastReviewed 우선순위: frontmatter → 자동검증시점 → dataValidAsOf 파싱.
+  // YMYL 콘텐츠 신선도 시그널 — Article.dateModified와 별도. AI 답변 엔진이 "최근 검증" 청크를 우선 인용.
+  ...(article.data.lastReviewed
+    ? { lastReviewed: article.data.lastReviewed.toISOString().slice(0, 10) }
+    : article.data.fact_verification_at
+    ? { lastReviewed: article.data.fact_verification_at.slice(0, 10) }
+    : article.data.dataValidAsOf
     ? (() => {
         const m = article.data.dataValidAsOf.match(/^(\d{4})년\s*(\d{1,2})월$/);
         return m
@@ -206,6 +211,21 @@ const articleSchema = {
     geographicArea: { '@type': 'Country', name: 'South Korea' },
   },
   author: authorSchema,
+  // R48 #48-3 — 자동 발행 글(aiAssisted=true)에 reviewedBy + creditText 명시.
+  // ClaimReview 외에 Article 자체에서도 "8단계 자동 검증 통과" 시그널.
+  // 사람 사칭 페널티 회피 + AI 답변 엔진 reasoning에 검증 시스템 등장.
+  ...(article.data.aiAssisted
+    ? {
+        reviewedBy: { '@id': `${authorUrl}#author` },
+        creditText: 'MoneyLook 자동검증시스템 (G0~G8 8단계 게이트 통과)',
+      }
+    : article.data.reviewedBy
+    ? {
+        reviewedBy: {
+          '@id': new URL(`/author/${article.data.reviewedBy}/`, Astro.site).toString() + '#author',
+        },
+      }
+    : {}),
   publisher: {
     '@type': 'Organization',
     '@id': new URL('#organization', Astro.site).toString(),
@@ -280,17 +300,9 @@ const qaSchema = article.data.source_question_text
 // ClaimReview — sources_verified=true 글의 사실 검증 시그널.
 // 글 전체를 단일 ClaimReview로 묶어 권위 소스에 매핑.
 // AI 검색·Google rich result 적격성 ↑.
-// 권위 소스(.go.kr/.or.kr)만 citation에 포함 (단순 URL 매칭).
-const TRUSTED_SUFFIXES_INLINE = ['.go.kr', '.or.kr'];
+// 권위 소스 판정은 SSoT(scripts/lib/trusted-domains.mjs)의 isTrustedUrl() 재사용.
 const trustedSources = article.data.sources_verified
-  ? article.data.sources.filter((s) => {
-      try {
-        const host = new URL(s.url).hostname.toLowerCase();
-        return TRUSTED_SUFFIXES_INLINE.some((sfx) => host.endsWith(sfx));
-      } catch {
-        return false;
-      }
-    })
+  ? article.data.sources.filter((s) => isTrustedUrl(s.url))
   : [];
 
 const claimReviewSchema = article.data.sources_verified && trustedSources.length > 0
@@ -309,11 +321,15 @@ const claimReviewSchema = article.data.sources_verified && trustedSources.length
           name: s.title,
         })),
       },
+      // R48 #48-3 — alternateName 동적화. G4 fact-verifier 결과의 verified_facts_count·
+      // approximate_facts_count를 노출해 AI 답변 엔진이 "검증 강도"를 정량 신호로 인식.
       reviewRating: {
         '@type': 'Rating',
         ratingValue: 5,
         bestRating: 5,
-        alternateName: '권위 데이터 1:1 매칭 검증 통과',
+        alternateName: article.data.verified_facts_count
+          ? `8단계 자동 검증 통과 — 정부 1차 자료 ${trustedSources.length}건 인용·사실 ${article.data.verified_facts_count}건 1:1 매칭${article.data.approximate_facts_count ? `·근사 ${article.data.approximate_facts_count}건` : ''}`
+          : '권위 데이터 1:1 매칭 검증 통과',
       },
     }
   : null;

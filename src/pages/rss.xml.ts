@@ -10,8 +10,12 @@ export async function GET(context: APIContext) {
   } catch {
     articles = [];
   }
+  // 정렬 키: updatedAt ?? publishedAt — atom.xml·feed.json과 동일 기준.
+  // R49 하네스(scripts/audit/auto-registration.mjs)가 50개 캡 동일성 의존.
   const sorted = articles.sort(
-    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+    (a, b) =>
+      (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
+      (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
   );
 
   return rss({

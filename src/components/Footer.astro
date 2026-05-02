@@ -42,6 +42,16 @@ const year = new Date().getFullYear();
           <li><a href="/contact">문의·제휴</a></li>
         </ul>
       </div>
+      <div>
+        <h2>구독·피드</h2>
+        <ul class="links">
+          <li><a href="/rss.xml" type="application/rss+xml">전체 RSS</a></li>
+          <li><a href="/atom.xml" type="application/atom+xml">Atom</a></li>
+          <li><a href="/feed.json" type="application/feed+json">JSON Feed</a></li>
+          <li><a href="/llms.txt" type="text/plain">llms.txt (AI)</a></li>
+          <li><a href="/feeds/">카테고리별 피드 12종</a></li>
+        </ul>
+      </div>
     </div>
     <div class="biz-info">
       <strong>사업자 정보</strong>
@@ -159,6 +169,6 @@ const year = new Date().getFullYear();
 }
 
 @media (min-width: 768px) {
-  .grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; }
+  .grid { grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; gap: 2rem; }
 }
 </style>

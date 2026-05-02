@@ -283,12 +283,93 @@ function checkPageType(page, obj, expectedType) {
   }
 }
 
-const VALIDATORS = {
+// QAPage — 자동 발행 글의 source_question 시그널.
+// https://schema.org/QAPage / https://developers.google.com/search/docs/appearance/structured-data/qapage
+function checkQAPage(page, obj) {
+  if (!obj.mainEntity) {
+    fail(page, 'QAPage', 'mainEntity 누락 (Question 객체)');
+    return;
+  }
+  const me = obj.mainEntity;
+  if (me['@type'] !== 'Question') fail(page, 'QAPage', `mainEntity.@type=${me['@type']} (Question 필요)`);
+  if (!me.name && !me.text) fail(page, 'QAPage', 'mainEntity.name 또는 text 필요');
+  if (!me.acceptedAnswer && !me.suggestedAnswer) {
+    fail(page, 'QAPage', 'mainEntity.acceptedAnswer 또는 suggestedAnswer 필요');
+    return;
+  }
+  const ans = me.acceptedAnswer ?? asArray(me.suggestedAnswer)[0];
+  if (ans['@type'] !== 'Answer') fail(page, 'QAPage', `Answer.@type=${ans['@type']} (Answer 필요)`);
+  if (!ans.text || typeof ans.text !== 'string') fail(page, 'QAPage', 'Answer.text 누락');
+  if (ans.author && typeof ans.author === 'object' && !ans.author['@id'] && !ans.author.name) {
+    fail(page, 'QAPage', 'Answer.author 객체에 @id 또는 name 필요');
+  }
+}
+
+// ClaimReview — 자동 발행 글의 사실 검증 시그널.
+// https://schema.org/ClaimReview / https://developers.google.com/search/docs/appearance/structured-data/factcheck
+function checkClaimReview(page, obj) {
+  if (!obj.url) fail(page, 'ClaimReview', 'url 누락');
+  else if (!isUrl(obj.url)) fail(page, 'ClaimReview', `url 형식 오류: ${obj.url}`);
+  if (!obj.datePublished) fail(page, 'ClaimReview', 'datePublished 누락');
+  else if (!isIsoDate(obj.datePublished)) fail(page, 'ClaimReview', `datePublished ISO 형식 아님: ${obj.datePublished}`);
+  if (!obj.author) fail(page, 'ClaimReview', 'author 누락');
+  if (!obj.claimReviewed || typeof obj.claimReviewed !== 'string') {
+    fail(page, 'ClaimReview', 'claimReviewed 문자열 필요');
+  }
+  if (!obj.itemReviewed) {
+    fail(page, 'ClaimReview', 'itemReviewed 누락 (Claim 객체)');
+  } else {
+    const ir = obj.itemReviewed;
+    if (ir['@type'] !== 'Claim') fail(page, 'ClaimReview', `itemReviewed.@type=${ir['@type']} (Claim 필요)`);
+    if (ir.appearance) {
+      const apps = asArray(ir.appearance);
+      apps.forEach((a, i) => {
+        if (!a.url) fail(page, 'ClaimReview', `itemReviewed.appearance[${i}].url 누락`);
+        else if (!isUrl(a.url)) fail(page, 'ClaimReview', `itemReviewed.appearance[${i}].url 형식 오류`);
+      });
+    }
+  }
+  if (!obj.reviewRating) {
+    fail(page, 'ClaimReview', 'reviewRating 누락');
+  } else {
+    const rr = obj.reviewRating;
+    if (rr['@type'] !== 'Rating') warn(page, 'ClaimReview', `reviewRating.@type=${rr['@type']} (Rating 권장)`);
+    if (rr.ratingValue === undefined) fail(page, 'ClaimReview', 'reviewRating.ratingValue 누락');
+    if (rr.bestRating === undefined) warn(page, 'ClaimReview', 'reviewRating.bestRating 권장');
+  }
+}
+
+// NewsMediaOrganization — Organization 확장. R48 #48-2.
+// Google News·Discover 자격 핵심 필드(publishingPrinciples·verificationFactCheckingPolicy·
+// correctionsPolicy·ownershipFundingInfo) 추가 검증.
+function checkNewsMediaOrganization(page, obj) {
+  // Organization 기본 필드 먼저
+  checkOrganization(page, obj);
+  // E-E-A-T 정책 URL 4종 — Google News 진입 자격 핵심 시그널.
+  const requiredPolicies = [
+    'publishingPrinciples',
+    'verificationFactCheckingPolicy',
+    'correctionsPolicy',
+    'ownershipFundingInfo',
+  ];
+  for (const field of requiredPolicies) {
+    if (!obj[field]) {
+      warn(page, 'NewsMediaOrganization', `${field} 권장 (Google News 자격)`);
+    } else if (typeof obj[field] === 'string' && !isUrl(obj[field])) {
+      fail(page, 'NewsMediaOrganization', `${field} URL 형식 오류`);
+    }
+  }
+}
+
+export const VALIDATORS = {
   Article: checkArticle,
   NewsArticle: checkArticle,
   BreadcrumbList: checkBreadcrumbList,
   FAQPage: checkFaqPage,
+  QAPage: checkQAPage,
+  ClaimReview: checkClaimReview,
   Organization: checkOrganization,
+  NewsMediaOrganization: checkNewsMediaOrganization,
   WebSite: checkWebSite,
   Person: checkPerson,
   CollectionPage: checkCollectionPage,
@@ -298,6 +379,35 @@ const VALIDATORS = {
   AboutPage: (p, o) => checkPageType(p, o, 'AboutPage'),
   ContactPage: (p, o) => checkPageType(p, o, 'ContactPage'),
 };
+
+/**
+ * 단일 엔티티에 적합한 validator를 적용해 누적된 errors/warnings 배열을 반환.
+ * 단위 테스트용 — main()의 전역 errors/warnings를 우회해 격리 검증.
+ */
+export function validateEntity(page, entity) {
+  const localErrors = [];
+  const localWarnings = [];
+  const types = asArray(entity['@type']).filter(Boolean);
+
+  // 임시로 fail/warn 콜백을 로컬 배열로 redirect
+  const origErrors = errors.slice();
+  const origWarnings = warnings.slice();
+
+  for (const t of types) {
+    const validator = VALIDATORS[t];
+    if (validator) validator(page, entity);
+  }
+
+  // 새로 추가된 항목만 추출 후 전역 배열 복원
+  const newErrors = errors.slice(origErrors.length);
+  const newWarnings = warnings.slice(origWarnings.length);
+  errors.length = origErrors.length;
+  warnings.length = origWarnings.length;
+  localErrors.push(...newErrors);
+  localWarnings.push(...newWarnings);
+
+  return { errors: localErrors, warnings: localWarnings };
+}
 
 // ---- 실행 -------------------------------------------------------------
 
@@ -399,4 +509,6 @@ function main() {
   process.exit(0);
 }
 
-main();
+// CLI 진입 가드 — 단위 테스트 import 시 main() 자동 실행 방지.
+const invokedAsScript = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (invokedAsScript) main();

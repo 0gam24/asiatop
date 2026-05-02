@@ -7,6 +7,21 @@ on:
     branches: [main]
 
 jobs:
+  workflow-lint:
+    # actionlint — workflow YAML 정적 분석.
+    # actor guard·fromJSON 파싱·셸 quoting 오타를 PR 단계에서 차단.
+    # auto-publish.yml 의 if 표현식 1글자 오타가 권한 우회로 이어지지 않도록 fail-closed.
+    name: Workflow YAML lint (actionlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run actionlint
+        run: |
+          set -euo pipefail
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
+
   unit:
     name: Unit + component tests
     runs-on: ubuntu-latest
@@ -60,6 +75,17 @@ jobs:
           test -f dist/llms.txt
           test -f dist/rss.xml
           echo "✅ SSR content + SEO meta files present"
+
+      - name: Validate Schema.org JSON-LD (Rich Results)
+        # R47 P1-C — QAPage·ClaimReview 포함 9 type validator로 dist 전체 검증.
+        # 깨진 JSON-LD 1건이라도 production 에 흘러가지 않도록 fail-closed.
+        run: pnpm exec node scripts/validate-schema.mjs
+
+      - name: Audit passage chunking (auto-published articles only)
+        # R48 #48-5 — AI 답변 엔진 인용 청크 룰 검증.
+        # --auto-only: aiAssisted=true 글에 한해 critical violation 시 fail.
+        # 기존 사람 작성 글은 warn만 (점진 마이그레이션, 빌드 차단 X).
+        run: pnpm exec node scripts/audit/passage-chunking.mjs --auto-only
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4

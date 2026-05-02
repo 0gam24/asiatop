@@ -12,6 +12,10 @@ on:
     paths:
       - 'src/content/articles/**'
       - 'src/pages/**'
+  # R49 #49-4 — KST 06:05 daily 자동 발행 cron(KST 06:00) 5분 후 안전망 push.
+  # push 트리거 누락 시 fallback. paths 외 변경(robots.txt·feeds 페이지 등) 동시 갱신.
+  schedule:
+    - cron: '5 21 * * *'   # UTC 21:05 = KST 06:05 daily
   workflow_dispatch:
     inputs:
       url_list:
@@ -72,8 +76,9 @@ jobs:
             exit 0
           fi
 
-          # 변경 글 + 사이트맵 + RSS·Atom·JSON Feed를 한 번에 제출
-          # 사이트맵·피드를 함께 제출하면 검색엔진이 sitemap 재크롤 트리거
+          # 변경 글 + 사이트맵 + RSS·Atom·JSON Feed + 12 카테고리 RSS 를 한 번에 제출.
+          # 사이트맵·피드를 함께 제출하면 검색엔진이 sitemap 재크롤 트리거.
+          # R49 #49-4: 카테고리별 RSS 12개도 함께 제출 — Naver SmartBlock·Bing 분류 정확도 ↑.
           IFS=',' read -ra URL_ARR <<< "${{ steps.changes.outputs.urls }}"
           extra_urls=(
             "https://asiatop.co.kr/sitemap-index.xml"
@@ -82,6 +87,18 @@ jobs:
             "https://asiatop.co.kr/rss.xml"
             "https://asiatop.co.kr/atom.xml"
             "https://asiatop.co.kr/feed.json"
+            "https://asiatop.co.kr/rss/gov-support.xml"
+            "https://asiatop.co.kr/rss/tax.xml"
+            "https://asiatop.co.kr/rss/realestate.xml"
+            "https://asiatop.co.kr/rss/unemployment.xml"
+            "https://asiatop.co.kr/rss/savings.xml"
+            "https://asiatop.co.kr/rss/insurance-labor.xml"
+            "https://asiatop.co.kr/rss/auto.xml"
+            "https://asiatop.co.kr/rss/public-services.xml"
+            "https://asiatop.co.kr/rss/office-tips.xml"
+            "https://asiatop.co.kr/rss/credit-loan.xml"
+            "https://asiatop.co.kr/rss/insurance-personal.xml"
+            "https://asiatop.co.kr/rss/pension.xml"
           )
           ALL_URLS=("${URL_ARR[@]}" "${extra_urls[@]}")
           url_json=$(printf '"%s",' "${ALL_URLS[@]}")
@@ -119,8 +136,25 @@ jobs:
         run: |
           # 구글 PubSubHubbub Hub은 2024년 종료 → Superfeedr 무료 hub 사용
           # 피드 리더·뉴스 애그리게이터에 즉시 갱신 알림
+          # R49 #49-4: 메인 RSS·Atom + 12 카테고리 RSS 모두 hub ping.
+          feeds=(
+            "https://asiatop.co.kr/rss.xml"
+            "https://asiatop.co.kr/atom.xml"
+            "https://asiatop.co.kr/rss/gov-support.xml"
+            "https://asiatop.co.kr/rss/tax.xml"
+            "https://asiatop.co.kr/rss/realestate.xml"
+            "https://asiatop.co.kr/rss/unemployment.xml"
+            "https://asiatop.co.kr/rss/savings.xml"
+            "https://asiatop.co.kr/rss/insurance-labor.xml"
+            "https://asiatop.co.kr/rss/auto.xml"
+            "https://asiatop.co.kr/rss/public-services.xml"
+            "https://asiatop.co.kr/rss/office-tips.xml"
+            "https://asiatop.co.kr/rss/credit-loan.xml"
+            "https://asiatop.co.kr/rss/insurance-personal.xml"
+            "https://asiatop.co.kr/rss/pension.xml"
+          )
           for hub in "https://pubsubhubbub.appspot.com/" "https://pubsubhubbub.superfeedr.com/"; do
-            for feed in "https://asiatop.co.kr/rss.xml" "https://asiatop.co.kr/atom.xml"; do
+            for feed in "${feeds[@]}"; do
               echo "Pinging $hub for $feed"
               curl -s -X POST "$hub" \
                 -d "hub.mode=publish" \
@@ -128,7 +162,7 @@ jobs:
                 -o /tmp/hub.body -w "HTTP %{http_code}\n" || true
             done
           done
-          echo "✅ Hub ping 완료"
+          echo "✅ Hub ping 완료 (메인 + 12 카테고리)"
 
       - name: Naver Search Advisor sitemap ping (옵션)
         if: ${{ steps.changes.outputs.urls != '' }}

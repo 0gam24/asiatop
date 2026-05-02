@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import { clusters } from '../../data/clusters';
+
+const title = '구독 — RSS·Atom·JSON Feed·llms.txt';
+const description = '머니룩의 모든 피드 채널 — 메인 RSS·Atom·JSON Feed + 12 카테고리별 RSS + AI 답변 엔진용 llms.txt. RSS 리더(Feedly·Inoreader·NetNewsWire)·Slack·AI 크롤러 모두 지원.';
+---
+
+<Base title={title} description={description} ogType="website">
+  <main class="container">
+    <h1>구독·피드</h1>
+    <p class="lede">
+      머니룩은 새 글이 발행되면 자동으로 모든 피드·사이트맵에 즉시 등록됩니다.
+      좋아하는 RSS 리더·AI 답변 엔진·검색 엔진에서 받아보세요.
+    </p>
+
+    <section class="feed-block">
+      <h2>전체 피드</h2>
+      <ul class="feed-list">
+        <li>
+          <a href="/rss.xml" type="application/rss+xml">전체 RSS 2.0</a>
+          <span class="meta">최신 50개 글 · UTM 파라미터 · WebSub hub 광고</span>
+        </li>
+        <li>
+          <a href="/atom.xml" type="application/atom+xml">전체 Atom 1.0</a>
+          <span class="meta">최신 50개 글 · 일부 리더는 Atom만 지원 · WebSub hub</span>
+        </li>
+        <li>
+          <a href="/feed.json" type="application/feed+json">전체 JSON Feed 1.1</a>
+          <span class="meta">JSON 우선 리더(NetNewsWire·Reeder)·AI 크롤러 파싱 정확도 ↑</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="feed-block">
+      <h2>AI 답변 엔진용</h2>
+      <ul class="feed-list">
+        <li>
+          <a href="/llms.txt" type="text/plain">llms.txt</a>
+          <span class="meta">사이트 개요·12 클러스터 인덱스·갱신 정책</span>
+        </li>
+        <li>
+          <a href="/llms-full.txt" type="text/plain">llms-full.txt</a>
+          <span class="meta">전체 글 본문 합본 — ChatGPT·Claude·Perplexity·Gemini 인용 정확도 30~70% ↑</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="feed-block">
+      <h2>카테고리별 피드 12종</h2>
+      <p class="hint">관심 주제만 받아보고 싶다면 카테고리 RSS를 구독하세요. 각 RSS는 자기 클러스터 글만 포함합니다.</p>
+      <ul class="cluster-grid">
+        {clusters.map((c) => (
+          <li>
+            <span class="emoji">{c.emoji}</span>
+            <div>
+              <strong>{c.title}</strong>
+              <div class="cluster-links">
+                <a href={`/rss/${c.slug}.xml`} type="application/rss+xml">RSS</a>
+                <span class="sep">·</span>
+                <a href={`/llms-cluster-${c.slug}.txt`} type="text/plain">llms</a>
+                <span class="sep">·</span>
+                <a href={`/${c.slug}/`}>카테고리 페이지</a>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="feed-block">
+      <h2>검색 엔진·사이트맵</h2>
+      <ul class="feed-list">
+        <li>
+          <a href="/sitemap-index.xml" type="application/xml">sitemap-index.xml</a>
+          <span class="meta">메인 sitemap·뉴스·이미지 통합 인덱스</span>
+        </li>
+        <li>
+          <a href="/sitemap-0.xml" type="application/xml">sitemap-0.xml</a>
+          <span class="meta">모든 페이지 — 글·카테고리·운영 정보·계산기</span>
+        </li>
+        <li>
+          <a href="/sitemap-news.xml" type="application/xml">sitemap-news.xml</a>
+          <span class="meta">48시간 내 발행 글 — Google News·Discover</span>
+        </li>
+        <li>
+          <a href="/sitemap-images.xml" type="application/xml">sitemap-images.xml</a>
+          <span class="meta">모든 글 hero·OG 이미지 — Google Images</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="feed-block">
+      <h2>자동 등록 보증</h2>
+      <p>
+        새 글이 발행될 때마다 위 모든 채널에 자동 등록됩니다. 회귀 차단을 위해 매 빌드마다
+        <code>scripts/audit/auto-registration.mjs</code> 하네스가 실행되며, 누락 1건이라도
+        발견 시 빌드가 실패합니다.
+      </p>
+    </section>
+  </main>
+</Base>
+
+<style>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+.lede { color: var(--color-fg-muted); margin-bottom: 2rem; line-height: 1.65; }
+.feed-block { margin-bottom: 2.5rem; }
+.feed-block h2 { font-size: 1.15rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem; }
+.hint { font-size: 0.9rem; color: var(--color-fg-muted); margin-bottom: 1rem; }
+.feed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.feed-list li { display: flex; flex-direction: column; gap: 0.2rem; }
+.feed-list a { font-weight: 600; }
+.feed-list .meta { font-size: 0.85rem; color: var(--color-fg-muted); }
+.cluster-grid { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; grid-template-columns: 1fr; }
+.cluster-grid li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem; background: var(--color-card-bg); border-radius: 8px; border: 1px solid var(--color-border); }
+.cluster-grid .emoji { font-size: 1.5rem; flex-shrink: 0; }
+.cluster-grid strong { display: block; margin-bottom: 0.25rem; }
+.cluster-links { font-size: 0.85rem; color: var(--color-fg-muted); }
+.cluster-links a { color: var(--color-primary); text-decoration: underline; }
+.cluster-links .sep { margin: 0 0.4rem; opacity: 0.5; }
+code { background: var(--color-card-bg); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+@media (min-width: 640px) {
+  .cluster-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>

@@ -59,6 +59,123 @@
 | 34 | `714bf66` | brief | brief-prompt-builder.mjs (7 SYSTEM + 14 USER 블록) |
 | 35 | `19087b2` | **pipeline** | **brief-prompt-builder를 callDeepSeek/refineWithClaude 통합 (Gap 2 Step 3 완성)** ⭐ |
 | 36 | `da211c1` | seo | robots.txt AI 크롤러 5종 추가 (총 15종) |
+| 47 | `?` | **safety** | **R47 라이브 직전 안전망 3종 — P1-E SSoT 청소·P1-F workflow lint+CLI smoke·P1-C QAPage/ClaimReview validator** ⭐ |
+| 48 | `?` | **SEO·GEO** | **R48 SEO·GEO 고급화 6 PR — frontmatter 4필드·NewsMediaOrg·ClaimReview 동적 등급·markdown mirror 강화·passage 검증기·G6 자동발행 분기** ⭐ |
+| 49 | (이번) | **사이트맵·RSS** | **R49 사이트맵·피드 6 PR — 자동 등록 회귀 하네스·sitemap-index 통합·verification meta·hreflang·feed auto-discovery·robots+Footer+/feeds·lastmod 정확화·multi-push 강화** ⭐ |
+
+> Round 37~46 상세는 git log 참조. R46까지 누적 commit 46건, 302/302 tests, 빌드 22.87s.
+> R47 종료 후: **326/326 tests** (+24 신규), 빌드 4.8s, schema 검증 2169 entities/0 errors.
+> R48 종료 후: **335/335 tests** (+9 passage chunking), 빌드 4.58s, schema 검증 **2185 entities** (NewsMediaOrganization 137건 신규)/0 errors.
+> R49 종료 후: **340/340 tests** (+5 auto-registration), 빌드 4.5s, schema 검증 **2199 entities**/0 errors, **자동 등록 하네스 0 누락** (sitemap·rss·atom·feed.json·12 카테고리 RSS·llms-full·llms-cluster·sitemap-images 8 채널).
+
+### Round 48 — SEO·GEO 고급화 (6 agent 합의 결정)
+
+**배경**: LLM 키 발급 임박. 라이브 직전 마지막 사이클로 6 agent (seo·content·author·rss·perf·Plan) 병렬 호출. 5 영역 통합 ROI 매트릭스 결과 → R48 (라이브 직전), R49 (라이브 직후), V2 (D+30 이후) 3 분리. R48은 첫 발행 글 EEAT·KG·청크 가능성에 직격하는 6 PR.
+
+**PR #48-1 — frontmatter 4 필드 단일 진입점** (`src/content.config.ts`)
+- `lastReviewed` (사람·시스템 1차 재확인 시점, dataValidAsOf와 별도 신선도 신호)
+- `aiAssisted` (자동 파이프라인 작성 여부, default false)
+- `reviewedBy` (검증 주체 ID, "moneylook-auto" 또는 author slug)
+- `next_review_date` 필드는 기존 유지
+- 신규 author entry: `src/content/authors/moneylook-auto.json` — 8단계 자동 검증 시스템 표상.
+
+**PR #48-2 — NewsMediaOrganization 업그레이드** (`src/layouts/Base.astro`)
+- `Organization` → `NewsMediaOrganization`. Google News·Discover 진입 자격.
+- E-E-A-T 정책 URL 6종: `publishingPrinciples`·`verificationFactCheckingPolicy`·`correctionsPolicy`·`ownershipFundingInfo`·`ethicsPolicy`·`unnamedSourcesPolicy` (모두 `/editorial-policy#anchor`).
+- `foundingDate`·`knowsLanguage`·`knowsAbout` (12 클러스터)·`areaServed` (Country: South Korea, Wikidata Q884) 추가.
+- `scripts/validate-schema.mjs`에 `checkNewsMediaOrganization` 검증기 신설 (4 정책 URL 권장 warn).
+
+**PR #48-3 — Article·ClaimReview 강화** (`src/pages/[cluster]/[slug].astro`)
+- `lastReviewed` 우선순위 chain: frontmatter → `fact_verification_at` → `dataValidAsOf` 파싱 fallback.
+- 자동 발행 글에 `Article.reviewedBy` + `Article.creditText` 자동 부착 (사람 사칭 페널티 회피).
+- `ClaimReview.reviewRating.alternateName` 동적화 — `verified_facts_count`·`approximate_facts_count`로 검증 강도 정량 시그널 노출.
+
+**PR #48-4 — markdown mirror 강화** (`src/pages/[cluster]/[slug].md.ts`)
+- 신규 노출 메타: 검증 주체·마지막 검토일·다음 재검증일·검증 강도(정부 1차 자료 N건 인용·사실 N건 1:1 매칭).
+- Cache-Control 강화: `max-age=3600·s-maxage=86400·stale-while-revalidate=604800` (AI 크롤러 fetch 응답 속도 ↑).
+- `Link: <canonical>; rel="canonical"` 헤더 추가 — AI 크롤러가 markdown/HTML 중복 판단 회피.
+
+**PR #48-5 — Passage Chunking 검증기** (`scripts/audit/passage-chunking.mjs`)
+- 4 룰: C1(H2 ≥ 3) · C2(H2 직후 한 줄 정의 ≥ 40%) · C3(핵심 수치 ≥ 3) · C4(`<dfn>` 1차 정의 격리, info).
+- 모드: 기본(전체 글 warn) · `--auto-only`(자동 발행 글에만 critical) · `--strict`(critical 1건이라도 exit 1).
+- CI `build-test` job에 `--auto-only` step 추가 — 자동 발행 글 등장 시 자동 활성. 기존 108글은 warn 수준 유지(점진 마이그레이션).
+- 신규 단위 테스트 9 케이스: `isOneLineDefinition`·`extractH2Chunks` (코드블록 무시·리스트 무시·H2 직후 빈 줄·다중 H2).
+
+**PR #48-6 — G6 disclosure-attach 자동 발행 분기** (`scripts/gates/g6-disclosure-attach.mjs`)
+- `buildAIDisclosure(brief)` — `brief.source_question` 존재 시 자동 발행 메시지로 분기.
+- 자동 발행 메시지: "지식iN 질문에서 출발 → AI 초안 → G0~G8 8단계 게이트 통과 → 정부 공식 API 1:1 매칭 → 24h 내 정정". 사람 검수 없이 발행되는 사실을 정확히 명시 → 사람 사칭 페널티 회피.
+- manual 글은 종전 메시지 유지 (회귀 0).
+
+**보류 합의 (R49 / V2 분리)**
+- **R49 (라이브 직후 D+1 ~ D+14)**: 카테고리별 RSS 12개 분리·llms-full.txt 재구조화·Bing/Naver Search Advisor push·passage 본문 자동화·topical authority 진척도·GEO 측정 cron(외부 API 비용·첫 글 발행 후 의미).
+- **V2 (D+30 이후)**: perf 트랙 전체 (Pretendard Variable subset·LCP preload·JS budget < 5KB·Edge Worker)·Wikidata Q-항목·AI 인용 SaaS 도구.
+
+### Round 49 — 사이트맵·RSS 통합 (6 agent 합의 결정)
+
+**배경**: 사용자 요청 "새 페이지·포스팅이 생기면 자동으로 RSS·사이트맵에 꼭 추가 — 하네스로 기록". 6 agent (seo·rss·content·author·perf·Plan) 병렬 호출. **Plan agent 핵심 발견**: 카테고리 RSS 12개·JSON Feed·Atom 모두 **이미 존재** (`dist/rss/{cluster}.xml`·`feed.json`·`atom.xml` 빌드 산출물 확인). R49는 콘텐츠 추가가 아니라 **"이미 있는 것 연결+검증+검색엔진 통보"**.
+
+**PR #49-5 — 자동 등록 회귀 하네스 (☆최우선, 사용자 요청 핵심)** (`scripts/audit/auto-registration.mjs`)
+- 모든 발행 글(`!draft`)이 8 채널에 자동 등록됐는지 매 빌드 검증:
+  1. `dist/sitemap-0.xml` (모든 글) · 2. `dist/rss.xml` (50 cap) · 3. `dist/atom.xml` (50 cap) · 4. `dist/feed.json` (50 cap)
+  5. `dist/rss/{cluster}.xml × 12` (자기 클러스터) · 6. `dist/llms-full.txt` (모든 글) · 7. `dist/llms-cluster-{slug}.txt × 12` · 8. `dist/sitemap-images.xml`
+- 누락 1건이라도 발견 시 `pnpm build` 실패 — 회귀 차단 강제.
+- **부수 발견·즉시 수정**:
+  - `rss.xml.ts`·`[cluster].xml.ts` 정렬 키가 `publishedAt` 단독 → `atom.xml.ts`·`feed.json.ts`와 다름. **모두 `updatedAt ?? publishedAt` 통일**로 50 cap 일관성 확보.
+  - `generate-llms.mjs` 50KB 캡 초과 시 글 완전 제외 → URL+제목 1줄 fallback 추가로 **모든 글 인덱스 등재 보장**.
+- 단위 테스트 5 케이스 (`tests/lib/auto-registration.test.mjs`).
+- `package.json` `build` script에 wire-up: `astro build → svg-to-png → generate-llms → pagefind → sitemap-lastmod → sitemap-index → auto-registration audit`.
+
+**PR #49-1 — sitemap-index 통합** (`scripts/post-build/sitemap-index.mjs`)
+- `@astrojs/sitemap` 자동 생성된 `sitemap-index.xml` 은 `sitemap-0` 만 포함 → news·images 누락.
+- post-build 스크립트로 `sitemap-0.xml`·`sitemap-news.xml`·`sitemap-images.xml` 3종 통합 + 파일 mtime 기반 ISO `<lastmod>` 부여.
+- RSS·Atom·JSON Feed는 표준상 sitemap-index 엔트리 부적합 → `robots.txt` Sitemap 라인으로 등록 (#49-3).
+
+**PR #49-2 — verification meta + hreflang + feed auto-discovery** (`src/layouts/Base.astro`)
+- `<link rel="alternate" hreflang="ko-KR" />` + `hreflang="x-default"` 자체 참조 (GSC 권장).
+- `meta name="google-site-verification"`·`naver-site-verification`·`msvalidate.01` 3종 — env 미설정 시 meta 자체 생략.
+- `<link rel="alternate">` RSS·Atom·JSON Feed 3종 자동 디스커버리 — 브라우저·RSS 리더·AI 크롤러 자동 발견.
+- `.env.example` 에 `PUBLIC_GOOGLE_SITE_VERIFICATION`·`PUBLIC_NAVER_SITE_VERIFICATION`·`PUBLIC_BING_SITE_VERIFICATION` 추가.
+
+**PR #49-3 — robots + Footer + /feeds/ 페이지** (`public/robots.txt`·`src/components/Footer.astro`·`src/pages/feeds/index.astro`)
+- `robots.txt` 에 메인 RSS·Atom·JSON Feed + 12 카테고리 RSS 모두 `Sitemap:` 라인으로 등록 (Google·Bing·Naver 모두 RSS를 sitemap으로 인식).
+- Footer 5번째 컬럼 "구독·피드" 신설 — 메인 피드 + AI llms 링크.
+- `/feeds/` 페이지 신설 — 모든 채널·12 카테고리 RSS·자동 등록 보증 정책 노출.
+
+**PR #49-6 — sitemap lastmod 정확화** (`scripts/post-build/sitemap-lastmod.mjs`)
+- `@astrojs/sitemap` 은 `<lastmod>` 미부여. post-build 스크립트로 모든 article URL 에 `lastReviewed > updatedAt > publishedAt > 파일 mtime` 우선순위 ISO 8601 lastmod 삽입.
+- 결과: `sitemap-0.xml` 108/135 URL (=모든 article) lastmod 부여. Search engine 재크롤 빈도·정확도 ↑.
+
+**PR #49-4 — multi-push 강화** (`.github/workflows/indexnow.yml`)
+- 기존 indexnow.yml 이미 IndexNow + WebSub + Naver SA + Bing 통합 — 분리 대신 강화.
+- IndexNow URL list에 12 카테고리 RSS 추가 — Naver SmartBlock·Bing 분류 정확도 ↑.
+- WebSub hub ping 대상에 12 카테고리 RSS 추가.
+- `schedule: '5 21 * * *'` (KST 06:05 daily) 추가 — 자동 발행 cron 5분 후 안전망 push (push 트리거 누락 시 fallback).
+
+**보류 합의 (R50 / V2)**
+- **R50 (라이브 후 W2~W4)**: WebSub 자체 hub 호스팅·sitemap-video.xml(향후 동영상 글)·llms-cluster-index 메타 인덱스·Atom 카테고리 12개 (RSS와 중복이라 ROI 낮음).
+- **V2 (M1~M3)**: Realtime sitemap (CF Worker 동적 lastmod)·Multi-language hreflang(en/ja)·sitemap shard split (5000+)·Newsletter 발행·Wikidata Q-항목.
+
+---
+
+### Round 47 — 라이브 직전 안전망 (5 agent 합의 결정)
+
+**배경**: LLM 키 발급 임박 (온통청년 API 발급 대기 중). 라이브 진입 직전 마지막 안전망 사이클로 5 agent (Plan ROI·사고 시나리오·콘텐츠·SEO·코드 안정성) 병렬 호출. 8 후보 중 P1-E·P1-F·P1-C 합의 도출.
+
+**P1-E TRUSTED_SUFFIXES_INLINE → SSoT 통합** (`src/pages/[cluster]/[slug].astro`)
+- ClaimReview citation 필터의 인라인 `['.go.kr', '.or.kr']` 제거. `scripts/lib/trusted-domains.mjs#isTrustedUrl` import. R23/33 통합 SSoT 원칙 회귀 차단. ROI 70 (30분 작업).
+
+**P1-F workflow YAML lint + CLI smoke test**
+- `.github/workflows/ci.yml` 에 `workflow-lint` job 신규 — actionlint 다운로드 후 모든 워크플로 정적 분석. actor guard `if:` 표현식 1글자 오타로 권한 우회되는 시나리오 PR 단계 차단.
+- `tests/lib/auto-publish-cli.test.mjs` 신규 (+8 케이스) — `scripts/auto-publish.mjs` CLI를 `child_process.spawnSync`로 호출, exit code 0/1/2/3 분기·stdout JSON shape·`MOCK_AUTHORITY` env default·`--dry-run`시 audit 미생성 검증. 라이브 cron(매일 KST 06:00) silent 오작동 차단.
+
+**P1-C QAPage·ClaimReview validator + CI wire-up**
+- `scripts/validate-schema.mjs` VALIDATORS 맵에 `QAPage`·`ClaimReview` 검증기 추가. `validateEntity()` export로 단위 테스트 격리. CLI 진입 가드 (`fileURLToPath` import 시 main() 자동 실행 방지).
+- `tests/lib/validate-schema.test.mjs` 신규 (+16 케이스) — Question/Answer 구조·Claim/Rating 필수 필드·datePublished ISO·appearance URL·전역 errors 누수 차단 회귀.
+- CI `build-test` job 끝에 `pnpm exec node scripts/validate-schema.mjs` step 추가. 깨진 JSON-LD가 production 흘러가는 무성 사고 fail-closed 차단.
+
+**보류 합의 (라이브 후 별도 사이클)**
+- V2-A G4 claim_list 비수치 환각 (콘텐츠 1순위·6 PR 큰 변경): `fact-verifier.test.mjs` 415줄과 강결합 → 라이브 무사고 1주 통과 후 착수.
+- V2-B KPI 측정 시스템 (사고 시나리오 1순위): 라이브 직후 첫 1~2주 데이터 누적과 동시 진행.
 
 ---
 
