@@ -45,11 +45,14 @@ const SECRET_PATTERNS = [
   },
 ];
 
-// 화이트리스트: 검수 대상 제외 (예: 템플릿·예시·테스트 픽스처)
+// 화이트리스트: 검수 대상 제외 (의도적 예시·정책·스캐너 본체)
+// pre-commit hook의 DOC_WHITELIST_REGEX와 동기화 필수.
 const WHITELIST_FILES = new Set([
   '.env.example',
   '.env.local.example',
   'SECURITY.md',
+  'docs/KEY-WALKTHROUGH.md',
+  'docs/KEY-ISSUANCE-GUIDE.md',
   'scripts/secrets-scan.mjs',
   'scripts/git-hooks/pre-commit',
 ]);

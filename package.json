@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/svg-to-png.mjs && node scripts/generate-llms.mjs && pnpm pagefind",
+    "build": "astro build && node scripts/svg-to-png.mjs && node scripts/generate-llms.mjs && pnpm pagefind && node scripts/post-build/sitemap-lastmod.mjs && node scripts/post-build/sitemap-index.mjs && node scripts/audit/auto-registration.mjs",
+    "audit:auto-reg": "node scripts/audit/auto-registration.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check && tsc --noEmit",
@@ -26,7 +27,9 @@
     "refine": "node scripts/refine-existing.mjs",
     "prepare": "node scripts/install-hooks.mjs",
     "secrets:scan": "node scripts/secrets-scan.mjs",
-    "setup:env": "node scripts/setup-env.mjs"
+    "setup:env": "node scripts/setup-env.mjs",
+    "brief:validate": "node scripts/validate-brief.mjs",
+    "brief:new": "node scripts/new-brief.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",

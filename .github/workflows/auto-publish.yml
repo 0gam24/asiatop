@@ -1,0 +1,175 @@
+name: Auto Publish (지식인 → 권위 검증 → PR)
+
+# 매일 KST 06:00 (UTC 21:00 전날) cron으로 실행.
+# 흐름:
+#   1. briefs/_pool/_pending/ 큐에서 후보 픽업
+#   2. G0~G8 게이트 순차 → 통과만 PR 생성
+#   3. CI green → auto-merge → main push
+#   4. CF Pages 자동 빌드 + IndexNow 즉시 푸시 (기존 indexnow.yml)
+#
+# 안전 제어:
+#   - PR 동시 상한 3개
+#   - 하루 발행 상한 5편
+#   - CI 실패 PR 자동 close (auto-pr-cleanup.yml)
+#   - MOCK_AUTHORITY=1 강제 (외부 API 키 발급 전까지 dry-run 만)
+
+on:
+  schedule:
+    - cron: '0 21 * * *'   # KST 06:00 (UTC 21:00 전날)
+  workflow_dispatch:
+    inputs:
+      question:
+        description: '단발 질문 입력 (테스트용, 비우면 _pool 큐에서 픽업)'
+        required: false
+      dry_run:
+        description: 'true면 PR 생성 X, 게이트 결과만 보고'
+        required: false
+        default: 'true'
+      mock_authority:
+        description: '권위 소스 mock 모드 (현재 외부 API 키 미발급)'
+        required: false
+        default: '1'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: auto-publish
+  cancel-in-progress: false
+
+jobs:
+  # actor guard — workflow_dispatch 무제한 트리거·봇 토큰 탈취 방지
+  # cron(스케줄) 트리거는 actor=github-actions[bot]이라 항상 통과.
+  # workflow_dispatch는 repo owner 또는 명시 collaborator만 허용.
+  authorize:
+    name: 호출자 권한 검증
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'schedule' ||
+      github.actor == github.repository_owner ||
+      contains(fromJSON(vars.AUTO_PUBLISH_ALLOWED_ACTORS || '["0gam24"]'), github.actor)
+    steps:
+      - run: |
+          echo "✅ 호출자 인증: actor=${{ github.actor }} event=${{ github.event_name }}"
+
+  guardrails:
+    name: 안전 제어 — PR 동시 상한·하루 발행 상한
+    needs: authorize
+    runs-on: ubuntu-latest
+    outputs:
+      proceed: ${{ steps.check.outputs.proceed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PR 동시·하루 발행 카운트 검사 (fail-closed)
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # gh 또는 git 명령 실패 시 즉시 exit (fail-closed)
+          # 한 번이라도 실패하면 proceed=false (안전 측 기본).
+
+          OPEN_PRS=$(gh pr list --label auto-publish --state open --json number | jq 'length')
+          TODAY_PUBS=$(git log --since=1.day --grep '^auto: ' --oneline | wc -l)
+          echo "open auto-publish PRs: $OPEN_PRS"
+          echo "today auto: commits: $TODAY_PUBS"
+
+          # 안전 카운트 사전 검증 (음수·NaN 방지)
+          if ! [[ "$OPEN_PRS" =~ ^[0-9]+$ ]] || ! [[ "$TODAY_PUBS" =~ ^[0-9]+$ ]]; then
+            echo "::error::카운트 파싱 실패 — fail-closed"
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          if [ "$OPEN_PRS" -ge 3 ]; then
+            echo "::warning::PR 동시 상한(3) 도달. cron skip"
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$TODAY_PUBS" -ge 5 ]; then
+            echo "::warning::하루 발행 상한(5) 도달. cron skip"
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "proceed=true" >> "$GITHUB_OUTPUT"
+
+  pre-llm-gates:
+    name: Pre-LLM 게이트 (G0~G3)
+    needs: guardrails
+    if: needs.guardrails.outputs.proceed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 큐에서 질문 픽업 또는 input 사용
+        id: pick
+        run: |
+          if [ -n "${{ inputs.question }}" ]; then
+            echo "${{ inputs.question }}" > /tmp/question.txt
+          else
+            FIRST=""
+            if [ -d briefs/_pool/_pending ]; then
+              FIRST=$(find briefs/_pool/_pending -maxdepth 1 -type f ! -name '.gitkeep' 2>/dev/null | head -n 1)
+            fi
+            if [ -n "$FIRST" ]; then
+              head -1 "$FIRST" > /tmp/question.txt
+            else
+              echo "::notice::pending 큐 비어있음. cron skip"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: 자동 발행 러너 실행 (Pre-LLM 게이트)
+        if: steps.pick.outputs.skip == 'false'
+        env:
+          MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
+          AI_LIKENESS_THRESHOLD: '7.0'   # 초기 관대 임계
+        run: |
+          # ARGS는 단순 플래그 array — quoting 분리로 word-splitting 안전.
+          args=(--question-file /tmp/question.txt)
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          node scripts/auto-publish.mjs "${args[@]}" | tee /tmp/result.json
+          {
+            echo "## 게이트 실행 결과"
+            echo '```json'
+            cat /tmp/result.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: dedup·rejected audit 커밋 (변경 시)
+        if: steps.pick.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet briefs/_pool/_dedup-index.json briefs/_pool/_rejected/; then
+            echo "no audit changes"
+            exit 0
+          fi
+          git config user.name "moneylook-auto"
+          git config user.email "auto@moneylook"
+          git add briefs/_pool/_dedup-index.json briefs/_pool/_rejected/ || true
+          git commit -m "chore(auto): gate audit log $(date -u +%FT%TZ)" || true
+          git push || true
+
+  # Post-LLM 게이트는 V2 — LLM 4-pass 통합 후 활성
+  # post-llm-gates: ...

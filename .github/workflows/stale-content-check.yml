@@ -60,7 +60,7 @@ jobs:
           console.log(`Found ${stale.length} stale articles`);
           fs.writeFileSync('stale.json', JSON.stringify(stale, null, 2));
           EOF
-          echo "count=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("stale.json","utf-8")).length)')" >> $GITHUB_OUTPUT
+          echo "count=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("stale.json","utf-8")).length)')" >> "$GITHUB_OUTPUT"
 
       - name: Create or update tracking issue
         if: steps.scan.outputs.count != '0'

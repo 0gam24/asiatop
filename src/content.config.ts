@@ -22,6 +22,30 @@ const articles = defineCollection({
       .min(1),
     dataValidAsOf: z.string(),
     draft: z.boolean().default(false),
+    // ── 자동 발행 파이프라인 추적 (Gap 1·2·3 통합) ──
+    brief_id: z.string().optional(),
+    next_review_date: z.coerce.date().optional(),
+    sources_verified: z.boolean().optional(),
+    verified_facts_count: z.number().int().min(0).optional(),
+    approximate_facts_count: z.number().int().min(0).optional(),
+    fact_verification_at: z.string().optional(),
+    ai_likeness: z.number().min(0).max(10).optional(),
+    ai_signals: z.array(z.string()).optional(),
+    source_question_hash: z.string().optional(),
+    source_question_text: z.string().optional(),
+    source_question_url: z.string().url().optional(),
+    // ── R48 SEO·GEO 고급화 (Plan agent 6 합의 단일 진입점) ──
+    // lastReviewed: 본문·사실 마지막 재검토 시점. fact_verification_at(자동 검증)과 별도로
+    //               사람 또는 시스템의 1차 재확인 시점을 박제 — Article.dateModified 외에
+    //               YMYL 신선도 신호 + AI 답변 엔진이 "최근 검증" 청크를 우선 인용.
+    lastReviewed: z.coerce.date().optional(),
+    // aiAssisted: 자동 발행 파이프라인(LLM + 8단계 게이트)으로 만들어진 글 여부.
+    //             true면 G6 disclosure-attach가 "AI 보조 작성·8단계 자동 검증 통과" 면책
+    //             자동 부착 + Article.author=Organization(MoneyLook 자동검증시스템) 분기.
+    aiAssisted: z.boolean().default(false),
+    // reviewedBy: 검증 주체 — author slug 또는 "moneylook-auto" (자동 발행).
+    //             Article.reviewedBy schema에 매핑 — AI 답변 엔진의 신뢰 시그널.
+    reviewedBy: z.string().optional(),
   }),
 });
 

@@ -5,7 +5,10 @@ import { getCollection, getEntry, render } from 'astro:content';
 import AdSlot from '../../components/AdSlot.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import HeroIllustration from '../../components/HeroIllustration.astro';
+import SourceVerificationBadge from '../../components/SourceVerificationBadge.astro';
+import VerificationDetails from '../../components/VerificationDetails.astro';
 import { getRelatedArticles } from '../../lib/related-articles';
+import { isTrustedUrl } from '../../../scripts/lib/trusted-domains.mjs';
 
 export async function getStaticPaths() {
   let articles: Awaited<ReturnType<typeof getCollection>> = [];
@@ -152,9 +155,13 @@ const articleSchema = {
   inLanguage: 'ko-KR',
   wordCount,
   timeRequired: timeRequiredISO,
-  // dataValidAsOf("2026년 4월")을 ISO 월 형식("2026-04-01")으로 변환해 lastReviewed로 노출.
-  // YMYL 콘텐츠에서 "최근 검토일"은 dateModified와 별도 신선도 신호.
-  ...(article.data.dataValidAsOf
+  // R48 #48-3 — lastReviewed 우선순위: frontmatter → 자동검증시점 → dataValidAsOf 파싱.
+  // YMYL 콘텐츠 신선도 시그널 — Article.dateModified와 별도. AI 답변 엔진이 "최근 검증" 청크를 우선 인용.
+  ...(article.data.lastReviewed
+    ? { lastReviewed: article.data.lastReviewed.toISOString().slice(0, 10) }
+    : article.data.fact_verification_at
+    ? { lastReviewed: article.data.fact_verification_at.slice(0, 10) }
+    : article.data.dataValidAsOf
     ? (() => {
         const m = article.data.dataValidAsOf.match(/^(\d{4})년\s*(\d{1,2})월$/);
         return m
@@ -204,6 +211,21 @@ const articleSchema = {
     geographicArea: { '@type': 'Country', name: 'South Korea' },
   },
   author: authorSchema,
+  // R48 #48-3 — 자동 발행 글(aiAssisted=true)에 reviewedBy + creditText 명시.
+  // ClaimReview 외에 Article 자체에서도 "8단계 자동 검증 통과" 시그널.
+  // 사람 사칭 페널티 회피 + AI 답변 엔진 reasoning에 검증 시스템 등장.
+  ...(article.data.aiAssisted
+    ? {
+        reviewedBy: { '@id': `${authorUrl}#author` },
+        creditText: 'MoneyLook 자동검증시스템 (G0~G8 8단계 게이트 통과)',
+      }
+    : article.data.reviewedBy
+    ? {
+        reviewedBy: {
+          '@id': new URL(`/author/${article.data.reviewedBy}/`, Astro.site).toString() + '#author',
+        },
+      }
+    : {}),
   publisher: {
     '@type': 'Organization',
     '@id': new URL('#organization', Astro.site).toString(),
@@ -243,7 +265,82 @@ const faqSchema = article.data.faq && article.data.faq.length > 0
     }
   : null;
 
-const jsonLdList = [breadcrumbSchema, articleSchema, ...(faqSchema ? [faqSchema] : [])];
+// QAPage — 자동 발행 글에 source_question 메타데이터 있으면 자동 생성
+// AI 검색 엔진(Perplexity·ChatGPT)의 인용 가능성 ↑.
+// 단, 지식인 원문 인용 X (네이버 ToS) — 질문은 의역 재작성된 frontmatter 값만 사용.
+const qaSchema = article.data.source_question_text
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'QAPage',
+      mainEntity: {
+        '@type': 'Question',
+        name: article.data.source_question_text,
+        text: article.data.source_question_text,
+        upvoteCount: article.data.source_signal?.unmet_market_score ?? 0,
+        answerCount: 1,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: article.data.description,
+          author: { '@id': `${authorUrl}#author` },
+          dateCreated: article.data.publishedAt.toISOString(),
+          ...(article.data.sources_verified
+            ? {
+                citation: article.data.sources.map((s) => ({
+                  '@type': 'CreativeWork',
+                  name: s.title,
+                  url: s.url,
+                })),
+              }
+            : {}),
+        },
+      },
+    }
+  : null;
+
+// ClaimReview — sources_verified=true 글의 사실 검증 시그널.
+// 글 전체를 단일 ClaimReview로 묶어 권위 소스에 매핑.
+// AI 검색·Google rich result 적격성 ↑.
+// 권위 소스 판정은 SSoT(scripts/lib/trusted-domains.mjs)의 isTrustedUrl() 재사용.
+const trustedSources = article.data.sources_verified
+  ? article.data.sources.filter((s) => isTrustedUrl(s.url))
+  : [];
+
+const claimReviewSchema = article.data.sources_verified && trustedSources.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'ClaimReview',
+      url: `${url}#verification`,
+      datePublished: article.data.fact_verification_at ?? article.data.publishedAt.toISOString(),
+      author: { '@id': `${authorUrl}#author` },
+      claimReviewed: article.data.description,
+      itemReviewed: {
+        '@type': 'Claim',
+        appearance: trustedSources.map((s) => ({
+          '@type': 'CreativeWork',
+          url: s.url,
+          name: s.title,
+        })),
+      },
+      // R48 #48-3 — alternateName 동적화. G4 fact-verifier 결과의 verified_facts_count·
+      // approximate_facts_count를 노출해 AI 답변 엔진이 "검증 강도"를 정량 신호로 인식.
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: 5,
+        bestRating: 5,
+        alternateName: article.data.verified_facts_count
+          ? `8단계 자동 검증 통과 — 정부 1차 자료 ${trustedSources.length}건 인용·사실 ${article.data.verified_facts_count}건 1:1 매칭${article.data.approximate_facts_count ? `·근사 ${article.data.approximate_facts_count}건` : ''}`
+          : '권위 데이터 1:1 매칭 검증 통과',
+      },
+    }
+  : null;
+
+const jsonLdList = [
+  breadcrumbSchema,
+  articleSchema,
+  ...(faqSchema ? [faqSchema] : []),
+  ...(qaSchema ? [qaSchema] : []),
+  ...(claimReviewSchema ? [claimReviewSchema] : []),
+];
 
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
 const updateStr = article.data.updatedAt
@@ -304,6 +401,16 @@ const ageMonths = Math.floor(ageInDays / 30);
             · {readingMinutes}분 읽기
           </span>
         </div>
+        {article.data.sources_verified && (
+          <div class="verified-row">
+            <SourceVerificationBadge
+              verified={article.data.sources_verified}
+              factsCount={article.data.verified_facts_count}
+              approximateCount={article.data.approximate_facts_count}
+              verificationAt={article.data.fact_verification_at}
+            />
+          </div>
+        )}
       </header>
 
       <!-- 갱신 필요 배너 (180일 경과 시) -->
@@ -361,8 +468,18 @@ const ageMonths = Math.floor(ageInDays / 30);
         </section>
       )}
 
+      <!-- 검증 상세 (자동 발행 글에만 노출) -->
+      <VerificationDetails
+        verified={article.data.sources_verified}
+        factsCount={article.data.verified_facts_count}
+        approximateCount={article.data.approximate_facts_count}
+        verificationAt={article.data.fact_verification_at}
+        aiLikeness={article.data.ai_likeness}
+        dataValidAsOf={article.data.dataValidAsOf}
+      />
+
       <!-- 출처 -->
-      <section class="sources">
+      <section class="sources" id="sources">
         <h2>출처·참고자료</h2>
         <ul>
           {article.data.sources.map((s) => (
@@ -371,7 +488,7 @@ const ageMonths = Math.floor(ageInDays / 30);
         </ul>
         <p class="disclaimer">
           본 글의 정책·요율·법령은 변경될 수 있습니다. 신청 직전 위 공식 출처에서 재확인하세요.
-          머니룩의 모든 글은 사람 편집자가 사실 확인 후 발행합니다.
+          머니룩의 모든 글은 발행 전 8단계 자동 검증 게이트(G0~G8)를 거치며, 본문 사실은 정부 공식 API 응답과 1:1 매칭됩니다.
         </p>
       </section>
 
@@ -518,6 +635,13 @@ const ageMonths = Math.floor(ageInDays / 30);
 .reading-time {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+.verified-row {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 .cite-questions h2 {
   font-size: 0.82rem;

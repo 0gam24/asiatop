@@ -15,7 +15,7 @@ project_context:
     - 한국은행 ECOS
   required_env_vars:
     - DATA_GO_KR_KEY (공공데이터포털 운영인증키, 비밀)
-    - LAW_GO_KR_KEY (법제처 인증키, 비밀)
+    - LAW_GO_KR_OC (법제처 OC = 가입 이메일 ID, 비밀)
     - BOK_API_KEY (한국은행 ECOS, 비밀)
     - PUBLIC_GA4_ID (GA4 측정 ID, 클라이언트 노출 OK)
     - PUBLIC_ADSENSE_CLIENT (AdSense 게시자 ID, 클라이언트 노출 OK)

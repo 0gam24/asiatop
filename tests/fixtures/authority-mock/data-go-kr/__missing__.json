@@ -1,0 +1,11 @@
+{
+  "_meta": {
+    "purpose": "data-go-kr 누락 query에 대한 stub 응답. dev 모드에서 G3 통과를 위한 데이터.",
+    "policy": "real API 응답 형식과 유사한 일반 stub. 실제 사실 검증(G4)은 cluster별 expected_facts를 brief에 명시해야 통과."
+  },
+  "raw": {
+    "policyName": "정부 청년·복지 지원 (stub)",
+    "lastUpdated": "2026-04-01"
+  },
+  "facts": []
+}

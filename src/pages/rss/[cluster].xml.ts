@@ -23,8 +23,11 @@ export async function GET(context: APIContext) {
   } catch {
     articles = [];
   }
+  // 정렬 키: updatedAt ?? publishedAt — atom.xml·feed.json·rss.xml과 동일 기준.
   const sorted = articles.sort(
-    (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+    (a, b) =>
+      (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
+      (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
   );
 
   return rss({

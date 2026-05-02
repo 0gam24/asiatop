@@ -45,8 +45,8 @@ jobs:
               info: v.info||0, low: v.low||0, moderate: v.moderate||0, high: v.high||0, critical: v.critical||0
             }));
           ')
-          echo "counts=$counts" >> $GITHUB_OUTPUT
-          echo "exit_code=$code" >> $GITHUB_OUTPUT
+          echo "counts=$counts" >> "$GITHUB_OUTPUT"
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           echo "Audit counts: $counts"
 
       - name: Open or update tracking issue

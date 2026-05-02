@@ -15,7 +15,7 @@
 | 키 종류 | 로컬 (.env.local) | GitHub Secrets | CF Pages Env | 코드 |
 |---|:---:|:---:|:---:|:---:|
 | `DATA_GO_KR_KEY` (공공데이터포털) | ✅ 개발용 | ❌ | ✅ Production | ❌ |
-| `LAW_GO_KR_KEY` (법제처) | ✅ 개발용 | ❌ | ✅ Production | ❌ |
+| `LAW_GO_KR_OC` (법제처 OC) | ✅ 개발용 | ❌ | ✅ Production | ❌ |
 | `BOK_API_KEY` (한국은행 ECOS) | ✅ 개발용 | ❌ | ✅ Production | ❌ |
 | `GA4_SERVICE_ACCOUNT_JSON` | ✅ 개발용 | ❌ | ✅ Production | ❌ |
 | `PUBLIC_GA4_ID` (공개 ID) | ✅ 개발용 | ❌ | ✅ Production | ❌ |

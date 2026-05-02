@@ -35,10 +35,23 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
 # 미발행/드래프트 차단
 Disallow: /draft/
 Disallow: /preview/
 Disallow: /admin/
+Disallow: /briefs/_pool/
 
 # 검색 결과·디자인 시스템 — thin/duplicate content 회피
 Disallow: /search
@@ -48,3 +61,21 @@ Disallow: /design-system
 Sitemap: https://asiatop.co.kr/sitemap-index.xml
 Sitemap: https://asiatop.co.kr/sitemap-news.xml
 Sitemap: https://asiatop.co.kr/sitemap-images.xml
+
+# 피드형 sitemap (Google·Bing·Naver 모두 RSS·Atom·JSON Feed를 sitemap으로 인식).
+# 자동 발행 글이 cron 즉시 노출되도록 메인·12 카테고리 RSS·Atom·JSON Feed 모두 등록.
+Sitemap: https://asiatop.co.kr/rss.xml
+Sitemap: https://asiatop.co.kr/atom.xml
+Sitemap: https://asiatop.co.kr/feed.json
+Sitemap: https://asiatop.co.kr/rss/gov-support.xml
+Sitemap: https://asiatop.co.kr/rss/tax.xml
+Sitemap: https://asiatop.co.kr/rss/realestate.xml
+Sitemap: https://asiatop.co.kr/rss/unemployment.xml
+Sitemap: https://asiatop.co.kr/rss/savings.xml
+Sitemap: https://asiatop.co.kr/rss/insurance-labor.xml
+Sitemap: https://asiatop.co.kr/rss/auto.xml
+Sitemap: https://asiatop.co.kr/rss/public-services.xml
+Sitemap: https://asiatop.co.kr/rss/office-tips.xml
+Sitemap: https://asiatop.co.kr/rss/credit-loan.xml
+Sitemap: https://asiatop.co.kr/rss/insurance-personal.xml
+Sitemap: https://asiatop.co.kr/rss/pension.xml

@@ -5,6 +5,7 @@ import ClusterCard from '../components/ClusterCard.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import AdSlot from '../components/AdSlot.astro';
 import Experiment from '../components/Experiment.astro';
+import MissionCallout from '../components/MissionCallout.astro';
 import { getCollection } from 'astro:content';
 
 let articles: Awaited<ReturnType<typeof getCollection>> = [];
@@ -16,6 +17,13 @@ try {
 articles.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const featured = articles.slice(0, 3);
 const recent = articles.slice(3, 11);
+
+// 자동 발행 파이프라인 통계 (sources_verified=true 글 카운트)
+const verifiedArticles = articles.filter((a) => a.data.sources_verified === true);
+const totalFactsVerified = verifiedArticles.reduce(
+  (sum, a) => sum + (a.data.verified_facts_count ?? 0),
+  0,
+);
 ---
 <Base
   title="머니룩 — 직장인·청년 생활금융 종합 가이드"
@@ -111,6 +119,12 @@ const recent = articles.slice(3, 11);
       </Experiment>
     </div>
   </section>
+
+  <!-- 미션 callout (자동 Q&A 검증) -->
+  <MissionCallout
+    verifiedArticleCount={verifiedArticles.length}
+    totalFactsVerified={totalFactsVerified}
+  />
 
   <!-- 카테고리 그리드 -->
   <section class="section">

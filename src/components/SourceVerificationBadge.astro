@@ -1,0 +1,95 @@
+---
+/**
+ * SourceVerificationBadge — 자동 발행 글 상단 노출
+ *
+ * 표시 조건:
+ *   sources_verified === true → "공신력 데이터 검증" 배지
+ *   sources_verified === false → 미표시
+ *   sources_verified undefined (legacy 글) → 미표시
+ *
+ * 클릭 시 글 하단 "출처" 섹션으로 스크롤 (a tag fragment).
+ */
+interface Props {
+  verified?: boolean;
+  factsCount?: number;
+  approximateCount?: number;
+  verificationAt?: string;
+}
+const { verified, factsCount, approximateCount, verificationAt } = Astro.props;
+
+if (!verified) {
+  // 검증 안 된 글에는 미표시
+}
+
+const verifiedAtFormatted = verificationAt
+  ? new Date(verificationAt).toISOString().slice(0, 10)
+  : null;
+---
+
+{verified && (
+  <a class="src-badge" href="#sources" aria-label="출처 섹션으로 이동">
+    <span class="src-badge__icon" aria-hidden="true">✓</span>
+    <span class="src-badge__label">공신력 데이터 검증</span>
+    {factsCount !== undefined && factsCount > 0 && (
+      <span class="src-badge__count">사실 {factsCount}건</span>
+    )}
+    {approximateCount !== undefined && approximateCount > 0 && (
+      <span class="src-badge__approx" title="근사 표현 — 정확값은 아니나 참고용">
+        근사 {approximateCount}
+      </span>
+    )}
+    {verifiedAtFormatted && (
+      <span class="src-badge__date">{verifiedAtFormatted}</span>
+    )}
+  </a>
+)}
+
+<style>
+  .src-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, #00C896 8%, transparent);
+    color: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: background 0.15s;
+  }
+  .src-badge:hover,
+  .src-badge:focus-visible {
+    background: color-mix(in srgb, #00C896 16%, transparent);
+    text-decoration: none;
+    outline: 2px solid #00C896;
+    outline-offset: 2px;
+  }
+  .src-badge__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1em;
+    height: 1.1em;
+    border-radius: 50%;
+    background: #00C896;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .src-badge__label {
+    font-weight: 600;
+  }
+  .src-badge__count,
+  .src-badge__approx,
+  .src-badge__date {
+    color: color-mix(in srgb, currentColor 65%, transparent);
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+  .src-badge__approx {
+    color: color-mix(in srgb, #FFB800 80%, currentColor);
+  }
+</style>

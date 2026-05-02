@@ -31,25 +31,72 @@ const ROOT = join(__dirname, '..');
 const args = process.argv.slice(2);
 function arg(name, def) {
   const i = args.indexOf(`--${name}`);
-  if (i < 0) return def;
+  if (i < 0) {
+    // `--name=value` 형식도 지원
+    for (const a of args) {
+      if (a.startsWith(`--${name}=`)) return a.slice(name.length + 3);
+    }
+    return def;
+  }
   return args[i + 1] ?? true;
 }
-const TOPIC = arg('topic');
-const CLUSTER = arg('cluster');
-const SLUG = arg('slug');
+let TOPIC = arg('topic');
+let CLUSTER = arg('cluster');
+let SLUG = arg('slug');
+const BRIEF_PATH = arg('brief');
 const DRAFT = args.includes('--draft');
 const PROMPT_ONLY = args.includes('--prompt-only');
 
+const { VALID_CLUSTERS } = await import('./lib/brief-loader.mjs');
+
+// ----- brief 모드 (Gap 2 통합) --------------------------------------------
+// --brief <path> 사용 시 brief.yaml에서 cluster·slug·topic 자동 파생.
+// 기존 legacy 경로 (--topic --cluster --slug) 100% 호환.
+let brief = null;
+let briefFrontmatterInject = {};
+if (BRIEF_PATH && typeof BRIEF_PATH === 'string') {
+  const { loadBrief, BriefIsTemplateError } = await import('./lib/brief-loader.mjs');
+  const { briefToArticleFrontmatter } = await import('./lib/auto-brief-generator.mjs');
+  try {
+    brief = loadBrief(BRIEF_PATH);
+  } catch (e) {
+    if (e instanceof BriefIsTemplateError) {
+      console.error('❌ _template.yaml 은 직접 사용 불가. pnpm brief:new 로 생성 후 채워서 사용하세요.');
+    } else {
+      console.error(`❌ brief 로드 실패: ${e.message}`);
+      if (e.issues) {
+        for (const iss of e.issues.slice(0, 8)) {
+          console.error(`   ${iss.path}: ${iss.message}`);
+        }
+      }
+    }
+    process.exit(1);
+  }
+
+  // 인자 충돌 검사
+  if (CLUSTER && CLUSTER !== brief.meta.cluster) {
+    console.error(`❌ cluster 불일치: --cluster=${CLUSTER}, brief=${brief.meta.cluster}`);
+    process.exit(1);
+  }
+  if (SLUG && SLUG !== brief.meta.slug) {
+    console.error(`❌ slug 불일치: --slug=${SLUG}, brief=${brief.meta.slug}`);
+    process.exit(1);
+  }
+  if (TOPIC) {
+    console.warn('⚠️  --topic 무시: brief.content_angle.one_line_pitch 사용');
+  }
+
+  CLUSTER = brief.meta.cluster;
+  SLUG = brief.meta.slug;
+  TOPIC = brief.content_angle.one_line_pitch;
+  briefFrontmatterInject = briefToArticleFrontmatter(brief);
+}
+
 if (!TOPIC) {
-  console.error('❌ --topic 필수 (예: --topic "2026년 청년 월세 세액공제")');
+  console.error('❌ --topic 또는 --brief 필수 (예: --topic "2026년 청년 월세 세액공제" / --brief briefs/...yaml)');
   process.exit(1);
 }
 
-const VALID_CLUSTERS = [
-  'gov-support', 'tax', 'realestate', 'unemployment', 'savings',
-  'insurance-labor', 'auto', 'public-services', 'office-tips',
-  'credit-loan', 'insurance-personal', 'pension',
-];
 if (!CLUSTER || !VALID_CLUSTERS.includes(CLUSTER)) {
   console.error(`❌ --cluster 필수 (다음 중 하나): ${VALID_CLUSTERS.join(', ')}`);
   process.exit(1);
@@ -133,14 +180,30 @@ faq:
 
 // ----- 1) DeepSeek 호출 ---------------------------------------------------
 
-async function callDeepSeek(topic) {
+async function callDeepSeek(topic, briefArg = null) {
+  // brief 모드일 때 SYSTEM·USER prompt 확장. legacy 모드는 byte-identical.
+  let systemPrompt = SYSTEM_PROMPT;
+  let userPrompt = `토픽: ${topic}\n위 시스템 규칙대로 머니룩 글 1편을 출력하세요.`;
+  let maxTokens = 6000;
+
+  if (briefArg) {
+    const { buildSystemPromptAdditions, buildUserPromptFromBrief } =
+      await import('./lib/brief-prompt-builder.mjs');
+    const sysAdd = buildSystemPromptAdditions(briefArg);
+    if (sysAdd) systemPrompt = `${SYSTEM_PROMPT}\n\n${sysAdd}`;
+    userPrompt = buildUserPromptFromBrief(briefArg);
+    // word_count_max > 3000 시 max_tokens 동적 상향 (긴 글 안전)
+    const wcMax = briefArg.structure?.word_count_max ?? 0;
+    if (wcMax > 3000) maxTokens = 8000;
+  }
+
   const key = process.env.DEEPSEEK_API_KEY;
   if (!key) {
     console.warn('⚠️  DEEPSEEK_API_KEY 미설정 — prompt만 출력하고 종료');
     console.log('\n=== SYSTEM PROMPT ===\n');
-    console.log(SYSTEM_PROMPT);
+    console.log(systemPrompt);
     console.log('\n=== USER PROMPT ===\n');
-    console.log(`토픽: ${topic}\n위 시스템 규칙대로 머니룩 글 1편을 출력하세요.`);
+    console.log(userPrompt);
     process.exit(0);
   }
 
@@ -153,11 +216,11 @@ async function callDeepSeek(topic) {
     body: JSON.stringify({
       model: 'deepseek-chat',
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: `토픽: ${topic}\n위 시스템 규칙대로 머니룩 글 1편을 출력하세요.` },
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
       ],
       temperature: 0.6,
-      max_tokens: 6000,
+      max_tokens: maxTokens,
     }),
   });
 
@@ -236,11 +299,22 @@ const REFINE_PROMPT = `다음은 머니룩(MoneyLook) 미디어용 MDX 글 초�
 {ORIGINAL}
 [원본 끝]`;
 
-async function refineWithClaude(mdx) {
+async function refineWithClaude(mdx, briefArg = null) {
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
     console.warn('⚠️  ANTHROPIC_API_KEY 미설정 — Pass 3 스킵 (자연화 미적용)');
     return mdx;
+  }
+
+  // brief 모드 추가 보존 룰 append
+  let prompt = REFINE_PROMPT.replace('{ORIGINAL}', mdx);
+  if (briefArg) {
+    const { buildRefineAdditions } = await import('./lib/brief-prompt-builder.mjs');
+    const refineAdd = buildRefineAdditions(briefArg);
+    if (refineAdd) {
+      // 원본 끝 다음에 브리프 룰 append
+      prompt = prompt.replace('[원본 끝]', `[원본 끝]\n\n${refineAdd}`);
+    }
   }
 
   const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -255,7 +329,7 @@ async function refineWithClaude(mdx) {
       max_tokens: 8000,
       temperature: 0.3,
       messages: [
-        { role: 'user', content: REFINE_PROMPT.replace('{ORIGINAL}', mdx) },
+        { role: 'user', content: prompt },
       ],
     }),
   });
@@ -270,7 +344,7 @@ async function refineWithClaude(mdx) {
 
 // ----- 4) 게이트 검증 -----------------------------------------------------
 
-const GOV = ['data.go.kr','law.go.kr','hometax.go.kr','bokjiro.go.kr','ecos.bok.or.kr','fss.or.kr','work24.go.kr','nps.or.kr','nhis.or.kr','kostat.go.kr','korea.kr','molit.go.kr','moel.go.kr','nts.go.kr','.go.kr','.or.kr'];
+import { isTrustedUrl } from './lib/trusted-domains.mjs';
 
 function gateCheck(mdx) {
   const errors = [];
@@ -303,7 +377,7 @@ function gateCheck(mdx) {
   // sources count + .gov.kr
   const sourceUrls = [...fm.matchAll(/url:\s*"(https?:\/\/[^"]+)"/g)].map((m) => m[1]);
   if (sourceUrls.length < 3) errors.push(`sources ${sourceUrls.length}개 (≥3 필요)`);
-  const govCount = sourceUrls.filter((u) => GOV.some((d) => u.includes(d))).length;
+  const govCount = sourceUrls.filter((u) => isTrustedUrl(u)).length;
   if (govCount < 1) errors.push('sources에 .gov.kr / .or.kr 1차 자료 0개');
 
   // aiCitationQuestions count
@@ -356,6 +430,38 @@ function gateCheck(mdx) {
 
 // ----- 5) 저장 ------------------------------------------------------------
 
+/**
+ * brief 모드일 때 frontmatter에 brief 메타 inject.
+ * (brief_id, next_review_date, source_question_*, sources_verified 등)
+ * 기존 frontmatter에 동일 키가 있으면 brief 우선 (감사 추적성).
+ */
+function injectBriefFrontmatter(mdx, inject) {
+  if (!inject || Object.keys(inject).length === 0) return mdx;
+  const fmMatch = mdx.match(/^(---\n)([\s\S]*?)(\n---\n)([\s\S]*)$/);
+  if (!fmMatch) return mdx;
+  const [, open, fmBody, close, body] = fmMatch;
+
+  // 기존 라인 보존 + 신규 키 추가 (단순 라인 기반 — yaml 의존 X)
+  const existingKeys = new Set(
+    fmBody.split('\n')
+      .map((l) => l.match(/^([a-z_][a-z0-9_]*)\s*:/i)?.[1])
+      .filter(Boolean),
+  );
+
+  const newLines = [];
+  for (const [k, v] of Object.entries(inject)) {
+    if (v === undefined || v === null || v === '') continue;
+    if (existingKeys.has(k)) continue; // 충돌 시 brief 우선이 안전이지만 V1은 conservative
+    const formatted = typeof v === 'string'
+      ? `${k}: "${v.replace(/"/g, '\\"')}"`
+      : `${k}: ${v}`;
+    newLines.push(formatted);
+  }
+  if (newLines.length === 0) return mdx;
+
+  return `${open}${fmBody}\n${newLines.join('\n')}${close}${body}`;
+}
+
 function saveArticle(mdx) {
   const targetDir = DRAFT
     ? join(ROOT, 'src/content/articles/_drafts')
@@ -366,7 +472,9 @@ function saveArticle(mdx) {
     console.error(`❌ 이미 존재: ${target}`);
     process.exit(1);
   }
-  writeFileSync(target, mdx, 'utf-8');
+  // brief 메타 inject (brief 모드만)
+  const finalMdx = injectBriefFrontmatter(mdx, briefFrontmatterInject);
+  writeFileSync(target, finalMdx, 'utf-8');
   return target;
 }
 
@@ -385,7 +493,7 @@ function saveArticle(mdx) {
   console.log('📝 PASS 1 — DeepSeek 초안 생성…');
   let mdx;
   try {
-    mdx = await callDeepSeek(TOPIC);
+    mdx = await callDeepSeek(TOPIC, brief);
   } catch (e) {
     console.error(`❌ PASS 1 실패: ${e.message}`);
     process.exit(1);
@@ -397,7 +505,7 @@ function saveArticle(mdx) {
 
   // PASS 3
   console.log('✨ PASS 3 — Claude 자연화 (자기정정·LLM 머리말 제거)…');
-  mdx = await refineWithClaude(mdx);
+  mdx = await refineWithClaude(mdx, brief);
   mdx = normalizeFormat(mdx); // 자연화 후 재검증
 
   // PASS 4
@@ -424,6 +532,110 @@ function saveArticle(mdx) {
     const target = saveArticle(mdx);
     console.log(`📄 ${target}`);
     process.exit(1);
+  }
+
+  // ----- PASS 5 — G4 fact-verifier (brief 모드만) ------------------------
+  // brief.primary_sources의 expected_facts와 본문 사실 토큰을 1:1 매칭.
+  // 환각·근거 없는 수치 발견 시 폐기 (재시도 X).
+  // legacy 모드(--topic --cluster --slug)는 brief 없으므로 PASS 5 스킵.
+  if (brief) {
+    console.log('\n🔬 PASS 5 — G4 fact-verifier (권위 데이터 1:1 매칭)…');
+    const { verifyFacts, summarizeForAudit } = await import('./lib/fact-verifier.mjs');
+    const { fetchAllForCluster } = await import('./lib/authority-sources/index.mjs');
+
+    const factResult = await verifyFacts(mdx, brief, {
+      authorityFetch: (cluster, query) => fetchAllForCluster(cluster, query, {
+        mock: process.env.MOCK_AUTHORITY !== '0',
+      }),
+      mock: process.env.MOCK_AUTHORITY !== '0',
+    });
+
+    console.log(`   매칭률: ${(factResult.match_rate * 100).toFixed(1)}%`);
+    console.log(`   매칭: ${factResult.matched.length}건 / 미매칭: ${factResult.unmatched.length}건 / 근사: ${factResult.approximate.length}건`);
+
+    if (!factResult.pass) {
+      console.log('\n❌ G4 fact-verifier 미통과 — 환각·근거 없는 수치 발견:');
+      const audit = summarizeForAudit(factResult);
+      audit.unmatched.slice(0, 5).forEach((u) => {
+        console.log(`   · [${u.type}] "${u.raw}" (line ${u.line}) — ${u.reason}`);
+      });
+      console.log('\n🚫 자동 폐기 정책: 재시도 X. 다음 cron이 새 질문 픽업.');
+      // DRAFT 모드는 _drafts/ 저장 (디버깅용), 정식은 폐기
+      if (DRAFT) {
+        const target = saveArticle(mdx);
+        console.log(`📄 (디버깅용 draft 저장) ${target}`);
+      }
+      process.exit(2);
+    }
+
+    // G4 통과 시 frontmatter에 검증 메타 inject
+    Object.assign(briefFrontmatterInject, factResult.injected_frontmatter);
+    console.log(`   ✅ sources_verified=true · verified_facts_count=${factResult.matched.length}`);
+  }
+
+  // ----- PASS 6 — G5·G6·G7·G8 순차 (brief 모드만) -------------------------
+  if (brief) {
+    const { checkAdSensePolicy } = await import('./gates/g5-adsense-policy.mjs');
+    const { attachAndVerifyDisclosures } = await import('./gates/g6-disclosure-attach.mjs');
+    const { checkPlagiarism } = await import('./gates/g7-plagiarism.mjs');
+    const { checkAILikeness } = await import('./gates/g8-ai-likeness.mjs');
+
+    // G5 AdSense
+    console.log('\n🛡️  G5 — AdSense 정책 검사…');
+    const g5 = checkAdSensePolicy(mdx, brief);
+    if (g5.warnings.length) {
+      g5.warnings.forEach((w) => console.log(`   ⚠️  ${w}`));
+    }
+    if (!g5.pass) {
+      console.log('❌ G5 미통과:');
+      g5.reasons.forEach((r) => console.log(`   · ${r}`));
+      console.log('🚫 자동 폐기 (AdSense 위반 사전 차단).');
+      process.exit(3);
+    }
+    console.log(`   ✅ 외부 링크 ${g5.meta.external_url_count}개`);
+
+    // G6 면책·AI 공시 부착 (mdx mutate)
+    console.log('\n📋 G6 — YMYL 면책·AI 공시 부착…');
+    const g6 = attachAndVerifyDisclosures(mdx, brief);
+    if (!g6.pass) {
+      console.log('❌ G6 부착 실패:');
+      g6.reasons.forEach((r) => console.log(`   · ${r}`));
+      process.exit(4);
+    }
+    mdx = g6.mdx;
+    console.log('   ✅ 면책·공시 부착 완료');
+
+    // G7 표절 검사 (지식인 원문이 있을 때만)
+    const questionText = brief.source_question?.original_text;
+    if (questionText) {
+      console.log('\n🔍 G7 — 표절·저작권 검사…');
+      const g7 = checkPlagiarism(mdx, questionText);
+      if (!g7.pass) {
+        console.log('❌ G7 미통과 — 지식인 원문 인용 발견:');
+        g7.reasons.forEach((r) => console.log(`   · ${r}`));
+        if (g7.overlaps.length > 0) {
+          console.log(`   매칭 window: "${g7.overlaps[0].window.slice(0, 50)}..."`);
+        }
+        console.log('🚫 자동 폐기 (네이버 ToS·저작권 보호).');
+        process.exit(5);
+      }
+      console.log(`   ✅ hard overlap 0건, soft overlap ${g7.meta.soft_overlap_count}건`);
+    }
+
+    // G8 AI-likeness
+    console.log('\n🤖 G8 — AI-likeness scorer…');
+    const g8 = checkAILikeness(mdx);
+    console.log(`   score: ${g8.score.toFixed(1)} / threshold ${g8.threshold}`);
+    if (!g8.pass) {
+      console.log(`❌ G8 미통과 — score ${g8.score} >= ${g8.threshold}`);
+      console.log('   힌트:');
+      g8.hints.forEach((h) => console.log(`   · ${h}`));
+      console.log('🚫 자동 폐기 (AI 티 검출).');
+      process.exit(6);
+    }
+    // G8 결과 frontmatter에 기록
+    briefFrontmatterInject.ai_likeness = g8.score;
+    if (g8.signals.length > 0) briefFrontmatterInject.ai_signals = JSON.stringify(g8.signals);
   }
 
   const target = saveArticle(mdx);

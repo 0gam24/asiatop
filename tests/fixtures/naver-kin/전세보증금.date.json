@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "purpose": "naver-kin sample fixture (sort=date, query=전세보증금)",
+    "cluster": "realestate"
+  },
+  "items": [
+    {
+      "title": "<b>전세보증금</b> 못 돌려받고 있어요 HUG 보증보험 청구 절차",
+      "description": "임차권 등기 → HUG 청구. 임대차계약서·내용증명 필요.",
+      "link": "https://kin.naver.com/qna/detail.naver?d1id=4&docId=99999401"
+    },
+    {
+      "title": "확정일자 받았는데 <b>전세보증금</b> 우선변제권 어떻게 되나요",
+      "description": "확정일자 + 전입신고 + 점유 3가지 모두 있어야 우선변제권.",
+      "link": "https://kin.naver.com/qna/detail.naver?d1id=4&docId=99999402"
+    }
+  ]
+}

@@ -14,14 +14,9 @@
 
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { isTrustedUrl } from './lib/trusted-domains.mjs';
 
 const DIR = 'src/content/articles';
-const GOV = [
-  'data.go.kr', 'law.go.kr', 'hometax.go.kr', 'bokjiro.go.kr', 'ecos.bok.or.kr',
-  'fss.or.kr', 'work24.go.kr', 'nps.or.kr', 'nhis.or.kr', 'kostat.go.kr',
-  'hipension.or.kr', 'korea.kr', 'bok.or.kr', 'molit.go.kr', 'moel.go.kr',
-  'nts.go.kr', 'mss.go.kr', '.go.kr', '.or.kr', 'gov.kr'
-];
 
 const files = readdirSync(DIR).filter((f) => /\.mdx?$/.test(f));
 const audit = [];
@@ -33,7 +28,7 @@ for (const f of files) {
   const fm = fmMatch[1];
 
   const sourceUrls = [...fm.matchAll(/url:\s*["'](https?:\/\/[^"'\s]+)/g)].map((m) => m[1]);
-  const govCount = sourceUrls.filter((u) => GOV.some((d) => u.includes(d))).length;
+  const govCount = sourceUrls.filter((u) => isTrustedUrl(u)).length;
 
   const aiBlock = fm.match(/aiCitationQuestions:\s*\n((?:\s+-\s+["'].+["']\s*\n)+)/);
   const aiCount = aiBlock ? (aiBlock[1].match(/^\s+-\s/gm) || []).length : 0;

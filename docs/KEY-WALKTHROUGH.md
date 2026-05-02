@@ -325,7 +325,7 @@ PUBLIC_ADSENSE_CLIENT=ca-pub-1234567890123456
 # (앞부분 주석 생략)
 
 DATA_GO_KR_KEY=aBcD+eFgH/iJkL=mNoPqRsTuVwXyZ1234567890aBcDeFgHiJkL=
-LAW_GO_KR_KEY=                                  # 빈 칸 OK
+LAW_GO_KR_OC=                                   # 빈 칸 OK (V2 운영 시)
 BOK_API_KEY=ABCD1234EFGH5678IJKL90MNOP12
 GA4_PROPERTY_ID=                                # 빈 칸 OK
 GA4_SERVICE_ACCOUNT_JSON=                       # 빈 칸 OK

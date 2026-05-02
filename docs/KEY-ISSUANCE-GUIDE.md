@@ -32,7 +32,7 @@ pnpm dev
 | `PUBLIC_ADSENSE_CLIENT` | ✅ | ✅ Plaintext | ❌ |
 | `PUBLIC_SENTRY_DSN` | ✅ | ✅ Plaintext | ❌ |
 | `DATA_GO_KR_KEY` | ✅ | ✅ **Encrypted** | ❌ |
-| `LAW_GO_KR_KEY` | ✅ | ✅ **Encrypted** | ❌ |
+| `LAW_GO_KR_OC` | ✅ | ✅ **Encrypted** | ❌ |
 | `BOK_API_KEY` | ✅ | ✅ **Encrypted** | ❌ |
 | `GA4_PROPERTY_ID` | ✅ | ✅ Plaintext | ❌ |
 | `GA4_SERVICE_ACCOUNT_JSON` | ✅ | ✅ **Encrypted** | ❌ |
@@ -217,12 +217,27 @@ Type:  Encrypted ★
 
 ---
 
-## 권장 안 함 (효과 낮거나 IndexNow가 대체)
+## 추가 권장 — 법제처 OpenAPI (자동 발행 미션 피벗 후)
 
-### 법제처 API (`LAW_GO_KR_KEY`)
-- 일반 사용자 등록 까다로움
-- 본문에 URL 인용만으로 충분
-- **발급 불필요**
+### 법제처 OpenAPI (`LAW_GO_KR_OC`) — V2 운영 권장 ⚠️ V1은 정적 fixture
+
+> **2026-05-02 미션 피벗 반영**: 자동 Q&A 검증 사이트로 운영 모드 변경 후
+> 법제처가 unemployment·tax·insurance-labor·office-tips 4개 cluster 검증의
+> 핵심 권위 소스가 됨. 기존 "발급 불필요"는 옛 운영 모드 기준이라 V2에서
+> 발급 필수로 갱신.
+
+### V1 (현재) — 정적 fixture 처리
+- 법제처는 **호출 IP 사전 등록** 정책 운영 (CF Pages·GitHub Actions 동적 IP 환경 부적합)
+- V1에서는 핵심 법령(고용보험법 제40·46조·근로기준법 제55·60조·소득세법 제59조 등)을
+  `tests/fixtures/authority-mock/law-go-kr/` 정적 JSON으로 사전 캐시
+- 분기 1회 수동 갱신 (법령 개정 빈도 낮음)
+
+### V2 (운영 1~2개월+) — 별도 VPS 프록시
+- 발급: https://open.law.go.kr (또는 https://www.law.go.kr/DRF) 회원가입
+- OC = 가입 시 입력한 이메일의 @ 앞부분 (예: `kjh791213`)
+- 별도 VPS ($5/월)에 프록시 띄우고 그 정적 IP를 법제처에 등록
+- 머니룩 코드는 프록시 경유로 호출
+- 환경변수: `LAW_GO_KR_OC` (변수명 단일화 — `LAW_GO_KR_KEY` 사용 금지)
 
 ### Naver Search Advisor 토큰 (`NAVER_SEARCH_ADVISOR_TOKEN`)
 - IndexNow가 이미 Naver 색인 처리 중

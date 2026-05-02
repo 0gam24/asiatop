@@ -119,6 +119,9 @@ function renderClusterFile(slug, articles) {
     ].join('\n');
 
     if (bytes(out + block) > MAX_BYTES) {
+      // 본문은 토큰 한도로 제외하되 URL+제목 1줄은 fallback 인덱스로 보장.
+      // R49 #49-5 자동 등록 하네스: "모든 발행 글이 채널에 등장" 정책 — URL 누락 0.
+      out += `- [${a.title}](${url}) — _본문은 토큰 한도로 제외, 페이지에서 확인_\n`;
       excluded++;
       continue;
     }
@@ -127,8 +130,8 @@ function renderClusterFile(slug, articles) {
   }
 
   if (excluded > 0) {
-    console.warn(`[llms] ⚠️ ${slug}: ${excluded} articles excluded (50KB limit)`);
-    out += `\n_${excluded}개 글이 토큰 한도로 제외됨 — 개별 글 페이지에서 확인하세요._\n`;
+    console.warn(`[llms] ⚠️ ${slug}: ${excluded} articles excluded body (50KB limit, URL fallback 유지)`);
+    out += `\n_위 ${excluded}개 글은 토큰 한도로 본문 제외 — URL만 노출. 개별 페이지에서 본문 확인._\n`;
   }
 
   return { content: out, included, excluded };
@@ -188,7 +191,7 @@ function renderLlmsTxt(articles, clusterStats) {
   let out = '';
   out += `# 머니룩 (MoneyLook)\n\n`;
   out += `> 한국 직장인·청년을 위한 생활금융 종합 가이드. 정부지원금·세금환급·재테크·부동산·실업급여·노동·신용대출·보험·연금까지, 매일 마주치는 돈 문제를 한곳에서.\n\n`;
-  out += `머니룩은 공공데이터포털(data.go.kr)·법제처 국가법령정보(law.go.kr)·홈택스·복지로·한국은행 ECOS 등 1차 정부·공공 자료를 기반으로 직장인이 매일 마주치는 돈 문제를 풀어 설명합니다. 모든 글은 사람 편집자가 사실 확인 후 발행하며, 정책 변경 시 즉시 갱신됩니다.\n\n`;
+  out += `머니룩은 공공데이터포털(data.go.kr)·법제처 국가법령정보(law.go.kr)·홈택스·복지로·한국은행 ECOS 등 1차 정부·공공 자료를 기반으로 직장인이 매일 마주치는 돈 문제를 풀어 설명합니다. 모든 글은 발행 전 8단계 자동 검증 게이트(G0~G8)를 거치며, 본문에 등장하는 모든 수치·날짜·법령은 정부 공식 API 응답과 1:1 매칭됩니다(매칭률 100% 미만 시 자동 폐기). 정책 변경 시 즉시 갱신됩니다.\n\n`;
 
   out += `## 토픽 클러스터\n\n`;
   for (const slug of Object.keys(CLUSTER_META)) {
