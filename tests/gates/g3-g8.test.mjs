@@ -82,6 +82,21 @@ describe('G5 — checkAdSensePolicy', () => {
     const r = checkAdSensePolicy(mdx, baseBrief);
     expect(r.pass).toBe(true);
   });
+
+  // V2 정규식 변형 패턴 (LLM 의역 회피 방어)
+  it.each([
+    ['cta-recommendation', '햇살론 강추합니다. 꼭 가입하세요.'],
+    ['cta-pressure', '선착순 한정 100명 모집. 오늘만 특별 혜택.'],
+    ['guarantee', '연 5% 수익 보장 + 원금 보장 상품.'],
+    ['gambling', '필승 공식으로 대박 기회 잡으세요.'],
+    ['unauthorized-advice', '담당자가 진단해드려요. 확정적으로 판단합니다.'],
+    ['cta-end', '지금 즉시 신청하세요. 놓치면 안 됩니다.'],
+  ])('패턴 %s 차단 — LLM 의역 회피 방어', (patternName, badText) => {
+    const mdx = `---\ntitle: t\n---\n\n${badText}`;
+    const r = checkAdSensePolicy(mdx, baseBrief);
+    expect(r.pass).toBe(false);
+    expect(r.reasons.some((x) => x.includes(`g5-pattern:${patternName}`))).toBe(true);
+  });
 });
 
 describe('G6 — attachAndVerifyDisclosures', () => {

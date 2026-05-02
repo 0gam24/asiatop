@@ -27,6 +27,23 @@ const BANNED_BODY_KEYWORDS = Object.freeze([
   '진단해드립니다', '판결드립니다',
 ]);
 
+// V2 변형·동의어 정규식 패턴 (Plan agent #2 S1 권고)
+// LLM이 정확 매칭 키워드를 의역해도 동의어로 검출.
+const BANNED_BODY_PATTERNS = Object.freeze([
+  // 추천·강요 변형
+  { name: 'cta-recommendation', re: /(추천|강추|꼭\s?(가입|신청|드세요)|반드시\s?(가입|신청))/g },
+  // 시한·한정·선착 압력
+  { name: 'cta-pressure', re: /(선착순|한정\s?(특가|혜택|판매)|오늘만|마감\s?임박|딱\s?\d+명)/g },
+  // 수익·원금·이자 보장
+  { name: 'guarantee', re: /(원금|수익|이자|배당)\s?(보장|확정)/g },
+  // 투기·도박 어휘
+  { name: 'gambling', re: /(필승\s?(전략|공식)|대박\s?(터지|기회)|역전\s?(만루|홈런))/g },
+  // 자문 형식 (의료·법률·세무)
+  { name: 'unauthorized-advice', re: /(진단해\s?드(립니다|려요)|판결\s?(드립니다|입니다)|확정적으로\s?(말씀|판단))/g },
+  // 행동 압력 마지막 단락 패턴 (CTA pressure)
+  { name: 'cta-end', re: /(지금\s?(즉시|당장|바로)\s?(신청|가입|클릭)|서두르세요|놓치(지\s?마|면\s?안))/g },
+]);
+
 const AFFILIATE_DOMAIN_DENY = Object.freeze([
   // 일반적 affiliate 네트워크
   'coupa.ng', 'aliprice.com',
@@ -68,6 +85,14 @@ export function checkAdSensePolicy(mdx, brief) {
 
   for (const kw of BANNED_BODY_KEYWORDS) {
     if (body.includes(kw)) reasons.push(`g5-banned-keyword:${kw}`);
+  }
+
+  // V2 정규식 변형·동의어 검출 (LLM 의역 회피 방어)
+  for (const { name, re } of BANNED_BODY_PATTERNS) {
+    const matches = body.match(re);
+    if (matches && matches.length > 0) {
+      reasons.push(`g5-pattern:${name}:${matches[0].slice(0, 30)}`);
+    }
   }
 
   const hosts = extractExternalUrls(body);
