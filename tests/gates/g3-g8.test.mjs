@@ -196,13 +196,18 @@ describe('G8 — checkAILikeness', () => {
     expect(r.score).toBeLessThan(5.0);
   });
 
-  it('AI스러운 본문 차단 (default threshold 5.0)', () => {
+  it('AI스러운 본문 — 임계 5.0(Stable)에서 차단', () => {
     const mdx = `---\ntitle: t\n---\n\n안녕하세요. 오늘은 청년월세지원에 대해 알아보겠습니다. 여러분, **청년월세지원**은 **매우 중요한** 제도입니다. 여러분께 도움이 될 **메리트**가 큽니다. 또한 매우 유용합니다. 또한 좋습니다. 더불어 효과적입니다.\n\n## 결론\n\n도움이 되셨길 바랍니다. 감사합니다.`;
-    const r = checkAILikeness(mdx);
-    // V2 시그널 5종 추가로 SIGNAL_MAX 16.0 — score 정규화 후 5.0 임계 통과 가능성.
-    // 더 강한 AI 시그널(S13 또한·더불어·또한 다발) 강화로 차단 보장.
+    const r = checkAILikeness(mdx, { threshold: 5.0 });
     expect(r.pass).toBe(false);
     expect(r.reasons[0]).toMatch(/^g8-ai-likeness/);
+  });
+
+  it('운영 시작 임계 7.0 (Day 1~7)은 default — 더 관대', () => {
+    const mdx = `---\ntitle: t\n---\n\n안녕하세요. 오늘은 청년월세지원에 대해 알아보겠습니다. 여러분, **청년월세지원**은 **매우 중요한** 제도입니다.\n\n## 결론\n\n도움이 되셨길 바랍니다.`;
+    const r = checkAILikeness(mdx);  // default = 7.0
+    // Day 1~7 운영은 관대 임계로 통과율 ↑. Stable 단계(5.0)에서는 차단.
+    expect(r.threshold).toBe(7.0);
   });
 
   it('threshold 환경변수로 조절', () => {
