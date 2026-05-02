@@ -51,9 +51,15 @@ export function _resetKeywordsCache() {
 function scoreCluster(text, keywords) {
   let score = 0;
   const matched = [];
+  // 한국어 띄어쓰기 변형 매칭 위해 공백 제거 텍스트도 준비
+  // 예: "청년 월세 지원" → "청년월세지원" 으로 키워드 "청년월세지원" 매칭 가능
+  const textNoSpace = text.replace(/\s+/g, '');
   for (const kw of keywords) {
     const kwLower = kw.toLowerCase();
-    if (text.includes(kwLower)) {
+    const kwNoSpace = kwLower.replace(/\s+/g, '');
+    const matched1 = text.includes(kwLower);
+    const matched2 = !matched1 && textNoSpace.includes(kwNoSpace);
+    if (matched1 || matched2) {
       // 긴 키워드(공백·복합어 포함)는 가중치 높음
       const weight = kw.includes(' ') ? 2.0 : Math.min(1.5, 0.5 + kw.length / 8);
       score += weight;
