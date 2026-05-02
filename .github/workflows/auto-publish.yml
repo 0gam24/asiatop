@@ -39,23 +39,50 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # actor guard — workflow_dispatch 무제한 트리거·봇 토큰 탈취 방지
+  # cron(스케줄) 트리거는 actor=github-actions[bot]이라 항상 통과.
+  # workflow_dispatch는 repo owner 또는 명시 collaborator만 허용.
+  authorize:
+    name: 호출자 권한 검증
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'schedule' ||
+      github.actor == github.repository_owner ||
+      contains(fromJSON(vars.AUTO_PUBLISH_ALLOWED_ACTORS || '["0gam24"]'), github.actor)
+    steps:
+      - run: |
+          echo "✅ 호출자 인증: actor=${{ github.actor }} event=${{ github.event_name }}"
+
   guardrails:
     name: 안전 제어 — PR 동시 상한·하루 발행 상한
+    needs: authorize
     runs-on: ubuntu-latest
     outputs:
       proceed: ${{ steps.check.outputs.proceed }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: PR 동시·하루 발행 카운트 검사
+      - name: PR 동시·하루 발행 카운트 검사 (fail-closed)
         id: check
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
+          # gh 또는 git 명령 실패 시 즉시 exit (fail-closed)
+          # 한 번이라도 실패하면 proceed=false (안전 측 기본).
+
           OPEN_PRS=$(gh pr list --label auto-publish --state open --json number | jq 'length')
-          TODAY_PUBS=$(git log --since=1.day --grep '^auto:' --oneline | wc -l)
+          TODAY_PUBS=$(git log --since=1.day --grep '^auto: ' --oneline | wc -l)
           echo "open auto-publish PRs: $OPEN_PRS"
           echo "today auto: commits: $TODAY_PUBS"
+
+          # 안전 카운트 사전 검증 (음수·NaN 방지)
+          if ! [[ "$OPEN_PRS" =~ ^[0-9]+$ ]] || ! [[ "$TODAY_PUBS" =~ ^[0-9]+$ ]]; then
+            echo "::error::카운트 파싱 실패 — fail-closed"
+            echo "proceed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
           if [ "$OPEN_PRS" -ge 3 ]; then
             echo "::warning::PR 동시 상한(3) 도달. cron skip"
             echo "proceed=false" >> $GITHUB_OUTPUT
