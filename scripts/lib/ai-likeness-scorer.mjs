@@ -293,7 +293,10 @@ function scoreDeicticCliche(body) {
  * }}
  */
 export function scoreAILikeness(text, options = {}) {
-  const threshold = options.threshold ?? 5.0;
+  // default 7.0 — g8-ai-likeness wrapper와 단일화 (운영 시작 임계 Day 1~7)
+  // 단계화: Day 1~7 = 7.0 / Week 2~3 = 6.0 / Stable = 5.0
+  // (docs/MISSION-PIVOT.md §2 단일 출처)
+  const threshold = options.threshold ?? 7.0;
   const body = stripFrontmatter(text);
 
   const breakdown = {

@@ -87,7 +87,7 @@ describe('G5 — checkAdSensePolicy', () => {
   it.each([
     ['cta-recommendation', '햇살론 강추합니다. 꼭 가입하세요.'],
     ['cta-pressure', '선착순 한정 100명 모집. 오늘만 특별 혜택.'],
-    ['guarantee', '연 5% 수익 보장 + 원금 보장 상품.'],
+    ['guarantee-promo', '연 5% 수익 보장 받으세요. 원금 보장 상품.'],
     ['gambling', '필승 공식으로 대박 기회 잡으세요.'],
     ['unauthorized-advice', '담당자가 진단해드려요. 확정적으로 판단합니다.'],
     ['cta-end', '지금 즉시 신청하세요. 놓치면 안 됩니다.'],
@@ -96,6 +96,19 @@ describe('G5 — checkAdSensePolicy', () => {
     const r = checkAdSensePolicy(mdx, baseBrief);
     expect(r.pass).toBe(false);
     expect(r.reasons.some((x) => x.includes(`g5-pattern:${patternName}`))).toBe(true);
+  });
+
+  // narrow된 정규식이 정상 표현은 통과시킴 (general-purpose 회귀 감사 P0 #2)
+  it.each([
+    ['"추천" 단독 비교표', '가입자 유형 | 추천 | 비고'],
+    ['"추천 가입 연령" 정상 정보', '추천 가입 연령은 30대 후반입니다.'],
+    ['"TDF (자동 자산배분, 추천)" 권고', 'TDF (자동 자산배분, 추천) 상품 비교'],
+    ['"선착순 마감" 정부 보조금', '예산 소진 시 선착순으로 처리되니 조기 신청'],
+    ['"원금 보장" 변액보험 상품 구조', '최저보증 옵션 — 만기 시 원금 보장이 됩니다'],
+  ])('정상 표현 통과 — false positive 방어: %s', (_label, normalText) => {
+    const mdx = `---\ntitle: t\n---\n\n${normalText}`;
+    const r = checkAdSensePolicy(mdx, baseBrief);
+    expect(r.pass).toBe(true);
   });
 });
 

@@ -122,7 +122,7 @@ ls briefs/_pool/_rejected/$(date +%F)/ | wc -l
 ### 4-2. 발행 누적
 
 ```bash
-git log --since=1.day --grep '^auto:' --oneline | wc -l
+git log --since=1.day --grep '^auto: ' --oneline | wc -l
 # auto-publish.yml의 하루 5편 상한 확인
 ```
 
