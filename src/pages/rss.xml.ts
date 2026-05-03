@@ -32,9 +32,10 @@ export async function GET(context: APIContext) {
       const slug = article.id.replace(/\.mdx?$/, '');
       const cluster = findCluster(article.data.cluster);
       const utm = `utm_source=rss&utm_medium=feed&utm_campaign=${article.data.cluster}`;
-      // R50-4: description 1,200자 cap (Naver RSS 본문 길이 제한 회피).
-      // full-text는 content:encoded에만, description은 요약.
-      const descCapped = (article.data.description ?? '').slice(0, 1200);
+      // R50-8 Naver SA RSS 호환: content:encoded 제거 (MDX JSX 컴포넌트가
+      // CDATA 안에 들어가면서 Naver parser가 invalid XML로 거부).
+      // 본문은 link 클릭으로 유도. RSS는 메타 + 요약만.
+      const descCapped = (article.data.description ?? '').slice(0, 800);
       return {
         title: article.data.title,
         pubDate: article.data.publishedAt,
@@ -42,7 +43,7 @@ export async function GET(context: APIContext) {
         link: `/${article.data.cluster}/${slug}/?${utm}`,
         categories: cluster ? [cluster.title] : [],
         author: article.data.author,
-        customData: `<content:encoded><![CDATA[${article.body ?? ''}]]></content:encoded><dc:creator><![CDATA[${article.data.author}]]></dc:creator>`,
+        customData: `<dc:creator><![CDATA[${article.data.author}]]></dc:creator>`,
       };
     }),
     customData: `<language>ko-KR</language>
