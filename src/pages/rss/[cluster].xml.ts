@@ -39,8 +39,8 @@ export async function GET(context: APIContext) {
     items: sorted.slice(0, 50).map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
       const utm = `utm_source=rss&utm_medium=feed&utm_campaign=${article.data.cluster}`;
-      // R50-4: description 1,200자 cap (Naver RSS 본문 길이 제한 회피).
-      const descCapped = (article.data.description ?? '').slice(0, 1200);
+      // R50-8 Naver SA 호환: content:encoded 제거 (본문 MDX JSX 호환성 문제).
+      const descCapped = (article.data.description ?? '').slice(0, 800);
       return {
         title: article.data.title,
         pubDate: article.data.publishedAt,
@@ -48,7 +48,7 @@ export async function GET(context: APIContext) {
         link: `/${article.data.cluster}/${slug}/?${utm}`,
         categories: [cluster.title],
         author: article.data.author,
-        customData: `<content:encoded><![CDATA[${article.body ?? ''}]]></content:encoded><dc:creator><![CDATA[${article.data.author}]]></dc:creator>`,
+        customData: `<dc:creator><![CDATA[${article.data.author}]]></dc:creator>`,
       };
     }),
     customData: `<language>ko-KR</language>
