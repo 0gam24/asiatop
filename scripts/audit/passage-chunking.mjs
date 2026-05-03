@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Passage Chunking 감사 — R48 #48-5
  *

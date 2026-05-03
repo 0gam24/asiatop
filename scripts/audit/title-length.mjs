@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * title 길이 audit — R50-2 (Naver SA SERP 표시 한도)
  *
