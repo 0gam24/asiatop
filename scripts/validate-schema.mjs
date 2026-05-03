@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Schema.org Rich Results 검증
  *
