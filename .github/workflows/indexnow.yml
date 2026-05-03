@@ -117,19 +117,24 @@ jobs:
           echo "Payload (글 + 사이트맵 + RSS):"
           echo "$payload"
 
-          response=$(curl -s -o /tmp/indexnow.body -w "%{http_code}" \
-            -X POST "https://api.indexnow.org/IndexNow" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            -d "$payload")
-
-          echo "HTTP $response"
-          cat /tmp/indexnow.body || true
-
-          if [ "$response" -ge 200 ] && [ "$response" -lt 300 ]; then
-            echo "✅ IndexNow accepted (글 + sitemap + RSS 동시 제출)"
-          else
-            echo "::warning::IndexNow returned HTTP $response"
-          fi
+          # R50-5: IndexNow 글로벌(api.indexnow.org) + Naver 직타(searchadvisor.naver.com)
+          # 동시 호출. Naver는 IndexNow pair 자동 전파 안 함 (2023.09부터 직접 호출 필요).
+          # 둘 다 실패해도 다음 step 영향 X (warn-only).
+          for endpoint in "https://api.indexnow.org/IndexNow" "https://searchadvisor.naver.com/indexnow"; do
+            echo "→ POST $endpoint"
+            response=$(curl -s -o /tmp/indexnow.body -w "%{http_code}" \
+              -X POST "$endpoint" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              -d "$payload" || echo "000")
+            echo "HTTP $response"
+            cat /tmp/indexnow.body 2>/dev/null || true
+            echo ""
+            if [ "$response" -ge 200 ] && [ "$response" -lt 300 ]; then
+              echo "✅ $endpoint accepted"
+            else
+              echo "::warning::$endpoint returned HTTP $response"
+            fi
+          done
 
       - name: PubSubHubbub ping (RSS·Atom 즉시 푸시)
         if: ${{ steps.changes.outputs.urls != '' }}

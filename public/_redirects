@@ -1,6 +1,11 @@
 # Cloudflare Pages 리다이렉트
 # 형식: <from> <to> <status>
 # 와일드카드: /path/* → :splat 으로 캡처
+# 200! = Force rewrite (no redirect)
+
+# 검색 엔진 소유권 인증 파일 — 308 redirect 차단, 정확한 .html 경로 200 강제.
+# Naver/Google/Bing verification은 redirect 미허용 시스템이라 필수.
+/naverf4e88894e9e11c2f12f79119eb027d15.html  /naverf4e88894e9e11c2f12f79119eb027d15.html  200!
 
 # 짧은 별칭 → 정규 경로
 /rss          /rss.xml             301
@@ -9,7 +14,8 @@
 /json         /feed.json           301
 /sitemap      /sitemap-index.xml   301
 /sitemap.xml  /sitemap-index.xml   301
-/feeds        /rss.xml             301
+# /feeds → /feeds/ 인덱스 페이지로 (Astro trailingSlash:'always' 자동 처리)
+# 기존 /feeds → /rss.xml 룰 제거 — R49에서 /feeds/index.astro 인덱스 페이지 신설
 
 # 카테고리·아카이브 통합 — /archive·/posts·/all → /clusters (#archive 앵커)
 /archive      /clusters#archive    301
