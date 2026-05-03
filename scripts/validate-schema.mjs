@@ -360,6 +360,31 @@ function checkNewsMediaOrganization(page, obj) {
   }
 }
 
+// Dataset — Google Dataset Search 노출. R52-A.
+// https://schema.org/Dataset / https://developers.google.com/search/docs/appearance/structured-data/dataset
+function checkDataset(page, obj) {
+  if (!obj.name) fail(page, 'Dataset', 'name 누락');
+  if (!obj.description) fail(page, 'Dataset', 'description 누락');
+  if (!obj.url) fail(page, 'Dataset', 'url 누락');
+  else if (!isUrl(obj.url)) fail(page, 'Dataset', `url 형식 오류: ${obj.url}`);
+  if (obj.distribution) {
+    const dist = asArray(obj.distribution);
+    dist.forEach((d, i) => {
+      if (d['@type'] !== 'DataDownload') warn(page, 'Dataset', `distribution[${i}].@type=${d['@type']} (DataDownload 권장)`);
+      if (!d.contentUrl) fail(page, 'Dataset', `distribution[${i}].contentUrl 누락`);
+      else if (!isUrl(d.contentUrl)) fail(page, 'Dataset', `distribution[${i}].contentUrl 형식 오류`);
+    });
+  } else {
+    warn(page, 'Dataset', 'distribution 권장 (DataDownload 배열)');
+  }
+  if (!obj.creator && !obj.publisher) {
+    warn(page, 'Dataset', 'creator 또는 publisher 권장');
+  }
+  if (obj.license && typeof obj.license === 'string' && !isUrl(obj.license)) {
+    warn(page, 'Dataset', `license URL 권장: ${obj.license}`);
+  }
+}
+
 export const VALIDATORS = {
   Article: checkArticle,
   NewsArticle: checkArticle,
@@ -373,6 +398,8 @@ export const VALIDATORS = {
   Person: checkPerson,
   CollectionPage: checkCollectionPage,
   WebApplication: checkWebApplication,
+  SoftwareApplication: checkWebApplication,
+  Dataset: checkDataset,
   HowTo: checkHowTo,
   SiteNavigationElement: checkSiteNavigationElement,
   AboutPage: (p, o) => checkPageType(p, o, 'AboutPage'),

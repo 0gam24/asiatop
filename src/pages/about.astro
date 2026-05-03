@@ -21,11 +21,47 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', position: 2, name: '머니룩 소개', item: url },
   ],
 };
+
+// R52-B: SoftwareApplication schema — 머니룩 자동검증시스템 자체를 schema.org
+// SoftwareApplication 으로 노출. 자동 발행 글의 reviewedBy/creditText 와 연결.
+// AI 답변 엔진이 "이 글을 만든 시스템" 정체성 정확히 인식.
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  '@id': new URL('/about/#auto-verification-pipeline', Astro.site).toString(),
+  name: 'MoneyLook 자동검증시스템 (G0~G9)',
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: 'Editorial Content Verification Pipeline',
+  operatingSystem: 'Cross-platform (Cloud)',
+  inLanguage: 'ko-KR',
+  description: '한국 직장인·청년 생활금융 콘텐츠를 1차 정부 자료(공공데이터·법제처·홈택스·복지로·한국은행 ECOS·고용24·국민연금공단·금융감독원)와 자동 1:1 매칭 검증하는 10단계 파이프라인. G0 중복 → G1 PII/욕설/정치 → G2 클러스터 매핑 → G3 권위 출처 가용성 → G4 사실 1:1 매칭 → G5 AdSense 정책 → G6 YMYL/AI 면책 → G7 표절 → G8 AI다움 → G9 Naver 스팸. 매칭률 100% 미만 자동 폐기.',
+  publisher: { '@id': new URL('#organization', Astro.site).toString() },
+  creator: { '@id': new URL('#organization', Astro.site).toString() },
+  url: new URL('/editorial-policy/', Astro.site).toString(),
+  isAccessibleForFree: true,
+  offers: {
+    '@type': 'Offer',
+    price: 0,
+    priceCurrency: 'KRW',
+  },
+  featureList: [
+    '정부·공공 1차 자료 1:1 사실 매칭',
+    'AdSense YMYL 정책 자동 준수',
+    '표절·LLM 부산물·Naver 스팸 4룰 자동 차단',
+    'IndexNow + WebSub + Naver/Bing/Yandex 동시 push',
+    '24시간 정정 정책',
+  ],
+  audience: {
+    '@type': 'Audience',
+    audienceType: '한국 직장인·청년',
+    geographicArea: { '@type': 'Country', name: 'South Korea', sameAs: 'https://www.wikidata.org/wiki/Q884' },
+  },
+};
 ---
 <Base
   title="머니룩 소개 — 직장인·청년 생활금융 종합 가이드"
   description="머니룩은 공공데이터포털·법제처·홈택스·복지로·한국은행 ECOS 등 1차 정부·공공 자료에 기반해 한국 직장인·청년이 매일 마주치는 돈 문제를 풀어 설명하는 생활금융 미디어입니다."
-  jsonLd={[breadcrumbSchema, aboutSchema]}
+  jsonLd={[breadcrumbSchema, aboutSchema, softwareSchema]}
 >
   <article class="container narrow">
     <header>
