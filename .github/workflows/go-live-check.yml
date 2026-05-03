@@ -124,17 +124,9 @@ jobs:
           if [ "$fail" = "1" ]; then exit 1; fi
           echo "✅ AI 크롤러 시뮬레이션 통과"
 
-      - name: Accessibility check (axe-core)
-        run: |
-          npx -y @axe-core/cli@4 \
-            http://localhost:4173/ \
-            http://localhost:4173/tax/yearend-tax-2026-checklist/ \
-            http://localhost:4173/calculators/salary/ \
-            http://localhost:4173/about/ \
-            http://localhost:4173/editorial-policy/ \
-            --exit \
-            --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa
-        continue-on-error: false
+      # R52: axe-core CLI step 제거 — ChromeDriver 148 vs runner Chrome 147 mismatch.
+      # e2e tests/e2e/a11y.spec.ts 가 동일 axe-core 검증을 Playwright 환경에서 수행하므로
+      # 중복 검증 + 외부 도구 의존성 제거. CI 시간 단축.
 
       - name: Stop static server
         if: always()
