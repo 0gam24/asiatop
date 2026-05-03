@@ -334,6 +334,43 @@ const claimReviewSchema = article.data.sources_verified && trustedSources.length
     }
   : null;
 
+// R52-A: Dataset schema 자동 부착 — sources_verified=true 글에 정부 공공데이터
+// 인용 사실을 Google Dataset Search 노출 형태로. 인용된 권위 출처(.go.kr·.or.kr)를
+// distribution.contentUrl 로 노출 + temporalCoverage(dataValidAsOf) + provider.
+// AI 답변 엔진의 "데이터 출처" 인용 가능성 ↑.
+const datasetSchema = article.data.sources_verified && trustedSources.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: `${article.data.title} — 인용 데이터셋`,
+      description: `${article.data.description.slice(0, 250)} (정부 1차 자료 ${trustedSources.length}건 인용·G4 fact-verify 통과)`,
+      url,
+      keywords: article.data.keywords.join(', '),
+      inLanguage: 'ko-KR',
+      isAccessibleForFree: true,
+      license: 'https://www.kogl.or.kr/info/license.do',
+      creator: { '@id': `${authorUrl}#author` },
+      publisher: { '@id': new URL('#organization', Astro.site).toString() },
+      ...(article.data.dataValidAsOf
+        ? (() => {
+            const m = article.data.dataValidAsOf.match(/^(\d{4})년\s*(\d{1,2})월$/);
+            return m ? { temporalCoverage: `${m[1]}-${m[2].padStart(2, '0')}` } : {};
+          })()
+        : {}),
+      distribution: trustedSources.map((s) => ({
+        '@type': 'DataDownload',
+        contentUrl: s.url,
+        encodingFormat: 'text/html',
+        name: s.title,
+      })),
+      ...(article.data.verified_facts_count
+        ? {
+            variableMeasured: `${article.data.verified_facts_count} 검증된 사실 (G4 1:1 매칭)`,
+          }
+        : {}),
+    }
+  : null;
+
 // R50-6: HowTo schema 자동 추출 — 절차형 클러스터(gov-support·public-services·
 // tax·insurance-labor·unemployment) 글에서 본문 H2 패턴 "## 1. xxx", "## 2. xxx"
 // ≥ 3개 시 HowTo schema 자동 생성. AI Overviews·Naver Clova rich result 인용 ↑.
@@ -382,6 +419,7 @@ const jsonLdList = [
   ...(qaSchema ? [qaSchema] : []),
   ...(claimReviewSchema ? [claimReviewSchema] : []),
   ...(howToSchema ? [howToSchema] : []),
+  ...(datasetSchema ? [datasetSchema] : []),
 ];
 
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
