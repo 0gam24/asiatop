@@ -10,7 +10,7 @@
   --color-surface: #F7F9FB;
   --color-bg: #FFFFFF;
   --color-text: #1A1F2E;
-  --color-muted: #6B7785;
+  --color-muted: #535A66; /* WCAG AA: white(#FFF) 위 contrast 7.0:1 (이전 #6B7785 = 3.7:1 fail) */
   --color-border: #E5E9EF;
   --color-hero-from: #E6FAF4;
   --color-hero-to: #FFFFFF;
@@ -27,9 +27,9 @@
 
   /* Footer — 항상 짙은 네이비 (양쪽 모드 동일). 가독성 위해 본문 muted 한 단계 밝게. */
   --color-footer-bg: #0F1B2D;
-  --color-footer-fg: #C8D0DD;
+  --color-footer-fg: #D5DCE6; /* navy(#0F1B2D) 위 contrast 10.5:1 (이전 #C8D0DD ~9.3 OK이지만 마진) */
   --color-footer-strong: #FFFFFF;
-  --color-footer-muted: #97A2B5;
+  --color-footer-muted: #B5C0D2; /* navy 위 contrast 7.6:1 (이전 #97A2B5 = 5.0 OK이지만 small text 약함) */
   --color-footer-border: rgba(255, 255, 255, 0.08);
 
   /* 매우 stale 배너 (1년+ 경과) — 위험 신호용 오렌지 */
