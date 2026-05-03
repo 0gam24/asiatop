@@ -1,0 +1,78 @@
+name: Auto Create PR
+
+# push 시 자동으로 PR 생성 (PR 자체가 없을 때만).
+# 사용자 부담: branch push 후 PR 생성 클릭 X.
+# 후속: auto-merge.yml 이 자동 enable → CI green 시 자동 squash merge.
+
+on:
+  push:
+    branches:
+      - 'fix/**'
+      - 'feat/**'
+      - 'chore/**'
+      - 'docs/**'
+      - 'refactor/**'
+      - 'perf/**'
+      - 'test/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-pr:
+    name: Create PR for trusted authors
+    runs-on: ubuntu-latest
+    # 본인(repo owner) 또는 봇만 자동 PR 생성
+    if: |
+      github.actor == github.repository_owner ||
+      endsWith(github.actor, '[bot]')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create PR if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          # 이미 open PR 있으면 skip
+          existing=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
+          if [ "$existing" -gt 0 ]; then
+            echo "✅ PR already open for $BRANCH (skip)"
+            exit 0
+          fi
+
+          # main 과 비교해서 변경 commit 있는지 확인
+          ahead=$(git rev-list --count "origin/main..HEAD")
+          if [ "$ahead" -eq 0 ]; then
+            echo "::notice::No commits ahead of main. Skip PR creation."
+            exit 0
+          fi
+
+          # 첫 commit 메시지를 PR 제목으로
+          title=$(git log -1 --pretty=%s "origin/main..HEAD" | head -1)
+          if [ -z "$title" ]; then
+            title="$(git log -1 --pretty=%s)"
+          fi
+
+          # body: ahead commit 목록 + auto 안내
+          {
+            echo "## Auto-created PR"
+            echo ""
+            echo "Push 트리거 자동 생성. CI green 시 \`auto-merge.yml\` 이 자동 squash merge."
+            echo ""
+            echo "### Commits ($ahead)"
+            git log "origin/main..HEAD" --pretty=format:'- %s (%h)' | head -20
+          } > /tmp/pr-body.md
+
+          gh pr create \
+            --title "$title" \
+            --body-file /tmp/pr-body.md \
+            --base main \
+            --head "$BRANCH"
+
+          echo "✅ Auto PR created for $BRANCH"
