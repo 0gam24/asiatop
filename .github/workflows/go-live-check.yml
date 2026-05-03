@@ -102,9 +102,10 @@ jobs:
         run: |
           set -e
           fail=0
+          # trailingSlash:'always' — URL 에 / 명시 + curl -L 로 redirect follow
           for ua in "GPTBot/1.0" "ClaudeBot/1.0" "PerplexityBot/1.0"; do
-            for path in "/" "/tax/yearend-tax-2026-checklist" "/about"; do
-              body=$(curl -sf -A "$ua" "http://localhost:4173${path}" || echo "")
+            for path in "/" "/tax/yearend-tax-2026-checklist/" "/about/"; do
+              body=$(curl -sLf -A "$ua" "http://localhost:4173${path}" || echo "")
               if [ -z "$body" ]; then
                 echo "::error::$ua $path — 응답 비어 있음"
                 fail=1
@@ -127,10 +128,10 @@ jobs:
         run: |
           npx -y @axe-core/cli@4 \
             http://localhost:4173/ \
-            http://localhost:4173/tax/yearend-tax-2026-checklist \
-            http://localhost:4173/calculators/salary \
-            http://localhost:4173/about \
-            http://localhost:4173/editorial-policy \
+            http://localhost:4173/tax/yearend-tax-2026-checklist/ \
+            http://localhost:4173/calculators/salary/ \
+            http://localhost:4173/about/ \
+            http://localhost:4173/editorial-policy/ \
             --exit \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa
         continue-on-error: false
