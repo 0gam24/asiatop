@@ -1,0 +1,58 @@
+name: Auto Merge
+
+# Single contributor 프로젝트의 PR 자동 머지 워크플로.
+# - PR 생성 시 GitHub native "auto-merge" 활성 → CI 통과 즉시 squash merge.
+# - 안전망:
+#     1. author 본인(또는 봇)만 자동 머지
+#     2. draft PR 제외
+#     3. "no-auto-merge" 라벨 있으면 스킵 (긴급 정지)
+#     4. CI fail 시 머지 안 됨 (auto-merge 자체가 CI green 대기)
+#
+# 선행 조건 (1회 설정):
+#   GitHub repo Settings → General → Pull Requests → "Allow auto-merge" 체크.
+#   미설정 시 워크플로는 동작하지만 머지는 일어나지 않음 (no-op).
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  enable-auto-merge:
+    name: Enable auto-merge for trusted PRs
+    runs-on: ubuntu-latest
+    # 안전망 — 다음 모두 충족 시만 실행:
+    #   - author = repo owner(0gam24) 또는 GitHub bot
+    #   - draft 아님
+    #   - "no-auto-merge" 라벨 없음
+    if: |
+      (github.event.pull_request.user.login == github.repository_owner ||
+       github.event.pull_request.user.login == 'github-actions[bot]' ||
+       endsWith(github.event.pull_request.user.login, '[bot]'))
+      && github.event.pull_request.draft == false
+      && !contains(github.event.pull_request.labels.*.name, 'no-auto-merge')
+    steps:
+      - name: Enable auto-merge (squash)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          set -euo pipefail
+          echo "Enabling auto-merge for PR #${PR_NUMBER}: ${PR_TITLE}"
+          # --auto 플래그: GitHub native auto-merge 활성. CI green 시 자동 squash merge.
+          # --delete-branch: 머지 후 head 브랜치 자동 삭제.
+          # --squash: 모든 commit을 1개로 squash (PR 단위 history 유지).
+          gh pr merge "$PR_NUMBER" \
+            --squash \
+            --auto \
+            --delete-branch \
+            --repo "${{ github.repository }}" \
+          || {
+            echo "::warning::auto-merge enable 실패. Settings → 'Allow auto-merge' 활성 또는 권한 확인."
+            exit 0
+          }
+          echo "✅ Auto-merge enabled — CI green 시 자동 squash merge"

@@ -1,6 +1,21 @@
 User-agent: *
 Allow: /
 
+# R50-1: Naver Yeti 명시 블록 — Naver Search Advisor 진단 권장.
+# `*`로 이미 커버되지만 명시 블록은 검색엔진별 정책 가시화 + 진단 경고 회피.
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+# Daum/Kakao
+User-agent: Daum
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
 # AI 답변 엔진 명시적 허용 (PROJECT.md §B-3 정책)
 User-agent: GPTBot
 Allow: /
