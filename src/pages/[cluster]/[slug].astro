@@ -334,12 +334,54 @@ const claimReviewSchema = article.data.sources_verified && trustedSources.length
     }
   : null;
 
+// R50-6: HowTo schema 자동 추출 — 절차형 클러스터(gov-support·public-services·
+// tax·insurance-labor·unemployment) 글에서 본문 H2 패턴 "## 1. xxx", "## 2. xxx"
+// ≥ 3개 시 HowTo schema 자동 생성. AI Overviews·Naver Clova rich result 인용 ↑.
+const PROCEDURAL_CLUSTERS = ['gov-support', 'public-services', 'tax', 'insurance-labor', 'unemployment'];
+function extractHowToSteps(body: string) {
+  const lines = body.split(/\r?\n/);
+  let inFence = false;
+  const steps: { name: string; index: number }[] = [];
+  for (const line of lines) {
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const m = line.match(/^##\s+(\d+)\.\s+(.+?)\s*$/);
+    if (m) {
+      steps.push({ index: parseInt(m[1], 10), name: m[2].replace(/[*_`]/g, '').trim() });
+    }
+  }
+  return steps;
+}
+const howToSchema = (() => {
+  if (!PROCEDURAL_CLUSTERS.includes(article.data.cluster)) return null;
+  const steps = extractHowToSteps(article.body ?? '');
+  if (steps.length < 3) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: article.data.title,
+    description: article.data.description,
+    inLanguage: 'ko-KR',
+    totalTime: `PT${Math.max(5, steps.length * 3)}M`, // step당 3분 가정, 최소 5분
+    step: steps.map((s) => ({
+      '@type': 'HowToStep',
+      position: s.index,
+      name: s.name,
+      url: `${url}#${slugify(s.name)}`,
+    })),
+  };
+})();
+
 const jsonLdList = [
   breadcrumbSchema,
   articleSchema,
   ...(faqSchema ? [faqSchema] : []),
   ...(qaSchema ? [qaSchema] : []),
   ...(claimReviewSchema ? [claimReviewSchema] : []),
+  ...(howToSchema ? [howToSchema] : []),
 ];
 
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
