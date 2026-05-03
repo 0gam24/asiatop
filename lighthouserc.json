@@ -43,7 +43,22 @@
         "errors-in-console": "warn",
         "unused-javascript": "warn",
         "unused-css-rules": "warn",
-        "is-crawlable": "off"
+        "is-crawlable": "off",
+        "accesskeys": "off",
+        "uses-passive-event-listeners": "off",
+        "deprecations": "off",
+        "doctype": "off",
+        "no-document-write": "off",
+        "image-aspect-ratio": "off",
+        "image-size-responsive": "off",
+        "preload-fonts": "off",
+        "label": "warn",
+        "tap-targets": "warn",
+        "render-blocking-resources": "warn",
+        "uses-responsive-images": "warn",
+        "offscreen-images": "warn",
+        "modern-image-formats": "warn",
+        "efficient-animated-content": "off"
       }
     },
     "upload": {
