@@ -275,10 +275,13 @@ function checkPage(file, html) {
   if (blocks.length === 0) localErrors.push('JSON-LD 누락');
   const ld = parseJsonLd(blocks, rel);
 
-  // 홈: Organization + WebSite
+  // 홈: Organization (또는 NewsMediaOrganization) + WebSite
+  // R48: Organization → NewsMediaOrganization 업그레이드. 둘 다 허용.
   if (rel === 'index.html') {
     const types = ld.map((o) => o['@type']).flat();
-    if (!types.includes('Organization')) localErrors.push('홈에 Organization 스키마 누락');
+    if (!types.some((t) => t === 'Organization' || t === 'NewsMediaOrganization')) {
+      localErrors.push('홈에 Organization/NewsMediaOrganization 스키마 누락');
+    }
     if (!types.includes('WebSite')) localErrors.push('홈에 WebSite 스키마 누락');
   }
 
@@ -325,6 +328,10 @@ function checkAllPages() {
     const rel = relative(DIST, file).replace(/\\/g, '/');
     // Pagefind 산출물 등 제외
     if (rel.startsWith('pagefind/')) continue;
+    // R50: 검색엔진 verification 파일은 raw text(.html 확장자)이지만 표준 HTML 룰
+    // 미적용 (lang·viewport·title·canonical·OG·H1·skip link 모두 부재 의도).
+    // Naver(naver*.html)·Google(google*.html)·Bing(BingSiteAuth.xml은 자동 제외) 패턴.
+    if (/^(naver[a-f0-9]+|google[a-f0-9]+)\.html$/.test(rel)) continue;
     const html = readFile(file);
     checkPage(file, html);
     count++;
