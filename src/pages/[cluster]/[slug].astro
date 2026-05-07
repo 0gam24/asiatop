@@ -7,6 +7,7 @@ import ArticleCard from '../../components/ArticleCard.astro';
 import HeroIllustration from '../../components/HeroIllustration.astro';
 import SourceVerificationBadge from '../../components/SourceVerificationBadge.astro';
 import VerificationDetails from '../../components/VerificationDetails.astro';
+import MainBackrefBox from '../../components/MainBackrefBox.astro';
 import { getRelatedArticles } from '../../lib/related-articles';
 import { isTrustedUrl } from '../../../scripts/lib/trusted-domains.mjs';
 
@@ -230,6 +231,11 @@ const articleSchema = {
     '@type': 'Organization',
     '@id': new URL('#organization', Astro.site).toString(),
     name: '머니룩',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: '스마트데이터샵',
+      url: 'https://smartdatashop.kr',
+    },
     logo: {
       '@type': 'ImageObject',
       url: new URL('/logo.svg', Astro.site).toString(),
@@ -237,6 +243,7 @@ const articleSchema = {
       height: 60,
     },
   },
+  isBasedOn: 'https://smartdatashop.kr/',
   mainEntityOfPage: url,
   about: article.data.keywords.map((k) => ({ '@type': 'Thing', name: k })),
   keywords: article.data.keywords.join(', '),
@@ -571,6 +578,9 @@ const ageMonths = Math.floor(ageInDays / 30);
           머니룩의 모든 글은 발행 전 8단계 자동 검증 게이트(G0~G8)를 거치며, 본문 사실은 정부 공식 API 응답과 1:1 매칭됩니다.
         </p>
       </section>
+
+      <!-- smartdatashop network 메인 backref — 1차 출처 데이터 저널 funnel -->
+      <MainBackrefBox variant="inline" cluster={article.data.cluster as never} />
 
       {relatedArticles.length > 0 && (
         <section class="related" data-pagefind-ignore>

@@ -1,5 +1,6 @@
 ---
 import { clusters } from '../data/clusters';
+import MainBackrefBox from './MainBackrefBox.astro';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
@@ -52,6 +53,10 @@ const year = new Date().getFullYear();
           <li><a href="/feeds/">카테고리별 피드 12종</a></li>
         </ul>
       </div>
+    </div>
+    <div class="network">
+      <h2>네트워크</h2>
+      <MainBackrefBox variant="footer" />
     </div>
     <div class="biz-info">
       <strong>사업자 정보</strong>
@@ -126,6 +131,15 @@ const year = new Date().getFullYear();
   color: var(--color-footer-fg);
 }
 .links a:hover { color: var(--color-primary); }
+
+.network {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-footer-border);
+}
+.network h2 {
+  margin-bottom: 0.75rem;
+}
 
 .biz-info {
   margin-top: 2rem;

@@ -4,6 +4,7 @@ import { clusters, findCluster, clusterAccentDark } from '../../data/clusters';
 import ArticleCard from '../../components/ArticleCard.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import HeroIllustration from '../../components/HeroIllustration.astro';
+import MainBackrefBox from '../../components/MainBackrefBox.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -81,6 +82,7 @@ const collectionSchema = {
       <ul class="seed">
         {cluster.seedKeywords.map((k) => <li>{k}</li>)}
       </ul>
+      <MainBackrefBox variant="inline" cluster={cluster.slug as never} />
     </div>
   </div>
 
