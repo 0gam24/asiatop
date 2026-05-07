@@ -1,0 +1,230 @@
+---
+/**
+ * MainBackrefBox — smartdatashop network 메인 사이트 backref.
+ *
+ * 자매 페이지 하단·푸터에 "본 데이터 출처" 박스를 노출.
+ * 메인 사이트(smartdatashop.kr)가 1차 출처 데이터 저널임을 명시하고,
+ * 12 cluster → 메인 카테고리 자동 매핑으로 자연 funnel.
+ *
+ * 디자인: 메인 accent(#8b1538)만 사용 — cluster accent 와 분리.
+ * SEO: rel="noopener noreferrer" + target="_blank" (자연 funnel, dofollow 강제 X).
+ */
+
+export interface Props {
+  /** 메인 펄스 직접 link (있으면 최우선) */
+  mainPulseUrl?: string;
+  /** 메인 카테고리 link (펄스 없을 때) */
+  mainCategoryUrl?: string;
+  /** 메인 펄스 제목 — subtitle 으로 표시 */
+  pulseTitle?: string;
+  /** 박스 제목 — 기본 "본 데이터 출처" */
+  title?: string;
+  /** 위치별 스타일 — inline (본문 끝) / sidebar (사이드바) / footer (사이트 푸터) */
+  variant?: 'inline' | 'sidebar' | 'footer';
+  /** 12 cluster 자동 매핑 (cluster 지정 시 메인 카테고리 자동 추론) */
+  cluster?:
+    | 'tax'
+    | 'realestate'
+    | 'unemployment'
+    | 'gov-support'
+    | 'savings'
+    | 'insurance-labor'
+    | 'auto'
+    | 'public-services'
+    | 'office-tips'
+    | 'credit-loan'
+    | 'insurance-personal'
+    | 'pension';
+}
+
+// CATEGORY_MAP.md §3.3 — 12 cluster → 메인 카테고리 매핑.
+// 운영자 spec 과 일치 (변경 시 양쪽 동시 갱신).
+const CLUSTER_TO_MAIN_CATEGORY: Record<string, string> = {
+  tax: 'tax-finance',
+  realestate: 'tax-finance',
+  unemployment: 'policy',
+  'gov-support': 'policy',
+  savings: 'tax-finance',
+  'insurance-labor': 'policy',
+  auto: 'tax-finance',
+  'public-services': 'policy',
+  'office-tips': 'policy',
+  'credit-loan': 'tax-finance',
+  'insurance-personal': 'tax-finance',
+  pension: 'tax-finance',
+};
+
+const {
+  mainPulseUrl,
+  mainCategoryUrl,
+  pulseTitle,
+  title = '본 데이터 출처',
+  variant = 'inline',
+  cluster,
+} = Astro.props;
+
+// 우선순위: pulse URL > category URL > cluster 자동 매핑 > 메인 홈
+const autoCategoryUrl =
+  cluster && CLUSTER_TO_MAIN_CATEGORY[cluster]
+    ? `https://smartdatashop.kr/category/${CLUSTER_TO_MAIN_CATEGORY[cluster]}/`
+    : null;
+
+const targetUrl =
+  mainPulseUrl || mainCategoryUrl || autoCategoryUrl || 'https://smartdatashop.kr/';
+
+const subtitle = pulseTitle || '한국 정부·공공기관 1차 출처 데이터 저널';
+---
+
+<aside class:list={['mb-box', `mb-box--${variant}`]} aria-label="메인 사이트 출처">
+  <div class="mb-box__row">
+    <div class="mb-box__body">
+      <p class="mb-box__kicker">
+        <span class="mb-box__icon" aria-hidden="true">📊</span>
+        {title}
+      </p>
+      <p class="mb-box__subtitle">{subtitle}</p>
+      <a
+        href={targetUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mb-box__link"
+      >
+        검증·해설 → <span class="mb-box__brand">smartdatashop.kr</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="mb-box__ext"
+          width="14"
+          height="14"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  /* 메인 토큰 — 자매 cluster accent 와 분리 (NETWORK.md dual-brand) */
+  .mb-box {
+    --mb-accent: #8b1538;
+    --mb-bg: #faf7f0;
+    --mb-text: #1f2937;
+    --mb-muted: #4b5563;
+
+    background: var(--mb-bg);
+    border-left: 4px solid var(--mb-accent);
+    border-radius: 0 6px 6px 0;
+    padding: 0.85rem 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    color: var(--mb-text);
+    font-family: inherit; /* Pretendard 상속 */
+  }
+
+  .mb-box--inline {
+    margin: 2rem 0;
+    max-width: 720px;
+  }
+  .mb-box--sidebar {
+    position: sticky;
+    top: 1rem;
+  }
+  .mb-box--footer {
+    margin: 0 auto;
+    max-width: 56rem;
+  }
+
+  .mb-box__row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .mb-box__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .mb-box__kicker {
+    margin: 0 0 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--mb-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .mb-box__icon {
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+
+  .mb-box__subtitle {
+    margin: 0 0 0.55rem;
+    color: var(--mb-muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .mb-box__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--mb-accent);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .mb-box__link:hover,
+  .mb-box__link:focus-visible {
+    border-bottom-color: var(--mb-accent);
+    text-decoration: none;
+    outline: none;
+  }
+  .mb-box__brand {
+    font-weight: 800;
+  }
+  .mb-box__ext {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 720px) {
+    .mb-box {
+      padding: 0.75rem 0.85rem;
+    }
+    .mb-box__kicker {
+      font-size: 0.68rem;
+    }
+    .mb-box__subtitle {
+      font-size: 0.82rem;
+    }
+    .mb-box__link {
+      font-size: 0.82rem;
+    }
+  }
+
+  /* 다크 모드 — 메인 accent 그대로 유지(브랜드 일관성), 배경만 톤 다운 */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .mb-box {
+      --mb-bg: #2a2520;
+      --mb-text: #e5e7eb;
+      --mb-muted: #9ca3af;
+    }
+  }
+  [data-theme='dark'] .mb-box {
+    --mb-bg: #2a2520;
+    --mb-text: #e5e7eb;
+    --mb-muted: #9ca3af;
+  }
+</style>
