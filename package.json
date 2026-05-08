@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/svg-to-png.mjs && node scripts/generate-llms.mjs && pnpm pagefind && node scripts/post-build/sitemap-lastmod.mjs && node scripts/post-build/sitemap-index.mjs && node scripts/audit/auto-registration.mjs",
+    "generate:mirror": "node scripts/generate-network-mirror.mjs",
+    "prebuild": "node scripts/generate-network-mirror.mjs",
+    "build": "node scripts/generate-network-mirror.mjs && astro build && node scripts/svg-to-png.mjs && node scripts/generate-llms.mjs && pnpm pagefind && node scripts/post-build/sitemap-lastmod.mjs && node scripts/post-build/sitemap-index.mjs && node scripts/audit/auto-registration.mjs",
     "audit:auto-reg": "node scripts/audit/auto-registration.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",
     "preview": "astro preview",

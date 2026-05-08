@@ -86,3 +86,6 @@ test-results/
 # 자동 발행 파이프라인 — 테스트 dedup state (prod state는 git tracked)
 briefs/_pool/.test-dedup-index.json
 logs/fact-verifier/
+
+# Network mirror — 빌드 시 자동 생성 (smartdata HQ Network Index sync), git tracked X
+public/network-mirror.json
