@@ -255,6 +255,7 @@
 - [stale-content-check.yml](.github/workflows/stale-content-check.yml) — 매주 월 KST 09:00 cron — 노후 콘텐츠 Issue 알림
 
 ## 11. scripts
+- [generate-network-mirror.mjs](scripts/generate-network-mirror.mjs) — smartdata HQ Network Index 용 `public/network-mirror.json` 자동 생성 (108편 + 12 cluster × 9편 균등 + cluster→메인카테고리/페르소나 매핑). build chain 의 첫 단계 + `prebuild` hook 동시 등록. 산출물은 `.gitignore` 처리.
 - [article-pipeline.mjs](scripts/article-pipeline.mjs) — 자동 발행 파이프라인 진입점
 - [auto-publish.mjs](scripts/auto-publish.mjs) — cron 발행 큐 처리
 - [generate-llms.mjs](scripts/generate-llms.mjs) / [generate-llms-full.mjs](scripts/generate-llms-full.mjs) — llms.txt / llms-full.txt 생성
@@ -273,7 +274,8 @@
 
 ## 12. 빌드·배포 명령
 - `pnpm dev` — astro dev
-- `pnpm build` — astro build && svg-to-png && generate-llms && pagefind && sitemap-lastmod && sitemap-index && audit:auto-reg
+- `pnpm generate:mirror` — `public/network-mirror.json` 즉시 갱신 (수동)
+- `pnpm build` — generate-network-mirror && astro build && svg-to-png && generate-llms && pagefind && sitemap-lastmod && sitemap-index && audit:auto-reg (`prebuild` hook 동시 wired)
 - `pnpm preview` — astro preview
 - `pnpm check` — astro check && tsc --noEmit
 - `pnpm test` / `test:watch` / `test:cov` — Vitest
@@ -398,3 +400,4 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 ## 21. 변경 이력
 - 2026-05-07 — 초기 자동 생성 (commit 8b8c529 기준)
 - 2026-05-07 — MainBackrefBox 컴포넌트 신설 + 글 상세/클러스터 인덱스/Footer sitewide 적용 + Article schema parentOrganization·isBasedOn 추가 (smartdatashop network 자매 박힘)
+- 2026-05-07 — generate-network-mirror.mjs 신설 + build chain·prebuild 등록 + `.gitignore` 산출물 제외 (smartdata HQ Network Index sync)
