@@ -243,6 +243,54 @@ jobs:
           path: ${{ steps.llm.outputs.mdx_path }}
           retention-days: 7
 
+      # R54-3a — Post-LLM 게이트 G5~G8 (AdSense·disclosure·plagiarism·ai-likeness).
+      # G4 fact-verify 는 article-pipeline.mjs PASS 5 가 이미 처리 (LLM step 안).
+      # auto-publish.mjs postLLMOnly 가 G4~G8 모두 호출하지만 G4 중복은 mock 응답 캐시되어 무해.
+      - name: Post-LLM 게이트 (G4~G8) — dry_run=false 일 때만
+        if: steps.llm.outputs.mdx_path != '' && inputs.dry_run != 'true'
+        id: post_gates
+        continue-on-error: true
+        env:
+          LAW_GO_KR_OC: ${{ secrets.LAW_GO_KR_OC }}
+          BOK_API_KEY: ${{ secrets.BOK_API_KEY }}
+          FSS_KEY: ${{ secrets.FSS_KEY }}
+          YOUTH_CENTER_API_KEY: ${{ secrets.YOUTH_CENTER_API_KEY }}
+          NPS_KEY: ${{ secrets.NPS_KEY }}
+          MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
+          AI_LIKENESS_THRESHOLD: '7.0'
+        run: |
+          set +e
+          node scripts/auto-publish.mjs \
+            --brief /tmp/v2/brief.yaml \
+            --mdx "${{ steps.llm.outputs.mdx_path }}" \
+            --dry-run 2>&1 | tee /tmp/v2/post-llm.json
+          exit_code=$?
+          set -e
+          {
+            echo ""
+            echo "## R54-3a Post-LLM 게이트 결과 (exit=$exit_code)"
+            echo '```json'
+            cat /tmp/v2/post-llm.json
+            echo '```'
+            if [ "$exit_code" -eq 0 ]; then
+              echo ""
+              echo "### ✅ 모든 게이트 PASS — production 발행 가능 상태"
+              echo "post_llm_pass=true" >> "$GITHUB_OUTPUT"
+            else
+              echo ""
+              echo "### ❌ 게이트 FAIL — 폐기 (briefs/_pool/_rejected/ 기록은 dry-run 이라 안 됨)"
+              echo "post_llm_pass=false" >> "$GITHUB_OUTPUT"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Post-LLM 결과 아티팩트 업로드
+        if: steps.post_gates.conclusion != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto-publish-post-llm-result
+          path: /tmp/v2/post-llm.json
+          retention-days: 7
+
       - name: dedup·rejected audit 커밋 (변경 시)
         if: steps.pick.outputs.skip == 'false'
         env:
