@@ -22,5 +22,11 @@
     "status": "pending",
     "reason": null,
     "count": 1
+  },
+  "a014aca2c10b626c": {
+    "last_seen_at": "2026-05-12T04:29:21.664Z",
+    "status": "rejected",
+    "reason": "g3-empty-response",
+    "count": 1
   }
 }
