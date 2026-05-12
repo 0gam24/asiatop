@@ -54,6 +54,10 @@ const url = new URL(`/${article.data.cluster}/${slug}/`, Astro.site).toString();
 const ogImagePath = `/og/${article.data.cluster}/${slug}.png`;
 const heroImage = new URL(`/og/${article.data.cluster}/${slug}.png`, Astro.site).toString();
 const heroImageSvg = new URL(`/og/${article.data.cluster}/${slug}.svg`, Astro.site).toString();
+// R65 — 1:1 정사각형 OG variant (Perplexity·Discover 모바일 카드 우위).
+// Google Article schema 권장: 16:9 + 1:1 두 비율 동시 노출.
+const heroImageSquare = new URL(`/og-square/${article.data.cluster}/${slug}.png`, Astro.site).toString();
+const heroImageSquareSvg = new URL(`/og-square/${article.data.cluster}/${slug}.svg`, Astro.site).toString();
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -149,7 +153,7 @@ const articleSchema = {
   headline: article.data.title,
   description: article.data.description,
   url,
-  image: [heroImage, heroImageSvg],
+  image: [heroImage, heroImageSquare, heroImageSvg, heroImageSquareSvg],
   thumbnailUrl: heroImage,
   datePublished: article.data.publishedAt.toISOString(),
   dateModified: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),

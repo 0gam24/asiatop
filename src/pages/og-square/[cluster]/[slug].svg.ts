@@ -1,3 +1,14 @@
+/**
+ * R65 — 1:1 OG variant (1200×1200)
+ *
+ * 16:9 OG 카드와 별개로 정사각형 카드 생성.
+ * 이유:
+ *   - Google Discover 모바일 피드: 정사각형 카드 CTR 30~50% 우위
+ *   - Perplexity 답변 카드 우측 썸네일: 1:1 가장 잘 잡힘
+ *   - X·Threads·LinkedIn 모바일: 1:1 노출 우위
+ *
+ * JSON-LD Article.image 배열에 16:9 + 1:1 동시 노출 → Google 권장.
+ */
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 import { findCluster } from '../../../data/clusters';
@@ -38,11 +49,6 @@ const escapeXml = (s: string) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 
-/**
- * R65 — CTR 후크 추출.
- * keywords[0] 가 짧고 강한 명사형 (예: "야근수당"·"임차권등기") → 후크 1순위.
- * fallback: 타이틀의 첫 어절 (8자 이내).
- */
 function pickHook(article: ArticleProp): string {
   const kw = article.data.keywords?.[0];
   if (kw && kw.length <= 18) return kw;
@@ -50,7 +56,7 @@ function pickHook(article: ArticleProp): string {
   return firstWord.slice(0, 14);
 }
 
-function wrapTitle(title: string, maxPerLine: number = 18): string[] {
+function wrapTitle(title: string, maxPerLine: number = 16): string[] {
   const lines: string[] = [];
   let current = '';
   for (const ch of title) {
@@ -62,7 +68,7 @@ function wrapTitle(title: string, maxPerLine: number = 18): string[] {
     current += ch;
   }
   if (current) lines.push(current.trim());
-  return lines.slice(0, 2);
+  return lines.slice(0, 3);
 }
 
 export async function GET(context: APIContext) {
@@ -73,11 +79,11 @@ export async function GET(context: APIContext) {
   const icon = getClusterIcon(article.data.cluster);
 
   const hook = pickHook(article);
-  const titleLinesArr = wrapTitle(article.data.title, 18);
+  const titleLinesArr = wrapTitle(article.data.title, 16);
   const titleLines = titleLinesArr
     .map(
       (line, i) =>
-        `<tspan x="80" dy="${i === 0 ? 0 : 52}">${escapeXml(line)}</tspan>`,
+        `<tspan x="80" dy="${i === 0 ? 0 : 48}">${escapeXml(line)}</tspan>`,
     )
     .join('');
 
@@ -86,13 +92,11 @@ export async function GET(context: APIContext) {
     year: 'numeric',
     month: 'long',
   }).format(refDate);
-
-  // 우하단 데이터 갱신일 — YMYL 신선도 신호 + CTR 가산
   const validAsOf = article.data.dataValidAsOf
     ? `${article.data.dataValidAsOf} 기준`
     : `${dateStr} 기준`;
 
-  const iconSize = 36;
+  const iconSize = 48;
   const iconScale = iconSize / 24;
   const iconStrokePx = 1.6;
   const iconStrokeNorm = iconStrokePx / iconScale;
@@ -102,7 +106,7 @@ export async function GET(context: APIContext) {
     ...(icon.lines ?? []).map((l) => `<line x1="${l.x1}" y1="${l.y1}" x2="${l.x2}" y2="${l.y2}"/>`),
   ].join('');
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0F1B2D"/>
@@ -117,40 +121,40 @@ export async function GET(context: APIContext) {
     </pattern>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#grid)"/>
 
-  <!-- 좌측 액센트 바 (CTR 시각 후크) -->
-  <rect x="0" y="0" width="16" height="630" fill="url(#accentGlow)"/>
+  <!-- 액센트 바 (좌) -->
+  <rect x="0" y="0" width="16" height="1200" fill="url(#accentGlow)"/>
 
-  <!-- 우상단 액센트 블롭 (시선 분산 + 시각 임팩트) -->
-  <circle cx="1080" cy="100" r="160" fill="${accent}" opacity="0.18"/>
-  <circle cx="1140" cy="50" r="80" fill="${accent}" opacity="0.25"/>
+  <!-- 우상단 블롭 -->
+  <circle cx="1080" cy="120" r="200" fill="${accent}" opacity="0.18"/>
+  <circle cx="1140" cy="60" r="100" fill="${accent}" opacity="0.25"/>
 
-  <!-- Brand mark + 클러스터 태그 (좌상) -->
-  <g transform="translate(80, 80)">
-    <text x="0" y="32" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="-1">머니룩</text>
-    <circle cx="92" cy="22" r="6" fill="#00C896"/>
-    <text x="116" y="32" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600" fill="${accent}" letter-spacing="-0.3">${escapeXml(clusterTitle)}</text>
+  <!-- Brand + 클러스터 태그 (좌상) -->
+  <g transform="translate(80, 100)">
+    <text x="0" y="40" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="36" font-weight="800" fill="#FFFFFF" letter-spacing="-1.2">머니룩</text>
+    <circle cx="118" cy="28" r="8" fill="#00C896"/>
+    <text x="146" y="40" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="600" fill="${accent}" letter-spacing="-0.4">${escapeXml(clusterTitle)}</text>
   </g>
 
-  <!-- 짧은 niche 후크 (CTR 1순위 텍스트) — 큰 폰트 + 액센트 컬러 -->
-  <text x="80" y="240" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="76" font-weight="900" fill="${accent}" letter-spacing="-3">${escapeXml(hook)}</text>
+  <!-- 짧은 niche 후크 — 가운데 큰 폰트 (1:1 가독성 핵심) -->
+  <text x="80" y="540" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="120" font-weight="900" fill="${accent}" letter-spacing="-5">${escapeXml(hook)}</text>
 
-  <!-- 풀 타이틀 (2줄 컷) — 보조 -->
-  <text x="80" y="340" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="40" font-weight="700" fill="#FFFFFF" letter-spacing="-1.5">${titleLines}</text>
+  <!-- 풀 타이틀 (3줄 컷) -->
+  <text x="80" y="690" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="42" font-weight="700" fill="#FFFFFF" letter-spacing="-1.4">${titleLines}</text>
 
-  <!-- 카테고리 아이콘 (우하단, 보조 시각 요소) -->
-  <g transform="translate(1040, 500) scale(${iconScale})" fill="none" stroke="${accent}" stroke-width="${iconStrokeNorm}" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">${iconParts}</g>
+  <!-- 카테고리 아이콘 (우하단) -->
+  <g transform="translate(1020, 1020) scale(${iconScale})" fill="none" stroke="${accent}" stroke-width="${iconStrokeNorm}" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">${iconParts}</g>
 
-  <!-- 우하단 데이터 갱신일 (YMYL 신선도 + CTR 가산) -->
-  <g transform="translate(80, 550)">
-    <rect x="0" y="0" width="220" height="36" rx="18" fill="rgba(255,255,255,0.08)" stroke="${accent}" stroke-width="1"/>
-    <text x="110" y="23" text-anchor="middle" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600" fill="#FFFFFF">${escapeXml(validAsOf)}</text>
+  <!-- 데이터 갱신일 (좌하단) -->
+  <g transform="translate(80, 1080)">
+    <rect x="0" y="0" width="260" height="44" rx="22" fill="rgba(255,255,255,0.08)" stroke="${accent}" stroke-width="1.2"/>
+    <text x="130" y="29" text-anchor="middle" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="600" fill="#FFFFFF">${escapeXml(validAsOf)}</text>
   </g>
 
-  <!-- Footer 도메인 -->
-  <text x="1120" y="572" text-anchor="end" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="500" fill="#6B7785">asiatop.co.kr</text>
+  <!-- 도메인 (우하단) -->
+  <text x="1120" y="1108" text-anchor="end" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="500" fill="#6B7785">asiatop.co.kr</text>
 </svg>`;
 
   return new Response(svg, {

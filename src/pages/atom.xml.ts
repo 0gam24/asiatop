@@ -40,22 +40,28 @@ export async function GET(context: APIContext) {
       const slug = article.id.replace(/\.mdx?$/, '');
       const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
       const cluster = findCluster(article.data.cluster);
+      // R65 — media:thumbnail + media:content (Yahoo Media RSS namespace) — Atom 도 동일하게 지원.
+      const ogUrl = new URL(`/og/${article.data.cluster}/${slug}.png`, context.site).toString();
+      const ogSquareUrl = new URL(`/og-square/${article.data.cluster}/${slug}.png`, context.site).toString();
       return `  <entry>
     <id>${escapeXml(pageUrl)}</id>
     <title>${escapeXml(article.data.title)}</title>
     <link rel="alternate" type="text/html" href="${escapeXml(pageUrl)}"/>
+    <link rel="enclosure" type="image/png" href="${escapeXml(ogUrl)}"/>
     <published>${article.data.publishedAt.toISOString()}</published>
     <updated>${(article.data.updatedAt ?? article.data.publishedAt).toISOString()}</updated>
     <author><name>${escapeXml(article.data.author)}</name></author>
     <summary>${escapeXml(article.data.description)}</summary>
     <category term="${escapeXml(article.data.cluster)}" label="${escapeXml(cluster?.title ?? article.data.cluster)}"/>
+    <media:content url="${escapeXml(ogUrl)}" type="image/png" medium="image" width="1200" height="630"/>
+    <media:thumbnail url="${escapeXml(ogSquareUrl)}" width="1200" height="1200"/>
     <content type="html"><![CDATA[${article.body ?? article.data.description}]]></content>
   </entry>`;
     })
     .join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <id>${escapeXml(siteUrl)}</id>
   <title>머니룩 — 직장인·청년 생활금융 가이드</title>
   <subtitle>정부지원금·세금환급·재테크·부동산·실업급여·노동·신용대출·보험·연금</subtitle>

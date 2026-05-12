@@ -27,12 +27,16 @@ export async function GET(context: APIContext) {
     const slug = article.id.replace(/\.mdx?$/, '');
     const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
     const cluster = findCluster(article.data.cluster);
+    // R65 — JSON Feed 1.1 image 필드 (16:9 OG). Discover·Reeder·NetNewsWire 모두 인식.
+    const ogUrl = new URL(`/og/${article.data.cluster}/${slug}.png`, context.site).toString();
     return {
       id: pageUrl,
       url: pageUrl,
       title: article.data.title,
       content_html: article.body ?? article.data.description,
       summary: article.data.description,
+      image: ogUrl,
+      banner_image: ogUrl,
       date_published: article.data.publishedAt.toISOString(),
       date_modified: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),
       tags: [...article.data.keywords, ...(cluster ? [cluster.title] : [])],

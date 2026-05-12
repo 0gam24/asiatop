@@ -174,7 +174,14 @@ const siteNavSchema = clusters.map((c, i) => ({
     <link rel="alternate" type="application/atom+xml" title="머니룩 Atom" href="/atom.xml" />
     <link rel="alternate" type="application/feed+json" title="머니룩 JSON Feed" href="/feed.json" />
 
-    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {noIndex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
+    )}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={fullTitle} />

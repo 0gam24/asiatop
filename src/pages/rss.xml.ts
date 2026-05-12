@@ -23,7 +23,12 @@ export async function GET(context: APIContext) {
   //   2. <image><url> SVG (RSS 표준은 GIF/JPEG/PNG — Naver 엄격)
   //   3. link URL trailing slash 위치 — utm 파라미터 앞에 붙이기
   return rss({
-    xmlns: { content: 'http://purl.org/rss/1.0/modules/content/' },
+    xmlns: {
+      content: 'http://purl.org/rss/1.0/modules/content/',
+      // R65 — Discover·Naver·Yahoo 등 모두 media RSS 표준 인식.
+      // media:thumbnail / media:content 가 RSS 피드 안 이미지 신호의 1순위.
+      media: 'http://search.yahoo.com/mrss/',
+    },
     title: '머니룩 — 직장인·청년 생활금융 가이드',
     description:
       '정부지원금·세금환급·재테크·부동산·실업급여·노동·신용대출·보험·연금. 한국 직장인이 매일 마주치는 돈 문제를 한곳에서.',
@@ -36,6 +41,9 @@ export async function GET(context: APIContext) {
       // CDATA 안에 들어가면서 Naver parser가 invalid XML로 거부).
       // 본문은 link 클릭으로 유도. RSS는 메타 + 요약만.
       const descCapped = (article.data.description ?? '').slice(0, 800);
+      // R65 — 절대 URL 16:9 OG PNG. Discover 카드화 1순위 신호.
+      const ogUrl = new URL(`/og/${article.data.cluster}/${slug}.png`, context.site).toString();
+      const ogSquareUrl = new URL(`/og-square/${article.data.cluster}/${slug}.png`, context.site).toString();
       return {
         title: article.data.title,
         pubDate: article.data.publishedAt,
@@ -43,7 +51,12 @@ export async function GET(context: APIContext) {
         link: `/${article.data.cluster}/${slug}/?${utm}`,
         categories: cluster ? [cluster.title] : [],
         author: article.data.author,
-        customData: `<dc:creator><![CDATA[${article.data.author}]]></dc:creator>`,
+        customData:
+          `<dc:creator><![CDATA[${article.data.author}]]></dc:creator>` +
+          // media:content (full) + media:thumbnail (preview) — Discover·Yahoo Media RSS 표준.
+          // 16:9 = content, 1:1 = thumbnail. Naver SA 도 media:content 우선 인식.
+          `<media:content url="${ogUrl}" type="image/png" medium="image" width="1200" height="630" />` +
+          `<media:thumbnail url="${ogSquareUrl}" width="1200" height="1200" />`,
       };
     }),
     customData: `<language>ko-KR</language>
