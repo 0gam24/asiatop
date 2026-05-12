@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { scrubUrl, scrubEvent } from '../../src/lib/error-tracking';
+import { scrubUrl, scrubEvent, parseSampleRate } from '../../src/lib/error-tracking';
 
 describe('scrubUrl', () => {
   it('절대 URL의 query string·fragment를 제거한다', () => {
@@ -71,5 +71,37 @@ describe('scrubEvent (Sentry beforeSend)', () => {
   it('request·user 없는 이벤트도 안전하게 처리', () => {
     const event = { message: 'test', level: 'error' };
     expect(() => scrubEvent(event)).not.toThrow();
+  });
+});
+
+describe('parseSampleRate (PUBLIC_SENTRY_SAMPLE_RATE 파싱)', () => {
+  it('미설정·빈 값은 0.1 (기본)', () => {
+    expect(parseSampleRate(undefined)).toBe(0.1);
+    expect(parseSampleRate('')).toBe(0.1);
+  });
+
+  it('잘못된 값(NaN·문자)은 0.1', () => {
+    expect(parseSampleRate('abc')).toBe(0.1);
+    expect(parseSampleRate('NaN')).toBe(0.1);
+  });
+
+  it('음수·0은 0.1', () => {
+    expect(parseSampleRate('-0.5')).toBe(0.1);
+    expect(parseSampleRate('0')).toBe(0.1);
+  });
+
+  it('1 초과는 1로 클램프', () => {
+    expect(parseSampleRate('5')).toBe(1);
+    expect(parseSampleRate('1.5')).toBe(1);
+  });
+
+  it('0.01 미만 양수는 0.01로 클램프 (무료 5K/월 보호)', () => {
+    expect(parseSampleRate('0.001')).toBe(0.01);
+  });
+
+  it('정상 범위는 그대로', () => {
+    expect(parseSampleRate('0.05')).toBe(0.05);
+    expect(parseSampleRate('0.5')).toBe(0.5);
+    expect(parseSampleRate('1')).toBe(1);
   });
 });

@@ -300,6 +300,7 @@
 - PUBLIC_BING_SITE_VERIFICATION
 - PUBLIC_SENTRY_DSN
 - PUBLIC_SENTRY_ENV (default: production)
+- PUBLIC_SENTRY_SAMPLE_RATE (optional, 0.01~1.0, default 0.1 — 무료 5K/월 보호)
 
 서버·빌드 전용:
 - ANTHROPIC_API_KEY — Claude (자동 발행 파이프라인 LLM)
@@ -411,3 +412,4 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-12 — robots.txt 정공 fix (User-agent: * 단일 그룹 통합, 명시 봇 26그룹 제거 — Disallow 모호성 0) + llms.txt 클러스터 카운트 분리 표기 (실제 발행 글 수 vs 본문 포함 글 수) (R53 #4)
 - 2026-05-12 — robots.txt 명시 봇 그룹 26종 복원 hotfix (e2e "User-agent: GPTBot 명시 검증" 회귀 안전망 + `*` 그룹 Disallow 유지로 모호성 해소 양립)
 - 2026-05-12 — law-go-kr 어댑터 V2 real fetch 구현 (R53 #5) — lawSearch.do (키워드 검색·법령 메타) + lawService.do (본문, 향후 토큰 매칭용 export 만). LAW_GO_KR_OC 미설정 시 mock fallback, confidence 0.5. tax·insurance-labor·office-tips·unemployment cluster 36편 영향. MOCK_AUTHORITY=0 첫 단계 어댑터.
+- 2026-05-12 — bok-ecos 어댑터 V2 real fetch (R53 #6, KeyStatisticList 100선 + 키워드 부분매칭) + author JSON sameAs 보강 (corrections/contact/smartdatashop.kr 추가) + Sentry sampleRate 환경변수화 (PUBLIC_SENTRY_SAMPLE_RATE, 0.01~1.0 클램프, parseSampleRate 단위테스트 6건)
