@@ -1,15 +1,19 @@
 name: Lighthouse CI
 
-# R52: mobile job 제거 — collect.preset='perf' + assertions:categories:accessibility/seo
-# 충돌(audit not run) 로 4회 연속 fail. desktop 만 측정 + production 점수는 PSI 실측.
-# mobile 점수 가시성 필요 시 R53 에서 정공 fix(preset 변경 + assertions 단순화) 후 복구.
+# R53 정공 fix — mobile job 복구.
+# R52 fail 원인: collect.settings.preset='perf' 가 accessibility/seo/best-practices audit 을
+#   건너뛰는데 assert 단계에서 categories:* 임계 검사 시도 → "audit not run" → fail.
+# R53 fix: lighthouserc.mobile.json 에서 preset='perf' 제거. formFactor + throttling +
+#   screenEmulation 으로 모바일 시뮬레이션 직접 지정. categories audit 정상 실행.
+#
+# desktop job 은 기존대로 (R52 그대로 동작 중).
 
 on:
   pull_request:
     branches: [main]
 
 jobs:
-  lighthouse:
+  desktop:
     runs-on: ubuntu-latest
     name: lighthouse (desktop)
     steps:
@@ -31,5 +35,31 @@ jobs:
 
       - name: Run Lighthouse CI (desktop)
         run: pnpm dlx @lhci/cli@0.14.x autorun --config=./lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  mobile:
+    runs-on: ubuntu-latest
+    name: lighthouse (mobile)
+    # R53 신규 — desktop 과 독립 병렬 실행. 둘 다 통과해야 PR 안전.
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm build
+
+      - name: Run Lighthouse CI (mobile)
+        run: pnpm dlx @lhci/cli@0.14.x autorun --config=./lighthouserc.mobile.json
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
