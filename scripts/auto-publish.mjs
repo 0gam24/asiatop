@@ -239,10 +239,12 @@ async function postLLMOnly(briefPath, mdxPath, dryRun, extra = {}) {
   }
   const mdx = readFileSync(mdxPath, 'utf-8');
 
-  // G4 fact-verify
+  // G4 fact-verify — R54-4: mock 강제 제거. MOCK_AUTHORITY 환경변수 반영.
+  // MOCK_AUTHORITY=0 시 어댑터 V2 의 real fetch 응답으로 본문 토큰 1:1 매칭.
+  const useMock = process.env.MOCK_AUTHORITY !== '0';
   const g4 = await verifyFacts(mdx, brief, {
-    authorityFetch: (cluster, query) => fetchAllForCluster(cluster, query, { mock: true }),
-    mock: true,
+    authorityFetch: (cluster, query) => fetchAllForCluster(cluster, query, { mock: useMock }),
+    mock: useMock,
   });
   trace.push({ gate: 'g4', pass: g4.pass, match_rate: g4.match_rate, unmatched: g4.unmatched.length, stats: g4.stats });
   if (!g4.pass) return reportFail(trace, 'g4');
