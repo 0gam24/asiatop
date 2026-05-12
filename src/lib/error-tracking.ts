@@ -31,6 +31,20 @@ const PII_HEADERS = new Set([
 ]);
 
 /**
+ * Sentry sampleRate 안전 파싱.
+ * 환경변수 미설정/잘못된 값 → 0.1 (기본).
+ * 0.01 ~ 1.0 범위 강제 (음수·1 초과 차단).
+ */
+export function parseSampleRate(raw: string | undefined): number {
+  if (!raw) return 0.1;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n <= 0) return 0.1;
+  if (n > 1) return 1;
+  if (n < 0.01) return 0.01;
+  return n;
+}
+
+/**
  * URL 또는 경로에서 query string·fragment를 제거.
  * 검색어(q=…)·UTM·session token 등 우발 노출 방지.
  */
@@ -102,8 +116,11 @@ export async function initSentry(): Promise<void> {
     tracesSampleRate: 0,
     replaysSessionSampleRate: 0,
     replaysOnErrorSampleRate: 0,
-    // 무료 티어(월 5K) 보호 — 10% 샘플링
-    sampleRate: 0.1,
+    // 무료 티어(월 5K) 보호 — 기본 10% 샘플링.
+    // PUBLIC_SENTRY_SAMPLE_RATE 환경변수로 0.01~1.0 범위 조정 가능 (트래픽 폭증 시 0.05 등).
+    sampleRate: parseSampleRate(
+      import.meta.env.PUBLIC_SENTRY_SAMPLE_RATE as string | undefined,
+    ),
     defaultIntegrations: false,
     integrations: [
       browserApiErrorsIntegration(),
