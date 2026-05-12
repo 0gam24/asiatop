@@ -88,5 +88,11 @@
     "status": "pending",
     "reason": null,
     "count": 1
+  },
+  "46105d77cda628a1": {
+    "last_seen_at": "2026-05-12T08:25:58.348Z",
+    "status": "rejected",
+    "reason": "g3-empty-response",
+    "count": 1
   }
 }
