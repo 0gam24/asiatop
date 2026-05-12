@@ -35,6 +35,7 @@ import { attachAndVerifyDisclosures } from './gates/g6-disclosure-attach.mjs';
 import { checkPlagiarism } from './gates/g7-plagiarism.mjs';
 import { checkAILikeness } from './gates/g8-ai-likeness.mjs';
 import { fetchAllForCluster } from './lib/authority-sources/index.mjs';
+import { generateBriefSkeleton } from './lib/auto-brief-generator.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -121,6 +122,7 @@ async function main() {
 async function preLLMOnly(questionText, dryRun) {
   const trace = [];
   const hash = questionHash(questionText);
+  const briefOut = arg('--brief-out'); // 옵션: brief YAML 출력 경로 지정 (워크플로 다음 step 입력)
 
   // G0 dedup
   if (isDuplicate(questionText)) {
@@ -152,9 +154,10 @@ async function preLLMOnly(questionText, dryRun) {
     return reportFail(trace, 'g2');
   }
 
-  // G3 source-probe
+  // G3 source-probe — MOCK_AUTHORITY 환경변수 반영 (real fetch 모드 지원, R53 #5~#7)
+  const useMock = process.env.MOCK_AUTHORITY !== '0';
   const query = { keywords: g2.ranking[0].matched, expected_facts: [] };
-  const g3 = await probeAuthoritySources(g2.cluster, query, { mock: true });
+  const g3 = await probeAuthoritySources(g2.cluster, query, { mock: useMock });
   trace.push({ gate: 'g3', pass: g3.pass, reasons: g3.reasons, meta: g3.meta });
   if (!g3.pass) {
     if (!dryRun) {
@@ -164,11 +167,58 @@ async function preLLMOnly(questionText, dryRun) {
     return reportFail(trace, 'g3');
   }
 
-  // 통과 → pending 큐에 기록 (실제 brief 생성은 V2)
+  // R54-1 — brief 자동 생성 (V2 통합 1단계).
+  // G3 가 반환한 authorityResponses (auth-sources/index.mjs 의 fetchAllForCluster 응답)
+  // 를 받아 brief skeleton 작성. dry-run 이어도 brief 는 생성 (다음 step 입력 의도).
+  let briefPath = null;
+  let briefSkeleton = null;
+  try {
+    const authorityResponses = await fetchAllForCluster(g2.cluster, query, { mock: useMock });
+    briefSkeleton = generateBriefSkeleton({
+      questionText,
+      cluster: g2.cluster,
+      matchedKeywords: g2.ranking[0].matched,
+      authorityResponses,
+    });
+    if (briefOut) {
+      const yaml = await import('js-yaml');
+      const dumped = yaml.dump(briefSkeleton, { lineWidth: 120, noRefs: true });
+      const dir = dirname(briefOut);
+      if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+      writeFileSync(briefOut, dumped, 'utf-8');
+      briefPath = briefOut;
+    }
+    trace.push({
+      gate: 'brief-skeleton',
+      pass: true,
+      meta: {
+        slug: briefSkeleton.meta?.slug,
+        brief_id: briefSkeleton.meta?.brief_id,
+        primary_sources: briefSkeleton.primary_sources?.length ?? 0,
+        out: briefPath,
+      },
+    });
+  } catch (e) {
+    trace.push({ gate: 'brief-skeleton', pass: false, reason: String(e?.message ?? e) });
+    // brief 생성 실패는 hard fail 아님 — pre-LLM 통과로 보고하되 다음 step 에서 활성 차단
+  }
+
+  // 통과 → pending 큐에 기록 (dry-run 이면 기록 X)
   if (!dryRun) {
     recordSeen(questionText, 'pending', null);
   }
-  return reportPass(trace, { hash, cluster: g2.cluster });
+  return reportPass(trace, {
+    hash,
+    cluster: g2.cluster,
+    brief_path: briefPath,
+    brief_summary: briefSkeleton
+      ? {
+          slug: briefSkeleton.meta?.slug,
+          brief_id: briefSkeleton.meta?.brief_id,
+          primary_sources_count: briefSkeleton.primary_sources?.length ?? 0,
+        }
+      : null,
+  });
 }
 
 async function postLLMOnly(briefPath, mdxPath, dryRun, extra = {}) {
