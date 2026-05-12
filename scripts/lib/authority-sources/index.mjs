@@ -73,9 +73,13 @@ export async function fetchAllForCluster(cluster, query, opts = {}) {
 
   const mock = opts.mock !== undefined ? opts.mock : process.env.MOCK_AUTHORITY !== '0';
 
+  // R64 — query 에 cluster 컨텍스트 주입. 어댑터 (특히 law-go-kr) 가
+  // cluster 별 fallback keyword chain 사용 가능.
+  const enrichedQuery = { ...query, cluster };
+
   const results = await Promise.allSettled(
     adapters.map((adapter) =>
-      adapter.fetchFacts(query, { mock, signal: opts.signal }),
+      adapter.fetchFacts(enrichedQuery, { mock, signal: opts.signal }),
     ),
   );
 

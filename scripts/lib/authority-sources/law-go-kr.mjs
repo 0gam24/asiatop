@@ -136,13 +136,25 @@ export async function fetchFacts(query, opts = {}) {
     };
   }
 
-  // query.keywords 의 첫 번째 키워드로 검색.
-  // 빈 keywords 면 expected_facts 의 첫 번째라도 사용.
-  const keyword =
-    (Array.isArray(query?.keywords) && query.keywords[0]) ||
-    (Array.isArray(query?.expected_facts) && query.expected_facts[0]) ||
-    null;
-  if (!keyword) {
+  // R64 — 키워드 fallback chain. 1차 query.keywords[0] 검색 결과 0건 시
+  // 2차·3차·... 다음 키워드 + cluster 별 법령명 fallback 순차 시도.
+  // tax cluster 의 "월세 세액공제" 같은 자연어가 lawSearch.do 키워드 매칭 약함 →
+  // "소득세법", "근로기준법" 같은 법령명 직접 검색이 안정적.
+  const CLUSTER_LAW_FALLBACK = {
+    tax: ['소득세법', '조세특례제한법', '부가가치세법'],
+    'insurance-labor': ['국민건강보험법', '국민연금법', '고용보험법', '산업재해보상보험법'],
+    'office-tips': ['근로기준법', '최저임금법'],
+    unemployment: ['고용보험법', '근로기준법'],
+    pension: ['국민연금법', '근로자퇴직급여 보장법'],
+  };
+  const cluster = query?.cluster;
+  const keywordCandidates = [
+    ...(Array.isArray(query?.keywords) ? query.keywords : []),
+    ...(Array.isArray(query?.expected_facts) ? query.expected_facts : []),
+    ...(cluster && CLUSTER_LAW_FALLBACK[cluster] ? CLUSTER_LAW_FALLBACK[cluster] : []),
+  ].filter(Boolean).filter((k, i, arr) => arr.indexOf(k) === i); // 중복 제거
+
+  if (keywordCandidates.length === 0) {
     return {
       source_id: id,
       source_url: 'https://www.law.go.kr',
@@ -155,9 +167,37 @@ export async function fetchFacts(query, opts = {}) {
   }
 
   try {
-    const url = buildSearchUrl(oc, keyword);
-    const searchJson = await fetchJson(url, { signal: opts.signal, timeout: opts.timeout });
-    const laws = extractLaws(searchJson).slice(0, MAX_RESULTS);
+    // 순차 시도 — 첫 비어있지 않은 응답 사용. 최대 4회.
+    let keyword = null;
+    let searchJson = null;
+    let laws = [];
+    for (const k of keywordCandidates.slice(0, 4)) {
+      try {
+        const url = buildSearchUrl(oc, k);
+        const json = await fetchJson(url, { signal: opts.signal, timeout: opts.timeout });
+        const found = extractLaws(json).slice(0, MAX_RESULTS);
+        if (found.length > 0) {
+          keyword = k;
+          searchJson = json;
+          laws = found;
+          break;
+        }
+      } catch {
+        // 개별 키워드 fail 무시, 다음 키워드 시도
+      }
+    }
+    if (!keyword) {
+      // 모든 키워드 fail — 빈 응답 반환 (G3 가 처리)
+      return {
+        source_id: id,
+        source_url: 'https://www.law.go.kr',
+        retrieved_at: new Date().toISOString(),
+        raw: { keywordCandidates: keywordCandidates.slice(0, 4), allFailed: true },
+        facts: [],
+        confidence: 0,
+        _warning: 'all keyword candidates returned empty results',
+      };
+    }
     const facts = laws.map(lawToFact).filter((f) => f.key);
 
     // R54-4 — G4 fact-verifier 가 본문 토큰 (금액·일자·조항) 을 매칭하려면
