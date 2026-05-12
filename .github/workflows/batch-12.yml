@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # 카테고리|토픽|슬러그 (legacy 108편 중복 없음 — STRUCTURE.md §8 확인)
+          # Round 2 (120 → 132편) — legacy 120편 중복 없음.
           declare -a topics=(
-            "tax|2026년 연말정산 일정과 주요 변경 5가지|yearend-tax-2026-schedule-changes"
-            "realestate|전세보증보험 가입 — HUG vs SGI 차이 완벽 비교|jeonse-guarantee-hug-vs-sgi-compare"
-            "unemployment|권고사직 합의서 작성 시 챙길 5가지 권리|recommended-resignation-agreement-rights"
-            "gov-support|청년 자산 형성 정책 3종 비교 — 도약·희망·내일|youth-asset-formation-3policy-compare"
-            "savings|ISA 만기 후 연금저축 갈아타기 절세 전략|isa-maturity-pension-transfer-tax-saving"
-            "insurance-labor|건강보험료 갑작스러운 인상 원인과 조정 신청법|health-insurance-premium-spike-adjustment"
-            "auto|자동차 검사 미수검 과태료와 사후 정정 절차|car-inspection-miss-penalty-fix"
-            "public-services|확정일자 받는 법 — 모바일 vs 주민센터 비교|lease-fixed-date-mobile-vs-office"
-            "office-tips|회식·접대비 영수증 비과세 처리 기준 2026|meeting-expense-tax-exempt-2026"
-            "credit-loan|신용점수 1년 안에 100점 올리는 5단계|credit-score-up-100-points-5-steps"
-            "insurance-personal|4세대 실손보험 갈아타기 경제성 손익분기 계산|silson-4gen-transfer-breakeven-calc"
-            "pension|국민연금 조기수령 손익분기점 계산|national-pension-early-receive-breakeven"
+            "tax|중소기업 취업 청년 소득세 90% 감면 자격과 신청 절차|sme-youth-tax-90-discount-application"
+            "realestate|보증금 미반환 분쟁 — 임차권등기명령 신청 절차|deposit-return-dispute-tenancy-injunction"
+            "unemployment|구직급여 부정수급 검출 패턴과 자진 신고 절차|unemployment-fraud-detection-self-report"
+            "gov-support|청년 내일채움공제 5년 만기 vs 중도해지 손익|youth-tomorrow-fund-5year-vs-cancel"
+            "savings|예금자보호 5천만원 한도 — 분산 예치 전략 가이드|deposit-protection-50m-diversify-strategy"
+            "insurance-labor|산재보험 자영업자 임의가입 — 자격과 보험료 계산|workers-comp-self-employed-voluntary"
+            "auto|자동차 사고 과실비율 — 대인배상 vs 대물배상 청구 순서|car-accident-personal-vs-property-claim"
+            "public-services|인감증명서 vs 본인서명사실확인서 — 효력 차이와 활용처|seal-vs-signature-effect-difference"
+            "office-tips|근로계약서 미작성 신고 — 노동청 진정 절차|labor-contract-missing-report-procedure"
+            "credit-loan|개인회생·파산 차이와 신청 자격 비교 2026|personal-rehab-vs-bankruptcy-2026"
+            "insurance-personal|치아보험 가입 전 체크 — 면책기간과 보장범위 비교|dental-insurance-waiting-coverage-check"
+            "pension|기초연금 수급 자격 — 소득·재산 인정액 계산법|basic-pension-income-asset-calculation"
           )
           success=0
           fail=0
