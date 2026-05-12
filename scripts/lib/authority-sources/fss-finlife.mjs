@@ -163,11 +163,20 @@ export async function fetchFacts(query, opts = {}) {
       const note = p?.etc_note ?? '';
       return `${co} ${prd} (만기이자율 ${mtrt}, 가입 ${join}) ${note}`;
     }).join('\n');
+    // R62 — extractFactsFromObject 가 leaf string 순회 — products 배열 자체를 raw 에 포함하면
+    // 모든 product 객체의 모든 string 필드에서 토큰 추출 가능. fetched_tokens_from_raw plateau 돌파.
+    // 응답 크기 ↑ 가능하나 G3·G4 게이트 안에서만 사용 (저장 X).
     return {
       source_id: id,
       source_url: 'https://finlife.fss.or.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { totalCount: products.length, matchedCount: matched.length, keywords, text },
+      raw: {
+        totalCount: products.length,
+        matchedCount: matched.length,
+        keywords,
+        text,
+        products: products.slice(0, 30), // 상위 30개 product 객체 (모든 leaf string 토큰 매칭 풀)
+      },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.4 + facts.length * 0.1) : 0,
     };
