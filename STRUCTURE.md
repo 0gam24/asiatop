@@ -413,3 +413,4 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-12 — robots.txt 명시 봇 그룹 26종 복원 hotfix (e2e "User-agent: GPTBot 명시 검증" 회귀 안전망 + `*` 그룹 Disallow 유지로 모호성 해소 양립)
 - 2026-05-12 — law-go-kr 어댑터 V2 real fetch 구현 (R53 #5) — lawSearch.do (키워드 검색·법령 메타) + lawService.do (본문, 향후 토큰 매칭용 export 만). LAW_GO_KR_OC 미설정 시 mock fallback, confidence 0.5. tax·insurance-labor·office-tips·unemployment cluster 36편 영향. MOCK_AUTHORITY=0 첫 단계 어댑터.
 - 2026-05-12 — bok-ecos 어댑터 V2 real fetch (R53 #6, KeyStatisticList 100선 + 키워드 부분매칭) + author JSON sameAs 보강 (corrections/contact/smartdatashop.kr 추가) + Sentry sampleRate 환경변수화 (PUBLIC_SENTRY_SAMPLE_RATE, 0.01~1.0 클램프, parseSampleRate 단위테스트 6건)
+- 2026-05-12 — fss-finlife V2 real fetch (R53 #7, depositProductsSearch 은행 정기예금 + 키워드 매칭, savings·credit-loan·insurance-personal·auto 36편 영향) + data-go-kr V2 real fetch (youthcenter.go.kr getPlcy 청년정책 list + srchKywd, gov-support·public-services·realestate 27편 영향)
