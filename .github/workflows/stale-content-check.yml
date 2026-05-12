@@ -21,74 +21,71 @@ jobs:
         with:
           node-version: 22
 
-      - name: Find stale articles (180+ days)
+      - name: Run frontmatter coverage audit (R53 #8)
+        # 기존 inline 스크립트 → scripts/audit/frontmatter-coverage.mjs 통합.
+        # 더 풍부한 메트릭(자동검증 메타 도입률·갱신 우선순위 큐 score) + 단일 진실.
         id: scan
         run: |
-          node <<'EOF'
-          const fs = require('fs');
-          const path = require('path');
-
-          const dir = 'src/content/articles';
-          const files = fs.readdirSync(dir).filter(f => /\.mdx?$/.test(f));
-          const now = Date.now();
-          const STALE_DAYS = 180;
-          const VERY_STALE_DAYS = 365;
-          const stale = [];
-
-          for (const file of files) {
-            const content = fs.readFileSync(path.join(dir, file), 'utf-8');
-            const fm = content.split('---')[1] ?? '';
-            const get = (k) => {
-              const m = fm.match(new RegExp(`^${k}:\\s*(.+)$`, 'm'));
-              return m ? m[1].trim() : null;
-            };
-            const updated = get('updatedAt') ?? get('publishedAt');
-            if (!updated) continue;
-            const date = new Date(updated);
-            const days = Math.floor((now - date.valueOf()) / 86400000);
-            if (days > STALE_DAYS) {
-              stale.push({
-                file,
-                title: get('title')?.replace(/^["']|["']$/g, '') ?? file,
-                cluster: get('cluster')?.replace(/^["']|["']$/g, '') ?? 'unknown',
-                days,
-                veryStale: days > VERY_STALE_DAYS,
-              });
-            }
+          node scripts/audit/frontmatter-coverage.mjs --json > /dev/null
+          test -f dist/audit/frontmatter-coverage.json || {
+            echo "audit JSON 생성 실패" >&2
+            exit 1
           }
-
-          stale.sort((a, b) => b.days - a.days);
-          console.log(`Found ${stale.length} stale articles`);
-          fs.writeFileSync('stale.json', JSON.stringify(stale, null, 2));
-          EOF
-          echo "count=$(node -e 'console.log(JSON.parse(require("fs").readFileSync("stale.json","utf-8")).length)')" >> "$GITHUB_OUTPUT"
+          node -e '
+            const j = JSON.parse(require("fs").readFileSync("dist/audit/frontmatter-coverage.json","utf-8"));
+            console.log("stale_count="+j.stale);
+            console.log("very_stale_count="+j.veryStale);
+            console.log("total="+j.total);
+          ' >> "$GITHUB_OUTPUT"
 
       - name: Create or update tracking issue
-        if: steps.scan.outputs.count != '0'
+        if: steps.scan.outputs.stale_count != '0' || steps.scan.outputs.very_stale_count != '0'
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const stale = JSON.parse(fs.readFileSync('stale.json', 'utf-8'));
-            if (stale.length === 0) return;
+            const summary = JSON.parse(fs.readFileSync('dist/audit/frontmatter-coverage.json', 'utf-8'));
 
             const today = new Date().toISOString().slice(0, 10);
-            const veryStaleCount = stale.filter(s => s.veryStale).length;
-            const title = `[자동] 갱신 필요 글 ${stale.length}건 (${today})`;
+            const title = `[자동] 갱신 필요 글 ${summary.stale}건 / Very stale ${summary.veryStale}건 (${today})`;
+
+            const queue = summary.topPriority ?? [];
+            const stalePriority = queue.filter((q) => q.age >= 180);
 
             let body = `## 갱신 필요 글 자동 점검 (${today})\n\n`;
-            body += `- 총 **${stale.length}건** 갱신 필요\n`;
-            body += `- 1년 이상 지난 글: **${veryStaleCount}건**\n\n`;
-            body += `## 우선순위\n\n`;
-            body += stale.map(s => {
-              const icon = s.veryStale ? '⚠️' : '🕐';
-              return `- ${icon} **${s.title}** (\`${s.cluster}/${s.file}\`) — ${s.days}일 경과`;
-            }).join('\n');
-            body += `\n\n## 권장 조치\n\n`;
-            body += `1. 정부 정책·요율·법령 변경 검토 ([data.go.kr](https://www.data.go.kr) / [law.go.kr](https://www.law.go.kr) / 홈택스)\n`;
+            body += `### 전체 통계\n`;
+            body += `- 총 글: **${summary.total}편**\n`;
+            body += `- Stale (180일+): **${summary.stale}편**\n`;
+            body += `- Very stale (360일+): **${summary.veryStale}편**\n\n`;
+
+            body += `### 자동검증 메타 도입률\n`;
+            const fc = summary.fieldCoverage ?? {};
+            for (const [k, v] of Object.entries(fc)) {
+              const pct = summary.total > 0 ? Math.round((v / summary.total) * 100) : 0;
+              body += `- \`${k}\`: ${pct}% (${v}/${summary.total})\n`;
+            }
+            body += `\n`;
+
+            if (stalePriority.length > 0) {
+              body += `### Stale 글 우선순위 큐\n`;
+              body += `score · age · flags · cluster/slug\n\n`;
+              body += stalePriority.slice(0, 30).map((q) => {
+                const age = q.age >= 360 ? `⚠️ ${q.age}d` : `🕐 ${q.age}d`;
+                const flags = ['aiAssisted','sources_verified','lastReviewed','reviewedBy','fact_verification_at']
+                  .map((f) => (q.has?.[f] ? '✓' : '·')).join('');
+                return `- \`${String(q.score).padStart(3)}\` · ${age} · [${flags}] \`${q.cluster}/${q.slug}\``;
+              }).join('\n');
+              if (stalePriority.length > 30) body += `\n- ... and ${stalePriority.length - 30} more`;
+              body += `\n\n`;
+            }
+
+            body += `### 권장 조치\n`;
+            body += `1. **정책·요율·법령 변경 검토** ([data.go.kr](https://www.data.go.kr) / [law.go.kr](https://www.law.go.kr) / 홈택스)\n`;
             body += `2. 변경 발견 시 본문 수정 + frontmatter \`updatedAt\` 갱신\n`;
-            body += `3. 변경 없음 확인 시 \`dataValidAsOf\`만 갱신하여 신선도 표시\n\n`;
-            body += `_본 이슈는 매주 월요일 자동 생성됩니다. 새 점검 결과로 업데이트되거나 새 이슈가 생성됩니다._`;
+            body += `3. 변경 없음 확인 시 \`dataValidAsOf\` 만 갱신 (신선도 신호)\n`;
+            body += `4. 자동검증 시스템 통과한 새 글에는 \`sources_verified: true\`, \`fact_verification_at\`, \`reviewedBy: moneylook-auto\` 메타 자동 부착\n\n`;
+            body += `_본 이슈는 매주 월요일 KST 04:00 자동 갱신·생성됩니다._\n`;
+            body += `_audit 로직: \`scripts/audit/frontmatter-coverage.mjs\` (SSoT)_`;
 
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
