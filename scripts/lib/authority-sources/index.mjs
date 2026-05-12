@@ -22,15 +22,26 @@ import * as dataGoKr from './data-go-kr.mjs';
 import * as bokEcos from './bok-ecos.mjs';
 import * as lawGoKr from './law-go-kr.mjs';
 import * as fssFinlife from './fss-finlife.mjs';
-import * as work24 from './work24.mjs';
-import * as nps from './nps.mjs';
-import * as welfareGoKr from './welfare-go-kr.mjs';
+// R60 — work24·nps·welfareGoKr V1 미구현 → routing 제외. import 는 V2 복귀 예정이라 보존.
+// eslint 가 unused 경고 띄울 수 있지만 의도된 보존이라 무시.
+// import * as work24 from './work24.mjs';
+// import * as nps from './nps.mjs';
+// import * as welfareGoKr from './welfare-go-kr.mjs';
 
+// R60 — V1 미구현 어댑터 (work24·welfareGoKr·nps) 를 routing 에서 제외.
+// MOCK_AUTHORITY=0 real fetch 모드에서 빈 응답 반환 → cluster 전체 G3 fail.
+// V2 구현 완료 시 다시 routing 에 추가.
+//   - work24: V1 정책상 미사용 (docs/AUTO-PUBLISH-GUIDE.md). law-go-kr 가 고용보험법 본문 커버.
+//   - welfareGoKr: 복지로 API 활용신청 + endpoint 확정 후 V2 (대기 중)
+//   - nps: data.go.kr 의 국민연금공단 데이터셋 endpoint 확정 후 V2 (대기 중)
+//
+// pension cluster 는 임시 fallback — law-go-kr (국민연금법) 으로 라우팅.
+// (data.go.kr 의 NPS 데이터셋 V2 구현 후 nps 다시 추가)
 const ROUTING = Object.freeze({
-  'gov-support': [dataGoKr, welfareGoKr],
-  'tax': [lawGoKr],                         // 국세청은 PDF cache 별도 (V2)
-  'realestate': [dataGoKr],                 // 청약홈·HUG는 PDF·정적 fetch (V2)
-  'unemployment': [work24, lawGoKr],
+  'gov-support': [dataGoKr],                // welfareGoKr V2 대기
+  'tax': [lawGoKr],                         // 국세청 PDF cache 별도 (V2)
+  'realestate': [dataGoKr],                 // 청약홈·HUG PDF·정적 fetch (V2)
+  'unemployment': [lawGoKr],                // work24 V1 미사용, 고용보험법은 law-go-kr 로 커버
   'savings': [bokEcos, fssFinlife],
   'insurance-labor': [lawGoKr],             // 건보공단 정적 (V2)
   'auto': [fssFinlife],                     // 위택스·KNIA (V2)
@@ -38,7 +49,7 @@ const ROUTING = Object.freeze({
   'office-tips': [lawGoKr],
   'credit-loan': [fssFinlife],
   'insurance-personal': [fssFinlife],
-  'pension': [nps],
+  'pension': [lawGoKr],                     // 국민연금법은 law-go-kr 로 — nps V2 대기 임시 fallback
 });
 
 /**
