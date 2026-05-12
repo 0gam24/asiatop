@@ -209,9 +209,11 @@ jobs:
           NPS_KEY: ${{ secrets.NPS_KEY }}
           MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
         run: |
+          # pipefail 활성 + PIPESTATUS[0] 사용 — tee 의 exit 0 가짜 통과 차단
+          set -o pipefail
           set +e
           node scripts/article-pipeline.mjs --brief /tmp/v2/brief.yaml --draft 2>&1 | tee /tmp/v2/llm.log
-          exit_code=$?
+          exit_code=${PIPESTATUS[0]}
           set -e
           # 결과 MDX 위치 추정 (article-pipeline 이 _drafts/<slug>.mdx 에 저장)
           slug=$(node -e '
@@ -263,12 +265,14 @@ jobs:
           MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
           AI_LIKENESS_THRESHOLD: '7.0'
         run: |
+          # pipefail 활성 + PIPESTATUS[0] — tee 가짜 통과 방지 (Post-LLM 게이트 fail-closed 보장)
+          set -o pipefail
           set +e
           node scripts/auto-publish.mjs \
             --brief /tmp/v2/brief.yaml \
             --mdx "${{ steps.llm.outputs.mdx_path }}" \
             --dry-run 2>&1 | tee /tmp/v2/post-llm.json
-          exit_code=$?
+          exit_code=${PIPESTATUS[0]}
           set -e
           {
             echo ""
