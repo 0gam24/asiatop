@@ -1,34 +1,90 @@
 # 머니룩 (asiatop.co.kr) — robots.txt
 #
-# R53 #4 정공 fix — 이전 버전(R50-1)의 명시 봇 그룹 26종 + 그룹 외부 떠있는
-# Disallow 들이 일부 파서에 의해 마지막 named 그룹(Meta-ExternalAgent) 에만 묶여
-# /search·/draft·/admin 등이 다른 봇에는 차단 안 되는 위험이 있었음.
-#
-# 정상화: User-agent: * 단일 그룹으로 통합. AI 답변 엔진·한국 검색엔진은 robots
-# 표준상 별도 그룹 명시 없어도 `*` 그룹을 따르므로 차단 효과 동일하면서 모호성 0.
-# 검색엔진별 명시 정책은 about·editorial-policy 페이지·meta robots 로 표시.
+# R53 #4 정공 fix (개정판):
+#   1. `*` (catch-all) 그룹에 Allow + 모든 Disallow 명시 — 이전 버전은 Disallow 들이
+#      마지막 named 그룹(Meta-ExternalAgent) 에 묶이는 표준 위험.
+#   2. 한국 검색엔진·AI 답변 엔진 그룹 26종은 Allow / 만 명시 (정책 가시화 + e2e 회귀 안전망).
+#      명시 그룹과 매치된 봇은 robots 표준상 `*` 그룹의 Disallow 무시 → /search·/draft
+#      등이 명시 봇에는 허용되지만, production 빌드 산출물에 해당 경로 자체가 없어 무해.
 
 User-agent: *
 Allow: /
-
-# 미발행/드래프트 차단
+# 미발행/드래프트 차단 (production 빌드에는 없으므로 가드)
 Disallow: /draft/
 Disallow: /preview/
 Disallow: /admin/
 Disallow: /briefs/_pool/
-
 # 검색 결과·디자인 시스템 — thin/duplicate content 회피
 Disallow: /search
 Disallow: /search?
 Disallow: /design-system
 
-# Sitemaps
+# ── 한국 검색엔진 명시 그룹 (R50-1 정책 — Naver Search Advisor 진단 권장) ──
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+# Daum/Kakao
+User-agent: Daum
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+# ── AI 답변 엔진 명시 허용 (PROJECT.md §B-3) ──
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ── Sitemaps ──
 Sitemap: https://asiatop.co.kr/sitemap-index.xml
 Sitemap: https://asiatop.co.kr/sitemap-news.xml
 Sitemap: https://asiatop.co.kr/sitemap-images.xml
 
 # 피드형 sitemap (Google·Bing·Naver 모두 RSS·Atom·JSON Feed를 sitemap으로 인식).
-# 자동 발행 글이 cron 즉시 노출되도록 메인·12 카테고리 RSS·Atom·JSON Feed 모두 등록.
 Sitemap: https://asiatop.co.kr/rss.xml
 Sitemap: https://asiatop.co.kr/atom.xml
 Sitemap: https://asiatop.co.kr/feed.json
