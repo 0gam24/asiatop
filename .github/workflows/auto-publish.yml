@@ -137,24 +137,54 @@ jobs:
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
-      - name: 자동 발행 러너 실행 (Pre-LLM 게이트)
+      - name: 자동 발행 러너 실행 (Pre-LLM 게이트 + brief skeleton)
         if: steps.pick.outputs.skip == 'false'
+        id: gates
         env:
+          # R53 #5~#7 어댑터 V2 정부 API 키 — MOCK_AUTHORITY=0 시 real fetch.
+          LAW_GO_KR_OC: ${{ secrets.LAW_GO_KR_OC }}
+          BOK_API_KEY: ${{ secrets.BOK_API_KEY }}
+          FSS_KEY: ${{ secrets.FSS_KEY }}
+          YOUTH_CENTER_API_KEY: ${{ secrets.YOUTH_CENTER_API_KEY }}
+          NPS_KEY: ${{ secrets.NPS_KEY }}
           MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
           AI_LIKENESS_THRESHOLD: '7.0'   # 초기 관대 임계
         run: |
-          # ARGS는 단순 플래그 array — quoting 분리로 word-splitting 안전.
-          args=(--question-file /tmp/question.txt)
+          mkdir -p /tmp/v2
+          args=(--question-file /tmp/question.txt --brief-out /tmp/v2/brief.yaml)
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             args+=(--dry-run)
           fi
+          # R54-1 — brief 자동 생성 통합. preLLMOnly 가 G3 응답 → brief skeleton → /tmp/v2/brief.yaml.
+          # next step (LLM 4-pass) 은 R54-2 에서 활성, 현재는 brief 생성만 검증.
           node scripts/auto-publish.mjs "${args[@]}" | tee /tmp/result.json
           {
             echo "## 게이트 실행 결과"
             echo '```json'
             cat /tmp/result.json
             echo '```'
+            if [ -f /tmp/v2/brief.yaml ]; then
+              echo ""
+              echo "## Brief skeleton (R54-1 자동 생성)"
+              echo '```yaml'
+              head -40 /tmp/v2/brief.yaml
+              echo '...'
+              echo '```'
+              echo "Full brief: \`/tmp/v2/brief.yaml\` ($(wc -l < /tmp/v2/brief.yaml) lines)"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
+          # 다음 step 에 brief_path 전달
+          if [ -f /tmp/v2/brief.yaml ]; then
+            echo "brief_path=/tmp/v2/brief.yaml" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Brief skeleton 아티팩트 업로드 (R54-1 검증용)
+        if: steps.gates.outputs.brief_path != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto-publish-brief-skeleton
+          path: /tmp/v2/brief.yaml
+          retention-days: 7
 
       - name: dedup·rejected audit 커밋 (변경 시)
         if: steps.pick.outputs.skip == 'false'
