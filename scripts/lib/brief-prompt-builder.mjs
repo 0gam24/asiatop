@@ -191,7 +191,7 @@ function buildSourcesBlock(brief) {
   for (const s of primary) {
     lines.push(`[${s.id}] ${s.title} — ${s.url}`);
     if (s.expected_facts?.length > 0) {
-      lines.push('  expected_facts (본문 토큰 매칭 풀 — 외부 토큰 추가 금지):');
+      lines.push('  expected_facts: (본문 토큰 매칭 풀 — 외부 토큰 추가 금지)');
       for (const f of s.expected_facts) lines.push(`   - ${f}`);
     }
     if (s.must_quote === true) lines.push('  → 본문에 직접 인용 의무');
