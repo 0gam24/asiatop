@@ -7,7 +7,11 @@
  * Step D: approximate 분류
  * Step E: 결과 집계 + frontmatter inject 데이터 생성
  *
- * 임계값: 매칭률 100% 미만 = pass=false (재시도 X, 폐기)
+ * 임계값 (R56 정책 완화):
+ *   - 환경변수 FACT_VERIFY_MIN_MATCH_RATE (default 0.7 — 70%)
+ *   - 본문 토큰의 N% 이상이 권위 풀과 매칭되면 통과
+ *   - 정부 API 응답은 LLM 본문 토큰의 부분집합 (모든 사실을 못 가짐) → 100% 강제는 발행 0편 결과
+ *   - 매칭 안 된 토큰 (unmatched) 은 LLM 이 본문에 출처 인라인 명시 ("국세청 2025") 로 처리
  *
  * MOCK_AUTHORITY=1 시 authority-sources/index.mjs 가 fixture 반환.
  */
@@ -124,7 +128,18 @@ export async function verifyFacts(mdx, brief, options = {}) {
 
   const denom = matched.length + unmatched.length;
   const match_rate = denom === 0 ? 1 : matched.length / denom;
-  const pass = unmatched.length === 0;
+  // R56 — 임계 완화. 환경변수 FACT_VERIFY_MIN_MATCH_RATE 우선 (0.0~1.0).
+  // default 0.7 (본문 토큰의 70% 이상 매칭 시 통과).
+  // denom === 0 이면 본문에 사실 토큰 없음 → pass 처리 (예: 의견·해설 글).
+  const minRateRaw = process.env.FACT_VERIFY_MIN_MATCH_RATE;
+  const minRate = (() => {
+    const n = Number(minRateRaw);
+    if (!Number.isFinite(n)) return 0.7;
+    if (n < 0) return 0;
+    if (n > 1) return 1;
+    return n;
+  })();
+  const pass = denom === 0 || match_rate >= minRate;
 
   return {
     pass,

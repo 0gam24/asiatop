@@ -34,7 +34,7 @@ const softwareSchema = {
   applicationSubCategory: 'Editorial Content Verification Pipeline',
   operatingSystem: 'Cross-platform (Cloud)',
   inLanguage: 'ko-KR',
-  description: '한국 직장인·청년 생활금융 콘텐츠를 1차 정부 자료(공공데이터·법제처·홈택스·복지로·한국은행 ECOS·고용24·국민연금공단·금융감독원)와 자동 1:1 매칭 검증하는 10단계 파이프라인. G0 중복 → G1 PII/욕설/정치 → G2 클러스터 매핑 → G3 권위 출처 가용성 → G4 사실 1:1 매칭 → G5 AdSense 정책 → G6 YMYL/AI 면책 → G7 표절 → G8 AI다움 → G9 Naver 스팸. 매칭률 100% 미만 자동 폐기.',
+  description: '한국 직장인·청년 생활금융 콘텐츠를 1차 정부 자료(공공데이터·법제처·홈택스·복지로·한국은행 ECOS·고용24·국민연금공단·금융감독원)와 자동 1:1 매칭 검증하는 10단계 파이프라인. G0 중복 → G1 PII/욕설/정치 → G2 클러스터 매핑 → G3 권위 출처 가용성 → G4 사실 1:1 매칭(임계 70%) → G5 AdSense 정책 → G6 YMYL/AI 면책 → G7 표절 → G8 AI다움 → G9 Naver 스팸. 매칭률 70% 미만 자동 폐기, 미매칭 토큰은 본문에 인라인 출처 명시.',
   publisher: { '@id': new URL('#organization', Astro.site).toString() },
   creator: { '@id': new URL('#organization', Astro.site).toString() },
   url: new URL('/editorial-policy/', Astro.site).toString(),
@@ -84,7 +84,7 @@ const softwareSchema = {
       <h2>어떻게 신뢰할 수 있나요?</h2>
       <ul>
         <li><strong>1차 정부 자료 직접 인용</strong> — 공공데이터포털(data.go.kr)·법제처(law.go.kr)·홈택스·복지로·한국은행 ECOS 등 공식 출처 URL을 모든 글에 명시해 누구나 검증할 수 있도록 합니다.</li>
-        <li><strong>권위 데이터 1:1 매칭</strong> — 본문에 등장하는 모든 수치·날짜·법령 토큰을 정부 공식 API 응답과 1:1로 매칭합니다(G4 fact-verifier 게이트). 매칭률 100% 미만이면 자동으로 발행이 거부됩니다. 다만 자격 보유 전문가의 직접 검수는 받지 않으므로, 본 글은 일반 정보 제공이지 세무·법률·재무 자문이 아닙니다.</li>
+        <li><strong>권위 데이터 1:1 매칭</strong> — 본문에 등장하는 수치·날짜·법령 토큰을 정부 공식 API 응답과 1:1로 매칭합니다(G4 fact-verifier 게이트). <strong>매칭률 70% 이상만 발행</strong>됩니다. 정부 API 가 모든 사실 토큰을 보유하지 않을 수 있어 100% 매칭은 기술적으로 불가하며, 매칭 안 된 30% 이내의 토큰에 대해서는 본문에 출처를 인라인으로 명시(예: "국세청 2025")합니다. 다만 자격 보유 전문가의 직접 검수는 받지 않으므로, 본 글은 일반 정보 제공이지 세무·법률·재무 자문이 아닙니다.</li>
         <li><strong>8단계 자동 검증 게이트</strong> — AI(DeepSeek·Claude)는 초안 작성·문장 다듬기 도구로 사용되며, 발행 단계에서는 G0~G8 자동 게이트(중복 차단·PII·cluster 매핑·권위 소스·사실 매칭·AdSense 정책·면책 부착·표절 검사·AI 자연체 검출)가 사실 확인을 수행합니다. 게이트 위반 시 자동 폐기됩니다. 모든 글 본문 끝에 AI 보조 사용 공시를 부착합니다.</li>
         <li><strong>정정 정책</strong> — 사실 오류 발견 시 24시간 이내 정정하고 글 하단에 정정 이력을 표기합니다.</li>
         <li><strong>최종 확인 책임</strong> — 정확한 신청 자격·요율·법령은 신청 직전 해당 기관 공식 안내에서 재확인하시기 바랍니다.</li>

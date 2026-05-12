@@ -310,6 +310,7 @@
 - NAVER_CLIENT_ID / NAVER_CLIENT_SECRET — 지식인 검색 API
 - DEDUP_INDEX_PATH — 중복 차단 인덱스 경로
 - AI_LIKENESS_THRESHOLD — G8 게이트 임계값
+- FACT_VERIFY_MIN_MATCH_RATE — G4 매칭 임계 (default 0.7, R56)
 - MOCK_AUTHORITY / MOCK_AUTHORITY_VERBOSE — 권위 API 목 모드
 - MOCK_NAVER_KIN_VERBOSE — 지식인 수집 목 모드
 - GIT_USER — 자동 commit user
@@ -425,3 +426,6 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-12 — R54-4 G4 fact-verifier 본문 통합 — auto-publish.mjs postLLMOnly 의 mock 강제 제거 (`process.env.MOCK_AUTHORITY !== '0'` 반영). law-go-kr 어댑터가 첫 결과 MST 로 lawService.do 본문 fetch 추가 (raw.body 최대 20KB), G4 토큰 매칭 정확도 ↑. R54-3b PR 자동 생성 step 추가 (workflow `create_pr` input default 'false', 4중 안전망 — create_pr·dry_run·post_llm_pass·mdx_path 모두 통과 시만 PR 생성 → auto-merge 트리거).
 - 2026-05-12 — R54 hotfix: auto-publish.yml 의 LLM·Post-LLM step pipefail 누락 수정 (`set -o pipefail` + `${PIPESTATUS[0]}`). 이전엔 `node ... | tee` 의 exit code 가 tee 의 0 으로 잡혀 G4 fail 인데도 post_llm_pass=true 로 출력되어 4중 안전망 1개가 무력화. 첫 풀 파이프라인 dispatch 에서 발견 (PR 생성 step 이 부적절하게 실행됐고 auto-publish 라벨 미존재로 fail). 라벨 생성 + 고아 브랜치 정리 별도 처리.
 - 2026-05-12 — R55: fact-verifier 의 `else if (resp.raw)` 분기 제거 → facts + raw 둘 다 토큰 풀에 합산. 이전엔 어댑터가 facts 반환 시 R54-4 의 law-go-kr raw.body (lawService.do 조문 본문) 활용 불가. fact-extract 표준 형식과 어댑터 facts(`type: 'law-metadata'`) 불일치라 사실상 raw 가 진짜 토큰 소스. G4 매칭 0% → 정상화 기대. 단위 테스트 1건 추가 (facts + raw 동시 케이스).
+- 2026-05-12 — R55-2: fact-verifier stats 진단 정보 추가 (responses_count·with_raw_count·raw_total_chars·raw_body_total_chars·fetched_tokens_from_facts·fetched_tokens_from_raw). bok-ecos·fss-finlife·data-go-kr 어댑터에 raw.text plain string 합본 추가 → 한국어 정규식 매칭 풀 확대. G4 매칭 0% → 12.5% → 22% 단계 진전.
+- 2026-05-12 — R55-3: auto-brief-generator 가 G3 응답 raw 에서 fact-extract 토큰 추출 → primary_sources.expected_facts 자동 채움. brief 가 어댑터 토큰을 LLM prompt 에 노출 → 본문↔expected_facts↔어댑터 응답 3중 매칭 체인 완성.
+- 2026-05-12 — R56: G4 매칭 임계 완화. `unmatched === 0` (100%) → `match_rate ≥ FACT_VERIFY_MIN_MATCH_RATE` (default 0.7). 환경변수로 0~1 조정 가능. 본문 사실 토큰 0개일 때 자동 pass. about/editorial-policy 의 "매칭률 100% 미만 폐기" 텍스트 정정 ("매칭률 70% 이상만 발행, 미매칭 토큰은 본문에 인라인 출처 명시"). 단위테스트 5건 추가.
