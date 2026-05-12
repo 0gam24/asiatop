@@ -145,7 +145,9 @@ export function generateBriefSkeleton({
     if (!resp?.raw) return [];
     try {
       const tokens = extractFactsFromObject(resp.raw, {});
-      // 최대 10개. 중복 (normalized 동일) 제거 + type 다양성 보존 (amount·percent·date 등).
+      // R61 — 최대 한도 10 → 25 확장. LLM prompt 의 §10 expected_facts 풀이 커져
+      // 본문 토큰 ↔ expected_facts 매칭률 ↑ 기대.
+      // 중복 (type+normalized 동일) 제거 + type 다양성 보존 (amount·percent·date 등).
       const seen = new Set();
       const picked = [];
       for (const tok of tokens) {
@@ -153,7 +155,7 @@ export function generateBriefSkeleton({
         if (seen.has(key)) continue;
         seen.add(key);
         picked.push(tok);
-        if (picked.length >= 10) break;
+        if (picked.length >= 25) break;
       }
       // expected_facts 항목은 자유 텍스트. fact-extract 가 다시 정규식 매칭하도록 raw 보존.
       return picked.map((t) => t.raw ?? String(t.normalized ?? ''));

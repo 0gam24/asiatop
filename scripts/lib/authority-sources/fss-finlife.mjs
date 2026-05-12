@@ -28,9 +28,10 @@ export const id = 'fss-finlife';
 
 const ENDPOINT = 'https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json';
 const TIMEOUT_MS = 12_000;
-// R58 — 단일 은행(020000) → 은행+저축은행 다중 호출로 raw 풀 2배.
-// 더 많은 상품·금리 토큰을 fact-verifier 가 매칭 풀에 활용.
-const FIN_GROUPS = ['020000', '030200']; // 은행 + 상호저축은행
+// R58 → R61 — fin group 확장. raw 풀 3배.
+// 020000 = 은행 / 030200 = 상호저축은행 / 050000 = 보험사 정기예금
+// (LLM 본문이 자주 인용하는 보험 상품 비교까지 커버)
+const FIN_GROUPS = ['020000', '030200', '050000'];
 
 function buildUrl(key, topFinGrpNo) {
   const u = new URL(ENDPOINT);
