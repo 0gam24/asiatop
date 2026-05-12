@@ -124,11 +124,20 @@ export async function fetchFacts(query, opts = {}) {
     const json = await fetchJson(url, { signal: opts.signal, timeout: opts.timeout });
     const policies = extractPolicies(json).slice(0, 10);
     const facts = policies.map(policyToFact);
+    // R55-2 — 정책명·기관·키워드·신청기간 plain text 합본.
+    const text = policies.map((p) => {
+      const title = p?.plcyNm ?? p?.polyBizSjnm ?? '';
+      const dept = p?.sprvsnInstCdNm ?? '';
+      const kw = p?.plcyKywdNm ?? '';
+      const period = p?.bizPrdEtcCn ?? p?.rqutPrdCn ?? '';
+      const target = p?.sporTrgtMaxAge ?? p?.ageInfo ?? '';
+      return `${title} (${dept}). 키워드: ${kw}. 신청: ${period}. 대상: ${target}`;
+    }).join('\n');
     return {
       source_id: id,
       source_url: 'https://www.youthcenter.go.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { keyword, count: policies.length },
+      raw: { keyword, count: policies.length, text },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.5 + facts.length * 0.08) : 0,
     };
