@@ -83,6 +83,28 @@ const organizationSchema = {
   ownershipFundingInfo: new URL('/editorial-policy/#ownership', Astro.site).toString(),
   ethicsPolicy: new URL('/editorial-policy/#ethics', Astro.site).toString(),
   unnamedSourcesPolicy: new URL('/editorial-policy/#sources', Astro.site).toString(),
+  // R53 #1 — 사업자·연락처·법인 메타 강화. AdSense 심사·E-E-A-T·KG 자기 등록 3중 시그널.
+  legalName: '스마트데이터샵',
+  taxID: '406-06-34485',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '새벌로 88',
+    addressLocality: '계양구',
+    addressRegion: '인천광역시',
+    addressCountry: 'KR',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'editorial',
+    email: 'smartdatashop@gmail.com',
+    availableLanguage: ['ko-KR'],
+    areaServed: 'KR',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: '스마트데이터샵',
+    url: 'https://smartdatashop.kr',
+  },
   // 대표 페이지 — Google KG 자기 등록 + sameAs 진입.
   mainEntityOfPage: new URL('/about/', Astro.site).toString(),
 };

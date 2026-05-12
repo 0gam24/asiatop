@@ -5,7 +5,7 @@ name: Auto PR Cleanup
 
 on:
   schedule:
-    - cron: '*/30 * * * *'   # 30분 단위
+    - cron: '15,45 * * * *'   # 매시 15·45분 — R53 cron 분산 (정각·30분 시작과 분리)
   workflow_dispatch: {}
 
 permissions:
