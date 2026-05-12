@@ -144,11 +144,21 @@ export async function fetchFacts(query, opts = {}) {
     }
 
     const facts = matched.map(productToFact);
+    // R55-2 — fact-verifier 가 매칭할 수 있는 text 본문 추가.
+    // 은행명·상품명·만기이자율·가입 채널 자유 텍스트 합본 → 한국어 정규식 매칭 가능.
+    const text = matched.map((p) => {
+      const co = p?.kor_co_nm ?? '';
+      const prd = p?.fin_prdt_nm ?? '';
+      const mtrt = p?.mtrt_int ?? '';
+      const join = p?.join_way ?? '';
+      const note = p?.etc_note ?? '';
+      return `${co} ${prd} (만기이자율 ${mtrt}, 가입 ${join}) ${note}`;
+    }).join('\n');
     return {
       source_id: id,
       source_url: 'https://finlife.fss.or.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { totalCount: products.length, matchedCount: matched.length, keywords },
+      raw: { totalCount: products.length, matchedCount: matched.length, keywords, text },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.4 + facts.length * 0.1) : 0,
     };

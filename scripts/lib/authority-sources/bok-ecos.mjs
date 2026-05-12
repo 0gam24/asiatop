@@ -130,11 +130,21 @@ export async function fetchFacts(query, opts = {}) {
     }
 
     const facts = matched.map(rowToFact);
+    // R55-2 — fact-verifier 가 매칭할 수 있는 text 본문을 raw 에 포함.
+    // KEYSTAT_NAME + DATA_VALUE + UNIT_NAME + CYCLE 을 자유 텍스트로 합본 →
+    // extractFactsFromObject 정규식이 한국어 통계명·% 값 토큰 추출 가능.
+    const text = matched.map((r) => {
+      const name = r?.KEYSTAT_NAME ?? r?.STAT_NAME ?? '';
+      const value = r?.DATA_VALUE ?? '';
+      const unit = r?.UNIT_NAME ?? '';
+      const cycle = r?.CYCLE ?? '';
+      return `${name}: ${value}${unit} (${cycle})`;
+    }).join('\n');
     return {
       source_id: id,
       source_url: 'https://ecos.bok.or.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { totalCount: rows.length, matchedCount: matched.length, keywords },
+      raw: { totalCount: rows.length, matchedCount: matched.length, keywords, text },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.4 + facts.length * 0.1) : 0,
     };
