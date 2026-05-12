@@ -153,14 +153,16 @@ function renderMainIndex(articles, clusterStats) {
   for (const slug of Object.keys(CLUSTER_META)) {
     const meta = CLUSTER_META[slug];
     const stat = clusterStats[slug] ?? { included: 0, excluded: 0 };
-    if (stat.included === 0) {
+    const totalCount = (stat.included ?? 0) + (stat.excluded ?? 0);
+    if (totalCount === 0) {
       out += `### ${meta.emoji} ${meta.title} (CPC ${meta.cpc})\n`;
       out += `- 글 0편 (예정)\n\n`;
       continue;
     }
     out += `### ${meta.emoji} ${meta.title} (CPC ${meta.cpc})\n`;
     out += `- 본문 합본: ${SITE_URL}/llms-cluster-${slug}.txt\n`;
-    out += `- 글 ${stat.included}편${stat.excluded > 0 ? ` (${stat.excluded}편 한도 초과 제외)` : ''}\n\n`;
+    // R53 #4 — 실제 발행 글 수 = included + excluded. 본문 잘려도 URL 은 노출 중.
+    out += `- 글 ${totalCount}편${stat.excluded > 0 ? ` (본문 ${stat.included}편 + 50KB 한도 초과 ${stat.excluded}편 URL 만)` : ''}\n\n`;
 
     const clusterArticles = articles
       .filter((a) => a.cluster === slug)
@@ -196,9 +198,16 @@ function renderLlmsTxt(articles, clusterStats) {
   out += `## 토픽 클러스터\n\n`;
   for (const slug of Object.keys(CLUSTER_META)) {
     const meta = CLUSTER_META[slug];
-    const stat = clusterStats[slug] ?? { included: 0 };
+    const stat = clusterStats[slug] ?? { included: 0, excluded: 0 };
+    const totalCount = (stat.included ?? 0) + (stat.excluded ?? 0);
+    // R53 #4 — 실제 발행 글 수(included+excluded)와 본문 포함 글 수를 분리 표기.
+    // 50KB 한도로 본문 일부 제외돼도 hub 페이지에서 전부 접근 가능.
+    const countLabel =
+      stat.excluded > 0
+        ? `${totalCount}편 · 본문 ${stat.included}편 + URL ${stat.excluded}편`
+        : `${totalCount}편`;
     out += `### ${meta.title}\n`;
-    out += `- [${SITE_URL}/${slug}](${SITE_URL}/${slug}): ${meta.shortTitle} 클러스터 허브 (${stat.included}편)\n\n`;
+    out += `- [${SITE_URL}/${slug}](${SITE_URL}/${slug}): ${meta.shortTitle} 클러스터 허브 (${countLabel})\n\n`;
   }
 
   out += `## 인터랙티브 도구\n\n`;
@@ -211,9 +220,12 @@ function renderLlmsTxt(articles, clusterStats) {
   out += `- 메인 인덱스: ${SITE_URL}/llms-full.txt\n`;
   for (const slug of Object.keys(CLUSTER_META)) {
     const meta = CLUSTER_META[slug];
-    const stat = clusterStats[slug] ?? { included: 0 };
-    if (stat.included === 0) continue;
-    out += `- ${meta.title}: ${SITE_URL}/llms-cluster-${slug}.txt (${stat.included}편)\n`;
+    const stat = clusterStats[slug] ?? { included: 0, excluded: 0 };
+    const totalCount = (stat.included ?? 0) + (stat.excluded ?? 0);
+    if (totalCount === 0) continue;
+    const countLabel =
+      stat.excluded > 0 ? `${totalCount}편 본문 ${stat.included}편` : `${totalCount}편`;
+    out += `- ${meta.title}: ${SITE_URL}/llms-cluster-${slug}.txt (${countLabel})\n`;
   }
   out += `\n`;
 
