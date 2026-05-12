@@ -36,6 +36,64 @@ title: 청년월세지원
   });
 });
 
+describe('R56 — 임계 완화 (FACT_VERIFY_MIN_MATCH_RATE 환경변수)', () => {
+  it('default 0.7 — 매칭률 1.0 통과', async () => {
+    const mdx = `---
+title: x
+---
+월 20만원 12개월 만 19세 소득세법 제59조 제2항`;
+    delete process.env.FACT_VERIFY_MIN_MATCH_RATE;
+    const r = await verifyFacts(mdx, sampleBrief);
+    expect(r.pass).toBe(true);
+    expect(r.match_rate).toBe(1);
+  });
+
+  it('default 0.7 — unmatched 1건이라도 임계 충족 시 통과', async () => {
+    // 본문 토큰 5개 중 4개 매칭, 1개 unmatched → 0.8 ≥ 0.7 pass
+    const mdx = `---
+title: x
+---
+청년월세지원은 만 19세부터 월 20만원 12개월 한도. 2025년 7월 1일 시행. 위반 시 5만원 과태료.`;
+    delete process.env.FACT_VERIFY_MIN_MATCH_RATE;
+    const r = await verifyFacts(mdx, sampleBrief);
+    // 5만원은 권위에 없어 unmatched, 나머지 4개 matched → 0.8
+    expect(r.match_rate).toBeGreaterThanOrEqual(0.7);
+    expect(r.pass).toBe(true);
+  });
+
+  it('FACT_VERIFY_MIN_MATCH_RATE=1.0 (100% 강제) — unmatched 1건이면 fail', async () => {
+    const mdx = `---
+title: x
+---
+월 20만원 12개월 만 19세. 위반 시 5만원 과태료.`;
+    process.env.FACT_VERIFY_MIN_MATCH_RATE = '1.0';
+    const r = await verifyFacts(mdx, sampleBrief);
+    delete process.env.FACT_VERIFY_MIN_MATCH_RATE;
+    expect(r.pass).toBe(false);
+  });
+
+  it('FACT_VERIFY_MIN_MATCH_RATE 잘못된 값 → default 0.7', async () => {
+    const mdx = `---
+title: x
+---
+월 20만원 12개월 만 19세 소득세법 제59조 제2항`;
+    process.env.FACT_VERIFY_MIN_MATCH_RATE = 'abc';
+    const r = await verifyFacts(mdx, sampleBrief);
+    delete process.env.FACT_VERIFY_MIN_MATCH_RATE;
+    expect(r.pass).toBe(true); // 1.0 매칭, 0.7 임계 통과
+  });
+
+  it('본문에 사실 토큰 0개 (해설·의견) — pass (분모 0)', async () => {
+    const mdx = `---
+title: x
+---
+이 글은 청년월세지원의 의의와 정책 배경을 다룹니다. 구체적 수치·날짜는 본문에 없음.`;
+    delete process.env.FACT_VERIFY_MIN_MATCH_RATE;
+    const r = await verifyFacts(mdx, sampleBrief);
+    expect(r.pass).toBe(true);
+  });
+});
+
 describe('fact-verifier — 환각 검출', () => {
   it('권위에 없는 수치는 unmatched → pass=false', async () => {
     const mdx = `---
