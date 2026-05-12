@@ -15,6 +15,7 @@
     "audit:auto-reg": "node scripts/audit/auto-registration.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",
     "audit:frontmatter": "node scripts/audit/frontmatter-coverage.mjs",
+    "audit:bundle": "node scripts/audit/bundle-size.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check && tsc --noEmit",
