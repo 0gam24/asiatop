@@ -187,15 +187,19 @@ function buildSourcesBlock(brief) {
   const primary = brief.primary_sources ?? [];
   const secondary = brief.secondary_sources ?? [];
   if (primary.length === 0) return null;
-  const lines = [blockHeader(10, '1차 자료 (이 출처에서만 사실 인용 — 외부 검색 금지)')];
+  const lines = [blockHeader(10, '1차 자료 (G4 fact-verifier 매칭 풀) — 본문의 모든 수치·날짜·법령·금액 토큰은 이 expected_facts 안 토큰 중 하나여야 함')];
   for (const s of primary) {
     lines.push(`[${s.id}] ${s.title} — ${s.url}`);
     if (s.expected_facts?.length > 0) {
-      lines.push('  expected_facts:');
+      lines.push('  expected_facts (본문 토큰 매칭 풀 — 외부 토큰 추가 금지):');
       for (const f of s.expected_facts) lines.push(`   - ${f}`);
     }
     if (s.must_quote === true) lines.push('  → 본문에 직접 인용 의무');
   }
+  lines.push('');
+  lines.push('※ G4 매칭 룰: 본문에 등장하는 amount(원/만원)·percent(%)·count_unit(일/개월/년)·date(YYYY년 N월)·law(법령명 제N조) 토큰은');
+  lines.push('   각 출처의 expected_facts 안에 있는 토큰과 정확히 일치해야 합니다.');
+  lines.push('   외부 일반 지식·추정값·근사값 사용 X. 단, "약 N", "대략 N", "보통 N" 표현은 approximate 분류로 분모 제외 — 정확 토큰을 모르면 이 표현 사용.');
   if (secondary.length > 0) {
     lines.push('\n2차 자료 (선택 인용):');
     for (const s of secondary) {
@@ -307,12 +311,14 @@ export function buildUserPromptFromBrief(brief) {
   const internal = buildInternalLinksBlock(brief);
   if (internal) blocks.push(internal);
 
-  // 14. 재진술 (필수)
+  // 14. 재진술 (필수) — R57 G4 매칭률 70% 통과 의무 강화
   blocks.push([
-    blockHeader(14, '재진술'),
+    blockHeader(14, '재진술 — G4 fact-verifier 매칭률 70% 통과 의무'),
     '위 brief를 정확히 따르세요.',
     '- H2 제목·개수·순서는 §11 그대로.',
-    '- 사실은 §10 expected_facts 외부에서 가져오지 마세요.',
+    '- 본문의 사실 토큰 70% 이상이 §10 expected_facts 안 토큰과 정확 일치해야 합니다 (G4 통과 임계).',
+    '  · 일치 안 하면 자동 폐기. 외부 일반 지식·추정 수치 금지.',
+    '  · expected_facts 에 없는 사실을 꼭 인용해야 하면 "약 N" / "대략 N" / "보통 N" approximate 표현 사용 (G4 분모 제외).',
     citables ? '- §9 citable_sentences를 본문에 60%+ 포함하세요.' : '',
     '- 어순·종결어미 자연화는 OK. 수치·법령·URL 토큰은 보존.',
   ].filter(Boolean).join('\n'));
