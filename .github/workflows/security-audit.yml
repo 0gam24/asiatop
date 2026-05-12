@@ -1,12 +1,14 @@
 name: Weekly Security Audit
 
-# 매주 월요일 오전 9시 KST (UTC 0시)에 의존성 취약점 스캔.
+# 매주 월요일 오전 2시 KST (UTC 일 17:00) 의존성 취약점 스캔.
 # 발견 시 GitHub Issue 자동 생성·갱신.
 # 수동 실행: workflow_dispatch.
+#
+# R53 cron 분산 — stale-content-check (월 KST 04:00) 와 분리해 동시 실행 회피.
 
 on:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 17 * * 0'
   workflow_dispatch: {}
 
 permissions:

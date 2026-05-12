@@ -267,7 +267,7 @@
 - [geo-audit.mjs](scripts/geo-audit.mjs) — GEO 청킹 감사
 - [secrets-scan.mjs](scripts/secrets-scan.mjs) — 자체 시크릿 스캔
 - [setup-env.mjs](scripts/setup-env.mjs) / [install-hooks.mjs](scripts/install-hooks.mjs) / [spread-dates.mjs](scripts/spread-dates.mjs)
-- scripts/audit/ — auto-registration·passage-chunking·rejection-stats·title-length 감사
+- scripts/audit/ — auto-registration·passage-chunking·rejection-stats·title-length·frontmatter-coverage 감사 (frontmatter-coverage: 108편의 aiAssisted/sources_verified/lastReviewed/reviewedBy 메타 도입률·stale·갱신 우선순위 큐 산출)
 - scripts/post-build/ — sitemap-index·sitemap-lastmod 후처리
 - scripts/gates/ — G1 question-sanitize, G2 cluster-map, G3 source-probe, G5 adsense-policy, G6 disclosure-attach, G7 plagiarism, G8 ai-likeness, G9 naver-spam (G0/G4 는 lib/)
 - scripts/lib/ — fact-extract·fact-match·fact-verifier·dedup-index·ai-likeness-scorer·brief-loader·brief-prompt-builder·naver-kin-collector·naturalization-patterns·trusted-domains + authority-sources/
@@ -401,3 +401,4 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-07 — 초기 자동 생성 (commit 8b8c529 기준)
 - 2026-05-07 — MainBackrefBox 컴포넌트 신설 + 글 상세/클러스터 인덱스/Footer sitewide 적용 + Article schema parentOrganization·isBasedOn 추가 (smartdatashop network 자매 박힘)
 - 2026-05-07 — generate-network-mirror.mjs 신설 + build chain·prebuild 등록 + `.gitignore` 산출물 제외 (smartdata HQ Network Index sync)
+- 2026-05-12 — Base.astro NewsMediaOrganization schema 강화 (legalName/taxID/PostalAddress/contactPoint/parentOrganization 추가), frontmatter-coverage 감사 스크립트 신설, cron 시각 분산 4종 (R53 #1)

@@ -2,8 +2,9 @@ name: Scheduled Rebuild (CF Deploy Hook)
 
 on:
   schedule:
-    # 6시간마다 (UTC) — 한국시간 09:00, 15:00, 21:00, 03:00
-    - cron: '0 */6 * * *'
+    # R53 cron 분산 — 6시간마다 15분 offset (UTC 00:15·06:15·12:15·18:15 = KST 09:15·15:15·21:15·03:15).
+    # security-audit·stale-content-check (UTC 17·19 일요일) 과 분리.
+    - cron: '15 */6 * * *'
   workflow_dispatch: {}
 
 jobs:
