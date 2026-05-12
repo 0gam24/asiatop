@@ -42,8 +42,10 @@
 - /404
 - /corrections/
 - /personas/
+- /personas/social-newbie/
 - /personas/newlywed/
 - /personas/housing-subscription/
+- /personas/self-employed/
 - /calculators/
 - /calculators/salary/
 - /calculators/severance-pay/
@@ -415,3 +417,4 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-12 — bok-ecos 어댑터 V2 real fetch (R53 #6, KeyStatisticList 100선 + 키워드 부분매칭) + author JSON sameAs 보강 (corrections/contact/smartdatashop.kr 추가) + Sentry sampleRate 환경변수화 (PUBLIC_SENTRY_SAMPLE_RATE, 0.01~1.0 클램프, parseSampleRate 단위테스트 6건)
 - 2026-05-12 — fss-finlife V2 real fetch (R53 #7, depositProductsSearch 은행 정기예금 + 키워드 매칭, savings·credit-loan·insurance-personal·auto 36편 영향) + data-go-kr V2 real fetch (youthcenter.go.kr getPlcy 청년정책 list + srchKywd, gov-support·public-services·realestate 27편 영향)
 - 2026-05-12 — stale-content-check.yml 워크플로 강화 (R53 #8) — 인라인 스크립트 → scripts/audit/frontmatter-coverage.mjs 통합. 자동검증 메타 도입률 + 갱신 우선순위 큐 30건 issue 본문 자동 게시. docs/17-performance-budget.md §12 AdSense INP/CLS 사전 budget 추가 (R53 #9). docs/MOCK-AUTHORITY-RUNBOOK.md 신설 (어댑터 V2 4개 활성 절차·dry-run·롤백).
+- 2026-05-12 — 페르소나 인덱스 페이지 2종 추가 (R53 #10) — /personas/social-newbie/ (12편, 청년·첫직장·자산형성), /personas/self-employed/ (10편, 종소세·부가세·정책대출·노란우산). 페르소나 4종 (사회초년생·신혼·청약·자영업자) 완성. CollectionPage + Audience schema 박힘.
