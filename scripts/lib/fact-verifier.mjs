@@ -71,11 +71,18 @@ export async function verifyFacts(mdx, brief, options = {}) {
       const all = Array.isArray(responses) ? responses : [responses];
       for (const resp of all) {
         if (!resp) continue;
-        // resp.facts (이미 토큰화됨) 또는 resp.raw (객체) 처리
+        // R55 — facts(어댑터 메타) + raw(원본 응답) 둘 다 처리.
+        // 이전 `else if` 는 어댑터가 facts 반환 시 raw 무시 → R54-4 의 law-go-kr raw.body
+        // (lawService.do 조문 본문) 활용 불가. classifyTokens 가 fact-extract 표준 형식
+        // ({ type:'law'|'amount'|..., normalized }) 만 매칭하므로 어댑터 facts (type:'law-metadata')
+        // 는 사실상 매칭 안 됨. raw 에서 extractFactsFromObject 가 leaf string 정규식 매칭으로
+        // 진짜 토큰 추출.
+        const sourceMeta = { source_url: resp.source_url, source_id: resp.source_id };
         if (Array.isArray(resp.facts)) {
-          fetchedTokens.push(...resp.facts.map((f) => ({ ...f, source_url: resp.source_url, source_id: resp.source_id })));
-        } else if (resp.raw) {
-          fetchedTokens.push(...extractFactsFromObject(resp.raw, { source_url: resp.source_url, source_id: resp.source_id }));
+          fetchedTokens.push(...resp.facts.map((f) => ({ ...f, ...sourceMeta })));
+        }
+        if (resp.raw) {
+          fetchedTokens.push(...extractFactsFromObject(resp.raw, sourceMeta));
         }
       }
     } catch (e) {
