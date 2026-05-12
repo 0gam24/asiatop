@@ -186,6 +186,63 @@ jobs:
           path: /tmp/v2/brief.yaml
           retention-days: 7
 
+      # R54-2 — LLM 4-pass (DeepSeek Pass 1 → 정규화 Pass 2 → Claude Pass 3 → 게이트 Pass 4 + G4 fact-verify Pass 5).
+      # dry_run='true' 일 때는 비용 0 보호로 step skip.
+      # dry_run='false' 일 때만 실제 LLM 호출 (~$0.022/편).
+      # --draft 강제 — production 글 폴더(src/content/articles/) 직접 commit 안 되도록 _drafts/ 에만 저장.
+      # brief schema validation fail 가능성(자동 생성 brief 의 <TODO> 미충족) — continue-on-error 로 안전망.
+      - name: LLM 4-pass (DeepSeek + Claude) — dry_run=false 일 때만
+        if: steps.gates.outputs.brief_path != '' && inputs.dry_run != 'true'
+        id: llm
+        continue-on-error: true
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LAW_GO_KR_OC: ${{ secrets.LAW_GO_KR_OC }}
+          BOK_API_KEY: ${{ secrets.BOK_API_KEY }}
+          FSS_KEY: ${{ secrets.FSS_KEY }}
+          YOUTH_CENTER_API_KEY: ${{ secrets.YOUTH_CENTER_API_KEY }}
+          NPS_KEY: ${{ secrets.NPS_KEY }}
+          MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
+        run: |
+          set +e
+          node scripts/article-pipeline.mjs --brief /tmp/v2/brief.yaml --draft 2>&1 | tee /tmp/v2/llm.log
+          exit_code=$?
+          set -e
+          # 결과 MDX 위치 추정 (article-pipeline 이 _drafts/<slug>.mdx 에 저장)
+          slug=$(node -e '
+            const y = require("js-yaml").load(require("fs").readFileSync("/tmp/v2/brief.yaml","utf-8"));
+            console.log(y?.meta?.slug ?? "");
+          ' 2>/dev/null || echo "")
+          mdx_path="src/content/articles/_drafts/${slug}.mdx"
+          {
+            echo ""
+            echo "## R54-2 LLM 4-pass 결과 (exit=$exit_code)"
+            echo '```'
+            tail -60 /tmp/v2/llm.log
+            echo '```'
+            if [ -n "$slug" ] && [ -f "$mdx_path" ]; then
+              echo ""
+              echo "### MDX 생성 성공: \`$mdx_path\`"
+              echo "본문 어절 수: $(wc -w < "$mdx_path")"
+              echo "라인 수: $(wc -l < "$mdx_path")"
+              echo "mdx_slug=$slug" >> "$GITHUB_OUTPUT"
+              echo "mdx_path=$mdx_path" >> "$GITHUB_OUTPUT"
+            else
+              echo ""
+              echo "### MDX 생성 실패 — exit_code=$exit_code, slug=$slug"
+              echo "(brief schema validation fail 또는 LLM API 오류 가능)"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Draft MDX 아티팩트 업로드 (R54-2)
+        if: steps.llm.outputs.mdx_path != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto-publish-draft-mdx
+          path: ${{ steps.llm.outputs.mdx_path }}
+          retention-days: 7
+
       - name: dedup·rejected audit 커밋 (변경 시)
         if: steps.pick.outputs.skip == 'false'
         env:
