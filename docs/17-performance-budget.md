@@ -336,4 +336,46 @@ GitHub Actions cron으로 일간 모니터링 + Slack 알림 자동화 가능.
 
 ---
 
+## 12. AdSense INP/CLS 사전 budget (R53 #9)
+
+AdSense 활성 시 광고 스크립트가 CWV 에 큰 영향. 신청·승인 전 다음 규칙을 코드/정책으로 박아 회귀 방어.
+
+### 12-1. 광고 표시 정책 (코드 강제)
+
+| 항목 | 규칙 | 이유 |
+|---|---|---|
+| **Auto Ads** | ❌ 금지 — 수동 슬롯만 사용 | DOM 자동 삽입 → CLS 폭증 |
+| **Above-the-fold 광고** | ≤ 1개 (홈·calculator) / 0개 (글 상세 첫 화면) | LCP 위협 |
+| **광고 슬롯 height 예약** | `aspect-ratio` 또는 `min-height` 고정 필수 | CLS = 0 유지 |
+| **광고 로드 전략** | Partytown lazy + `data-strategy="idle"` | 메인 스레드 격리, INP 보호 |
+| **광고 reload·refresh** | ❌ 금지 | LCP·INP 회귀 + 사용자 신뢰성 ↓ |
+
+### 12-2. 측정 임계 (광고 활성 후)
+
+| 메트릭 | 광고 OFF (현재) | 광고 ON 임계 |
+|---|---|---|
+| LCP (mobile) | ≤ 2.0s | ≤ 2.5s |
+| INP (mobile) | ≤ 100ms | ≤ 150ms |
+| CLS (sitewide) | < 0.05 | < 0.1 |
+| Lighthouse Performance | ≥ 95 (desktop) / ≥ 90 (mobile) | ≥ 85 / ≥ 80 |
+
+### 12-3. 활성 절차 (운영자 권장)
+
+1. `PUBLIC_ADSENSE_CLIENT=` 채우기 전:
+   - 위 12-1 규칙으로 [`src/components/AdSlot.astro`](../src/components/AdSlot.astro) 의 `format` 별 `min-height` 검증
+   - 광고 슬롯 1개 시범 페이지에 inline 한 더미 placeholder 로 LCP·CLS 측정
+2. AdSense 승인 후 환경변수 채우기 → CF Pages Retry deployment
+3. 24h 후 PSI 재측정, 위 12-2 임계 모두 통과 확인
+4. 임계 초과 시:
+   - 즉시 `PUBLIC_ADSENSE_CLIENT` 비우기 (CF Pages env 만 변경 + Retry deployment, 코드 변경 X)
+   - 광고 슬롯 위치·크기·timing 조정 후 재시도
+
+### 12-4. 회귀 차단 게이트
+
+- 본 PR(R53 #3) 의 `bundle-size` CI 게이트 (JS raw 350KB / gz 120KB / CSS 80KB) 가 광고 chunk 폭증 사전 차단
+- AdSense SDK 자체는 `googletagmanager` Partytown lazy 라 메인 번들 영향 X (lazy fetch)
+- 다만 광고 iframe 의 폰트·이미지 로드는 viewport 진입 시 발생 — `loading="lazy"` 확인
+
+---
+
 **다음 작업**: `docs/18-testing.md` — Lighthouse CI, Playwright, axe.
