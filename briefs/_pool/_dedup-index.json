@@ -94,5 +94,11 @@
     "status": "rejected",
     "reason": "g3-empty-response",
     "count": 1
+  },
+  "d130c26d0f433362": {
+    "last_seen_at": "2026-05-12T08:28:03.692Z",
+    "status": "pending",
+    "reason": null,
+    "count": 1
   }
 }
