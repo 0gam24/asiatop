@@ -40,6 +40,10 @@
 - /search/
 - /design-system/
 - /404
+- /corrections/
+- /personas/
+- /personas/newlywed/
+- /personas/housing-subscription/
 - /calculators/
 - /calculators/salary/
 - /calculators/severance-pay/
@@ -402,3 +406,4 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-07 — MainBackrefBox 컴포넌트 신설 + 글 상세/클러스터 인덱스/Footer sitewide 적용 + Article schema parentOrganization·isBasedOn 추가 (smartdatashop network 자매 박힘)
 - 2026-05-07 — generate-network-mirror.mjs 신설 + build chain·prebuild 등록 + `.gitignore` 산출물 제외 (smartdata HQ Network Index sync)
 - 2026-05-12 — Base.astro NewsMediaOrganization schema 강화 (legalName/taxID/PostalAddress/contactPoint/parentOrganization 추가), frontmatter-coverage 감사 스크립트 신설, cron 시각 분산 4종 (R53 #1)
+- 2026-05-12 — 페르소나 인덱스 페이지 3종 신설 (/personas/, /personas/newlywed/, /personas/housing-subscription/) + 정정 이력 페이지 /corrections/ 신설 + Footer 운영정보 섹션 갱신 (R53 #2)

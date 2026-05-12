@@ -1,0 +1,137 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const url = new URL('/personas/newlywed/', Astro.site).toString();
+const PERSONA_ACCENT = '#FF6B9D';
+
+// 신혼·신생아 페르소나 큐레이션 — 108편 횡단 (gov-support·realestate·tax·pension)
+const CURATED_SLUGS = [
+  // 핵심 — 정부 지원 패키지
+  'newlywed-support-package',
+  'birth-support-package',
+  'child-allowance-comparison',
+  // 청약·대출 — 첫집 마련
+  'beotimmok-jeonse-loan',
+  'didimdol-vs-bogeumjari-comparison',
+  'jeonse-deposit-protection',
+  'housing-subscription-account-strategy',
+  'real-estate-mortgage-refinancing',
+  // 세제
+  'dependent-deduction-guide',
+  'monthly-rent-tax-credit-application',
+  // 노후 보조 (배우자 임의가입)
+  'national-pension-voluntary-continued-payment',
+];
+
+let articlesAll: Awaited<ReturnType<typeof getCollection>> = [];
+try {
+  articlesAll = await getCollection('articles', ({ data }) => !data.draft);
+} catch {
+  articlesAll = [];
+}
+
+const articleById = new Map(articlesAll.map((a) => [a.id.replace(/\.mdx?$/, ''), a]));
+const curated = CURATED_SLUGS.map((s) => articleById.get(s)).filter(Boolean);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '페르소나', item: new URL('/personas/', Astro.site).toString() },
+    { '@type': 'ListItem', position: 3, name: '신혼·신생아', item: url },
+  ],
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: '신혼·신생아 페르소나 가이드 | 머니룩',
+  description: '결혼·출산·첫집 마련을 앞둔 신혼부부를 위한 청약·대출·전세·세제·지원금 통합 가이드 11편.',
+  url,
+  inLanguage: 'ko-KR',
+  audience: {
+    '@type': 'Audience',
+    audienceType: '신혼부부·신생아 가족',
+    geographicArea: { '@type': 'Country', name: 'South Korea' },
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: curated.length,
+    itemListElement: curated.map((a, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(`/${a!.data.cluster}/${a!.id.replace(/\.mdx?$/, '')}/`, Astro.site).toString(),
+      name: a!.data.title,
+    })),
+  },
+};
+---
+<Base
+  title="신혼·신생아 가이드 — 청약·대출·전세·세제·지원금 11편 | 머니룩"
+  description="결혼·출산·첫집 마련을 앞둔 신혼부부의 청약통장·디딤돌·버팀목·전세보증금·연말정산 인적공제·정부 지원금까지 12개 카테고리를 가로지른 큐레이션 11편."
+  jsonLd={[breadcrumbSchema, collectionSchema]}
+>
+  <div class="hero" style={`--accent: ${PERSONA_ACCENT};`}>
+    <div class="container">
+      <nav aria-label="breadcrumb" class="crumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">›</span>
+        <a href="/personas/">페르소나</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">신혼·신생아</span>
+      </nav>
+      <p class="kicker">Persona</p>
+      <h1>💍 신혼·신생아 가이드</h1>
+      <p class="lede">
+        결혼 직전부터 첫 아이까지 — 청약·전세·세제·지원금이 한꺼번에 쏟아지는 시기에 필요한
+        머니룩 글 11편을 한 페이지에 모았습니다.
+      </p>
+      <p class="sub">
+        12개 카테고리(정부지원·부동산·연말정산·연금)를 가로질러 큐레이션. 발행일 순이 아닌
+        결정 흐름(지원금 → 청약 → 대출 → 보증금 → 세제) 으로 정렬.
+      </p>
+    </div>
+  </div>
+
+  <section class="container section">
+    <div class="grid">
+      {curated.map((a) => (
+        <ArticleCard
+          href={`/${a!.data.cluster}/${a!.id.replace(/\.mdx?$/, '')}/`}
+          title={a!.data.title}
+          description={a!.data.description}
+          cluster={a!.data.cluster}
+          publishedAt={a!.data.publishedAt}
+        />
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .container { max-width: 1200px; padding-inline: 1rem; margin-inline: auto; }
+  @media (min-width: 768px) { .container { padding-inline: 2rem; } }
+  .hero {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 10%, var(--color-bg)) 0%, var(--color-bg) 100%);
+    padding-block: 2.5rem; border-bottom: 1px solid var(--color-border);
+  }
+  .crumb { display: flex; gap: 0.4rem; font-size: 0.8rem; color: var(--color-muted); margin-bottom: 1rem; flex-wrap: wrap; }
+  .crumb a:hover { color: var(--accent); }
+  .kicker {
+    display: inline-flex; height: 26px; padding-inline: 0.6rem;
+    background: color-mix(in oklab, var(--accent) 18%, transparent); color: var(--accent);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+    border-radius: 999px; text-transform: uppercase; margin: 0 0 1rem;
+  }
+  h1 { font-size: clamp(1.7rem, 4.5vw, 2.3rem); font-weight: 800; letter-spacing: -0.035em; color: var(--color-secondary); margin: 0 0 0.85rem; }
+  .lede { font-size: 1.06rem; color: var(--color-text); line-height: 1.65; margin: 0 0 0.5rem; max-width: 42rem; }
+  .sub { font-size: 0.92rem; color: var(--color-muted); line-height: 1.6; margin: 0; max-width: 42rem; }
+
+  .section { padding-block: 2.5rem; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 480px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+</style>
