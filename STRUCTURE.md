@@ -409,3 +409,5 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - 2026-05-12 — 페르소나 인덱스 페이지 3종 신설 (/personas/, /personas/newlywed/, /personas/housing-subscription/) + 정정 이력 페이지 /corrections/ 신설 + Footer 운영정보 섹션 갱신 (R53 #2)
 - 2026-05-12 — Lighthouse mobile job 복구 (R53 #3, preset='perf' 제거 정공 fix) + bundle-size CI 게이트 (JS raw 350KB / gz 120KB / CSS 80KB 임계) + MainBackrefBox 클릭 GA4 이벤트 (data-track="main_backref_click")
 - 2026-05-12 — robots.txt 정공 fix (User-agent: * 단일 그룹 통합, 명시 봇 26그룹 제거 — Disallow 모호성 0) + llms.txt 클러스터 카운트 분리 표기 (실제 발행 글 수 vs 본문 포함 글 수) (R53 #4)
+- 2026-05-12 — robots.txt 명시 봇 그룹 26종 복원 hotfix (e2e "User-agent: GPTBot 명시 검증" 회귀 안전망 + `*` 그룹 Disallow 유지로 모호성 해소 양립)
+- 2026-05-12 — law-go-kr 어댑터 V2 real fetch 구현 (R53 #5) — lawSearch.do (키워드 검색·법령 메타) + lawService.do (본문, 향후 토큰 매칭용 export 만). LAW_GO_KR_OC 미설정 시 mock fallback, confidence 0.5. tax·insurance-labor·office-tips·unemployment cluster 36편 영향. MOCK_AUTHORITY=0 첫 단계 어댑터.
