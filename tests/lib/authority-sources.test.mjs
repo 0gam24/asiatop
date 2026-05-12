@@ -14,9 +14,22 @@ describe('authority-sources — routeByCluster', () => {
     expect(adapters.some((a) => a.id === 'bok-ecos')).toBe(true);
   });
 
-  it('pension 어댑터 매핑', () => {
+  it('pension 어댑터 매핑 (R60 — nps V2 대기, law-go-kr 임시 fallback)', () => {
     const adapters = routeByCluster('pension');
-    expect(adapters.some((a) => a.id === 'nps')).toBe(true);
+    // V2 (nps endpoint 확정 후) 복귀 예정 — 현재는 law-go-kr 임시
+    expect(adapters.some((a) => a.id === 'law-go-kr')).toBe(true);
+  });
+
+  it('unemployment 어댑터 매핑 (R60 — work24 V1 미사용)', () => {
+    const adapters = routeByCluster('unemployment');
+    expect(adapters.some((a) => a.id === 'law-go-kr')).toBe(true);
+    expect(adapters.some((a) => a.id === 'work24')).toBe(false);
+  });
+
+  it('gov-support 어댑터 매핑 (R60 — welfareGoKr V2 대기)', () => {
+    const adapters = routeByCluster('gov-support');
+    expect(adapters.some((a) => a.id === 'data-go-kr')).toBe(true);
+    expect(adapters.some((a) => a.id === 'welfare-go-kr')).toBe(false);
   });
 
   it('미지의 cluster는 빈 배열', () => {
