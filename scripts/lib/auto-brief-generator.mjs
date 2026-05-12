@@ -158,11 +158,11 @@ export function generateBriefSkeleton({
       created_at: today,
     },
     niche: {
-      audience_persona: '<TODO: LLM 또는 사람이 채움>',
-      life_context: '<TODO>',
+      audience_persona: '<TODO: LLM Pass 1 단계에서 채움 — audience persona>',
+      life_context: '<TODO: LLM Pass 1 단계에서 채움 — life context>',
       surface_pain: redactedPain,
       hidden_anxiety: '<TODO: LLM 분류기로 hidden_anxiety_tags에서 추출>',
-      desired_next_action: '<TODO>',
+      desired_next_action: '<TODO: LLM 이 채움 — 독자의 다음 행동>',
       do_not_say: ['<TODO 1>', '<TODO 2>'],
       // 8차원 — 자동 채움 가능 부분
       search_timing: {
@@ -203,8 +203,8 @@ export function generateBriefSkeleton({
       unique_value: ['<TODO 1>', '<TODO 2>'],
       citable_sentences: [
         '<TODO: AI 인용용 문장 1 — 권위 소스 정확값 포함>',
-        '<TODO 2>',
-        '<TODO 3>',
+        '<TODO: AI 인용용 문장 2 — 권위 소스 정확값 포함>',
+        '<TODO: AI 인용용 문장 3 — 권위 소스 정확값 포함>',
       ],
     },
     primary_sources: primarySources.length > 0 ? primarySources : [{
