@@ -31,6 +31,7 @@ import yaml from 'js-yaml';
 
 import { questionHash } from './dedup-index.mjs';
 import { redactPII } from '../gates/g1-question-sanitize.mjs';
+import { extractFactsFromObject } from './fact-extract.mjs';
 
 // cluster 권위 답변 가능률 매트릭스 (src/data/clusters.ts와 동기화 — 자동 발행 파이프라인 측 캐시)
 // 의존성 회피: src/data/clusters.ts는 .ts라 mjs에서 import 어려움 → JSON 매핑 inline.
@@ -135,17 +136,49 @@ export function generateBriefSkeleton({
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const weekdayShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
 
-  // primary_sources — G3 응답에서 source_url 추출
+  // primary_sources — G3 응답에서 source_url 추출 + expected_facts 자동 채움.
+  // R55-3 — 어댑터 raw 에서 fact-extract 정규식으로 토큰 추출 → expected_facts 자동 채움.
+  // 이후 fact-verifier 가 본문 토큰을 expected_facts 와 매칭 시 통과율 ↑.
+  // LLM Pass 1 system prompt 가 brief.primary_sources.expected_facts 를 보고 본문 작성하면
+  // 본문 토큰 ↔ 어댑터 응답 토큰 1:1 매칭 가능 (정책 "100% 미만 폐기" 정공 유지).
+  function extractExpectedFactsFromAuthorityResponse(resp) {
+    if (!resp?.raw) return [];
+    try {
+      const tokens = extractFactsFromObject(resp.raw, {});
+      // 최대 10개. 중복 (normalized 동일) 제거 + type 다양성 보존 (amount·percent·date 등).
+      const seen = new Set();
+      const picked = [];
+      for (const tok of tokens) {
+        const key = `${tok.type}:${tok.normalized}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        picked.push(tok);
+        if (picked.length >= 10) break;
+      }
+      // expected_facts 항목은 자유 텍스트. fact-extract 가 다시 정규식 매칭하도록 raw 보존.
+      return picked.map((t) => t.raw ?? String(t.normalized ?? ''));
+    } catch {
+      return [];
+    }
+  }
   const primarySources = authorityResponses
     .filter((r) => r?.source_url)
     .slice(0, 3)
-    .map((r, i) => ({
-      id: `src${i + 1}`,
-      url: r.source_url,
-      title: r.source_id ?? `권위 소스 ${i + 1}`,
-      expected_facts: ['<자동: 권위 응답에서 토큰 추출 후 채움>'],
-      must_quote: true,
-    }));
+    .map((r, i) => {
+      const extracted = extractExpectedFactsFromAuthorityResponse(r);
+      // BriefSchema 의 expected_facts.min(1) 충족 — 추출 0건이면 placeholder
+      const expected_facts =
+        extracted.length > 0
+          ? extracted
+          : ['<자동: 권위 응답에 매칭 가능한 토큰 없음 — LLM 이 출처 명시 후 인용>'];
+      return {
+        id: `src${i + 1}`,
+        url: r.source_url,
+        title: r.source_id ?? `권위 소스 ${i + 1}`,
+        expected_facts,
+        must_quote: true,
+      };
+    });
 
   return {
     meta: {
