@@ -28,7 +28,9 @@ export const id = 'fss-finlife';
 
 const ENDPOINT = 'https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json';
 const TIMEOUT_MS = 12_000;
-const DEFAULT_FIN_GRP = '020000'; // 은행
+// R58 — 단일 은행(020000) → 은행+저축은행 다중 호출로 raw 풀 2배.
+// 더 많은 상품·금리 토큰을 fact-verifier 가 매칭 풀에 활용.
+const FIN_GROUPS = ['020000', '030200']; // 은행 + 상호저축은행
 
 function buildUrl(key, topFinGrpNo) {
   const u = new URL(ENDPOINT);
@@ -127,9 +129,15 @@ export async function fetchFacts(query, opts = {}) {
   }
 
   try {
-    const url = buildUrl(key, DEFAULT_FIN_GRP);
-    const json = await fetchJson(url, { signal: opts.signal, timeout: opts.timeout });
-    const products = extractBaseList(json);
+    // R58 — 다중 finGrp 병렬 호출. 한 그룹 실패해도 다른 그룹 응답 보존.
+    const results = await Promise.allSettled(
+      FIN_GROUPS.map((grp) =>
+        fetchJson(buildUrl(key, grp), { signal: opts.signal, timeout: opts.timeout }),
+      ),
+    );
+    const products = results
+      .filter((r) => r.status === 'fulfilled')
+      .flatMap((r) => extractBaseList(r.value));
 
     const keywords = (Array.isArray(query?.keywords) ? query.keywords : []).filter(Boolean);
 
