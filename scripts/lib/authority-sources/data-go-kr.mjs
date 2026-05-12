@@ -133,11 +133,18 @@ export async function fetchFacts(query, opts = {}) {
       const target = p?.sporTrgtMaxAge ?? p?.ageInfo ?? '';
       return `${title} (${dept}). 키워드: ${kw}. 신청: ${period}. 대상: ${target}`;
     }).join('\n');
+    // R63 — policies 배열 자체 raw 에 포함. gov-support·public-services·realestate
+    // cluster 매칭 풀 확대.
     return {
       source_id: id,
       source_url: 'https://www.youthcenter.go.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { keyword, count: policies.length, text },
+      raw: {
+        keyword,
+        count: policies.length,
+        text,
+        policies: policies.slice(0, 20),
+      },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.5 + facts.length * 0.08) : 0,
     };

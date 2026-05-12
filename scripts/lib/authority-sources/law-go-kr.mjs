@@ -181,11 +181,19 @@ export async function fetchFacts(query, opts = {}) {
       }
     }
 
+    // R63 — laws 배열 자체 raw 에 포함. 모든 law 객체의 leaf string (법령명·시행일·공포일)
+    // 정규식 매칭으로 토큰 추출 가능. tax·insurance-labor·office-tips·unemployment·pension
+    // cluster 매칭률 향상 기대 (R62 의 savings 패턴 응용).
     return {
       source_id: id,
       source_url: 'https://www.law.go.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { keyword, count: laws.length, body: bodyExcerpt },
+      raw: {
+        keyword,
+        count: laws.length,
+        body: bodyExcerpt,
+        laws: laws.slice(0, 10), // lawSearch 상위 10건 메타 객체
+      },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.5 + facts.length * 0.1) : 0,
     };
