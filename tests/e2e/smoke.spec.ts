@@ -81,9 +81,14 @@ test.describe('스모크 — 핵심 페이지 로드', () => {
     expect(res.ok()).toBe(true);
     const xml = await res.text();
     expect(xml.startsWith('<?xml')).toBe(true);
-    expect(xml).toContain('<feed xmlns="http://www.w3.org/2005/Atom">');
+    // R65 — Atom 루트에 media RSS 네임스페이스 추가 (Yahoo Media RSS) → 정확 substring 매칭 불가
+    expect(xml).toMatch(/<feed[^>]*xmlns="http:\/\/www\.w3\.org\/2005\/Atom"/);
+    expect(xml).toContain('xmlns:media="http://search.yahoo.com/mrss/"');
     expect(xml).toContain('<entry>');
     expect(xml).toContain('rel="hub"');
+    // R65 — media:content + media:thumbnail 신호 확인 (Discover·Naver 후보화 1순위)
+    expect(xml).toContain('<media:content');
+    expect(xml).toContain('<media:thumbnail');
   });
 
   test('feed.json — 유효 JSON Feed 1.1', async ({ request }) => {
