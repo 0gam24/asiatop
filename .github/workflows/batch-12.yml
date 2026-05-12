@@ -112,21 +112,22 @@ jobs:
           # _drafts 도 포함 (운영자가 PR 에서 보고 결정)
           git commit -m "feat: batch 12 articles — 카테고리별 1편씩 (yolo 모드)"
           git push -u origin "$branch"
+          body_file=$(mktemp)
+          {
+            echo "## yolo 모드 batch — 12 카테고리 × 1편"
+            echo ""
+            echo "- LLM 4-pass (DeepSeek + Claude) 통과"
+            echo "- PASS 4 (Zod/GEO 게이트) 통과 글: ${{ steps.gen.outputs.success }}편"
+            echo "- PASS 4 fail (→ _drafts/) 글: ${{ steps.gen.outputs.fail }}편"
+            echo "- G4 fact-verifier 우회 (legacy 모드)"
+            echo ""
+            echo "## 향후 30편 균등 path"
+            echo ""
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (108 → 120편). 30편 균등 (360편) 까지 18 batch 더 필요."
+          } > "$body_file"
           gh pr create \
             --base main \
             --head "$branch" \
             --title "feat: batch 12 articles — 카테고리별 +1편 (yolo)" \
-            --body "$(cat <<EOF
-## yolo 모드 batch — 12 카테고리 × 1편
-
-- LLM 4-pass (DeepSeek + Claude) 통과
-- PASS 4 (Zod/GEO 게이트) 통과 글: ${{ steps.gen.outputs.success }}편
-- PASS 4 fail (→ _drafts/) 글: ${{ steps.gen.outputs.fail }}편
-- G4 fact-verifier 우회 (legacy 모드)
-
-## 향후 30편 균등 path
-
-본 PR 머지 후 카테고리당 1편씩 += 1 (108 → 120편). 30편 균등 (360편) 까지 18 batch 더 필요.
-EOF
-)" \
+            --body-file "$body_file" \
             --label auto-publish
