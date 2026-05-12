@@ -60,6 +60,17 @@ export async function verifyFacts(mdx, brief, options = {}) {
   const briefTokens = extractBriefTokens(brief);
 
   let fetchedTokens = [];
+  // R55 진단 — 어댑터 응답 상태를 stats 에 노출. 추출 0건일 때 원인 추적 가능.
+  let diagnostic = {
+    responses_count: 0,
+    with_facts_count: 0,
+    with_raw_count: 0,
+    raw_total_chars: 0,
+    raw_body_total_chars: 0,
+    sources_attempted: [],
+    fetched_tokens_from_facts: 0,
+    fetched_tokens_from_raw: 0,
+  };
   if (options.authorityFetch) {
     try {
       const cluster = brief?.meta?.cluster;
@@ -69,20 +80,29 @@ export async function verifyFacts(mdx, brief, options = {}) {
       };
       const responses = await options.authorityFetch(cluster, query, { mock: !!options.mock });
       const all = Array.isArray(responses) ? responses : [responses];
+      diagnostic.responses_count = all.length;
       for (const resp of all) {
         if (!resp) continue;
+        diagnostic.sources_attempted.push(resp.source_id ?? 'unknown');
         // R55 — facts(어댑터 메타) + raw(원본 응답) 둘 다 처리.
-        // 이전 `else if` 는 어댑터가 facts 반환 시 raw 무시 → R54-4 의 law-go-kr raw.body
-        // (lawService.do 조문 본문) 활용 불가. classifyTokens 가 fact-extract 표준 형식
-        // ({ type:'law'|'amount'|..., normalized }) 만 매칭하므로 어댑터 facts (type:'law-metadata')
-        // 는 사실상 매칭 안 됨. raw 에서 extractFactsFromObject 가 leaf string 정규식 매칭으로
-        // 진짜 토큰 추출.
         const sourceMeta = { source_url: resp.source_url, source_id: resp.source_id };
-        if (Array.isArray(resp.facts)) {
+        if (Array.isArray(resp.facts) && resp.facts.length > 0) {
+          diagnostic.with_facts_count++;
+          const before = fetchedTokens.length;
           fetchedTokens.push(...resp.facts.map((f) => ({ ...f, ...sourceMeta })));
+          diagnostic.fetched_tokens_from_facts += fetchedTokens.length - before;
         }
         if (resp.raw) {
+          diagnostic.with_raw_count++;
+          const rawStr = typeof resp.raw === 'string' ? resp.raw : JSON.stringify(resp.raw);
+          diagnostic.raw_total_chars += rawStr.length;
+          // raw.body (R54-4 law-go-kr 본문 추가) 별도 추적
+          if (typeof resp.raw?.body === 'string') {
+            diagnostic.raw_body_total_chars += resp.raw.body.length;
+          }
+          const before = fetchedTokens.length;
           fetchedTokens.push(...extractFactsFromObject(resp.raw, sourceMeta));
+          diagnostic.fetched_tokens_from_raw += fetchedTokens.length - before;
         }
       }
     } catch (e) {
@@ -122,6 +142,8 @@ export async function verifyFacts(mdx, brief, options = {}) {
       body_tokens: bodyTokens.length,
       authority_tokens: authorityPool.length,
       approximate_count: approximate.length,
+      // R55 진단 — G4 fail 시 어디서 토큰 추출이 멈췄는지 추적
+      ...(diagnostic ? { diagnostic } : {}),
     },
   };
 }
