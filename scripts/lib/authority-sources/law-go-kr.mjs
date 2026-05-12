@@ -159,11 +159,33 @@ export async function fetchFacts(query, opts = {}) {
     const searchJson = await fetchJson(url, { signal: opts.signal, timeout: opts.timeout });
     const laws = extractLaws(searchJson).slice(0, MAX_RESULTS);
     const facts = laws.map(lawToFact).filter((f) => f.key);
+
+    // R54-4 — G4 fact-verifier 가 본문 토큰 (금액·일자·조항) 을 매칭하려면
+    // 메타데이터 외 법령 본문 텍스트도 raw 에 포함해야 함. 첫 결과 1건만 본문 fetch
+    // (rate-limit·timeout 위험 최소화). 실패 시 메타만 반환.
+    let bodyExcerpt = null;
+    if (laws.length > 0) {
+      const firstMst = laws[0]?.법령ID ?? laws[0]?.LawID ?? laws[0]?.MST;
+      if (firstMst) {
+        try {
+          const bodyJson = await fetchJson(
+            buildServiceUrl(oc, firstMst),
+            { signal: opts.signal, timeout: opts.timeout },
+          );
+          // 응답에서 텍스트 추출 — 조문 본문이 다양한 키 (조문내용·조문 등) 에 들어옴.
+          // 안전하게 JSON.stringify 후 토큰 매칭 (fact-extract 의 정규식이 작동).
+          bodyExcerpt = JSON.stringify(bodyJson).slice(0, 20_000);
+        } catch {
+          // 본문 fetch 실패는 hard fail 아님 — 메타만으로 진행
+        }
+      }
+    }
+
     return {
       source_id: id,
       source_url: 'https://www.law.go.kr',
       retrieved_at: new Date().toISOString(),
-      raw: { keyword, count: laws.length },
+      raw: { keyword, count: laws.length, body: bodyExcerpt },
       facts,
       confidence: facts.length > 0 ? Math.min(1, 0.5 + facts.length * 0.1) : 0,
     };

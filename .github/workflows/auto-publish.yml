@@ -29,6 +29,10 @@ on:
         description: '권위 소스 mock 모드 (현재 외부 API 키 미발급)'
         required: false
         default: '1'
+      create_pr:
+        description: 'true 면 모든 게이트 PASS 시 PR 자동 생성 + auto-merge 트리거 (R54-3b)'
+        required: false
+        default: 'false'
 
 permissions:
   contents: write
@@ -290,6 +294,70 @@ jobs:
           name: auto-publish-post-llm-result
           path: /tmp/v2/post-llm.json
           retention-days: 7
+
+      # R54-3b — PR 자동 생성 + auto-merge 트리거.
+      # 안전망 4중:
+      #   1. inputs.create_pr == 'true' 명시 입력 필수 (default 'false')
+      #   2. inputs.dry_run != 'true' 동시 조건
+      #   3. steps.post_gates.outputs.post_llm_pass == 'true' — 모든 게이트 PASS
+      #   4. steps.llm.outputs.mdx_path 존재 — LLM 4-pass 결과 있음
+      # 위 4가지 모두 만족 시만 진짜 PR 생성 → auto-merge.yml 이 CI green 후 squash merge.
+      - name: PR 자동 생성 (R54-3b, 4중 안전망)
+        if: |
+          inputs.create_pr == 'true' &&
+          inputs.dry_run != 'true' &&
+          steps.post_gates.outputs.post_llm_pass == 'true' &&
+          steps.llm.outputs.mdx_path != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          slug="${{ steps.llm.outputs.mdx_slug }}"
+          draft_path="${{ steps.llm.outputs.mdx_path }}"
+          target_path="src/content/articles/${slug}.mdx"
+
+          if [ ! -f "$draft_path" ]; then
+            echo "::error::draft MDX not found: $draft_path"
+            exit 1
+          fi
+
+          # 정식 위치로 이동 (cluster 폴더 X — slug.mdx 만, 기존 108편 패턴 유지)
+          mkdir -p "src/content/articles"
+          mv "$draft_path" "$target_path"
+
+          # 브랜치 생성·commit·push
+          branch="auto-publish/$(date +%Y%m%d)/${slug}"
+          git config user.name "moneylook-auto"
+          git config user.email "auto@moneylook"
+          git checkout -b "$branch"
+          git add "$target_path" briefs/_pool/_dedup-index.json briefs/_pool/_rejected/ 2>/dev/null || true
+          # title 추출 (frontmatter 첫 title: 라인)
+          title=$(grep -m1 '^title:' "$target_path" | sed 's/^title:\s*//;s/^"\|"$//g' | head -c 80)
+          git commit -m "auto: ${title}"
+          git push -u origin "$branch"
+
+          # PR 생성 (라벨 auto-publish — auto-merge.yml 트리거)
+          body_file=$(mktemp)
+          {
+            echo "## 자동 발행 — 모든 게이트 PASS"
+            echo ""
+            echo "**질문**: $(cat /tmp/question.txt)"
+            echo "**Brief ID**: $(grep -m1 'brief_id:' "$target_path" | sed 's/^brief_id:\s*//;s/^"\|"$//g')"
+            echo "**Cluster**: $(grep -m1 '^cluster:' "$target_path" | sed 's/^cluster:\s*//;s/^"\|"$//g')"
+            echo ""
+            echo "### 게이트 통과 결과"
+            echo '```json'
+            cat /tmp/v2/post-llm.json
+            echo '```'
+            echo ""
+            echo "🤖 Generated via auto-publish workflow R54-3b"
+          } > "$body_file"
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "auto: ${title}" \
+            --body-file "$body_file" \
+            --label auto-publish
 
       - name: dedup·rejected audit 커밋 (변경 시)
         if: steps.pick.outputs.skip == 'false'
