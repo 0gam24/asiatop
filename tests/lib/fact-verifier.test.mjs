@@ -97,6 +97,38 @@ title: test
     expect(r.pass).toBe(true);
   });
 
+  it('R55 — facts + raw 둘 다 토큰 풀에 들어감 (이전엔 facts 있으면 raw 무시 bug)', async () => {
+    const mdx = `---
+title: test
+---
+
+소득세법 제59조의2 에 따라 월세 세액공제 17% 적용. 2026년 4월 기준.`;
+    const briefMinimal = {
+      meta: { cluster: 'tax' },
+      primary_sources: [{ id: 's1', url: 'https://www.law.go.kr', title: 'law', expected_facts: [] }],
+      keywords: { secondary: ['월세'] },
+    };
+    const r = await verifyFacts(mdx, briefMinimal, {
+      authorityFetch: async () => [{
+        source_id: 'law-go-kr',
+        source_url: 'https://www.law.go.kr',
+        // 어댑터 메타 facts (fact-extract 형식과 다른 메타데이터) — 이전엔 이것만 사용해 매칭 0%
+        facts: [
+          { key: '소득세법', value: '2026-01-01', type: 'law-metadata', citation: 'https://www.law.go.kr' },
+        ],
+        // raw 본문 — R55 fix 후 여기서도 토큰 추출됨
+        raw: {
+          keyword: '월세',
+          body: '소득세법 제59조의2 (주택임차료 세액공제) 17% 공제. 2026년 4월 시행.',
+        },
+      }],
+      mock: true,
+    });
+    // raw.body 의 "소득세법 제59조" + "17%" + "2026년 4월" 이 본문 토큰과 매칭
+    expect(r.stats.authority_tokens).toBeGreaterThan(0);
+    expect(r.pass).toBe(true);
+  });
+
   it('authorityFetch 실패 → pass=false', async () => {
     const mdx = `---
 title: test
