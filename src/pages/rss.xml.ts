@@ -28,6 +28,11 @@ export async function GET(context: APIContext) {
       // R65 — Discover·Naver·Yahoo 등 모두 media RSS 표준 인식.
       // media:thumbnail / media:content 가 RSS 피드 안 이미지 신호의 1순위.
       media: 'http://search.yahoo.com/mrss/',
+      // R72-2 Naver SA 호환 강화 — dc:creator·atom:link 모두 root-level 네임스페이스 선언.
+      // 기존 inline xmlns:atom 은 invalid XML 로 Naver SA 가 거부.
+      // dc 는 customData 에서 dc:creator 사용 — 미선언 시 strict XML parser 거부.
+      dc: 'http://purl.org/dc/elements/1.1/',
+      atom: 'http://www.w3.org/2005/Atom',
     },
     title: '머니룩 — 직장인·청년 생활금융 가이드',
     description:
@@ -64,8 +69,8 @@ export async function GET(context: APIContext) {
     }),
     customData: `<language>ko-KR</language>
 <copyright>© ${new Date().getFullYear()} 머니룩 (MoneyLook)</copyright>
-<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${new URL('/rss.xml', context.site).toString()}" rel="self" type="application/rss+xml" />
-<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://pubsubhubbub.appspot.com/" rel="hub" />
+<atom:link href="${new URL('/rss.xml', context.site).toString()}" rel="self" type="application/rss+xml" />
+<atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
 <image>
   <url>${new URL('/og-default.png', context.site).toString()}</url>
   <title>머니룩</title>
