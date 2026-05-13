@@ -234,6 +234,17 @@ const siteNavSchema = clusters.map((c, i) => ({
     <JsonLd data={[organizationSchema, websiteSchema, ...siteNavSchema]} />
     {jsonLd && <JsonLd data={jsonLd} />}
 
+    {/* R68 — AdSense 글로벌 스크립트. PUBLIC_ADSENSE_CLIENT 설정 시만 로드.
+        consent 필요 영역은 ConsentBanner 와 별도 동작 — Google AdSense 정책상
+        head 안 inline async 권장. CLS 0 (예약된 슬롯이 채워질 때까지 placeholder 유지). */}
+    {import.meta.env.PUBLIC_ADSENSE_CLIENT && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${import.meta.env.PUBLIC_ADSENSE_CLIENT}`}
+        crossorigin="anonymous"
+      />
+    )}
+
     <script is:inline data-astro-rerun>
       (() => {
         try {
