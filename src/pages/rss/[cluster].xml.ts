@@ -31,8 +31,13 @@ export async function GET(context: APIContext) {
   );
 
   // Naver SA 호환 — stylesheet 제거, link trailing slash 위치 정규화.
+  // R72-2 — dc + atom 네임스페이스 root-level 선언 (Naver SA strict XML parser 호환).
   return rss({
-    xmlns: { content: 'http://purl.org/rss/1.0/modules/content/' },
+    xmlns: {
+      content: 'http://purl.org/rss/1.0/modules/content/',
+      dc: 'http://purl.org/dc/elements/1.1/',
+      atom: 'http://www.w3.org/2005/Atom',
+    },
     title: `${cluster.title} — 머니룩`,
     description: cluster.description,
     site: context.site!,
@@ -53,7 +58,7 @@ export async function GET(context: APIContext) {
       };
     }),
     customData: `<language>ko-KR</language>
-<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${new URL(`/rss/${cluster.slug}.xml`, context.site).toString()}" rel="self" type="application/rss+xml" />
-<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="https://pubsubhubbub.appspot.com/" rel="hub" />`,
+<atom:link href="${new URL(`/rss/${cluster.slug}.xml`, context.site).toString()}" rel="self" type="application/rss+xml" />
+<atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />`,
   });
 }
