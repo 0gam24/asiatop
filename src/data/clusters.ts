@@ -19,6 +19,12 @@ export interface Cluster {
    */
   authorityCoverage?: number;
   adRiskTier?: 'low' | 'medium' | 'high';
+  /**
+   * R67 — Google KG + AI engine entity 인식.
+   * Wikidata QID URL / Korean Wikipedia URL / 정부 권위 기관 URL.
+   * CollectionPage.about.sameAs · Article.about[*].sameAs 에 propagate.
+   */
+  entityRefs?: string[];
 }
 
 export const clusters: readonly Cluster[] = [
@@ -34,6 +40,11 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '중',
     authorityCoverage: 0.9,
     adRiskTier: 'low',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/사회_복지',
+      'https://www.bokjiro.go.kr',
+      'https://www.gov.kr',
+    ],
   },
   {
     slug: 'tax',
@@ -47,6 +58,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '상',
     authorityCoverage: 0.95,
     adRiskTier: 'low',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/소득세',
+      'https://ko.wikipedia.org/wiki/연말정산',
+      'https://www.nts.go.kr',
+      'https://www.hometax.go.kr',
+    ],
   },
   {
     slug: 'realestate',
@@ -60,6 +77,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '상',
     authorityCoverage: 0.8,
     adRiskTier: 'medium',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/부동산',
+      'https://ko.wikipedia.org/wiki/전세',
+      'https://www.molit.go.kr',
+      'https://www.applyhome.co.kr',
+    ],
   },
   {
     slug: 'unemployment',
@@ -73,6 +96,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '중',
     authorityCoverage: 0.95,
     adRiskTier: 'low',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/실업급여',
+      'https://ko.wikipedia.org/wiki/퇴직금',
+      'https://www.ei.go.kr',
+      'https://www.work.go.kr',
+    ],
   },
   {
     slug: 'savings',
@@ -86,6 +115,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '상',
     authorityCoverage: 0.7,
     adRiskTier: 'high',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/저축',
+      'https://ko.wikipedia.org/wiki/개인종합자산관리계좌',
+      'https://www.bok.or.kr',
+      'https://finlife.fss.or.kr',
+    ],
   },
   {
     slug: 'insurance-labor',
@@ -99,6 +134,13 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '중',
     authorityCoverage: 0.9,
     adRiskTier: 'low',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/4대_사회보험',
+      'https://ko.wikipedia.org/wiki/근로기준법',
+      'https://www.nhis.or.kr',
+      'https://www.nps.or.kr',
+      'https://www.moel.go.kr',
+    ],
   },
   {
     slug: 'auto',
@@ -112,6 +154,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '상',
     authorityCoverage: 0.6,
     adRiskTier: 'high',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/자동차세',
+      'https://ko.wikipedia.org/wiki/자동차보험',
+      'https://www.wetax.go.kr',
+      'https://www.knia.or.kr',
+    ],
   },
   {
     slug: 'public-services',
@@ -125,6 +173,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '하',
     authorityCoverage: 0.95,
     adRiskTier: 'low',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/주민등록증',
+      'https://www.gov.kr',
+      'https://www.hometax.go.kr',
+      'https://www.bokjiro.go.kr',
+    ],
   },
   {
     slug: 'office-tips',
@@ -138,6 +192,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '중',
     authorityCoverage: 0.85,
     adRiskTier: 'low',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/근로기준법',
+      'https://ko.wikipedia.org/wiki/연차_유급휴가',
+      'https://www.moel.go.kr',
+      'https://www.minimumwage.go.kr',
+    ],
   },
   {
     slug: 'credit-loan',
@@ -151,6 +211,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '최상',
     authorityCoverage: 0.5,
     adRiskTier: 'high',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/신용_점수',
+      'https://ko.wikipedia.org/wiki/대출',
+      'https://www.fss.or.kr',
+      'https://www.kinfa.or.kr',
+    ],
   },
   {
     slug: 'insurance-personal',
@@ -164,6 +230,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '최상',
     authorityCoverage: 0.55,
     adRiskTier: 'high',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/보험',
+      'https://ko.wikipedia.org/wiki/실손의료보험',
+      'https://www.fss.or.kr',
+      'https://www.knia.or.kr',
+    ],
   },
   {
     slug: 'pension',
@@ -177,6 +249,12 @@ export const clusters: readonly Cluster[] = [
     cpcTier: '상',
     authorityCoverage: 0.8,
     adRiskTier: 'medium',
+    entityRefs: [
+      'https://ko.wikipedia.org/wiki/연금',
+      'https://ko.wikipedia.org/wiki/국민연금',
+      'https://www.nps.or.kr',
+      'https://www.knps.or.kr',
+    ],
   },
 ] as const;
 

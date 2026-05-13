@@ -105,6 +105,12 @@ const organizationSchema = {
     name: '스마트데이터샵',
     url: 'https://smartdatashop.kr',
   },
+  // R67 — Organization knowsAbout 12 cluster + sameAs (자체 도메인 + 모회사). entity 인식 강화.
+  // Google Knowledge Graph 진입 자기 등록 신호 + AI 엔진 cross-reference.
+  sameAs: [
+    'https://smartdatashop.kr',
+    'https://asiatop.co.kr/about/',
+  ],
   // 대표 페이지 — Google KG 자기 등록 + sameAs 진입.
   mainEntityOfPage: new URL('/about/', Astro.site).toString(),
 };

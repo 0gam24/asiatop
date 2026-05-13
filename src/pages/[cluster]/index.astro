@@ -52,7 +52,18 @@ const collectionSchema = {
   description: cluster.metaDescription,
   url: new URL(`/${cluster.slug}/`, Astro.site).toString(),
   inLanguage: 'ko-KR',
-  about: cluster.seedKeywords.map((k) => ({ '@type': 'Thing', name: k })),
+  about: [
+    // R67 — cluster 자체 entity refs (Wikipedia·정부기관) 를 about 의 첫 항목으로
+    // Google Knowledge Graph + AI 엔진 entity 인식 강화
+    ...(cluster.entityRefs && cluster.entityRefs.length > 0
+      ? [{
+          '@type': 'Thing',
+          name: cluster.title,
+          sameAs: cluster.entityRefs,
+        }]
+      : []),
+    ...cluster.seedKeywords.map((k) => ({ '@type': 'Thing', name: k })),
+  ],
   mainEntity: itemListSchema,
   speakable: {
     '@type': 'SpeakableSpecification',
