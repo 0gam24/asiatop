@@ -28,10 +28,17 @@ export async function GET(context: APIContext) {
     const slug = article.id.replace(/\.mdx?$/, '');
     const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
     const imageUrl = new URL(`/og/${article.data.cluster}/${slug}.png`, context.site).toString();
+    // R66 — 1:1 OG variant (Perplexity·Discover 모바일 카드용) 도 sitemap 에 노출
+    const imageSquareUrl = new URL(`/og-square/${article.data.cluster}/${slug}.png`, context.site).toString();
     return `  <url>
     <loc>${escapeXml(pageUrl)}</loc>
     <image:image>
       <image:loc>${escapeXml(imageUrl)}</image:loc>
+      <image:title>${escapeXml(article.data.title)}</image:title>
+      <image:caption>${escapeXml(article.data.description)}</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>${escapeXml(imageSquareUrl)}</image:loc>
       <image:title>${escapeXml(article.data.title)}</image:title>
       <image:caption>${escapeXml(article.data.description)}</image:caption>
     </image:image>
