@@ -38,14 +38,15 @@ export async function GET(context: APIContext) {
     site: context.site!,
     items: sorted.slice(0, 50).map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
-      const utm = `utm_source=rss&utm_medium=feed&utm_campaign=${article.data.cluster}`;
       // R50-8 Naver SA 호환: content:encoded 제거 (본문 MDX JSX 호환성 문제).
+      // R72 Naver SA 호환: utm 제거 — trailingSlash:always + query 조합이 link URL 끝에
+      // 잘못된 slash 붙임 ("utm_campaign=realestate/") → Naver SA 거부.
       const descCapped = (article.data.description ?? '').slice(0, 800);
       return {
         title: article.data.title,
         pubDate: article.data.publishedAt,
         description: descCapped,
-        link: `/${article.data.cluster}/${slug}/?${utm}`,
+        link: `/${article.data.cluster}/${slug}/`,
         categories: [cluster.title],
         author: article.data.author,
         customData: `<dc:creator><![CDATA[${article.data.author}]]></dc:creator>`,
