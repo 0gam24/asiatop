@@ -96,6 +96,11 @@ async function main() {
     for await (const svgPath of walkSvg(dir)) allSvgs.push(svgPath);
   }
 
+  // R66 — og-default.svg 도 PNG 변환 (루트 + fallback OG).
+  // 메신저·페이스북·X·LinkedIn·카카오 모두 SVG 미지원 → PNG 필수.
+  const defaultSvg = join(ROOT, 'dist', 'og-default.svg');
+  if (existsSync(defaultSvg)) allSvgs.push(defaultSvg);
+
   if (allSvgs.length === 0) {
     console.warn('[svg-to-png] no SVG found in dist/og/ or dist/og-square/, skipping.');
     return;
