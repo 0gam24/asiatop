@@ -2,17 +2,11 @@ import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 
 /**
- * Google News sitemap (Discover 가속용)
- * - 발행 후 48시간 이내 글만 포함 (Google News 정책)
- * - <news:news> 네임스페이스 필수
- * - 빌드 타임 + scheduled-rebuild (6h cron) 자동 갱신
+ * Google News + Naver SA 호환 sitemap.
+ * - 최신 5편 (publishedAt·updatedAt 기준 내림차순). Naver SA 빈 urlset 거부 회피.
+ * - <news:news> 네임스페이스 + <news:publication_date>.
+ * - 빌드 타임 + scheduled-rebuild (6h cron) 자동 갱신.
  */
-
-// R73 — 48h → 7d 윈도우 확장 + 비어있을 때 최신 1편 fallback.
-// 원인: Naver SA 가 빈 <urlset> 을 "사이트맵 형식이 올바르지 않음" 거부.
-//      자동 발행 글의 publishedAt 이 frontmatter 명시 날짜라 발행 시점과 다를 수 있음.
-// Google News 도 7일 윈도우 받음 (단, 신선도 가산은 2-3일 안 글만).
-const NEWS_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
 
 const escapeXml = (s: string) =>
   s
@@ -30,33 +24,21 @@ export async function GET(context: APIContext) {
     articles = [];
   }
 
-  const now = Date.now();
-  let fresh = articles.filter((a) => {
-    const ref = a.data.updatedAt ?? a.data.publishedAt;
-    return now - ref.valueOf() <= NEWS_WINDOW_MS;
-  });
+  // 최신 5편만. publishedAt·updatedAt 둘 다 안전하게 처리.
+  const sorted = articles
+    .slice()
+    .sort(
+      (a, b) =>
+        (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
+        (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
+    )
+    .slice(0, 5);
 
-  fresh.sort(
-    (a, b) =>
-      (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
-      (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
-  );
-
-  // R73 — 윈도우 안 글이 0건이면 최신 5편 fallback. Naver SA 빈 urlset 거부 방지.
-  if (fresh.length === 0 && articles.length > 0) {
-    fresh = [...articles]
-      .sort(
-        (a, b) =>
-          (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
-          (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
-      )
-      .slice(0, 5);
-  }
-
-  const urls = fresh.map((article) => {
+  const urls = sorted.map((article) => {
     const slug = article.id.replace(/\.mdx?$/, '');
     const url = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
-    const pubDate = article.data.publishedAt.toISOString();
+    const pubDate = (article.data.updatedAt ?? article.data.publishedAt).toISOString();
+    const kw = (article.data.keywords ?? []).slice(0, 5).join(', ');
     return `  <url>
     <loc>${escapeXml(url)}</loc>
     <news:news>
@@ -66,7 +48,7 @@ export async function GET(context: APIContext) {
       </news:publication>
       <news:publication_date>${pubDate}</news:publication_date>
       <news:title>${escapeXml(article.data.title)}</news:title>
-      <news:keywords>${escapeXml(article.data.keywords.join(', '))}</news:keywords>
+      <news:keywords>${escapeXml(kw)}</news:keywords>
     </news:news>
   </url>`;
   });
