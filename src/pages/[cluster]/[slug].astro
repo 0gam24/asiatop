@@ -249,7 +249,17 @@ const articleSchema = {
   },
   isBasedOn: 'https://smartdatashop.kr/',
   mainEntityOfPage: url,
-  about: article.data.keywords.map((k) => ({ '@type': 'Thing', name: k })),
+  // R67 — about 의 첫 항목은 cluster 자체 entity (Wikipedia·정부기관 sameAs) 로 Google KG + AI 엔진 entity 인식 강화
+  about: [
+    ...(cluster?.entityRefs && cluster.entityRefs.length > 0
+      ? [{
+          '@type': 'Thing',
+          name: cluster.title,
+          sameAs: cluster.entityRefs,
+        }]
+      : []),
+    ...article.data.keywords.map((k) => ({ '@type': 'Thing', name: k })),
+  ],
   keywords: article.data.keywords.join(', '),
   articleSection: cluster?.title,
   isPartOf: {
