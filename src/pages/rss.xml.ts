@@ -36,7 +36,6 @@ export async function GET(context: APIContext) {
     items: sorted.slice(0, 50).map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
       const cluster = findCluster(article.data.cluster);
-      const utm = `utm_source=rss&utm_medium=feed&utm_campaign=${article.data.cluster}`;
       // R50-8 Naver SA RSS 호환: content:encoded 제거 (MDX JSX 컴포넌트가
       // CDATA 안에 들어가면서 Naver parser가 invalid XML로 거부).
       // 본문은 link 클릭으로 유도. RSS는 메타 + 요약만.
@@ -44,52 +43,23 @@ export async function GET(context: APIContext) {
       // R65 — 절대 URL 16:9 OG PNG. Discover 카드화 1순위 신호.
       const ogUrl = new URL(`/og/${article.data.cluster}/${slug}.png`, context.site).toString();
       const ogSquareUrl = new URL(`/og-square/${article.data.cluster}/${slug}.png`, context.site).toString();
-      // R67-3 — RSS content:encoded 안 JSON-LD Article schema 삽입.
-      // Perplexity·ChatGPT·Claude·Bing Copilot 등 RSS 만 긁는 AI 크롤러가
-      // schema.org 그대로 인용 가능 → AI 인용 정확도·확률 ↑↑.
-      // CDATA 안 순수 JSON 만 (MDX JSX 금지 — Naver SA parser 거부).
-      const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
-      const articleLd = {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: article.data.title,
-        description: article.data.description,
-        url: pageUrl,
-        image: [ogUrl, ogSquareUrl],
-        datePublished: article.data.publishedAt.toISOString(),
-        dateModified: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),
-        inLanguage: 'ko-KR',
-        author: {
-          '@type': 'Organization',
-          name: '머니룩 편집팀',
-          url: new URL('/about/', context.site).toString(),
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: '머니룩',
-          url: context.site!.toString(),
-        },
-        articleSection: cluster?.title,
-        keywords: article.data.keywords.join(', '),
-      };
-      const contentEncoded =
-        `<![CDATA[<script type="application/ld+json">${JSON.stringify(articleLd)}</script>` +
-        `<p>${article.data.description}</p>` +
-        `<p><a href="${pageUrl}">머니룩에서 자세히 보기 →</a></p>]]>`;
+      // R67-3 revert (R72): content:encoded 안 JSON-LD 삽입은 @astrojs/rss 가 자동
+      // HTML escape 처리 (`&lt;script&gt;...`) → Naver SA parser "RSS 형식이 올바르지 않음" reject.
+      // Naver SA RSS 호환이 1순위 (한국 트래픽 45%) — AI 엔진 RAG 친화는 /api/qa.json
+      // + JSON-LD in head 로 이미 충분.
       return {
         title: article.data.title,
         pubDate: article.data.publishedAt,
         description: descCapped,
-        link: `/${article.data.cluster}/${slug}/?${utm}`,
+        link: `/${article.data.cluster}/${slug}/`,
         categories: cluster ? [cluster.title] : [],
         author: article.data.author,
         customData:
           `<dc:creator><![CDATA[${article.data.author}]]></dc:creator>` +
-          // media:content (full) + media:thumbnail (preview) — Discover·Yahoo Media RSS 표준.
+          // R65 media:content (full) + media:thumbnail (preview) — Discover·Yahoo Media RSS 표준.
           // 16:9 = content, 1:1 = thumbnail. Naver SA 도 media:content 우선 인식.
           `<media:content url="${ogUrl}" type="image/png" medium="image" width="1200" height="630" />` +
-          `<media:thumbnail url="${ogSquareUrl}" width="1200" height="1200" />` +
-          `<content:encoded>${contentEncoded}</content:encoded>`,
+          `<media:thumbnail url="${ogSquareUrl}" width="1200" height="1200" />`,
       };
     }),
     customData: `<language>ko-KR</language>
