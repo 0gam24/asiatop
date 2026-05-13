@@ -274,6 +274,11 @@ const articleSchema = {
   },
 };
 
+// R69 — FAQPage schema 우선순위:
+//   1) faq frontmatter Q&A pair (실 답변 보유)
+//   2) faq 없으면 aiCitationQuestions 모두 (답=description, "본문 참고")
+//      → Google FAQ rich result 자격 확보 (Q 3-10개 노출)
+//   둘 다 없으면 null
 const faqSchema = article.data.faq && article.data.faq.length > 0
   ? {
       '@context': 'https://schema.org',
@@ -282,6 +287,20 @@ const faqSchema = article.data.faq && article.data.faq.length > 0
         '@type': 'Question',
         name: f.q,
         acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : article.data.aiCitationQuestions && article.data.aiCitationQuestions.length >= 2
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: article.data.aiCitationQuestions.map((q) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${article.data.description} 자세한 내용은 본문에서 확인하세요.`,
+          url,
+        },
       })),
     }
   : null;
