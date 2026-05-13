@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 2 (120 → 132편) — legacy 120편 중복 없음.
+          # Round 3 (132 → 144편) — 기존 132편 중복 없음.
           declare -a topics=(
-            "tax|중소기업 취업 청년 소득세 90% 감면 자격과 신청 절차|sme-youth-tax-90-discount-application"
-            "realestate|보증금 미반환 분쟁 — 임차권등기명령 신청 절차|deposit-return-dispute-tenancy-injunction"
-            "unemployment|구직급여 부정수급 검출 패턴과 자진 신고 절차|unemployment-fraud-detection-self-report"
-            "gov-support|청년 내일채움공제 5년 만기 vs 중도해지 손익|youth-tomorrow-fund-5year-vs-cancel"
-            "savings|예금자보호 5천만원 한도 — 분산 예치 전략 가이드|deposit-protection-50m-diversify-strategy"
-            "insurance-labor|산재보험 자영업자 임의가입 — 자격과 보험료 계산|workers-comp-self-employed-voluntary"
-            "auto|자동차 사고 과실비율 — 대인배상 vs 대물배상 청구 순서|car-accident-personal-vs-property-claim"
-            "public-services|인감증명서 vs 본인서명사실확인서 — 효력 차이와 활용처|seal-vs-signature-effect-difference"
-            "office-tips|근로계약서 미작성 신고 — 노동청 진정 절차|labor-contract-missing-report-procedure"
-            "credit-loan|개인회생·파산 차이와 신청 자격 비교 2026|personal-rehab-vs-bankruptcy-2026"
-            "insurance-personal|치아보험 가입 전 체크 — 면책기간과 보장범위 비교|dental-insurance-waiting-coverage-check"
-            "pension|기초연금 수급 자격 — 소득·재산 인정액 계산법|basic-pension-income-asset-calculation"
+            "tax|종교인 소득세 신고 — 기타소득 vs 근로소득 처리 절차|religious-worker-income-tax-filing"
+            "realestate|전월세 신고제 의무 + 미신고 과태료 100만원 가이드|lease-report-mandatory-fine-guide"
+            "unemployment|자영업자 고용보험 임의가입 자격과 보험료 계산|self-employed-unemployment-voluntary"
+            "gov-support|국민취업지원제도 1유형 vs 2유형 차이와 신청 절차|national-employment-support-type1-vs-type2"
+            "savings|청년도약계좌 vs ISA 동시 가입 손익 분기점 분석|youth-leap-vs-isa-dual-strategy"
+            "insurance-labor|4대보험료 절감 — 정규직 vs 프리랜서 부담 비교|four-insurance-regular-vs-freelance-cost"
+            "auto|자동차 종합보험 vs 책임보험 — 보장 범위와 보험료 차이|car-comprehensive-vs-liability-coverage"
+            "public-services|주민등록증 분실 신고와 재발급 절차 2026 가이드|id-card-lost-reissue-procedure"
+            "office-tips|퇴직금 세금 — 누진세 계산과 IRP 분할 절세 전략|severance-progressive-tax-irp-split"
+            "credit-loan|자영업자 사업자 대출 vs 신용대출 한도·금리 비교|self-employed-business-vs-credit-loan"
+            "insurance-personal|운전자보험 vs 자동차보험 — 중복 가입 시 정리법|driver-vs-car-insurance-overlap-cleanup"
+            "pension|퇴직연금 DB·DC·IRP 갈아타기 절차와 손익 계산|retirement-pension-db-dc-irp-switch"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (108 → 120편). 30편 균등 (360편) 까지 18 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (132 → 144편). 30편 균등 (360편) 까지 18 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
