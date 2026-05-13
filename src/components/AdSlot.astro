@@ -1,10 +1,68 @@
 ---
+/**
+ * R68 — AdSlot 컴포넌트
+ *
+ * 환경:
+ *   PUBLIC_ADSENSE_CLIENT (pub-XXXXXXXXXXXXXXXX) 가 설정되어 있으면 실 AdSense 슬롯 렌더.
+ *   미설정 시 placeholder (현재 상태).
+ *
+ * 정책 보호:
+ *   - format=banner: 728x90 (데스크탑) / 320x100 (모바일)
+ *   - format=square: 300x250
+ *   - format=in-feed: 반응형 (모바일 우선)
+ *   - aspect-ratio + min-height 예약으로 CLS 0 보장 (perf-agent 규정)
+ *   - lazy loading data-loading="lazy" (스크롤 진입 시 로드)
+ */
 interface Props {
   format?: 'banner' | 'square' | 'in-feed';
   label?: string;
+  /** Manual 슬롯 ID (AdSense Console 에서 발급). 미지정 시 Auto Ads 분기 X */
+  slotId?: string;
 }
-const { format = 'in-feed', label = '광고' } = Astro.props;
+const { format = 'in-feed', label = '광고', slotId } = Astro.props;
+
+const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
+const isActive = Boolean(adsenseClient && adsenseClient.startsWith('pub-') && slotId);
 ---
-<aside class="ad-slot" data-format={format} aria-label="광고">
-  <span>{label} (AdSense 출시 후 자동 채워짐)</span>
+<aside class={`ad-slot fmt-${format}`} data-format={format} aria-label="광고">
+  {isActive ? (
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client={`ca-${adsenseClient}`}
+      data-ad-slot={slotId}
+      data-ad-format={format === 'in-feed' ? 'auto' : format}
+      data-full-width-responsive="true"
+      data-loading="lazy"
+    />
+    <script is:inline>
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  ) : (
+    <span class="placeholder">{label} (AdSense 출시 후 자동 채워짐)</span>
+  )}
 </aside>
+
+<style>
+.ad-slot {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0;
+  /* CLS 0 강제 — perf-agent 규정 */
+  background: var(--color-surface-subtle, #f6f7f9);
+  border: 1px dashed var(--color-border-subtle, #d6dae0);
+  border-radius: var(--radius-card, 12px);
+  text-align: center;
+  color: var(--color-text-muted, #6b7785);
+  font-size: 0.875rem;
+}
+.ad-slot.fmt-banner { min-height: 100px; aspect-ratio: 728 / 90; max-width: 728px; margin-left: auto; margin-right: auto; }
+.ad-slot.fmt-square { min-height: 250px; aspect-ratio: 300 / 250; max-width: 300px; margin-left: auto; margin-right: auto; }
+.ad-slot.fmt-in-feed { min-height: 200px; }
+.ad-slot .placeholder { display: flex; align-items: center; justify-content: center; height: 100%; padding: 1rem; }
+
+@media (max-width: 768px) {
+  /* 모바일: 사이드바 슬롯 hidden — perf-agent 규정 */
+  .ad-slot.fmt-banner { aspect-ratio: 320 / 100; max-width: 320px; min-height: 80px; }
+}
+</style>
