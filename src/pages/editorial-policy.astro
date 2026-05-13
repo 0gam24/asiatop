@@ -10,11 +10,34 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', position: 2, name: '편집 정책', item: url },
   ],
 };
+
+// R67-4 — DigitalDocument schema. NewsMediaOrganization.publishingPrinciples 가
+// 이미 본 URL 을 가리킴 → 본 페이지 자체에 DigitalDocument 마크업 → Google KG +
+// E-E-A-T fact-checking publisher 인증 신호 강화.
+const policyDocSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DigitalDocument',
+  '@id': `${url}#policy-doc`,
+  name: '머니룩 편집 정책',
+  url,
+  publisher: { '@id': new URL('#organization', Astro.site).toString() },
+  about: '사실 확인·정정·AI 사용·1차 자료 검증',
+  inLanguage: 'ko-KR',
+  dateModified: '2026-04-29',
+  isAccessibleForFree: true,
+  hasPart: [
+    { '@type': 'WebPageElement', name: '사실 확인 절차', url: `${url}#verification` },
+    { '@type': 'WebPageElement', name: '정정 정책', url: `${url}#corrections` },
+    { '@type': 'WebPageElement', name: '소유·자금 정보', url: `${url}#ownership` },
+    { '@type': 'WebPageElement', name: '윤리 정책', url: `${url}#ethics` },
+    { '@type': 'WebPageElement', name: '익명 출처 정책', url: `${url}#sources` },
+  ],
+};
 ---
 <Base
   title="편집 정책 — 사실 확인·정정·AI 사용 정책"
   description="머니룩의 콘텐츠 제작·1차 자료 검증·전문가 검수·정정·AI 사용 정책. YMYL(금융·세무·법률·복지) 분야의 신뢰성을 위한 강제 절차와 24시간 정정 약속을 명시합니다."
-  jsonLd={breadcrumbSchema}
+  jsonLd={[breadcrumbSchema, policyDocSchema]}
 >
   <article class="container narrow prose">
     <header>
