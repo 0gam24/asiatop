@@ -60,6 +60,19 @@ function replacePublishedAt(fm, newISODate) {
   return fm.replace(/^publishedAt:.*$/m, `publishedAt: "${newISODate}"`);
 }
 
+function syncUpdatedAt(fm, newISODate) {
+  // updatedAt 이 publishedAt 보다 옛날이면 sitemap-lastmod 가 옛 값 사용 → publishedAt 으로 동기화.
+  // updatedAt 이 없으면 그대로 (sitemap-lastmod 가 publishedAt fallback).
+  const m = fm.match(/^updatedAt:\s*"?(.+?)"?\s*$/m);
+  if (!m) return fm;
+  const current = new Date(m[1]);
+  const target = new Date(newISODate);
+  if (Number.isNaN(current.valueOf()) || current.valueOf() < target.valueOf()) {
+    return fm.replace(/^updatedAt:.*$/m, `updatedAt: ${newISODate}`);
+  }
+  return fm;
+}
+
 function* walkMdx(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('_')) continue;
@@ -120,7 +133,8 @@ function main() {
   console.log('');
 
   // 3) Assign new dates
-  let changed = 0;
+  let changedPub = 0;
+  let changedUpd = 0;
   let unchanged = 0;
   const dayCount = new Map();
 
@@ -129,30 +143,36 @@ function main() {
     let newDate;
 
     if (i >= total - pinnedCount) {
-      // 최신 12편 → END_DATE 고정
       newDate = END_DATE;
     } else {
-      // 0..distributedCount-1 → START_DATE..END_DATE-1 균등 분포
-      // 정수 offset 계산: i 가 0..distributedCount-1 → dayOffset 0..dayRange-1
       const dayOffset = Math.floor((i * dayRange) / distributedCount);
       newDate = addDays(START_DATE, dayOffset);
     }
 
     dayCount.set(newDate, (dayCount.get(newDate) || 0) + 1);
 
-    if (art.currentPublishedAt === newDate) {
+    const pubNeedsChange = art.currentPublishedAt !== newDate;
+    // updatedAt < publishedAt 인 article 도 sync 필요 (sitemap-lastmod 가 stale 값 사용 중)
+    const updMatch = art.parsed.fm.match(/^updatedAt:\s*"?(.+?)"?\s*$/m);
+    const updNeedsSync = updMatch && new Date(updMatch[1]).valueOf() < new Date(newDate).valueOf();
+
+    if (!pubNeedsChange && !updNeedsSync) {
       unchanged++;
       continue;
     }
 
-    changed++;
+    if (pubNeedsChange) changedPub++;
+    if (updNeedsSync) changedUpd++;
+
     const relName = art.file.replace(ROOT + '\\', '').replace(/\\/g, '/').replace('src/content/articles/', '');
-    if (changed <= 20 || changed % 50 === 0) {
-      console.log(`  [${i + 1}/${total}] ${relName}  ${art.currentPublishedAt} → ${newDate}`);
+    if (changedPub + changedUpd <= 20 || (changedPub + changedUpd) % 50 === 0) {
+      const note = pubNeedsChange ? `${art.currentPublishedAt} → ${newDate}` : `upd-sync → ${newDate}`;
+      console.log(`  [${i + 1}/${total}] ${relName}  ${note}`);
     }
 
     if (!DRY_RUN) {
-      const newFm = replacePublishedAt(art.parsed.fm, newDate);
+      let newFm = pubNeedsChange ? replacePublishedAt(art.parsed.fm, newDate) : art.parsed.fm;
+      newFm = syncUpdatedAt(newFm, newDate);
       const newContent = `---\n${newFm}\n---\n${art.parsed.body}`;
       writeFileSync(art.file, newContent, 'utf-8');
     }
@@ -169,7 +189,7 @@ function main() {
   }
 
   console.log('');
-  console.log(`[distribute] ${changed}편 ${DRY_RUN ? '변경 대상' : '변경 완료'} · ${unchanged}편 이미 일치 · 총 ${total}편`);
+  console.log(`[distribute] publishedAt ${changedPub}편 · updatedAt sync ${changedUpd}편 ${DRY_RUN ? '변경 대상' : '변경 완료'} · ${unchanged}편 이미 일치 · 총 ${total}편`);
   if (DRY_RUN) console.log('[distribute] 실제 적용: DRY_RUN=0 node scripts/audit/distribute-published-dates.mjs');
 }
 
