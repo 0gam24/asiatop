@@ -111,6 +111,20 @@ const organizationSchema = {
     'https://smartdatashop.kr',
     'https://asiatop.co.kr/about/',
   ],
+  // R74 — founder Person schema. AdSense + E-E-A-T "Who runs this site?" 정면 답변.
+  // 실명 김준혁 + 자격증 미보유 면책 + sameAs 외부 프로필.
+  founder: {
+    '@type': 'Person',
+    '@id': new URL('/author/kim-junhyeok/#author', Astro.site).toString(),
+    name: '김준혁',
+    jobTitle: '스마트데이터샵 대표·머니룩 운영자',
+    url: new URL('/author/kim-junhyeok/', Astro.site).toString(),
+    sameAs: [
+      'https://github.com/0gam24',
+      'https://asiatop.co.kr/author/kim-junhyeok/',
+    ],
+    worksFor: { '@id': new URL('#organization', Astro.site).toString() },
+  },
   // 대표 페이지 — Google KG 자기 등록 + sameAs 진입.
   mainEntityOfPage: new URL('/about/', Astro.site).toString(),
 };
