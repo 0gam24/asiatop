@@ -51,21 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 4 (144 → 156편) — 기존 144편 중복 없음. 5-6월 시즌 키워드 우선
-          # (종합소득세·근로장려금·전월세 갱신). content-agent 권고.
+          # Round 5 (156 → 168편) — 기존 156편 중복 없음.
           declare -a topics=(
-            "tax|종합소득세 5월 신고 — 직장인 부수입 자진 신고 절차|comprehensive-income-tax-may-filing"
-            "realestate|전세 갱신 청구권 — 5% 인상 상한과 거부 대응법|jeonse-renewal-claim-5percent-cap"
-            "unemployment|실업급여 연장 — 개별연장급여 자격과 지급액|unemployment-individual-extension-benefit"
-            "gov-support|근로장려금 5월 신청 — 단독·홑벌이·맞벌이 가구 한도|earned-income-credit-may-filing"
-            "savings|연금저축 vs IRP 세액공제 한도 — 어느 쪽이 유리한가|pension-savings-vs-irp-tax-credit"
-            "insurance-labor|국민연금 추납 vs 임의계속 — 60세 이후 가입 전략|nps-additional-vs-voluntary-after-60"
-            "auto|자동차세 6월 분납 vs 1월 연납 — 손익 계산|car-tax-june-installment-vs-january"
-            "public-services|건강보험 본인부담 상한제 — 환급 신청 자격 가이드|nhis-copayment-cap-refund-application"
-            "office-tips|주 52시간 초과근무 — 포괄임금제 함정과 대응|52hour-overtime-vs-comprehensive-wage"
-            "credit-loan|소액 생계비대출 100만원 — 신청 자격과 절차|small-livelihood-loan-1m-application"
-            "insurance-personal|간병 보험 가입 전 체크 — 보장 범위와 면책 사유|long-term-care-insurance-coverage-check"
-            "pension|주택연금 가입 자격 — 9억 주택 한도와 월 수령액 계산|housing-pension-9b-cap-monthly-payment"
+            "tax|부동산 임대소득 — 종합과세 vs 분리과세 손익 분기점|rental-income-comprehensive-vs-separate"
+            "realestate|청약 가점제 부양가족 점수 — 등본 정리 + 점수 계산|subscription-points-family-dependents"
+            "unemployment|6개월 미만 단기 근로 — 실업급여 자격 요건 정리|short-term-worker-unemployment-eligibility"
+            "gov-support|청년 주거지원 한도와 자격 — 월세지원·디딤돌·버팀목 비교|youth-housing-support-limits-2026"
+            "savings|청년희망적금 만기 후 청년도약계좌 환승 — 자격과 한도|hope-savings-leap-account-rollover"
+            "insurance-labor|산재 사망 사고 유족급여 — 신청 자격과 지급액 계산|workers-comp-death-survivor-benefit"
+            "auto|자동차 폐차 환경개선부담금 환급 — 자격과 절차|car-disposal-environment-fee-refund"
+            "public-services|도로명 주소 변경 신청 — 자동 갱신 안 되는 서류 정리|road-name-address-change"
+            "office-tips|출산휴가 + 육아휴직 급여 — 통상임금 100% vs 80% 차이|maternity-childcare-pay-comparison"
+            "credit-loan|청년 전세보증금 반환 보증 — HUG 가입 자격과 보증료|youth-jeonse-deposit-return-hug"
+            "insurance-personal|어린이 보험 — 4세대 실손 vs 종전 보장 차이|kids-insurance-4gen-vs-prev"
+            "pension|국민연금 분할연금 — 이혼 시 배우자 수령 자격|nps-divorce-split-pension"
           )
           success=0
           fail=0
@@ -124,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (144 → 156편). 30편 균등 (360편) 까지 17 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (156 → 168편). 30편 균등 (360편) 까지 16 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
