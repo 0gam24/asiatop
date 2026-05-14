@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 12 (240 → 252편) — 기존 240편 중복 없음.
+          # Round 13 (252 → 264편) — 기존 252편 중복 없음.
           declare -a topics=(
-            "tax|세금 카드 납부 — 신용카드·체크카드 수수료 비교|tax-payment-credit-vs-check-card-fee"
-            "realestate|반전세 — 보증부 월세 계산법 + 임대인 협상|semi-jeonse-deposit-monthly-rent-calc"
-            "unemployment|특고·플랫폼 근로자 고용보험 — 의무 가입 시점|platform-worker-employment-insurance-mandatory"
-            "gov-support|첫만남이용권 — 200만원 지급 자격과 사용처|first-meeting-voucher-2m-eligibility"
-            "savings|증권사 ISA 일임 vs 신탁 — 수수료·관리 방식 비교|isa-discretionary-vs-trust-comparison"
-            "insurance-labor|근로자의날 출근 — 휴일근로 가산수당 의무|workers-day-overtime-allowance-mandatory"
-            "auto|자동차 사고 시 보험사 안 부르고 처리 — 합의 절차|car-accident-private-settlement-procedure"
-            "public-services|운전면허증 모바일 발급 — IC카드·QR 인증 차이|drivers-license-mobile-ic-vs-qr"
-            "office-tips|연차 발생 — 입사 1년 vs 1년 미만 + 비례 계산|annual-leave-1year-vs-prorated"
-            "credit-loan|개인사업자 대출 보증 — 신보·기보 차이와 한도|sba-credit-guarantee-vs-tech-guarantee"
-            "insurance-personal|치과 임플란트 보험 — 보장 한도와 면책 기간|dental-implant-insurance-coverage-waiting"
-            "pension|국민연금 가입 이력 — 가입 기간 조회 + 정정 신청|nps-enrollment-history-correction"
+            "tax|중간예납 — 종합소득세 11월 분납 자격과 절차|interim-tax-payment-november-installment"
+            "realestate|전세보증보험 — HUG·SGI·HF 3사 보증료·한도 비교|jeonse-deposit-insurance-3company-comparison"
+            "unemployment|실업급여 부정수급 자진 신고 — 감면과 환수|unemployment-fraud-voluntary-report-reduction"
+            "gov-support|장애인 활동지원 — 등급별 시간 한도와 신청|disability-activity-support-hours"
+            "savings|연금저축 vs 일반 ETF — 절세 vs 자유도 손익|pension-savings-vs-general-etf"
+            "insurance-labor|건강보험 임의계속가입 — 퇴직 후 보험료 동결|nhis-voluntary-continued-after-retirement"
+            "auto|자동차 정기 점검 — 시점·비용·과태료 면제|car-regular-maintenance-fine-exempt"
+            "public-services|국세청 환급금 조회 — 5년 소멸시효와 신청|nts-refund-5year-expiry-claim"
+            "office-tips|퇴직금 중간정산 — 가능 사유와 세금 부담|severance-mid-term-settlement-tax"
+            "credit-loan|신용회복위원회 사전채무조정 — 자격과 단계|credit-recovery-pre-debt-adjustment"
+            "insurance-personal|단체보험 가입 — 회사 가입 vs 개인 추가|group-insurance-company-vs-personal"
+            "pension|개인연금 ETF 환승 — 펀드 → ETF 갈아타기 절차|pension-fund-to-etf-rollover"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (240 → 252편). 30편 균등 (360편) 까지 9 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (252 → 264편). 30편 균등 (360편) 까지 8 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
