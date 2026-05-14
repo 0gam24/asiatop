@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 13 (252 → 264편) — 기존 252편 중복 없음.
+          # Round 14 (264 → 276편) — 기존 264편 중복 없음.
           declare -a topics=(
-            "tax|중간예납 — 종합소득세 11월 분납 자격과 절차|interim-tax-payment-november-installment"
-            "realestate|전세보증보험 — HUG·SGI·HF 3사 보증료·한도 비교|jeonse-deposit-insurance-3company-comparison"
-            "unemployment|실업급여 부정수급 자진 신고 — 감면과 환수|unemployment-fraud-voluntary-report-reduction"
-            "gov-support|장애인 활동지원 — 등급별 시간 한도와 신청|disability-activity-support-hours"
-            "savings|연금저축 vs 일반 ETF — 절세 vs 자유도 손익|pension-savings-vs-general-etf"
-            "insurance-labor|건강보험 임의계속가입 — 퇴직 후 보험료 동결|nhis-voluntary-continued-after-retirement"
-            "auto|자동차 정기 점검 — 시점·비용·과태료 면제|car-regular-maintenance-fine-exempt"
-            "public-services|국세청 환급금 조회 — 5년 소멸시효와 신청|nts-refund-5year-expiry-claim"
-            "office-tips|퇴직금 중간정산 — 가능 사유와 세금 부담|severance-mid-term-settlement-tax"
-            "credit-loan|신용회복위원회 사전채무조정 — 자격과 단계|credit-recovery-pre-debt-adjustment"
-            "insurance-personal|단체보험 가입 — 회사 가입 vs 개인 추가|group-insurance-company-vs-personal"
-            "pension|개인연금 ETF 환승 — 펀드 → ETF 갈아타기 절차|pension-fund-to-etf-rollover"
+            "tax|연말정산 부양가족 — 만 60세 부모님 인적공제 자격|year-end-tax-parent-60-dependent"
+            "realestate|중도금 대출 — DSR 산정 + 후취담보 조건|interim-payment-loan-dsr-collateral"
+            "unemployment|실업크레딧 — 국민연금 보험료 정부 지원|unemployment-credit-nps-government-support"
+            "gov-support|차상위 본인부담 경감 — 의료급여 확장 자격|nearpoor-medical-fee-reduction"
+            "savings|청년 우대형 청약통장 — 일반 vs 우대 손익|youth-housing-savings-preferential-vs-regular"
+            "insurance-labor|산재 통상 vs 출퇴근 — 입증 책임과 보상 차이|workers-comp-routine-vs-commute"
+            "auto|자동차세 자동이체 할인 — 분기·반기 신청 절차|car-tax-auto-debit-discount-application"
+            "public-services|국민비서 카카오톡 알림 — 14종 행정 등록|kakao-civil-notification-14-types"
+            "office-tips|퇴직 통보 — 1개월 전 vs 즉시 + 통상임금 차이|resignation-notice-1month-vs-immediate"
+            "credit-loan|미소금융 vs 햇살론 — 자격·금리·한도 비교|misogeumyung-vs-sunshine-loan"
+            "insurance-personal|입원일당 보험 — 정기·종신 차이와 가입 한도|hospitalization-daily-insurance-coverage"
+            "pension|국민연금 노령연금 조기 vs 정상 — 손익분기점|nps-old-age-pension-early-vs-normal-breakeven"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (252 → 264편). 30편 균등 (360편) 까지 8 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (264 → 276편). 30편 균등 (360편) 까지 7 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
