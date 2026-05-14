@@ -51,20 +51,21 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 3 (132 → 144편) — 기존 132편 중복 없음.
+          # Round 4 (144 → 156편) — 기존 144편 중복 없음. 5-6월 시즌 키워드 우선
+          # (종합소득세·근로장려금·전월세 갱신). content-agent 권고.
           declare -a topics=(
-            "tax|종교인 소득세 신고 — 기타소득 vs 근로소득 처리 절차|religious-worker-income-tax-filing"
-            "realestate|전월세 신고제 의무 + 미신고 과태료 100만원 가이드|lease-report-mandatory-fine-guide"
-            "unemployment|자영업자 고용보험 임의가입 자격과 보험료 계산|self-employed-unemployment-voluntary"
-            "gov-support|국민취업지원제도 1유형 vs 2유형 차이와 신청 절차|national-employment-support-type1-vs-type2"
-            "savings|청년도약계좌 vs ISA 동시 가입 손익 분기점 분석|youth-leap-vs-isa-dual-strategy"
-            "insurance-labor|4대보험료 절감 — 정규직 vs 프리랜서 부담 비교|four-insurance-regular-vs-freelance-cost"
-            "auto|자동차 종합보험 vs 책임보험 — 보장 범위와 보험료 차이|car-comprehensive-vs-liability-coverage"
-            "public-services|주민등록증 분실 신고와 재발급 절차 2026 가이드|id-card-lost-reissue-procedure"
-            "office-tips|퇴직금 세금 — 누진세 계산과 IRP 분할 절세 전략|severance-progressive-tax-irp-split"
-            "credit-loan|자영업자 사업자 대출 vs 신용대출 한도·금리 비교|self-employed-business-vs-credit-loan"
-            "insurance-personal|운전자보험 vs 자동차보험 — 중복 가입 시 정리법|driver-vs-car-insurance-overlap-cleanup"
-            "pension|퇴직연금 DB·DC·IRP 갈아타기 절차와 손익 계산|retirement-pension-db-dc-irp-switch"
+            "tax|종합소득세 5월 신고 — 직장인 부수입 자진 신고 절차|comprehensive-income-tax-may-filing"
+            "realestate|전세 갱신 청구권 — 5% 인상 상한과 거부 대응법|jeonse-renewal-claim-5percent-cap"
+            "unemployment|실업급여 연장 — 개별연장급여 자격과 지급액|unemployment-individual-extension-benefit"
+            "gov-support|근로장려금 5월 신청 — 단독·홑벌이·맞벌이 가구 한도|earned-income-credit-may-filing"
+            "savings|연금저축 vs IRP 세액공제 한도 — 어느 쪽이 유리한가|pension-savings-vs-irp-tax-credit"
+            "insurance-labor|국민연금 추납 vs 임의계속 — 60세 이후 가입 전략|nps-additional-vs-voluntary-after-60"
+            "auto|자동차세 6월 분납 vs 1월 연납 — 손익 계산|car-tax-june-installment-vs-january"
+            "public-services|건강보험 본인부담 상한제 — 환급 신청 자격 가이드|nhis-copayment-cap-refund-application"
+            "office-tips|주 52시간 초과근무 — 포괄임금제 함정과 대응|52hour-overtime-vs-comprehensive-wage"
+            "credit-loan|소액 생계비대출 100만원 — 신청 자격과 절차|small-livelihood-loan-1m-application"
+            "insurance-personal|간병 보험 가입 전 체크 — 보장 범위와 면책 사유|long-term-care-insurance-coverage-check"
+            "pension|주택연금 가입 자격 — 9억 주택 한도와 월 수령액 계산|housing-pension-9b-cap-monthly-payment"
           )
           success=0
           fail=0
@@ -123,7 +124,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (132 → 144편). 30편 균등 (360편) 까지 18 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (144 → 156편). 30편 균등 (360편) 까지 17 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
