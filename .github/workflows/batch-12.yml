@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 11 (228 → 240편) — 기존 228편 중복 없음.
+          # Round 12 (240 → 252편) — 기존 240편 중복 없음.
           declare -a topics=(
-            "tax|취득세 3종 분류 — 주택·토지·차량 세율 비교|acquisition-tax-housing-land-vehicle"
-            "realestate|주택담보대출 LTV·DTI·DSR — 한도 계산 실전|mortgage-ltv-dti-dsr-limit-calc"
-            "unemployment|육아휴직 후 퇴사 — 실업급여 받을 수 있나|childcare-leave-resign-unemployment"
-            "gov-support|난방비 지원 — 에너지바우처 자격과 충전 방법|heating-energy-voucher-eligibility"
-            "savings|개인투자조합 (KISA) 소득공제 — 가입 자격과 한도|kisa-individual-investment-tax-deduction"
-            "insurance-labor|일용직 4대보험 — 1개월 미만 + 적용 제외|daily-worker-4insurance-1month-exempt"
-            "auto|법인차량 사적 사용 — 운행기록부와 가산세|corporate-car-private-use-tax-penalty"
-            "public-services|기록물 보존 기간 — 가족관계·주민등록 발급 한도|family-relation-residence-record-retention"
-            "office-tips|상여금 통상임금 — 정기 지급 + 평균임금 산정|bonus-ordinary-wage-average-calculation"
-            "credit-loan|대환대출 인프라 — 통합 비교 + 갈아타기 절차|loan-refinancing-platform-comparison"
-            "insurance-personal|보험료 할인 — 비흡연·운전·건강 할인 누적|insurance-discount-non-smoker-driver-health"
-            "pension|국민연금 임의가입 — 27세 ~ 59세 자격과 손익|nps-voluntary-enrollment-27-59"
+            "tax|세금 카드 납부 — 신용카드·체크카드 수수료 비교|tax-payment-credit-vs-check-card-fee"
+            "realestate|반전세 — 보증부 월세 계산법 + 임대인 협상|semi-jeonse-deposit-monthly-rent-calc"
+            "unemployment|특고·플랫폼 근로자 고용보험 — 의무 가입 시점|platform-worker-employment-insurance-mandatory"
+            "gov-support|첫만남이용권 — 200만원 지급 자격과 사용처|first-meeting-voucher-2m-eligibility"
+            "savings|증권사 ISA 일임 vs 신탁 — 수수료·관리 방식 비교|isa-discretionary-vs-trust-comparison"
+            "insurance-labor|근로자의날 출근 — 휴일근로 가산수당 의무|workers-day-overtime-allowance-mandatory"
+            "auto|자동차 사고 시 보험사 안 부르고 처리 — 합의 절차|car-accident-private-settlement-procedure"
+            "public-services|운전면허증 모바일 발급 — IC카드·QR 인증 차이|drivers-license-mobile-ic-vs-qr"
+            "office-tips|연차 발생 — 입사 1년 vs 1년 미만 + 비례 계산|annual-leave-1year-vs-prorated"
+            "credit-loan|개인사업자 대출 보증 — 신보·기보 차이와 한도|sba-credit-guarantee-vs-tech-guarantee"
+            "insurance-personal|치과 임플란트 보험 — 보장 한도와 면책 기간|dental-implant-insurance-coverage-waiting"
+            "pension|국민연금 가입 이력 — 가입 기간 조회 + 정정 신청|nps-enrollment-history-correction"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (228 → 240편). 30편 균등 (360편) 까지 10 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (240 → 252편). 30편 균등 (360편) 까지 9 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
