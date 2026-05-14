@@ -95,6 +95,12 @@ jobs:
         # 회귀 시 fail → React/Sentry/광고 chunk 폭증 사전 차단.
         run: pnpm exec node scripts/audit/bundle-size.mjs
 
+      - name: Audit RSS·sitemap sync (R94-7 feed-sync gate)
+        # article frontmatter 변경 시 RSS·sitemap-0·sitemap-news 동기화 검증.
+        # 위반: updatedAt < publishedAt / sitemap URL 수 불일치 / RSS 빈 item / 최신 날짜 불일치.
+        # fail-closed — 동기화 깨진 상태로 production 배포 차단.
+        run: pnpm exec node scripts/audit/feed-sync.mjs
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
