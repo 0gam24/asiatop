@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 20 (336 → 348편) — 마지막에서 두 번째. 기존 336편 중복 없음.
+          # Round 21 (348 → 360편) — **30편 균등 path 완성 batch**. 기존 348편 중복 없음.
           declare -a topics=(
-            "tax|연말정산 환급 시기 — 2월 회사 처리 vs 5월 종소세|year-end-refund-feb-vs-may"
-            "realestate|주택임대사업자 — 의무 사항과 세제 혜택 손익|housing-rental-business-obligations-benefits"
-            "unemployment|구직급여 수급 중 해외 출국 — 신고 의무와 정지|unemployment-overseas-travel-report"
-            "gov-support|국민내일배움카드 — 직업훈련 한도 + 자비 부담|tomorrow-learning-card-budget-self-cost"
-            "savings|연금저축 보험 vs 펀드 vs 은행 — 3사 비교|pension-savings-insurance-fund-bank"
-            "insurance-labor|국민건강보험 부정수급 — 신고와 환수 절차|nhis-fraud-report-recovery"
-            "auto|렌터카 보험 — 종합·자차·면책금 조합 비교|rental-car-insurance-comprehensive-self-deduction"
-            "public-services|증명서 발급 한도 — 무료 vs 유료 + 발급 위치|certificate-issuance-free-vs-paid"
-            "office-tips|퇴직금 산정 — 3개월 평균임금 vs 통상임금|severance-3month-average-vs-ordinary"
-            "credit-loan|대출 신용조회 — 하드 vs 소프트 + 신용점수 영향|credit-inquiry-hard-vs-soft-score"
-            "insurance-personal|건강증진 보험 — 보험료 할인 + 만보 챌린지|health-promotion-insurance-discount-steps"
-            "pension|퇴직연금 DC 운용 — 채권형 vs 주식형 손익 분기|dc-retirement-bond-vs-equity-breakeven"
+            "tax|배우자 인적공제 — 소득 100만원 기준과 예외|spouse-personal-deduction-100m-exception"
+            "realestate|임차권 등기 — 보증금 미반환 시 권리 보전 절차|tenancy-injunction-deposit-protection"
+            "unemployment|구직급여 부정수급 처벌 — 형사·민사 동시 진행|unemployment-fraud-criminal-civil-penalty"
+            "gov-support|장애아동 양육수당 — 정부 24+지자체 중복 수령|disability-child-allowance-dual-eligibility"
+            "savings|적금 만기 후 처리 — 자동연장 vs 해지 손익|installment-maturity-auto-vs-cancel"
+            "insurance-labor|국민건강보험료 조정 — 소득 급감 시 신청 절차|nhis-premium-adjustment-income-drop"
+            "auto|자동차 사고 합의서 — 효력 + 사후 분쟁 대응|car-accident-settlement-effect-dispute"
+            "public-services|등기 우편 vs 일반 우편 — 효력과 비용 차이|registered-mail-vs-regular-effect"
+            "office-tips|근로계약서 갱신 — 1년 만료 후 자동 vs 갱신|labor-contract-1year-auto-vs-renewal"
+            "credit-loan|예비 신용회복 — 90일 연체 전 자진 신고|pre-credit-recovery-90day-self-report"
+            "insurance-personal|운전자보험 자녀 가입 — 만 19세 vs 20세 차이|driver-insurance-child-19-vs-20"
+            "pension|국민연금 임의가입 — 27세 미만 학생 자격|nps-voluntary-under-27-student"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (336 → 348편). 30편 균등 (360편) 까지 1 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (348 → 360편). **30편 균등 path 완성!**"
           } > "$body_file"
           gh pr create \
             --base main \
