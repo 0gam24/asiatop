@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 5 (156 → 168편) — 기존 156편 중복 없음.
+          # Round 6 (168 → 180편) — 기존 168편 중복 없음.
           declare -a topics=(
-            "tax|부동산 임대소득 — 종합과세 vs 분리과세 손익 분기점|rental-income-comprehensive-vs-separate"
-            "realestate|청약 가점제 부양가족 점수 — 등본 정리 + 점수 계산|subscription-points-family-dependents"
-            "unemployment|6개월 미만 단기 근로 — 실업급여 자격 요건 정리|short-term-worker-unemployment-eligibility"
-            "gov-support|청년 주거지원 한도와 자격 — 월세지원·디딤돌·버팀목 비교|youth-housing-support-limits-2026"
-            "savings|청년희망적금 만기 후 청년도약계좌 환승 — 자격과 한도|hope-savings-leap-account-rollover"
-            "insurance-labor|산재 사망 사고 유족급여 — 신청 자격과 지급액 계산|workers-comp-death-survivor-benefit"
-            "auto|자동차 폐차 환경개선부담금 환급 — 자격과 절차|car-disposal-environment-fee-refund"
-            "public-services|도로명 주소 변경 신청 — 자동 갱신 안 되는 서류 정리|road-name-address-change"
-            "office-tips|출산휴가 + 육아휴직 급여 — 통상임금 100% vs 80% 차이|maternity-childcare-pay-comparison"
-            "credit-loan|청년 전세보증금 반환 보증 — HUG 가입 자격과 보증료|youth-jeonse-deposit-return-hug"
-            "insurance-personal|어린이 보험 — 4세대 실손 vs 종전 보장 차이|kids-insurance-4gen-vs-prev"
-            "pension|국민연금 분할연금 — 이혼 시 배우자 수령 자격|nps-divorce-split-pension"
+            "tax|기부금 세액공제 — 정치·종교·고향사랑기부 한도 비교|donation-tax-credit-political-religious-hometown"
+            "realestate|중개수수료 협상 — 상한 요율과 실거래 비교|brokerage-fee-negotiation-cap"
+            "unemployment|구직급여 부정수급 의심 — 통보 후 대응 절차|unemployment-fraud-notice-response"
+            "gov-support|경기·서울 청년수당 — 자격 차이와 신청 시기|youth-allowance-gyeonggi-vs-seoul"
+            "savings|개인종합자산관리계좌(ISA) 만기 환승 — 다음 단계 비교|isa-maturity-next-product-comparison"
+            "insurance-labor|건강보험료 피부양자 박탈 — 소득 기준과 회복|health-insurance-dependent-loss-recovery"
+            "auto|자동차 보험 사고 — 할증 등급 + 보험사 이동 손익|car-insurance-accident-rating-switch"
+            "public-services|전입신고 미신고 과태료 + 임시 거주지 등록|move-in-report-missing-fine"
+            "office-tips|연차 사용 강요 + 강제 휴가 — 근로기준법 대응|annual-leave-forced-use-response"
+            "credit-loan|채무조정 vs 개인회생 — 자격·기간·신용 영향 비교|debt-adjustment-vs-personal-rehab"
+            "insurance-personal|치매보험 — 가족력 + 진단 기준 + 보장 단계|dementia-insurance-family-history-stages"
+            "pension|국민연금 가입자 사망 — 유족연금 자격과 산정|nps-survivor-pension-eligibility"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (156 → 168편). 30편 균등 (360편) 까지 16 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (168 → 180편). 30편 균등 (360편) 까지 15 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
