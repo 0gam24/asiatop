@@ -32,7 +32,7 @@ const ROOT = join(__dirname, '..', '..');
 const ARTICLES_DIR = join(ROOT, 'src', 'content', 'articles');
 
 const DRY_RUN = process.env.DRY_RUN !== '0';
-const DIFF_THRESHOLD_DAYS = 5; // 5일 이상 차이 시만 정정 (Google 5일+ 차이 "조작" 시그널 임계)
+const DIFF_THRESHOLD_DAYS = 2; // 2일 이상 차이 시 정정 + publishedAt < git first commit 이면 무조건 (논리적 불가능)
 
 function gitFirstCommitISO(filePath) {
   try {
@@ -106,7 +106,10 @@ function main() {
 
     const relPath = file.replace(ROOT + '\\', '').replace(/\\/g, '/');
 
-    if (diffDays < DIFF_THRESHOLD_DAYS) {
+    // publishedAt < git first commit → 무조건 정정 (article 이 commit 전에 존재할 수 없음)
+    const isPubBeforeGit = currentDate.valueOf() < gitDate.valueOf();
+
+    if (!isPubBeforeGit && diffDays < DIFF_THRESHOLD_DAYS) {
       skipped++;
       continue;
     }
