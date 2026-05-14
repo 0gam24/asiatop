@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 18 (312 → 324편) — 기존 312편 중복 없음.
+          # Round 19 (324 → 336편) — 기존 324편 중복 없음.
           declare -a topics=(
-            "tax|일용근로자 비과세 — 일당 15만원 한도와 신고|daily-worker-non-tax-150k-limit"
-            "realestate|아파트 하자 보수 청구 — 입주 후 1년 vs 10년 차이|apartment-defect-repair-1y-vs-10y"
-            "unemployment|65세 이상 고용보험 — 임의 가입과 실업급여 자격|over-65-employment-insurance-voluntary"
-            "gov-support|희망두배청년통장 — 서울 청년 자산형성 한도|seoul-youth-double-savings-account"
-            "savings|채무자 보호 예금 — 기초생활수급자 예금 한도|debtor-protection-deposit-1m-limit"
-            "insurance-labor|국민연금 추가급여 — 부양가족 가산금 신청|nps-dependent-additional-payment"
-            "auto|차량 압류 해제 — 세금 체납 + 자동차세 정리|car-impoundment-tax-debt-release"
-            "public-services|전입 미신고 과태료 — 14일 기한과 부과 기준|move-in-14day-deadline-fine"
-            "office-tips|식대 비과세 20만원 — 카드 vs 현금 처리 차이|meal-allowance-200k-card-vs-cash"
-            "credit-loan|버팀목 전세대출 갈아타기 — HF·일반 대환 조건|beotimmok-refinance-hf-general"
-            "insurance-personal|치아 임플란트 보험 — 만 65세 건강보험 적용|dental-implant-65-nhis-coverage"
-            "pension|개인연금 펀드 — 매수 시점 vs 자동 적립 손익|private-pension-fund-lump-vs-auto"
+            "tax|소득세 누진세율 — 구간별 한계세율과 평균세율 계산|income-tax-progressive-marginal-vs-average"
+            "realestate|매매 잔금 — 대출 실행 + 등기 동시 진행 절차|sale-balance-loan-registration-simultaneous"
+            "unemployment|퇴직금 일시지급 vs 분할 — 세금 부담과 자유도|severance-lump-vs-installment-tax"
+            "gov-support|국가유공자 가족 — 의료급여·교육급여 자격 한도|state-merit-family-medical-education"
+            "savings|투자 손실 통산 — 채권·주식·ETF 손익 합산|investment-loss-offset-bond-stock-etf"
+            "insurance-labor|국민건강보험 가족 등록 — 동거가족·비동거가족 차이|nhis-family-cohabit-vs-non-cohabit"
+            "auto|자동차 환경개선 부담금 — 5등급 노후차 부과|car-environment-fee-5grade-old"
+            "public-services|복지로 모바일 신청 — 9개 복지 통합 신청 절차|bokjiro-mobile-9-welfare-integrated"
+            "office-tips|연봉제 vs 호봉제 — 임금 인상과 협상력 차이|annual-salary-vs-pay-grade-system"
+            "credit-loan|소상공인 정책자금 — 1금리·2금리 + 상환 조건|sba-policy-loan-1rate-2rate"
+            "insurance-personal|운전자보험 자기부담금 — 사고당 면책 한도|driver-insurance-self-cost-accident-cap"
+            "pension|국민연금 적립금 운용 — 수익률·기금 안정성|nps-fund-management-yield-stability"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (312 → 324편). 30편 균등 (360편) 까지 3 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (324 → 336편). 30편 균등 (360편) 까지 2 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
