@@ -1,0 +1,36 @@
+name: Daily Rebuild (홈 최신글 갱신)
+
+# R94 — 매일 KST 06:00 (UTC 21:00 전날) main 에 empty commit 푸시 → CF Pages 자동 빌드.
+# 목적:
+#   - 홈 "이번 주 가장 많이 읽은 글" + "새로 올라온 글" 매일 자동 갱신
+#   - sitemap-news 7일 윈도우 갱신 (publishedAt 기반)
+#   - dateModified 신선도 신호 + Discover 재크롤 후보화
+#
+# 새 글 발행 push 가 있는 날에는 별도 트리거 안 필요 (CF Pages 이미 rebuild).
+# 무발행일에도 동일 시간에 rebuild → 홈 컴포넌트 정렬·필터 갱신 보장.
+
+on:
+  schedule:
+    - cron: '0 21 * * *' # UTC 21:00 = KST 06:00 daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push empty commit (force CF Pages rebuild)
+        run: |
+          git config user.name "moneylook-daily-rebuild"
+          git config user.email "auto@moneylook"
+          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git commit --allow-empty -m "chore: daily rebuild ${DATE} — 홈 최신글 자동 갱신"
+          git push origin main
+          echo "✅ Empty commit pushed → CF Pages will rebuild."
