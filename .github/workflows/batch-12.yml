@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 17 (300 → 312편) — 기존 300편 중복 없음.
+          # Round 18 (312 → 324편) — 기존 312편 중복 없음.
           declare -a topics=(
-            "tax|연말정산 의료비 5% — 본인 vs 부양가족 한도 차이|year-end-medical-5percent-self-vs-dependent"
-            "realestate|소유권 이전 등기 — 셀프 vs 법무사 비용 비교|ownership-transfer-self-vs-attorney"
-            "unemployment|구직급여 정지 — 취업 신고 + 미신고 환수|unemployment-employment-report-suspension"
-            "gov-support|에너지 캐시백 — 전기·가스 사용 절감 환급|energy-cashback-electricity-gas"
-            "savings|예금금리 vs 적금금리 — 단리·복리 12개월 손익|deposit-vs-installment-rate-12month"
-            "insurance-labor|국민건강보험 환급 — 본인부담 초과분 자동 환급|nhis-refund-co-payment-automatic"
-            "auto|자동차 보험료 차등 — 마일리지 특약 환급|car-insurance-mileage-discount"
-            "public-services|국세청 환급계좌 등록 — 자동 환급 신청 절차|nts-refund-account-registration"
-            "office-tips|퇴직 후 재취업 — 30일 이내 4대보험 이관|reemployment-30day-4insurance-transfer"
-            "credit-loan|연체이자 vs 지연이자 — 법정 한도와 부담|delinquency-vs-delay-interest-limit"
-            "insurance-personal|운전자보험 변호사 선임 — 보장 범위와 한도|driver-insurance-attorney-coverage"
-            "pension|국민연금 노령연금 60세 수령 시점 — 조기 신청 조건|nps-early-pension-60-eligibility"
+            "tax|일용근로자 비과세 — 일당 15만원 한도와 신고|daily-worker-non-tax-150k-limit"
+            "realestate|아파트 하자 보수 청구 — 입주 후 1년 vs 10년 차이|apartment-defect-repair-1y-vs-10y"
+            "unemployment|65세 이상 고용보험 — 임의 가입과 실업급여 자격|over-65-employment-insurance-voluntary"
+            "gov-support|희망두배청년통장 — 서울 청년 자산형성 한도|seoul-youth-double-savings-account"
+            "savings|채무자 보호 예금 — 기초생활수급자 예금 한도|debtor-protection-deposit-1m-limit"
+            "insurance-labor|국민연금 추가급여 — 부양가족 가산금 신청|nps-dependent-additional-payment"
+            "auto|차량 압류 해제 — 세금 체납 + 자동차세 정리|car-impoundment-tax-debt-release"
+            "public-services|전입 미신고 과태료 — 14일 기한과 부과 기준|move-in-14day-deadline-fine"
+            "office-tips|식대 비과세 20만원 — 카드 vs 현금 처리 차이|meal-allowance-200k-card-vs-cash"
+            "credit-loan|버팀목 전세대출 갈아타기 — HF·일반 대환 조건|beotimmok-refinance-hf-general"
+            "insurance-personal|치아 임플란트 보험 — 만 65세 건강보험 적용|dental-implant-65-nhis-coverage"
+            "pension|개인연금 펀드 — 매수 시점 vs 자동 적립 손익|private-pension-fund-lump-vs-auto"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (300 → 312편). 30편 균등 (360편) 까지 4 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (312 → 324편). 30편 균등 (360편) 까지 3 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
