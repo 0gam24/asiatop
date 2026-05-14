@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 8 (192 → 204편) — 기존 192편 중복 없음.
+          # Round 9 (204 → 216편) — 기존 204편 중복 없음.
           declare -a topics=(
-            "tax|배당소득 2천만원 초과 종합과세 — 분리과세 vs 종합과세 손익|dividend-income-2000m-comprehensive-vs-separate"
-            "realestate|아파트 매매 계약 해제 — 위약금과 매수자 보호|apartment-sale-contract-cancellation-penalty"
-            "unemployment|예술인 고용보험 — 자격 인정 조건과 보험료 산정|artist-employment-insurance-eligibility"
-            "gov-support|희망저축계좌 가입 자격 — 차상위·기초 가구 한도|hope-savings-account-eligibility"
-            "savings|장기 채권 ETF vs 정기예금 — 5년 만기 손익 계산|long-term-bond-etf-vs-deposit-5year"
-            "insurance-labor|배우자 출산휴가 — 10일 유급 + 분할 사용 자격|spouse-childbirth-leave-10days"
-            "auto|자동차 리스 vs 장기 렌트 — 비용·세제·잔존가치 비교|car-lease-vs-long-rental-tco"
-            "public-services|여권 발급 — 전자여권 vs 차세대 비용·기간 비교|passport-issuance-electronic-vs-next-gen"
-            "office-tips|연봉 협상 자료 — 시장 평균·동종업계 데이터 확보법|salary-negotiation-market-data-sources"
-            "credit-loan|마이너스 통장 — 한도 조정·금리 협상 실전 가이드|negative-checking-limit-rate-negotiation"
-            "insurance-personal|반려동물 보험 — 가입 전 비교 + 보장 범위 체크|pet-insurance-coverage-comparison"
-            "pension|개인연금 vs 변액연금 — 수익률·수수료·안정성 비교|private-pension-vs-variable-annuity"
+            "tax|양도소득세 1세대 1주택 비과세 — 보유 기간 + 거주 요건|capital-gains-1house-non-tax-holding"
+            "realestate|오피스텔 vs 아파트 — 세금·관리비·시세 차이|officetel-vs-apartment-cost-comparison"
+            "unemployment|구직급여 수급자 자영업 등록 — 신고 의무 + 정지 사유|unemployment-self-employed-registration"
+            "gov-support|취업성공패키지 — 1·2·3단계 지원금과 자격|employment-success-package-stages"
+            "savings|장병내일준비적금 — 군인 적립 한도와 정부 매칭|military-readiness-savings"
+            "insurance-labor|국민건강보험 본인부담률 — 의료급여·차상위 적용|nhis-copayment-rate-income-tier"
+            "auto|중고차 매매 명의이전 — 자동차세·취득세 처리|used-car-title-transfer-tax"
+            "public-services|국민비서 알림 — 14종 행정 알림 + 신청|gov-secretary-14notifications"
+            "office-tips|육아휴직 복귀 보장 — 회사 거부 시 노동청 대응|parental-leave-return-refusal-response"
+            "credit-loan|연체 30일 후 신용점수 — 회복 기간과 전략|credit-score-30day-delinquency-recovery"
+            "insurance-personal|상해보험 청구 — 사고·진단서·약관 해석|accident-insurance-claim-diagnosis"
+            "pension|국민연금 추후납부 — 가입 기간 연장과 손익|nps-additional-payment-coverage-extension"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (192 → 204편). 30편 균등 (360편) 까지 13 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (204 → 216편). 30편 균등 (360편) 까지 12 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
