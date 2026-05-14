@@ -100,12 +100,14 @@ describe('brief-prompt-builder — buildUserPromptFromBrief', () => {
     expect(r).toContain('부모님과 같이 살고 있어도');
   });
 
-  it('재진술 (§14) 끝부분에 위치', () => {
+  it('재진술 (§14) + GEO/SEO (§15) 순서 보장', () => {
     const r = buildUserPromptFromBrief(sample);
-    const idx14 = r.lastIndexOf('## 14.');
     const idx13 = r.lastIndexOf('## 13.');
+    const idx14 = r.lastIndexOf('## 14.');
+    const idx15 = r.lastIndexOf('## 15.');
     expect(idx14).toBeGreaterThan(idx13);
-    expect(r.endsWith('보존.')).toBe(true);
+    // R78 — §15 GEO/SEO 고급화 자동 부착 (재진술 §14 뒤)
+    expect(idx15).toBeGreaterThan(idx14);
   });
 
   it('uses_facts_from src ID 1:1', () => {
