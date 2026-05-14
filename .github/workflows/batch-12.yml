@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 6 (168 → 180편) — 기존 168편 중복 없음.
+          # Round 7 (180 → 192편) — R78 §15 GEO/SEO 자동 부착 첫 batch.
           declare -a topics=(
-            "tax|기부금 세액공제 — 정치·종교·고향사랑기부 한도 비교|donation-tax-credit-political-religious-hometown"
-            "realestate|중개수수료 협상 — 상한 요율과 실거래 비교|brokerage-fee-negotiation-cap"
-            "unemployment|구직급여 부정수급 의심 — 통보 후 대응 절차|unemployment-fraud-notice-response"
-            "gov-support|경기·서울 청년수당 — 자격 차이와 신청 시기|youth-allowance-gyeonggi-vs-seoul"
-            "savings|개인종합자산관리계좌(ISA) 만기 환승 — 다음 단계 비교|isa-maturity-next-product-comparison"
-            "insurance-labor|건강보험료 피부양자 박탈 — 소득 기준과 회복|health-insurance-dependent-loss-recovery"
-            "auto|자동차 보험 사고 — 할증 등급 + 보험사 이동 손익|car-insurance-accident-rating-switch"
-            "public-services|전입신고 미신고 과태료 + 임시 거주지 등록|move-in-report-missing-fine"
-            "office-tips|연차 사용 강요 + 강제 휴가 — 근로기준법 대응|annual-leave-forced-use-response"
-            "credit-loan|채무조정 vs 개인회생 — 자격·기간·신용 영향 비교|debt-adjustment-vs-personal-rehab"
-            "insurance-personal|치매보험 — 가족력 + 진단 기준 + 보장 단계|dementia-insurance-family-history-stages"
-            "pension|국민연금 가입자 사망 — 유족연금 자격과 산정|nps-survivor-pension-eligibility"
+            "tax|월세 세액공제 — 총급여 7천만원 이하 무주택 직장인 환급액|monthly-rent-tax-credit-70m-non-owner"
+            "realestate|주택임대차 보증금 인하 — 임대인 요청 가능 사례|jeonse-deposit-reduction-tenant-request"
+            "unemployment|이직확인서 미발급 — 사업주 거부 시 대응|departure-confirmation-employer-refusal"
+            "gov-support|국가장학금 소득 분위 — 9급·8급 차이와 자격|national-scholarship-income-tier-9-vs-8"
+            "savings|예적금 풍차돌리기 — 1년 만기 분산 전략 손익|deposit-windmill-1year-staggered"
+            "insurance-labor|육아기 근로시간 단축 — 통상임금 100% 보장 자격|childcare-reduced-hours-100percent"
+            "auto|자동차 검사 미이행 과태료 + 부담금 누적 계산|car-inspection-missed-cumulative-fine"
+            "public-services|건강검진 의무 미수검 과태료 — 직장인 자격과 면제|health-checkup-mandatory-fine-exemption"
+            "office-tips|회식비 영수증 — 회사 비용 처리와 개인 환급 차이|meal-expense-receipt-tax-treatment"
+            "credit-loan|학자금 대출 상환 — 소득 연계 vs 일반 상환 비교|student-loan-income-contingent-vs-fixed"
+            "insurance-personal|뇌혈관·심혈관 진단비 보험 — 가입 전 체크포인트|cerebrovascular-cardiovascular-checkup-coverage"
+            "pension|개인형 IRP 중도 인출 — 사유와 세금 폭탄 회피|irp-mid-withdrawal-tax-avoidance"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (168 → 180편). 30편 균등 (360편) 까지 15 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (180 → 192편). 30편 균등 (360편) 까지 14 batch 더 필요. R78 §15 GEO/SEO 자동 부착 첫 batch."
           } > "$body_file"
           gh pr create \
             --base main \
