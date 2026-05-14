@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 9 (204 → 216편) — 기존 204편 중복 없음.
+          # Round 10 (216 → 228편) — 기존 216편 중복 없음.
           declare -a topics=(
-            "tax|양도소득세 1세대 1주택 비과세 — 보유 기간 + 거주 요건|capital-gains-1house-non-tax-holding"
-            "realestate|오피스텔 vs 아파트 — 세금·관리비·시세 차이|officetel-vs-apartment-cost-comparison"
-            "unemployment|구직급여 수급자 자영업 등록 — 신고 의무 + 정지 사유|unemployment-self-employed-registration"
-            "gov-support|취업성공패키지 — 1·2·3단계 지원금과 자격|employment-success-package-stages"
-            "savings|장병내일준비적금 — 군인 적립 한도와 정부 매칭|military-readiness-savings"
-            "insurance-labor|국민건강보험 본인부담률 — 의료급여·차상위 적용|nhis-copayment-rate-income-tier"
-            "auto|중고차 매매 명의이전 — 자동차세·취득세 처리|used-car-title-transfer-tax"
-            "public-services|국민비서 알림 — 14종 행정 알림 + 신청|gov-secretary-14notifications"
-            "office-tips|육아휴직 복귀 보장 — 회사 거부 시 노동청 대응|parental-leave-return-refusal-response"
-            "credit-loan|연체 30일 후 신용점수 — 회복 기간과 전략|credit-score-30day-delinquency-recovery"
-            "insurance-personal|상해보험 청구 — 사고·진단서·약관 해석|accident-insurance-claim-diagnosis"
-            "pension|국민연금 추후납부 — 가입 기간 연장과 손익|nps-additional-payment-coverage-extension"
+            "tax|증여세 5천만원 비과세 — 부모·자녀·배우자 한도|gift-tax-50m-exemption-relations"
+            "realestate|상가 임대차 — 환산보증금 + 5년 갱신 보호|commercial-lease-conversion-deposit-5year"
+            "unemployment|폐업자 실업급여 — 자영업자 폐업 사유 인정|business-closure-unemployment-eligibility"
+            "gov-support|아이돌봄 서비스 — 시간제·종일제 비용과 정부 지원|childcare-service-government-support"
+            "savings|연금저축 펀드 vs 보험 — 수익률·수수료·해지 비교|pension-savings-fund-vs-insurance"
+            "insurance-labor|취업자 직장가입 vs 지역가입 — 보험료 차이|workplace-vs-regional-insurance-cost"
+            "auto|자동차 환경부담금 — 디젤·노후차 부과 기준과 면제|car-environment-fee-diesel-old-exempt"
+            "public-services|민원24 본인서명 — 위임장 vs 직접 발급 차이|civil-24-self-vs-delegation"
+            "office-tips|주말 출근수당 — 휴일근로 vs 대체휴무 손익|weekend-work-allowance-vs-replacement"
+            "credit-loan|개인사업자 카드 — 매입 한도와 매출 영향|personal-business-card-purchase-limit"
+            "insurance-personal|치료비 실손 청구 — 본인부담 vs 자기부담 차이|silson-treatment-out-of-pocket-vs-deductible"
+            "pension|기초연금 부부 — 부부 동시 수급 한도와 감액|basic-pension-couple-simultaneous-eligibility"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (204 → 216편). 30편 균등 (360편) 까지 12 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (216 → 228편). 30편 균등 (360편) 까지 11 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
