@@ -30,7 +30,7 @@ const DRY_RUN = process.env.DRY_RUN !== '0';
 
 const START_DATE = '2026-04-01';
 const END_DATE = '2026-05-14';
-const PIN_END_COUNT = 12; // R21 batch 최신 12편 → END_DATE 고정
+const PIN_END_COUNT = 4; // 5/14 에 4편만 pin (홈 첫 화면 8장이 5/14, 5/13 두 날짜로 자연스럽게 섞이게)
 
 function gitFirstCommitISO(filePath) {
   try {
