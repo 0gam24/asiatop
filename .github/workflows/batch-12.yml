@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 14 (264 → 276편) — 기존 264편 중복 없음.
+          # Round 15 (276 → 288편) — 기존 276편 중복 없음.
           declare -a topics=(
-            "tax|연말정산 부양가족 — 만 60세 부모님 인적공제 자격|year-end-tax-parent-60-dependent"
-            "realestate|중도금 대출 — DSR 산정 + 후취담보 조건|interim-payment-loan-dsr-collateral"
-            "unemployment|실업크레딧 — 국민연금 보험료 정부 지원|unemployment-credit-nps-government-support"
-            "gov-support|차상위 본인부담 경감 — 의료급여 확장 자격|nearpoor-medical-fee-reduction"
-            "savings|청년 우대형 청약통장 — 일반 vs 우대 손익|youth-housing-savings-preferential-vs-regular"
-            "insurance-labor|산재 통상 vs 출퇴근 — 입증 책임과 보상 차이|workers-comp-routine-vs-commute"
-            "auto|자동차세 자동이체 할인 — 분기·반기 신청 절차|car-tax-auto-debit-discount-application"
-            "public-services|국민비서 카카오톡 알림 — 14종 행정 등록|kakao-civil-notification-14-types"
-            "office-tips|퇴직 통보 — 1개월 전 vs 즉시 + 통상임금 차이|resignation-notice-1month-vs-immediate"
-            "credit-loan|미소금융 vs 햇살론 — 자격·금리·한도 비교|misogeumyung-vs-sunshine-loan"
-            "insurance-personal|입원일당 보험 — 정기·종신 차이와 가입 한도|hospitalization-daily-insurance-coverage"
-            "pension|국민연금 노령연금 조기 vs 정상 — 손익분기점|nps-old-age-pension-early-vs-normal-breakeven"
+            "tax|법인세 중간예납 — 분기 분납 + 가산세 회피|corporate-tax-interim-installment-penalty"
+            "realestate|아파트 분양권 전매 — 전매제한 + 양도세 부담|apartment-pre-sale-transfer-restriction-tax"
+            "unemployment|고용보험 출산휴가 — 단기 가입자 자격과 지급액|employment-insurance-maternity-short-term"
+            "gov-support|장애아 보육료 — 100% 지원 자격과 신청|disability-childcare-100percent-support"
+            "savings|예금 풍차 vs 적금 풍차 — 만기 분산 전략 비교|deposit-vs-installment-windmill-comparison"
+            "insurance-labor|국민연금 추후납부 vs 임의계속 — 60세 이전 선택|nps-additional-vs-voluntary-before-60"
+            "auto|이륜차 보험 — 의무 가입과 보험료 차이|motorcycle-insurance-mandatory-cost"
+            "public-services|등기부등본 무료 발급 — 인터넷등기소 한도|land-registry-free-online-issuance"
+            "office-tips|연차 사용 촉진제 — 회사 통보 + 강제 사용|annual-leave-promotion-system-mandatory"
+            "credit-loan|디딤돌 vs 보금자리 vs 일반 주담대 비교|didimdol-bogeumjari-general-mortgage"
+            "insurance-personal|건강검진 보험 보장 — 종합검진·암검진 차이|health-checkup-insurance-comprehensive-cancer"
+            "pension|확정기여형 DC 운용 — 자산 배분과 수수료 관리|dc-retirement-asset-allocation-fee"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (264 → 276편). 30편 균등 (360편) 까지 7 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (276 → 288편). 30편 균등 (360편) 까지 6 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
