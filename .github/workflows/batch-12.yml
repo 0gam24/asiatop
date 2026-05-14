@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 7 (180 → 192편) — R78 §15 GEO/SEO 자동 부착 첫 batch.
+          # Round 8 (192 → 204편) — 기존 192편 중복 없음.
           declare -a topics=(
-            "tax|월세 세액공제 — 총급여 7천만원 이하 무주택 직장인 환급액|monthly-rent-tax-credit-70m-non-owner"
-            "realestate|주택임대차 보증금 인하 — 임대인 요청 가능 사례|jeonse-deposit-reduction-tenant-request"
-            "unemployment|이직확인서 미발급 — 사업주 거부 시 대응|departure-confirmation-employer-refusal"
-            "gov-support|국가장학금 소득 분위 — 9급·8급 차이와 자격|national-scholarship-income-tier-9-vs-8"
-            "savings|예적금 풍차돌리기 — 1년 만기 분산 전략 손익|deposit-windmill-1year-staggered"
-            "insurance-labor|육아기 근로시간 단축 — 통상임금 100% 보장 자격|childcare-reduced-hours-100percent"
-            "auto|자동차 검사 미이행 과태료 + 부담금 누적 계산|car-inspection-missed-cumulative-fine"
-            "public-services|건강검진 의무 미수검 과태료 — 직장인 자격과 면제|health-checkup-mandatory-fine-exemption"
-            "office-tips|회식비 영수증 — 회사 비용 처리와 개인 환급 차이|meal-expense-receipt-tax-treatment"
-            "credit-loan|학자금 대출 상환 — 소득 연계 vs 일반 상환 비교|student-loan-income-contingent-vs-fixed"
-            "insurance-personal|뇌혈관·심혈관 진단비 보험 — 가입 전 체크포인트|cerebrovascular-cardiovascular-checkup-coverage"
-            "pension|개인형 IRP 중도 인출 — 사유와 세금 폭탄 회피|irp-mid-withdrawal-tax-avoidance"
+            "tax|배당소득 2천만원 초과 종합과세 — 분리과세 vs 종합과세 손익|dividend-income-2000m-comprehensive-vs-separate"
+            "realestate|아파트 매매 계약 해제 — 위약금과 매수자 보호|apartment-sale-contract-cancellation-penalty"
+            "unemployment|예술인 고용보험 — 자격 인정 조건과 보험료 산정|artist-employment-insurance-eligibility"
+            "gov-support|희망저축계좌 가입 자격 — 차상위·기초 가구 한도|hope-savings-account-eligibility"
+            "savings|장기 채권 ETF vs 정기예금 — 5년 만기 손익 계산|long-term-bond-etf-vs-deposit-5year"
+            "insurance-labor|배우자 출산휴가 — 10일 유급 + 분할 사용 자격|spouse-childbirth-leave-10days"
+            "auto|자동차 리스 vs 장기 렌트 — 비용·세제·잔존가치 비교|car-lease-vs-long-rental-tco"
+            "public-services|여권 발급 — 전자여권 vs 차세대 비용·기간 비교|passport-issuance-electronic-vs-next-gen"
+            "office-tips|연봉 협상 자료 — 시장 평균·동종업계 데이터 확보법|salary-negotiation-market-data-sources"
+            "credit-loan|마이너스 통장 — 한도 조정·금리 협상 실전 가이드|negative-checking-limit-rate-negotiation"
+            "insurance-personal|반려동물 보험 — 가입 전 비교 + 보장 범위 체크|pet-insurance-coverage-comparison"
+            "pension|개인연금 vs 변액연금 — 수익률·수수료·안정성 비교|private-pension-vs-variable-annuity"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (180 → 192편). 30편 균등 (360편) 까지 14 batch 더 필요. R78 §15 GEO/SEO 자동 부착 첫 batch."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (192 → 204편). 30편 균등 (360편) 까지 13 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
