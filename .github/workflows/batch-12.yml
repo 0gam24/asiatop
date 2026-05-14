@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 19 (324 → 336편) — 기존 324편 중복 없음.
+          # Round 20 (336 → 348편) — 마지막에서 두 번째. 기존 336편 중복 없음.
           declare -a topics=(
-            "tax|소득세 누진세율 — 구간별 한계세율과 평균세율 계산|income-tax-progressive-marginal-vs-average"
-            "realestate|매매 잔금 — 대출 실행 + 등기 동시 진행 절차|sale-balance-loan-registration-simultaneous"
-            "unemployment|퇴직금 일시지급 vs 분할 — 세금 부담과 자유도|severance-lump-vs-installment-tax"
-            "gov-support|국가유공자 가족 — 의료급여·교육급여 자격 한도|state-merit-family-medical-education"
-            "savings|투자 손실 통산 — 채권·주식·ETF 손익 합산|investment-loss-offset-bond-stock-etf"
-            "insurance-labor|국민건강보험 가족 등록 — 동거가족·비동거가족 차이|nhis-family-cohabit-vs-non-cohabit"
-            "auto|자동차 환경개선 부담금 — 5등급 노후차 부과|car-environment-fee-5grade-old"
-            "public-services|복지로 모바일 신청 — 9개 복지 통합 신청 절차|bokjiro-mobile-9-welfare-integrated"
-            "office-tips|연봉제 vs 호봉제 — 임금 인상과 협상력 차이|annual-salary-vs-pay-grade-system"
-            "credit-loan|소상공인 정책자금 — 1금리·2금리 + 상환 조건|sba-policy-loan-1rate-2rate"
-            "insurance-personal|운전자보험 자기부담금 — 사고당 면책 한도|driver-insurance-self-cost-accident-cap"
-            "pension|국민연금 적립금 운용 — 수익률·기금 안정성|nps-fund-management-yield-stability"
+            "tax|연말정산 환급 시기 — 2월 회사 처리 vs 5월 종소세|year-end-refund-feb-vs-may"
+            "realestate|주택임대사업자 — 의무 사항과 세제 혜택 손익|housing-rental-business-obligations-benefits"
+            "unemployment|구직급여 수급 중 해외 출국 — 신고 의무와 정지|unemployment-overseas-travel-report"
+            "gov-support|국민내일배움카드 — 직업훈련 한도 + 자비 부담|tomorrow-learning-card-budget-self-cost"
+            "savings|연금저축 보험 vs 펀드 vs 은행 — 3사 비교|pension-savings-insurance-fund-bank"
+            "insurance-labor|국민건강보험 부정수급 — 신고와 환수 절차|nhis-fraud-report-recovery"
+            "auto|렌터카 보험 — 종합·자차·면책금 조합 비교|rental-car-insurance-comprehensive-self-deduction"
+            "public-services|증명서 발급 한도 — 무료 vs 유료 + 발급 위치|certificate-issuance-free-vs-paid"
+            "office-tips|퇴직금 산정 — 3개월 평균임금 vs 통상임금|severance-3month-average-vs-ordinary"
+            "credit-loan|대출 신용조회 — 하드 vs 소프트 + 신용점수 영향|credit-inquiry-hard-vs-soft-score"
+            "insurance-personal|건강증진 보험 — 보험료 할인 + 만보 챌린지|health-promotion-insurance-discount-steps"
+            "pension|퇴직연금 DC 운용 — 채권형 vs 주식형 손익 분기|dc-retirement-bond-vs-equity-breakeven"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (324 → 336편). 30편 균등 (360편) 까지 2 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (336 → 348편). 30편 균등 (360편) 까지 1 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
