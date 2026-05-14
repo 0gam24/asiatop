@@ -51,20 +51,20 @@ jobs:
         id: gen
         run: |
           set +e
-          # Round 15 (276 → 288편) — 기존 276편 중복 없음.
+          # Round 16 (288 → 300편) — 기존 288편 중복 없음.
           declare -a topics=(
-            "tax|법인세 중간예납 — 분기 분납 + 가산세 회피|corporate-tax-interim-installment-penalty"
-            "realestate|아파트 분양권 전매 — 전매제한 + 양도세 부담|apartment-pre-sale-transfer-restriction-tax"
-            "unemployment|고용보험 출산휴가 — 단기 가입자 자격과 지급액|employment-insurance-maternity-short-term"
-            "gov-support|장애아 보육료 — 100% 지원 자격과 신청|disability-childcare-100percent-support"
-            "savings|예금 풍차 vs 적금 풍차 — 만기 분산 전략 비교|deposit-vs-installment-windmill-comparison"
-            "insurance-labor|국민연금 추후납부 vs 임의계속 — 60세 이전 선택|nps-additional-vs-voluntary-before-60"
-            "auto|이륜차 보험 — 의무 가입과 보험료 차이|motorcycle-insurance-mandatory-cost"
-            "public-services|등기부등본 무료 발급 — 인터넷등기소 한도|land-registry-free-online-issuance"
-            "office-tips|연차 사용 촉진제 — 회사 통보 + 강제 사용|annual-leave-promotion-system-mandatory"
-            "credit-loan|디딤돌 vs 보금자리 vs 일반 주담대 비교|didimdol-bogeumjari-general-mortgage"
-            "insurance-personal|건강검진 보험 보장 — 종합검진·암검진 차이|health-checkup-insurance-comprehensive-cancer"
-            "pension|확정기여형 DC 운용 — 자산 배분과 수수료 관리|dc-retirement-asset-allocation-fee"
+            "tax|상속세 — 일괄공제 5억 + 배우자 상속공제 한도|inheritance-tax-lump-5b-spouse-deduction"
+            "realestate|보증금 인상분 묵시적 갱신 — 5% 적용 vs 불가|deposit-implicit-renewal-5percent"
+            "unemployment|구직급여 일액 — 평균임금 vs 통상임금 산정|unemployment-daily-payment-average-vs-ordinary"
+            "gov-support|학교밖청소년 지원 — 자립 패키지 자격과 한도|out-of-school-youth-support-package"
+            "savings|채권 ETF vs 채권 직접 — 세금·유동성 비교|bond-etf-vs-direct-tax-liquidity"
+            "insurance-labor|건강보험 자격 변동 — 직장 → 지역 전환 시점|health-insurance-workplace-to-regional-transition"
+            "auto|자동차 검사 비용 — 종합 vs 정기 + 환경검사|car-inspection-comprehensive-vs-regular-environment"
+            "public-services|기초생활수급 — 의료급여 자격과 수급비 한도|basic-livelihood-medical-eligibility"
+            "office-tips|입사 1년차 — 연차 11개 + 누적 15개 계산|first-year-annual-leave-11-vs-15"
+            "credit-loan|신용카드 리볼빙 vs 분할납부 — 이자율 함정|credit-card-revolving-vs-installment-rate"
+            "insurance-personal|어린이 보험 만기 — 30세 자녀 보험 처리|kids-insurance-30year-maturity-handling"
+            "pension|연금소득 공제 — 연 1,200만원 vs 700만원 한도|pension-income-deduction-1200-vs-700"
           )
           success=0
           fail=0
@@ -123,7 +123,7 @@ jobs:
             echo ""
             echo "## 향후 30편 균등 path"
             echo ""
-            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (276 → 288편). 30편 균등 (360편) 까지 6 batch 더 필요."
+            echo "본 PR 머지 후 카테고리당 1편씩 += 1 (288 → 300편). 30편 균등 (360편) 까지 5 batch 더 필요."
           } > "$body_file"
           gh pr create \
             --base main \
