@@ -148,7 +148,7 @@ title: "[20-70자, 핵심 키워드 포함]"
 description: "[80-170자, SERP·SNS 메타]"
 cluster: "${CLUSTER}"
 author: "${AUTHOR}"
-publishedAt: "2026-04-XX"
+publishedAt: "${new Date().toISOString().slice(0, 10)}"
 articleType: "Article"
 keywords:
   - "[5-8개, 한국어 검색어]"
