@@ -112,5 +112,11 @@
     "status": "pending",
     "reason": null,
     "count": 1
+  },
+  "a5b9b2e7f70f4a8b": {
+    "last_seen_at": "2026-05-17T08:47:58.990Z",
+    "status": "rejected",
+    "reason": "g2-ambiguous:unemployment-vs-pension",
+    "count": 1
   }
 }
