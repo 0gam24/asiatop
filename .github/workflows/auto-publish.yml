@@ -299,16 +299,16 @@ jobs:
           path: /tmp/v2/post-llm.json
           retention-days: 7
 
-      # R54-3b — PR 자동 생성 + auto-merge 트리거.
+      # R54-3b + R95-1 — PR 자동 생성 + auto-merge 트리거.
       # 안전망 4중:
-      #   1. inputs.create_pr == 'true' 명시 입력 필수 (default 'false')
-      #   2. inputs.dry_run != 'true' 동시 조건
+      #   1. (R95-1) schedule 트리거 OR inputs.create_pr == 'true' — cron 자동 발행 활성화 + 수동도 동작
+      #   2. inputs.dry_run != 'true' — schedule 시 빈 문자열, 통과
       #   3. steps.post_gates.outputs.post_llm_pass == 'true' — 모든 게이트 PASS
       #   4. steps.llm.outputs.mdx_path 존재 — LLM 4-pass 결과 있음
       # 위 4가지 모두 만족 시만 진짜 PR 생성 → auto-merge.yml 이 CI green 후 squash merge.
       - name: PR 자동 생성 (R54-3b, 4중 안전망)
         if: |
-          inputs.create_pr == 'true' &&
+          (github.event_name == 'schedule' || inputs.create_pr == 'true') &&
           inputs.dry_run != 'true' &&
           steps.post_gates.outputs.post_llm_pass == 'true' &&
           steps.llm.outputs.mdx_path != ''
