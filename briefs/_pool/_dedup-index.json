@@ -118,5 +118,11 @@
     "status": "rejected",
     "reason": "g2-ambiguous:unemployment-vs-pension",
     "count": 1
+  },
+  "0436c101691c5ae8": {
+    "last_seen_at": "2026-05-17T21:59:24.511Z",
+    "status": "rejected",
+    "reason": "g2-no-match",
+    "count": 1
   }
 }

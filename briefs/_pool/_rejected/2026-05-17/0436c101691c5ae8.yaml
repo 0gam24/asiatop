@@ -1,0 +1,6 @@
+_rejected:
+  gate: "g2"
+  reason: "g2-no-match"
+  hash: "0436c101691c5ae8"
+  rejected_at: "2026-05-17T21:59:24.512Z"
+  details: {"pass":false,"cluster":null,"score":0,"reasons":["g2-no-match"],"ranking":[{"cluster":"gov-support","score":0,"matched":[]},{"cluster":"tax","score":0,"matched":[]},{"cluster":"realestate","score":0,"matched":[]},{"cluster":"unemployment","score":0,"matched":[]},{"cluster":"savings","score":0,"matched":[]},{"cluster":"insurance-labor","score":0,"matched":[]},{"cluster":"auto","score":0,"matched":[]},{"cluster":"public-services","score":0,"matched":[]},{"cluster":"office-tips","score":0,"matched
