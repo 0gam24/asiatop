@@ -1,6 +1,0 @@
-퇴직금 확정기여형 DC 전환, 법적 문제는 없을까요?
-# cluster: pension
-# keyword: DB형
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=60215&docId=493431471&qb=RELtmJU=&enc=utf8
-# collected_at: 2026-05-17T08:44:22.443Z
