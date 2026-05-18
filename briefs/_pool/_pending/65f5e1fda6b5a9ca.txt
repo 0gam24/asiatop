@@ -1,6 +1,0 @@
-주휴수당 책정???
-# cluster: insurance-labor
-# keyword: 주 15시간
-# unmet_market: 1
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=60221&docId=493457266&qb=7KO8IDE17Iuc6rCE&enc=utf8
-# collected_at: 2026-05-18T21:48:26.260Z

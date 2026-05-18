@@ -27,6 +27,8 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
 import { searchKin, extractSourceSignal } from './lib/naver-kin-collector.mjs';
+import { sanitizeQuestion } from './gates/g1-question-sanitize.mjs';
+import { mapCluster } from './gates/g2-cluster-map.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -37,6 +39,30 @@ const KEYWORDS_PATH = join(ROOT, 'data', 'cluster-keywords.json');
 const argv = process.argv.slice(2);
 const LIMIT = Number(argv[argv.indexOf('--limit') + 1] || 2);
 const DRY_RUN = process.env.DRY_RUN === '1';
+
+// R95-4 — 상업 의도/낚시 키워드 거부 (광고성 질문 차단).
+// 발견 사례: "퇴직연금 DC 전환 운용사 추천", "어디서 사야 하나요", "할인 코드 있나요"
+const COMMERCIAL_INTENT = [
+  '운용사 추천', '회사 추천', '브랜드 추천', '제품 추천', '상품 추천',
+  '어디 살', '어디 사', '어디서 사', '어디서 구매',
+  '할인 코드', '쿠폰', '프로모션',
+  '광고', '협찬',
+];
+
+// R95-4 — off-topic 키워드 (금융 사이트 외 도메인).
+// Naver kin 응답에 우연히 매칭되는 경우 차단.
+const OFF_TOPIC = [
+  '돌잔치', '결혼식', '장례식', '제사', '명절 선물',
+  '게임', '아이돌', '연예인', '드라마', '영화',
+  '맛집', '레시피', '요리법', '다이어트',
+  '여행', '항공권', '호텔',
+  '병원 추천', '의사 추천',
+];
+
+function hasAny(text, list) {
+  const t = text.toLowerCase();
+  return list.some((kw) => t.includes(kw.toLowerCase()));
+}
 const POOL_MAX = 5;
 
 function hash(s) {
@@ -93,33 +119,61 @@ async function main() {
 
   const candidates = [];
   const useMock = !process.env.NAVER_CLIENT_ID;
+  const stats = { raw: 0, tooShort: 0, similar: 0, commercial: 0, offTopic: 0, g1Fail: 0, g2Fail: 0, passed: 0 };
 
   for (const [cluster, kwList] of Object.entries(keywords)) {
     if (cluster.startsWith('_')) continue;
     if (!Array.isArray(kwList) || kwList.length === 0) continue;
-    // cluster 당 1개 키워드 sample (random)
-    const kw = kwList[Math.floor(Math.random() * kwList.length)];
-    try {
-      const items = await searchKin(kw, { display: 10, sort: 'date', mock: useMock });
-      for (const item of items) {
-        if (!item.title || item.title.length < 10) continue;
-        if (isSimilar(item.title, existingTitles)) continue;
-        const sig = extractSourceSignal(item);
-        candidates.push({ cluster, kw, ...item, ...sig });
+    // cluster 당 키워드 2~3개 sample (random) — 후보 풀 확장
+    const samples = [];
+    const pool = kwList.slice();
+    for (let i = 0; i < Math.min(2, pool.length); i++) {
+      const idx = Math.floor(Math.random() * pool.length);
+      samples.push(pool[idx]);
+      pool.splice(idx, 1);
+    }
+
+    for (const kw of samples) {
+      try {
+        const items = await searchKin(kw, { display: 10, sort: 'date', mock: useMock });
+        for (const item of items) {
+          stats.raw++;
+          if (!item.title || item.title.length < 15) { stats.tooShort++; continue; }
+          if (isSimilar(item.title, existingTitles)) { stats.similar++; continue; }
+          if (hasAny(item.title, COMMERCIAL_INTENT)) { stats.commercial++; continue; }
+          if (hasAny(item.title, OFF_TOPIC)) { stats.offTopic++; continue; }
+
+          // R95-4 — G1 sanitize simulation (PII·욕설·정치 차단)
+          const g1 = sanitizeQuestion(item.title);
+          if (!g1.pass) { stats.g1Fail++; continue; }
+
+          // R95-4 — G2 cluster mapping simulation (모호 reject 사전 차단)
+          const g2 = mapCluster(item.title);
+          if (!g2.pass) { stats.g2Fail++; continue; }
+
+          stats.passed++;
+          const sig = extractSourceSignal(item);
+          candidates.push({ cluster: g2.cluster, kw, g2_score: g2.score, ...item, ...sig });
+        }
+      } catch (e) {
+        console.warn(`[collect] cluster=${cluster} kw=${kw} 실패: ${e.message}`);
       }
-    } catch (e) {
-      console.warn(`[collect] cluster=${cluster} kw=${kw} 실패: ${e.message}`);
     }
   }
 
-  console.log(`[collect] 후보 ${candidates.length}건 수집`);
+  console.log(`[collect] 필터 통계: raw ${stats.raw} → tooShort ${stats.tooShort} · similar ${stats.similar} · commercial ${stats.commercial} · offTopic ${stats.offTopic} · g1Fail ${stats.g1Fail} · g2Fail ${stats.g2Fail} → PASS ${stats.passed}`);
+
   if (candidates.length === 0) {
-    console.log('[collect] 후보 0건 — skip');
+    console.log('[collect] G1·G2 통과 후보 0건 — skip (큐 적재 없음)');
     return;
   }
 
-  // 답변 부족 시그널 (unmet_market_score) + 최신순 정렬
-  candidates.sort((a, b) => b.unmet_market_score - a.unmet_market_score || b.collected_at.localeCompare(a.collected_at));
+  // R95-4 — G2 score 높은 순 + 답변 부족 시그널 + 최신순 (다중 키 정렬)
+  candidates.sort((a, b) => {
+    if (b.g2_score !== a.g2_score) return b.g2_score - a.g2_score;
+    if (b.unmet_market_score !== a.unmet_market_score) return b.unmet_market_score - a.unmet_market_score;
+    return b.collected_at.localeCompare(a.collected_at);
+  });
   const picked = candidates.slice(0, space);
 
   if (!existsSync(POOL_PENDING)) mkdirSync(POOL_PENDING, { recursive: true });
