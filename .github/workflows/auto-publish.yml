@@ -124,6 +124,7 @@ jobs:
       - name: 큐에서 질문 픽업 또는 input 사용
         id: pick
         run: |
+          PICKED=""
           if [ -n "${{ inputs.question }}" ]; then
             echo "${{ inputs.question }}" > /tmp/question.txt
           else
@@ -133,6 +134,7 @@ jobs:
             fi
             if [ -n "$FIRST" ]; then
               head -1 "$FIRST" > /tmp/question.txt
+              PICKED="$FIRST"
             else
               echo "::notice::pending 큐 비어있음. cron skip"
               echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -140,6 +142,8 @@ jobs:
             fi
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
+          # R95-3: 처리한 파일 경로 출력 — 마지막 step 에서 git rm 으로 큐 rotate
+          echo "picked_file=$PICKED" >> "$GITHUB_OUTPUT"
 
       - name: 자동 발행 러너 실행 (Pre-LLM 게이트 + brief skeleton)
         if: steps.pick.outputs.skip == 'false'
@@ -377,6 +381,40 @@ jobs:
           git add briefs/_pool/_dedup-index.json briefs/_pool/_rejected/ || true
           git commit -m "chore(auto): gate audit log $(date -u +%FT%TZ)" || true
           git push || true
+
+      # R95-3 — 처리한 질문 큐에서 제거 (queue rotation).
+      # 이전 흐름: pick 한 파일이 _pending/ 에 그대로 남아 매 cron 마다 같은 reject 무한 반복.
+      # 수정: PASS/REJECT 무관하게 main 에서 항상 git rm — _rejected/<hash>.yaml 또는 PR commit 에
+      # 질문 텍스트가 이미 보존되므로 audit 손실 없음.
+      # always() 로 LLM/post_gates 에서 실패해도 큐는 비움 (다음 후보 처리 보장).
+      - name: 처리한 질문 큐에서 제거 (R95-3 queue rotation)
+        if: |
+          always() &&
+          steps.pick.outputs.skip == 'false' &&
+          steps.pick.outputs.picked_file != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          PICKED="${{ steps.pick.outputs.picked_file }}"
+          if [ -z "$PICKED" ]; then
+            echo "::notice::picked_file 비어있음 — skip rotation"
+            exit 0
+          fi
+          # PR 생성 step 이 branch 를 만들었을 수 있으니 main 으로 강제 복귀.
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+          if [ ! -f "$PICKED" ]; then
+            echo "::notice::이미 제거됨: $PICKED"
+            exit 0
+          fi
+          git config user.name "moneylook-auto"
+          git config user.email "auto@moneylook"
+          git rm "$PICKED"
+          git commit -m "chore(auto): rotate queue — $(basename $PICKED) $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push origin main || echo "::warning::queue rotation push 실패 — 다음 cron 에 재시도"
+          echo "::notice::큐 rotate 완료: $PICKED"
 
   # Post-LLM 게이트는 V2 — LLM 4-pass 통합 후 활성
   # post-llm-gates: ...
