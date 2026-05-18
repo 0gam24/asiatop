@@ -1,6 +1,0 @@
-주5일 8시간 vs 5시간
-# cluster: insurance-labor
-# keyword: 주15시간
-# unmet_market: 1
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=60802&docId=493429717&qb=7KO8MTXsi5zqsIQ=&enc=utf8
-# collected_at: 2026-05-17T21:29:21.320Z
