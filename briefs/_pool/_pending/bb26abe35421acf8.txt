@@ -1,6 +1,0 @@
-오늘여권 연장할수있나요?
-# cluster: public-services
-# keyword: 여권 재발급
-# unmet_market: 1
-# source: https://kin.naver.com/qna/detail.naver?d1id=7&dirId=70205&docId=493446060&qb=7Jes6raMIOyerOuwnOq4iQ==&enc=utf8
-# collected_at: 2026-05-18T21:48:26.651Z
