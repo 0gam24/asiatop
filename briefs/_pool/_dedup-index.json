@@ -124,5 +124,11 @@
     "status": "rejected",
     "reason": "g2-no-match",
     "count": 1
+  },
+  "58d5533abd616953": {
+    "last_seen_at": "2026-05-18T23:31:49.317Z",
+    "status": "pending",
+    "reason": null,
+    "count": 1
   }
 }
