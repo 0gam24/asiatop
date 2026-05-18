@@ -1,0 +1,6 @@
+퇴직연금 DB형에서 DC형으로 바꾼후 중도인출 관련 문의
+# cluster: pension
+# keyword: DB형
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40309&docId=493411688&qb=RELtmJU=&enc=utf8
+# collected_at: 2026-05-18T23:30:19.704Z
