@@ -1,0 +1,6 @@
+1종 보통 운전면허 갱신, 온라인 신청 가능할까요?
+# cluster: auto
+# keyword: 운전면허 갱신
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493304403&qb=7Jq07KCE66m07ZeIIOqwseyLoA==&enc=utf8
+# collected_at: 2026-05-19T02:33:09.677Z
