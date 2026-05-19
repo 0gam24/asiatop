@@ -3,6 +3,8 @@
 한국 금융 YMYL 정적 사이트. Astro 6.2 SSG + Cloudflare Pages auto-deploy.
 360+편 article + LLM 4-pass 자동 발행 cron (KST 05:30 collector → 06:00 publish).
 
+> 자동 발행 파이프라인 전체 기획·상세 흐름: [docs/23-auto-publish-pipeline.md](docs/23-auto-publish-pipeline.md)
+
 ## 변경 전 가드 (필수)
 
 **워크플로/파이프라인 변경 시 `/plan` 우선**
