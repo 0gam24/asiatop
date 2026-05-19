@@ -20,6 +20,9 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"   # R95-9 — Node 20 deprecation 회피 (2026-09-16 강제 전환 전)
+
 jobs:
   batch:
     name: 12 카테고리 batch 생성
