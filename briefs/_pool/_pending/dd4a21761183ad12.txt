@@ -1,0 +1,6 @@
+65세 이상 운전면허갱신 경찰서 안되고 면허시험장?
+# cluster: auto
+# keyword: 2종 보통
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=8&dirId=8110303&docId=493450775&qb=MuyihSDrs7TthrU=&enc=utf8
+# collected_at: 2026-05-19T01:15:08.156Z

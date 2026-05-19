@@ -1,0 +1,6 @@
+국민연금 실업 크레딧, 신청 조건이 어떻게 되나요?
+# cluster: unemployment
+# keyword: 한도
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493101392&qb=7ZWc64+E&enc=utf8
+# collected_at: 2026-05-19T01:15:09.624Z
