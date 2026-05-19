@@ -311,7 +311,12 @@ export function buildUserPromptFromBrief(brief) {
   const internal = buildInternalLinksBlock(brief);
   if (internal) blocks.push(internal);
 
-  // 14. 재진술 (필수) — R57 G4 매칭률 70% 통과 의무 강화
+  // 14. 재진술 (필수) — R57·R95-7 G4 매칭률 70% 통과 의무 + approximate 강제
+  const expectedFactsCount = (brief.primary_sources ?? []).reduce(
+    (sum, s) => sum + (s.expected_facts?.length ?? 0),
+    0,
+  );
+  const factsThin = expectedFactsCount < 5;
   blocks.push([
     blockHeader(14, '재진술 — G4 fact-verifier 매칭률 70% 통과 의무'),
     '위 brief를 정확히 따르세요.',
@@ -319,6 +324,19 @@ export function buildUserPromptFromBrief(brief) {
     '- 본문의 사실 토큰 70% 이상이 §10 expected_facts 안 토큰과 정확 일치해야 합니다 (G4 통과 임계).',
     '  · 일치 안 하면 자동 폐기. 외부 일반 지식·추정 수치 금지.',
     '  · expected_facts 에 없는 사실을 꼭 인용해야 하면 "약 N" / "대략 N" / "보통 N" approximate 표현 사용 (G4 분모 제외).',
+    // R95-7 — expected_facts 풀이 빈약 (5개 미만) 일 때 강제 approximate 룰
+    factsThin
+      ? [
+          '',
+          `🔴 **R95-7 critical**: §10 expected_facts 가 ${expectedFactsCount}개 (5 미만)로 풀이 빈약합니다.`,
+          '   → 본문의 **모든 amount/percent/금액/요율 수치를 approximate 표현으로 작성** 강제:',
+          '   · 정확 수치 (예: "100,000원", "7.09%", "5억 원") 사용 **절대 금지**',
+          '   · 모두 "약 10만 원 수준", "대략 7% 내외", "5억 원 안팎" 식으로 작성',
+          '   · 표·계산 시뮬에도 정확 수치 대신 "약 N" 사용',
+          '   · 위반 시 G4 자동 폐기 (matched=0 / approximate=N → denom 0 pass 보장)',
+          '   · 정확 수치가 정말 필요하면 §10 expected_facts 풀의 토큰만 사용',
+        ].join('\n')
+      : '',
     citables ? '- §9 citable_sentences를 본문에 60%+ 포함하세요.' : '',
     '- 어순·종결어미 자연화는 OK. 수치·법령·URL 토큰은 보존.',
   ].filter(Boolean).join('\n'));
