@@ -1,0 +1,6 @@
+이직확인서 실업급여 가능한가요?
+# cluster: unemployment
+# keyword: 이직확인서
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=493463420&qb=7J207KeB7ZmV7J247ISc&enc=utf8
+# collected_at: 2026-05-19T04:36:16.738Z
