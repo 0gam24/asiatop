@@ -118,8 +118,9 @@ async function main() {
   console.log(`[collect] 기존 article ${existingTitles.size}편 dedup baseline · 큐 ${existingQ}/${POOL_MAX} · 목표 ${space}건`);
 
   const candidates = [];
+  const seenTitles = new Set(); // R95-5 — 후보 자체 중복 dedup (다른 cluster·keyword 에서 동일 질문 매칭 회피)
   const useMock = !process.env.NAVER_CLIENT_ID;
-  const stats = { raw: 0, tooShort: 0, similar: 0, commercial: 0, offTopic: 0, g1Fail: 0, g2Fail: 0, passed: 0 };
+  const stats = { raw: 0, tooShort: 0, similar: 0, commercial: 0, offTopic: 0, g1Fail: 0, g2Fail: 0, dupCandidate: 0, passed: 0 };
 
   for (const [cluster, kwList] of Object.entries(keywords)) {
     if (cluster.startsWith('_')) continue;
@@ -151,6 +152,11 @@ async function main() {
           const g2 = mapCluster(item.title);
           if (!g2.pass) { stats.g2Fail++; continue; }
 
+          // R95-5 — 후보 풀 내 중복 dedup (정규화된 title 키)
+          const normTitle = item.title.toLowerCase().replace(/\s+/g, '');
+          if (seenTitles.has(normTitle)) { stats.dupCandidate++; continue; }
+          seenTitles.add(normTitle);
+
           stats.passed++;
           const sig = extractSourceSignal(item);
           candidates.push({ cluster: g2.cluster, kw, g2_score: g2.score, ...item, ...sig });
@@ -161,7 +167,7 @@ async function main() {
     }
   }
 
-  console.log(`[collect] 필터 통계: raw ${stats.raw} → tooShort ${stats.tooShort} · similar ${stats.similar} · commercial ${stats.commercial} · offTopic ${stats.offTopic} · g1Fail ${stats.g1Fail} · g2Fail ${stats.g2Fail} → PASS ${stats.passed}`);
+  console.log(`[collect] 필터 통계: raw ${stats.raw} → tooShort ${stats.tooShort} · similar ${stats.similar} · commercial ${stats.commercial} · offTopic ${stats.offTopic} · g1Fail ${stats.g1Fail} · g2Fail ${stats.g2Fail} · dupCandidate ${stats.dupCandidate} → PASS ${stats.passed}`);
 
   if (candidates.length === 0) {
     console.log('[collect] G1·G2 통과 후보 0건 — skip (큐 적재 없음)');

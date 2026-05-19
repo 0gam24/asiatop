@@ -11,7 +11,8 @@ name: Auto Publish (지식인 → 권위 검증 → PR)
 #   - PR 동시 상한 3개
 #   - 하루 발행 상한 5편
 #   - CI 실패 PR 자동 close (auto-pr-cleanup.yml)
-#   - MOCK_AUTHORITY=1 강제 (외부 API 키 발급 전까지 dry-run 만)
+#   - MOCK_AUTHORITY default '0' (R95-5) — 실 정부 API (LAW/BOK/FSS/YOUTH_CENTER/NPS) 호출
+#     workflow_dispatch 에서 '1' 명시 시 mock 모드 (테스트용)
 
 on:
   schedule:
@@ -155,7 +156,7 @@ jobs:
           FSS_KEY: ${{ secrets.FSS_KEY }}
           YOUTH_CENTER_API_KEY: ${{ secrets.YOUTH_CENTER_API_KEY }}
           NPS_KEY: ${{ secrets.NPS_KEY }}
-          MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
+          MOCK_AUTHORITY: ${{ inputs.mock_authority || '0' }}
           AI_LIKENESS_THRESHOLD: '7.0'   # 초기 관대 임계
         run: |
           mkdir -p /tmp/v2
@@ -211,7 +212,7 @@ jobs:
           FSS_KEY: ${{ secrets.FSS_KEY }}
           YOUTH_CENTER_API_KEY: ${{ secrets.YOUTH_CENTER_API_KEY }}
           NPS_KEY: ${{ secrets.NPS_KEY }}
-          MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
+          MOCK_AUTHORITY: ${{ inputs.mock_authority || '0' }}
         run: |
           # pipefail 활성 + PIPESTATUS[0] 사용 — tee 의 exit 0 가짜 통과 차단
           set -o pipefail
@@ -266,7 +267,7 @@ jobs:
           FSS_KEY: ${{ secrets.FSS_KEY }}
           YOUTH_CENTER_API_KEY: ${{ secrets.YOUTH_CENTER_API_KEY }}
           NPS_KEY: ${{ secrets.NPS_KEY }}
-          MOCK_AUTHORITY: ${{ inputs.mock_authority || '1' }}
+          MOCK_AUTHORITY: ${{ inputs.mock_authority || '0' }}
           AI_LIKENESS_THRESHOLD: '7.0'
         run: |
           # pipefail 활성 + PIPESTATUS[0] — tee 가짜 통과 방지 (Post-LLM 게이트 fail-closed 보장)
