@@ -1,6 +1,0 @@
-조기재취업수당 받을 수 있을까요?
-# cluster: unemployment
-# keyword: 조기재취업수당
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=493457970&qb=7KGw6riw7J6s7Leo7JeF7IiY64u5&enc=utf8
-# collected_at: 2026-05-18T23:30:15.711Z
