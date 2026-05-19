@@ -161,7 +161,7 @@ jobs:
           NPS_KEY: ${{ secrets.NPS_KEY }}
           MOCK_AUTHORITY: ${{ inputs.mock_authority || '0' }}
           AI_LIKENESS_THRESHOLD: '7.0'   # 초기 관대 임계
-          FACT_VERIFY_MIN_MATCH_RATE: '0.15'   # R95-6 — G4 환각 30% 매칭만 통과 (LLM amount 일부 통과)
+          FACT_VERIFY_MIN_MATCH_RATE: '0.7'   # R95-11 — default 복원. R95-9 sanitizer 가 unmatched → approximate 변환 보장하므로 default 임계 OK
         run: |
           mkdir -p /tmp/v2
           args=(--question-file /tmp/question.txt --brief-out /tmp/v2/brief.yaml)
@@ -273,7 +273,7 @@ jobs:
           NPS_KEY: ${{ secrets.NPS_KEY }}
           MOCK_AUTHORITY: ${{ inputs.mock_authority || '0' }}
           AI_LIKENESS_THRESHOLD: '7.0'
-          FACT_VERIFY_MIN_MATCH_RATE: '0.15'
+          FACT_VERIFY_MIN_MATCH_RATE: '0.7'   # R95-11 — default 복원. R95-9 sanitizer 가 unmatched → approximate 변환 보장하므로 default 임계 OK
         run: |
           # pipefail 활성 + PIPESTATUS[0] — tee 가짜 통과 방지 (Post-LLM 게이트 fail-closed 보장)
           set -o pipefail

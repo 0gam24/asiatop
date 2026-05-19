@@ -22,7 +22,7 @@
 
 다음 환경변수·상수 수정 시 PR 머지 전 `/security-review`:
 
-- `FACT_VERIFY_MIN_MATCH_RATE` (현재 0.15, R95-9 후 0.5+ 복원 목표)
+- `FACT_VERIFY_MIN_MATCH_RATE` (R95-11 이후 default `0.7` 복원 — sanitizer 가 보장)
 - `AI_LIKENESS_THRESHOLD` (현재 7.0)
 - `MOCK_AUTHORITY` (현재 0 = real fetch)
 - `SCORE_THRESHOLD` / `AMBIGUITY_RATIO` (G2)
@@ -85,5 +85,9 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 
 ## 진행 중 트랙
 
-- **R95 chain (자동 발행 정착)**: R95-1~R95-8 완료. R95-9 expected_facts 풀 강화 + G4 임계 복원이 차기.
-- AdSense 심사 중 → 변경은 보수적으로. 정확 amount 환각 위험 회피 위해 approximate 표현 강제 룰 적용 중.
+- **R95 chain (자동 발행 정착)**: R95-1~R95-11 완료.
+  - R95-9 amount-sanitizer (post-LLM) — unmatched 토큰 자동 "약 X" wrap.
+  - R95-10 cluster-questions — pillar 묶음 (3~5 질문 → 1편).
+  - R95-11 G4 임계 default(0.7) 복원 + topic-to-brief MVP.
+- 차기: R95-12 cron 통합 (collector → cluster-questions → topic-to-brief → auto-publish).
+- AdSense 심사 중 → 변경은 보수적으로. 환각은 sanitizer 가 차단 (단정 수치 → 근사 표현).
