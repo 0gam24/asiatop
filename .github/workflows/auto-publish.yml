@@ -43,6 +43,9 @@ concurrency:
   group: auto-publish
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"   # R95-9 — Node 20 deprecation 회피 (2026-09-16 강제 전환 전)
+
 jobs:
   # actor guard — workflow_dispatch 무제한 트리거·봇 토큰 탈취 방지
   # cron(스케줄) 트리거는 actor=github-actions[bot]이라 항상 통과.

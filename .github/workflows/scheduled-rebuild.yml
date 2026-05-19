@@ -7,6 +7,9 @@ on:
     - cron: '15 */6 * * *'
   workflow_dispatch: {}
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"   # R95-9 — Node 20 deprecation 회피 (2026-09-16 강제 전환 전)
+
 jobs:
   trigger-rebuild:
     runs-on: ubuntu-latest
