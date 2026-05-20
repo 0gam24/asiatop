@@ -5,6 +5,18 @@
     "reason": "manually-published",
     "count": 1
   },
+  "1af7f727ae9292f2": {
+    "last_seen_at": "2026-05-20T03:50:00.000Z",
+    "status": "rejected",
+    "reason": "manually-published-merged",
+    "count": 1
+  },
+  "57fa819c06ae82f1": {
+    "last_seen_at": "2026-05-20T03:50:00.000Z",
+    "status": "rejected",
+    "reason": "manually-published-merged",
+    "count": 1
+  },
   "1466b9448cdddf4c": {
     "last_seen_at": "2026-05-02T11:49:25.732Z",
     "status": "pending",
