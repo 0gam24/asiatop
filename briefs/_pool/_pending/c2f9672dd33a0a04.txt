@@ -1,6 +1,0 @@
-조기재취업수당, 이직 후에도 계속 근속하면 받을 수...
-# cluster: unemployment
-# keyword: 조기 재취업
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493479666&qb=7KGw6riwIOyerOy3qOyXhQ==&enc=utf8
-# collected_at: 2026-05-20T22:11:59.743Z
