@@ -1,0 +1,17 @@
+_rejected:
+  gate: "manual"
+  reason: "manually-published"
+  hash: "21c8fe00493a0ff6"
+  rejected_at: "2026-05-20T00:00:00.000Z"
+  details:
+    article_slug: "drivers-license-class1-online-renewal"
+    article_path: "src/content/articles/drivers-license-class1-online-renewal.mdx"
+    note: "Manual publish by operator on 2026-05-20 (auto-publish cron gap fill). Removed from _pending to prevent duplicate processing by next cron run."
+# 원본 brief 본문 (참조용)
+meta:
+  question: "1종 보통 운전면허 갱신, 온라인 신청 가능할까요?"
+  cluster: "auto"
+  keyword: "운전면허 갱신"
+  unmet_market: 0
+  source: "https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493304403&qb=7Jq07KCE66m07ZeIIOqwseyLoA==&enc=utf8"
+  collected_at: "2026-05-19T02:33:09.677Z"
