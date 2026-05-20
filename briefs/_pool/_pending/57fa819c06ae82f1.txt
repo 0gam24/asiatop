@@ -1,6 +1,0 @@
-올리브영 메이트 퇴사자 이직확인서 질문
-# cluster: unemployment
-# keyword: 이직확인서
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40403&docId=491451639&qb=7J207KeB7ZmV7J247ISc&enc=utf8
-# collected_at: 2026-05-19T04:36:16.738Z
