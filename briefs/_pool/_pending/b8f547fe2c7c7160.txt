@@ -1,6 +1,0 @@
-국민연금 조기 수령 시 소득 수준에 따른 연금 감액...
-# cluster: pension
-# keyword: 노령연금
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493196201&qb=64W466C57Jew6riI&enc=utf8
-# collected_at: 2026-05-19T04:36:20.468Z
