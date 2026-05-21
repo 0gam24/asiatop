@@ -5,6 +5,20 @@
 
 > 자동 발행 파이프라인 전체 기획·상세 흐름: [docs/23-auto-publish-pipeline.md](docs/23-auto-publish-pipeline.md)
 
+## 수동 발행 publishedAt 가드 (필수)
+
+수동으로 article 작성 시 `publishedAt` 박기 **전** 반드시 KST 오늘 날짜를 검증.
+
+system reminder 의 `currentDate` 는 세션이 길어지면 갱신 안 되고 묵힐 수 있음 (5/21 → 5/22 사례 — 5편 다 5/21 로 박혔지만 머지 시각은 정확). 시즌 후크 글("D-N", "5월 마감", "6/1 기준일" 등)은 publishedAt 1일 어긋나면 신뢰도 직격탄.
+
+검증 순서:
+1. `Get-Date -Format "yyyy-MM-dd"` (PowerShell) 또는 `date -u +"%Y-%m-%d %H:%M UTC"` (bash) 로 시스템 실시각 확인
+2. UTC → KST(+9) 변환해 오늘 날짜 결정
+3. system reminder currentDate 와 어긋나면 **system reminder 무시, 시스템 실시각 신뢰**
+4. 사용자가 "오늘 날짜" 를 명시했으면 그게 최우선
+
+publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상대 표현도 같이 정합성 점검.
+
 ## 변경 전 가드 (필수)
 
 **워크플로/파이프라인 변경 시 `/plan` 우선**
