@@ -1,0 +1,6 @@
+초단시간근로자(주 15시간 미만) 노동절 유급 휴일 적용...
+# cluster: insurance-labor
+# keyword: 휴일근로수당
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=60802&docId=493463783&qb=7Zy07J286re866Gc7IiY64u5&enc=utf8
+# collected_at: 2026-05-21T22:01:38.543Z
