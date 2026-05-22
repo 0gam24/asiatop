@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="머니룩 (MoneyLook)">
+  <title>머니룩</title>
+  <!-- 다크 배경: 네이비 + 민트 액센트 (다크모드 톤) -->
+  <rect width="1000" height="1000" rx="180" fill="#0F1B2D"/>
+
+  <!-- 액센트 그래픽: 차트 막대 (다크 버전, 더 밝은 민트) -->
+  <g transform="translate(360, 240)">
+    <rect x="0" y="120" width="44" height="80" rx="8" fill="#00D9A3" opacity="0.4"/>
+    <rect x="64" y="80" width="44" height="120" rx="8" fill="#00D9A3" opacity="0.65"/>
+    <rect x="128" y="40" width="44" height="160" rx="8" fill="#00D9A3" opacity="0.85"/>
+    <rect x="192" y="0" width="44" height="200" rx="8" fill="#00D9A3"/>
+    <!-- 화살표 상승 -->
+    <path d="M 30 60 L 250 -30" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <polygon points="240,-50 270,-35 250,-10" fill="#FFFFFF"/>
+  </g>
+
+  <!-- 텍스트: 머니룩 -->
+  <text x="500" y="650" font-family="Pretendard Variable, Pretendard, -apple-system, system-ui, sans-serif" font-size="180" font-weight="800" fill="#FFFFFF" letter-spacing="-6" text-anchor="middle">머니룩</text>
+
+  <!-- 도트 + 서브 텍스트 -->
+  <circle cx="420" cy="780" r="10" fill="#00D9A3"/>
+  <text x="500" y="790" font-family="Pretendard Variable, Pretendard, -apple-system, system-ui, sans-serif" font-size="64" font-weight="600" fill="#A8B3C0" letter-spacing="1" text-anchor="middle">MoneyLook</text>
+</svg>
