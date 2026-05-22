@@ -1,43 +1,77 @@
 ---
 /**
- * R68 — AdSlot 컴포넌트
+ * AdSlot — AdSense 광고 슬롯 (수동 슬롯 전략)
  *
- * 환경:
- *   PUBLIC_ADSENSE_CLIENT (pub-XXXXXXXXXXXXXXXX) 가 설정되어 있으면 실 AdSense 슬롯 렌더.
- *   미설정 시 placeholder (현재 상태).
+ * 환경변수 (모두 PUBLIC_ 접두사, 빌드 시 클라이언트 inline):
+ *   PUBLIC_ADSENSE_CLIENT          → pub-XXXXXXXXXXXXXXXX (게시자 ID)
+ *   PUBLIC_ADSENSE_SLOT_IN_ARTICLE → 본문 내부 (fluid + data-ad-layout=in-article)
+ *   PUBLIC_ADSENSE_SLOT_MULTIPLEX  → 관련 글 그리드 (autorelaxed)
+ *   PUBLIC_ADSENSE_SLOT_DISPLAY    → 사이드·푸터·홈 반응형 (auto + full-width-responsive)
+ *   PUBLIC_ADSENSE_SLOT_BANNER     → 728x90 / 320x100 고정 (기존)
+ *   PUBLIC_ADSENSE_SLOT_SQUARE     → 300x250 고정 (기존)
+ *   PUBLIC_ADSENSE_SLOT_IN_FEED    → 카테고리 글 목록 사이 (auto)
  *
- * 정책 보호:
- *   - format=banner: 728x90 (데스크탑) / 320x100 (모바일)
- *   - format=square: 300x250
- *   - format=in-feed: 반응형 (모바일 우선)
- *   - aspect-ratio + min-height 예약으로 CLS 0 보장 (perf-agent 규정)
- *   - lazy loading data-loading="lazy" (스크롤 진입 시 로드)
+ * 정책 (perf-agent/seo-agent/content-agent/author-agent 합의 — 5:1 수동 슬롯):
+ *   - 자동광고(Auto Ads) 사용 금지 (CLS +0.08~0.25 회귀, Lighthouse 100점 가드 불가)
+ *   - aspect-ratio + min-height 예약으로 CLS 0 보장
+ *   - slotId 또는 PUBLIC_ADSENSE_CLIENT 미설정 시 placeholder 폴백
+ *   - format 만 주면 환경변수에서 slot ID 자동 매핑
  */
+type AdFormat = 'banner' | 'square' | 'in-feed' | 'in-article' | 'multiplex' | 'display';
+
 interface Props {
-  format?: 'banner' | 'square' | 'in-feed';
+  format?: AdFormat;
   label?: string;
-  /** Manual 슬롯 ID (AdSense Console 에서 발급). 미지정 시 Auto Ads 분기 X */
+  /** 명시 slot ID. 미지정 시 format 기반 env 자동 매핑. */
   slotId?: string;
 }
-const { format = 'in-feed', label = '광고', slotId } = Astro.props;
+const { format = 'in-article', label = '광고', slotId } = Astro.props;
 
 const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
-const isActive = Boolean(adsenseClient && adsenseClient.startsWith('pub-') && slotId);
+
+const ENV_SLOT_MAP: Record<AdFormat, string | undefined> = {
+  'in-article': import.meta.env.PUBLIC_ADSENSE_SLOT_IN_ARTICLE,
+  'multiplex': import.meta.env.PUBLIC_ADSENSE_SLOT_MULTIPLEX,
+  'display': import.meta.env.PUBLIC_ADSENSE_SLOT_DISPLAY,
+  'banner': import.meta.env.PUBLIC_ADSENSE_SLOT_BANNER,
+  'square': import.meta.env.PUBLIC_ADSENSE_SLOT_SQUARE,
+  'in-feed': import.meta.env.PUBLIC_ADSENSE_SLOT_IN_FEED,
+};
+const resolvedSlotId = slotId ?? ENV_SLOT_MAP[format];
+
+const isActive = Boolean(
+  adsenseClient && adsenseClient.startsWith('pub-') && resolvedSlotId
+);
+
+const AD_FORMAT_MAP: Record<AdFormat, string> = {
+  'in-article': 'fluid',
+  'multiplex': 'autorelaxed',
+  'display': 'auto',
+  'banner': 'banner',
+  'square': 'square',
+  'in-feed': 'auto',
+};
+const dataAdFormat = AD_FORMAT_MAP[format];
+const dataAdLayout = format === 'in-article' ? 'in-article' : undefined;
+const fullWidthResponsive = format === 'display' || format === 'in-feed' || format === 'in-article';
 ---
 <aside class={`ad-slot fmt-${format}`} data-format={format} aria-label="광고">
   {isActive ? (
-    <ins
-      class="adsbygoogle"
-      style="display:block"
-      data-ad-client={`ca-${adsenseClient}`}
-      data-ad-slot={slotId}
-      data-ad-format={format === 'in-feed' ? 'auto' : format}
-      data-full-width-responsive="true"
-      data-loading="lazy"
-    />
-    <script is:inline>
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <>
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={`ca-${adsenseClient}`}
+        data-ad-slot={resolvedSlotId}
+        data-ad-format={dataAdFormat}
+        data-ad-layout={dataAdLayout}
+        data-full-width-responsive={fullWidthResponsive ? 'true' : undefined}
+        data-loading="lazy"
+      />
+      <script is:inline>
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </>
   ) : (
     <span class="placeholder">{label} (AdSense 출시 후 자동 채워짐)</span>
   )}
@@ -59,10 +93,12 @@ const isActive = Boolean(adsenseClient && adsenseClient.startsWith('pub-') && sl
 .ad-slot.fmt-banner { min-height: 100px; aspect-ratio: 728 / 90; max-width: 728px; margin-left: auto; margin-right: auto; }
 .ad-slot.fmt-square { min-height: 250px; aspect-ratio: 300 / 250; max-width: 300px; margin-left: auto; margin-right: auto; }
 .ad-slot.fmt-in-feed { min-height: 200px; }
+.ad-slot.fmt-in-article { min-height: 200px; }
+.ad-slot.fmt-multiplex { min-height: 360px; }
+.ad-slot.fmt-display { min-height: 100px; }
 .ad-slot .placeholder { display: flex; align-items: center; justify-content: center; height: 100%; padding: 1rem; }
 
 @media (max-width: 768px) {
-  /* 모바일: 사이드바 슬롯 hidden — perf-agent 규정 */
   .ad-slot.fmt-banner { aspect-ratio: 320 / 100; max-width: 320px; min-height: 80px; }
 }
 </style>
