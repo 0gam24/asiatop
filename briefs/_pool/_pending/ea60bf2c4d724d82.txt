@@ -1,0 +1,6 @@
+포괄임금제 사무실 초과 야근수당 관련
+# cluster: office-tips
+# keyword: 야근수당
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=60802&docId=490664693&qb=7JW86re87IiY64u5&enc=utf8
+# collected_at: 2026-05-22T21:44:36.514Z
