@@ -1,0 +1,6 @@
+국민연금 조기수령 신청하려는데 기초연금 깎이나요?...
+# cluster: pension
+# keyword: 조기수령
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6100402&docId=493536600&qb=7KGw6riw7IiY66C5&enc=utf8
+# collected_at: 2026-05-24T21:31:28.758Z
