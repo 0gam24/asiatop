@@ -1,0 +1,6 @@
+권고사직 위로금 받을 수 있나요 ?
+# cluster: unemployment
+# keyword: 권고사직 위로금
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080401&docId=493482337&qb=6raM6rOg7IKs7KeBIOychOuhnOq4iA==&enc=utf8
+# collected_at: 2026-05-25T21:46:22.170Z
