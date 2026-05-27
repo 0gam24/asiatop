@@ -1,6 +1,0 @@
-조기재취업수당 수령과 실업급여 수령
-# cluster: unemployment
-# keyword: 조기 재취업
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=492796903&qb=7KGw6riwIOyerOy3qOyXhQ==&enc=utf8
-# collected_at: 2026-05-20T22:11:59.743Z
