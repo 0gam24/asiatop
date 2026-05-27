@@ -1,6 +1,5 @@
 ---
 import Base from './Base.astro';
-import AdSlot from '../components/AdSlot.astro';
 
 interface Props {
   title: string;
@@ -28,7 +27,6 @@ const { title, description, pageTitle, lede, jsonLd } = Astro.props;
 
   <section class="container body">
     <slot />
-    <div class="ad-wrap"><AdSlot format="banner" /></div>
     <slot name="explainer" />
   </section>
 </Base>

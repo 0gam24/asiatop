@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import { clusters } from '../data/clusters';
 import ClusterCard from '../components/ClusterCard.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import AdSlot from '../components/AdSlot.astro';
 import Experiment from '../components/Experiment.astro';
 import MissionCallout from '../components/MissionCallout.astro';
 import { getCollection } from 'astro:content';
@@ -138,11 +137,6 @@ const totalFactsVerified = verifiedArticles.reduce(
       </div>
     </div>
   </section>
-
-  <!-- 광고 슬롯 (반응형 디스플레이) -->
-  <div class="container ad-wrap">
-    <AdSlot format="display" />
-  </div>
 
   <!-- 인기 글 -->
   {featured.length > 0 && (

@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import { findCluster, clusterAccentDark } from '../../data/clusters';
 import { getCollection, getEntry, render } from 'astro:content';
-import AdSlot from '../../components/AdSlot.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import HeroIllustration from '../../components/HeroIllustration.astro';
 import SourceVerificationBadge from '../../components/SourceVerificationBadge.astro';
@@ -572,9 +571,6 @@ const ageMonths = Math.floor(ageInDays / 30);
         <Content />
       </div>
 
-      <!-- 광고 (본문 내부 인아티클) -->
-      <div class="ad-wrap"><AdSlot format="in-article" /></div>
-
       <!-- FAQ -->
       {article.data.faq && article.data.faq.length > 0 && (
         <section class="faq">
@@ -615,8 +611,6 @@ const ageMonths = Math.floor(ageInDays / 30);
       <!-- smartdatashop network 메인 backref — 1차 출처 데이터 저널 funnel -->
       <MainBackrefBox variant="inline" cluster={article.data.cluster as never} />
 
-      <!-- 광고 (관련 글 직전 멀티플렉스 그리드) -->
-      <div class="ad-wrap"><AdSlot format="multiplex" /></div>
 
       {relatedArticles.length > 0 && (
         <section class="related" data-pagefind-ignore>

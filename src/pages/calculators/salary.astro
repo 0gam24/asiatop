@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SalaryCalculator from '../../components/SalaryCalculator';
-import AdSlot from '../../components/AdSlot.astro';
 
 const url = new URL('/calculators/salary/', Astro.site).toString();
 
@@ -112,8 +111,6 @@ const howTo = {
 
   <section class="container body">
     <SalaryCalculator client:visible />
-
-    <div class="ad-wrap"><AdSlot format="banner" /></div>
 
     <article class="explainer">
       <h2>이 계산기는 어떤 항목을 반영하나요?</h2>
