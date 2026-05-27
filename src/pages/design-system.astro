@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import { clusters } from '../data/clusters';
 import ClusterCard from '../components/ClusterCard.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import AdSlot from '../components/AdSlot.astro';
 import Experiment from '../components/Experiment.astro';
 ---
 <Base
@@ -90,19 +89,6 @@ import Experiment from '../components/Experiment.astro';
           cluster="savings"
           publishedAt={new Date('2026-04-19')}
         />
-      </div>
-    </section>
-
-    <section>
-      <h2>AdSense 광고 슬롯 (CLS 0 예약)</h2>
-      <div class="ad-row">
-        <AdSlot format="banner" />
-      </div>
-      <div class="ad-row">
-        <AdSlot format="square" />
-      </div>
-      <div class="ad-row">
-        <AdSlot format="in-feed" />
       </div>
     </section>
 
