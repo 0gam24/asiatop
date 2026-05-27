@@ -1,0 +1,6 @@
+이직확인서 제출이 안되었어요
+# cluster: unemployment
+# keyword: 실업인정
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=493586509&qb=7Iuk7JeF7J247KCV&enc=utf8
+# collected_at: 2026-05-27T22:18:25.739Z
