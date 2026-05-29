@@ -1,0 +1,6 @@
+재태크 연금저축펀드, ISA, CMA 관련 문의
+# cluster: savings
+# keyword: 비과세종합저축
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40102&docId=493601246&qb=67mE6rO87IS47KKF7ZWp7KCA7LaV&enc=utf8
+# collected_at: 2026-05-29T22:13:24.833Z
