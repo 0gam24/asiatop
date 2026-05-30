@@ -41,7 +41,7 @@ export async function GET(context: APIContext) {
     title: `${cluster.title} — 머니룩`,
     description: cluster.description,
     site: context.site!,
-    items: sorted.slice(0, 50).map((article) => {
+    items: sorted.slice(0, 100).map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
       // R50-8 Naver SA 호환: content:encoded 제거 (본문 MDX JSX 호환성 문제).
       // R72 Naver SA 호환: utm 제거 — trailingSlash:always + query 조합이 link URL 끝에
