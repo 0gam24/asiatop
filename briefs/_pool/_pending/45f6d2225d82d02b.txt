@@ -1,6 +1,0 @@
-청년 HF버팀목전세대출-목적물변경 및 연장 동시 진행...
-# cluster: realestate
-# keyword: 버팀목 전세대출
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=4&dirId=4020201&docId=493276324&qb=67KE7YyA66qpIOyghOyEuOuMgOy2nA==&enc=utf8
-# collected_at: 2026-05-30T21:35:02.431Z
