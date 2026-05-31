@@ -1,0 +1,6 @@
+3.3프리랜서 4대보험 미가입 퇴직금없음에 대한 실업급여
+# cluster: insurance-labor
+# keyword: 주 15시간
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=493641169&qb=7KO8IDE17Iuc6rCE&enc=utf8
+# collected_at: 2026-05-31T21:34:19.174Z
