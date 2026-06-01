@@ -1,0 +1,6 @@
+실업급여 조기 재취업수당 자격조건?
+# cluster: unemployment
+# keyword: 조기재취업수당
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=493608969&qb=7KGw6riw7J6s7Leo7JeF7IiY64u5&enc=utf8
+# collected_at: 2026-06-01T22:41:26.096Z
