@@ -238,5 +238,11 @@
     "status": "pending",
     "reason": null,
     "count": 1
+  },
+  "bdfaeb8f0d2c2efb": {
+    "last_seen_at": "2026-06-01T23:04:33.345Z",
+    "status": "pending",
+    "reason": null,
+    "count": 1
   }
 }
