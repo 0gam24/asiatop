@@ -23,7 +23,7 @@ export async function GET(context: APIContext) {
 
   const siteUrl = context.site!.toString();
 
-  const items = articles.slice(0, 50).map((article) => {
+  const items = articles.slice(0, 100).map((article) => {
     const slug = article.id.replace(/\.mdx?$/, '');
     const pageUrl = new URL(`/${article.data.cluster}/${slug}/`, context.site).toString();
     const cluster = findCluster(article.data.cluster);

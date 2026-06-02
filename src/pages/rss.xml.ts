@@ -38,7 +38,7 @@ export async function GET(context: APIContext) {
     description:
       '정부지원금·세금환급·재테크·부동산·실업급여·노동·신용대출·보험·연금. 한국 직장인이 매일 마주치는 돈 문제를 한곳에서.',
     site: context.site!,
-    items: sorted.slice(0, 50).map((article) => {
+    items: sorted.slice(0, 100).map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
       const cluster = findCluster(article.data.cluster);
       // R50-8 Naver SA RSS 호환: content:encoded 제거 (MDX JSX 컴포넌트가
