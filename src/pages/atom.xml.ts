@@ -28,7 +28,7 @@ export async function GET(context: APIContext) {
       (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
   );
 
-  const recent = articles.slice(0, 50);
+  const recent = articles.slice(0, 100);
   const siteUrl = context.site!.toString();
   const feedUrl = new URL('/atom.xml', context.site).toString();
   const feedUpdated = (

@@ -29,7 +29,7 @@ const ROOT = join(__dirname, '..', '..');
 const DIST = join(ROOT, 'dist');
 const ARTICLES_DIR = join(ROOT, 'src', 'content', 'articles');
 
-const RSS_FEED_CAP = 50; // src/pages/rss.xml.ts·atom.xml.ts·feed.json.ts 의 cap 과 동일해야 함.
+const RSS_FEED_CAP = 100; // src/pages/rss.xml.ts·atom.xml.ts·feed.json.ts 의 cap 과 동일해야 함.
 
 // ──────────────────────────────────────
 // 발행 글 inventory (frontmatter 파싱)
