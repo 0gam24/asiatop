@@ -1,0 +1,6 @@
+비자발적 퇴사 실업급여 받을수 있는지 봐주세요 ㅠㅠㅠㅠ
+# cluster: unemployment
+# keyword: 포괄임금제
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080401&docId=493657992&qb=7Y+s6rSE7J6E6riI7KCc&enc=utf8
+# collected_at: 2026-06-03T22:38:34.325Z
