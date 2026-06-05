@@ -1,0 +1,6 @@
+실업급여 조기재취업수당 15일 질문드립니다
+# cluster: unemployment
+# keyword: 조기 재취업
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6080402&docId=493467885&qb=7KGw6riwIOyerOy3qOyXhQ==&enc=utf8
+# collected_at: 2026-06-05T21:58:53.533Z
