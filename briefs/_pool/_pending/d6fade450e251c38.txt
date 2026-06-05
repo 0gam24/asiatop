@@ -1,6 +1,0 @@
-국민연금 수령액, 소득대체율 43%라는데 체감되시나요?
-# cluster: pension
-# keyword: 국민연금 추납
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=492893530&qb=6rWt66+87Jew6riIIOy2lOuCqQ==&enc=utf8
-# collected_at: 2026-05-21T22:01:39.728Z
