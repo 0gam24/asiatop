@@ -1,6 +1,0 @@
-국민연금 수령 중 기초연금 신청해도 될까요?
-# cluster: pension
-# keyword: 연금 수령액
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493274461&qb=7Jew6riIIOyImOugueyVoQ==&enc=utf8
-# collected_at: 2026-05-26T22:07:04.048Z
