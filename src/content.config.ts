@@ -1,12 +1,19 @@
 import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
+import { clusters } from './data/clusters';
+
+// R96 — cluster slug 오타 가드. clusters.ts 의 유효 slug 만 schema 단계에서 통과.
+// 이전: cluster: z.string() → 빌드 단계까지 갔다가 generate-network-mirror.mjs 가 warn 후 skip,
+//      audit/auto-registration.mjs 가 RSS 누락으로 CI fail. PR 머지된 후 main 빌드 실패.
+// 변경: schema parse 단계에서 즉시 fail → MDX 작성 시 typo 차단.
+const VALID_CLUSTER_SLUGS = clusters.map((c) => c.slug) as [string, ...string[]];
 
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
   schema: z.object({
     title: z.string().min(20).max(70),
     description: z.string().min(80).max(170),
-    cluster: z.string(),
+    cluster: z.enum(VALID_CLUSTER_SLUGS),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     author: z.string().default('editor-team'),
