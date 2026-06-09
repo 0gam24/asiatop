@@ -1,0 +1,6 @@
+미취업청년지원금, 신청 조건이 어떻게 되나요?
+# cluster: gov-support
+# keyword: 고용보험료
+# unmet_market: 0
+# source: https://kin.naver.com/qna/detail.naver?d1id=6&dirId=601&docId=493753407&qb=6rOg7Jqp67O07ZeY66OM&enc=utf8
+# collected_at: 2026-06-09T22:09:18.605Z
