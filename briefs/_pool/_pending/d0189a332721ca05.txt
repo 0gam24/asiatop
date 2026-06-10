@@ -1,6 +1,0 @@
-다이렉트자동차보험비교 (TOP)
-# cluster: auto
-# keyword: 다이렉트 자동차보험
-# unmet_market: 0
-# source: https://kin.naver.com/qna/detail.naver?d1id=8&dirId=8&docId=244825866&qb=64uk7J2066CJ7Yq4IOyekOuPmeywqOuztO2XmA==&enc=utf8
-# collected_at: 2026-05-28T22:17:56.142Z
