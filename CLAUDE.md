@@ -1,9 +1,7 @@
 # 머니룩 (asiatop.co.kr) 운영 하네스
 
 한국 금융 YMYL 정적 사이트. Astro 6.2 SSG + Cloudflare Pages auto-deploy.
-360+편 article + LLM 4-pass 자동 발행 cron (KST 05:30 collector → 06:00 publish).
-
-> 자동 발행 파이프라인 전체 기획·상세 흐름: [docs/23-auto-publish-pipeline.md](docs/23-auto-publish-pipeline.md)
+450+편 article, **수동 발행 전용** (2026-06-11 자동 발행 파이프라인 폐기 — LLM 비용 사유, git 히스토리에서 복구 가능).
 
 ## 수동 발행 publishedAt 가드 (필수)
 
@@ -19,30 +17,21 @@ system reminder 의 `currentDate` 는 세션이 길어지면 갱신 안 되고 �
 
 publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상대 표현도 같이 정합성 점검.
 
+## 글 구조 규칙 (수동 발행 — 필수)
+
+- docs/21-content-ops.md — 보일러플레이트 변주 풀·내부링크 3~5개 의무·faq 규격·카니발리제이션 대조·updatedAt/lastReviewed 운영
+- docs/12-geo-ai-citation.md §2-6-b — 표 전후 산문 컨텍스트 5룰
+- .claude/agents/content-agent.md — H2 질문형 30~50% + BLUF, cluster slug 는 src/data/clusters.ts enum 정확값 (schema 가드 동작 중)
+- 법정·공시 수치는 1차 출처(법제처 조문·국세청 공식) 확인 후에만 단정 표기, 추정·변동 수치는 "약 N" 근사 표현
+
 ## 변경 전 가드 (필수)
 
-**워크플로/파이프라인 변경 시 `/plan` 우선**
+**워크플로 변경 시 `/plan` 우선**
 
-다음 경로 수정 시 무조건 `/plan` 으로 시작 (실수 1건이 cron 전체 정지·환각 통과 사고로 이어짐):
+다음 경로 수정 시 무조건 `/plan` 으로 시작:
 
-- `.github/workflows/auto-publish.yml`
-- `.github/workflows/collector.yml`
 - `.github/workflows/ci.yml`
-- `scripts/article-pipeline.mjs`
-- `scripts/lib/brief-prompt-builder.mjs`
-- `scripts/lib/auto-brief-generator.mjs`
-- `scripts/lib/fact-verifier.mjs`
-- `scripts/gates/g[0-9]*-*.mjs`
-
-**안전 게이트 임계 변경 시 `/security-review` 필수**
-
-다음 환경변수·상수 수정 시 PR 머지 전 `/security-review`:
-
-- `FACT_VERIFY_MIN_MATCH_RATE` (R95-11 이후 default `0.7` 복원 — sanitizer 가 보장)
-- `AI_LIKENESS_THRESHOLD` (현재 7.0)
-- `MOCK_AUTHORITY` (현재 0 = real fetch)
-- `SCORE_THRESHOLD` / `AMBIGUITY_RATIO` (G2)
-- 하루 발행 상한 `5`, PR 동시 상한 `3` (guardrails)
+- `.github/workflows/auto-merge.yml` (수동 콘텐츠 PR 머지 체인 — 오타 1건이 머지 정지 또는 권한 우회로 이어짐)
 
 ## 대규모 일괄 변경 (30+ files)
 
@@ -58,11 +47,11 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
 3. `DRY_RUN=0 node ...` 로 실 적용
 4. 같은 PR 에 스크립트 + 변경된 파일 함께 commit (재현 가능성)
 
-## 자동 발행 PR 머지 정책
+## 콘텐츠 PR 머지 흐름 (수동 발행)
 
-- `label: auto-publish` PR 은 CI green + Lighthouse 통과 시 `auto-merge.yml` 이 squash merge
-- 사람 검토 우회되므로 LLM 환각 amount 가 production 흘러갈 위험 존재
-- 의심스러우면 `/review` 또는 `/rewind` 로 즉시 차단
+- `label: auto-publish` 가 붙은 PR 은 CI green + Lighthouse 통과 시 `auto-merge.yml` 이 squash merge (라벨명은 과거 자동 발행 시절 유래 — 현재는 "신뢰 PR 자동 머지" 의미)
+- 일일 수동 포스팅 패턴: 글 작성 → 브랜치/PR + 라벨 → CI → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
+- 머지 후 URL 200 확인까지가 발행 완료
 
 ## content-agent 사용 후 검증
 
@@ -86,26 +75,18 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - `--no-verify` git commit
 - `git push --force` to main
 - secrets 또는 `.env.local` commit (`.gitignore` 잘 설정됨, 점검 R94-* 완료)
-- workflow `dry_run=false` + `create_pr=true` 콤보 트리거 (실 발행 체인 — 사용자 명시 승인 필요)
 
 ## 자주 쓰는 슬래시 명령어
 
-- `/plan` — 워크플로/파이프라인 변경 전
+- `/plan` — 워크플로 변경 전
 - `/diff` — 머지 전 변경 검토
 - `/review` — PR 로컬 리뷰
-- `/security-review` — 안전 게이트 임계 변경 시
-- `/rewind` — 자동 발행 사고 시 즉시 되돌리기
+- `/rewind` — 발행 사고 시 즉시 되돌리기
 - `/ultrareview` — 10+ file 변경 머지 전 (클라우드 멀티에이전트)
 - `/batch` — 30+ article 동시 변경 시 (워크트리 병렬)
-- `/loop` — cron 결과 1주일 모니터링 패턴
 
-## 진행 중 트랙
+## 이력·현황
 
-- **R95 chain (자동 발행 정착)**: R95-1~R95-11 완료.
-  - R95-9 amount-sanitizer (post-LLM) — unmatched 토큰 자동 "약 X" wrap.
-  - R95-10 cluster-questions — pillar 묶음 (3~5 질문 → 1편).
-  - R95-11 G4 임계 default(0.7) 복원 + topic-to-brief MVP.
-- 차기: R95-12 cron 통합 (collector → cluster-questions → topic-to-brief → auto-publish).
-- R95-12 후보: (1) brief-prompt-builder.mjs L244 의 `/articles/${slug}` 내부링크 형식이 실 라우트 `/{cluster}/{slug}/` 와 불일치 (잠복 404) — `/plan` 으로 교정. (2) 표 컨텍스트·BLUF·보일러플레이트 변주 룰의 article-pipeline.mjs SYSTEM_PROMPT 포팅 — `/plan`.
-- 수동 발행 글 구조 규칙: docs/21-content-ops.md (변주 풀·내부링크·faq 규격) + docs/12-geo-ai-citation.md §2-6-b (표 산문 컨텍스트)
-- AdSense 심사 중 → 변경은 보수적으로. 환각은 sanitizer 가 차단 (단정 수치 → 근사 표현).
+- **자동 발행 파이프라인 (R95 chain)**: 2026-06-11 완전 폐기 (PR 참조). 코드·워크플로·briefs 큐·게이트 전부 삭제, git 히스토리에서 복구 가능. 기존 자동 발행 글(aiAssisted)·검증 UI 컴포넌트·schema 필드는 유지.
+- 공개 페이지(about·editorial-policy·llms.txt)의 검증 파이프라인 서술은 과거형으로 정정됨 — 신규 글에 "자동 검증" 주장 금지 (허위 주장 방지).
+- AdSense 심사 중 → 변경은 보수적으로.
