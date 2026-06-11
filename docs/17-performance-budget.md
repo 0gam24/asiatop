@@ -344,20 +344,20 @@ AdSense 활성 시 광고 스크립트가 CWV 에 큰 영향. 신청·승인 전
 
 | 항목 | 규칙 | 이유 |
 |---|---|---|
-| **Auto Ads** | ❌ 금지 — 수동 슬롯만 사용 | DOM 자동 삽입 → CLS 폭증 |
+| **Auto Ads** | ❌ 금지 — 수동 슬롯만 사용. (이행기 예외: docs/23 R3 — 수동 유닛 프로덕션 확인 후 OFF) | DOM 자동 삽입 → CLS 폭증 |
 | **Above-the-fold 광고** | ≤ 1개 (홈·calculator) / 0개 (글 상세 첫 화면) | LCP 위협 |
-| **광고 슬롯 height 예약** | `aspect-ratio` 또는 `min-height` 고정 필수 | CLS = 0 유지 |
-| **광고 로드 전략** | Partytown lazy + `data-strategy="idle"` | 메인 스레드 격리, INP 보호 |
+| **광고 슬롯 height 예약** | **래퍼 `.ad-wrap` `min-height` 만** — ins 자체 `aspect-ratio` 금지 (adsbygoogle 가 inline height 로 덮어씀, docs/23 §3-1 (4)) | CLS = 0 유지 |
+| **광고 로드 전략** | **뷰포트 근접 lazy-init** (`src/lib/ads-lazy.ts` IO, rootMargin 200px). ~~Partytown lazy~~ — AdSense 공식 미지원 조합으로 2026-06-12 금지 전환 | below-fold 슬롯 lab 측정 미로드 → PSI 100 양립 |
 | **광고 reload·refresh** | ❌ 금지 | LCP·INP 회귀 + 사용자 신뢰성 ↓ |
 
 ### 12-2. 측정 임계 (광고 활성 후)
 
-| 메트릭 | 광고 OFF (현재) | 광고 ON 임계 |
+| 메트릭 | 광고 OFF | 광고 ON 임계 |
 |---|---|---|
-| LCP (mobile) | ≤ 2.0s | ≤ 2.5s |
-| INP (mobile) | ≤ 100ms | ≤ 150ms |
-| CLS (sitewide) | < 0.05 | < 0.1 |
-| Lighthouse Performance | ≥ 95 (desktop) / ≥ 90 (mobile) | ≥ 85 / ≥ 80 |
+| LCP (mobile) | ≤ 2.0s | ≤ 2.5s (필드·CrUX 기준) |
+| INP (mobile) | ≤ 100ms | ≤ 150ms (필드·CrUX 기준) |
+| CLS (sitewide) | < 0.05 | < 0.1 (필드·CrUX 기준) |
+| Lighthouse Performance | 100 | **100 — 완화 없음** (docs/23 결정 #3: lazy-init 으로 lab 측정 중 광고 미로드. 기존 ≥85/≥80 완화 기준은 2026-06-12 폐기) |
 
 ### 12-3. 활성 절차 (운영자 권장)
 
@@ -373,8 +373,12 @@ AdSense 활성 시 광고 스크립트가 CWV 에 큰 영향. 신청·승인 전
 ### 12-4. 회귀 차단 게이트
 
 - 본 PR(R53 #3) 의 `bundle-size` CI 게이트 (JS raw 350KB / gz 120KB / CSS 80KB) 가 광고 chunk 폭증 사전 차단
-- AdSense SDK 자체는 `googletagmanager` Partytown lazy 라 메인 번들 영향 X (lazy fetch)
+- AdSense SDK 는 외부 스크립트(번들 외) — 메인 번들 영향 X. 메인스레드 실행 비용은
+  lazy-init 으로 lab 측정 밖에 있으나 **필드 영향은 CrUX 로 주간 감시** (docs/23 §8-4)
+  (기존 "Partytown 이라 영향 X" 서술은 2026-06-12 폐기 — 공식 미지원 조합)
 - 다만 광고 iframe 의 폰트·이미지 로드는 viewport 진입 시 발생 — `loading="lazy"` 확인
+- CI Lighthouse 는 ADSENSE env 부재로 **광고 없는 페이지만 측정** — 광고 포함 측정은
+  CF Pages 프리뷰(`data-adtest="on"`) 수동 1회가 광고 PR 머지 게이트 (docs/23 §3-1 (12))
 
 ---
 

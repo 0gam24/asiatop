@@ -1,34 +1,13 @@
 ---
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
-const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 ---
 {ga4Id && (
   <>
-    <!-- Google Consent Mode v2 — default deny until user opts in -->
+    <!-- GA4 — Consent Mode v2 default 는 Base.astro head 최상단에서 선실행됨
+         (ga4Id 게이트 밖 — AdSense 단독 주입 시에도 consent 신호 보장, docs/23 §3-1 (2)) -->
     <script is:inline define:vars={{ ga4Id }}>
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        functionality_storage: 'granted',
-        security_storage: 'granted',
-        wait_for_update: 500,
-      });
-      try {
-        const stored = localStorage.getItem('consent');
-        if (stored === 'granted') {
-          gtag('consent', 'update', {
-            ad_storage: 'granted',
-            ad_user_data: 'granted',
-            ad_personalization: 'granted',
-            analytics_storage: 'granted',
-          });
-        }
-      } catch {}
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       gtag('js', new Date());
       gtag('config', ga4Id, { send_page_view: true, anonymize_ip: true });
     </script>
@@ -39,14 +18,9 @@ const adsenseClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
   </>
 )}
 
-{adsenseClient && (
-  <script
-    type="text/partytown"
-    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-    crossorigin="anonymous"
-    data-strategy="idle"
-  ></script>
-)}
+<!-- AdSense Partytown 로더는 2026-06-12 제거 (docs/23 R3) — 공식 미지원 조합인 데다
+     client 파라미터에 ca- 접두사가 누락돼 있었고, Base.astro head 로더와 이중 로드 상태였음.
+     AdSense 로더는 Base.astro 의 메인스레드 단일 로더만 사용한다. -->
 
 <!--
   Site-wide click tracking helper.

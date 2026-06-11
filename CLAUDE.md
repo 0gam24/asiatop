@@ -76,6 +76,23 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - `git push --force` to main
 - secrets 또는 `.env.local` commit (`.gitignore` 잘 설정됨, 점검 R94-* 완료)
 
+## AdSense 운영 가드 (2026-06-11 승인 — docs/23-adsense-revenue-ops.md)
+
+- 무효 클릭·자기 클릭·클릭 유도 문구 절대 금지. 개발·검수는 광고 차단 확장 켠 별도 프로필.
+- **자동화 브라우저(Claude Preview·Chrome MCP)로 프로덕션 광고 페이지 열기 금지** —
+  검증은 dist grep·curl·CF 프리뷰(`data-adtest=on`)만. `.env.local` 은 더미 client 유지.
+- CTR 은 KPI 가 아니다 — 관찰만. 개선 시도 금지.
+- 광고·인프라 PR: **draft 생성 + `no-auto-merge` 라벨 필수**
+  (auto-merge.yml 은 opt-out — 라벨 없으면 owner PR 도 CI green 즉시 자동 머지된다).
+  perf+ads 듀얼 게이트 + `/review` 후 운영자가 직접 머지.
+- 글당 슬롯 ≤3, 글 상세 첫 화면 광고 0개, 숨김 `<ins>` DOM 0개, 자동 refresh 금지.
+- **이행기 상태 (2026-06-12~)**: Auto ads ON + 수동 유닛 병행 중 — 수동 유닛 프로덕션
+  노출 확인 후 Auto ads OFF 예정. 신규 Auto ads 기능(앵커·vignette) 활성화 금지.
+- 긴급 차단 2단: ① 즉시(수 초) = CF Pages **Rollback to previous deployment**
+  ② 정식(5~10분+큐 대기) = env `PUBLIC_ADSENSE_CLIENT` 비우기 + Retry.
+  `public` ads.txt 는 킬스위치와 무관 — 건드리지 않는다.
+- 정책 센터 알림 발견 시 모든 발행 중단 후 처리 우선.
+
 ## 자주 쓰는 슬래시 명령어
 
 - `/plan` — 워크플로 변경 전
@@ -89,4 +106,4 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 
 - **자동 발행 파이프라인 (R95 chain)**: 2026-06-11 완전 폐기 (PR 참조). 코드·워크플로·briefs 큐·게이트 전부 삭제, git 히스토리에서 복구 가능. 기존 자동 발행 글(aiAssisted)·검증 UI 컴포넌트·schema 필드는 유지.
 - 공개 페이지(about·editorial-policy·llms.txt)의 검증 파이프라인 서술은 과거형으로 정정됨 — 신규 글에 "자동 검증" 주장 금지 (허위 주장 방지).
-- AdSense 심사 중 → 변경은 보수적으로.
+- **AdSense 승인 완료 (2026-06-11)** → 수익화 운영 단계. 무효 클릭 유도·과도 광고 밀도·정책 위반 소지 변경은 절대 금지 (신규 계정 정지 리스크). 수익화 기획: docs/23-adsense-revenue-ops.md 참조.
