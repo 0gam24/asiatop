@@ -1,6 +1,0 @@
-_rejected:
-  gate: "g2"
-  reason: "g2-ambiguous:unemployment-vs-pension"
-  hash: "a5b9b2e7f70f4a8b"
-  rejected_at: "2026-05-18T22:07:36.383Z"
-  details: {"pass":false,"cluster":null,"score":0.875,"reasons":["g2-ambiguous:unemployment-vs-pension"],"ranking":[{"cluster":"unemployment","score":0.875,"matched":["퇴직금"]},{"cluster":"pension","score":0.75,"matched":["DC"]},{"cluster":"gov-support","score":0,"matched":[]},{"cluster":"tax","score":0,"matched":[]},{"cluster":"realestate","score":0,"matched":[]},{"cluster":"savings","score":0,"matched":[]},{"cluster":"insurance-labor","score":0,"matched":[]},{"cluster":"auto","score":0,"matched":[]},{"clus

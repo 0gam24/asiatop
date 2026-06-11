@@ -13,7 +13,7 @@ jobs:
   workflow-lint:
     # actionlint — workflow YAML 정적 분석.
     # actor guard·fromJSON 파싱·셸 quoting 오타를 PR 단계에서 차단.
-    # auto-publish.yml 의 if 표현식 1글자 오타가 권한 우회로 이어지지 않도록 fail-closed.
+    # auto-merge.yml 등 actor guard if 표현식 1글자 오타가 권한 우회로 이어지지 않도록 fail-closed.
     name: Workflow YAML lint (actionlint)
     runs-on: ubuntu-latest
     steps:

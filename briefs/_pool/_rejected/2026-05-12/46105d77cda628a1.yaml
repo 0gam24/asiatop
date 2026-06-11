@@ -1,6 +1,0 @@
-_rejected:
-  gate: "g3"
-  reason: "g3-empty-response"
-  hash: "46105d77cda628a1"
-  rejected_at: "2026-05-12T08:25:58.348Z"
-  details: {"meta":{"adapter_count":1,"non_empty_count":0}}

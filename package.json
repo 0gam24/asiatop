@@ -28,13 +28,9 @@
     "go-live": "node scripts/go-live-check.mjs",
     "validate:schema": "node scripts/validate-schema.mjs",
     "audit:geo": "node scripts/geo-audit.mjs",
-    "article": "node scripts/article-pipeline.mjs",
-    "refine": "node scripts/refine-existing.mjs",
     "prepare": "node scripts/install-hooks.mjs",
     "secrets:scan": "node scripts/secrets-scan.mjs",
-    "setup:env": "node scripts/setup-env.mjs",
-    "brief:validate": "node scripts/validate-brief.mjs",
-    "brief:new": "node scripts/new-brief.mjs"
+    "setup:env": "node scripts/setup-env.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
