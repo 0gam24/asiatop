@@ -27,7 +27,8 @@ const articles = defineCollection({
     sources: z
       .array(z.object({ title: z.string(), url: z.string().url() }))
       .min(1),
-    dataValidAsOf: z.string(),
+    // "YYYY년 M월" 형식 강제 — 파싱 실패 시 lastReviewed·temporalCoverage 가 조용히 탈락하는 무신호 방지 가드.
+    dataValidAsOf: z.string().regex(/^\d{4}년 \d{1,2}월$/),
     draft: z.boolean().default(false),
     // ── 자동 발행 파이프라인 추적 (Gap 1·2·3 통합) ──
     brief_id: z.string().optional(),

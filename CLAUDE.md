@@ -106,4 +106,6 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
   - R95-10 cluster-questions — pillar 묶음 (3~5 질문 → 1편).
   - R95-11 G4 임계 default(0.7) 복원 + topic-to-brief MVP.
 - 차기: R95-12 cron 통합 (collector → cluster-questions → topic-to-brief → auto-publish).
+- R95-12 후보: (1) brief-prompt-builder.mjs L244 의 `/articles/${slug}` 내부링크 형식이 실 라우트 `/{cluster}/{slug}/` 와 불일치 (잠복 404) — `/plan` 으로 교정. (2) 표 컨텍스트·BLUF·보일러플레이트 변주 룰의 article-pipeline.mjs SYSTEM_PROMPT 포팅 — `/plan`.
+- 수동 발행 글 구조 규칙: docs/21-content-ops.md (변주 풀·내부링크·faq 규격) + docs/12-geo-ai-citation.md §2-6-b (표 산문 컨텍스트)
 - AdSense 심사 중 → 변경은 보수적으로. 환각은 sanitizer 가 차단 (단정 수치 → 근사 표현).

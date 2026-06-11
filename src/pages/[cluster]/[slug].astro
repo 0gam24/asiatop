@@ -82,8 +82,20 @@ const authorSchema = authorEntry
       knowsAbout: authorEntry.data.expertise,
       sameAs: authorEntry.data.sameAs,
       ...(authorEntry.data.isOrganization
-        ? {}
-        : { worksFor: { '@id': new URL('#organization', Astro.site).toString() } }),
+        ? {
+            // Organization author — 사이트 공용 로고 자산 사용 (public/logo-square-light.svg)
+            logo: {
+              '@type': 'ImageObject',
+              url: new URL('/logo-square-light.svg', Astro.site).toString(),
+            },
+          }
+        : {
+            worksFor: { '@id': new URL('#organization', Astro.site).toString() },
+            // Person.image — authors collection 에 image 값이 실제 존재할 때만 매핑
+            ...(authorEntry.data.image
+              ? { image: new URL(authorEntry.data.image, Astro.site).toString() }
+              : {}),
+          }),
     }
   : {
       '@type': 'Organization',
@@ -273,11 +285,10 @@ const articleSchema = {
   },
 };
 
-// R69 — FAQPage schema 우선순위:
-//   1) faq frontmatter Q&A pair (실 답변 보유)
-//   2) faq 없으면 aiCitationQuestions 모두 (답=description, "본문 참고")
-//      → Google FAQ rich result 자격 확보 (Q 3-10개 노출)
-//   둘 다 없으면 null
+// FAQPage schema — faq frontmatter Q&A pair (실 답변 보유) 글에만 생성.
+// aiCitationQuestions fallback (전 질문에 동일 description 답변 복제) 은 제거 —
+// 동일 답변 복제는 FAQ rich result 가치 없음 + 대규모 중복 텍스트 리스크.
+// faq 없으면 null (jsonLdList 에서 자동 제외).
 const faqSchema = article.data.faq && article.data.faq.length > 0
   ? {
       '@context': 'https://schema.org',
@@ -286,20 +297,6 @@ const faqSchema = article.data.faq && article.data.faq.length > 0
         '@type': 'Question',
         name: f.q,
         acceptedAnswer: { '@type': 'Answer', text: f.a },
-      })),
-    }
-  : article.data.aiCitationQuestions && article.data.aiCitationQuestions.length >= 2
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: article.data.aiCitationQuestions.map((q) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `${article.data.description} 자세한 내용은 본문에서 확인하세요.`,
-          url,
-        },
       })),
     }
   : null;
@@ -466,6 +463,29 @@ const updateStr = article.data.updatedAt
   ? new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.updatedAt)
   : null;
 
+// byline — authors collection 의 name 우선, 없으면 frontmatter author 문자열 그대로
+const authorName = authorEntry?.data.name ?? article.data.author;
+const authorProfileHref = authorEntry ? `/author/${authorEntry.id}/` : null;
+
+// 저자 박스 bio 요약 — 1~2문장만 (author 프로필 페이지와의 대규모 본문 중복 방지.
+// 긴 bio 전문 삽입 금지 — 451페이지 동일 텍스트 복제 리스크).
+const authorBioSummary = authorEntry
+  ? (() => {
+      const max = 180;
+      const sentences = authorEntry.data.bio.split(/(?<=다\.)\s+/).filter(Boolean);
+      let summary = sentences[0] ?? '';
+      if (sentences[1] && summary.length + sentences[1].length + 1 <= max) {
+        summary = `${summary} ${sentences[1]}`;
+      }
+      return summary.length > max ? `${summary.slice(0, max).trimEnd()}…` : summary;
+    })()
+  : null;
+
+// 검수 표기 (사실 그대로만) — aiAssisted=false 글만 "작성·검수: 저자 · 날짜".
+// 전문가 호칭 금지: editor-team bio 가 "자격 보유 전문가 검수 없음" 명시 고지 중 — 모순 금지.
+// aiAssisted=true 글은 VerificationDetails 가 검증 표기를 담당하므로 라벨 생략.
+const reviewLine = !article.data.aiAssisted ? `작성·검수: ${authorName} · ${updateStr ?? dateStr}` : null;
+
 const referenceDate = article.data.updatedAt ?? article.data.publishedAt;
 const ageInDays = Math.floor((Date.now() - referenceDate.valueOf()) / (1000 * 60 * 60 * 24));
 const isStale = ageInDays > 180;
@@ -513,7 +533,14 @@ const ageMonths = Math.floor(ageInDays / 30);
         <h1>{article.data.title}</h1>
         <p class="lede">{article.data.description}</p>
         <div class="meta">
-          <span>{dateStr} 발행</span>
+          <span class="byline">
+            {authorProfileHref ? (
+              <a href={authorProfileHref} rel="author">{authorName}</a>
+            ) : (
+              authorName
+            )}
+          </span>
+          <span> · {dateStr} 발행</span>
           {updateStr && <span> · {updateStr} 갱신</span>}
           <span> · 데이터 기준 {article.data.dataValidAsOf}</span>
           <span class="reading-time" aria-label={`예상 읽기 시간 ${readingMinutes}분`}>
@@ -611,6 +638,29 @@ const ageMonths = Math.floor(ageInDays / 30);
       <!-- smartdatashop network 메인 backref — 1차 출처 데이터 저널 funnel -->
       <MainBackrefBox variant="inline" cluster={article.data.cluster as never} />
 
+      <!-- 저자 박스 — byline (bio 1~2문장 요약만, 전문은 author 프로필 페이지) -->
+      <aside class="author-box" data-pagefind-ignore aria-label="저자 정보">
+        <div class="author-box-row">
+          <div class="author-avatar" aria-hidden="true">{authorName.slice(0, 1)}</div>
+          <div class="author-box-body">
+            <p class="author-name">
+              {authorProfileHref ? (
+                <a href={authorProfileHref} rel="author">{authorName}</a>
+              ) : (
+                authorName
+              )}
+              {authorEntry?.data.jobTitle && (
+                <span class="author-job"> · {authorEntry.data.jobTitle}</span>
+              )}
+            </p>
+            {authorBioSummary && <p class="author-bio">{authorBioSummary}</p>}
+            {reviewLine && <p class="author-review">{reviewLine}</p>}
+            {authorProfileHref && (
+              <a class="author-more" href={authorProfileHref}>프로필 전체 보기 →</a>
+            )}
+          </div>
+        </div>
+      </aside>
 
       {relatedArticles.length > 0 && (
         <section class="related" data-pagefind-ignore>
@@ -688,6 +738,16 @@ const ageMonths = Math.floor(ageInDays / 30);
 .meta {
   font-size: 0.82rem;
   color: var(--color-muted);
+}
+.meta .byline a {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+}
+.meta .byline a:hover {
+  color: var(--color-primary-700);
+  border-bottom-color: var(--color-primary);
 }
 
 .stale-banner {
@@ -827,6 +887,69 @@ const ageMonths = Math.floor(ageInDays / 30);
   border-left: 3px solid var(--color-primary);
   border-radius: 4px;
   line-height: 1.65;
+}
+
+.author-box {
+  margin-top: 2.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 1rem 1.25rem;
+}
+.author-box-row {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: var(--color-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.author-name {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.author-name a {
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+}
+.author-name a:hover {
+  color: var(--color-primary-700);
+  border-bottom-color: var(--color-primary);
+}
+.author-job {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+.author-bio {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+.author-review {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+.author-more {
+  font-size: 0.82rem;
+  color: var(--color-primary-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .related {
