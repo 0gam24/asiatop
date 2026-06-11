@@ -78,6 +78,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
 **title**:
 - 50~60자 (한국어는 25~30자)
 - "핵심 키워드 + 브랜드"
+- 핵심 키워드는 앞 30자 안에 배치 (한국 SERP 절단 기준)
 - 페이지마다 고유 (중복 금지)
 - 파이프(`|`) 또는 대시(`-`)로 구분
 

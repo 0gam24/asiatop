@@ -76,7 +76,7 @@ const policyDocSchema = {
     <h3>8단계 자동 검증 게이트</h3>
     <ul>
       <li><strong>G0~G3 (Pre-LLM)</strong> — 24h 중복 차단·PII/욕설/정치 차단·12 cluster 매핑·권위 소스 가용성</li>
-      <li><strong>G4 fact-verifier</strong> — 본문 사실 토큰(수치·날짜·법령) ↔ 정부 공식 API 응답 1:1 매칭 (100% 미만 폐기)</li>
+      <li><strong>G4 fact-verifier</strong> — 본문 사실 토큰(수치·날짜·법령) ↔ 정부 공식 API 응답 1:1 매칭 (매칭률 70% 이상만 발행, 미매칭 토큰은 인라인 출처 명시)</li>
       <li><strong>G5 AdSense 정책</strong> — 추천성·강요성·수익률 보장 표현 자동 차단</li>
       <li><strong>G6 면책·공시</strong> — YMYL 면책 + AI 보조 공시 자동 부착</li>
       <li><strong>G7 표절·저작권</strong> — 외부 원문 8단어+ 인용 자동 차단</li>

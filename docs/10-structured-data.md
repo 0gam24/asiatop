@@ -191,6 +191,8 @@
 
 ⚠️ Google은 2023년부터 FAQ rich result 노출을 제한했지만, 스키마는 여전히 AI 답변 엔진 인용에 유용.
 
+**fallback 정책 (2026-06 변경)**: faq frontmatter 부재 시 aiCitationQuestions 기반 description 복제 fallback 은 2026-06 제거 (FAQ rich result 소멸 + 동일 답변 복제의 가이드라인 위반 소지). **faq 보유 글만 FAQPage 출력.**
+
 ### 3-4. HowTo
 
 ```json
