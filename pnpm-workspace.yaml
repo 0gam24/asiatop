@@ -1,0 +1,8 @@
+# esbuild, sharp postinstall build scripts must be allowed.
+# allowBuilds = pnpm 11+ (local), onlyBuiltDependencies = pnpm 10 (CI) - both kept for compat.
+allowBuilds:
+  esbuild: true
+  sharp: true
+onlyBuiltDependencies:
+  - esbuild
+  - sharp

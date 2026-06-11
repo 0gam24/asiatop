@@ -1,0 +1,44 @@
+---
+// AdSense 수동 유닛 (docs/23-adsense-revenue-ops.md §3-1).
+// 렌더 조건: client+slot env 존재 && PROD — dev/Claude Preview 미렌더 (결정 #13, 무효 트래픽 가드).
+// 높이 예약은 래퍼 .ad-wrap min-height (global.css) — adsbygoogle 가 ins 에 inline height 를
+// 직접 설정하므로 ins 자체 예약(aspect-ratio)은 무효, 래퍼 예약만 CLS 가드로 동작.
+// push 는 src/lib/ads-lazy.ts 의 IntersectionObserver lazy-init 이 수행
+// — below-fold 슬롯은 PSI lab 측정 중 로드되지 않음 (결정 #11).
+interface Props {
+  slot: string | undefined;
+  format?: 'in-article' | 'display';
+}
+const { slot, format = 'display' } = Astro.props;
+const client = import.meta.env.PUBLIC_ADSENSE_CLIENT;
+const enabled = Boolean(client && slot) && import.meta.env.PROD;
+---
+
+{enabled && (
+  <div class="ad-wrap" data-pagefind-ignore data-format={format}>
+    <span class="ad-label" aria-hidden="true">광고</span>
+    {format === 'in-article' ? (
+      <ins
+        class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client={`ca-${client}`}
+        data-ad-slot={slot}
+      ></ins>
+    ) : (
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-format="auto"
+        data-full-width-responsive="false"
+        data-ad-client={`ca-${client}`}
+        data-ad-slot={slot}
+      ></ins>
+    )}
+  </div>
+)}
+
+<script>
+  import '../lib/ads-lazy';
+</script>

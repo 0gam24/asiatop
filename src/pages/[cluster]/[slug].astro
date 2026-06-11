@@ -7,6 +7,7 @@ import HeroIllustration from '../../components/HeroIllustration.astro';
 import SourceVerificationBadge from '../../components/SourceVerificationBadge.astro';
 import VerificationDetails from '../../components/VerificationDetails.astro';
 import MainBackrefBox from '../../components/MainBackrefBox.astro';
+import AdSlot from '../../components/AdSlot.astro';
 import { getRelatedArticles } from '../../lib/related-articles';
 import { isTrustedUrl } from '../../../scripts/lib/trusted-domains.mjs';
 
@@ -593,6 +594,12 @@ const ageMonths = Math.floor(ageInDays / 30);
         </nav>
       )}
 
+      {/* 광고 슬롯 1 — 인아티클. ToC ≥3 글에만: ToC 부재 글에서 슬롯이 첫 화면으로
+          당겨지는 것 방지 (docs/23 §3-1 (6) — 글 상세 첫 화면 광고 0개 규칙) */}
+      {tocItems.length >= 3 && (
+        <AdSlot slot={import.meta.env.PUBLIC_ADSENSE_SLOT_IN_ARTICLE} format="in-article" />
+      )}
+
       <!-- 본문 (MDX 렌더) -->
       <div class="prose">
         <Content />
@@ -661,6 +668,10 @@ const ageMonths = Math.floor(ageInDays / 30);
           </div>
         </div>
       </aside>
+
+      {/* 광고 슬롯 2 — 디스플레이. author-box 뒤·related 직전: MainBackrefBox(자체 프로모)와
+          연속 스택 금지 — 광고/콘텐츠 오인 배치 방지 (docs/23 §3-1 (6)) */}
+      <AdSlot slot={import.meta.env.PUBLIC_ADSENSE_SLOT_DISPLAY} format="display" />
 
       {relatedArticles.length > 0 && (
         <section class="related" data-pagefind-ignore>

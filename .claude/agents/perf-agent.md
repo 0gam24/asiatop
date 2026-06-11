@@ -15,7 +15,7 @@ project_context:
     initial_css_gzip: ≤ 30 KB
     lcp_image: ≤ 200 KB
   font: Pretendard Variable (셀프 호스팅, size-adjust)
-  ad_integration: Google AdSense (lazy load + 동의 후 로드)
+  ad_integration: Google AdSense (수동 유닛 + 뷰포트 근접 lazy-init — docs/23)
 tools:
   - view
   - str_replace
@@ -30,12 +30,18 @@ tools:
 ## 머니룩 특화
 
 ### AdSense INP·CLS 영향 관리 (중요)
-AdSense는 **INP·CLS의 가장 큰 회귀 원인**이다. 다음 강제:
-- ✅ AdSense 스크립트는 **Partytown 격리** 또는 **동의 후 lazy 로드** (`docs/15-analytics-consent.md`)
-- ✅ 광고 슬롯은 **고정 height 예약** (예: `aspect-ratio: 320/100`) → CLS 0
-- ✅ 첫 화면(above the fold) 광고 ≤ 1개 (LCP·INP 보호)
+AdSense는 **INP·CLS의 가장 큰 회귀 원인**이다. 다음 강제 (docs/23-adsense-revenue-ops.md):
+- ❌ **Partytown 격리 금지** — AdSense 공식 미지원 조합 (iframe 생성·viewability 측정 깨짐).
+  2026-06-12 이중 로드 사고(깨진 `client=pub-…` 파라미터)로 실증, 같은 날 제거됨.
+- ✅ 수동 유닛 push 는 **뷰포트 근접 lazy-init** (`src/lib/ads-lazy.ts` IntersectionObserver)
+  — below-fold 슬롯은 PSI lab 측정 중 미로드 → PageSpeed 100 양립
+- ✅ 높이 예약은 **래퍼 `.ad-wrap` min-height** — ins 자체 `aspect-ratio` 금지
+  (adsbygoogle 가 ins 에 inline height 를 직접 설정해 덮어씀)
+- ✅ 글 상세 첫 화면(above the fold) 광고 **0개**, 글당 슬롯 ≤ 3
+- ✅ 빌드 산출물에 **숨김 상태 `<ins>` 0개** (display:none·hidden 하위 광고 = 정책 위반 — 머지 차단)
 - ✅ 무한 스크롤·자동 새로고침 광고 금지 (CLS 폭증)
-- ❌ AdSense Auto Ads 사용 금지 (위치 통제 불가, INP 회귀)
+- ⚠️ Auto Ads 는 **이행기 한시 병행 중** (docs/23 R3 — 수동 유닛 프로덕션 확인 후 OFF 예정).
+  신규 Auto ads 기능(앵커·vignette 등) 활성화 금지
 
 ### 클라이언트 React Island 정책
 - 계산기·인터랙티브 위젯은 `client:visible` 우선
