@@ -70,9 +70,10 @@ export async function GET(context: APIContext) {
   lines.push(`- **URL**: ${url}`);
   lines.push(`- **클러스터**: ${cluster?.title ?? article.data.cluster}`);
   lines.push(`- **저자**: ${article.data.author}`);
-  // R48 #48-4 — 자동 발행 글이면 검증 주체·시스템 명시 (사람 사칭 페널티 회피)
+  // R48 #48-4 — 과거 자동 발행 글이면 검증 주체·시스템 명시 (사람 사칭 페널티 회피).
+  // 파이프라인은 2026-06 폐기 — 과거형 서술만 허용 (PR-B).
   if (article.data.aiAssisted) {
-    lines.push(`- **검증**: MoneyLook 자동검증시스템 (G0~G8 8단계 게이트 통과)`);
+    lines.push(`- **검증**: MoneyLook 자동검증시스템 (발행 당시 G0~G9 10단계 게이트 통과)`);
   } else if (article.data.reviewedBy) {
     lines.push(`- **검증 주체**: ${article.data.reviewedBy}`);
   }
@@ -84,7 +85,7 @@ export async function GET(context: APIContext) {
   if (article.data.lastReviewed) {
     lines.push(`- **마지막 검토**: ${article.data.lastReviewed.toISOString().slice(0, 10)}`);
   } else if (article.data.fact_verification_at) {
-    lines.push(`- **마지막 검토**: ${article.data.fact_verification_at.slice(0, 10)} (자동 검증)`);
+    lines.push(`- **마지막 검토**: ${article.data.fact_verification_at.slice(0, 10)} (발행 당시 자동 검증)`);
   }
   if (article.data.next_review_date) {
     lines.push(`- **다음 재검증**: ${article.data.next_review_date.toISOString().slice(0, 10)}`);

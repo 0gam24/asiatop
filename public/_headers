@@ -61,10 +61,12 @@
   Content-Type: text/plain; charset=utf-8
   X-Robots-Tag: index, follow
 
+# .md 전문 미러는 Google 색인 차단 (canonical 0 상태 전문 복제 — docs/23 §3-3 PR-B).
+# AI 크롤러 fetch 는 robots.txt Allow 로 유지 (GEO 보존) — noindex 는 색인만 막는다.
 /*.md
   Cache-Control: public, max-age=300, s-maxage=3600
   Content-Type: text/markdown; charset=utf-8
-  X-Robots-Tag: index, follow
+  X-Robots-Tag: noindex
 
 # RSS·Atom·sitemap
 /rss.xml

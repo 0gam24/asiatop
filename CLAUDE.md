@@ -49,7 +49,8 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
 
 ## 콘텐츠 PR 머지 흐름 (수동 발행)
 
-- `label: auto-publish` 가 붙은 PR 은 CI green + Lighthouse 통과 시 `auto-merge.yml` 이 squash merge (라벨명은 과거 자동 발행 시절 유래 — 현재는 "신뢰 PR 자동 머지" 의미)
+- `auto-merge.yml` 은 **opt-out**: author 가 owner/bot 이고 draft 가 아니며 `no-auto-merge` 라벨이 없으면 CI green 시 자동 squash merge (`auto-publish` 라벨은 어떤 워크플로도 참조 안 함 — 2026-06-12 실사). 자동 머지를 막으려면 **draft + `no-auto-merge` 라벨**.
+- PR 머지는 2026-06-12 운영자 위임 — Claude 가 CI green 확인 후 직접 머지 (광고·인프라 PR 포함, 가드 선행).
 - 일일 수동 포스팅 패턴: 글 작성 → 브랜치/PR + 라벨 → CI → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
 - 머지 후 URL 200 확인까지가 발행 완료
 
@@ -84,7 +85,7 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - CTR 은 KPI 가 아니다 — 관찰만. 개선 시도 금지.
 - 광고·인프라 PR: **draft 생성 + `no-auto-merge` 라벨 필수**
   (auto-merge.yml 은 opt-out — 라벨 없으면 owner PR 도 CI green 즉시 자동 머지된다).
-  perf+ads 듀얼 게이트 + `/review` 후 운영자가 직접 머지.
+  perf+ads 듀얼 게이트 통과 후 머지 (2026-06-12 운영자 위임 — Claude 가 CI green 확인 후 직접 머지).
 - 글당 슬롯 ≤3, 글 상세 첫 화면 광고 0개, 숨김 `<ins>` DOM 0개, 자동 refresh 금지.
 - **이행기 상태 (2026-06-12~)**: Auto ads ON + 수동 유닛 병행 중 — 수동 유닛 프로덕션
   노출 확인 후 Auto ads OFF 예정. 신규 Auto ads 기능(앵커·vignette) 활성화 금지.
