@@ -9,7 +9,6 @@ import VerificationDetails from '../../components/VerificationDetails.astro';
 import MainBackrefBox from '../../components/MainBackrefBox.astro';
 import AdSlot from '../../components/AdSlot.astro';
 import { getRelatedArticles } from '../../lib/related-articles';
-import { isTrustedUrl } from '../../../scripts/lib/trusted-domains.mjs';
 
 export async function getStaticPaths() {
   let articles: Awaited<ReturnType<typeof getCollection>> = [];
@@ -228,13 +227,12 @@ const articleSchema = {
     geographicArea: { '@type': 'Country', name: 'South Korea' },
   },
   author: authorSchema,
-  // R48 #48-3 — 자동 발행 글(aiAssisted=true)에 reviewedBy + creditText 명시.
-  // ClaimReview 외에 Article 자체에서도 "8단계 자동 검증 통과" 시그널.
-  // 사람 사칭 페널티 회피 + AI 답변 엔진 reasoning에 검증 시스템 등장.
+  // R48 #48-3 — 과거 자동 발행 글(aiAssisted=true)에 reviewedBy + creditText 명시.
+  // 사람 사칭 페널티 회피. 파이프라인은 2026-06 폐기 — 과거형 서술만 허용 (PR-B).
   ...(article.data.aiAssisted
     ? {
         reviewedBy: { '@id': `${authorUrl}#author` },
-        creditText: 'MoneyLook 자동검증시스템 (G0~G8 8단계 게이트 통과)',
+        creditText: 'MoneyLook 자동검증시스템 (발행 당시 G0~G9 10단계 게이트 통과)',
       }
     : article.data.reviewedBy
     ? {
@@ -334,79 +332,9 @@ const qaSchema = article.data.source_question_text
     }
   : null;
 
-// ClaimReview — sources_verified=true 글의 사실 검증 시그널.
-// 글 전체를 단일 ClaimReview로 묶어 권위 소스에 매핑.
-// AI 검색·Google rich result 적격성 ↑.
-// 권위 소스 판정은 SSoT(scripts/lib/trusted-domains.mjs)의 isTrustedUrl() 재사용.
-const trustedSources = article.data.sources_verified
-  ? article.data.sources.filter((s) => isTrustedUrl(s.url))
-  : [];
-
-const claimReviewSchema = article.data.sources_verified && trustedSources.length > 0
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'ClaimReview',
-      url: `${url}#verification`,
-      datePublished: article.data.fact_verification_at ?? article.data.publishedAt.toISOString(),
-      author: { '@id': `${authorUrl}#author` },
-      claimReviewed: article.data.description,
-      itemReviewed: {
-        '@type': 'Claim',
-        appearance: trustedSources.map((s) => ({
-          '@type': 'CreativeWork',
-          url: s.url,
-          name: s.title,
-        })),
-      },
-      // R48 #48-3 — alternateName 동적화. G4 fact-verifier 결과의 verified_facts_count·
-      // approximate_facts_count를 노출해 AI 답변 엔진이 "검증 강도"를 정량 신호로 인식.
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: 5,
-        bestRating: 5,
-        alternateName: article.data.verified_facts_count
-          ? `8단계 자동 검증 통과 — 정부 1차 자료 ${trustedSources.length}건 인용·사실 ${article.data.verified_facts_count}건 1:1 매칭${article.data.approximate_facts_count ? `·근사 ${article.data.approximate_facts_count}건` : ''}`
-          : '권위 데이터 1:1 매칭 검증 통과',
-      },
-    }
-  : null;
-
-// R52-A: Dataset schema 자동 부착 — sources_verified=true 글에 정부 공공데이터
-// 인용 사실을 Google Dataset Search 노출 형태로. 인용된 권위 출처(.go.kr·.or.kr)를
-// distribution.contentUrl 로 노출 + temporalCoverage(dataValidAsOf) + provider.
-// AI 답변 엔진의 "데이터 출처" 인용 가능성 ↑.
-const datasetSchema = article.data.sources_verified && trustedSources.length > 0
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'Dataset',
-      name: `${article.data.title} — 인용 데이터셋`,
-      description: `${article.data.description.slice(0, 250)} (정부 1차 자료 ${trustedSources.length}건 인용·G4 fact-verify 통과)`,
-      url,
-      keywords: article.data.keywords.join(', '),
-      inLanguage: 'ko-KR',
-      isAccessibleForFree: true,
-      license: 'https://www.kogl.or.kr/info/license.do',
-      creator: { '@id': `${authorUrl}#author` },
-      publisher: { '@id': new URL('#organization', Astro.site).toString() },
-      ...(article.data.dataValidAsOf
-        ? (() => {
-            const m = article.data.dataValidAsOf.match(/^(\d{4})년\s*(\d{1,2})월$/);
-            return m ? { temporalCoverage: `${m[1]}-${m[2].padStart(2, '0')}` } : {};
-          })()
-        : {}),
-      distribution: trustedSources.map((s) => ({
-        '@type': 'DataDownload',
-        contentUrl: s.url,
-        encodingFormat: 'text/html',
-        name: s.title,
-      })),
-      ...(article.data.verified_facts_count
-        ? {
-            variableMeasured: `${article.data.verified_facts_count} 검증된 사실 (G4 1:1 매칭)`,
-          }
-        : {}),
-    }
-  : null;
+// self-ClaimReview(자기 글 5/5 평가)·Dataset 스키마는 2026-06-12 제거 (docs/23 §3-3 PR-B).
+// sources_verified=true 글 0편으로 휴면이었고, 자기 평가 ClaimReview 와 일반 글의
+// Dataset 가장은 구조화 데이터 과대표시 — 검증 이력 공시는 VerificationDetails UI 로 충분.
 
 // R50-6: HowTo schema 자동 추출 — 절차형 클러스터(gov-support·public-services·
 // tax·insurance-labor·unemployment) 글에서 본문 H2 패턴 "## 1. xxx", "## 2. xxx"
@@ -454,9 +382,7 @@ const jsonLdList = [
   articleSchema,
   ...(faqSchema ? [faqSchema] : []),
   ...(qaSchema ? [qaSchema] : []),
-  ...(claimReviewSchema ? [claimReviewSchema] : []),
   ...(howToSchema ? [howToSchema] : []),
-  ...(datasetSchema ? [datasetSchema] : []),
 ];
 
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(article.data.publishedAt);
@@ -638,7 +564,7 @@ const ageMonths = Math.floor(ageInDays / 30);
         </ul>
         <p class="disclaimer">
           본 글의 정책·요율·법령은 변경될 수 있습니다. 신청 직전 위 공식 출처에서 재확인하세요.
-          머니룩의 모든 글은 발행 전 8단계 자동 검증 게이트(G0~G8)를 거치며, 본문 사실은 정부 공식 API 응답과 1:1 매칭됩니다.
+          머니룩은 정부 1차 출처를 직접 확인해 작성·검수하며, 2026년 6월 이전 자동 발행분은 발행 당시 10단계 자동 검증 게이트(G0~G9)를 통과했습니다.
         </p>
       </section>
 

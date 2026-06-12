@@ -47,9 +47,9 @@ const articles = defineCollection({
     //               사람 또는 시스템의 1차 재확인 시점을 박제 — Article.dateModified 외에
     //               YMYL 신선도 신호 + AI 답변 엔진이 "최근 검증" 청크를 우선 인용.
     lastReviewed: z.coerce.date().optional(),
-    // aiAssisted: 자동 발행 파이프라인(LLM + 8단계 게이트)으로 만들어진 글 여부.
-    //             true면 G6 disclosure-attach가 "AI 보조 작성·8단계 자동 검증 통과" 면책
-    //             자동 부착 + Article.author=Organization(MoneyLook 자동검증시스템) 분기.
+    // aiAssisted: (구) 자동 발행 파이프라인(LLM + G0~G9 10단계 게이트 — 2026-06 폐기)으로
+    //             만들어진 글 여부. 과거 발행분 호환용 — true면 Article schema 에
+    //             reviewedBy/creditText(발행 당시 검증, 과거형) 분기. 신규 글은 항상 false.
     aiAssisted: z.boolean().default(false),
     // reviewedBy: 검증 주체 — author slug 또는 "moneylook-auto" (자동 발행).
     //             Article.reviewedBy schema에 매핑 — AI 답변 엔진의 신뢰 시그널.
