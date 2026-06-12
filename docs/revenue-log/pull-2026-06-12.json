@@ -1,0 +1,211 @@
+{
+  "pulledAt": "2026-06-11T23:37:49.894Z",
+  "site": "asiatop.co.kr",
+  "account": "accounts/pub-7830821732287404",
+  "policyIssues": [],
+  "last7days": [
+    {
+      "DATE": "2026-06-05",
+      "ESTIMATED_EARNINGS": "0.13",
+      "PAGE_VIEWS": "137",
+      "IMPRESSIONS": "328",
+      "CLICKS": "2"
+    },
+    {
+      "DATE": "2026-06-06",
+      "ESTIMATED_EARNINGS": "0.10",
+      "PAGE_VIEWS": "76",
+      "IMPRESSIONS": "246",
+      "CLICKS": "3"
+    },
+    {
+      "DATE": "2026-06-07",
+      "ESTIMATED_EARNINGS": "0.15",
+      "PAGE_VIEWS": "124",
+      "IMPRESSIONS": "301",
+      "CLICKS": "5"
+    },
+    {
+      "DATE": "2026-06-08",
+      "ESTIMATED_EARNINGS": "0.29",
+      "PAGE_VIEWS": "174",
+      "IMPRESSIONS": "567",
+      "CLICKS": "9"
+    },
+    {
+      "DATE": "2026-06-09",
+      "ESTIMATED_EARNINGS": "0.32",
+      "PAGE_VIEWS": "193",
+      "IMPRESSIONS": "609",
+      "CLICKS": "3"
+    },
+    {
+      "DATE": "2026-06-10",
+      "ESTIMATED_EARNINGS": "0.34",
+      "PAGE_VIEWS": "183",
+      "IMPRESSIONS": "814",
+      "CLICKS": "7"
+    },
+    {
+      "DATE": "2026-06-11",
+      "ESTIMATED_EARNINGS": "0.48",
+      "PAGE_VIEWS": "209",
+      "IMPRESSIONS": "801",
+      "CLICKS": "6"
+    }
+  ],
+  "adUnits_today": [
+    {
+      "AD_UNIT_NAME": "2026",
+      "ESTIMATED_EARNINGS": "0.02",
+      "IMPRESSIONS": "12",
+      "ACTIVE_VIEW_VIEWABILITY": "0.9",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-display",
+      "ESTIMATED_EARNINGS": "0.00",
+      "IMPRESSIONS": "1",
+      "ACTIVE_VIEW_VIEWABILITY": "0",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-in-article",
+      "ESTIMATED_EARNINGS": "0.00",
+      "IMPRESSIONS": "3",
+      "ACTIVE_VIEW_VIEWABILITY": "0",
+      "CLICKS": "0"
+    }
+  ],
+  "adUnits_yesterday": [
+    {
+      "AD_UNIT_NAME": "2026",
+      "ESTIMATED_EARNINGS": "0.03",
+      "IMPRESSIONS": "52",
+      "ACTIVE_VIEW_VIEWABILITY": "0.8889",
+      "CLICKS": "1"
+    }
+  ],
+  "domains_today": [
+    {
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "0.09",
+      "PAGE_VIEWS": "22",
+      "IMPRESSIONS": "117"
+    },
+    {
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.04",
+      "PAGE_VIEWS": "11",
+      "IMPRESSIONS": "29"
+    }
+  ],
+  "gscProperty": "sc-domain:asiatop.co.kr",
+  "gscRange": {
+    "start": "2026-06-03",
+    "end": "2026-06-09"
+  },
+  "gscDaily": [
+    {
+      "date": "2026-06-03",
+      "clicks": 23,
+      "impressions": 2762,
+      "ctr": 0.00832729905865315,
+      "position": 8.094496741491673
+    },
+    {
+      "date": "2026-06-04",
+      "clicks": 21,
+      "impressions": 3634,
+      "ctr": 0.005778756191524491,
+      "position": 8.168959823885526
+    },
+    {
+      "date": "2026-06-05",
+      "clicks": 29,
+      "impressions": 2576,
+      "ctr": 0.01125776397515528,
+      "position": 8.190217391304348
+    },
+    {
+      "date": "2026-06-06",
+      "clicks": 18,
+      "impressions": 2078,
+      "ctr": 0.008662175168431183,
+      "position": 8.104908565928778
+    },
+    {
+      "date": "2026-06-07",
+      "clicks": 43,
+      "impressions": 3531,
+      "ctr": 0.012177853299348626,
+      "position": 7.83857264231096
+    },
+    {
+      "date": "2026-06-08",
+      "clicks": 42,
+      "impressions": 4769,
+      "ctr": 0.008806877752149297,
+      "position": 7.926189976934368
+    },
+    {
+      "date": "2026-06-09",
+      "clicks": 62,
+      "impressions": 5218,
+      "ctr": 0.011881947106170947,
+      "position": 7.725948639325412
+    }
+  ],
+  "gscTopQueries": [
+    {
+      "query": "모바일 확정일자 신청",
+      "clicks": 3,
+      "impressions": 14
+    },
+    {
+      "query": "확정일자 모바일",
+      "clicks": 3,
+      "impressions": 21
+    },
+    {
+      "query": "신용카드 발급 거절 사유",
+      "clicks": 2,
+      "impressions": 5
+    },
+    {
+      "query": "청년도약계좌 청년 isa 중복",
+      "clicks": 2,
+      "impressions": 16
+    },
+    {
+      "query": "6개월 계약직 실업급여",
+      "clicks": 1,
+      "impressions": 1
+    },
+    {
+      "query": "건강보험료 증가 이유",
+      "clicks": 1,
+      "impressions": 2
+    },
+    {
+      "query": "고용보험",
+      "clicks": 1,
+      "impressions": 1
+    },
+    {
+      "query": "국민연금 임의계속가입 장단점",
+      "clicks": 1,
+      "impressions": 7
+    },
+    {
+      "query": "국세 납부 신용카드 추천 2026",
+      "clicks": 1,
+      "impressions": 12
+    },
+    {
+      "query": "근로계약서 자동연장",
+      "clicks": 1,
+      "impressions": 1
+    }
+  ]
+}

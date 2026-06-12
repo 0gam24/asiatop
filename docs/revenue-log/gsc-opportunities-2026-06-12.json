@@ -1,0 +1,231 @@
+{
+  "pulledAt": "2026-06-12T00:11:40.040Z",
+  "range": {
+    "start": "2026-05-14",
+    "end": "2026-06-10"
+  },
+  "striking": [
+    {
+      "query": "퇴직연금 일시금 연금 세금 차이 계산",
+      "page": "/unemployment/severance-lump-vs-installment-tax/",
+      "position": 15.3,
+      "impressions": 70,
+      "clicks": 0,
+      "cluster": "unemployment",
+      "cpcTier": "중"
+    },
+    {
+      "query": "위택스 지방세 신용카드 납부 수수료 없음",
+      "page": "/tax/tax-payment-credit-vs-check-card-fee/",
+      "position": 11.5,
+      "impressions": 38,
+      "clicks": 0,
+      "cluster": "tax",
+      "cpcTier": "상"
+    },
+    {
+      "query": "청년희망적금 2026",
+      "page": "/savings/youth-future-savings-account-launch-comparison/",
+      "position": 11.4,
+      "impressions": 35,
+      "clicks": 0,
+      "cluster": "savings",
+      "cpcTier": "상"
+    }
+  ],
+  "ctrGap": [
+    {
+      "query": "주민등록법 전입신고 14일 이내 과태료",
+      "page": "/public-services/move-in-14day-deadline-fine/",
+      "position": 4.1,
+      "impressions": 141,
+      "ctr": "0%",
+      "expected": "5%"
+    },
+    {
+      "query": "국세청 식대 비과세 월 20만원 근로소득 2026",
+      "page": "/office-tips/meal-allowance-200k-card-vs-cash/",
+      "position": 6.7,
+      "impressions": 135,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "금융감독원 제2금융권 저축은행 캐피탈",
+      "page": "/credit-loan/second-tier-credit-loans/",
+      "position": 8.4,
+      "impressions": 122,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "손해보험협회 과실비율 인정기준 차로변경 70 30",
+      "page": "/auto/car-accident-fault-ratio-standard/",
+      "position": 4.8,
+      "impressions": 81,
+      "ctr": "0%",
+      "expected": "5%"
+    },
+    {
+      "query": "국세청 연금저축 irp 세액공제 한도 900만원 2026",
+      "page": "/savings/pension-savings-vs-irp-tax-credit/",
+      "position": 7.9,
+      "impressions": 72,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "실업급여 기간 계산",
+      "page": "/unemployment/unemployment-benefit-duration-calculation/",
+      "position": 5.9,
+      "impressions": 69,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "\"교통상해진단금\" 진단서 site:*.co.kr",
+      "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+      "position": 2.1,
+      "impressions": 68,
+      "ctr": "0%",
+      "expected": "12%"
+    },
+    {
+      "query": "손해보험협회 과실비율 인정기준 차로변경 직진 70 30",
+      "page": "/auto/car-accident-fault-ratio-standard/",
+      "position": 4.1,
+      "impressions": 68,
+      "ctr": "0%",
+      "expected": "5%"
+    },
+    {
+      "query": "손해보험협회 과실비율정보포털 차로변경 사고 70 30",
+      "page": "/auto/car-accident-fault-ratio-standard/",
+      "position": 7.4,
+      "impressions": 61,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "일반우편 등기우편 차이",
+      "page": "/public-services/registered-mail-vs-regular-effect/",
+      "position": 7.5,
+      "impressions": 61,
+      "ctr": "0%",
+      "expected": "3%"
+    }
+  ],
+  "rising": [
+    {
+      "query": "가족관계증명서 유효기간",
+      "imp7": 44,
+      "impPrev7": 4,
+      "clicks7": 0
+    },
+    {
+      "query": "청년희망적금 2026",
+      "imp7": 34,
+      "impPrev7": 1,
+      "clicks7": 0
+    },
+    {
+      "query": "손해보험협회 과실비율정보포털 차로변경 70 30",
+      "imp7": 27,
+      "impPrev7": 0,
+      "clicks7": 0
+    },
+    {
+      "query": "치매 가족력이 있음 가입 어려워?",
+      "imp7": 23,
+      "impPrev7": 6,
+      "clicks7": 0
+    },
+    {
+      "query": "확정일자 모바일",
+      "imp7": 21,
+      "impPrev7": 1,
+      "clicks7": 3
+    },
+    {
+      "query": "\"교통상해진단금\" 필요서류 진단서",
+      "imp7": 21,
+      "impPrev7": 5,
+      "clicks7": 0
+    },
+    {
+      "query": "과실비율 인정기준 차로변경 사고 70 30 손해보험협회",
+      "imp7": 20,
+      "impPrev7": 9,
+      "clicks7": 0
+    },
+    {
+      "query": "손해보험협회 과실비율정보포털 차로변경 사고 기본 과실 70 30",
+      "imp7": 20,
+      "impPrev7": 6,
+      "clicks7": 0
+    }
+  ],
+  "cannibal": [],
+  "clusterAgg": {
+    "tax": {
+      "clicks": 16,
+      "impressions": 1099,
+      "cpcTier": "상"
+    },
+    "public-services": {
+      "clicks": 23,
+      "impressions": 1571,
+      "cpcTier": "하"
+    },
+    "savings": {
+      "clicks": 13,
+      "impressions": 1572,
+      "cpcTier": "상"
+    },
+    "insurance-labor": {
+      "clicks": 12,
+      "impressions": 795,
+      "cpcTier": "중"
+    },
+    "realestate": {
+      "clicks": 7,
+      "impressions": 942,
+      "cpcTier": "상"
+    },
+    "credit-loan": {
+      "clicks": 2,
+      "impressions": 430,
+      "cpcTier": "최상"
+    },
+    "insurance-personal": {
+      "clicks": 2,
+      "impressions": 751,
+      "cpcTier": "최상"
+    },
+    "gov-support": {
+      "clicks": 3,
+      "impressions": 390,
+      "cpcTier": "중"
+    },
+    "unemployment": {
+      "clicks": 3,
+      "impressions": 1639,
+      "cpcTier": "중"
+    },
+    "office-tips": {
+      "clicks": 1,
+      "impressions": 1487,
+      "cpcTier": "중"
+    },
+    "auto": {
+      "clicks": 2,
+      "impressions": 1243,
+      "cpcTier": "상"
+    },
+    "pension": {
+      "clicks": 1,
+      "impressions": 543,
+      "cpcTier": "상"
+    }
+  }
+}
