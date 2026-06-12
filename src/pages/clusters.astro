@@ -47,6 +47,11 @@ for (const a of articles) {
 for (const list of monthGroups.values()) {
   list.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 }
+// 월 섹션 순서는 발행월 최신순으로 별도 정렬 — 전역 정렬(updatedAt 우선)의 Map 삽입
+// 순서를 그대로 쓰면 최근 리프레시된 과거 월이 최상단에 와 신규 월이 아래로 묻힌다.
+const monthEntries = [...monthGroups.entries()].sort(
+  ([, a], [, b]) => b[0].data.publishedAt.valueOf() - a[0].data.publishedAt.valueOf(),
+);
 
 const url = new URL('/clusters/', Astro.site).toString();
 
@@ -145,7 +150,7 @@ function fmtDate(d: Date): string {
     <section id="archive" class="archive">
       <h2 class="section-head">최신글</h2>
 
-      {[...monthGroups.entries()].map(([month, list]) => (
+      {monthEntries.map(([month, list]) => (
         <div class="month">
           <h3 class="month-head">{month}</h3>
           <ul class="post-list">
