@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import partytown from '@astrojs/partytown';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -25,9 +24,9 @@ export default defineConfig({
   integrations: [
     mdx(),
     react(),
-    partytown({
-      config: { forward: ['dataLayer.push', 'gtag'] },
-    }),
+    // Partytown 통합은 2026-06-12 제거 — 마지막 사용처였던 GA4 gtag.js 를
+    // 메인스레드 로더로 전환 (Analytics.astro 참조). dep 정리는 lockfile 재생성
+    // 가능 환경에서 후속 처리.
     sitemap({
       filter: (page) =>
         !page.includes('/draft/') &&

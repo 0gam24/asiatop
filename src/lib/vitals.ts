@@ -62,7 +62,7 @@ function buildPayload(metric: Metric) {
 function send(metric: Metric) {
   const payload = buildPayload(metric);
 
-  // GA4 — Partytown forwarder가 메인 스레드 호출을 워커로 전달
+  // GA4 — 메인스레드 gtag 직접 호출 (gtag.js 미로드 시 dataLayer 큐잉)
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', metric.name, {
       value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),

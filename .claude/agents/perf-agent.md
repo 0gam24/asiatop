@@ -31,8 +31,10 @@ tools:
 
 ### AdSense INP·CLS 영향 관리 (중요)
 AdSense는 **INP·CLS의 가장 큰 회귀 원인**이다. 다음 강제 (docs/23-adsense-revenue-ops.md):
-- ❌ **Partytown 격리 금지** — AdSense 공식 미지원 조합 (iframe 생성·viewability 측정 깨짐).
-  2026-06-12 이중 로드 사고(깨진 `client=pub-…` 파라미터)로 실증, 같은 날 제거됨.
+- ❌ **Partytown 격리 금지 (서드파티 전반 — AdSense·GA4 포함)** — AdSense 는 공식 미지원
+  조합 (iframe 생성·viewability 측정 깨짐, 2026-06-12 이중 로드 사고로 실증), GA4 는
+  config 미전달로 수신 0건 실증 (같은 날 메인스레드 rIC 로더로 전환, astro.config 통합 제거).
+  분석류 신규 스크립트는 유휴 시점(rIC) 주입이 표준 (`src/components/Analytics.astro`).
 - ✅ 수동 유닛 push 는 **뷰포트 근접 lazy-init** (`src/lib/ads-lazy.ts` IntersectionObserver)
   — below-fold 슬롯은 PSI lab 측정 중 미로드 → PageSpeed 100 양립
 - ✅ 높이 예약은 **래퍼 `.ad-wrap` min-height** — ins 자체 `aspect-ratio` 금지

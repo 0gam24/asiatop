@@ -90,7 +90,7 @@ import heroImg from '../assets/hero.jpg';
 - [ ] 이벤트 핸들러 내부에 `requestIdleCallback` 또는 `scheduler.yield()` 활용
 - [ ] React 사용 시 — concurrent rendering, `useTransition`, `useDeferredValue`
 - [ ] Hydration 비용 최소화 — Astro Islands 적극 활용
-- [ ] 서드파티 스크립트는 `defer` + Partytown으로 워커 격리
+- [ ] 서드파티 스크립트는 유휴 시점(requestIdleCallback) 주입 — ~~Partytown 워커 격리~~ (2026-06-12 폐기, §4-3)
 - [ ] 폼 입력, 드롭다운, 모달 오픈 등 자주 발생하는 인터랙션 INP 측정
 - [ ] CSS 애니메이션은 GPU accelerated property(`transform`, `opacity`)만 사용
 - [ ] `setTimeout` 0ms 트릭으로 작업 분할
@@ -113,17 +113,16 @@ async function processLargeList(items) {
 }
 ```
 
-### 4-3. 서드파티 스크립트 격리 (Partytown)
+### 4-3. ~~서드파티 스크립트 격리 (Partytown)~~ (2026-06-12 전면 폐기 — 사용 금지)
 
-GA4, GTM, 챗봇 등 서드파티 JS는 메인 스레드에서 실행되면 INP 폭망. Web Worker로 격리:
+> AdSense(2026-06-12, docs/23 R3)에 이어 GA4 도 같은 날 제거 — gtag 는 Partytown
+> 공식 미지원 조합이며, 실측에서 config 호출이 포워딩 스니펫보다 먼저 실행돼
+> GA4 수신 0건이었다. astro.config.mjs 에서 통합 자체를 제거함.
 
-```bash
-pnpm astro add @astrojs/partytown
-```
-
-```html
-<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=..."></script>
-```
+현행 표준: **메인스레드 + 유휴 시점 주입**.
+- 분석·에러추적(gtag·Sentry): `requestIdleCallback(load, { timeout: 3000 })` 주입
+  (`src/components/Analytics.astro` 참조)
+- 광고(AdSense 수동 유닛): 뷰포트 근접 lazy-init (`src/lib/ads-lazy.ts`, docs/17)
 
 ### 4-4. INP 측정
 
@@ -331,7 +330,7 @@ pnpm dlx lighthouse https://localhost:4321 --view  # 모바일
 2. **이미지 최적화** (`docs/08`) → LCP 1차 통과
 3. **폰트 셀프 호스팅 + size-adjust** (`docs/07`) → CLS·LCP 통과
 4. **Hydration 디렉티브 정리** (Islands) → INP 1차 통과
-5. **서드파티 스크립트 Partytown 격리** → INP 2차 통과
+5. **서드파티 스크립트 유휴 시점 주입** (~~Partytown 격리~~ 2026-06-12 폐기) → INP 2차 통과
 6. **HTTP 캐싱·preload** (`docs/09`) → LCP 2차 통과
 7. **JS 번들 분석·미사용 제거** → INP 3차 통과
 8. **접근성·SEO 메타** → 다른 카테고리 만점
