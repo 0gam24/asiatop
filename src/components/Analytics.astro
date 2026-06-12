@@ -4,17 +4,42 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 {ga4Id && (
   <>
     <!-- GA4 — Consent Mode v2 default 는 Base.astro head 최상단에서 선실행됨
-         (ga4Id 게이트 밖 — AdSense 단독 주입 시에도 consent 신호 보장, docs/23 §3-1 (2)) -->
+         (ga4Id 게이트 밖 — AdSense 단독 주입 시에도 consent 신호 보장, docs/23 §3-1 (2)).
+         gtag.js 는 메인스레드 유휴 시점 주입 (Sentry 로더와 동일 패턴).
+         Partytown 워커 주입은 2026-06-12 제거 — gtag 공식 미지원 조합인 데다
+         config 호출이 포워딩 스니펫보다 먼저 실행돼 워커에 전달되지 않아 수신 0건
+         (AdSense 와 같은 결정, docs/23 R3). -->
     <script is:inline define:vars={{ ga4Id }}>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       gtag('js', new Date());
-      gtag('config', ga4Id, { send_page_view: true, anonymize_ip: true });
+      // 페이지뷰는 astro:page-load 에서 일원화 전송 — ClientRouter 소프트
+      // 내비게이션도 집계 (send_page_view:true 는 최초 로드만 잡는다)
+      gtag('config', ga4Id, { send_page_view: false, anonymize_ip: true });
+
+      if (!window.__ga4Init) {
+        window.__ga4Init = true;
+
+        document.addEventListener('astro:page-load', () => {
+          window.gtag('event', 'page_view', {
+            page_location: location.href,
+            page_title: document.title,
+          });
+        });
+
+        const loadGtag = () => {
+          const s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+          document.head.appendChild(s);
+        };
+        if (typeof window.requestIdleCallback === 'function') {
+          window.requestIdleCallback(loadGtag, { timeout: 3000 });
+        } else {
+          setTimeout(loadGtag, 1500);
+        }
+      }
     </script>
-    <script
-      type="text/partytown"
-      src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
-    ></script>
   </>
 )}
 

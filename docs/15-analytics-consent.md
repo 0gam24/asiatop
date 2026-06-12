@@ -156,20 +156,18 @@ gtag('consent', 'update', {
 });
 ```
 
-### 4-3. Partytown으로 격리
+### 4-3. ~~Partytown으로 격리~~ (2026-06-12 폐기 — 사용 금지)
 
-GA4가 메인 스레드 INP 망가뜨리지 않게:
+> **폐기 사유**: Partytown 워커 주입은 gtag 공식 미지원 조합. 실측에서
+> `gtag('config')` 인라인 호출이 Partytown 포워딩 스니펫보다 먼저 실행돼
+> 워커 측 gtag.js 에 config 가 전달되지 않았고, GA4 수신이 **0건**이었다
+> (AdSense Partytown 이중 로더 제거와 같은 결정 — docs/23 R3).
 
-```html
-<script type="text/partytown">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('consent', 'default', { /* ... */ });
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-```
+현행 방식: **메인스레드 단일 로더 + 유휴 시점(requestIdleCallback) 주입**.
+인라인 큐(`dataLayer`)에 consent·config 를 먼저 쌓고 gtag.js 는 idle 에 로드
+→ Lighthouse·TBT 보호와 수집 신뢰성 양립. 페이지뷰는 `astro:page-load`
+이벤트에서 일원화 전송해 ClientRouter 소프트 내비게이션도 집계한다
+(`src/components/Analytics.astro` 참조).
 
 자세한 내용은 `docs/06-javascript.md` §7.
 
@@ -342,7 +340,7 @@ GA4에 커스텀 측정으로 등록 → 실측 CWV 모니터링.
 - [ ] CMP 도입 (Klaro! 또는 동급)
 - [ ] 동의 전 비필수 쿠키 0건
 - [ ] Google Consent Mode v2 적용
-- [ ] GA4 + Partytown 격리
+- [ ] GA4 메인스레드 유휴 시점 로더 (~~Partytown 격리~~ 2026-06-12 폐기 — §4-3)
 - [ ] 핵심 이벤트 정의 + 전환 매핑
 - [ ] 1st-party 분석 병행 (Cloudflare Web Analytics 권장)
 - [ ] web-vitals 라이브러리로 RUM 도입

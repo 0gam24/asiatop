@@ -208,20 +208,22 @@ pnpm build && pnpm dlx source-map-explorer 'dist/_astro/**/*.js'
 
 ## 7. 서드파티 스크립트 — INP의 주범
 
-### 7-1. Partytown 격리
+### 7-1. ~~Partytown 격리~~ (2026-06-12 전면 폐기 — 사용 금지)
 
-GA4, GTM, Hotjar, 챗봇 등 서드파티 JS는 **Web Worker로 격리**. 메인 스레드 막지 않음.
+> AdSense·GA4 모두 Partytown 워커 주입에서 실측 고장 확인 후 제거
+> (AdSense: iframe·viewability 깨짐 / GA4: config 미전달로 수신 0건 —
+> docs/04 §4-3, docs/15 §4-3, docs/23 R3). astro.config.mjs 통합도 제거됨.
 
-```bash
-pnpm astro add @astrojs/partytown
-```
+현행 표준 — **메인스레드 + 유휴 시점 주입**:
 
-```html
-<!-- 메인 스레드 -->
-<script src="https://www.googletagmanager.com/gtag/js?id=G-XXX"></script>
-
-<!-- ↓ Partytown 적용 -->
-<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXX"></script>
+```js
+// 인라인 큐를 먼저 깔고 (consent·config 는 즉시 dataLayer 에 쌓임)
+const load = () => { /* <script async> 동적 주입 */ };
+if (typeof window.requestIdleCallback === 'function') {
+  window.requestIdleCallback(load, { timeout: 3000 });
+} else {
+  setTimeout(load, 1500);
+}
 ```
 
 ### 7-2. Astro `is:inline` + `script` 전략
@@ -242,7 +244,7 @@ pnpm astro add @astrojs/partytown
 
 - 정말 필요한가? (대안 있나?)
 - 동의 후에만 로드 가능한가? (`docs/15` 참조)
-- Partytown 격리 가능한가?
+- 유휴 시점 주입(rIC) 또는 lazy-init 가능한가? (Partytown 은 폐기 — §7-1)
 - 번들 크기·INP 영향 측정했는가?
 
 ---
@@ -364,7 +366,7 @@ worker.onmessage = (e) => render(e.data);
 
 - [ ] 초기 JS 번들 ≤ 100KB (gzip)
 - [ ] `client:load` 사용 컴포넌트 5개 이하 (또는 정당화 가능)
-- [ ] 모든 서드파티 스크립트 Partytown 또는 defer
+- [ ] 모든 서드파티 스크립트 유휴 시점 주입(rIC) 또는 defer (~~Partytown~~ 폐기 — §7-1)
 - [ ] `pnpm dlx knip` 위반 0건
 - [ ] 메인 스레드 long task 50ms 초과 0건 (Lighthouse Diagnostics)
 - [ ] React/Vue 사용 시 정당한 사유 (정적은 Astro 우선)
