@@ -1,0 +1,263 @@
+{
+  "pulledAt": "2026-06-14T23:34:22.053Z",
+  "range": {
+    "start": "2026-05-16",
+    "end": "2026-06-12"
+  },
+  "striking": [
+    {
+      "query": "퇴직연금 일시금 연금 세금 차이 계산",
+      "page": "/unemployment/severance-lump-vs-installment-tax/",
+      "position": 15.3,
+      "impressions": 70,
+      "clicks": 0,
+      "cluster": "unemployment",
+      "cpcTier": "중"
+    },
+    {
+      "query": "위택스 지방세 신용카드 납부 수수료 없음",
+      "page": "/tax/tax-payment-credit-vs-check-card-fee/",
+      "position": 11.5,
+      "impressions": 41,
+      "clicks": 0,
+      "cluster": "tax",
+      "cpcTier": "상"
+    },
+    {
+      "query": "청년희망적금 2026",
+      "page": "/savings/youth-future-savings-account-launch-comparison/",
+      "position": 11.5,
+      "impressions": 36,
+      "clicks": 0,
+      "cluster": "savings",
+      "cpcTier": "상"
+    },
+    {
+      "query": "국세청 기부금 세액공제 1000만원 이하 15% 1000만원 초과 30% 2025",
+      "page": "/tax/donation-tax-credit-political-religious-hometown/",
+      "position": 11.4,
+      "impressions": 35,
+      "clicks": 0,
+      "cluster": "tax",
+      "cpcTier": "상"
+    }
+  ],
+  "ctrGap": [
+    {
+      "query": "국세청 식대 비과세 월 20만원 근로소득 2026",
+      "page": "/office-tips/meal-allowance-200k-card-vs-cash/",
+      "position": 6.7,
+      "impressions": 147,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "주민등록법 전입신고 14일 이내 과태료",
+      "page": "/public-services/move-in-14day-deadline-fine/",
+      "position": 4.1,
+      "impressions": 145,
+      "ctr": "0%",
+      "expected": "5%"
+    },
+    {
+      "query": "모바일 확정일자",
+      "page": "/public-services/lease-fixed-date-mobile-vs-office/",
+      "position": 4.9,
+      "impressions": 116,
+      "ctr": "1.72%",
+      "expected": "5%"
+    },
+    {
+      "query": "일반우편 등기우편 차이",
+      "page": "/public-services/registered-mail-vs-regular-effect/",
+      "position": 7.7,
+      "impressions": 93,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "손해보험협회 과실비율 인정기준 차로변경 70 30",
+      "page": "/auto/car-accident-fault-ratio-standard/",
+      "position": 4.8,
+      "impressions": 88,
+      "ctr": "0%",
+      "expected": "5%"
+    },
+    {
+      "query": "청년도약계좌 청년 isa 중복",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 4,
+      "impressions": 86,
+      "ctr": "2.33%",
+      "expected": "5%"
+    },
+    {
+      "query": "손해보험협회 과실비율 인정기준 차로변경 직진 70 30",
+      "page": "/auto/car-accident-fault-ratio-standard/",
+      "position": 4,
+      "impressions": 86,
+      "ctr": "0%",
+      "expected": "5%"
+    },
+    {
+      "query": "6개월 미만 실업급여",
+      "page": "/unemployment/short-term-worker-unemployment-eligibility/",
+      "position": 7.4,
+      "impressions": 85,
+      "ctr": "1.18%",
+      "expected": "3%"
+    },
+    {
+      "query": "\"교통상해진단금\" 진단서 site:*.co.kr",
+      "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+      "position": 2.1,
+      "impressions": 72,
+      "ctr": "0%",
+      "expected": "12%"
+    },
+    {
+      "query": "실업급여 기간 계산",
+      "page": "/unemployment/unemployment-benefit-duration-calculation/",
+      "position": 5.8,
+      "impressions": 70,
+      "ctr": "0%",
+      "expected": "3%"
+    }
+  ],
+  "rising": [
+    {
+      "query": "가족관계증명서 유효기간",
+      "imp7": 48,
+      "impPrev7": 16,
+      "clicks7": 0
+    },
+    {
+      "query": "청년희망적금 2026",
+      "imp7": 31,
+      "impPrev7": 5,
+      "clicks7": 0
+    },
+    {
+      "query": "국세청 기부금 세액공제 1000만원 이하 15% 1000만원 초과 30% 2025",
+      "imp7": 26,
+      "impPrev7": 0,
+      "clicks7": 0
+    },
+    {
+      "query": "손해보험협회 과실비율정보포털 차로변경 사고 기본 과실 70 30",
+      "imp7": 26,
+      "impPrev7": 3,
+      "clicks7": 0
+    },
+    {
+      "query": "전입신고 과태료",
+      "imp7": 26,
+      "impPrev7": 0,
+      "clicks7": 0
+    },
+    {
+      "query": "\"교통상해진단금\" 필요서류 진단서",
+      "imp7": 25,
+      "impPrev7": 7,
+      "clicks7": 0
+    },
+    {
+      "query": "치매 가족력이 있음 가입 어려워?",
+      "imp7": 23,
+      "impPrev7": 5,
+      "clicks7": 0
+    },
+    {
+      "query": "확정일자 동사무소",
+      "imp7": 20,
+      "impPrev7": 6,
+      "clicks7": 2
+    },
+    {
+      "query": "2026 고용보험 근로자 0.9 공식 고용노동부",
+      "imp7": 20,
+      "impPrev7": 0,
+      "clicks7": 0
+    }
+  ],
+  "cannibal": [
+    {
+      "query": "본인서명사실확인서 인감증명서 차이",
+      "totalImpressions": 30,
+      "pages": [
+        {
+          "page": "/public-services/seal-certificate-vs-signature-confirmation/",
+          "position": 6.4,
+          "impressions": 19
+        },
+        {
+          "page": "/public-services/seal-vs-signature-effect-difference/",
+          "position": 8.6,
+          "impressions": 11
+        }
+      ]
+    }
+  ],
+  "clusterAgg": {
+    "tax": {
+      "clicks": 18,
+      "impressions": 1190,
+      "cpcTier": "상"
+    },
+    "public-services": {
+      "clicks": 29,
+      "impressions": 2000,
+      "cpcTier": "하"
+    },
+    "savings": {
+      "clicks": 21,
+      "impressions": 1598,
+      "cpcTier": "상"
+    },
+    "insurance-labor": {
+      "clicks": 13,
+      "impressions": 1008,
+      "cpcTier": "중"
+    },
+    "unemployment": {
+      "clicks": 4,
+      "impressions": 1795,
+      "cpcTier": "중"
+    },
+    "realestate": {
+      "clicks": 9,
+      "impressions": 916,
+      "cpcTier": "상"
+    },
+    "pension": {
+      "clicks": 2,
+      "impressions": 575,
+      "cpcTier": "상"
+    },
+    "credit-loan": {
+      "clicks": 3,
+      "impressions": 450,
+      "cpcTier": "최상"
+    },
+    "insurance-personal": {
+      "clicks": 2,
+      "impressions": 806,
+      "cpcTier": "최상"
+    },
+    "gov-support": {
+      "clicks": 4,
+      "impressions": 462,
+      "cpcTier": "중"
+    },
+    "office-tips": {
+      "clicks": 1,
+      "impressions": 1620,
+      "cpcTier": "중"
+    },
+    "auto": {
+      "clicks": 4,
+      "impressions": 1247,
+      "cpcTier": "상"
+    }
+  }
+}
