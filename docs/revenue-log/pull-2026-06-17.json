@@ -1,0 +1,225 @@
+{
+  "pulledAt": "2026-06-16T23:18:35.680Z",
+  "site": "asiatop.co.kr",
+  "account": "accounts/pub-7830821732287404",
+  "policyIssues": [],
+  "last7days": [
+    {
+      "DATE": "2026-06-10",
+      "ESTIMATED_EARNINGS": "0.34",
+      "PAGE_VIEWS": "182",
+      "IMPRESSIONS": "814",
+      "CLICKS": "7"
+    },
+    {
+      "DATE": "2026-06-11",
+      "ESTIMATED_EARNINGS": "0.48",
+      "PAGE_VIEWS": "209",
+      "IMPRESSIONS": "801",
+      "CLICKS": "6"
+    },
+    {
+      "DATE": "2026-06-12",
+      "ESTIMATED_EARNINGS": "0.53",
+      "PAGE_VIEWS": "172",
+      "IMPRESSIONS": "842",
+      "CLICKS": "4"
+    },
+    {
+      "DATE": "2026-06-13",
+      "ESTIMATED_EARNINGS": "0.26",
+      "PAGE_VIEWS": "79",
+      "IMPRESSIONS": "355",
+      "CLICKS": "4"
+    },
+    {
+      "DATE": "2026-06-14",
+      "ESTIMATED_EARNINGS": "0.27",
+      "PAGE_VIEWS": "97",
+      "IMPRESSIONS": "466",
+      "CLICKS": "2"
+    },
+    {
+      "DATE": "2026-06-15",
+      "ESTIMATED_EARNINGS": "0.79",
+      "PAGE_VIEWS": "260",
+      "IMPRESSIONS": "1401",
+      "CLICKS": "5"
+    },
+    {
+      "DATE": "2026-06-16",
+      "ESTIMATED_EARNINGS": "0.56",
+      "PAGE_VIEWS": "221",
+      "IMPRESSIONS": "1044",
+      "CLICKS": "16"
+    }
+  ],
+  "adUnits_today": [
+    {
+      "AD_UNIT_NAME": "2026",
+      "ESTIMATED_EARNINGS": "0.02",
+      "IMPRESSIONS": "13",
+      "ACTIVE_VIEW_VIEWABILITY": "0.9231",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-display",
+      "ESTIMATED_EARNINGS": "0.00",
+      "IMPRESSIONS": "2",
+      "ACTIVE_VIEW_VIEWABILITY": "0",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-in-article",
+      "ESTIMATED_EARNINGS": "0.00",
+      "IMPRESSIONS": "14",
+      "ACTIVE_VIEW_VIEWABILITY": "0.6923",
+      "CLICKS": "1"
+    }
+  ],
+  "adUnits_yesterday": [
+    {
+      "AD_UNIT_NAME": "2026",
+      "ESTIMATED_EARNINGS": "0.13",
+      "IMPRESSIONS": "103",
+      "ACTIVE_VIEW_VIEWABILITY": "0.7143",
+      "CLICKS": "6"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-display",
+      "ESTIMATED_EARNINGS": "0.01",
+      "IMPRESSIONS": "43",
+      "ACTIVE_VIEW_VIEWABILITY": "0.3333",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-in-article",
+      "ESTIMATED_EARNINGS": "0.04",
+      "IMPRESSIONS": "109",
+      "ACTIVE_VIEW_VIEWABILITY": "0.62",
+      "CLICKS": "1"
+    }
+  ],
+  "domains_today": [
+    {
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "0.05",
+      "PAGE_VIEWS": "18",
+      "IMPRESSIONS": "84"
+    },
+    {
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.04",
+      "PAGE_VIEWS": "9",
+      "IMPRESSIONS": "25"
+    }
+  ],
+  "gscProperty": "sc-domain:asiatop.co.kr",
+  "gscRange": {
+    "start": "2026-06-08",
+    "end": "2026-06-14"
+  },
+  "gscDaily": [
+    {
+      "date": "2026-06-08",
+      "clicks": 42,
+      "impressions": 4769,
+      "ctr": 0.008806877752149297,
+      "position": 7.926189976934368
+    },
+    {
+      "date": "2026-06-09",
+      "clicks": 62,
+      "impressions": 5218,
+      "ctr": 0.011881947106170947,
+      "position": 7.725948639325412
+    },
+    {
+      "date": "2026-06-10",
+      "clicks": 67,
+      "impressions": 5182,
+      "ctr": 0.012929370899266693,
+      "position": 7.7558857583944425
+    },
+    {
+      "date": "2026-06-11",
+      "clicks": 60,
+      "impressions": 4712,
+      "ctr": 0.012733446519524618,
+      "position": 7.632427843803056
+    },
+    {
+      "date": "2026-06-12",
+      "clicks": 31,
+      "impressions": 3134,
+      "ctr": 0.009891512444160817,
+      "position": 7.826100829610721
+    },
+    {
+      "date": "2026-06-13",
+      "clicks": 19,
+      "impressions": 3214,
+      "ctr": 0.005911636589919104,
+      "position": 7.724642190416926
+    },
+    {
+      "date": "2026-06-14",
+      "clicks": 53,
+      "impressions": 5331,
+      "ctr": 0.009941849559182142,
+      "position": 7.801350590883511
+    }
+  ],
+  "gscTopQueries": [
+    {
+      "query": "국세 납부 신용카드 추천 2026",
+      "clicks": 3,
+      "impressions": 28
+    },
+    {
+      "query": "모바일 확정일자 신청",
+      "clicks": 3,
+      "impressions": 9
+    },
+    {
+      "query": "청년도약계좌 isa",
+      "clicks": 3,
+      "impressions": 8
+    },
+    {
+      "query": "확정일자 모바일",
+      "clicks": 3,
+      "impressions": 13
+    },
+    {
+      "query": "6개월 계약직 실업급여",
+      "clicks": 2,
+      "impressions": 7
+    },
+    {
+      "query": "isa 계좌 청년도약계좌",
+      "clicks": 2,
+      "impressions": 4
+    },
+    {
+      "query": "국민연금 임의계속가입 장단점",
+      "clicks": 2,
+      "impressions": 21
+    },
+    {
+      "query": "모바일 확정일자",
+      "clicks": 2,
+      "impressions": 18
+    },
+    {
+      "query": "소유권이전등기 법무사 비용",
+      "clicks": 2,
+      "impressions": 6
+    },
+    {
+      "query": "전입신고 벌금",
+      "clicks": 2,
+      "impressions": 14
+    }
+  ]
+}
