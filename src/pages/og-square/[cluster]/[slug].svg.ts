@@ -7,7 +7,8 @@
  *   - Perplexity 답변 카드 우측 썸네일: 1:1 가장 잘 잡힘
  *   - X·Threads·LinkedIn 모바일: 1:1 노출 우위
  *
- * JSON-LD Article.image 배열에 16:9 + 1:1 동시 노출 → Google 권장.
+ * R66 (2026-07-08): 초대형 후크(keywords[0]) 제거 — 타이틀 첫 어절과 중복 + 크롭 시
+ *   조각 노출 문제. 타이틀을 히어로로.
  */
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
@@ -49,14 +50,7 @@ const escapeXml = (s: string) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 
-function pickHook(article: ArticleProp): string {
-  const kw = article.data.keywords?.[0];
-  if (kw && kw.length <= 18) return kw;
-  const firstWord = article.data.title.split(/[\s—\-·,]/)[0];
-  return firstWord.slice(0, 14);
-}
-
-function wrapTitle(title: string, maxPerLine: number = 16): string[] {
+function wrapTitle(title: string, maxPerLine: number, maxLines: number): string[] {
   const lines: string[] = [];
   let current = '';
   for (const ch of title) {
@@ -68,7 +62,12 @@ function wrapTitle(title: string, maxPerLine: number = 16): string[] {
     current += ch;
   }
   if (current) lines.push(current.trim());
-  return lines.slice(0, 3);
+  if (lines.length > maxLines) {
+    const kept = lines.slice(0, maxLines);
+    kept[maxLines - 1] = kept[maxLines - 1].replace(/[\s·,]+$/, '') + '…';
+    return kept;
+  }
+  return lines;
 }
 
 export async function GET(context: APIContext) {
@@ -78,13 +77,11 @@ export async function GET(context: APIContext) {
   const clusterTitle = cluster?.shortTitle ?? '';
   const icon = getClusterIcon(article.data.cluster);
 
-  const hook = pickHook(article);
-  const titleLinesArr = wrapTitle(article.data.title, 16);
+  const titleLinesArr = wrapTitle(article.data.title, 15, 4);
+  const lineGap = 92;
+  const blockTop = 560 - ((titleLinesArr.length - 1) * lineGap) / 2;
   const titleLines = titleLinesArr
-    .map(
-      (line, i) =>
-        `<tspan x="80" dy="${i === 0 ? 0 : 48}">${escapeXml(line)}</tspan>`,
-    )
+    .map((line, i) => `<tspan x="80" dy="${i === 0 ? 0 : lineGap}">${escapeXml(line)}</tspan>`)
     .join('');
 
   const refDate = article.data.updatedAt ?? article.data.publishedAt;
@@ -138,11 +135,8 @@ export async function GET(context: APIContext) {
     <text x="146" y="40" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="22" font-weight="600" fill="${accent}" letter-spacing="-0.4">${escapeXml(clusterTitle)}</text>
   </g>
 
-  <!-- 짧은 niche 후크 — 가운데 큰 폰트 (1:1 가독성 핵심) -->
-  <text x="80" y="540" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="120" font-weight="900" fill="${accent}" letter-spacing="-5">${escapeXml(hook)}</text>
-
-  <!-- 풀 타이틀 (3줄 컷) -->
-  <text x="80" y="690" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="42" font-weight="700" fill="#FFFFFF" letter-spacing="-1.4">${titleLines}</text>
+  <!-- 타이틀 = 히어로 (최대 4줄, 수직 중앙) -->
+  <text x="80" y="${blockTop}" font-family="Pretendard, -apple-system, BlinkMacSystemFont, sans-serif" font-size="74" font-weight="800" fill="#FFFFFF" letter-spacing="-2.5">${titleLines}</text>
 
   <!-- 카테고리 아이콘 (우하단) -->
   <g transform="translate(1020, 1020) scale(${iconScale})" fill="none" stroke="${accent}" stroke-width="${iconStrokeNorm}" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">${iconParts}</g>
