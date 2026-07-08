@@ -22,6 +22,10 @@
 /posts        /clusters#archive    301
 /all          /clusters            301
 
+# 중복 콘텐츠 정리 (자기잠식 방지) — 2026-07-08
+# 임의가입 개요글이 기존 임의가입/추납·임의계속 전용글과 중복 → 정규글로 통합
+/pension/national-pension-voluntary-enrollment-guide/  /pension/national-pension-voluntary-payment/  301
+
 # 저자 인덱스 페이지 미존재 → about
 /author       /about               302
 /authors      /about               302
