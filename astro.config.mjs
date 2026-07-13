@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import remarkGfm from 'remark-gfm';
 
 export default defineConfig({
   site: 'https://asiatop.co.kr',
@@ -11,6 +12,15 @@ export default defineConfig({
   // CF Pages가 format:'directory' 출력에서 /path/ 형태로 서빙하므로
   // trailingSlash:'always'로 맞춰 canonical·sitemap·OG URL을 실제 URL과 일치
   trailingSlash: 'always',
+  // 마크다운: 단일 물결표(~) 취소선 비활성화 (2026-07-14).
+  // "1~6월"·"3~5영업일" 같은 한국어 범위 표기가 GFM 기본값(singleTilde:true)에서
+  // strikethrough로 렌더되던 버그를 차단. ~~이중 물결표~~ 취소선은 그대로 유지.
+  // gfm:false로 Astro 기본 GFM을 끄고 remark-gfm을 직접 주입(표·자동링크 등 유지).
+  // mdx()는 extendMarkdownConfig 기본값(true)으로 이 설정을 상속한다.
+  markdown: {
+    gfm: false,
+    remarkPlugins: [[remarkGfm, { singleTilde: false }]],
+  },
   build: {
     format: 'directory',
     inlineStylesheets: 'auto',
