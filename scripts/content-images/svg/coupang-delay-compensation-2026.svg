@@ -1,0 +1,31 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#2563eb"/>
+
+  <text x="80" y="96" font-family="Pretendard" font-weight="700" font-size="50" fill="#111827">로켓배송 지연 보상, 이렇게 받습니다</text>
+  <text x="80" y="148" font-family="Pretendard" font-weight="400" font-size="28" fill="#4b5563">2026년 7월 기준 · 쿠팡 고객센터 안내 기준</text>
+
+  <!-- 단계 3개 -->
+  <g font-family="Pretendard">
+    <rect x="80" y="190" width="1040" height="108" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="146" cy="244" r="30" fill="#2563eb"/>
+    <text x="146" y="257" font-weight="700" font-size="34" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="204" y="234" font-weight="700" font-size="30" fill="#111827">보장 시한을 넘기면 쿠팡캐시 1,000원 자동 적립</text>
+    <text x="204" y="274" font-weight="400" font-size="25" fill="#4b5563">따로 신청하지 않아도 지연 확인 시 계정에 적립되는 것이 원칙</text>
+
+    <rect x="80" y="318" width="1040" height="108" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="146" cy="372" r="30" fill="#2563eb"/>
+    <text x="146" y="385" font-weight="700" font-size="34" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="204" y="362" font-weight="700" font-size="30" fill="#111827">로켓프레시(신선식품)는 환불 또는 다음날 재배송</text>
+    <text x="204" y="402" font-weight="400" font-size="25" fill="#4b5563">신선도 문제라 캐시 적립 외에 환불·재배송을 고객센터에 요청 가능</text>
+
+    <rect x="80" y="446" width="1040" height="108" rx="16" fill="#fef9c3" stroke="#fde047" stroke-width="2"/>
+    <circle cx="146" cy="500" r="30" fill="#ca8a04"/>
+    <text x="146" y="513" font-weight="700" font-size="34" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="204" y="490" font-weight="700" font-size="30" fill="#111827">자동 적립이 없으면 앱 고객센터 채팅으로 직접 요청</text>
+    <text x="204" y="530" font-weight="400" font-size="25" fill="#713f12">화재 등 불가항력 사유는 면책될 수 있어 안내 문구 확인 필요</text>
+  </g>
+
+  <text x="80" y="640" font-family="Pretendard" font-weight="400" font-size="22" fill="#9ca3af">보상 기준은 쿠팡 정책에 따라 변경될 수 있습니다</text>
+  <text x="1120" y="640" font-family="Pretendard" font-weight="600" font-size="22" fill="#9ca3af" text-anchor="end">머니룩 · asiatop.co.kr</text>
+</svg>
