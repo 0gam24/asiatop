@@ -1,0 +1,210 @@
+---
+import Base from '../layouts/Base.astro';
+
+// 머니 캘린더 (P2 재방문 허브, 2026-07-19 신설)
+// 갱신 규칙: 데일리 포스팅 루틴에서 일정 변동 시 이 배열만 수정. 지난 일정은 삭제.
+const LAST_UPDATED = '2026-07-19';
+
+type Row = { period: string; name: string; detail: string; href?: string };
+
+const nowRows: Row[] = [
+  {
+    period: '~7/31',
+    name: '재산세 1기분 납부',
+    detail: '7/16~31. 주택 1기분·건축물. 위택스 납부, 기한을 넘기면 3% 가산금',
+    href: '/realestate/property-tax-2026-payment-schedule-calculation/',
+  },
+  {
+    period: '7/20~9/11',
+    name: '속초시 민생지원금 20만원',
+    detail:
+      '전 시민 1인 20만원. CHAK 앱·시청 홈페이지·주민센터. 7/31까지 출생연도 끝자리 요일제(월 1·6 / 화 2·7 / 수 3·8 / 목 4·9 / 금 5·0). 사용기한 11/30',
+    href: '/gov-support/sokcho-minsaeng-support-fund-application/',
+  },
+  {
+    period: '진행 중',
+    name: '하절기 에너지바우처',
+    detail: '소득기준+더위 민감계층 포함 세대. 잔액 조회·신청은 복지로·energyv.or.kr',
+    href: '/gov-support/energy-voucher-summer-cooling-application/',
+  },
+  {
+    period: '소진 시 종료',
+    name: '정부 영화 6,000원 할인권 2차',
+    detail: '신청 아님. CGV·롯데시네마·메가박스·씨네Q 회원 쿠폰함 자동 지급(1인 2매), 선착순 소진',
+  },
+];
+
+const augustRows: Row[] = [
+  {
+    period: '8/16~31',
+    name: '주민세(개인분) 고지·납부',
+    detail: '8월 중순 고지서 발송. 이사했다면 과세 기준 주소지 확인',
+  },
+  {
+    period: '8월 말',
+    name: '근로장려금 정기 지급',
+    detail: '작년 기준 8월 말 순차 지급. 홈택스에서 심사 진행 상황 조회 가능',
+    href: '/gov-support/earned-income-credit-semiannual-application/',
+  },
+  {
+    period: '8월 말~',
+    name: '본인부담상한제 병원비 환급',
+    detail: '2025년 진료분 확정 환급 안내문 발송 시작. 안내문을 못 받아도 공단 앱에서 조회 가능',
+    href: '/public-services/nhis-copayment-cap-refund-application/',
+  },
+  {
+    period: '8월 예정',
+    name: '추석 KTX·SRT 기차표 예매',
+    detail: '예매일 공지 예정. 코레일·SRT 회원가입과 본인인증을 미리 준비',
+  },
+];
+
+const laterRows: Row[] = [
+  {
+    period: '9/14~',
+    name: '나주시 민생지원금 20만원',
+    detail: '7/1 기준 나주시 주민등록자(결혼이민자·영주권자 포함). CHAK 앱·주민센터, 추석 전 지급 목표',
+  },
+  {
+    period: '11월',
+    name: '동절기 에너지바우처',
+    detail: '난방비 지원. 하절기 미사용 잔액 이월 여부도 확인',
+    href: '/gov-support/heating-energy-voucher-eligibility/',
+  },
+  {
+    period: '12/1~15',
+    name: '종합부동산세 납부',
+    detail: '고지서 확인 후 납부. 분납(250만원 초과) 신청 가능',
+  },
+  {
+    period: '12월',
+    name: '자동차세 연납 신청',
+    detail: '1월 연납보다 할인율은 낮지만 12월 신청분부터 순차 적용. 위택스 신청',
+    href: '/auto/car-tax-yeonnap-discount/',
+  },
+  {
+    period: '2027-01',
+    name: '연말정산 · 자동차세 연납(1월분)',
+    detail: '간소화 자료 확인은 1/15 전후 개통. 자동차세 1월 연납이 연간 할인 최대',
+    href: '/tax/yearend-tax-2026-checklist/',
+  },
+];
+
+const sections = [
+  { id: 'now', title: '지금 진행 중 (마감 임박 순)', rows: nowRows },
+  { id: 'august', title: '8월, 미리 준비할 일정', rows: augustRows },
+  { id: 'later', title: '9월 이후 예고', rows: laterRows },
+];
+
+const url = new URL('/calendar/', Astro.site).toString();
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  url,
+  name: '머니 캘린더: 지원금 신청일·세금 납부기한 총정리',
+  inLanguage: 'ko-KR',
+  dateModified: LAST_UPDATED,
+  description:
+    '지원금 신청 시작일, 세금 납부 기한, 환급 일정 등 놓치면 손해 보는 생활금융 일정을 한 페이지에 모았습니다.',
+  isPartOf: { '@id': new URL('/#website', Astro.site).toString() },
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: '머니 캘린더', item: url },
+  ],
+};
+---
+
+<Base
+  title="머니 캘린더: 지원금 신청일·세금 납부기한 총정리"
+  description="지원금 신청 시작일, 세금 납부 기한, 병원비 환급 일정까지 놓치면 손해 보는 생활금융 일정을 한 페이지에 모았습니다. 마감 임박 순으로 정리하고 수시로 갱신합니다."
+  jsonLd={[breadcrumbSchema, webPageSchema]}
+>
+  <article class="container narrow">
+    <header>
+      <p class="kicker">Money Calendar</p>
+      <h1>머니 캘린더, 놓치면 손해 보는 신청·납부 일정</h1>
+      <p class="lead">
+        지원금 신청일, 세금 납부 기한, 환급 일정을 한 페이지에 모았습니다. 이 페이지를
+        북마크해 두면 마감 전에 확인할 수 있습니다. <strong>최종 갱신: {LAST_UPDATED}</strong>
+      </p>
+    </header>
+
+    {
+      sections.map((section) => (
+        <section aria-labelledby={section.id}>
+          <h2 id={section.id}>{section.title}</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">일정</th>
+                  <th scope="col">항목</th>
+                  <th scope="col">핵심 정보</th>
+                </tr>
+              </thead>
+              <tbody>
+                {section.rows.map((row) => (
+                  <tr>
+                    <td class="period">{row.period}</td>
+                    <td class="name">
+                      {row.href ? <a href={row.href}>{row.name}</a> : row.name}
+                    </td>
+                    <td>{row.detail}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))
+    }
+
+    <p class="notice">
+      일정은 기관 사정으로 변경될 수 있습니다. 신청 전 각 공식 사이트(정부24·복지로·위택스·홈택스)에서
+      최종 확인하세요. 항목을 누르면 머니룩의 상세 가이드로 이동합니다.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0 2.5rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    min-width: 560px;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  thead th {
+    font-weight: 700;
+    border-bottom-width: 2px;
+    white-space: nowrap;
+  }
+  .period {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .name {
+    font-weight: 600;
+    min-width: 10rem;
+  }
+  .notice {
+    font-size: 0.9rem;
+    color: var(--muted, #6b7280);
+    margin-top: 1rem;
+  }
+</style>
