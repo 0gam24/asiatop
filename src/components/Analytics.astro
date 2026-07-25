@@ -47,6 +47,48 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
      client 파라미터에 ca- 접두사가 누락돼 있었고, Base.astro head 로더와 이중 로드 상태였음.
      AdSense 로더는 Base.astro 의 메인스레드 단일 로더만 사용한다. -->
 
+<!-- 네이버 애널리틱스 (2026-07-20 등록) — wcslog.js 는 GA4 gtag 와 동일하게
+     메인스레드 유휴 시점 주입 (Lighthouse 100 가드). wa ID 는 페이지 소스에
+     노출되는 공개 값이라 하드코딩. ClientRouter 소프트 내비게이션은
+     astro:page-load 에서 wcs_do() 재호출로 집계하고, 같은 URL 이중 전송은
+     lastSent 가드로 차단 (초기 로드는 onload 1회 전송). -->
+<script is:inline>
+  (() => {
+    if (window.__naverWcsInit) return;
+    window.__naverWcsInit = true;
+
+    // 프로덕션 도메인에서만 로드 — CI lighthouse(localhost)의 third-party-cookies
+    // 게이트 실패 방지 + dev·CF 프리뷰 자기 방문이 통계에 잡히는 것 차단.
+    if (location.hostname !== 'asiatop.co.kr') return;
+
+    window.wcs_add = window.wcs_add || {};
+    window.wcs_add['wa'] = '1b52cc7b9c96b70';
+
+    let lastSent = '';
+    const send = () => {
+      if (!window.wcs || typeof window.wcs_do !== 'function') return;
+      if (location.href === lastSent) return;
+      lastSent = location.href;
+      window.wcs_do();
+    };
+
+    document.addEventListener('astro:page-load', send);
+
+    const loadWcs = () => {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://wcs.pstatic.net/wcslog.js';
+      s.onload = send;
+      document.head.appendChild(s);
+    };
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(loadWcs, { timeout: 3000 });
+    } else {
+      setTimeout(loadWcs, 1500);
+    }
+  })();
+</script>
+
 <!--
   Site-wide click tracking helper.
   ClientRouter swap 시 inline script가 다시 실행되므로 단일 등록 가드 필수
