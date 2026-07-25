@@ -57,6 +57,10 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
     if (window.__naverWcsInit) return;
     window.__naverWcsInit = true;
 
+    // 프로덕션 도메인에서만 로드 — CI lighthouse(localhost)의 third-party-cookies
+    // 게이트 실패 방지 + dev·CF 프리뷰 자기 방문이 통계에 잡히는 것 차단.
+    if (location.hostname !== 'asiatop.co.kr') return;
+
     window.wcs_add = window.wcs_add || {};
     window.wcs_add['wa'] = '1b52cc7b9c96b70';
 
