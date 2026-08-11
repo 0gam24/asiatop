@@ -41,7 +41,11 @@ export async function GET(context: APIContext) {
     title: `${cluster.title} — 머니룩`,
     description: cluster.description,
     site: context.site!,
-    items: sorted.slice(0, 100).map((article) => {
+    // R49 자동 등록 회귀 하네스(auto-registration.mjs)는 클러스터의 모든 글이
+    // 해당 카테고리 RSS 에 등록되기를 요구한다. 100 캡을 두면 클러스터가 100편을
+    // 넘는 순간(예: tax 106편) 오래된 글이 누락돼 빌드가 차단된다. 카테고리 피드는
+    // 전 글을 싣는다(메인 rss/atom/feed.json 만 100 캡 유지 — 하네스도 그에 맞춰 검사).
+    items: sorted.map((article) => {
       const slug = article.id.replace(/\.mdx?$/, '');
       // R50-8 Naver SA 호환: content:encoded 제거 (본문 MDX JSX 호환성 문제).
       // R72 Naver SA 호환: utm 제거 — trailingSlash:always + query 조합이 link URL 끝에
