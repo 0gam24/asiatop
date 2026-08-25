@@ -1,5 +1,17 @@
 # 머니룩(asiatop.co.kr) AdSense 수익 극대화 — 통합 실행 기획서 (R3: 실측 정정 반영판)
 
+## R4 — 수동 유닛 철거 (2026-08-25, 운영자 지시)
+
+> **현행 상태가 R2·R3 본문의 수동 유닛 서술보다 우선한다.** 아래와 충돌하는 §3-1 (3)~(7)·결정 #11·#13 의 수동 유닛 조항은 전부 비활성이며, 본문은 이력 보존용으로만 남긴다.
+
+- 전 페이지 **수동 광고 유닛 0개**. 삭제 대상: `src/components/AdSlot.astro`, `src/lib/ads-lazy.ts`,
+  `global.css` 의 `.ad-wrap`/`.ad-label` 블록, 페이지별 `.ad-wrap` 오버라이드 4곳,
+  `[cluster]/[slug].astro` 의 인아티클·디스플레이 슬롯 2개, `.env.example` 의 `PUBLIC_ADSENSE_SLOT_*` 3개.
+- 광고 진입점은 `src/layouts/Base.astro` head 의 adsbygoogle 로더 **1개뿐** — **Auto ads 단독 운영**.
+  킬스위치는 종전대로 `PUBLIC_ADSENSE_CLIENT` 비우기 + CF Pages Retry (또는 즉시 Rollback).
+- 소스 트리에 하드코딩된 `<ins class="adsbygoogle">` 가 **0건인 상태가 정상**이다. 수동 유닛
+  재도입은 운영자 지시가 있을 때만.
+
 > 기준일: 2026-06-11 (AdSense 승인 당일) · 저장소: `C:/Users/Necon/Downloads/Bibe-Code/00 Website/05 moneylook`
 > 통합 원칙: ① 최고 득점 초안(rpm)의 "0→1 최속 가동" 골격을 기둥으로, ② measure의 측정·판단 규칙, ③ harness의 정책·롤백 구조 방어, ④ traffic의 시즌·리프레시 레버를 접목. ⑤ 충돌은 전부 **"1인 운영자 + 신규 AdSense 계정 + PageSpeed 100 사수 + LLM 비용 민감"** 기준으로 가장 보수적인 쪽을 채택.
 > **R2 개정 원칙 (라운드 1 검토 반영)**: ⑥ 실물 코드와 어긋난 전제는 전부 폐기·정정 — auto-merge.yml(opt-out 실사 확인), Experiment.astro(전 variant 렌더+hidden 토글), Analytics.astro(consent default가 ga4Id 게이트 안), lighthouserc(전 assertion warn) 재실사 완료. ⑦ 광고 로드는 **IntersectionObserver lazy-init이 기본 설계**(fallback이 아님). ⑧ A/B 실험은 광고에서 폐기, **전후 비교(순차)** 로 전환. ⑨ 자동화 브라우저(Claude Preview·Chrome MCP)는 프로덕션 광고 페이지에 절대 접근 금지. ⑩ 운영 물량은 **주간 시간 예산 20h** 에서 역산. ⑪ 검색 품질(색인 건강·카니발리제이션·E-E-A-T)을 수익 방정식의 PV 인자 보호 장치로 격상.

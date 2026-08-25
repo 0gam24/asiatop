@@ -77,7 +77,6 @@
 - [Calculator.astro](src/layouts/Calculator.astro) — 계산기 페이지 전용 (TrustBar 류 포함)
 
 ## 7. 컴포넌트
-- [AdSlot.astro](src/components/AdSlot.astro) — Google AdSense 슬롯 (lazy + 정책 분기)
 - [Analytics.astro](src/components/Analytics.astro) — GA4 + Consent Mode v2 + AdSense loader
 - [AnnualLeaveCalculator.tsx](src/components/AnnualLeaveCalculator.tsx) — 연차 계산기 (React island)
 - [AnswerStructure.astro](src/components/AnswerStructure.astro) — GEO 청킹용 Q-A 청크 래퍼
@@ -367,7 +366,7 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 - OG 이미지: 동적 SVG (Satori) → PNG 변환
 
 ## 18. 광고
-- AdSense: ✓ ([src/components/AdSlot.astro](src/components/AdSlot.astro), [Analytics.astro](src/components/Analytics.astro))
+- AdSense: ✓ Auto ads 단독 — head 로더 1개 ([Base.astro](src/layouts/Base.astro)). 수동 유닛(AdSlot·ads-lazy)은 2026-08-25 전면 철거
 - AdSense client ID: 미설정 (`.env.example` 의 `PUBLIC_ADSENSE_CLIENT=` 빈값 — 운영 환경변수에 주입 필요)
 - 정책 게이트: G5 adsense-policy.mjs + cluster.adRiskTier(low/medium/high) + recommendedAdPolicy()로 financial-advice cluster 자동 면책 부착
 - Consent Mode v2: ✓ (default deny → localStorage opt-in 시 update)

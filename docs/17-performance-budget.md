@@ -362,8 +362,9 @@ AdSense 활성 시 광고 스크립트가 CWV 에 큰 영향. 신청·승인 전
 ### 12-3. 활성 절차 (운영자 권장)
 
 1. `PUBLIC_ADSENSE_CLIENT=` 채우기 전:
-   - 위 12-1 규칙으로 [`src/components/AdSlot.astro`](../src/components/AdSlot.astro) 의 `format` 별 `min-height` 검증
-   - 광고 슬롯 1개 시범 페이지에 inline 한 더미 placeholder 로 LCP·CLS 측정
+   - 2026-08-25 수동 유닛(AdSlot·ads-lazy·`.ad-wrap`) 철거 후 **Auto ads 단독** — 슬롯별
+     `min-height` 예약 대상이 소스에 없다. CLS 는 Auto ads 주입 위치 기준으로 필드 측정만 수행
+   - [`src/layouts/Base.astro`](../src/layouts/Base.astro) head 로더가 유일한 광고 진입점인지 확인
 2. AdSense 승인 후 환경변수 채우기 → CF Pages Retry deployment
 3. 24h 후 PSI 재측정, 위 12-2 임계 모두 통과 확인
 4. 임계 초과 시:

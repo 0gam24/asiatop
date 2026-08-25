@@ -98,8 +98,10 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
   (auto-merge.yml 은 opt-out — 라벨 없으면 owner PR 도 CI green 즉시 자동 머지된다).
   perf+ads 듀얼 게이트 통과 후 머지 (2026-06-12 운영자 위임 — Claude 가 CI green 확인 후 직접 머지).
 - 글당 슬롯 ≤3, 글 상세 첫 화면 광고 0개, 숨김 `<ins>` DOM 0개, 자동 refresh 금지.
-- **이행기 상태 (2026-06-12~)**: Auto ads ON + 수동 유닛 병행 중 — 수동 유닛 프로덕션
-  노출 확인 후 Auto ads OFF 예정. 신규 Auto ads 기능(앵커·vignette) 활성화 금지.
+- **현재 상태 (2026-08-25~)**: **Auto ads 단독**. 수동 유닛 전면 철거 — `AdSlot.astro`·
+  `src/lib/ads-lazy.ts`·`.ad-wrap` CSS·`PUBLIC_ADSENSE_SLOT_*` 삭제 완료. 소스에 수동
+  `<ins class="adsbygoogle">` 0건이 정상이며, 재도입은 운영자 지시가 있을 때만.
+  광고 진입점은 `Base.astro` head 로더 1개. 신규 Auto ads 기능(앵커·vignette) 활성화 금지.
 - 긴급 차단 2단: ① 즉시(수 초) = CF Pages **Rollback to previous deployment**
   ② 정식(5~10분+큐 대기) = env `PUBLIC_ADSENSE_CLIENT` 비우기 + Retry.
   `public` ads.txt 는 킬스위치와 무관 — 건드리지 않는다.
