@@ -185,26 +185,3 @@ button {
 .prose .tldr { background: linear-gradient(135deg, var(--color-tldr-from) 0%, var(--color-tldr-to) 100%); border-radius: var(--radius-card); padding: 1rem 1.25rem; margin-block: 1.5rem; border-left: 4px solid var(--color-primary); }
 .prose .tldr h2, .prose .tldr h3, .prose .tldr p { margin: 0.25rem 0; }
 
-/* AdSense 수동 유닛 래퍼 — 높이 예약은 래퍼 min-height (CLS 가드).
-   기존 .ad-slot 의 ins 자체 aspect-ratio 예약은 폐기: adsbygoogle 가 채움 시 ins 에
-   inline height 를 직접 설정해 덮어쓰므로 래퍼 예약만 유효 (docs/23 §3-1 (4)).
-   unfilled 시에도 래퍼는 접지 않는다 — 접힘 자체가 CLS.
-   min-height 280px 는 시작값 — 실측 채움 분포(D+14~28)로 확정. */
-.ad-wrap {
-  margin-block: 2rem; /* 인접 탭 가능 요소와 이격 — 오클릭 가드 */
-  min-height: 280px;
-  background: var(--color-surface);
-  border-radius: var(--radius-card);
-  text-align: center;
-}
-.ad-wrap .ad-label {
-  display: block;
-  padding-block: 0.3rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  color: var(--color-muted);
-}
-.ad-wrap ins.adsbygoogle {
-  display: block;
-  width: 100%;
-}

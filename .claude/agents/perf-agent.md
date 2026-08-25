@@ -15,7 +15,7 @@ project_context:
     initial_css_gzip: ≤ 30 KB
     lcp_image: ≤ 200 KB
   font: Pretendard Variable (셀프 호스팅, size-adjust)
-  ad_integration: Google AdSense (수동 유닛 + 뷰포트 근접 lazy-init — docs/23)
+  ad_integration: Google AdSense Auto ads 단독 (수동 유닛 2026-08-25 철거 — docs/23)
 tools:
   - view
   - str_replace
@@ -35,15 +35,14 @@ AdSense는 **INP·CLS의 가장 큰 회귀 원인**이다. 다음 강제 (docs/2
   조합 (iframe 생성·viewability 측정 깨짐, 2026-06-12 이중 로드 사고로 실증), GA4 는
   config 미전달로 수신 0건 실증 (같은 날 메인스레드 rIC 로더로 전환, astro.config 통합 제거).
   분석류 신규 스크립트는 유휴 시점(rIC) 주입이 표준 (`src/components/Analytics.astro`).
-- ✅ 수동 유닛 push 는 **뷰포트 근접 lazy-init** (`src/lib/ads-lazy.ts` IntersectionObserver)
-  — below-fold 슬롯은 PSI lab 측정 중 미로드 → PageSpeed 100 양립
-- ✅ 높이 예약은 **래퍼 `.ad-wrap` min-height** — ins 자체 `aspect-ratio` 금지
-  (adsbygoogle 가 ins 에 inline height 를 직접 설정해 덮어씀)
+- ✅ **수동 유닛 전면 철거 (2026-08-25)** — `AdSlot.astro`·`src/lib/ads-lazy.ts`·`.ad-wrap` CSS
+  모두 삭제. 소스에 `<ins class="adsbygoogle">` 하드코딩 **0건**이 정상 상태이며, 되살리는
+  변경은 운영자 승인 없이는 금지
+- ✅ 광고 진입점은 `Base.astro` head 의 adsbygoogle 로더 **단 하나** (Auto ads 단독 운영)
 - ✅ 글 상세 첫 화면(above the fold) 광고 **0개**, 글당 슬롯 ≤ 3
 - ✅ 빌드 산출물에 **숨김 상태 `<ins>` 0개** (display:none·hidden 하위 광고 = 정책 위반 — 머지 차단)
 - ✅ 무한 스크롤·자동 새로고침 광고 금지 (CLS 폭증)
-- ⚠️ Auto Ads 는 **이행기 한시 병행 중** (docs/23 R3 — 수동 유닛 프로덕션 확인 후 OFF 예정).
-  신규 Auto ads 기능(앵커·vignette 등) 활성화 금지
+- ⚠️ 신규 Auto ads 기능(앵커·vignette 등) 활성화 금지
 
 ### 클라이언트 React Island 정책
 - 계산기·인터랙티브 위젯은 `client:visible` 우선

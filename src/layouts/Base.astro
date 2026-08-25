@@ -281,8 +281,8 @@ const siteNavSchema = clusters.map((c, i) => ({
 
     {/* AdSense 로더 — 메인스레드 단일 로더 (Analytics.astro 의 Partytown 이중 로더는
         2026-06-12 제거: 공식 미지원 조합 + ca- 접두사 누락. docs/23 R3).
-        Auto ads 병행기 동안 eager 유지 — Auto ads 가 이 로더에 의존.
-        Auto ads OFF 전환 시 src/lib/ads-lazy.ts 의 lazy-init 주입으로 대체 예정 (결정 #11). */}
+        2026-08-25 수동 유닛(AdSlot·ads-lazy) 전면 철거 후 Auto ads 단독 운영 —
+        이 로더가 유일한 광고 진입점이며, 비우면 전체 광고가 즉시 꺼진다. */}
     {import.meta.env.PUBLIC_ADSENSE_CLIENT && (
       <script
         async
