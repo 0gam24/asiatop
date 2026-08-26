@@ -19,7 +19,7 @@ const escapeXml = (s: string) =>
 export async function GET(context: APIContext) {
   let articles: Awaited<ReturnType<typeof getCollection>> = [];
   try {
-    articles = await getCollection('articles', ({ data }) => !data.draft);
+    articles = await getCollection('articles', ({ data }) => !data.draft && !data.noindex);
   } catch {
     articles = [];
   }
