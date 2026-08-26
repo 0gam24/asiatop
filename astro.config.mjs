@@ -5,6 +5,38 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import remarkGfm from 'remark-gfm';
+import { readdirSync, readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+// 구글 회복 P3 (docs/24): noindex 글 sitemap 제외.
+// astro.config 는 콘텐츠 컬렉션 API 접근 불가 → frontmatter 직독으로 경로 셋 구성.
+// (sitemap-news·sitemap-images 는 각 엔드포인트에서 별도 필터)
+const NOINDEX_PATHS = (() => {
+  const set = new Set();
+  try {
+    const dir = fileURLToPath(new URL('./src/content/articles', import.meta.url));
+    for (const name of readdirSync(dir)) {
+      if (!/\.mdx?$/.test(name)) continue;
+      const text = readFileSync(`${dir}/${name}`, 'utf8');
+      if (!/^noindex:\s*true\s*$/m.test(text)) continue;
+      const cluster = text.match(/^cluster:\s*["']?([a-z0-9-]+)["']?\s*$/m)?.[1];
+      if (!cluster) continue;
+      set.add(`/${cluster}/${name.replace(/\.mdx?$/, '')}/`);
+    }
+  } catch {
+    // 읽기 실패 시 제외 없이 진행 (빌드 차단보다 안전)
+  }
+  return set;
+})();
+
+/** @param {string} page */
+const isNoindexedArticle = (page) => {
+  try {
+    return NOINDEX_PATHS.has(new URL(page).pathname);
+  } catch {
+    return false;
+  }
+};
 
 export default defineConfig({
   site: 'https://asiatop.co.kr',
@@ -42,7 +74,8 @@ export default defineConfig({
         !page.includes('/draft/') &&
         !page.includes('/og/') &&
         !page.includes('/404') &&
-        !/\/(design-system|search)\/?$/.test(page),
+        !/\/(design-system|search)\/?$/.test(page) &&
+        !isNoindexedArticle(page),
       changefreq: 'daily',
       priority: 0.7,
       entryLimit: 5000,
