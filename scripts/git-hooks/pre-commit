@@ -64,12 +64,13 @@ if [ -z "$STAGED_FILES" ]; then
   exit 0
 fi
 
-# (1) 파일명 차단
-echo "$STAGED_FILES" | while IFS= read -r f; do
+# (1) 파일명 차단 — bash 내장 정규식([[ =~ ]])으로 파일당 grep 스폰 제거
+#     (2026-08-26: Windows 에서 스폰당 수백 ms — 대량 커밋 병목의 주범)
+while IFS= read -r f; do
   if [ -z "$f" ]; then continue; fi
 
-  if echo "$f" | grep -qE "$BLOCKED_FILES_REGEX"; then
-    if echo "$f" | grep -qE "$ALLOWED_FILES_REGEX"; then
+  if [[ "$f" =~ $BLOCKED_FILES_REGEX ]]; then
+    if [[ "$f" =~ $ALLOWED_FILES_REGEX ]]; then
       continue
     fi
     echo -e "${RED}❌ 차단: 비밀 파일이 커밋 대상에 포함${NC}"
@@ -77,35 +78,60 @@ echo "$STAGED_FILES" | while IFS= read -r f; do
     echo -e "   해제: git reset HEAD '$f' (스테이징 취소)"
     exit 1
   fi
-done || EXIT_CODE=1
+done <<< "$STAGED_FILES"
 
 # 화이트리스트: 의도적으로 예시 값을 보여주는 문서·스크립트
 DOC_WHITELIST_REGEX='^(docs/(KEY-WALKTHROUGH|KEY-ISSUANCE-GUIDE)\.md|SECURITY\.md|\.env\.example|scripts/(secrets-scan\.mjs|git-hooks/pre-commit))$'
 
-# (2) 본문 시크릿 패턴 스캔
-for f in $STAGED_FILES; do
-  if [ ! -f "$f" ]; then continue; fi
-
+# (2) 본문 시크릿 패턴 스캔 — 배치 실행.
+# 2026-08-26: 파일별 file/grep 프로세스 스폰이 Windows 에서 대량 커밋(572파일) 시
+# 10분+ 걸리던 병목 제거. 검사 패턴·화이트리스트·인코딩 필터 규칙은 동일.
+SCAN_FILES=()
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  [ -f "$f" ] || continue
   # 화이트리스트는 스캔 제외 (가이드·정책 문서엔 의도적 예시 포함)
-  if echo "$f" | grep -qE "$DOC_WHITELIST_REGEX"; then
+  if [[ "$f" =~ $DOC_WHITELIST_REGEX ]]; then
     continue
   fi
+  SCAN_FILES+=("$f")
+done <<< "$STAGED_FILES"
 
-  # 텍스트 파일만 스캔 (바이너리 패스)
-  if ! file -b --mime-encoding "$f" 2>/dev/null | grep -qE 'utf-8|ascii|us-ascii'; then
-    continue
-  fi
-
-  for pattern in "${SECRET_PATTERNS[@]}"; do
-    if grep -EnH "$pattern" "$f" 2>/dev/null; then
-      echo -e "${RED}❌ 차단: 시크릿 패턴 발견${NC}"
-      echo -e "   파일: ${YELLOW}$f${NC}"
-      echo -e "   패턴: $pattern"
-      echo -e "   해결: 해당 값을 .env.local로 옮기고 import.meta.env로 참조"
-      EXIT_CODE=1
+if [ ${#SCAN_FILES[@]} -gt 0 ]; then
+  # 텍스트 파일만 스캔 (바이너리 패스).
+  # 알려진 텍스트 확장자는 file 판별 생략 (file 이 파일당 ~0.2s — 대량 커밋 병목),
+  # 그 외 확장자만 file 일괄 호출로 인코딩 판별.
+  TEXT_FILES=()
+  UNKNOWN_FILES=()
+  KNOWN_TEXT_EXT_RE='\.(mdx?|astro|tsx?|jsx?|mjs|cjs|json|ya?ml|css|html?|xml|svg|txt|toml|sh|csv|xsl)$'
+  for f in "${SCAN_FILES[@]}"; do
+    if [[ "$f" =~ $KNOWN_TEXT_EXT_RE ]]; then
+      TEXT_FILES+=("$f")
+    else
+      UNKNOWN_FILES+=("$f")
     fi
   done
-done
+  if [ ${#UNKNOWN_FILES[@]} -gt 0 ]; then
+    while IFS= read -r line; do
+      enc="${line##*: }"
+      fname="${line%:*}"
+      if [[ "$enc" =~ utf-8|ascii|us-ascii ]]; then
+        TEXT_FILES+=("$fname")
+      fi
+    done < <(file --mime-encoding "${UNKNOWN_FILES[@]}" 2>/dev/null)
+  fi
+
+  if [ ${#TEXT_FILES[@]} -gt 0 ]; then
+    for pattern in "${SECRET_PATTERNS[@]}"; do
+      if grep -EnH "$pattern" "${TEXT_FILES[@]}" 2>/dev/null; then
+        echo -e "${RED}❌ 차단: 시크릿 패턴 발견${NC}"
+        echo -e "   패턴: $pattern"
+        echo -e "   해결: 해당 값을 .env.local로 옮기고 import.meta.env로 참조"
+        EXIT_CODE=1
+      fi
+    done
+  fi
+fi
 
 if [ $EXIT_CODE -ne 0 ]; then
   echo ""

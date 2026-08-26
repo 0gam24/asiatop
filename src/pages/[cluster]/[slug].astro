@@ -407,10 +407,14 @@ const authorBioSummary = authorEntry
     })()
   : null;
 
-// 검수 표기 (사실 그대로만) — aiAssisted=false 글만 "작성·검수: 저자 · 날짜".
-// 전문가 호칭 금지: editor-team bio 가 "자격 보유 전문가 검수 없음" 명시 고지 중 — 모순 금지.
+// 검수 표기 (사실 그대로만) — aiAssisted=false 글만 표기.
+// 전문가 호칭 금지: 저자 bio 가 "자격 보유 전문가 검수 없음" 명시 고지 중 — 모순 금지.
 // aiAssisted=true 글은 VerificationDetails 가 검증 표기를 담당하므로 라벨 생략.
-const reviewLine = !article.data.aiAssisted ? `작성·검수: ${authorName} · ${updateStr ?? dateStr}` : null;
+// 2026-08-26 P2 정직성 가드 (docs/24): 수동 전환일(2026-06-11) 이전 발행분은 운영자가
+// 직접 집필하지 않았을 수 있으므로 "책임 편집", 이후 발행분만 "작성·검수" 로 구분.
+const MANUAL_ERA_START = new Date('2026-06-11');
+const reviewLabel = article.data.publishedAt < MANUAL_ERA_START ? '책임 편집' : '작성·검수';
+const reviewLine = !article.data.aiAssisted ? `${reviewLabel}: ${authorName} · ${updateStr ?? dateStr}` : null;
 
 const referenceDate = article.data.updatedAt ?? article.data.publishedAt;
 const ageInDays = Math.floor((Date.now() - referenceDate.valueOf()) / (1000 * 60 * 60 * 24));

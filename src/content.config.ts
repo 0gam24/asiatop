@@ -16,7 +16,8 @@ const articles = defineCollection({
     cluster: z.enum(VALID_CLUSTER_SLUGS),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
-    author: z.string().default('editor-team'),
+    // 2026-08-26 구글 회복 P2 (docs/24): 익명 "editor-team" 폐기 — 신규 글 기본 기명 저자.
+    author: z.string().default('kim-junhyeok'),
     articleType: z.enum(['Article', 'NewsArticle']).default('Article'),
     heroImageHint: z.string().optional(),
     keywords: z.array(z.string()).min(3).max(10),

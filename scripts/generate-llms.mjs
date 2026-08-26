@@ -74,7 +74,7 @@ function loadArticles() {
       description: meta.description ?? '',
       publishedAt: meta.publishedAt ?? '',
       updatedAt: meta.updatedAt ?? meta.publishedAt ?? '',
-      author: meta.author ?? 'editor-team',
+      author: meta.author ?? 'kim-junhyeok',
       dataValidAsOf: meta.dataValidAsOf ?? '',
       body,
     });
