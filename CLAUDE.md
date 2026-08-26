@@ -1,7 +1,19 @@
 # 머니룩 (asiatop.co.kr) 운영 하네스
 
 한국 금융 YMYL 정적 사이트. Astro 6.2 SSG + Cloudflare Pages auto-deploy.
-450+편 article, **수동 발행 전용** (2026-06-11 자동 발행 파이프라인 폐기 — LLM 비용 사유, git 히스토리에서 복구 가능).
+685편 article, **수동 발행 전용** (2026-06-11 자동 발행 파이프라인 폐기 — LLM 비용 사유, git 히스토리에서 복구 가능).
+
+## 구글 회복 체제 (2026-08-26 발효 — docs/24-google-recovery-ops.md)
+
+2026-08-18 구글 스팸 업데이트로 **사이트 단위 알고리즘 억제** (트래픽 -95%, 색인 371/685).
+원인은 기술이 아니라 발행 풋프린트(일 3~4편 기계 발행·익명 단일 저자·균일 메타/제목 템플릿).
+네이버는 건강(색인 670/685, 일 245클릭) — **네이버 영향 주는 변경 금지** (robots·canonical·RSS·네이버 인증·IndexNow 불변).
+
+- **발행 캐던스: 신규 글 일 1편 이하** — `scripts/audit/publish-cadence.mjs` 가 빌드 차단. 리프레시는 별도.
+- **발행 승인은 사람만**: `merge-approved` 라벨은 운영자 전용. Claude 는 콘텐츠 PR 에 이 라벨을 붙이거나 직접 머지하지 않는다.
+- 신규 글 메타/제목은 풋프린트 가드 준수 (`scripts/audit/template-footprint.mjs` — "총정리" 류 제목·"~정리했습니다" 류 종결 차단).
+- 구글 색인 재요청 자동화 금지 · 본문 무변경 lastmod 갱신 금지 · 대량 삭제 후 대량 재발행 금지.
+- 콘텐츠 에이전트 팀: content-strategist(의도·SERP 분석) → content-agent(작성 — `templates/claude-agents/google-content-master-prompt-v4.md` 적용) → content-auditor(발행 전 감사).
 
 ## 수동 발행 publishedAt 가드 (필수)
 
@@ -32,7 +44,7 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
   - ❌ `교육비 세액공제 2026 — 자녀 300만`
   - ✅ `교육비 세액공제 2026, 자녀 300만 대학 900만`
 - **반복 상투구 변주**: "핵심은 세 가지입니다", "정리하면~", "결론부터 말하면" 같은 고정 말버릇을 글마다 다르게. 같은 표현 복제 = AI 티.
-- **기존 발행 글 제목은 건드리지 않는다** — 제목 변경 시 구글이 새 글로 오인해 순위 손실. **신규 글부터 적용**.
+- **기존 발행 글 제목은 건드리지 않는다** — 제목 변경 시 구글이 새 글로 오인해 순위 손실. **신규 글부터 적용**. 유일한 예외: 네이버 CTR 개선 트랙(docs/24 P4) — 운영자 지정 목록에 한해 `scripts/refresh/apply-title-meta.mjs` 경유로만 변경.
 - 자동 가드: `scripts/audit/ai-tell-style.mjs` 가 빌드 체인 선두에서 신규 글(publishedAt ≥ 2026-07-10)의 —/– 를 검출해 빌드·CI 차단 (`pnpm audit:ai-style` 로 단독 실행).
 
 ## 변경 전 가드 (필수)
@@ -58,11 +70,12 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
 3. `DRY_RUN=0 node ...` 로 실 적용
 4. 같은 PR 에 스크립트 + 변경된 파일 함께 commit (재현 가능성)
 
-## 콘텐츠 PR 머지 흐름 (수동 발행)
+## 콘텐츠 PR 머지 흐름 (수동 발행 — 2026-08-26 opt-in 전환)
 
-- `auto-merge.yml` 은 **opt-out**: author 가 owner/bot 이고 draft 가 아니며 `no-auto-merge` 라벨이 없으면 CI green 시 자동 squash merge (`auto-publish` 라벨은 어떤 워크플로도 참조 안 함 — 2026-06-12 실사). 자동 머지를 막으려면 **draft + `no-auto-merge` 라벨**.
-- PR 머지는 2026-06-12 운영자 위임 — Claude 가 CI green 확인 후 직접 머지 (광고·인프라 PR 포함, 가드 선행).
-- 일일 수동 포스팅 패턴: 글 작성 → 브랜치/PR + 라벨 → CI → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
+- `auto-merge.yml` 은 **opt-in**: 운영자가 `merge-approved` 라벨을 붙인 PR 만 CI green 시 자동 squash merge. 라벨 없으면 owner PR 도 머지되지 않는다. `no-auto-merge` 라벨은 긴급 정지로 우선.
+- **콘텐츠 PR**: Claude 는 PR 생성·CI 확인·보고까지만. `merge-approved` 라벨 부착과 머지는 **운영자 전용** (2026-06-12 머지 위임은 콘텐츠 PR 에 한해 2026-08-26 종료).
+- **인프라 PR**: draft + `no-auto-merge` 라벨로 생성, 가드(perf+ads 듀얼 게이트 등) 통과 후 Claude 가 CI green 확인 후 직접 머지 (기존 위임 유지).
+- 일일 수동 포스팅 패턴: 글 작성(일 1편 이하) → 브랜치/PR → CI green 보고 → **운영자 라벨 승인** → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
 - 머지 후 URL 200 확인까지가 발행 완료
 
 ## content-agent 사용 후 검증
@@ -94,8 +107,8 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - **자동화 브라우저(Claude Preview·Chrome MCP)로 프로덕션 광고 페이지 열기 금지** —
   검증은 dist grep·curl·CF 프리뷰(`data-adtest=on`)만. `.env.local` 은 더미 client 유지.
 - CTR 은 KPI 가 아니다 — 관찰만. 개선 시도 금지.
-- 광고·인프라 PR: **draft 생성 + `no-auto-merge` 라벨 필수**
-  (auto-merge.yml 은 opt-out — 라벨 없으면 owner PR 도 CI green 즉시 자동 머지된다).
+- 광고·인프라 PR: **draft 생성 + `no-auto-merge` 라벨 필수** (관행 유지 — auto-merge 는
+  2026-08-26 부터 opt-in 이지만, draft+라벨이 이중 안전망).
   perf+ads 듀얼 게이트 통과 후 머지 (2026-06-12 운영자 위임 — Claude 가 CI green 확인 후 직접 머지).
 - 글당 슬롯 ≤3, 글 상세 첫 화면 광고 0개, 숨김 `<ins>` DOM 0개, 자동 refresh 금지.
 - **현재 상태 (2026-08-25~)**: **Auto ads 단독**. 수동 유닛 전면 철거 — `AdSlot.astro`·
