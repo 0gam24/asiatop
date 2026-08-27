@@ -5,6 +5,8 @@
  *
  * src/content/articles 의 모든 발행 글(`!draft`)이 다음 채널에 자동 등록됐는지 검증:
  *   1. dist/sitemap-0.xml          — 모든 발행 글 URL
+ *      (예외: 프루닝 P3 `noindex: true` 글은 사이트맵 제외가 설계 — 역으로
+ *       사이트맵에 남아 있으면 SITEMAP_NOINDEX_LEAK 오류. docs/24 P3, 2026-08-27)
  *   2. dist/rss.xml                — 최신 50개 캡 내 모두
  *   3. dist/atom.xml               — 최신 50개 캡 내 모두
  *   4. dist/feed.json              — 최신 50개 캡 내 모두
@@ -35,7 +37,9 @@ const RSS_FEED_CAP = 100; // src/pages/rss.xml.ts·atom.xml.ts·feed.json.ts 의
 // 발행 글 inventory (frontmatter 파싱)
 // ──────────────────────────────────────
 function parseFrontmatter(content) {
-  const m = content.match(/^---\n([\s\S]*?)\n---/);
+  // CRLF 대응 — Windows 로컬 체크아웃(autocrlf)에서 \r\n 이면 매칭 실패해
+  // "0 articles 무의미 통과"가 되던 결함 수정 (2026-08-27).
+  const m = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!m) return null;
   const fm = {};
   for (const line of m[1].split(/\r?\n/)) {
@@ -73,6 +77,8 @@ export function collectArticles() {
       // 모든 피드 정렬 키 (rss·atom·feed.json·카테고리 RSS 통일).
       sortKey: (updatedAt ?? publishedAt).valueOf(),
       title: fm.title ?? '',
+      // 프루닝 P3: 사이트맵 계열에서만 의도적 제외. 페이지·RSS 는 유지 (네이버 채널).
+      noindex: fm.noindex === 'true',
       file: relative(ROOT, file).replace(/\\/g, '/'),
     });
   }
@@ -184,17 +190,26 @@ export function audit() {
   const articlePaths = articles.map((a) => articlePath(a));
   const articleSet = new Set(articlePaths);
   const cappedSet = new Set(articlePaths.slice(0, RSS_FEED_CAP));
+  // 프루닝 P3 noindex 글 — 사이트맵 계열 채널에서는 제외가 정상 (docs/24).
+  const noindexSet = new Set(articles.filter((a) => a.noindex).map((a) => articlePath(a)));
 
   const errors = [];
   const warnings = [];
-  const stats = { articles: articles.length };
+  const stats = { articles: articles.length, noindexed: noindexSet.size };
 
-  // 1. sitemap-0.xml — 모든 글
+  // 1. sitemap-0.xml — noindex 제외 전 글 등재 + noindex 글 누출 역검사
   const sitemapXml = readDist('sitemap-0.xml');
   const sitemapUrls = extractUrlsFromXml(sitemapXml, 'loc');
   stats.sitemap = sitemapUrls.size;
   for (const p of articleSet) {
-    if (![...sitemapUrls].some((u) => normalizeUrl(u) === p)) {
+    const inSitemap = [...sitemapUrls].some((u) => normalizeUrl(u) === p);
+    if (noindexSet.has(p)) {
+      if (inSitemap) {
+        errors.push(['SITEMAP_NOINDEX_LEAK', p, 'dist/sitemap-0.xml — noindex 글이 사이트맵에 잔존']);
+      }
+      continue;
+    }
+    if (!inSitemap) {
       errors.push(['SITEMAP_MISSING', p, 'dist/sitemap-0.xml']);
     }
   }
@@ -274,10 +289,12 @@ export function audit() {
   stats.llmsCluster = llmsClusterCache.size;
 
   // 8. sitemap-images.xml — 글 URL이 image:loc 또는 image:image 안 어딘가에
+  //    (noindex 글은 sitemap-images 에서도 설계상 제외 — 검사 스킵)
   const imagesXml = readDist('sitemap-images.xml');
   const imagesUrls = extractUrlsFromXml(imagesXml, 'loc');
   stats.sitemapImages = imagesUrls.size;
   for (const p of articleSet) {
+    if (noindexSet.has(p)) continue;
     if (![...imagesUrls].some((u) => normalizeUrl(u) === p)) {
       // sitemap-images에는 article URL을 image의 부모 <url><loc>로 노출
       warnings.push(['SITEMAP_IMAGES_MISSING', p, 'dist/sitemap-images.xml']);
