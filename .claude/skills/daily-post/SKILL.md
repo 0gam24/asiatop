@@ -39,10 +39,16 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 3. 신규: publishedAt = KST 오늘 / 리프레시: updatedAt·lastReviewed (본문 실질 변경 시에만 — date stamping 금지)
 4. `node scripts/audit/claims-guard.mjs` + `pnpm audit:cadence` + `pnpm audit:template` + `corepack pnpm exec astro build` 통과 확인
 5. **일 묶음 PR 1건** (콘텐츠 전용 브랜치 content/daily-YYYY-MM-DD) → CI green 확인 →
-   **루틴 예외 조건 전부 충족 시 Claude 가 `merge-approved` 라벨 부착** (2026-08-27 운영자 지시):
-   ① 일 1편 이하 캐던스 통과 ② content-auditor PASS ③ 풋프린트·ai-style·claims 가드 통과
-   ④ CI 전체 green ⑤ 정책 이슈 0건 ⑥ PR 에 비루틴 변경(인프라·대량 수정) 미혼입.
-   하나라도 미충족이면 라벨 금지 → 운영자에게 PR 링크 보고로 전환.
+   **루틴 예외 조건 전부 충족 시 Claude 가 `merge-approved` 라벨 부착** (2026-08-27 운영자 지시).
+   이 6+1 조건 목록이 예외의 **단일 기준(SSoT)** 이다 — CLAUDE.md·docs/24 의 요약 서술과
+   다르게 읽히면 이 목록이 우선한다:
+   ① 신규 일 1편 이하 캐던스 통과 ② content-auditor PASS ③ 풋프린트·ai-style·claims 가드 통과
+   ④ CI 전체 green ⑤ 정책 이슈 0건 ⑥ PR 구성 제한: 브랜치명 `content/daily-YYYY-MM-DD` 이고,
+   변경 파일이 `src/content/articles/*.mdx` 콘텐츠뿐(인프라·스크립트·설정 미혼입)이며,
+   신규 ≤1편 + 리프레시 ≤3편, 30 파일 미만 ⑦ 라벨 부착은 일 1개 PR 까지.
+   하나라도 미충족·판단 애매 → 라벨 금지, 운영자에게 PR 링크 보고로 전환.
+   라벨 명령은 이 형태 고정: `gh pr edit --add-label merge-approved <PR번호>`
+   (permission 허용이 이 프리픽스뿐 — 다른 라벨 조작·no-auto-merge 해제는 불가).
 6. 자동 머지 후 CF 배포 감시 → **전 편 URL 200 + 신규 내용 마커 확인까지가 발행 완료** (결과는 운영자에게 사후 보고)
 
 ## 4. 보고 형식 (최종 메시지)
