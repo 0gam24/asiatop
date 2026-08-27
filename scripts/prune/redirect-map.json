@@ -1,3 +1,165 @@
 {
-  "redirects": []
+  "redirects": [
+    {
+      "slug": "credit-inquiry-hard-vs-soft-score",
+      "from": "/credit-loan/credit-inquiry-hard-vs-soft-score/",
+      "to": "/credit-loan/",
+      "action": "delete",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "high-fuel-subsidy-2026-application-d30",
+      "from": "/gov-support/high-fuel-subsidy-2026-application-d30/",
+      "to": "/gov-support/",
+      "action": "delete",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "investment-loss-offset-bond-stock-etf",
+      "from": "/savings/investment-loss-offset-bond-stock-etf/",
+      "to": "/savings/",
+      "action": "delete",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "kisa-individual-investment-tax-deduction",
+      "from": "/savings/kisa-individual-investment-tax-deduction/",
+      "to": "/savings/",
+      "action": "delete",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "personal-business-card-purchase-limit",
+      "from": "/credit-loan/personal-business-card-purchase-limit/",
+      "to": "/credit-loan/",
+      "action": "delete",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "bokjiro-mobile-application",
+      "from": "/public-services/bokjiro-mobile-application/",
+      "to": "/public-services/bokjiro-mobile-9-welfare-integrated/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "business-closure-unemployment-eligibility",
+      "from": "/unemployment/business-closure-unemployment-eligibility/",
+      "to": "/unemployment/self-employed-unemployment-benefit/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "car-inspection-missed-cumulative-fine",
+      "from": "/auto/car-inspection-missed-cumulative-fine/",
+      "to": "/auto/car-periodic-inspection-overdue-penalty/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "car-tax-refund-cases",
+      "from": "/auto/car-tax-refund-cases/",
+      "to": "/auto/car-tax-refund-application-guide/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "comprehensive-income-tax-correction-filing-june-error-recovery",
+      "from": "/tax/comprehensive-income-tax-correction-filing-june-error-recovery/",
+      "to": "/tax/comprehensive-income-tax-amended-return-correction/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "deposit-return-dispute-tenancy-injunction",
+      "from": "/realestate/deposit-return-dispute-tenancy-injunction/",
+      "to": "/realestate/tenancy-injunction-deposit-protection/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "first-year-annual-leave-11-vs-15",
+      "from": "/office-tips/first-year-annual-leave-11-vs-15/",
+      "to": "/office-tips/annual-leave-1year-vs-prorated/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "meal-allowance-tax-exempt",
+      "from": "/office-tips/meal-allowance-tax-exempt/",
+      "to": "/office-tips/meal-allowance-200k-card-vs-cash/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "national-pension-retroactive-payment-june-decision",
+      "from": "/pension/national-pension-retroactive-payment-june-decision/",
+      "to": "/pension/nps-additional-payment-coverage-extension/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "parent-child-pre-gift-5000man-tax-free-june",
+      "from": "/tax/parent-child-pre-gift-5000man-tax-free-june/",
+      "to": "/tax/gift-tax-50m-exemption-relations/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "pension-savings-vs-irp",
+      "from": "/savings/pension-savings-vs-irp/",
+      "to": "/savings/pension-savings-vs-irp-tax-credit/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "pre-credit-recovery-90day-self-report",
+      "from": "/credit-loan/pre-credit-recovery-90day-self-report/",
+      "to": "/credit-loan/credit-recovery-pre-debt-adjustment/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "property-tax-d1-june-1-24h-final",
+      "from": "/realestate/property-tax-d1-june-1-24h-final/",
+      "to": "/realestate/comprehensive-property-tax-june-1-baseline/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "property-tax-d2-june-1-final-checklist",
+      "from": "/realestate/property-tax-d2-june-1-final-checklist/",
+      "to": "/realestate/comprehensive-property-tax-june-1-baseline/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "property-tax-deed-d1-final-checklist",
+      "from": "/realestate/property-tax-deed-d1-final-checklist/",
+      "to": "/realestate/property-tax-may-30-deed-completion-d8/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "property-tax-rental-housing-7-8-month-prep",
+      "from": "/realestate/property-tax-rental-housing-7-8-month-prep/",
+      "to": "/realestate/property-tax-rental-housing-exclusion-application/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "self-employed-july-insurance-d29-installment",
+      "from": "/tax/self-employed-july-insurance-d29-installment/",
+      "to": "/tax/self-employed-4-major-insurance-after-tax-filing/",
+      "action": "merge",
+      "date": "2026-08-27"
+    },
+    {
+      "slug": "term-deposit-vs-installment-savings",
+      "from": "/savings/term-deposit-vs-installment-savings/",
+      "to": "/savings/deposit-vs-installment-rate-12month/",
+      "action": "merge",
+      "date": "2026-08-27"
+    }
+  ]
 }

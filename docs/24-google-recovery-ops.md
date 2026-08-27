@@ -107,6 +107,8 @@
 - [x] 전 글 실체 저자 연결 (P2)
 - [x] 프루닝 CSV → 리디렉션·사이트맵 자동 반영 (P3)
 - [x] 제목/메타 경량 리프레시 도구 (P4)
-- [ ] 프루닝 목록 CSV 수령 → 실행 (운영자 제공 대기)
+- [x] 프루닝 웨이브 1 실행 (2026-08-27): GSC 미색인 327건 전수 판정 — noindex 77 ·
+  merge 18 · delete 5 · keep 227. 판정 근거 `docs/audits/pruning-verdicts-2026-08-27.json`,
+  실행 CSV `scripts/prune/pruning-2026-08-27.csv` (운영자 라벨 승인으로 발효)
 - [ ] 네이버 CTR 대상 목록 수령 → 제목 리라이트 (운영자 제공 대기)
 - [ ] 신규 20편 발행 후 패턴 중복률 재측정 (`pnpm audit:template`)
