@@ -36,12 +36,14 @@ const CLUSTER_META = {
 };
 
 function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  // CRLF 대응 — Windows 로컬 체크아웃에서 \r\n 이면 매칭 실패해
+  // "Loaded 0 articles" 로 빈 llms 파일을 쓰던 결함 수정 (2026-08-27).
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!match) return { meta: {}, body: raw };
   const fm = match[1];
   const body = match[2];
   const meta = {};
-  for (const line of fm.split('\n')) {
+  for (const line of fm.split(/\r?\n/)) {
     const m = line.match(/^([a-zA-Z][a-zA-Z0-9_]*):\s*(.+?)\s*$/);
     if (m && !line.startsWith(' ')) {
       let v = m[2].trim();
@@ -100,7 +102,21 @@ function renderClusterFile(slug, articles) {
 
   let included = 0;
   let excluded = 0;
-  for (const a of sorted) {
+  // 50KB 상한 준수 개선 (2026-08-27): 기존에는 본문 블록만 예산 검사하고
+  // URL fallback 라인은 무검사 추가라 최종 파일이 상한을 넘을 수 있었다
+  // (office-tips 57.2KB 사례). 남은 글 전부가 fallback 으로 빠져도 상한을
+  // 넘지 않도록, 본문 포함 여부를 "잔여 fallback 예산"까지 합산해 판정한다.
+  const fallbackLineOf = (a) =>
+    `- [${a.title}](${SITE_URL}/${a.cluster}/${a.slug}) — _본문은 토큰 한도로 제외, 페이지에서 확인_\n`;
+  const FALLBACK_NOTE_RESERVE = 256; // 말미 안내 문단 여유치
+  // suffixFallback[i] = i번째 글부터 끝까지 전부 fallback 일 때의 바이트 합
+  const suffixFallback = new Array(sorted.length + 1).fill(0);
+  for (let i = sorted.length - 1; i >= 0; i--) {
+    suffixFallback[i] = suffixFallback[i + 1] + bytes(fallbackLineOf(sorted[i]));
+  }
+
+  for (let i = 0; i < sorted.length; i++) {
+    const a = sorted[i];
     const url = `${SITE_URL}/${a.cluster}/${a.slug}`;
     const block = [
       `## ${a.title}`,
@@ -118,10 +134,10 @@ function renderClusterFile(slug, articles) {
       ``,
     ].join('\n');
 
-    if (bytes(out + block) > MAX_BYTES) {
+    if (bytes(out + block) + suffixFallback[i + 1] + FALLBACK_NOTE_RESERVE > MAX_BYTES) {
       // 본문은 토큰 한도로 제외하되 URL+제목 1줄은 fallback 인덱스로 보장.
       // R49 #49-5 자동 등록 하네스: "모든 발행 글이 채널에 등장" 정책 — URL 누락 0.
-      out += `- [${a.title}](${url}) — _본문은 토큰 한도로 제외, 페이지에서 확인_\n`;
+      out += fallbackLineOf(a);
       excluded++;
       continue;
     }
