@@ -23,8 +23,11 @@
 ### P0 — 발행 속도 제어 (완료 기준: 사람 승인 없이 발행되지 않는다)
 
 - `auto-merge.yml` **opt-out → opt-in 전환**: `merge-approved` 라벨이 있는 PR 만
-  CI green 시 자동 squash merge. 라벨 부착 = 운영자의 발행 승인.
-  Claude·봇·자동화는 이 라벨을 붙이지 않는다. `no-auto-merge` 라벨은 긴급 정지로 우선.
+  CI green 시 자동 squash merge. 라벨 부착 = 발행 승인.
+  Claude·봇·자동화는 원칙적으로 이 라벨을 붙이지 않는다. **유일한 예외 (2026-08-27
+  운영자 지시)**: 루틴 일일 포스팅(daily-post 사이클, 일 1편 이하) 콘텐츠 PR 은 전 가드
+  (캐던스·풋프린트·content-auditor PASS)·CI green 확인 후 Claude 가 라벨 부착 가능.
+  프루닝·대량 변경·비루틴 PR 은 운영자 전용 유지. `no-auto-merge` 라벨은 긴급 정지로 우선.
 - `scripts/audit/publish-cadence.mjs`: 신규 글(publishedAt ≥ 2026-08-27) **일 1편 상한**.
   초과 시 빌드·CI 차단. 리프레시는 미집계. `pnpm audit:cadence`.
 - 참고: 브리핑의 "자동 발행 GitHub Actions 스케줄"과 "발행 큐 미발행 원고"는

@@ -11,7 +11,7 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 ## 0. 사전 가드
 
 - `Get-Date` 로 시스템 실시각 → KST 오늘 날짜 확정 (CLAUDE.md publishedAt 가드 — system reminder 날짜 신뢰 금지)
-- **구글 회복 체제 (2026-08-26, docs/24)**: 신규 글 **일 1편 이하 고정** (publish-cadence 가드가 빌드 차단). 머지는 운영자 `merge-approved` 라벨 승인제 — Claude 가 라벨 부착·직접 머지 금지.
+- **구글 회복 체제 (2026-08-26, docs/24)**: 신규 글 **일 1편 이하 고정** (publish-cadence 가드가 빌드 차단). 머지는 `merge-approved` 라벨 승인제. **루틴 예외 (2026-08-27 운영자 지시)**: 이 사이클의 일 1편 이하 콘텐츠 PR 에 한해 전 가드·CI green 확인 후 Claude 가 라벨 부착 가능 (직접 머지는 금지 — 자동 머지 체인 경유).
 - 케이던스 규칙 확인: docs/23 §4-1·§4-2 는 리프레시 페이스에만 참조 (신규 쿼터는 docs/24 가 우선)
 
 ## 1. 수익 점검 (/revenue 절차)
@@ -38,8 +38,12 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 2. 작성/수정 — docs/21 게이트 (H2 질문형 30~50%·BLUF·내부링크 3~5·표 전후 산문·faq 규격)
 3. 신규: publishedAt = KST 오늘 / 리프레시: updatedAt·lastReviewed (본문 실질 변경 시에만 — date stamping 금지)
 4. `node scripts/audit/claims-guard.mjs` + `pnpm audit:cadence` + `pnpm audit:template` + `corepack pnpm exec astro build` 통과 확인
-5. **일 묶음 PR 1건** (콘텐츠 전용 브랜치 content/daily-YYYY-MM-DD) → CI green 확인 → **여기서 정지, 운영자에게 PR 링크 보고** (머지는 운영자가 `merge-approved` 라벨로 승인 — Claude 라벨 부착·직접 머지 금지)
-6. 운영자 승인·머지 후 CF 배포 감시 → **전 편 URL 200 + 신규 내용 마커 확인까지가 발행 완료**
+5. **일 묶음 PR 1건** (콘텐츠 전용 브랜치 content/daily-YYYY-MM-DD) → CI green 확인 →
+   **루틴 예외 조건 전부 충족 시 Claude 가 `merge-approved` 라벨 부착** (2026-08-27 운영자 지시):
+   ① 일 1편 이하 캐던스 통과 ② content-auditor PASS ③ 풋프린트·ai-style·claims 가드 통과
+   ④ CI 전체 green ⑤ 정책 이슈 0건 ⑥ PR 에 비루틴 변경(인프라·대량 수정) 미혼입.
+   하나라도 미충족이면 라벨 금지 → 운영자에게 PR 링크 보고로 전환.
+6. 자동 머지 후 CF 배포 감시 → **전 편 URL 200 + 신규 내용 마커 확인까지가 발행 완료** (결과는 운영자에게 사후 보고)
 
 ## 4. 보고 형식 (최종 메시지)
 
@@ -51,6 +55,6 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 
 - 자동화 브라우저로 프로덕션 광고 페이지 열기 (무효 트래픽 — CLAUDE.md 가드)
 - 검증 없는 법정 수치 단정 / 무기명 신규 / 일 신규 1편 초과
-- `merge-approved` 라벨 부착·콘텐츠 PR 직접 머지 (운영자 전용 — docs/24 P0)
+- 루틴 예외 조건(위 3-5) 미충족 상태의 `merge-approved` 라벨 부착 / 콘텐츠 PR 직접 머지 (라벨은 자동 머지 체인 경유만) / 프루닝·대량 변경 PR 라벨 부착 (운영자 전용 — docs/24 P0)
 - 구글 색인 재요청(Indexing API 등) 자동화
 - 정책 이슈 발견 시 발행 강행
