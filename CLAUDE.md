@@ -10,7 +10,7 @@
 네이버는 건강(색인 670/685, 일 245클릭) — **네이버 영향 주는 변경 금지** (robots·canonical·RSS·네이버 인증·IndexNow 불변).
 
 - **발행 캐던스: 신규 글 일 1편 이하** — `scripts/audit/publish-cadence.mjs` 가 빌드 차단. 리프레시는 별도.
-- **발행 승인은 사람만**: `merge-approved` 라벨은 운영자 전용. Claude 는 콘텐츠 PR 에 이 라벨을 붙이거나 직접 머지하지 않는다.
+- **발행 승인 원칙은 사람**: `merge-approved` 라벨은 운영자 전용. **유일한 예외 — 루틴 일일 포스팅** (2026-08-27 운영자 지시): daily-post 사이클의 콘텐츠 PR 에 한해, `.claude/skills/daily-post/SKILL.md` §3-5 의 **조건 목록(SSoT — 신규 일 1편 이하·auditor PASS·전 가드·CI green·정책 이슈 0·PR 구성 제한 등)** 전부 충족 시 Claude 가 라벨을 부착할 수 있다. 프루닝·대량 변경·비루틴 콘텐츠 PR 은 여전히 운영자 전용이며, `no-auto-merge` 긴급 정지는 항상 우선한다.
 - 신규 글 메타/제목은 풋프린트 가드 준수 (`scripts/audit/template-footprint.mjs` — "총정리" 류 제목·"~정리했습니다" 류 종결 차단).
 - 구글 색인 재요청 자동화 금지 · 본문 무변경 lastmod 갱신 금지 · 대량 삭제 후 대량 재발행 금지.
 - 콘텐츠 에이전트 팀: content-strategist(의도·SERP 분석) → content-agent(작성 — `templates/claude-agents/google-content-master-prompt-v4.md` 적용) → content-auditor(발행 전 감사).
@@ -73,9 +73,9 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
 ## 콘텐츠 PR 머지 흐름 (수동 발행 — 2026-08-26 opt-in 전환)
 
 - `auto-merge.yml` 은 **opt-in**: 운영자가 `merge-approved` 라벨을 붙인 PR 만 CI green 시 자동 squash merge. 라벨 없으면 owner PR 도 머지되지 않는다. `no-auto-merge` 라벨은 긴급 정지로 우선.
-- **콘텐츠 PR**: Claude 는 PR 생성·CI 확인·보고까지만. `merge-approved` 라벨 부착과 머지는 **운영자 전용** (2026-06-12 머지 위임은 콘텐츠 PR 에 한해 2026-08-26 종료).
+- **콘텐츠 PR**: 기본은 Claude 가 PR 생성·CI 확인·보고까지, `merge-approved` 라벨 부착과 머지는 **운영자 전용**. **루틴 예외 (2026-08-27 운영자 지시)**: daily-post 사이클의 일 1편 이하 콘텐츠 PR 은 전 가드·CI green 확인 후 Claude 가 라벨 부착 가능 (자동 머지 체인 경유 — 직접 머지는 여전히 금지). 프루닝·대량 변경·비루틴 PR 은 운영자 전용 유지.
 - **인프라 PR**: draft + `no-auto-merge` 라벨로 생성, 가드(perf+ads 듀얼 게이트 등) 통과 후 Claude 가 CI green 확인 후 직접 머지 (기존 위임 유지).
-- 일일 수동 포스팅 패턴: 글 작성(일 1편 이하) → 브랜치/PR → CI green 보고 → **운영자 라벨 승인** → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
+- 일일 수동 포스팅 패턴: 글 작성(일 1편 이하) → 브랜치/PR → CI green 확인 → **라벨 승인 (루틴 예외로 Claude 부착 가능, 2026-08-27)** → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
 - 머지 후 URL 200 확인까지가 발행 완료
 
 ## content-agent 사용 후 검증

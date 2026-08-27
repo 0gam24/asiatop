@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr edit --add-label merge-approved:*)",
+      "Bash(gh pr comment:*)"
+    ]
+  }
+}

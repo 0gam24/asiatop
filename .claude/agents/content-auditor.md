@@ -55,5 +55,7 @@ node scripts/audit/claims-guard.mjs         # 법정 수치 표기
 수정 지시: (FAIL 시) 우선순위순 — 사실 오류 → 중복 → 풋프린트 → 구조 → 가독성
 ```
 
-FAIL 이면 content-agent 로 되돌린다. PASS 여도 머지는 운영자 `merge-approved` 라벨 승인
-이후에만 일어난다 (docs/24 P0 — 이 에이전트는 라벨을 붙이지 않는다).
+FAIL 이면 content-agent 로 되돌린다. PASS 여도 머지는 `merge-approved` 라벨 승인
+이후에만 일어난다 — 승인 주체는 운영자, 또는 루틴 일일 포스팅 한정 예외 조건 충족 시
+메인 세션의 Claude (2026-08-27, daily-post 스킬 §3-5 SSoT). **이 에이전트는 어떤 경우에도
+라벨을 붙이지 않는다** (감사자·승인자 분리).
