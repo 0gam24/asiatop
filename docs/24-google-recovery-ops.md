@@ -68,8 +68,10 @@
   - `merge`: 글 파일을 `src/content/_pruned/` 로 이동(콘텐츠 컬렉션 이탈 = 페이지·
     사이트맵·RSS 자동 제외) + `/{cluster}/{slug}/ → target 301` 리디렉션
   - `delete`: 동일 이동 + 클러스터 허브로 301
-  - `noindex`: frontmatter `noindex: true` → robots meta noindex + 사이트맵 제외
-    (페이지·RSS 는 유지 — 네이버 영향 없음)
+  - `noindex`: frontmatter `noindex: true` → **googlebot 전용** noindex meta + 사이트맵 제외
+    (페이지·RSS 는 유지, 일반 robots 메타는 index 그대로 — 네이버 Yeti 색인 보존).
+    2026-08-27 정정: 기존 구현이 범용 `<meta name="robots" noindex>` 라 네이버 색인까지
+    제거하는 결함이 있어 `<meta name="googlebot" noindex>` 로 스코프 축소 (Base.astro).
 - 리디렉션 SSoT: `scripts/prune/redirect-map.json` → `public/_redirects` 의
   관리 블록을 스크립트가 재생성 (수동 편집 금지 구간).
 - 사이트맵: noindex 글은 sitemap-0(astro.config filter)·sitemap-news·sitemap-images

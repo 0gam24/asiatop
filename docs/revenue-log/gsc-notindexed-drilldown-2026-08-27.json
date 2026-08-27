@@ -1,0 +1,1997 @@
+{
+  "source": "GSC Coverage Drilldown export 2026-08-27 (발견됨 - 현재 색인이 생성되지 않음)",
+  "generatedAt": "2026-08-27",
+  "summary": {
+    "total": 328,
+    "lastCrawl": "없음(전건 미크롤 — 발견 후 크롤 거부)",
+    "trendNote": "2026-08-15 100건 -> 2026-08-18(스팸 업데이트 당일) 328건 급증, 8/21까지 328 유지",
+    "byCluster": {
+      "tax": 75,
+      "gov-support": 48,
+      "realestate": 35,
+      "savings": 34,
+      "office-tips": 28,
+      "pension": 20,
+      "credit-loan": 19,
+      "public-services": 18,
+      "auto": 17,
+      "insurance-labor": 15,
+      "insurance-personal": 12,
+      "unemployment": 6,
+      "calendar": 1
+    },
+    "withInboundArticleLinks": 178,
+    "zeroInboundArticleLinks": 150,
+    "crawlPathNote": "고아 페이지 아님 — 전 글이 홈>클러스터 허브(전 글 렌더, 페이지네이션 없음)>글 2클릭 도달"
+  },
+  "items": [
+    {
+      "path": "/auto/car-accident-private-settlement-procedure/",
+      "cluster": "auto",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-environment-fee-5grade-old/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-environment-fee-diesel-old-exempt/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-inspection-comprehensive-vs-regular-environment/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-inspection-missed-cumulative-fine/",
+      "cluster": "auto",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-insurance-accident-rating-switch/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-insurance-premium-discount-riders/",
+      "cluster": "auto",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-insurance-self-pay-deductible/",
+      "cluster": "auto",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-lease-vs-long-rental-tco/",
+      "cluster": "auto",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-purchase-bond-refund-guide/",
+      "cluster": "auto",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-tax-auto-debit-discount-application/",
+      "cluster": "auto",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-tax-child-name-transfer-tax-saving/",
+      "cluster": "auto",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/car-tax-refund-cases/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/drivers-license-class1-online-renewal/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/korean-lemon-law-new-car-exchange/",
+      "cluster": "auto",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/parking-lot-accident-fault-ratio/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/auto/rental-car-insurance-comprehensive-self-deduction/",
+      "cluster": "auto",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/calendar/",
+      "cluster": "calendar",
+      "inboundArticleLinks": 4,
+      "isArticle": false
+    },
+    {
+      "path": "/credit-loan/beotimmok-refinance-hf-general/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/credit-card-revolving-vs-installment-rate/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/credit-inquiry-hard-vs-soft-score/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/credit-score-30day-delinquency-recovery/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/delinquency-vs-delay-interest-limit/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/didimdol-bogeumjari-general-mortgage/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/loan-repayment-method-comparison/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/misogeumyung-vs-sunshine-loan/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/mortgage-prepayment-penalty-2026/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/negative-checking-vs-credit-loan/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/personal-business-card-purchase-limit/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/pre-credit-recovery-90day-self-report/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/self-employed-credit-loan-limit-recovery-june/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/self-employed-fresh-start-fund-2026-debt-relief/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/stress-dsr-stage3-2026-loan-limit/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/student-loan-icl-mandatory-repayment-threshold/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/student-loan-income-contingent-vs-fixed/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/sunshine-loan-youth-2026/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/credit-loan/youth-jeonse-deposit-return-hug/",
+      "cluster": "credit-loan",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/child-care-allowance-2026-application-guide/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/child-support-advance-payment-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/chuseok-holiday-support-payment-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/climate-transit-card-end-vs-kpass/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/culture-nuri-card-2026-eligibility/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/daycare-fee-vs-child-care-allowance-decision/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/didimssiat-child-asset-account/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/disability-activity-support-hours/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-child-credit-august-payment/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-credit-clawback-appeal/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-credit-expansion-2026-reform/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-credit-reduced-amount-reasons/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-credit-seizure-protection-account/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-credit-semiannual-application/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/earned-income-tax-credit-late-application-d-day/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/eitc-basic-livelihood-recipient-income/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/eitc-tax-health-insurance-dependent-impact/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/emergency-welfare-livelihood-support-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/energy-cashback-summer-electricity-application/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/energy-voucher-household-member-addition-june/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/energy-voucher-summer-cooling-application/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/ev-subsidy-2026-amount-eligibility/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/family-caregiving-youth-self-care-allowance/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/health-lifestyle-incentive-program/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/high-fuel-subsidy-2026-application-d30/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/k-pass-card-comparison-modu/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/k-pass-public-transport-refund-guide/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/median-income-2026-reference/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/modu-card-local-currency-guide/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/multi-child-2-kids-benefits-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/national-scholarship-2026-2nd-semester-2nd-round/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/onnuri-gift-certificate-types-comparison/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/onnuri-gift-certificate-usage-discount/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/parental-benefit-2026-infant-cash/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/postpartum-newborn-care-service-support-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/self-reliance-youth-support-allowance/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/senior-jobs-2026-application-guide/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/seoul-youth-double-savings-account/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/single-parent-family-childcare-support/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/sokcho-minsaeng-support-fund-application/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/soldier-salary-2026-discharge-savings/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/summer-cooling-subsidy-overlap-guide/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/summer-electricity-progressive-tariff-bill-guide/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/telecom-fee-reduction-eligibility-application-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/worker-vacation-support-40man-2026/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/youth-culture-pass-2026-usage-deadline/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/youth-tomorrow-fund-5year-vs-cancel/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/gov-support/youth-tomorrow-fund-savings/",
+      "cluster": "gov-support",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/fake-3-3-contract-disguised-freelancer/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/health-insurance-special-copayment-severe/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/hearing-aid-health-insurance-subsidy/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/industrial-accident-insurance-coverage/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/infertility-treatment-leave-paid-4days/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/long-term-care-insurance-family-dependent-june-check/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/mandatory-annual-leave-employer-duty/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/national-pension-voluntary-payment/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/nhis-copayment-rate-income-tier/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/parental-leave-benefit-2025-expansion/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/salaried-extra-income-health-insurance/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/short-term-parental-leave-1week-2week/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/sickness-benefit-pilot-2026/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/spouse-miscarriage-stillbirth-leave/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-labor/workers-comp-benefit-types-guide/",
+      "cluster": "insurance-labor",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/cataract-surgery-insurance-claim/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/death-insurance-inheritance-renounce-tax/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/driver-insurance-self-cost-accident-cap/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/health-promotion-insurance-discount-steps/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/hidden-insurance-money-lookup/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/insurance-remodeling-overlap-coverage/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/manual-therapy-management-benefit-2026/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/overseas-travel-insurance-coverage-guide/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/silson-4gen-transfer-breakeven-calc/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/silson-claim-simplification-silson24/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/variable-insurance-purchase-warning/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/insurance-personal/whole-life-vs-term-insurance/",
+      "cluster": "insurance-personal",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/annual-leave-1year-vs-prorated/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/annual-leave-forced-use-response/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/annual-leave-promotion-system-mandatory/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/annual-salary-vs-pay-grade-system/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/bonus-ordinary-wage-average-calculation/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/family-care-leave-10days/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/first-year-annual-leave-11-vs-15/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/maternity-childcare-pay-comparison/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/meal-allowance-tax-exempt/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/meal-expense-receipt-tax-treatment/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/mid-year-resignation-tax-settlement/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/minimum-wage-2026/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/night-work-pay-criteria/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/ordinary-wage-calculation/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 8,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/parental-leave-return-refusal-response/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/payslip-mandatory-issuance-penalty/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/probation-period-minimum-wage-90/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/reemployment-30day-4insurance-transfer/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/resignation-notice-1month-vs-immediate/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/salary-negotiation-data-prep/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/salary-negotiation-market-data-sources/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/severance-3month-average-vs-ordinary/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/severance-interim-settlement-conditions/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/severance-mid-term-settlement-tax/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/severance-pay-calculation-method/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/unpaid-wage-substitute-payment-guide/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/weekend-work-allowance-vs-replacement/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/office-tips/weekly-holiday-allowance-calculation/",
+      "cluster": "office-tips",
+      "inboundArticleLinks": 7,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/db-vs-dc-retirement-pension/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/farmland-pension-elderly-farmer/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/housing-pension-guide/",
+      "cluster": "pension",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/irp-june-additional-payment-tax-credit-limit/",
+      "cluster": "pension",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/irp-portfolio-recommendation/",
+      "cluster": "pension",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-credit-birth-military-unemployment/",
+      "cluster": "pension",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-expected-amount-lookup/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-income-replacement-rate-43-reform/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-lump-sum-refund-repayment/",
+      "cluster": "pension",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-payment-exception-no-income/",
+      "cluster": "pension",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-reduction-while-working/",
+      "cluster": "pension",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-retroactive-payment-june-decision/",
+      "cluster": "pension",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/national-pension-voluntary-continued-payment/",
+      "cluster": "pension",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/noran-umbrella-eligibility/",
+      "cluster": "pension",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/noranusan-mutual-aid-deduction/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/nps-low-income-regional-support-2026/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/pension-savings-early-termination-tax/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/personal-pension-vs-pension-savings/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/retirement-fund-needed/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/pension/retirement-pension-etf-management/",
+      "cluster": "pension",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/bokjiro-mobile-application/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/catastrophic-medical-expense-support-2026/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/civil-24-self-vs-delegation/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/coupang-fire-delivery-delay-compensation/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/dementia-screening-treatment-cost-support-2026/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/family-relation-certificate-issuance/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/family-relation-certificate-validity-period/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/government-application-forms/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/hometax-mobile-guide/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/ic-license-vs-mobile-license-difference/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/inheritance-renounce-vs-qualified-acceptance/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/mobile-resident-card-issuance-guide/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/online-resident-transfer-procedure/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/overseas-travel-duty-free-limit-2026/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/passport-reissue-online-application-2026/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/resident-registration-5min-mobile/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/resident-registration-occupant-view-issuance/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/public-services/voice-phishing-smishing-immediate-response-payment-suspension/",
+      "cluster": "public-services",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/beotimmok-jeonse-loan/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/capital-gains-tax-june-seller-aug-31-prep/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/capital-gains-tax-june-seller-document-organization/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/commercial-premium-recovery-landlord-interference/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/deposit-return-dispute-tenancy-injunction/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/didimdol-vs-bogeumjari-comparison/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/housing-subscription-ineligible-rewin-restriction/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/jeonse-early-move-brokerage-fee/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/jeonse-eviction-fund-loan/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/jeonse-fraud-deposit-risk-check/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/jeonse-fraud-victim-support-priority-purchase/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/jeonse-right-registration-vs-fixed-date/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/landlord-unpaid-tax-inspection-tenant-2026/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/lease-registration-order-deposit-protection/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/long-term-repair-reserve-refund-tenant/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/marriage-combined-household-1house-cgt-exemption/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/mortgage-registration-tax-cost/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/newborn-special-supply-private-housing-2026/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/newlywed-didimdol-june-vs-july-decision/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/officetel-housing-count-tax-subscription/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-gift-acquisition-tax/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-d1-june-1-24h-final/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-d2-june-1-final-checklist/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-deed-d1-final-checklist/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-joint-vs-single-ownership-spouse/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-june-buyer-june-2-deed-guide/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-may-30-deed-completion-d8/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-nov-dec-payment-simulation/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-rental-housing-7-8-month-prep/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/property-tax-rental-housing-exclusion-application/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/sangsaeng-landlord-capital-gains-tax-2026/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/temporary-two-house-cgt-exemption/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/unranked-subscription-homeless-only-2026/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/youth-housing-dream-subscription-account/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/realestate/youth-jeonse-guarantee-fee-support-refund/",
+      "cluster": "realestate",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/bond-etf-vs-direct-tax-liquidity/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/cma-rp-vs-mmf-comparison/",
+      "cluster": "savings",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/deposit-protection-covered-vs-not/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/deposit-protection-limit-100million/",
+      "cluster": "savings",
+      "inboundArticleLinks": 6,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/emergency-fund-how-much-parking/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/foreign-currency-deposit-tax/",
+      "cluster": "savings",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/gold-investment-methods-tax/",
+      "cluster": "savings",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/hope-savings-leap-account-rollover/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/investment-loss-offset-bond-stock-etf/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/isa-account-comparison/",
+      "cluster": "savings",
+      "inboundArticleLinks": 8,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/isa-maturity-next-product-comparison/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/japan-travel-yen-exchange-cheapest/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/kisa-individual-investment-tax-deduction/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/korea-average-net-worth-2025/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/military-readiness-savings/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/monthly-installment-etf-guide/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/mutual-finance-tax-free-deposit-limit/",
+      "cluster": "savings",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/noranusan-mutual-aid-june-additional-payment/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/pension-savings-fund-vs-insurance/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/pension-savings-insurance-fund-bank/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/pension-savings-vs-general-etf/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/pension-savings-vs-irp/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/productive-finance-isa-2026-tax-reform/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/super-isa-2026-limit-expansion/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/tax-free-comprehensive-savings-2026/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/term-deposit-vs-installment-savings/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/virtual-asset-crypto-tax-2027-start/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-future-savings-bank-preferential-rate/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-future-savings-overlap-leap-isa/",
+      "cluster": "savings",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-hope-savings-maturity-strategy/",
+      "cluster": "savings",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-housing-dream-savings-account/",
+      "cluster": "savings",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-housing-savings-preferential-vs-regular/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-leap-account-non-applicants-june-final-check/",
+      "cluster": "savings",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/savings/youth-leap-account-simulation/",
+      "cluster": "savings",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/burdened-gift-tax-capital-gains/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/business-income-vs-other-income-classification/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/capital-gains-carryover-taxation-gift/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/capital-gains-long-term-holding-deduction/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/child-tax-credit-and-allowance-may-filing/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/child-tax-credit-increase-2026-reform/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/child-tax-deduction-additional-refund-june-recovery/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/company-childbirth-support-tax-free-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-5-year-audit-risk/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-amended-return-correction/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-correction-filing-june-error-recovery/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-d-day-may-31/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-d1-final-hour-checklist/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-d8-final-week-action-plan/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-estimated-filing/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-first-24h-after-deadline/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-hometax-simulator-d9/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-installment-payment/",
+      "cluster": "tax",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-may-31-system-risk/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-may-filing/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-payment-methods-comparison/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-penalty-calculation-d9/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-refund-account-registration/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-refund-first-batch-june/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/comprehensive-income-tax-refund-recycle-strategy/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/credit-card-deduction-calculation/",
+      "cluster": "tax",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/credit-card-deduction-child-reform-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/deemed-rental-income-deposit-tax/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/dependent-deduction-income-threshold-300m-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/education-expense-tax-credit/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/elementary-arts-sports-academy-tax-credit-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/family-loan-agreement-gift-tax/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/first-time-business-tax-filer-guide-d3/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/foreign-income-comprehensive-tax-d7/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/freelancer-3-3-percent-comprehensive-tax-d5/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/fund-source-investigation-gift-presumption-response/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/gym-pool-culture-expense-deduction-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/high-dividend-separate-taxation-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/housing-rent-lease-deduction-expansion-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/housing-subscription-income-deduction-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/hynix-bonus-tax-take-home-calculation/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/income-tax-vs-yearend-tax/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/inheritance-acquisition-tax-reform-explainer/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/inheritance-tax-filing-deadline-process/",
+      "cluster": "tax",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/inherited-house-capital-gains-acquisition-value/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/july-tax-calendar-self-employed/",
+      "cluster": "tax",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/june-business-income-organization-next-year/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/june-first-week-tax-post-deadline-guide/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/local-income-tax-june-filing-after-comprehensive/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/long-term-mortgage-interest-deduction-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/marriage-tax-credit-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/may-29-last-business-day-deadline-actions/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/medical-expense-tax-credit-missed/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/monthly-rent-tax-credit-application/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/noran-umbrella-may-deadline-strategy/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/parent-child-pre-gift-5000man-tax-free-june/",
+      "cluster": "tax",
+      "inboundArticleLinks": 5,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/parent-living-expense-allowance-gift-tax/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/self-employed-4-major-insurance-after-tax-filing/",
+      "cluster": "tax",
+      "inboundArticleLinks": 6,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/self-employed-closure-vs-suspension-decision/",
+      "cluster": "tax",
+      "inboundArticleLinks": 3,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/self-employed-july-insurance-d29-installment/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/simple-vs-standard-expense-rate-selection/",
+      "cluster": "tax",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/simplified-vat-excluded-area-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/tax-agent-vs-self-filing-decision-d5/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/tax-reform-2026-real-estate-residence-based/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/tax-reform-2026-summary/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/vat-1q-sales-june-organization-start/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/vat-filing-guide/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/vat-filing-july-25-d2month-preparation/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/vat-preliminary-notice-self-employed/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/vat-refund-timing-lookup-2026/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/vat-simple-vs-general-taxation-selection/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/yearend-missed-deduction-may-refund-procedure/",
+      "cluster": "tax",
+      "inboundArticleLinks": 2,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/yearend-tax-2026-checklist/",
+      "cluster": "tax",
+      "inboundArticleLinks": 4,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/yearend-tax-preview-service-guide/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/tax/yearend-tax-refund-missed-june-correction-claim/",
+      "cluster": "tax",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/unemployment/business-closure-unemployment-eligibility/",
+      "cluster": "unemployment",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/unemployment/departure-confirmation-employer-refusal/",
+      "cluster": "unemployment",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/unemployment/departure-confirmation-issuance-procedure-checklist/",
+      "cluster": "unemployment",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/unemployment/national-employment-support-2026/",
+      "cluster": "unemployment",
+      "inboundArticleLinks": 1,
+      "isArticle": true
+    },
+    {
+      "path": "/unemployment/unemployment-overseas-travel-report/",
+      "cluster": "unemployment",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    },
+    {
+      "path": "/unemployment/unemployment-self-employed-registration/",
+      "cluster": "unemployment",
+      "inboundArticleLinks": 0,
+      "isArticle": true
+    }
+  ]
+}

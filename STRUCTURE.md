@@ -11,7 +11,7 @@
 - 사이트 이름: 머니룩 (MoneyLook)
 - 역할: 자매 (한국 직장인·청년 생활금융 가이드)
 - 메인: smartdatashop.kr 의 자매
-- repo: github.com/0gam24/moneylook
+- repo: github.com/0gam24/asiatop (구 moneylook, 2026-08-27 변경)
 - 사업자: 스마트데이터샵 (대표 김준혁, 사업자번호 406-06-34485)
 - 단일 문의 채널: smartdatashop@gmail.com
 

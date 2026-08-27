@@ -1,0 +1,213 @@
+{
+  "pulledAt": "2026-08-26T05:57:32.409Z",
+  "site": "asiatop.co.kr",
+  "account": "accounts/pub-7830821732287404",
+  "policyIssues": [],
+  "last7days": [
+    {
+      "DATE": "2026-08-19",
+      "ESTIMATED_EARNINGS": "24.05",
+      "PAGE_VIEWS": "2900",
+      "IMPRESSIONS": "16875",
+      "CLICKS": "203"
+    },
+    {
+      "DATE": "2026-08-20",
+      "ESTIMATED_EARNINGS": "31.37",
+      "PAGE_VIEWS": "3455",
+      "IMPRESSIONS": "20173",
+      "CLICKS": "278"
+    },
+    {
+      "DATE": "2026-08-21",
+      "ESTIMATED_EARNINGS": "24.74",
+      "PAGE_VIEWS": "3103",
+      "IMPRESSIONS": "17687",
+      "CLICKS": "236"
+    },
+    {
+      "DATE": "2026-08-22",
+      "ESTIMATED_EARNINGS": "23.76",
+      "PAGE_VIEWS": "2291",
+      "IMPRESSIONS": "12201",
+      "CLICKS": "182"
+    },
+    {
+      "DATE": "2026-08-23",
+      "ESTIMATED_EARNINGS": "20.68",
+      "PAGE_VIEWS": "2393",
+      "IMPRESSIONS": "13323",
+      "CLICKS": "158"
+    },
+    {
+      "DATE": "2026-08-24",
+      "ESTIMATED_EARNINGS": "34.04",
+      "PAGE_VIEWS": "3969",
+      "IMPRESSIONS": "22768",
+      "CLICKS": "282"
+    },
+    {
+      "DATE": "2026-08-25",
+      "ESTIMATED_EARNINGS": "30.17",
+      "PAGE_VIEWS": "4105",
+      "IMPRESSIONS": "22367",
+      "CLICKS": "278"
+    }
+  ],
+  "adUnits_today": [],
+  "adUnits_yesterday": [
+    {
+      "AD_UNIT_NAME": "moneylook-display",
+      "ESTIMATED_EARNINGS": "0.01",
+      "IMPRESSIONS": "30",
+      "ACTIVE_VIEW_VIEWABILITY": "0.3214",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-in-article",
+      "ESTIMATED_EARNINGS": "0.03",
+      "IMPRESSIONS": "83",
+      "ACTIVE_VIEW_VIEWABILITY": "0.7654",
+      "CLICKS": "3"
+    }
+  ],
+  "domains_today": [
+    {
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "0.56",
+      "PAGE_VIEWS": "174",
+      "IMPRESSIONS": "1092"
+    },
+    {
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "20.77",
+      "PAGE_VIEWS": "2298",
+      "IMPRESSIONS": "12651"
+    },
+    {
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.33",
+      "PAGE_VIEWS": "68",
+      "IMPRESSIONS": "200"
+    },
+    {
+      "DOMAIN_NAME": "donnavi.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0"
+    },
+    {
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "7",
+      "IMPRESSIONS": "6"
+    },
+    {
+      "DOMAIN_NAME": "smartdatashop.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "2",
+      "IMPRESSIONS": "0"
+    }
+  ],
+  "gscProperty": "sc-domain:asiatop.co.kr",
+  "gscRange": {
+    "start": "2026-08-18",
+    "end": "2026-08-24"
+  },
+  "gscDaily": [
+    {
+      "date": "2026-08-18",
+      "clicks": 1,
+      "impressions": 185,
+      "ctr": 0.005405405405405406,
+      "position": 4.702702702702703
+    },
+    {
+      "date": "2026-08-19",
+      "clicks": 6,
+      "impressions": 141,
+      "ctr": 0.0425531914893617,
+      "position": 5.879432624113475
+    },
+    {
+      "date": "2026-08-20",
+      "clicks": 1,
+      "impressions": 103,
+      "ctr": 0.009708737864077669,
+      "position": 5.747572815533981
+    },
+    {
+      "date": "2026-08-21",
+      "clicks": 2,
+      "impressions": 65,
+      "ctr": 0.03076923076923077,
+      "position": 7.984615384615385
+    },
+    {
+      "date": "2026-08-22",
+      "clicks": 2,
+      "impressions": 32,
+      "ctr": 0.0625,
+      "position": 5.59375
+    },
+    {
+      "date": "2026-08-23",
+      "clicks": 1,
+      "impressions": 93,
+      "ctr": 0.010752688172043012,
+      "position": 6.301075268817204
+    }
+  ],
+  "gscTopQueries": [
+    {
+      "query": "계약직 계약만료 실업급여",
+      "clicks": 1,
+      "impressions": 4
+    },
+    {
+      "query": "대학생 국민연금 임의가입",
+      "clicks": 1,
+      "impressions": 1
+    },
+    {
+      "query": "인터넷등기소 확정일자 모바일",
+      "clicks": 1,
+      "impressions": 9
+    },
+    {
+      "query": "전입신고 과태료",
+      "clicks": 1,
+      "impressions": 18
+    },
+    {
+      "query": "전입신고 벌금",
+      "clicks": 1,
+      "impressions": 12
+    },
+    {
+      "query": "청년도약계좌 청년isa",
+      "clicks": 1,
+      "impressions": 1
+    },
+    {
+      "query": "\"교통상해진단금\" 필요서류 진단서",
+      "clicks": 0,
+      "impressions": 1
+    },
+    {
+      "query": "\"운전자보험\" \"교통상해진단금\" \"진단서\"",
+      "clicks": 0,
+      "impressions": 2
+    },
+    {
+      "query": "5인미만 야간수당",
+      "clicks": 0,
+      "impressions": 1
+    },
+    {
+      "query": "6개월 계약직 실업급여",
+      "clicks": 0,
+      "impressions": 1
+    }
+  ]
+}

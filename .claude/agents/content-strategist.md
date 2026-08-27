@@ -50,6 +50,10 @@ tools:
      ④변경사항 강조 ⑤행동 안내). "~정리했습니다" 류 종결 금지.
    - `grep -h "^description:" src/content/articles/*.mdx | tail -20` 으로 최근 발행분과
      종결 어미가 겹치지 않는지 확인.
+6. **내부링크 후보 선정** (점진 보강 — docs/24): 실존 slug 3~5개를 고를 때, 문맥이 자연스러운
+   범위에서 `docs/revenue-log/gsc-notindexed-drilldown-2026-08-27.json` 의
+   `inboundArticleLinks: 0` 글(내부링크 고립 글)을 우선 포함한다. 사이트와이드 링크 블록·
+   억지 링크는 금지 — 본문 문맥 링크만.
 
 ## 반환 브리프 형식
 
