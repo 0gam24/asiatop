@@ -56,10 +56,10 @@ brew install bfg   # macOS
 # 또는 https://rtyley.github.io/bfg-repo-cleaner/
 
 # 1. 클린 클론
-git clone --mirror https://github.com/0gam24/moneylook.git
+git clone --mirror https://github.com/0gam24/asiatop.git
 
 # 2. 시크릿 제거
-bfg --replace-text passwords.txt moneylook.git
+bfg --replace-text passwords.txt asiatop.git
 
 # 3. 푸시 (force)
 cd moneylook.git

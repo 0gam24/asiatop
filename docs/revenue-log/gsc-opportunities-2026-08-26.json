@@ -1,0 +1,306 @@
+{
+  "pulledAt": "2026-08-26T05:58:12.905Z",
+  "range": {
+    "start": "2026-07-28",
+    "end": "2026-08-24"
+  },
+  "striking": [
+    {
+      "query": "등기우편 종류",
+      "page": "/public-services/registered-mail-vs-regular-effect/",
+      "position": 11.2,
+      "impressions": 97,
+      "clicks": 0,
+      "cluster": "public-services",
+      "cpcTier": "하"
+    },
+    {
+      "query": "65세 이상 실업급여 적용 여부",
+      "page": "/unemployment/over-65-employment-insurance-voluntary/",
+      "position": 11.6,
+      "impressions": 56,
+      "clicks": 0,
+      "cluster": "unemployment",
+      "cpcTier": "중"
+    },
+    {
+      "query": "신분증재발급 준비물",
+      "page": "/public-services/id-card-lost-reissue-procedure/",
+      "position": 11.1,
+      "impressions": 44,
+      "clicks": 0,
+      "cluster": "public-services",
+      "cpcTier": "하"
+    },
+    {
+      "query": "주민등록증 분실신고 하는 법",
+      "page": "/public-services/id-card-lost-reissue-procedure/",
+      "position": 12.8,
+      "impressions": 44,
+      "clicks": 0,
+      "cluster": "public-services",
+      "cpcTier": "하"
+    },
+    {
+      "query": "일용직 4대보험 제외 대상",
+      "page": "/insurance-labor/daily-worker-4insurance-1month-exempt/",
+      "position": 11,
+      "impressions": 40,
+      "clicks": 0,
+      "cluster": "insurance-labor",
+      "cpcTier": "중"
+    },
+    {
+      "query": "건강보험료 인상",
+      "page": "/insurance-labor/health-insurance-premium-spike-adjustment/",
+      "position": 12.8,
+      "impressions": 30,
+      "clicks": 1,
+      "cluster": "insurance-labor",
+      "cpcTier": "중"
+    }
+  ],
+  "ctrGap": [
+    {
+      "query": "인터넷등기소 확정일자 모바일",
+      "page": "/public-services/lease-fixed-date-mobile-vs-office/",
+      "position": 3.8,
+      "impressions": 1078,
+      "ctr": "1.95%",
+      "expected": "5%"
+    },
+    {
+      "query": "우편 등기 뜻",
+      "page": "/public-services/registered-mail-vs-regular-effect/",
+      "position": 6.9,
+      "impressions": 619,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "등기우편 뜻",
+      "page": "/public-services/registered-mail-vs-regular-effect/",
+      "position": 6.4,
+      "impressions": 587,
+      "ctr": "0.34%",
+      "expected": "3%"
+    },
+    {
+      "query": "국민연금 임의계속가입 장단점",
+      "page": "/insurance-labor/nps-additional-vs-voluntary-before-60/",
+      "position": 6.9,
+      "impressions": 568,
+      "ctr": "0.88%",
+      "expected": "3%"
+    },
+    {
+      "query": "재산세 카드 혜택",
+      "page": "/tax/property-tax-july-card-payment-benefits/",
+      "position": 7.9,
+      "impressions": 548,
+      "ctr": "1.28%",
+      "expected": "3%"
+    },
+    {
+      "query": "ic 운전면허증 차이",
+      "page": "/public-services/drivers-license-mobile-ic-vs-qr/",
+      "position": 8.1,
+      "impressions": 521,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "6개월 미만 실업급여",
+      "page": "/unemployment/short-term-worker-unemployment-eligibility/",
+      "position": 6.5,
+      "impressions": 481,
+      "ctr": "0.21%",
+      "expected": "3%"
+    },
+    {
+      "query": "6개월 계약직 실업급여",
+      "page": "/unemployment/short-term-worker-unemployment-eligibility/",
+      "position": 6.1,
+      "impressions": 479,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "지방세 카드 납부 혜택 2026",
+      "page": "/tax/property-tax-july-card-payment-benefits/",
+      "position": 8.1,
+      "impressions": 459,
+      "ctr": "0.65%",
+      "expected": "3%"
+    },
+    {
+      "query": "적금 만기 해지 안하면",
+      "page": "/savings/installment-maturity-auto-vs-cancel/",
+      "position": 5.2,
+      "impressions": 372,
+      "ctr": "0%",
+      "expected": "5%"
+    }
+  ],
+  "rising": [],
+  "cannibal": [
+    {
+      "query": "전입신고 늦게하면 과태료",
+      "totalImpressions": 77,
+      "pages": [
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 3.4,
+          "impressions": 62
+        },
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 10.2,
+          "impressions": 15
+        }
+      ]
+    },
+    {
+      "query": "전입신고 2주 지나면",
+      "totalImpressions": 73,
+      "pages": [
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 4.9,
+          "impressions": 40
+        },
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 6.3,
+          "impressions": 33
+        }
+      ]
+    },
+    {
+      "query": "전입신고 늦게 하면 과태료",
+      "totalImpressions": 69,
+      "pages": [
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 3.4,
+          "impressions": 57
+        },
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 9.5,
+          "impressions": 12
+        }
+      ]
+    },
+    {
+      "query": "국세 납부 신용카드 추천 2026",
+      "totalImpressions": 65,
+      "pages": [
+        {
+          "page": "/tax/tax-payment-credit-vs-check-card-fee/",
+          "position": 6.1,
+          "impressions": 36
+        },
+        {
+          "page": "/tax/property-tax-july-card-payment-benefits/",
+          "position": 6.8,
+          "impressions": 29
+        }
+      ]
+    },
+    {
+      "query": "계약 갱신청구권 5% 인상 거부",
+      "totalImpressions": 62,
+      "pages": [
+        {
+          "page": "/realestate/jeonse-renewal-claim-5percent-cap/",
+          "position": 8.2,
+          "impressions": 22
+        },
+        {
+          "page": "/realestate/deposit-implicit-renewal-5percent/",
+          "position": 7.2,
+          "impressions": 40
+        }
+      ]
+    },
+    {
+      "query": "전입신고 안하면 과태료",
+      "totalImpressions": 50,
+      "pages": [
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 10.3,
+          "impressions": 13
+        },
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 5.9,
+          "impressions": 37
+        }
+      ]
+    }
+  ],
+  "clusterAgg": {
+    "public-services": {
+      "clicks": 116,
+      "impressions": 16163,
+      "cpcTier": "하"
+    },
+    "unemployment": {
+      "clicks": 61,
+      "impressions": 5970,
+      "cpcTier": "중"
+    },
+    "tax": {
+      "clicks": 94,
+      "impressions": 6559,
+      "cpcTier": "상"
+    },
+    "office-tips": {
+      "clicks": 11,
+      "impressions": 1530,
+      "cpcTier": "중"
+    },
+    "pension": {
+      "clicks": 30,
+      "impressions": 1303,
+      "cpcTier": "상"
+    },
+    "realestate": {
+      "clicks": 66,
+      "impressions": 3544,
+      "cpcTier": "상"
+    },
+    "credit-loan": {
+      "clicks": 14,
+      "impressions": 1258,
+      "cpcTier": "최상"
+    },
+    "savings": {
+      "clicks": 50,
+      "impressions": 2551,
+      "cpcTier": "상"
+    },
+    "insurance-labor": {
+      "clicks": 49,
+      "impressions": 4754,
+      "cpcTier": "중"
+    },
+    "auto": {
+      "clicks": 18,
+      "impressions": 1581,
+      "cpcTier": "상"
+    },
+    "insurance-personal": {
+      "clicks": 6,
+      "impressions": 663,
+      "cpcTier": "최상"
+    },
+    "gov-support": {
+      "clicks": 6,
+      "impressions": 1777,
+      "cpcTier": "중"
+    }
+  }
+}

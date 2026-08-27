@@ -1,0 +1,230 @@
+{
+  "pulledAt": "2026-07-10T05:31:49.430Z",
+  "site": "asiatop.co.kr",
+  "account": "accounts/pub-7830821732287404",
+  "policyIssues": [],
+  "last7days": [
+    {
+      "DATE": "2026-07-03",
+      "ESTIMATED_EARNINGS": "3.53",
+      "PAGE_VIEWS": "719",
+      "IMPRESSIONS": "4362",
+      "CLICKS": "80"
+    },
+    {
+      "DATE": "2026-07-04",
+      "ESTIMATED_EARNINGS": "2.46",
+      "PAGE_VIEWS": "479",
+      "IMPRESSIONS": "2606",
+      "CLICKS": "41"
+    },
+    {
+      "DATE": "2026-07-05",
+      "ESTIMATED_EARNINGS": "5.83",
+      "PAGE_VIEWS": "585",
+      "IMPRESSIONS": "3683",
+      "CLICKS": "77"
+    },
+    {
+      "DATE": "2026-07-06",
+      "ESTIMATED_EARNINGS": "5.40",
+      "PAGE_VIEWS": "869",
+      "IMPRESSIONS": "5173",
+      "CLICKS": "112"
+    },
+    {
+      "DATE": "2026-07-07",
+      "ESTIMATED_EARNINGS": "7.41",
+      "PAGE_VIEWS": "1062",
+      "IMPRESSIONS": "6131",
+      "CLICKS": "92"
+    },
+    {
+      "DATE": "2026-07-08",
+      "ESTIMATED_EARNINGS": "5.49",
+      "PAGE_VIEWS": "903",
+      "IMPRESSIONS": "5272",
+      "CLICKS": "115"
+    },
+    {
+      "DATE": "2026-07-09",
+      "ESTIMATED_EARNINGS": "5.58",
+      "PAGE_VIEWS": "969",
+      "IMPRESSIONS": "5371",
+      "CLICKS": "111"
+    }
+  ],
+  "adUnits_today": [
+    {
+      "AD_UNIT_NAME": "2026",
+      "ESTIMATED_EARNINGS": "0.13",
+      "IMPRESSIONS": "26",
+      "ACTIVE_VIEW_VIEWABILITY": "0.7308",
+      "CLICKS": "1"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-display",
+      "ESTIMATED_EARNINGS": "0.03",
+      "IMPRESSIONS": "82",
+      "ACTIVE_VIEW_VIEWABILITY": "0.1829",
+      "CLICKS": "0"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-in-article",
+      "ESTIMATED_EARNINGS": "0.13",
+      "IMPRESSIONS": "210",
+      "ACTIVE_VIEW_VIEWABILITY": "0.6762",
+      "CLICKS": "5"
+    }
+  ],
+  "adUnits_yesterday": [
+    {
+      "AD_UNIT_NAME": "2026",
+      "ESTIMATED_EARNINGS": "0.04",
+      "IMPRESSIONS": "31",
+      "ACTIVE_VIEW_VIEWABILITY": "0.9333",
+      "CLICKS": "1"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-display",
+      "ESTIMATED_EARNINGS": "0.09",
+      "IMPRESSIONS": "261",
+      "ACTIVE_VIEW_VIEWABILITY": "0.2713",
+      "CLICKS": "3"
+    },
+    {
+      "AD_UNIT_NAME": "moneylook-in-article",
+      "ESTIMATED_EARNINGS": "0.45",
+      "IMPRESSIONS": "645",
+      "ACTIVE_VIEW_VIEWABILITY": "0.6802",
+      "CLICKS": "15"
+    }
+  ],
+  "domains_today": [
+    {
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "1.68",
+      "PAGE_VIEWS": "283",
+      "IMPRESSIONS": "1695"
+    },
+    {
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "0.21",
+      "PAGE_VIEWS": "71",
+      "IMPRESSIONS": "380"
+    },
+    {
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.33",
+      "PAGE_VIEWS": "19",
+      "IMPRESSIONS": "67"
+    },
+    {
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "6",
+      "IMPRESSIONS": "10"
+    }
+  ],
+  "gscProperty": "sc-domain:asiatop.co.kr",
+  "gscRange": {
+    "start": "2026-07-02",
+    "end": "2026-07-08"
+  },
+  "gscDaily": [
+    {
+      "date": "2026-07-02",
+      "clicks": 104,
+      "impressions": 8680,
+      "ctr": 0.011981566820276499,
+      "position": 7.2536866359447005
+    },
+    {
+      "date": "2026-07-03",
+      "clicks": 83,
+      "impressions": 6300,
+      "ctr": 0.013174603174603174,
+      "position": 7.179523809523809
+    },
+    {
+      "date": "2026-07-04",
+      "clicks": 69,
+      "impressions": 6444,
+      "ctr": 0.010707635009310988,
+      "position": 7.166356300434512
+    },
+    {
+      "date": "2026-07-05",
+      "clicks": 161,
+      "impressions": 11585,
+      "ctr": 0.013897280966767372,
+      "position": 7.047820457488132
+    },
+    {
+      "date": "2026-07-06",
+      "clicks": 157,
+      "impressions": 12836,
+      "ctr": 0.012231224680585852,
+      "position": 7.089903396696791
+    },
+    {
+      "date": "2026-07-07",
+      "clicks": 166,
+      "impressions": 11269,
+      "ctr": 0.014730677078711509,
+      "position": 7.005058124057148
+    }
+  ],
+  "gscTopQueries": [
+    {
+      "query": "국세 납부 신용카드 추천 2026",
+      "clicks": 10,
+      "impressions": 30
+    },
+    {
+      "query": "재산세 카드 혜택",
+      "clicks": 10,
+      "impressions": 25
+    },
+    {
+      "query": "지방세 카드 납부 혜택 2026",
+      "clicks": 8,
+      "impressions": 31
+    },
+    {
+      "query": "인터넷등기소 확정일자 모바일",
+      "clicks": 7,
+      "impressions": 56
+    },
+    {
+      "query": "지방세 실적 인정 카드 2026",
+      "clicks": 7,
+      "impressions": 30
+    },
+    {
+      "query": "확정일자 모바일",
+      "clicks": 7,
+      "impressions": 26
+    },
+    {
+      "query": "청년형 isa 청년도약계좌 중복",
+      "clicks": 5,
+      "impressions": 11
+    },
+    {
+      "query": "모바일 확정일자",
+      "clicks": 4,
+      "impressions": 6
+    },
+    {
+      "query": "신생아 특례대출 갈아 타기",
+      "clicks": 4,
+      "impressions": 26
+    },
+    {
+      "query": "실업급여 연장",
+      "clicks": 4,
+      "impressions": 39
+    }
+  ]
+}

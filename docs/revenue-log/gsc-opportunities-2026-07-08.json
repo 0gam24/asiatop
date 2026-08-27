@@ -1,0 +1,626 @@
+{
+  "pulledAt": "2026-07-08T07:08:20.192Z",
+  "range": {
+    "start": "2026-06-09",
+    "end": "2026-07-06"
+  },
+  "striking": [
+    {
+      "query": "전입신고 기간",
+      "page": "/public-services/move-in-14day-deadline-fine/",
+      "position": 11.4,
+      "impressions": 50,
+      "clicks": 0,
+      "cluster": "public-services",
+      "cpcTier": "하"
+    }
+  ],
+  "ctrGap": [
+    {
+      "query": "인터넷등기소 확정일자 모바일",
+      "page": "/public-services/lease-fixed-date-mobile-vs-office/",
+      "position": 4.7,
+      "impressions": 785,
+      "ctr": "2.04%",
+      "expected": "5%"
+    },
+    {
+      "query": "청년도약계좌 청년 isa 중복",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 2.8,
+      "impressions": 735,
+      "ctr": "1.22%",
+      "expected": "8%"
+    },
+    {
+      "query": "청년 isa, 청년도약계좌 중복",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 2.9,
+      "impressions": 446,
+      "ctr": "1.79%",
+      "expected": "8%"
+    },
+    {
+      "query": "청년isa 청년도약계좌",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 3.1,
+      "impressions": 436,
+      "ctr": "3.21%",
+      "expected": "8%"
+    },
+    {
+      "query": "일반우편 등기우편 차이",
+      "page": "/public-services/registered-mail-vs-regular-effect/",
+      "position": 6.6,
+      "impressions": 420,
+      "ctr": "0%",
+      "expected": "3%"
+    },
+    {
+      "query": "청년미래적금 isa 중복",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 7.6,
+      "impressions": 380,
+      "ctr": "1.32%",
+      "expected": "3%"
+    },
+    {
+      "query": "6개월 미만 실업급여",
+      "page": "/unemployment/short-term-worker-unemployment-eligibility/",
+      "position": 6.4,
+      "impressions": 318,
+      "ctr": "0.31%",
+      "expected": "3%"
+    },
+    {
+      "query": "청년형 isa 청년도약계좌",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 5.2,
+      "impressions": 263,
+      "ctr": "1.52%",
+      "expected": "5%"
+    },
+    {
+      "query": "청년도약계좌 청년isa 중복",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 3,
+      "impressions": 252,
+      "ctr": "2.78%",
+      "expected": "8%"
+    },
+    {
+      "query": "청년미래적금, 청년 isa 중복",
+      "page": "/savings/youth-leap-vs-isa-dual-strategy/",
+      "position": 7.2,
+      "impressions": 221,
+      "ctr": "0%",
+      "expected": "3%"
+    }
+  ],
+  "rising": [
+    {
+      "query": "자동차세 환급",
+      "imp7": 53,
+      "impPrev7": 0,
+      "clicks7": 2
+    },
+    {
+      "query": "자동차 세 무이자 할부 2026",
+      "imp7": 48,
+      "impPrev7": 16,
+      "clicks7": 3
+    },
+    {
+      "query": "청년미래적금 대기중",
+      "imp7": 42,
+      "impPrev7": 0,
+      "clicks7": 1
+    },
+    {
+      "query": "2026 고용보험 실업급여 보험료율 근로자 0.9 공식",
+      "imp7": 42,
+      "impPrev7": 2,
+      "clicks7": 0
+    },
+    {
+      "query": "지방세 카드 납부 혜택 2026",
+      "imp7": 39,
+      "impPrev7": 14,
+      "clicks7": 11
+    },
+    {
+      "query": "국민연금 임의계속가입 장단점",
+      "imp7": 33,
+      "impPrev7": 15,
+      "clicks7": 2
+    },
+    {
+      "query": "실업급여 연장",
+      "imp7": 32,
+      "impPrev7": 2,
+      "clicks7": 3
+    },
+    {
+      "query": "국민연금 임의가입 장단점",
+      "imp7": 31,
+      "impPrev7": 10,
+      "clicks7": 0
+    },
+    {
+      "query": "책임보험 종합보험 차이",
+      "imp7": 30,
+      "impPrev7": 4,
+      "clicks7": 0
+    },
+    {
+      "query": "실업급여를 받을 수 있는 고용보험 가입 조건이 어떻게 되는지 알려줘",
+      "imp7": 29,
+      "impPrev7": 0,
+      "clicks7": 0
+    },
+    {
+      "query": "2026 고용보험 실업급여 근로자 부담 0.9% 공식",
+      "imp7": 28,
+      "impPrev7": 10,
+      "clicks7": 0
+    },
+    {
+      "query": "자동차세 무이자할부",
+      "imp7": 27,
+      "impPrev7": 3,
+      "clicks7": 0
+    },
+    {
+      "query": "자동차세 무이자",
+      "imp7": 26,
+      "impPrev7": 2,
+      "clicks7": 1
+    },
+    {
+      "query": "고용보험 실업급여 보험료율 근로자 0.9 2026 고용노동부",
+      "imp7": 25,
+      "impPrev7": 9,
+      "clicks7": 0
+    },
+    {
+      "query": "재산세 카드 납부",
+      "imp7": 24,
+      "impPrev7": 2,
+      "clicks7": 1
+    }
+  ],
+  "cannibal": [
+    {
+      "query": "\"교통상해진단금\" 필요서류 진단서",
+      "totalImpressions": 125,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.8,
+          "impressions": 23
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 3.8,
+          "impressions": 38
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 3,
+          "impressions": 54
+        }
+      ]
+    },
+    {
+      "query": "\"운전자보험\" \"교통상해진단금\" \"진단서\"",
+      "totalImpressions": 116,
+      "pages": [
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.8,
+          "impressions": 36
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 2.9,
+          "impressions": 69
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 진단서 site:*.co.kr",
+      "totalImpressions": 96,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 2.1,
+          "impressions": 16
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1,
+          "impressions": 32
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 1.9,
+          "impressions": 40
+        }
+      ]
+    },
+    {
+      "query": "site:*.co.kr \"교통상해진단금\" \"진단서\"",
+      "totalImpressions": 94,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 2,
+          "impressions": 18
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1,
+          "impressions": 20
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 1.8,
+          "impressions": 48
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" \"진단서\" 보험사",
+      "totalImpressions": 90,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.6,
+          "impressions": 19
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.6,
+          "impressions": 19
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 3.2,
+          "impressions": 38
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" \"진단서\"",
+      "totalImpressions": 77,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.6,
+          "impressions": 16
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.8,
+          "impressions": 30
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 3.5,
+          "impressions": 26
+        }
+      ]
+    },
+    {
+      "query": "자동차 세 무이자 할부 2026",
+      "totalImpressions": 70,
+      "pages": [
+        {
+          "page": "/auto/car-tax-d11-card-installment-latest-events/",
+          "position": 5.3,
+          "impressions": 57
+        },
+        {
+          "page": "/auto/car-tax-june-1q-payment-card-cashback/",
+          "position": 10.1,
+          "impressions": 13
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 약관 진단서",
+      "totalImpressions": 67,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.5,
+          "impressions": 11
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.5,
+          "impressions": 11
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 2.8,
+          "impressions": 33
+        }
+      ]
+    },
+    {
+      "query": "전입신고 2주 지나면",
+      "totalImpressions": 52,
+      "pages": [
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 5.6,
+          "impressions": 41
+        },
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 7.2,
+          "impressions": 11
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 청구서류 진단서",
+      "totalImpressions": 49,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.6,
+          "impressions": 11
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 2.6,
+          "impressions": 14
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 3.9,
+          "impressions": 16
+        }
+      ]
+    },
+    {
+      "query": "근로복지공단 고용보험료율 실업급여 근로자 0.9 2026",
+      "totalImpressions": 45,
+      "pages": [
+        {
+          "page": "/insurance-labor/four-insurance-rate-2026-summary/",
+          "position": 4.4,
+          "impressions": 30
+        },
+        {
+          "page": "/unemployment/platform-worker-employment-insurance-mandatory/",
+          "position": 10.5,
+          "impressions": 15
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 보험금 청구 서류",
+      "totalImpressions": 41,
+      "pages": [
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 6.8,
+          "impressions": 14
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 2.7,
+          "impressions": 15
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" \"진단서\" 보험금 청구",
+      "totalImpressions": 38,
+      "pages": [
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.9,
+          "impressions": 9
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 2.2,
+          "impressions": 25
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 필요서류 진단서 보험사",
+      "totalImpressions": 36,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.6,
+          "impressions": 7
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.8,
+          "impressions": 8
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 3.1,
+          "impressions": 16
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" \"진단서\" 보험금청구",
+      "totalImpressions": 34,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.9,
+          "impressions": 8
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.9,
+          "impressions": 13
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 3.5,
+          "impressions": 13
+        }
+      ]
+    },
+    {
+      "query": "주민등록법 전입신고 14일 이내 과태료 정부24",
+      "totalImpressions": 33,
+      "pages": [
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 2.8,
+          "impressions": 28
+        },
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 10.4,
+          "impressions": 5
+        }
+      ]
+    },
+    {
+      "query": "주민등록법 전입신고 14일 이내 과태료 공식",
+      "totalImpressions": 32,
+      "pages": [
+        {
+          "page": "/public-services/move-in-14day-deadline-fine/",
+          "position": 2,
+          "impressions": 27
+        },
+        {
+          "page": "/public-services/move-in-report-missing-fine/",
+          "position": 10.6,
+          "impressions": 5
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 약관 진단주수",
+      "totalImpressions": 31,
+      "pages": [
+        {
+          "page": "/auto/car-accident-personal-vs-property-claim/",
+          "position": 3.9,
+          "impressions": 8
+        },
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.5,
+          "impressions": 8
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 4.2,
+          "impressions": 9
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" 필요서류 진단서 site:*.co.kr",
+      "totalImpressions": 31,
+      "pages": [
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 3.2,
+          "impressions": 10
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 1.5,
+          "impressions": 16
+        }
+      ]
+    },
+    {
+      "query": "\"교통상해진단금\" \"진단서\" 운전자보험",
+      "totalImpressions": 30,
+      "pages": [
+        {
+          "page": "/insurance-personal/accident-insurance-claim-diagnosis/",
+          "position": 1.1,
+          "impressions": 7
+        },
+        {
+          "page": "/insurance-personal/driver-insurance-attorney-coverage/",
+          "position": 2.2,
+          "impressions": 17
+        }
+      ]
+    }
+  ],
+  "clusterAgg": {
+    "public-services": {
+      "clicks": 115,
+      "impressions": 9685,
+      "cpcTier": "하"
+    },
+    "tax": {
+      "clicks": 90,
+      "impressions": 1984,
+      "cpcTier": "상"
+    },
+    "savings": {
+      "clicks": 160,
+      "impressions": 6711,
+      "cpcTier": "상"
+    },
+    "unemployment": {
+      "clicks": 27,
+      "impressions": 3943,
+      "cpcTier": "중"
+    },
+    "insurance-labor": {
+      "clicks": 29,
+      "impressions": 3754,
+      "cpcTier": "중"
+    },
+    "realestate": {
+      "clicks": 28,
+      "impressions": 1807,
+      "cpcTier": "상"
+    },
+    "auto": {
+      "clicks": 16,
+      "impressions": 1652,
+      "cpcTier": "상"
+    },
+    "pension": {
+      "clicks": 8,
+      "impressions": 601,
+      "cpcTier": "상"
+    },
+    "credit-loan": {
+      "clicks": 5,
+      "impressions": 867,
+      "cpcTier": "최상"
+    },
+    "gov-support": {
+      "clicks": 9,
+      "impressions": 912,
+      "cpcTier": "중"
+    },
+    "insurance-personal": {
+      "clicks": 3,
+      "impressions": 1783,
+      "cpcTier": "최상"
+    },
+    "office-tips": {
+      "clicks": 3,
+      "impressions": 2886,
+      "cpcTier": "중"
+    }
+  }
+}

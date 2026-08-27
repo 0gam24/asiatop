@@ -32,7 +32,8 @@ const articles = defineCollection({
     dataValidAsOf: z.string().regex(/^\d{4}년 \d{1,2}월$/),
     draft: z.boolean().default(false),
     // 구글 회복 P3 (docs/24): 프루닝용 검색 제외 플래그. true 시 페이지·RSS 는 유지하되
-    // robots noindex 메타 + 전 사이트맵(sitemap-0·news·images) 제외.
+    // googlebot 전용 noindex 메타(일반 robots 는 index 유지 — 네이버 Yeti 색인 보존)
+    // + 전 사이트맵(sitemap-0·news·images) 제외. 2026-08-27 구글 전용으로 스코프 정정.
     noindex: z.boolean().default(false),
     // ── 자동 발행 파이프라인 추적 (Gap 1·2·3 통합) ──
     brief_id: z.string().optional(),

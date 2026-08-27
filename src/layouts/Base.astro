@@ -15,6 +15,8 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noIndex?: boolean;
+  /** 구글 전용 noindex (프루닝 P3) — 일반 robots 메타는 index 유지라 네이버(Yeti) 색인 보존 */
+  noIndexGoogle?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** OG article 메타 — ogType="article" 일 때 사용 */
   articleMeta?: {
@@ -38,6 +40,7 @@ const {
   ogImage = '/og-default.png',
   ogType = 'website',
   noIndex = false,
+  noIndexGoogle = false,
   jsonLd,
   articleMeta,
   prevHref,
@@ -204,6 +207,9 @@ const siteNavSchema = clusters.map((c, i) => ({
         content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
       />
     )}
+    {/* 프루닝 P3: 구글에만 noindex, 네이버(Yeti)·기타 크롤러는 위 일반 robots(index) 적용.
+        follow 유지 — 내부링크 크롤 경로는 살린다. */}
+    {!noIndex && noIndexGoogle && <meta name="googlebot" content="noindex" />}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={fullTitle} />
