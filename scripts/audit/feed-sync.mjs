@@ -8,7 +8,8 @@
  *
  * 검사 항목:
  *   1. updatedAt < publishedAt 인 article 0건 (논리 오류 + sitemap-lastmod 오염)
- *   2. dist/sitemap-0.xml 의 article URL 수 == src/content/articles/*.mdx 비-draft 수
+ *   2. dist/sitemap-0.xml 의 article URL 수 >= 비-draft·비-noindex 수
+ *      (프루닝 P3 noindex 글은 sitemap 설계적 제외 — docs/24, 2026-08-27)
  *   3. dist/sitemap-news.xml 의 최신 5 publication_date 가 article 의 top 5 publishedAt 과 일치
  *   4. dist/rss.xml 의 item 수 가 0보다 큼 + 최신 item pubDate 가 article top publishedAt 일치
  *
@@ -112,10 +113,16 @@ function main() {
   if (existsSync(sitemap0)) {
     const xml = readFileSync(sitemap0, 'utf-8');
     const articleUrlCount = (xml.match(/<loc>https:\/\/asiatop\.co\.kr\/[^/]+\/[^<]+\/<\/loc>/g) || []).length;
-    if (articleUrlCount < articles.length) {
-      errors.push(`sitemap-0.xml article URL ${articleUrlCount} < frontmatter 비-draft ${articles.length} — 빌드 누락`);
+    // 프루닝 P3 (docs/24): noindex 글은 sitemap-0 에서 설계상 제외 — 기대치에서 차감.
+    const indexable = articles.filter((a) => a.noindex !== 'true');
+    if (articleUrlCount < indexable.length) {
+      errors.push(
+        `sitemap-0.xml article URL ${articleUrlCount} < frontmatter 비-draft·비-noindex ${indexable.length} (noindex ${articles.length - indexable.length}편 제외) — 빌드 누락`,
+      );
     } else {
-      console.log(`[feed-sync] ✅ sitemap-0.xml article URL ${articleUrlCount} >= ${articles.length}`);
+      console.log(
+        `[feed-sync] ✅ sitemap-0.xml article URL ${articleUrlCount} >= ${indexable.length} (noindex ${articles.length - indexable.length}편 설계적 제외)`,
+      );
     }
   } else {
     warnings.push('sitemap-0.xml 미존재');
