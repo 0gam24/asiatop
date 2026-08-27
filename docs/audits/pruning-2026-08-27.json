@@ -1,0 +1,657 @@
+{
+  "batches": [
+    {
+      "ranAt": "2026-08-27T01:09:23.893Z",
+      "csv": "scripts/prune/pruning-2026-08-27.csv",
+      "applied": [
+        {
+          "slug": "credit-inquiry-hard-vs-soft-score",
+          "action": "delete",
+          "file": "credit-inquiry-hard-vs-soft-score.mdx",
+          "cluster": "credit-loan",
+          "from": "/credit-loan/credit-inquiry-hard-vs-soft-score/",
+          "to": "/credit-loan/"
+        },
+        {
+          "slug": "high-fuel-subsidy-2026-application-d30",
+          "action": "delete",
+          "file": "high-fuel-subsidy-2026-application-d30.mdx",
+          "cluster": "gov-support",
+          "from": "/gov-support/high-fuel-subsidy-2026-application-d30/",
+          "to": "/gov-support/"
+        },
+        {
+          "slug": "investment-loss-offset-bond-stock-etf",
+          "action": "delete",
+          "file": "investment-loss-offset-bond-stock-etf.mdx",
+          "cluster": "savings",
+          "from": "/savings/investment-loss-offset-bond-stock-etf/",
+          "to": "/savings/"
+        },
+        {
+          "slug": "kisa-individual-investment-tax-deduction",
+          "action": "delete",
+          "file": "kisa-individual-investment-tax-deduction.mdx",
+          "cluster": "savings",
+          "from": "/savings/kisa-individual-investment-tax-deduction/",
+          "to": "/savings/"
+        },
+        {
+          "slug": "personal-business-card-purchase-limit",
+          "action": "delete",
+          "file": "personal-business-card-purchase-limit.mdx",
+          "cluster": "credit-loan",
+          "from": "/credit-loan/personal-business-card-purchase-limit/",
+          "to": "/credit-loan/"
+        },
+        {
+          "slug": "bokjiro-mobile-application",
+          "action": "merge",
+          "file": "bokjiro-mobile-application.mdx",
+          "cluster": "public-services",
+          "from": "/public-services/bokjiro-mobile-application/",
+          "to": "/public-services/bokjiro-mobile-9-welfare-integrated/"
+        },
+        {
+          "slug": "business-closure-unemployment-eligibility",
+          "action": "merge",
+          "file": "business-closure-unemployment-eligibility.mdx",
+          "cluster": "unemployment",
+          "from": "/unemployment/business-closure-unemployment-eligibility/",
+          "to": "/unemployment/self-employed-unemployment-benefit/"
+        },
+        {
+          "slug": "car-inspection-missed-cumulative-fine",
+          "action": "merge",
+          "file": "car-inspection-missed-cumulative-fine.mdx",
+          "cluster": "auto",
+          "from": "/auto/car-inspection-missed-cumulative-fine/",
+          "to": "/auto/car-periodic-inspection-overdue-penalty/"
+        },
+        {
+          "slug": "car-tax-refund-cases",
+          "action": "merge",
+          "file": "car-tax-refund-cases.mdx",
+          "cluster": "auto",
+          "from": "/auto/car-tax-refund-cases/",
+          "to": "/auto/car-tax-refund-application-guide/"
+        },
+        {
+          "slug": "comprehensive-income-tax-correction-filing-june-error-recovery",
+          "action": "merge",
+          "file": "comprehensive-income-tax-correction-filing-june-error-recovery.mdx",
+          "cluster": "tax",
+          "from": "/tax/comprehensive-income-tax-correction-filing-june-error-recovery/",
+          "to": "/tax/comprehensive-income-tax-amended-return-correction/"
+        },
+        {
+          "slug": "deposit-return-dispute-tenancy-injunction",
+          "action": "merge",
+          "file": "deposit-return-dispute-tenancy-injunction.mdx",
+          "cluster": "realestate",
+          "from": "/realestate/deposit-return-dispute-tenancy-injunction/",
+          "to": "/realestate/tenancy-injunction-deposit-protection/"
+        },
+        {
+          "slug": "first-year-annual-leave-11-vs-15",
+          "action": "merge",
+          "file": "first-year-annual-leave-11-vs-15.mdx",
+          "cluster": "office-tips",
+          "from": "/office-tips/first-year-annual-leave-11-vs-15/",
+          "to": "/office-tips/annual-leave-1year-vs-prorated/"
+        },
+        {
+          "slug": "meal-allowance-tax-exempt",
+          "action": "merge",
+          "file": "meal-allowance-tax-exempt.mdx",
+          "cluster": "office-tips",
+          "from": "/office-tips/meal-allowance-tax-exempt/",
+          "to": "/office-tips/meal-allowance-200k-card-vs-cash/"
+        },
+        {
+          "slug": "national-pension-retroactive-payment-june-decision",
+          "action": "merge",
+          "file": "national-pension-retroactive-payment-june-decision.mdx",
+          "cluster": "pension",
+          "from": "/pension/national-pension-retroactive-payment-june-decision/",
+          "to": "/pension/nps-additional-payment-coverage-extension/"
+        },
+        {
+          "slug": "parent-child-pre-gift-5000man-tax-free-june",
+          "action": "merge",
+          "file": "parent-child-pre-gift-5000man-tax-free-june.mdx",
+          "cluster": "tax",
+          "from": "/tax/parent-child-pre-gift-5000man-tax-free-june/",
+          "to": "/tax/gift-tax-50m-exemption-relations/"
+        },
+        {
+          "slug": "pension-savings-vs-irp",
+          "action": "merge",
+          "file": "pension-savings-vs-irp.mdx",
+          "cluster": "savings",
+          "from": "/savings/pension-savings-vs-irp/",
+          "to": "/savings/pension-savings-vs-irp-tax-credit/"
+        },
+        {
+          "slug": "pre-credit-recovery-90day-self-report",
+          "action": "merge",
+          "file": "pre-credit-recovery-90day-self-report.mdx",
+          "cluster": "credit-loan",
+          "from": "/credit-loan/pre-credit-recovery-90day-self-report/",
+          "to": "/credit-loan/credit-recovery-pre-debt-adjustment/"
+        },
+        {
+          "slug": "property-tax-d1-june-1-24h-final",
+          "action": "merge",
+          "file": "property-tax-d1-june-1-24h-final.mdx",
+          "cluster": "realestate",
+          "from": "/realestate/property-tax-d1-june-1-24h-final/",
+          "to": "/realestate/comprehensive-property-tax-june-1-baseline/"
+        },
+        {
+          "slug": "property-tax-d2-june-1-final-checklist",
+          "action": "merge",
+          "file": "property-tax-d2-june-1-final-checklist.mdx",
+          "cluster": "realestate",
+          "from": "/realestate/property-tax-d2-june-1-final-checklist/",
+          "to": "/realestate/comprehensive-property-tax-june-1-baseline/"
+        },
+        {
+          "slug": "property-tax-deed-d1-final-checklist",
+          "action": "merge",
+          "file": "property-tax-deed-d1-final-checklist.mdx",
+          "cluster": "realestate",
+          "from": "/realestate/property-tax-deed-d1-final-checklist/",
+          "to": "/realestate/property-tax-may-30-deed-completion-d8/"
+        },
+        {
+          "slug": "property-tax-rental-housing-7-8-month-prep",
+          "action": "merge",
+          "file": "property-tax-rental-housing-7-8-month-prep.mdx",
+          "cluster": "realestate",
+          "from": "/realestate/property-tax-rental-housing-7-8-month-prep/",
+          "to": "/realestate/property-tax-rental-housing-exclusion-application/"
+        },
+        {
+          "slug": "self-employed-july-insurance-d29-installment",
+          "action": "merge",
+          "file": "self-employed-july-insurance-d29-installment.mdx",
+          "cluster": "tax",
+          "from": "/tax/self-employed-july-insurance-d29-installment/",
+          "to": "/tax/self-employed-4-major-insurance-after-tax-filing/"
+        },
+        {
+          "slug": "term-deposit-vs-installment-savings",
+          "action": "merge",
+          "file": "term-deposit-vs-installment-savings.mdx",
+          "cluster": "savings",
+          "from": "/savings/term-deposit-vs-installment-savings/",
+          "to": "/savings/deposit-vs-installment-rate-12month/"
+        },
+        {
+          "slug": "beotimmok-jeonse-loan",
+          "action": "noindex",
+          "file": "beotimmok-jeonse-loan.mdx",
+          "cluster": "realestate"
+        },
+        {
+          "slug": "bond-etf-vs-direct-tax-liquidity",
+          "action": "noindex",
+          "file": "bond-etf-vs-direct-tax-liquidity.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "capital-gains-tax-june-seller-aug-31-prep",
+          "action": "noindex",
+          "file": "capital-gains-tax-june-seller-aug-31-prep.mdx",
+          "cluster": "realestate"
+        },
+        {
+          "slug": "capital-gains-tax-june-seller-document-organization",
+          "action": "noindex",
+          "file": "capital-gains-tax-june-seller-document-organization.mdx",
+          "cluster": "realestate"
+        },
+        {
+          "slug": "car-environment-fee-5grade-old",
+          "action": "noindex",
+          "file": "car-environment-fee-5grade-old.mdx",
+          "cluster": "auto"
+        },
+        {
+          "slug": "car-environment-fee-diesel-old-exempt",
+          "action": "noindex",
+          "file": "car-environment-fee-diesel-old-exempt.mdx",
+          "cluster": "auto"
+        },
+        {
+          "slug": "car-inspection-comprehensive-vs-regular-environment",
+          "action": "noindex",
+          "file": "car-inspection-comprehensive-vs-regular-environment.mdx",
+          "cluster": "auto"
+        },
+        {
+          "slug": "car-insurance-accident-rating-switch",
+          "action": "noindex",
+          "file": "car-insurance-accident-rating-switch.mdx",
+          "cluster": "auto"
+        },
+        {
+          "slug": "car-tax-child-name-transfer-tax-saving",
+          "action": "noindex",
+          "file": "car-tax-child-name-transfer-tax-saving.mdx",
+          "cluster": "auto"
+        },
+        {
+          "slug": "child-care-allowance-2026-application-guide",
+          "action": "noindex",
+          "file": "child-care-allowance-2026-application-guide.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "child-tax-credit-and-allowance-may-filing",
+          "action": "noindex",
+          "file": "child-tax-credit-and-allowance-may-filing.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "child-tax-deduction-additional-refund-june-recovery",
+          "action": "noindex",
+          "file": "child-tax-deduction-additional-refund-june-recovery.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "civil-24-self-vs-delegation",
+          "action": "noindex",
+          "file": "civil-24-self-vs-delegation.mdx",
+          "cluster": "public-services"
+        },
+        {
+          "slug": "comprehensive-income-tax-5-year-audit-risk",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-5-year-audit-risk.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-d-day-may-31",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-d-day-may-31.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-d1-final-hour-checklist",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-d1-final-hour-checklist.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-d8-final-week-action-plan",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-d8-final-week-action-plan.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-first-24h-after-deadline",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-first-24h-after-deadline.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-hometax-simulator-d9",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-hometax-simulator-d9.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-may-31-system-risk",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-may-31-system-risk.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-may-filing",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-may-filing.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-payment-methods-comparison",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-payment-methods-comparison.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-refund-account-registration",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-refund-account-registration.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-refund-first-batch-june",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-refund-first-batch-june.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "comprehensive-income-tax-refund-recycle-strategy",
+          "action": "noindex",
+          "file": "comprehensive-income-tax-refund-recycle-strategy.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "daycare-fee-vs-child-care-allowance-decision",
+          "action": "noindex",
+          "file": "daycare-fee-vs-child-care-allowance-decision.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "db-vs-dc-retirement-pension",
+          "action": "noindex",
+          "file": "db-vs-dc-retirement-pension.mdx",
+          "cluster": "pension"
+        },
+        {
+          "slug": "delinquency-vs-delay-interest-limit",
+          "action": "noindex",
+          "file": "delinquency-vs-delay-interest-limit.mdx",
+          "cluster": "credit-loan"
+        },
+        {
+          "slug": "earned-income-tax-credit-late-application-d-day",
+          "action": "noindex",
+          "file": "earned-income-tax-credit-late-application-d-day.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "energy-cashback-summer-electricity-application",
+          "action": "noindex",
+          "file": "energy-cashback-summer-electricity-application.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "energy-voucher-household-member-addition-june",
+          "action": "noindex",
+          "file": "energy-voucher-household-member-addition-june.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "energy-voucher-summer-cooling-application",
+          "action": "noindex",
+          "file": "energy-voucher-summer-cooling-application.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "family-relation-certificate-issuance",
+          "action": "noindex",
+          "file": "family-relation-certificate-issuance.mdx",
+          "cluster": "public-services"
+        },
+        {
+          "slug": "first-time-business-tax-filer-guide-d3",
+          "action": "noindex",
+          "file": "first-time-business-tax-filer-guide-d3.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "foreign-income-comprehensive-tax-d7",
+          "action": "noindex",
+          "file": "foreign-income-comprehensive-tax-d7.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "freelancer-3-3-percent-comprehensive-tax-d5",
+          "action": "noindex",
+          "file": "freelancer-3-3-percent-comprehensive-tax-d5.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "government-application-forms",
+          "action": "noindex",
+          "file": "government-application-forms.mdx",
+          "cluster": "public-services"
+        },
+        {
+          "slug": "health-promotion-insurance-discount-steps",
+          "action": "noindex",
+          "file": "health-promotion-insurance-discount-steps.mdx",
+          "cluster": "insurance-personal"
+        },
+        {
+          "slug": "hometax-mobile-guide",
+          "action": "noindex",
+          "file": "hometax-mobile-guide.mdx",
+          "cluster": "public-services"
+        },
+        {
+          "slug": "hope-savings-leap-account-rollover",
+          "action": "noindex",
+          "file": "hope-savings-leap-account-rollover.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "income-tax-vs-yearend-tax",
+          "action": "noindex",
+          "file": "income-tax-vs-yearend-tax.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "irp-june-additional-payment-tax-credit-limit",
+          "action": "noindex",
+          "file": "irp-june-additional-payment-tax-credit-limit.mdx",
+          "cluster": "pension"
+        },
+        {
+          "slug": "irp-portfolio-recommendation",
+          "action": "noindex",
+          "file": "irp-portfolio-recommendation.mdx",
+          "cluster": "pension"
+        },
+        {
+          "slug": "isa-account-comparison",
+          "action": "noindex",
+          "file": "isa-account-comparison.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "isa-maturity-next-product-comparison",
+          "action": "noindex",
+          "file": "isa-maturity-next-product-comparison.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "july-tax-calendar-self-employed",
+          "action": "noindex",
+          "file": "july-tax-calendar-self-employed.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "june-business-income-organization-next-year",
+          "action": "noindex",
+          "file": "june-business-income-organization-next-year.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "june-first-week-tax-post-deadline-guide",
+          "action": "noindex",
+          "file": "june-first-week-tax-post-deadline-guide.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "k-pass-public-transport-refund-guide",
+          "action": "noindex",
+          "file": "k-pass-public-transport-refund-guide.mdx",
+          "cluster": "gov-support"
+        },
+        {
+          "slug": "local-income-tax-june-filing-after-comprehensive",
+          "action": "noindex",
+          "file": "local-income-tax-june-filing-after-comprehensive.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "long-term-care-insurance-family-dependent-june-check",
+          "action": "noindex",
+          "file": "long-term-care-insurance-family-dependent-june-check.mdx",
+          "cluster": "insurance-labor"
+        },
+        {
+          "slug": "maternity-childcare-pay-comparison",
+          "action": "noindex",
+          "file": "maternity-childcare-pay-comparison.mdx",
+          "cluster": "office-tips"
+        },
+        {
+          "slug": "may-29-last-business-day-deadline-actions",
+          "action": "noindex",
+          "file": "may-29-last-business-day-deadline-actions.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "military-readiness-savings",
+          "action": "noindex",
+          "file": "military-readiness-savings.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "monthly-installment-etf-guide",
+          "action": "noindex",
+          "file": "monthly-installment-etf-guide.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "monthly-rent-tax-credit-application",
+          "action": "noindex",
+          "file": "monthly-rent-tax-credit-application.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "mutual-finance-tax-free-deposit-limit",
+          "action": "noindex",
+          "file": "mutual-finance-tax-free-deposit-limit.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "negative-checking-vs-credit-loan",
+          "action": "noindex",
+          "file": "negative-checking-vs-credit-loan.mdx",
+          "cluster": "credit-loan"
+        },
+        {
+          "slug": "newlywed-didimdol-june-vs-july-decision",
+          "action": "noindex",
+          "file": "newlywed-didimdol-june-vs-july-decision.mdx",
+          "cluster": "realestate"
+        },
+        {
+          "slug": "noran-umbrella-eligibility",
+          "action": "noindex",
+          "file": "noran-umbrella-eligibility.mdx",
+          "cluster": "pension"
+        },
+        {
+          "slug": "noran-umbrella-may-deadline-strategy",
+          "action": "noindex",
+          "file": "noran-umbrella-may-deadline-strategy.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "pension-savings-insurance-fund-bank",
+          "action": "noindex",
+          "file": "pension-savings-insurance-fund-bank.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "resident-registration-5min-mobile",
+          "action": "noindex",
+          "file": "resident-registration-5min-mobile.mdx",
+          "cluster": "public-services"
+        },
+        {
+          "slug": "retirement-fund-needed",
+          "action": "noindex",
+          "file": "retirement-fund-needed.mdx",
+          "cluster": "pension"
+        },
+        {
+          "slug": "salary-negotiation-data-prep",
+          "action": "noindex",
+          "file": "salary-negotiation-data-prep.mdx",
+          "cluster": "office-tips"
+        },
+        {
+          "slug": "self-employed-credit-loan-limit-recovery-june",
+          "action": "noindex",
+          "file": "self-employed-credit-loan-limit-recovery-june.mdx",
+          "cluster": "credit-loan"
+        },
+        {
+          "slug": "severance-mid-term-settlement-tax",
+          "action": "noindex",
+          "file": "severance-mid-term-settlement-tax.mdx",
+          "cluster": "office-tips"
+        },
+        {
+          "slug": "student-loan-income-contingent-vs-fixed",
+          "action": "noindex",
+          "file": "student-loan-income-contingent-vs-fixed.mdx",
+          "cluster": "credit-loan"
+        },
+        {
+          "slug": "vat-1q-sales-june-organization-start",
+          "action": "noindex",
+          "file": "vat-1q-sales-june-organization-start.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "vat-filing-guide",
+          "action": "noindex",
+          "file": "vat-filing-guide.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "vat-filing-july-25-d2month-preparation",
+          "action": "noindex",
+          "file": "vat-filing-july-25-d2month-preparation.mdx",
+          "cluster": "tax"
+        },
+        {
+          "slug": "weekend-work-allowance-vs-replacement",
+          "action": "noindex",
+          "file": "weekend-work-allowance-vs-replacement.mdx",
+          "cluster": "office-tips"
+        },
+        {
+          "slug": "youth-hope-savings-maturity-strategy",
+          "action": "noindex",
+          "file": "youth-hope-savings-maturity-strategy.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "youth-housing-savings-preferential-vs-regular",
+          "action": "noindex",
+          "file": "youth-housing-savings-preferential-vs-regular.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "youth-leap-account-non-applicants-june-final-check",
+          "action": "noindex",
+          "file": "youth-leap-account-non-applicants-june-final-check.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "youth-leap-account-simulation",
+          "action": "noindex",
+          "file": "youth-leap-account-simulation.mdx",
+          "cluster": "savings"
+        },
+        {
+          "slug": "youth-tomorrow-fund-5year-vs-cancel",
+          "action": "noindex",
+          "file": "youth-tomorrow-fund-5year-vs-cancel.mdx",
+          "cluster": "gov-support"
+        }
+      ],
+      "skipped": []
+    }
+  ]
+}

@@ -1,0 +1,2020 @@
+{
+  "date": "2026-08-27",
+  "source": "GSC Coverage Drilldown 2026-08-27 (발견됨-미색인 327건 전수)",
+  "method": "Workflow wf_46b53aa8-c8f: triage 18(cluster batch) -> adversarial verify 6(dup-truth + guard/naver lens, 26건 중 2건 강등) -> sanity audit 1",
+  "adjustments": [
+    "hope-savings-leap-account-rollover: merge->noindex (타깃 자기모순 — 새니티 치명 지적)",
+    "industrial-accident-insurance-coverage: noindex->keep (새니티 spot-check 보수 원칙)"
+  ],
+  "stats": {
+    "keep": 227,
+    "noindex": 77,
+    "merge": 18,
+    "delete": 5
+  },
+  "sanity": {
+    "ok": false,
+    "issues": [
+      "[치명] merge target 이 CSV 안에서 프루닝됨: hope-savings-leap-account-rollover → youth-hope-savings-maturity-strategy(merge target)가 같은 CSV 에서 noindex 판정. noindex 될 페이지로 통합/301 하면 통합 equity 가 소멸하는 자기모순. 적용 전 수정 필수 — 타깃을 keep 으로 전환하거나 두 글 모두 다른 keep 페이지로 통합 타깃 변경.",
+      "[경미] spot-check 중 industrial-accident-insurance-coverage(2026-04-06)는 시즌성 없는 evergreen 산재보험 가이드로 품질·출처 구성이 준수함. workers-comp-benefit-types-guide(keep)와의 카니발리제이션 통합으로 해석 가능하나 보수적으로는 keep 후보. noindex 는 가역적이라 치명 아님.",
+      "[경미] spot-check 중 family-relation-certificate-issuance(2026-04-04)는 헤드텀 evergreen 발급 가이드. 다만 전보식 축약 문체의 thin 커머디티 콘텐츠이고 동류(civil-24, government-application-forms, resident-registration-5min-mobile, hometax-mobile-guide) 일괄 프루닝과 정합적이라 방어 가능. 판단 근거를 기록으로 남길 것 권장.",
+      "[참고] 구조 검증은 전부 통과: 판정 327건 = keep 226 + noindex 77 + merge 19 + delete 5 로 통계 일치, CSV 101행과 JSON 요약 간 액션·merge 타깃 불일치 0건, 중복 slug 0건, 프루닝 대상 101편·merge target 19편 파일 전부 실존.",
+      "[참고] 수동 발행 세대 가드 통과: 프루닝 대상 publishedAt 범위 2026-04-01 ~ 2026-06-10 으로 전원 자동 발행 세대. 2026-06-12 이후 글 0건.",
+      "[참고] delete 5건(1.5%)은 극소수 조건 충족. credit-inquiry-hard-vs-soft-score(국내 신용조회는 점수 무영향이라 hard/soft 프레임 자체가 오도 소지), kisa-individual-investment-tax-deduction(실존 의심 상품명), investment-loss-offset-bond-stock-etf(폐지된 금투세 전제 가능성) 등 삭제 사유가 납득 가능한 구성."
+    ],
+    "spotChecks": [
+      "local-income-tax-june-filing-after-comprehensive (2026-05-22, noindex) — 타당. 종소세 후속 6월 지방소득세 시즌 후크 글로 종소세 시즌 함대 일괄 프루닝과 정합. 제목에 em-dash 포함(구세대 템플릿 풋프린트). 주제 자체는 매년 반복되나 프레임이 2026년 6월 종속.",
+      "industrial-accident-insurance-coverage (2026-04-06, noindex) — 경계선. evergreen 산재보험 적용범위 가이드로 구조·출처 준수. workers-comp-benefit-types-guide(keep)와 부분 중복이라 통합 관점에선 방어 가능하나 보수적으로는 keep 후보. 치명 아님.",
+      "daycare-fee-vs-child-care-allowance-decision (2026-06-05, noindex) — 타당. '6월 결정 가이드' 시즌 프레임 + 본문·FAQ 수치가 전부 '약 30~70만' 류 근사치로 얕음. 동류 child-care-allowance-2026-application-guide 도 동반 noindex 로 일관.",
+      "first-time-business-tax-filer-guide-d3 (2026-05-28, noindex) — 타당. 제목부터 'D-3' 종소세 마감 카운트다운 글. 5/31 마감 경과로 실효, 전형적 유통기한 만료 콘텐츠.",
+      "bond-etf-vs-direct-tax-liquidity (2026-05-05, noindex) — 타당(강함). FAQ 에 '금융투자소득세 2025년 1월부터 시행 중' 이라는 사실 오류 포함(금투세는 시행 전 폐지). YMYL 오류 콘텐츠로 색인 제외가 오히려 필요.",
+      "pension-savings-insurance-fund-bank (2026-05-12, noindex) — 타당. pension-savings-fund-vs-insurance(keep)와 사실상 동일 의도(연금저축 상품유형 비교)의 카니발리제이션. 약세 변형 noindex + 강세 유지 구도로 정합.",
+      "family-relation-certificate-issuance (2026-04-04, noindex) — 경계선~타당. 헤드텀 evergreen 이나 전보식 thin 문체의 커머디티 발급 가이드. 정부 공식 페이지가 지배하는 쿼리군이고 동류 민원 발급 글 일괄 프루닝과 일관.",
+      "july-tax-calendar-self-employed (2026-05-31, noindex) — 타당. 7~8월 세무 캘린더 글로 현재(8/27) 기준 이미 대부분 실효. 매년 재사용 불가한 연도 종속 캘린더 포맷.",
+      "vat-1q-sales-june-organization-start (2026-06-02, noindex) — 타당. '7/25 D-53' 카운트다운 글로 부가세 1기 마감 경과 후 완전 실효. 전형적 D-day 시즌 콘텐츠.",
+      "car-environment-fee-diesel-old-exempt (2026-04-27, noindex) — 타당(강함). '7년 이상 30% 경감, 노후차일수록 부담 감소' 서술이 환경개선부담금 차령계수(차령 증가 시 부담 증가) 실제 구조와 상반되는 사실 오류 의심 + car-environment-fee-5grade-old 와 중복."
+    ]
+  },
+  "verdicts": [
+    {
+      "slug": "burdened-gift-tax-capital-gains",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-04)이고 부담부증여 주제가 클러스터 내 유일하며 본문 밀도도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "business-income-vs-other-income-classification",
+      "action": "keep",
+      "reason": "구세대지만 원문 확인 결과 사업소득 vs 기타소득 구분이라는 유일 주제에 원천징수율 3.3%/8.8%·300만원 분리과세 룰·시뮬레이션 표 등 구체 수치가 밀도 있게 담긴 상시 수요 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "capital-gains-carryover-taxation-gift",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-22)이고 배우자 증여 이월과세 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "capital-gains-long-term-holding-deduction",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-21)이고 장기보유특별공제 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "child-tax-credit-and-allowance-may-filing",
+      "action": "noindex",
+      "reason": "구세대에 5월 신고 D-9 시즌 훅이 소진됐고 자녀세액공제 환급 의도가 6월 회복 글과 부분 중복되므로 네이버만 남기고 구글 색인 제외가 안전하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "child-tax-credit-increase-2026-reform",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-07)이고 2026 세제개편 자녀세액공제 인상안이라는 고유 시의 주제를 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "child-tax-deduction-additional-refund-june-recovery",
+      "action": "noindex",
+      "reason": "구세대의 6월 추가 환급 시즌 훅이 소진됐고 자녀세액공제 누락 환급 의도가 5월 신고 글·연말정산 경정청구 글과 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "company-childbirth-support-tax-free-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-09)이고 기업 출산지원금 비과세 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-5-year-audit-risk",
+      "action": "noindex",
+      "reason": "원문 확인 결과 메타는 '약 20배' 본문은 '2.5~3.5배'로 자체 모순이 있고 무신고 가산세·감면율·적발 시뮬레이션이 keep 판정한 가산세 계산 글과 상당 부분 겹치는 구세대 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-amended-return-correction",
+      "action": "keep",
+      "reason": "구세대지만 원문 확인 결과 국세기본법 제48조의2 감면율표와 수정신고·경정청구 방향 판정을 정확히 담은 상시 수요 글로, 6월 정정신고 글 merge 수신 대상이 되는 클러스터 내 대표 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-correction-filing-june-error-recovery",
+      "action": "merge",
+      "target": "comprehensive-income-tax-amended-return-correction",
+      "reason": "두 원문을 모두 읽은 결과 수정신고 vs 경정청구 구분·가산세 감면율·홈택스 절차·5년 경정청구 룰이라는 검색의도가 완전히 동일하고, 이 글은 감면율 구간(6/16~7/15=90%)과 기한후신고 감면율(90%로 오기재)이 법정 기준과 어긋나는 하위호환이라 정확한 대상 글로 301 통합이 타당하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-d-day-may-31",
+      "action": "noindex",
+      "reason": "5/31 마감 당일 실시간 가이드로 시의성이 완전히 소진된 구세대 글이지만 페이지 자체는 무해하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-d1-final-hour-checklist",
+      "action": "noindex",
+      "reason": "D-1 마지막 30분 체크리스트라는 카운트다운 훅이 소진된 구세대 글이며 마감 대응 의도가 D-Day·마감 후 24시간 글과 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-d8-final-week-action-plan",
+      "action": "noindex",
+      "reason": "D-8 마지막 1주일 액션 플랜이라는 시즌 훅이 소진된 구세대 글로 일반 신고 가이드들과 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-estimated-filing",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-27)이고 추계신고 절차라는 주제가 경비율 선택 비교 글과 각도가 달라 유일성이 유지된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-first-24h-after-deadline",
+      "action": "noindex",
+      "reason": "마감 직후 첫 24시간 대응이라는 시의성이 소진된 구세대 글이며 기한 후 신고(색인 생존 글)와 의도가 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-hometax-simulator-d9",
+      "action": "noindex",
+      "reason": "원문 확인 결과 절차 정보는 있으나 '오늘이 5/22, 마감까지 9일' 카운트다운 프레임에 전면 의존한 구세대 글이라 시의성이 소진됐다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-installment-payment",
+      "action": "keep",
+      "reason": "구세대지만 원문 확인 결과 분납 자격 1천만원 기준·구간별 분할 방식·8/31 2차 납부까지 법정 기준을 정확히 담은 클러스터 내 유일한 분납 전용 상시 수요 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-may-31-system-risk",
+      "action": "noindex",
+      "reason": "5/31 홈택스 트래픽 폭증 대비라는 D-3 시즌 훅이 완전히 소진된 구세대 글이지만 페이지는 무해하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-may-filing",
+      "action": "noindex",
+      "reason": "구세대(4월)의 일반론 위주 5월 신고 개요 글로 직장인 추가 신고 의도가 종소세 vs 연말정산 차이 글·프리랜서 가이드(색인 생존)와 부분 중복된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-payment-methods-comparison",
+      "action": "noindex",
+      "reason": "D-7 시즌 훅이 소진된 구세대 비교 글로 분납 전용 글(keep)과 세금 카드 납부 수수료 글(색인 생존)에 내용이 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-penalty-calculation-d9",
+      "action": "keep",
+      "reason": "구세대지만 원문 확인 결과 무신고 20%·과소 10%·납부지연 일 0.022%와 감면율표·사례 시뮬레이션이 정확한 클러스터 내 유일한 가산세 계산 전용 상시 수요 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "comprehensive-income-tax-refund-account-registration",
+      "action": "noindex",
+      "reason": "D-8 환급 계좌 점검이라는 시즌 훅이 소진된 구세대 글로 환급 지연·미입금 진단 3편(모두 색인 생존)과 의도가 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-refund-first-batch-june",
+      "action": "noindex",
+      "reason": "6월 말 첫 환급 입금 시작이라는 일회성 시점 정보가 소진된 구세대 글로 환급 추적·미입금 진단 글(색인 생존)과 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "comprehensive-income-tax-refund-recycle-strategy",
+      "action": "noindex",
+      "reason": "원문 확인 결과 환급금 복리 재투입 시뮬레이션이 비현실적 가정에 기댄 일반론 위주 구세대 글이고 노란우산·연금저축 내용이 클러스터 내 다른 절세 글들과 부분 중복된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "credit-card-deduction-calculation",
+      "action": "keep",
+      "reason": "구세대지만 신용카드 공제 계산 기본기를 다루는 클러스터 유일 주제이고, 원문 확인 결과 25% 초과 시뮬레이션·부부 배분·누락 항목 등 구체 정보 밀도가 충분하며 내부링크 5건의 허브 역할을 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "credit-card-deduction-child-reform-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-07)이고 세제개편안 자녀 추가공제 신설이라는 클러스터 유일 주제로 중복·부실 사유가 없다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "deemed-rental-income-deposit-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대이고 본문이 짧지만 원문 확인 결과 3주택·3억 기준, 60%·3.1% 계산식과 예시 등 간주임대료라는 유일 주제를 구체 수치로 다뤄 부실이 아니다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "dependent-deduction-income-threshold-300m-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-08)이고 부양가족 소득요건 300만원 완화라는 세제개편 유일 주제로, 기존 인적공제 글들과 검색의도가 다르다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "education-expense-tax-credit",
+      "action": "keep",
+      "reason": "수동 발행 세대이고 원문 확인 결과 15% 공제율·900만/300만 한도·본인 무한도 등 교육비 세액공제 종합 안내라는 유일 주제를 갖춰, 예체능 신설 뉴스 글과 의도가 겹치지 않는다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "elementary-arts-sports-academy-tax-credit-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-05)이고 초등 저학년 예체능 학원비 공제 신설이라는 유일 주제로, 일반 교육비 공제 글과 검색의도가 구분된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "family-loan-agreement-gift-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-04)이고 가족 간 차용증·2억 무이자 한도라는 유일 주제에 본문 밀도(2,979자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "first-time-business-tax-filer-guide-d3",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 5월 종소세 D-3 마감 훅 글로 본문에 '오늘(5/28) 기준' 등 날짜 고정 표현이 박혀 시의성이 소진됐으나 첫 사업자 안내 자체는 무해해 네이버 보존용 noindex 가 적합하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "foreign-income-comprehensive-tax-d7",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 D-7 마감 카운트다운 글로 5/31 시한 프레임이 소진됐고, 외화 수입 신고 정보 자체는 무해하므로 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "freelancer-3-3-percent-comprehensive-tax-d5",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 D-5 마감 훅 글로 시의성이 소진됐고 색인 생존한 comprehensive-income-tax-freelancer 와 부분 중복이나, 마감 직전 환급 판단이라는 의도가 완전 동일하지는 않아 merge 대신 안전한 noindex 로 판정한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "fund-source-investigation-gift-presumption-response",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-10)이고 자금출처조사 소명과 80% 증여추정 배제 기준이라는 클러스터 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "gym-pool-culture-expense-deduction-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-05)이고 체육시설 문화비 소득공제 편입이라는 유일 주제로 중복·부실 사유가 없다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "high-dividend-separate-taxation-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-02)이고 고배당 분리과세 신설이라는 유일 주제로, 기존 배당 2천만원 종합과세 비교 글과 검색의도가 다르다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "housing-rent-lease-deduction-expansion-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-08)이고 세제개편안의 월세 한도 1,200만원 확대·부부 각각 공제라는 개편 뉴스 의도로, 기존 월세 세액공제 일반 안내 글들과 겹치지 않는다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "housing-subscription-income-deduction-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-20)이고 주택청약 소득공제라는 클러스터 유일 주제에 본문 밀도(2,867자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "hynix-bonus-tax-take-home-calculation",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-19)이고 성과급 시나리오별 실수령 시뮬레이션이라는 독창 콘텐츠로 클러스터 내 대체 글이 없다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "income-tax-vs-yearend-tax",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 1,580자 얇은 글로 comprehensive-income-tax-may-filing(직장인 부수입 5월 신고)과 부분 중복이나 명백한 상위호환 색인 생존 글이 없어 noindex 가 적합하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "inheritance-acquisition-tax-reform-explainer",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-01)이고 유산취득세 개편 쟁점이라는 클러스터 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "inheritance-tax-filing-deadline-process",
+      "action": "keep",
+      "reason": "수동 발행 세대이고 원문 확인 결과 6개월/9개월 기한·20% 가산세·분납·연부연납 등 상속세 신고기한이라는 유일 주제를 구체적으로 다루며 내부링크 4건을 받는 정상 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "inherited-house-capital-gains-acquisition-value",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-10)이고 상속주택 양도세 취득가액 평가라는 유일 주제로 절세 원리 설명이 독창적이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "july-tax-calendar-self-employed",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 2026년 7~8월 세무 일정 캘린더로 해당 기간이 거의 지나 시의성이 소진됐으나 페이지 자체는 무해해 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "june-business-income-organization-next-year",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 '6월 시작' 훅 글로 시의성이 소진됐고 계좌 분리·영수증 정리 등 일반론 위주라 noindex 가 적합하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "june-first-week-tax-post-deadline-guide",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 '6월 첫 주' 시한 훅 글로 시의성이 소진됐고 환급 추적·수정신고 주제가 클러스터 내 개별 글들과 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "local-income-tax-june-filing-after-comprehensive",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 시즌 글로 본문에 'D-9(5/22)' 날짜 고정 표현이 박혀 시의성이 소진됐고, '6월 위택스 별도 신고' 기한 서술이 현행 종소세 동시신고 체계와 어긋날 소지가 있어 구글 노출 유지가 부적절하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "long-term-mortgage-interest-deduction-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-06)이고 장기주택저당차입금 이자상환액 소득공제라는 클러스터 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "marriage-tax-credit-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(7/28)이고 결혼세액공제 한시 제도를 다루는 클러스터 내 유일 주제로, 본문이 짧아도 요건·기한·신청 경로가 구체적이라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "may-29-last-business-day-deadline-actions",
+      "action": "noindex",
+      "reason": "2026-05-29 마지막 영업일 D-3 카운트다운 통합 안내로 시의성이 완전히 소진된 자동 발행 세대 글이지만 페이지 자체는 무해해 네이버 보존을 위해 noindex 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "medical-expense-tax-credit-missed",
+      "action": "keep",
+      "reason": "구세대(4/7)지만 안경 50만·산후조리원 200만·한도 700만 예외·부부 몰아주기 시뮬레이션 등 독창적 구체 정보가 밀도 있게 담긴 클러스터 내 유일한 '의료비 누락 항목' 글이라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "monthly-rent-tax-credit-application",
+      "action": "noindex",
+      "reason": "구글 색인이 살아 있는 monthly-rent-tax-credit-70m-non-owner 와 '월세 세액공제 조건·공제율·신청서류' 검색의도가 겹치는 구세대 글인데, 두 글의 공제율·한도 수치가 상충(17%/1,000만 vs 15%/750만)해 상위호환 merge 를 확신할 수 없어 안전한 noindex 를 택한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "noran-umbrella-may-deadline-strategy",
+      "action": "noindex",
+      "reason": "5/31 종소세 마감 D-8 막바지 가입 전략이라는 프레임 전체가 시의성 소진된 자동 발행 세대 글이고 노란우산 절세 상시 주제는 pension 클러스터 글이 담당하므로 noindex 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "parent-child-pre-gift-5000man-tax-free-june",
+      "action": "merge",
+      "target": "gift-tax-50m-exemption-relations",
+      "reason": "두 원문 대조 결과 관계별 비과세 한도 표·10년 합산 룰·3개월 내 신고 절차라는 핵심 질문('부모 자녀 5천만 비과세 한도는', '10년 합산이란')이 동일하게 겹치고, target 은 구글 색인 생존에 산문 품질도 우위인 상위호환이며 6월 훅·결혼 추가공제 부분은 색인 생존 중인 marriage-childbirth-gift-tax-deduction-2026 이 커버한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "parent-living-expense-allowance-gift-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대(8/18)이고 상증법 46조 기반 생활비·용돈 비과세 경계라는 클러스터 내 유일 주제라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "self-employed-4-major-insurance-after-tax-filing",
+      "action": "keep",
+      "reason": "구세대지만 종소세 신고 후 7월 보험료 변동이라는 매년 반복 검색의도의 본문 우위 글(2,996자·인바운드 6개)로, 중복이던 D-29 글을 이 글로 merge 하면 클러스터 내 유일 주제가 되어 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "self-employed-closure-vs-suspension-decision",
+      "action": "keep",
+      "reason": "폐업 vs 휴업 결정이라는 클러스터 내 유일 주제에 본문 밀도(2,636자)와 인바운드 링크 3개(색인 생존 부가세 글 포함)를 갖춰 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "self-employed-july-insurance-d29-installment",
+      "action": "merge",
+      "target": "self-employed-4-major-insurance-after-tax-filing",
+      "reason": "두 원문 대조 결과 매출별 보험료 인상·인하 시뮬레이션 표, 7월 통보서 수령 채널, 분납 최대 10회 절차, 직장→자영업 전환·무신고 추정소득 섹션까지 사실상 동일 본문이고 본문에서 스스로 target 을 상세 가이드로 링크하는 파생 글이라, '자영업자 7월 보험료 인상·분납' 검색의도가 실질 동일한 본문 우위 글로 통합한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "simple-vs-standard-expense-rate-selection",
+      "action": "keep",
+      "reason": "단순경비율 vs 기준경비율 선택 기준은 클러스터 내 유일 주제이고 매년 5월 반복되는 검색의도에 본문 밀도(2,677자)도 충족해 D-10 훅에도 불구하고 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "simplified-vat-excluded-area-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(8/9)이고 간이과세 배제지역 544곳 해제라는 시사성 있는 유일 주제라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "tax-agent-vs-self-filing-decision-d5",
+      "action": "keep",
+      "reason": "원문 확인 결과 케이스별 세무사 수임료 표·절세 효과 대비 비용 계산·수정신고 감면율 표 등 매년 재사용 가능한 구체 정보가 충분한 클러스터 내 유일 주제(세무사 의뢰 vs 본인 신고)라 D-5 프레임에도 불구하고 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "tax-reform-2026-real-estate-residence-based",
+      "action": "keep",
+      "reason": "수동 발행 세대(8/17)이고 2026 세제개편안 부동산 편이라는 유일 주제로 총정리 글과 상보 관계라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "tax-reform-2026-summary",
+      "action": "keep",
+      "reason": "수동 발행 세대(8/14)이고 2026 세제개편안 전체 조망이라는 유일 주제로 개편 관련 개별 글들의 허브 역할이라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "vat-1q-sales-june-organization-start",
+      "action": "noindex",
+      "reason": "7/25 부가세 신고 D-53 사전 정리라는 프레임이 마감 경과로 소진됐고 vat-filing-july-25-d2month-preparation 과 준비 체크리스트 의도가 겹치는 자동 발행 세대 글이라 noindex 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "vat-filing-guide",
+      "action": "noindex",
+      "reason": "1,426자의 얇은 일반론 글로 구세대이며, 색인 생존 중인 vat-first-period-final-return-2026-july 가 확정신고 의도를 더 깊게 커버하지만 연간 전체 절차라는 의도가 완전히 같지는 않아 merge 대신 noindex 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "vat-filing-july-25-d2month-preparation",
+      "action": "noindex",
+      "reason": "7/25 신고 D-2개월 사전 준비 체크리스트로 마감 경과로 시의성이 소진됐고, 실제 신고 의도는 색인 생존 중인 vat-first-period-final-return-2026-july 가 담당하므로 noindex 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "vat-preliminary-notice-self-employed",
+      "action": "keep",
+      "reason": "수동 발행 세대(8/14)이고 부가세 예정고지서 구조·예정신고 전환이라는 클러스터 내 유일 주제라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "vat-refund-timing-lookup-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(7/24)이고 부가세 환급금 입금 시기·조기환급이라는 유일 주제(종소세 환급 추적 글들과 세목이 다름)라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "vat-simple-vs-general-taxation-selection",
+      "action": "keep",
+      "reason": "원문 확인 결과 업종·매입 비중별 부가세 부담 시뮬레이션과 4,800만 세금계산서 의무 등 구체 정보가 밀도 있는 3,012자 글로, 얇은 사업자등록 가이드와 의도가 구분되는 유일 주제라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "yearend-missed-deduction-may-refund-procedure",
+      "action": "keep",
+      "reason": "원문 확인 결과 연말정산 누락분을 5월 종소세로 추가 환급받는 절차라는 매년 5월 반복 검색의도의 유일 글로, 항목별 표·홈택스 4단계·입금 시점 등 재사용 가능한 본문(2,925자)이라 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "yearend-tax-2026-checklist",
+      "action": "keep",
+      "reason": "누락 공제 8가지 '항목' 총정리로 환급 '절차' 글들과 의도가 구분되는 유일 주제이고 본문 밀도(2,871자)·인바운드 4개·6/11 갱신 이력이 있어 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "yearend-tax-preview-service-guide",
+      "action": "keep",
+      "reason": "수동 발행 세대(8/20)이고 10월 연말정산 미리보기 서비스 활용이라는 시즌 선행 유일 주제라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "yearend-tax-refund-missed-june-correction-claim",
+      "action": "keep",
+      "reason": "원문 확인 결과 2월 연말정산과 5월 신고를 모두 놓친 직장인의 경정청구 5년 룰이라는 별도 시나리오를 다루며, 연도별 청구 시한 표·항목별 환급 시뮬레이션 등 5월 절차 글과 구분되는 상시 수요 본문(2,733자)이라 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "child-care-allowance-2026-application-guide",
+      "action": "noindex",
+      "reason": "구세대(06-04) 템플릿 글로 지원액이 전부 '약 N만' 근사치라 독창 정보가 없고, 보육료·유아학비 표와 전환 신고 내용이 daycare-fee-vs-child-care-allowance-decision 및 parental-benefit 글과 부분 중복된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "child-support-advance-payment-2026",
+      "action": "keep",
+      "reason": "수동 세대(07-30) 글로 양육비 선지급제(2026-10-29 소득기준 폐지)라는 클러스터 내 유일 주제를 3081자로 다뤄 기본 keep 요건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "chuseok-holiday-support-payment-2026",
+      "action": "keep",
+      "reason": "수동 세대(08-20) 글이고 9/25 추석 직전 수요가 살아 있는 지자체 명절위문금이라는 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "climate-transit-card-end-vs-kpass",
+      "action": "keep",
+      "reason": "1684자로 얇지만 수동 세대(07-07) 글이며 기후동행카드 종료설 대응 + K패스 비교라는 유일 의도를 정직하게 다뤄 명백한 중복·부실에 해당하지 않는다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "culture-nuri-card-2026-eligibility",
+      "action": "keep",
+      "reason": "수동 세대(08-11) 글로 문화누리카드 15만원·발급 기간 등 구체 수치를 갖춘 클러스터 내 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "daycare-fee-vs-child-care-allowance-decision",
+      "action": "noindex",
+      "reason": "구세대(06-05) 글로 '6월 결정' 시의성이 소진됐고, 본문을 읽어보면 본인부담금 5~15만 등 실제 무상보육 체계와 어긋날 소지가 있는 근사치뿐이라 YMYL 품질이 낮으며 양육수당 가이드 글과 전환·비교 내용이 부분 중복된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "didimssiat-child-asset-account",
+      "action": "keep",
+      "reason": "수동 세대(06-28) 글로 1725자지만 1대2 매칭 구조, 월 50만원 자유저축 한도, 만 24세 용도제한 해제, 수급 중지 시 매칭 유지 등 구체적 독창 정보를 갖춘 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "disability-activity-support-hours",
+      "action": "keep",
+      "reason": "구세대(05-01)지만 장애인 활동지원 등급별 시간 한도는 클러스터 내 유일 주제이고 3300자로 본문 밀도가 충분해 keep 요건 ②를 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-income-child-credit-august-payment",
+      "action": "keep",
+      "reason": "수동 세대(07-24) 글로 '8월 지급 시기·조회'라는 의도가 정기신청·반기신청·감액 사유 글들과 구분되는 유일 의도이고 내부링크 4개로 클러스터에 연결돼 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-income-credit-clawback-appeal",
+      "action": "keep",
+      "reason": "수동 세대(08-03) 글로 환수 통지·이의신청 90일·분납이라는 클러스터 내 유일 의도를 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-income-credit-expansion-2026-reform",
+      "action": "keep",
+      "reason": "수동 세대(08-08) 글로 1852자로 얇지만 2026 세제개편안의 장려금 확대라는 유일 주제이고 국회 통과 전제를 명시한 시사 대응 글이라 명백한 부실이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "earned-income-credit-reduced-amount-reasons",
+      "action": "keep",
+      "reason": "수동 세대(08-17) 글로 재산 1.7억 초과 50% 감액 등 구체 수치를 갖춘 감액·제외 사유라는 유일 의도를 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-income-credit-seizure-protection-account",
+      "action": "keep",
+      "reason": "수동 세대(08-18) 글로 압류방지통장 개설이라는 클러스터 내 유일 의도를 조세특례제한법 근거와 함께 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-income-credit-semiannual-application",
+      "action": "keep",
+      "reason": "수동 세대(07-14) 글로 반기신청 35% 선지급 구조라는 유일 의도를 3151자로 다뤄 밀도도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-income-tax-credit-late-application-d-day",
+      "action": "noindex",
+      "reason": "구세대(06-02) D-day 글로 '오늘 6/2부터' 프레임이 완전히 소진됐고 맞벌이 소득한도 '약 3,800만원' 등 수치가 2026년 기준과 어긋날 소지가 있는 기계 템플릿이라, 기한후신청 의도가 유일함에도 구글 재노출 가치보다 풋프린트 리스크가 크다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "eitc-basic-livelihood-recipient-income",
+      "action": "keep",
+      "reason": "수동 세대(08-19) 글로 '장려금이 기초수급 소득인정액에 잡히는가'라는 유일 의도를 다루며 명백한 중복·부실이 없다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "eitc-tax-health-insurance-dependent-impact",
+      "action": "keep",
+      "reason": "수동 세대(08-20) 글로 장려금 수령 후 세금·건보료·피부양자 영향이라는 유일 의도를 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "emergency-welfare-livelihood-support-2026",
+      "action": "keep",
+      "reason": "수동 세대(06-20) 글로 긴급복지지원(4인 약 199만원·중위 75%)이라는 유일 주제이고 내부링크 5개가 향하는 클러스터 허브 역할을 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "energy-cashback-summer-electricity-application",
+      "action": "noindex",
+      "reason": "[검증 거부→noindex] '타깃 상위호환' 전제가 사실관계상 역전돼 있다. 한전 주택용 에너지캐시백의 실제 제도는 절감률 3% 이상부터 환급, 단가 30~70원/kWh 구간제로 원문 수치가 실제와 부합한다. 반면 타깃은 5% 미만 환급 0원, 단가 50~200원/kWh, 신청처 energycashback.or.kr, 신청 기한 매년 1/31, 분기별 정산, 주민센터 방문 신청 등 실제 한전·가스캐시백 운영과 대응되지 않는 서술이 검색의도의 핵심 답변 자리에 있어 조작 의심 수치다. 301 시 정확한 임계값·단가를 담은 유일한 페이지가 소멸하고 사용자가 부정확한 페이지로 유도된다. 중복 신호는 noindex로 제거하고, 타깃을 1차 출처로 사실검증·정정한 뒤 통합을 재검토하라. | 원사유: 같은 한전 에너지캐시백 제도의 계절 변주 글로 FAQ 6개 중 5개(모든 가구 자격, 절감률별 환급액, 신청 절차, 에너지바우처와 차이·중복, 아파트·임차 가능 여부)가 타깃 글과 그대로 겹치고, 타깃은 구글 색인 생존(notIndexed=false)·3091자·절감률별 단가표와 사례 시뮬레이션을 갖춘 명백한 상위호환인 반면 이 글의 3%·30~70원 수치는 타깃과도 모순된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "energy-voucher-household-member-addition-june",
+      "action": "noindex",
+      "reason": "구세대(06-09) 글로 '7월 시행 D-23' 시의성이 소진됐고 본문이 '본인' 반복의 전형적 기계 문체에 1인 13만원 등 수치가 같은 클러스터의 냉방비 글(1인 4~6만원)과 모순되는 저품질이라 색인 제외가 안전하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "energy-voucher-summer-cooling-application",
+      "action": "noindex",
+      "reason": "구세대(06-03) 글로 하절기 신청 시즌(6~7월 초)이 사실상 소진됐고 지원액이 전부 근사치이며 heating-energy-voucher-eligibility(색인 생존·3252자)와 제도 설명이 부분 중복되지만, 냉방비와 난방비 검색의도가 완전히 같지는 않아 merge 대신 안전한 noindex를 택한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "ev-subsidy-2026-amount-eligibility",
+      "action": "keep",
+      "reason": "수동 세대(06-16) 글로 국고 580만·전환지원금 100만 등 구체 수치를 갖춘 전기차 보조금이라는 클러스터 내 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "family-caregiving-youth-self-care-allowance",
+      "action": "keep",
+      "reason": "수동 세대(08-16) 글로 가족돌봄청년 자기돌봄비 연 200만원·2026 하반기 전국 확대라는 유일 주제를 2955자로 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "health-lifestyle-incentive-program",
+      "action": "keep",
+      "reason": "1638자로 얇지만 수동 세대(07-05) 글이고 건강생활실천지원금이라는 유일 주제를 시범사업의 지역·연도별 변동성을 단정 없이 정직하게 안내하는 구조라 명백한 부실로 보기 어렵다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "high-fuel-subsidy-2026-application-d30",
+      "action": "delete",
+      "reason": "7/3 마감된 일회성 지원금의 D-30 신청 훅 글로, 본문 스스로 '마감 후 그해 신청 영구 소실·사후 청구 없음'을 명시하고 금액·건보료 기준도 전부 출시 전 추정치라 정보 가치가 완전히 소멸했다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "k-pass-card-comparison-modu",
+      "action": "keep",
+      "reason": "수동 세대(07-05)이고 K-패스 카드 선택 기준이라는 고유 검색의도를 다루며, 얇지만 환급 동일·실적 조건 중심의 일관된 판단 프레임과 내부링크 허브 역할이 있어 명백한 부실이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "k-pass-public-transport-refund-guide",
+      "action": "noindex",
+      "reason": "자동 세대(06-10)·1,587자로 환급률·이용횟수가 전부 '약 N' 근사치뿐인 일반론 위주 얇은 글이며, 페이지 자체는 무해하고 내부링크 5건도 noindex로 유지된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "median-income-2026-reference",
+      "action": "keep",
+      "reason": "수동 세대에 2026 고시 금액(4인 649만4,738원 등)과 제도별 기준 %(생계 32~긴급복지 75)를 구체 수치로 담은 클러스터 유일의 기준 중위소득 레퍼런스로 내부링크 기반 역할이 크다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "modu-card-local-currency-guide",
+      "action": "keep",
+      "reason": "수동 세대(07-06)이고 '모두의카드란 무엇인가'라는 클러스터 내 유일 주제를 다루며, 지역화폐 인센티브 구조·가맹점 제약을 정확히 설명해 명백한 부실·중복이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "multi-child-2-kids-benefits-2026",
+      "action": "keep",
+      "reason": "수동 세대(08-01)에 2자녀 다자녀 기준 완화라는 유일 주제를 2,226자 밀도로 다뤄 기본 keep 조건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-scholarship-2026-2nd-semester-2nd-round",
+      "action": "keep",
+      "reason": "수동 세대(08-02)이고 2학기 2차 신청·재학생 구제신청이라는 시점 특화 유일 주제로, 클러스터 내 소득분위 글과 검색의도가 겹치지 않는다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "onnuri-gift-certificate-types-comparison",
+      "action": "keep",
+      "reason": "수동 세대(07-03)이고 usage-discount 글과 일부 겹치지만 유형별 소득공제 연계·결제 방식 차이라는 고유 각도를 다루며 상호 내부링크로 역할이 분리돼 명백한 중복이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "onnuri-gift-certificate-usage-discount",
+      "action": "keep",
+      "reason": "수동 세대(06-29)에 할인율(10%/5%/명절 15%)·구매한도(디지털 월 100만, 지류 50만)·사용처 확대까지 구체 수치를 갖춘 온누리상품권 대표 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "parental-benefit-2026-infant-cash",
+      "action": "keep",
+      "reason": "수동 세대(08-19)이고 부모급여(0세 100만·1세 50만·어린이집 차액·60일 소급)라는 클러스터 유일 주제를 구체적으로 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "postpartum-newborn-care-service-support-2026",
+      "action": "keep",
+      "reason": "수동 세대(08-11)이고 산모신생아 건강관리(산후도우미) 지원이라는 유일 주제로 소득 기준·신청 기한을 다뤄 기본 keep 조건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "self-reliance-youth-support-allowance",
+      "action": "keep",
+      "reason": "수동 세대(06-29)이고 자립준비청년 자립수당(월 50만·60회·정착금 1,000만+)이라는 유일 주제를 구체 수치로 다뤄 명백한 부실이 아니다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "senior-jobs-2026-application-guide",
+      "action": "keep",
+      "reason": "수동 세대(06-17)이고 노인 일자리(공익형 29만·사회서비스형 76만)라는 클러스터 유일 주제를 다뤄 기본 keep 조건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "seoul-youth-double-savings-account",
+      "action": "keep",
+      "reason": "구세대(05-10)지만 서울시 희망두배청년통장이라는 클러스터 유일 주제이고 본문 2,714자로 밀도 기준(≥2,500)을 충족해 keep 조건 ②에 해당한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "single-parent-family-childcare-support",
+      "action": "keep",
+      "reason": "구세대(04-11)지만 한부모 아동양육비라는 유일 주제(선지급제 글과 검색의도 상이)를 지급액 21/35만·지급일 23일·서류 목록·중복수급 조합까지 독창적 구체 정보로 다뤄 품질이 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "sokcho-minsaeng-support-fund-application",
+      "action": "keep",
+      "reason": "수동 세대(07-19)이고 속초 민생지원금 신청이 9/11까지 진행 중인 시의성 있는 지역 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "soldier-salary-2026-discharge-savings",
+      "action": "keep",
+      "reason": "수동 세대(08-04)이고 군인 월급·장병내일준비적금이라는 클러스터 유일 주제를 다뤄 기본 keep 조건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "summer-cooling-subsidy-overlap-guide",
+      "action": "keep",
+      "reason": "수동 세대(07-03)이고 개별 제도 글들과 달리 '냉방지원 3제도 중복 수급 가능 여부'라는 고유 검색의도를 다루며 바우처·캐시백 글로 잇는 허브 역할이 있어 명백한 중복이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "summer-electricity-progressive-tariff-bill-guide",
+      "action": "keep",
+      "reason": "수동 세대(06-14)에 본문 3,341자로 누진제 구간·7·8월 완화라는 유일 주제를 밀도 있게 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "telecom-fee-reduction-eligibility-application-2026",
+      "action": "keep",
+      "reason": "수동 세대(07-27)이고 통신요금 감면이라는 클러스터 유일 주제를 대상별 금액·신청 경로까지 다뤄 기본 keep 조건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "worker-vacation-support-40man-2026",
+      "action": "keep",
+      "reason": "수동 세대(07-24)이고 근로자 휴가지원사업이라는 클러스터 유일 주제를 분담 구조·참여 확인법까지 다뤄 기본 keep 조건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-culture-pass-2026-usage-deadline",
+      "action": "keep",
+      "reason": "수동 세대(07-23)이고 7/31 훅은 지났지만 2차 신청(8/10~)·잔액 12/31 사용 등 진행 중 정보가 남은 유일 주제라 기본 keep 조건을 충족한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "youth-tomorrow-fund-5year-vs-cancel",
+      "action": "noindex",
+      "reason": "자동 세대(04-16)로 '5년 만기 3,000만원(본인 1,200+기업 600+정부 1,200)·도약계좌 중복 불가' 서술이 같은 클러스터 youth-tomorrow-fund-savings의 '2년형 1,200만원·도약계좌 동시 가입 가능'과 핵심 사실이 정면 모순되고 실존 제도 구조와도 일치하지 않아 구글 색인에서 빼는 것이 안전하다(검색의도가 달라 merge 부적합).",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-tomorrow-fund-savings",
+      "action": "keep",
+      "reason": "구세대(04-13)지만 청년내일채움공제 기본 자격·적립 구조를 다루는 클러스터 유일 가이드이고, 2년형 1,200만원 구조·6개월 신청 기한·중도해지 환수 등 구체 정보가 정확하게 서술돼 품질이 충분하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "beotimmok-jeonse-loan",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-04-01)의 1,412자 압축 요약 글로 주제는 유일하나 '완벽 가이드' 제목 대비 본문 밀도가 얇아 구글 정예화 기준 미달, 네이버 안전한 noindex 처리.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "capital-gains-tax-june-seller-aug-31-prep",
+      "action": "noindex",
+      "reason": "자동 세대 D-데이 시리즈로 sibling 글(document-organization)과 마감 표·이중부담 표·비과세·분납·'자주 빠뜨리는 사항'까지 상호 복제된 부분 중복이며 8/31 시의성도 소진, 색인 생존 상위호환 타깃이 없어 noindex.",
+      "confidence": "high"
+    },
+    {
+      "slug": "capital-gains-tax-june-seller-document-organization",
+      "action": "noindex",
+      "reason": "aug-31-prep과 같은 '6월 매도자 양도세 8/31 준비' 의도를 3일 간격으로 재발행한 자동 세대 중복 글(D-90 프레임만 다름)이나 merge 타깃 후보가 모두 비색인이라 안전한 noindex 선택.",
+      "confidence": "high"
+    },
+    {
+      "slug": "commercial-premium-recovery-landlord-interference",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-03)이며 상가 권리금 회수 방해·손해배상은 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "deposit-return-dispute-tenancy-injunction",
+      "action": "merge",
+      "target": "tenancy-injunction-deposit-protection",
+      "reason": "두 글 모두 임차권등기명령 신청 자격·5단계 절차·비용·'김 대리 마포구' 사례 시뮬레이션·주의사항·제도 비교표로 구성이 사실상 동일한 같은 검색의도(신청 절차·비용)이며, 타깃은 구글 색인이 살아 있는(notIndexed=false) 2,916자 글이라 명백한 통합 우위.",
+      "confidence": "high"
+    },
+    {
+      "slug": "didimdol-vs-bogeumjari-comparison",
+      "action": "keep",
+      "reason": "구세대(2026-04-04)지만 클러스터 내 유일한 디딤돌 vs 보금자리론 비교 글로 자격 수치·금리표·LTV/DSR 계산 예시 등 본문 밀도가 확인됐고 인바운드 링크 4개의 허브 역할.",
+      "confidence": "high"
+    },
+    {
+      "slug": "housing-subscription-ineligible-rewin-restriction",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-27)이며 청약 부적격·재당첨 제한은 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "jeonse-early-move-brokerage-fee",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-08)로 분량은 얇지만 '만기 전 이사 복비 부담' 단일 질문에 원칙·관행·묵시적 갱신·특약을 온전히 답하는 유일 주제 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "jeonse-eviction-fund-loan",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-14)이며 임대인용 전세퇴거자금대출은 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "jeonse-fraud-deposit-risk-check",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-24)이며 깡통전세 사전 예방 체크리스트는 피해자 지원(사후) 글과 의도가 다른 유일 주제, 인바운드 4개.",
+      "confidence": "high"
+    },
+    {
+      "slug": "jeonse-fraud-victim-support-priority-purchase",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-16)이며 전세사기 피해자 특별법 지원(우선매수권·LH 매입)은 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "jeonse-right-registration-vs-fixed-date",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-25)이며 전세권설정 vs 확정일자 선택 비교는 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "landlord-unpaid-tax-inspection-tenant-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-13)이며 임대인 미납국세 열람제도는 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "lease-registration-order-deposit-protection",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-19)로 색인 생존 글(신청 절차·비용 의도)과 달리 '보증금 못 받은 채 이사할 때 등기 확인 후 이전 순서·보증보험 대비'라는 별도 의도로 차별화돼 명백한 중복이 아님.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "long-term-repair-reserve-refund-tenant",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-28)이며 장기수선충당금 반환은 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "marriage-combined-household-1house-cgt-exemption",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-09)이며 혼인 합가 10년 특례는 일시적 2주택·상생임대인 글과 요건이 다른 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "mortgage-registration-tax-cost",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-20)이며 근저당권 설정 등록면허세·등기 비용은 클러스터 내 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "newborn-special-supply-private-housing-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-10)이며 민영주택 신생아 특별공급(청약)은 신생아 특례대출 글들과 의도가 다른 유일 주제.",
+      "confidence": "high"
+    },
+    {
+      "slug": "newlywed-didimdol-june-vs-july-decision",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 6월vs7월 시점 결정 글로 시의성이 완전히 소진됐고 본문도 '본인' 반복·모호한 수치 위주의 부실 품질이나, 클러스터에 상위호환 글이 없어 네이버 안전한 noindex 가 적절하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "officetel-housing-count-tax-subscription",
+      "action": "keep",
+      "reason": "수동 발행 세대이고 오피스텔 주택수 판정(주거용/업무용·세목별 차이·청약 예외)이라는 클러스터 유일 주제를 구체 기준과 내부링크로 다뤄 분량 대비 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-gift-acquisition-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대이며 증여 취득세(3.5%/12% 중과·시가인정액·1주택 예외)라는 클러스터 유일 주제를 정확한 세율과 예외 조건으로 다뤄 얇지만 부실이 아니다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-tax-d1-june-1-24h-final",
+      "action": "merge",
+      "target": "comprehensive-property-tax-june-1-baseline",
+      "reason": "'6월 1일 전 무엇을 점검·등기는 언제까지·9월 신청 준비' 질문이 구글 색인 생존 중인 기준일 카운트다운 글과 완전히 겹치는 날짜 박제형(5/31 오늘) 재발행물로, D-2 글과도 점검 목록·절세 옵션 표·캘린더가 사실상 동일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-tax-d2-june-1-final-checklist",
+      "action": "merge",
+      "target": "comprehensive-property-tax-june-1-baseline",
+      "reason": "'과세기준일 직전 마지막 점검' 검색의도가 색인 생존 중인 기준일 체크리스트 글과 동일하고, D-1 글과 5가지 점검·6/1 이후 절세 옵션 표·실수 목록까지 중복되는 카운트다운 재발행물이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-tax-deed-d1-final-checklist",
+      "action": "merge",
+      "target": "property-tax-may-30-deed-completion-d8",
+      "reason": "'종부세 회피하려면 언제까지 어떻게 등기하나' 질문(5/29 실질 마감·잔금vs등기·매수자 분담 협의·셀프vs법무사)이 본문 우위(3,169자)의 D-8 등기 가이드와 전부 겹치고, 고유분은 지나간 특정 금요일의 시간별 표뿐이라 가치가 소멸했다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "property-tax-joint-vs-single-ownership-spouse",
+      "action": "keep",
+      "reason": "부부 공동명의 vs 단독명의 12억 특례 비교는 클러스터 유일 주제이고 본문 2,704자에 매년 9월 신청마다 재수요가 있으며 내부링크 2건이 향하는 허브 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-tax-june-buyer-june-2-deed-guide",
+      "action": "keep",
+      "reason": "'6월 이후 매수하면 그해 종부세를 내나'라는 매수자 관점 질문을 전담하는 클러스터 유일 글로, 취득세 60일·계약서 조항 예시·다음 해 일정 등 고유 정보와 2,670자 밀도를 갖춰 매년 재수요가 있다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "property-tax-may-30-deed-completion-d8",
+      "action": "keep",
+      "reason": "잔금일과 등기이전일의 차이로 종부세 부담이 갈리는 원리를 다루는 클러스터 내 가장 충실한 글(3,169자)로, 등기 시리즈의 통합 대상(target)이자 매년 5월 재수요가 있는 사실상 유일 주제다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "property-tax-nov-dec-payment-simulation",
+      "action": "keep",
+      "reason": "종부세 고지서 수령·12월 납부·250만원 초과 분납이라는 납부 단계 주제는 클러스터에서 유일하고 본문 3,067자에 2026년 11~12월 시즌 수요가 아직 앞에 남아 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-tax-rental-housing-7-8-month-prep",
+      "action": "merge",
+      "target": "property-tax-rental-housing-exclusion-application",
+      "reason": "'합산배제 요건·임대료 5% 인상률·9월 16~30일 신청 절차·거절 사유' 질문이 본문 우위(3,046자·인바운드 3)의 원조 합산배제 글과 항목 단위까지 겹치는 사전 준비 프레임 재발행물이라 검색의도가 실질 동일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "property-tax-rental-housing-exclusion-application",
+      "action": "keep",
+      "reason": "임대주택 합산배제의 요건·신청·거절 사유·절세 시뮬레이션을 아우르는 클러스터 대표 글(3,046자·인바운드 3)로 매년 9월 신청기 재수요가 있는 통합 대상이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "sangsaeng-landlord-capital-gains-tax-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대이며 상생임대인 거주요건 면제라는 클러스터 유일 주제를 2026-12-31 계약 기한 등 구체 조건과 함께 2,545자로 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "temporary-two-house-cgt-exemption",
+      "action": "keep",
+      "reason": "수동 발행 세대이고 일시적 2주택 1-2-3 요건·3년 처분기한·12억 기준을 정확히 정리한 클러스터 유일 주제 글로, 얇지만 원문 확인 결과 부실이 아니다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "unranked-subscription-homeless-only-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대이며 무순위 청약 무주택 요건 개정이라는 클러스터 유일 주제를 개정 규칙 근거와 함께 2,451자로 다룬다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-housing-dream-subscription-account",
+      "action": "keep",
+      "reason": "수동 발행 세대이고 청년주택드림 청약통장 전환·금리·대출 연계라는 클러스터 유일 주제로 중복이 없다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-jeonse-guarantee-fee-support-refund",
+      "action": "keep",
+      "reason": "수동 발행 세대이며 전세보증금 반환보증 보증료 지원(최대 40만원 환급)이라는 클러스터 유일 주제로 보증보험 비교 글들과 검색의도가 겹치지 않는다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "bond-etf-vs-direct-tax-liquidity",
+      "action": "noindex",
+      "reason": "본문은 밀도 있으나 폐기된 금융투자소득세를 '2025년 1월부터 시행 중'이라 단정하는 등 세제 서술 오류가 있어 구글 정예 평가에서 빼고 네이버용으로만 유지하는 게 안전하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "cma-rp-vs-mmf-comparison",
+      "action": "keep",
+      "reason": "클러스터 내 유일한 CMA RP형·MMF형 비교 주제이고 일별이자 산식·금리·세후 계산 등 구체 수치가 충분해 파킹통장 vs CMA 글과도 의도가 겹치지 않는다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "deposit-protection-covered-vs-not",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-25)이고 '보호되는 상품 vs 안 되는 상품' 구분은 한도 상향 글·분산 예치 글과 다른 고유 검색의도다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "deposit-protection-limit-100million",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-17)에 1억 상향이라는 고유 주제이며 내부링크 6개가 걸린 클러스터 허브 성격이라 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "emergency-fund-how-much-parking",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-22)이고 비상금 적정 금액이라는 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "foreign-currency-deposit-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-30)이고 외화예금 환차익 비과세·이자 과세라는 주제가 엔화 환전 글들과 의도가 다르다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "gold-investment-methods-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-29)이고 금 투자 4가지 방법·세금 비교는 금값 폭락 대응 글과 검색의도가 다른 고유 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "hope-savings-leap-account-rollover",
+      "action": "noindex",
+      "reason": "[새니티 조정] merge 타깃(youth-hope-savings-maturity-strategy)이 동일 CSV 에서 noindex — 통합 실익 소멸, 둘 다 noindex 로 정합화. 원사유: 두 글 모두 '청년희망적금 만기 후 청년도약계좌 환승'의 자격·기여금·신청 절차라는 동일 질문에 답하는데, 후보 글은 온국민신청 가입·3년 만기 옵션·중위 180% 등 오류가 있고 타깃 글이 기여금 구간표·일시예치 절차까지 더 정확히 커버한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "investment-loss-offset-bond-stock-etf",
+      "action": "delete",
+      "reason": "국내 상장주식 이익에 22% 양도세를 내고 주식·채권·ETF 손실을 통산 신고한다는 제도 자체가 실재하지 않는 허구여서(소액주주 국내주식 양도차익 비과세, 통산은 해외주식·ISA 내에서만) 글 전체가 회복 불가능한 세제 오정보다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "isa-account-comparison",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 얇은 글(1,529자)로 일반형·서민형 한도 서술이 2026 슈퍼 ISA 개편 글들과 부분 중복되고 구정보화가 진행 중이라 페이지만 유지하고 구글 색인은 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "isa-maturity-next-product-comparison",
+      "action": "noindex",
+      "reason": "구세대 글로 분리과세 9.5% 표기(실제 9.9%)·환승 1회 제한 등 근거 불명 서술이 있고 색인 생존 중인 ISA 만기 연금이전 글과 의도가 부분 중복되나 완전 동일하지는 않아 안전한 noindex 로 처리한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "japan-travel-yen-exchange-cheapest",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-06)이고 여행 환전 비용 비교는 엔저 투자 전략 글(yen-exchange-low-strategy-tax)과 검색의도가 다르다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "kisa-individual-investment-tax-deduction",
+      "action": "delete",
+      "reason": "개인투자조합 운용 주체를 KISA(본문에선 한국투자증권으로도 오기)로, 공제 구조를 연 600만·300만 한도로 서술했는데 실제 조특법 제16조는 출자액 3천만원 이하 100% 등 전혀 다른 구조여서 제도 골격 전체가 날조된 회복 불가능한 세제 오정보다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "korea-average-net-worth-2025",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-29)이고 가계금융복지조사 기반 평균 순자산 통계라는 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "military-readiness-savings",
+      "action": "noindex",
+      "reason": "장병내일준비적금 주제는 유일하지만 구세대 글로 잔여 복무 18개월 가입 요건·매칭 월 30만원 상한 등 1차 출처로 확인되지 않는 수치가 많아 구글 노출은 제외하고 네이버용으로만 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "monthly-installment-etf-guide",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 일반론 위주 얇은 글(1,945자)로 ETF vs 펀드·연금저축 vs 일반 ETF 글들과 부분 중복되는 범용 조언이라 noindex 가 적합하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "mutual-finance-tax-free-deposit-limit",
+      "action": "noindex",
+      "reason": "주제는 유일하나 구세대의 얇은 글(1,697자)로 농특세율·일몰 시점 같은 핵심 수치를 '법령 확인 필요'로 비워 둔 일반론이어서 구글 정예 평가에는 부적합하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "noranusan-mutual-aid-june-additional-payment",
+      "action": "keep",
+      "reason": "6월 후크는 지났지만 클러스터 내 유일한 노란우산공제 주제이고 조특법 제86조의3 기반 소득별 공제 한도 표·절세/폐업 일시금 시뮬레이션 등 구체 수치가 충분한 3,266자 본문이라 keep.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "pension-savings-fund-vs-insurance",
+      "action": "keep",
+      "reason": "insurance-fund-bank 글과 쌍을 이루는 중복이지만 수수료 구조(총보수 vs 사업비)·해지 환급률·10년 시뮬레이션 등 본문 밀도(3,699자)가 우위라 연금저축 유형 비교의 대표 글로 유지.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "pension-savings-insurance-fund-bank",
+      "action": "noindex",
+      "reason": "펀드 vs 보험 비교 축이 pension-savings-fund-vs-insurance 와 부분 중복이고, 신규 판매가 중단된 연금저축신탁(은행형)을 현재 가입 가능한 선택지처럼 서술한 구세대 글이라 구글만 제외(은행 축이 있어 검색의도가 완전 동일하지는 않아 merge 대신 안전한 noindex).",
+      "confidence": "medium"
+    },
+    {
+      "slug": "pension-savings-vs-general-etf",
+      "action": "keep",
+      "reason": "연금저축계좌 vs 일반 계좌 ETF 과세·자유도 비교는 클러스터 내 유일 주제이고 본문 3,163자로 밀도 기준을 충족해 구세대여도 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "pension-savings-vs-irp",
+      "action": "merge",
+      "target": "pension-savings-vs-irp-tax-credit",
+      "reason": "두 글 모두 '연금저축 vs IRP 차이·세액공제 한도 600/900만·공제율 15/12%·연금저축 600+IRP 300 조합으로 900만 채우기·중도해지 16.5%'라는 동일 질문에 답하는 완전 중복이며, target 은 구글 색인 생존 + 2026-06-11 리프레시된 상위호환이라 301 통합.",
+      "confidence": "high"
+    },
+    {
+      "slug": "productive-finance-isa-2026-tax-reform",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-06) 글이고 생산적금융 ISA 신설 정부안이라는 주제가 슈퍼 ISA 한도 확대 글과 구분되는 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "super-isa-2026-limit-expansion",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-02) 글이며 기존 ISA 납입·비과세 한도 확대(개정세법)라는 독립 주제로 중복이 없어 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "tax-free-comprehensive-savings-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-19) 글이고 비과세 종합저축(65세·기초연금 수급자 요건 변경)은 클러스터 내 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "term-deposit-vs-installment-savings",
+      "action": "merge",
+      "target": "deposit-vs-installment-rate-12month",
+      "reason": "'같은 금리라도 예금·적금 실수령 이자가 다른 이유(평균잔액 약 6.5개월 로직)·단리 vs 복리·목돈은 예금, 월 저축은 적금'이라는 핵심 질문·결론이 target 과 동일하게 겹치고, target 은 구글 색인 생존에 계산식·실수령액 표까지 갖춘 상위호환이라 301 통합.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "virtual-asset-crypto-tax-2027-start",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-07) 글이고 가상자산 과세 2027 시행은 클러스터 내 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-future-savings-bank-preferential-rate",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-03) 글이며 청년미래적금 '은행별 우대금리 조건'이라는 서브 의도는 출시·중복가입·환승 글들과 겹치지 않는 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-future-savings-overlap-leap-isa",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-29) 글이고 청년미래적금 기준 중복 가입 가능 여부라는 유일 주제에 내부 인바운드 링크도 5개라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-hope-savings-maturity-strategy",
+      "action": "noindex",
+      "reason": "자동 발행 세대 글로 hope-savings-leap-account-rollover 와 '희망적금 만기금의 도약계좌 환승(자격·기여금·절차·시뮬레이션)' 의도가 거의 전부 겹치고 희망적금 만기 이벤트 자체가 소진된 주제인데, 중복 상대도 색인 이탈에 사실 오류(온국민신청 경유·3년 만기 옵션)가 있어 상위호환 target 이 없으므로 안전한 noindex.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-housing-dream-savings-account",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-27) 글이고 청년 주택드림 청약통장(금리·비과세·대출 연계)은 클러스터 내 유일한 현행 상품 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-housing-savings-preferential-vs-regular",
+      "action": "noindex",
+      "reason": "신규 가입이 종료되고 주택드림 통장으로 대체된 청년 우대형 청약통장의 가입 절차·권유를 현재형으로 서술한 구세대 글로 시의성이 소진됐으나, '우대형 vs 일반 비교' 의도가 주택드림 안내 글과 완전 동일하지는 않고 주택드림 글이 전신 상품 참고용으로 내부링크하고 있어 merge 대신 noindex.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "youth-leap-account-non-applicants-june-final-check",
+      "action": "noindex",
+      "reason": "자동 발행 세대 글로 본문 전체가 '6월 마지막 검토·청년미래적금 출시 전 선가입 판단'이라는 일회성 시점 프레임이라 미래적금 출시(6/22) 이후 시의성이 완전히 소진됐고, 도약계좌 일반 정보는 색인 생존 글들이 커버하므로 noindex.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-leap-account-simulation",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 얇은 글(1,840자)로 5년 만기 시뮬레이션·소득별 기여금 표가 non-applicants-june-final-check 및 희망적금 환승 글과 부분 중복되고, 동일 의도의 색인 생존 상위호환 글이 없어 merge 대신 noindex.",
+      "confidence": "high"
+    },
+    {
+      "slug": "annual-leave-1year-vs-prorated",
+      "action": "keep",
+      "reason": "1년 미만·1년 이상 연차 발생과 비례계산·수당 공식·촉진 절차까지 담은 이 의도의 클러스터 내 최상위 글로, first-year 글 merge 수신 타깃이 되어 유일 주제가 되고 내부링크 2건도 보유한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "annual-leave-forced-use-response",
+      "action": "keep",
+      "reason": "촉진제 글과 일부 겹치지만 검색의도가 '연차 강요당했을 때 대응'으로 구분되고, 휴업수당(평균임금 70%)·무급휴가 동의·신고 5단계 등 고유 콘텐츠가 2,895자 밀도로 확인된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "annual-leave-promotion-system-mandatory",
+      "action": "keep",
+      "reason": "연차 사용 촉진제 제도 자체(3단계 절차·요건 누락 시 무효·연차대체 제도 비교)를 다루는 클러스터 유일 글로 3,209자 본문 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "annual-salary-vs-pay-grade-system",
+      "action": "keep",
+      "reason": "연봉제 vs 호봉제 비교는 클러스터 내 유일 주제이고 본문 3,019자로 밀도 참고치를 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "bonus-ordinary-wage-average-calculation",
+      "action": "keep",
+      "reason": "ordinary-wage-calculation과 3요건 설명이 일부 겹치나 '상여금의 통상임금 포함 조건 + 평균임금 월할 산정(지급주기별 표)'이라는 구분된 의도의 고유 콘텐츠가 2,806자로 확인된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "family-care-leave-10days",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-28)이며 가족돌봄휴가·휴직은 클러스터 내 유일 주제라 기본 keep에 해당한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "first-year-annual-leave-11-vs-15",
+      "action": "merge",
+      "target": "annual-leave-1year-vs-prorated",
+      "reason": "'입사 1년차 연차 몇 개·11개+15개=26개 계산·1년 미만 연차 소멸과 수당'이라는 핵심 질문이 타깃 글과 FAQ 수준까지 겹치는 동일 검색의도이고, 타깃이 비례계산·촉진 절차까지 포함한 더 넓은 상위호환(2,242자, 내부링크 2)이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "maternity-childcare-pay-comparison",
+      "action": "noindex",
+      "reason": "자동 발행 세대 글로 육아휴직 급여를 일률 80%·상한 150만원으로 서술하는데 이는 2025년 급여 개편(초기 구간 100%·상한 인상·사후지급금 폐지) 이전 수치라 구글 YMYL 품질 리스크가 있고, 클러스터 내 대체 상위호환이 없어 페이지는 유지하되 구글만 제외하는 것이 안전하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "meal-allowance-tax-exempt",
+      "action": "merge",
+      "target": "meal-allowance-200k-card-vs-cash",
+      "reason": "'식대 비과세 월 20만원의 적용 조건·현물 식사와 중복 시 과세 전환·급여명세서 표기·실수령액 차이'라는 질문이 타깃과 사실상 동일한 검색의도이고, 타깃은 구글 색인 생존(notIndexed=false)에 2026-06-14 리프레시 이력과 더 긴 본문(2,560자)을 갖춘 명백한 상위호환이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "meal-expense-receipt-tax-treatment",
+      "action": "keep",
+      "reason": "회식비의 '회사 경비 처리 vs 개인 환급·연말정산 신용카드 공제 관계'라는 의도는 색인 생존 글 meeting-expense-tax-exempt-2026(비과세 1인당 10만원 기준)과 구분되고, 환급 5단계·증빙 비교표 등 고유 실무 콘텐츠가 2,678자로 확인된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "mid-year-resignation-tax-settlement",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-18)이고 중도퇴사 연말정산은 클러스터 유일 주제이며 내부링크 5건을 받는 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "minimum-wage-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-26)이며 2026년 시행 중인 최저임금 수치를 다루는 글로 2027년 글과 연도별로 의도가 분리되어 시의성이 살아 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "night-work-pay-criteria",
+      "action": "keep",
+      "reason": "야간근로수당(22~06시 50% 가산)은 연장·휴일수당 글과 구분되는 클러스터 유일 주제이고, 가산 중첩표(최대 2.5배)·임산부·청소년·특례업종·입증자료 등 고유 정보 밀도가 높다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "ordinary-wage-calculation",
+      "action": "keep",
+      "reason": "통상임금 일반 계산법(3요건·209시간 환산·평균임금 대비·차액 청구)은 클러스터 유일 주제이며 내부링크 8건을 받는 허브 글로, 대법 판례 사건번호와 계산 예시 등 구체 정보가 확인된다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "parental-leave-return-refusal-response",
+      "action": "keep",
+      "reason": "육아휴직 복귀 거부 대응이라는 주제가 클러스터 내 유일하고(급여 비교 글과 의도 상이) 본문 3,266자로 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "payslip-mandatory-issuance-penalty",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-29)이고 임금명세서 교부 의무·과태료 주제가 클러스터 내 유일해 기본 keep 대상이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "probation-period-minimum-wage-90",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-30)이고 수습기간 최저임금 90% 감액 요건 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "reemployment-30day-4insurance-transfer",
+      "action": "keep",
+      "reason": "퇴직 후 재취업 시 4대보험 이관이라는 주제가 클러스터 내 유일하고 본문 2,791자로 밀도 기준을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "resignation-notice-1month-vs-immediate",
+      "action": "keep",
+      "reason": "퇴직 통보 시점과 즉시 퇴사 비교 주제가 클러스터 내 유일하고 본문 3,508자로 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "salary-negotiation-data-prep",
+      "action": "noindex",
+      "reason": "구세대 글로 시장가 확인처·성과 정리·협상 화법이 salary-negotiation-market-data-sources 와 부분 중복되고, 실존 불명확한 '잡코리아 KORING' 등 본문 신뢰도가 낮아 구글 색인만 제외한다(네이버 무영향).",
+      "confidence": "high"
+    },
+    {
+      "slug": "salary-negotiation-market-data-sources",
+      "action": "keep",
+      "reason": "본문 확인 결과 정부 자료원 5종·FAQ·사례 시뮬레이션을 갖춘 연봉협상 데이터 대표 글로, 중복 상대(data-prep)를 noindex 하면 클러스터 내 해당 의도를 담당할 최상위 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "severance-3month-average-vs-ordinary",
+      "action": "keep",
+      "reason": "퇴직금 산정 시 평균임금 대 통상임금 비교라는 각도가 계산법 글들과 구분되는 고유 의도이고 본문 3,725자로 클러스터 내 최상위 밀도다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "severance-interim-settlement-conditions",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-19)로 중간정산 법정 사유·함정을 법적으로 정확하게 다루는 클러스터 대표 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "severance-mid-term-settlement-tax",
+      "action": "noindex",
+      "reason": "본문 대조 결과 사유 6가지·퇴직금 감소 함정·DC형 중도인출·거부 여부가 수동 세대 severance-interim-settlement-conditions 와 중복되고 '법정 사유면 거절 불가'·'분기별 분산 정산' 등 부정확 서술이 있으나, 퇴직소득세 계산 파트는 고유해 merge 가 아닌 noindex 로 처리한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "severance-pay-calculation-method",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-24)이고 퇴직금 기본 계산 공식 주제로 내부링크 3개가 걸린 클러스터 허브성 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "unpaid-wage-substitute-payment-guide",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-20)이고 간이대지급금 신청 가이드로, 도산대지급금 확대 뉴스 글과 의도가 달라 유일 주제이며 내부링크 3개가 걸려 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "weekend-work-allowance-vs-replacement",
+      "action": "noindex",
+      "reason": "구세대 글로 휴일근로수당 150·200% 계산부가 구글 색인 생존 글 holiday-work-pay-calculation 과 부분 중복되고, 고유 파트인 '근로자에게 선택권' 서술은 법적 근거가 약해 글은 유지하되 구글 색인만 제외한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "weekly-holiday-allowance-calculation",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-25)이고 주휴수당 계산법 주제가 클러스터 내 유일하며 내부링크 7개가 걸린 핵심 참조 글이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "db-vs-dc-retirement-pension",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 1404자 얇은 일반론 비교 글로, DB·DC 개념 설명이 클러스터 내 retirement-pension-db-dc-irp-switch·dc-retirement 글들과 부분 중복되지만 '갈아타기'와 검색의도가 완전히 같지는 않아 페이지는 남기고 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "farmland-pension-elderly-farmer",
+      "action": "keep",
+      "reason": "수동 발행 세대(06-28)이고 농지연금 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "housing-pension-guide",
+      "action": "keep",
+      "reason": "[검증 거부→keep] 머지 방향이 거꾸로다. 타깃(9b-cap)의 핵심 전제 '9억 한도, 2026년 4월 기준 9억 이하만 가입'은 2023-10 공시가격 12억 상향 이후 구식 오류이고, '2주택 이상 가입 불가'(합산 12억 이하면 가능), '부부 중 연장자 기준 월지급금'(실제 연소자 기준), '배우자 없이 사망 시 주택 공사 귀속' 등 핵심 서술 다수가 부정확. 반면 후보는 12억 한도·다주택 조건부 가능·사망 시 정산(차액 상속, 부족분 청구 없음)을 정확히 커버 — 정확한 글을 오류 글로 301하면 유일하게 맞는 서술이 소멸한다. 후보 keep, 오히려 타깃을 정정하거나 역방향 통합을 재검토할 것. | 원사유: 두 글 모두 '주택연금 가입 자격(만 55세)·주택가격 한도·월 수령액 표·수령액 비과세·신청 절차'라는 동일 질문에 답하는 실질 동일 의도이며, target 이 구글 색인 생존(notIndexed=false)·2431자·FAQ·사례 시뮬레이션 보유로 상위호환이라 1482자 구세대 개요 글을 301 통합한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "irp-june-additional-payment-tax-credit-limit",
+      "action": "noindex",
+      "reason": "자동 발행 세대(06-08)의 '6월 추가납입 결정' 시즌 후크가 소진된 글로, 세액공제 900만 한도 정보 자체는 무해하고 신세대 글(noranusan)이 내부링크로 참조 중이므로 페이지는 유지하되 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "irp-portfolio-recommendation",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 모델 포트폴리오 일반론으로, 위험자산 70% 한도·TDF 활용·리밸런싱 주기 내용이 retirement-pension-etf-management 및 dc-retirement-asset-allocation-fee 와 부분 중복되지만 '추천 포트폴리오'와 'ETF 운용' 의도가 완전 동일하지는 않아 merge 대신 안전한 noindex 로 처리한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-credit-birth-military-unemployment",
+      "action": "keep",
+      "reason": "수동 발행 세대(06-25)이고 출산·군복무·실업 크레딧 주제가 클러스터 내 유일하며 2026 제도 변경(첫째 자녀 인정·상한 폐지)을 담고 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-expected-amount-lookup",
+      "action": "keep",
+      "reason": "수동 발행 세대(07-23)이고 예상수령액 조회 방법 주제가 클러스터 내 유일하며 본문 밀도(2564자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-income-replacement-rate-43-reform",
+      "action": "keep",
+      "reason": "수동 발행 세대(07-20)이고 소득대체율 43% 연금개혁 주제가 클러스터 내 유일하며 본문 밀도(2732자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-lump-sum-refund-repayment",
+      "action": "keep",
+      "reason": "수동 발행 세대(06-21)이고 반환일시금·반납 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-payment-exception-no-income",
+      "action": "keep",
+      "reason": "수동 발행 세대(08-18)이고 납부예외 주제가 클러스터 내 유일하며 미납 글(unpaid-consequences)과 의도가 구분된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-reduction-while-working",
+      "action": "keep",
+      "reason": "수동 발행 세대(06-19)이고 재직자 노령연금 감액(A값 초과) 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-retroactive-payment-june-decision",
+      "action": "merge",
+      "target": "nps-additional-payment-coverage-extension",
+      "reason": "두 글 모두 '추납 신청 자격·최대 119개월 한도·60개월 분할 납부·연금 수령액 증가 시뮬레이션'이라는 동일 질문에 답하고 '6월 결정·7월 정기조정' 후크는 시의성이 소진됐으며, target 이 구글 색인 생존(notIndexed=false)·3358자·손익분기 분석 보유로 명백한 상위호환이라 301 통합한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "national-pension-voluntary-continued-payment",
+      "action": "keep",
+      "reason": "구세대(04-08)지만 임의계속가입 주제가 클러스터 내 유일하고(임의가입 27~59세 글과 제도 자체가 다름) 보험료 등급표·손익분기 73~75세·연기수령 조합 시뮬레이션 등 구체 수치 밀도가 충분하다(2479자).",
+      "confidence": "high"
+    },
+    {
+      "slug": "noran-umbrella-eligibility",
+      "action": "noindex",
+      "reason": "신세대 노란우산 글(noranusan-mutual-aid-deduction)과 소득공제 한도·가입 자격·압류 보호·해지 질문이 겹치는 중복 쌍이지만, 이 구세대 글이 오히려 구간별 한도표·환급률표 등 본문이 더 두꺼워(2626자) '명백한 상위호환 target' 조건이 성립하지 않으므로 merge 대신 구글 색인만 제외해 카니발리제이션을 해소한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "noranusan-mutual-aid-deduction",
+      "action": "keep",
+      "reason": "수동 발행 세대(06-24)로 2026 변경사항(한도 500→600만·50개월 납입 제한 폐지)을 반영한 노란우산 대표 글로 유지한다(구세대 중복 글은 noindex 처리).",
+      "confidence": "high"
+    },
+    {
+      "slug": "nps-low-income-regional-support-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(08-03)이고 저소득 지역가입자 보험료 지원 확대 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "pension-savings-early-termination-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대(08-04)이고 연금저축 중도해지 세금 주제가 클러스터 내 유일하다(IRP 중도인출 글과 계좌 종류가 다름).",
+      "confidence": "high"
+    },
+    {
+      "slug": "personal-pension-vs-pension-savings",
+      "action": "keep",
+      "reason": "구세대지만 개인연금보험 vs 연금저축 과세 비교 주제가 클러스터 내 유일하고(변액연금 비교 글과 의도가 다름) 본문 밀도(2505자)가 참고치를 충족하며 06-11 갱신 이력이 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "retirement-fund-needed",
+      "action": "noindex",
+      "reason": "자동 발행 세대의 1821자 얇은 일반론 시뮬레이션 글로 독창 정보가 부족하지만 페이지 자체는 무해하고 구세대 글들이 내부링크로 참조 중이므로 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "retirement-pension-etf-management",
+      "action": "keep",
+      "reason": "구세대지만 '퇴직연금 ETF 운용' 의도가 클러스터 내 유일해지고(중복이던 irp-portfolio-recommendation 은 noindex), 법조문·안전자산 인정 표·실제 ETF 종목·운용방식별 수익률 등 구체 정보 밀도가 있으며 06-11 갱신 이력이 있다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "beotimmok-refinance-hf-general",
+      "action": "keep",
+      "reason": "버팀목 전세대출 대환은 클러스터 내 유일 주제(다른 갈아타기 글은 신용대출·대환 인프라 대상)이고 본문 3,065자로 밀도 충분해 구세대여도 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "credit-card-revolving-vs-installment-rate",
+      "action": "keep",
+      "reason": "리볼빙 vs 분할납부 이자 구조는 클러스터 내 유일 주제이고 본문 3,352자로 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "credit-inquiry-hard-vs-soft-score",
+      "action": "delete",
+      "reason": "키워드·설명·FAQ·본문 전반에 '하드인quiry' 깨진 문자열이 박혀 있고, 2011년 이후 한국 신용평가에 반영되지 않는 조회 감점(하드 조회 1회당 2~10점 하락)을 NICE·금감원 출처로 단정하는 미국식 프레임 오정보라 YMYL 기준 회복 불가능한 오류다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "credit-score-30day-delinquency-recovery",
+      "action": "keep",
+      "reason": "연체 발생 후 점수 방어·회복 전략은 점수 올리기 일반론 글들과 의도가 구분되는 클러스터 내 유일 주제이고, 본문 2,701자에 기간별 하락표·회복 단계 등 구체 정보가 있어 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "delinquency-vs-delay-interest-limit",
+      "action": "noindex",
+      "reason": "원문 확인 결과 상사 지연이자 연 12% 단정(상법상 법정이율은 연 6%, 12%는 소송촉진법 이율), 은행 최고 연체금리 연 15% 단정 등 법정 수치 오류가 섞인 자동 발행 세대 글이라 구글 색인에서만 제외한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "didimdol-bogeumjari-general-mortgage",
+      "action": "keep",
+      "reason": "디딤돌·보금자리·일반 주담대 3종 비교는 클러스터 내 유일 주제이고 본문 3,049자로 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "loan-repayment-method-comparison",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-26)이고 상환방식 3종 비교는 클러스터 내 유일 주제라 기본 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "misogeumyung-vs-sunshine-loan",
+      "action": "keep",
+      "reason": "미소금융을 다루는 글은 클러스터에서 이 글뿐이고(햇살론 단독·햇살론17 글과 의도 구분) 본문 2,675자에 자격·금리·한도 비교표가 구체적이라 유지한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "mortgage-prepayment-penalty-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-21)이고 중도상환수수료는 클러스터 내 유일 주제라 기본 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "negative-checking-vs-credit-loan",
+      "action": "noindex",
+      "reason": "자동 발행 세대에 본문 1,848자로 얇고, 한도 잘 받는 법 섹션이 색인 생존 글(negative-checking-limit-rate-negotiation)과 부분 중복이며 하드 조회 감점 같은 오류 서술도 있어 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "personal-business-card-purchase-limit",
+      "action": "delete",
+      "reason": "개인사업자에게 존재하지 않는 '법인카드 매입 한도' 제도를 전제로 국세청·금감원 출처를 위장한 업종별 한도 표(연 매출의 10~30% 등)와 인과관계를 창작한 글이라 정보 가치가 없는 회복 불가능한 오류로 판단한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "pre-credit-recovery-90day-self-report",
+      "action": "merge",
+      "target": "credit-recovery-pre-debt-adjustment",
+      "reason": "두 글 모두 '연체 90일 되기 전 신용회복위에 선제적으로 채무조정을 신청하면 자격·절차·혜택이 어떻게 되나'라는 동일 검색의도를 다루는데, 후보는 비공식 명칭(예비 신용회복)과 사실과 다른 원금 최대 70% 감면 주장을 담은 반면 타깃은 구글 색인 생존·본문 3,576자·실제 제도명(사전채무조정/프리워크아웃)을 쓰는 명백한 상위호환이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "self-employed-credit-loan-limit-recovery-june",
+      "action": "noindex",
+      "reason": "'6월 한도 회복'이라는 시즌 훅의 시의성이 소진된 자동 발행 세대 글이고, 핵심인 사업자대출 vs 신용대출 비교는 색인 생존 글(self-employed-business-vs-credit-loan, 3,839자)과 부분 중복이라 구글 색인만 제외한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "self-employed-fresh-start-fund-2026-debt-relief",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-20)이고 새출발기금은 클러스터 내 유일 주제라 기본 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "stress-dsr-stage3-2026-loan-limit",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-13)이고 스트레스 DSR 3단계는 클러스터 내 유일 주제에 본문 3,152자로 밀도도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "student-loan-icl-mandatory-repayment-threshold",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-26)이고 2026년 상환기준소득 3,037만원 등 최신 수치를 담은 ICL 의무상환 기준 글로 기본 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "student-loan-income-contingent-vs-fixed",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2,471자)로 상환 면제 기준을 연 1,800만원으로 서술해 수동 세대 신형 글의 2026년 상환기준소득 3,037만원과 사이트 내 모순을 일으키지만, ICL vs 일반상환 선택 비교라는 의도는 신형 글(의무상환 시점)과 달라 merge 대신 noindex 한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "sunshine-loan-youth-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-28)이고 햇살론유스는 햇살론 일반·햇살론17 글과 상품이 다른 클러스터 내 유일 주제라 기본 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "youth-jeonse-deposit-return-hug",
+      "action": "keep",
+      "reason": "HUG 전세보증금 반환보증은 클러스터 내 유일 주제이고 본문 3,161자로 밀도가 충분해 구세대여도 유지한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "bokjiro-mobile-application",
+      "action": "merge",
+      "target": "bokjiro-mobile-9-welfare-integrated",
+      "reason": "두 글 모두 '복지로 모바일 앱 신청 절차'라는 동일 검색의도(앱 설치·본인인증·모의계산·5단계 신청·진행상황 확인·처리기간·정부24 비교까지 목차가 사실상 일치)를 다루는데, target이 구글 색인 생존(notIndexed=false)·본문 우위(3731 vs 2127자)·FAQ·사례 시뮬레이션까지 갖춘 명백한 상위호환이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "catastrophic-medical-expense-support-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-30)이고 클러스터 내 유일 주제(재난적의료비)에 소득·재산 기준, 180일 신청기한 등 구체 조건을 담은 3655자 본문으로 keep 기준을 모두 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "civil-24-self-vs-delegation",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-04-27)의 2012자 얇은 글로, 본인서명사실확인서를 '증명서 발급 방식'으로 오설명하고 수수료 500원/2,000원 수치의 근거가 불명확하며(출처에 홈택스 오기재), 클러스터 내 인감증명 vs 본인서명 비교 2편과 부분 중복된다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "coupang-fire-delivery-delay-compensation",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-19)로 화재 이슈 자체는 시의성이 소진됐지만 로켓배송 지연 보상(쿠팡캐시 1,000원)·로켓프레시 환불·취소 시점별 반품비 등 상시 유효한 소비자 정보가 남아 있고 중복·부실에 해당하지 않아 기본 keep이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "dementia-screening-treatment-cost-support-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-11)이고 클러스터 내 유일 주제(치매 검사비·치료비 지원)에 진단검사 15만원·치료관리비 월 3만원·중위소득 140% 등 구체 수치를 담아 keep 기준을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "family-relation-certificate-issuance",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-04-04)의 개조식 얇은 글로, 종류 차이·발급 방법·발급 자격이 수동 세대 유효기간 글(family-relation-certificate-validity-period)과 색인 생존 발급한도 글에 부분 중복되고 '혼인 정보 미표시' 같은 부정확 서술이 있으나 head 의도(발급법)가 유효기간 글과 완전 동일하지는 않아 merge 대신 안전한 noindex로 처리한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "family-relation-certificate-validity-period",
+      "action": "keep",
+      "reason": "수동 발행 세대 기준일(2026-06-12) 발행 글로 '유효기간 3개월은 법정이 아닌 제출처 관행'이라는 클러스터 내 유일 의도를 무료 발급 경로·수수료 비교와 함께 정확히 다루고 있어 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "government-application-forms",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-04-05)의 1560자 최저 밀도 글로, 신청서 11종 다운로드 위치를 나열한 일반론 위주라 얇은 글 기준(bodyChars < 2000)에 명확히 해당한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "hometax-mobile-guide",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-04-05)의 1714자 얇은 글로, 손택스 기능 나열 수준의 일반론이라 독창 정보 없이 얇은 글 기준(bodyChars < 2000)에 해당한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "ic-license-vs-mobile-license-difference",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-18)이고, 구세대 글(drivers-license-mobile-ic-vs-qr)이 '모바일 면허증 발급 시 IC 태그 vs QR 인증 방식'을 다루는 것과 달리 이 글은 'IC 실물 카드 vs 모바일 신분증'이라는 다른 비교 축을 더 정확한 서술(동일 법적 효력 등)로 다루므로 명백한 중복이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "inheritance-renounce-vs-qualified-acceptance",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-22)이고 1828자로 짧지만 실제 본문 확인 결과 3개월 숙려기간·특별한정승인·후순위 채무 승계 등 구체 법정 조건을 정확히 담은 클러스터 내 유일 주제(상속포기 vs 한정승인)라 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "mobile-resident-card-issuance-guide",
+      "action": "keep",
+      "reason": "발행일(2026-06-11)이 구세대 경계에 걸치지만 모바일 주민등록증 발급이라는 클러스터 내 유일 주제이고 본문 밀도(2627자)가 참고치를 넘어 구세대 keep 기준(②)을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "online-resident-transfer-procedure",
+      "action": "keep",
+      "reason": "자동 발행 세대(2026-04-09)지만 클러스터의 전입신고 관련 다른 두 글은 모두 과태료 의도이고 이 글만 '온라인 신고 절차' head 의도를 다루는 유일 글이며, 본문 확인 결과 세대주 동의 케이스별 표·확정일자 동시 처리·거부 사유 등 구체 절차 정보가 충분하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "overseas-travel-duty-free-limit-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-22)이고 클러스터 내 유일 주제(여행자 면세한도)에 800달러 한도·자진신고 관세 30% 감면 등 구체 수치를 담아 keep 기준을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "passport-reissue-online-application-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-06)이고 클러스터의 여권 글(전자 vs 차세대 비용 비교)과 의도가 다른 '온라인 재발급 절차'라는 유일 주제라 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "resident-registration-5min-mobile",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-04-10)의 2057자 앱 비교 글로, 색인 생존 중인 정부24 앱 가이드·증명서 수수료 글과 부분 중복되고 창구 수수료 600원·유효기간 90일 표준 등 검증이 의심스러운 수치가 있으나 명백한 단일 상위호환 글은 없어 merge 대신 noindex로 처리한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "resident-registration-occupant-view-issuance",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-16)이고 전세 계약 전 전입세대 열람원 확인이라는 클러스터 내 유일 주제라 keep 기준을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "voice-phishing-smishing-immediate-response-payment-suspension",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-27)이고 클러스터 내 유일 주제(보이스피싱 지급정지·피해구제)에 30분 골든타임·1332 신고·채권소멸 절차 등 구체 대응 정보를 담아 keep이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-accident-private-settlement-procedure",
+      "action": "keep",
+      "reason": "보험사 없이 현장 자비 합의라는 주제가 클러스터 내 유일하고(합의서 효력 글과 의도 구분) 본문 3001자로 밀도가 충분하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "car-environment-fee-5grade-old",
+      "action": "noindex",
+      "reason": "같은 환경개선부담금 주제의 car-environment-fee-diesel-old-exempt와 부분 중복이며, 두 글의 부과 대상 서술(5등급·노후차 대상 vs 2005년 이후 차량 대상)이 상호 모순되고 계산식(연 60만원)도 1차 출처 검증이 안 된 자동 발행 세대 글이라 구글 색인에서 빼는 것이 안전하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-environment-fee-diesel-old-exempt",
+      "action": "noindex",
+      "reason": "5grade-old 글과 부과 기준·금액·면제 조건이 부분 중복되면서 정반대 부과 대상(2005년 이후 차량)을 주장해 서로 모순되고, 기본부담금 표(8만~35만원) 등 수치가 검증 불가한 자동 발행 세대 글이라 어느 쪽도 상위호환이 아니므로 merge 대신 noindex가 안전하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-inspection-comprehensive-vs-regular-environment",
+      "action": "noindex",
+      "reason": "과태료 서술(수수료의 30~100%, 6천~2만원)이 정확한 수동 세대 글 car-periodic-inspection-overdue-penalty(4만원~상한 60만원)와 정면 모순되고 종합검사=사업용이라는 구분도 부정확해, 검사 비용 각도만으로 keep하기엔 본문 신뢰도가 부족한 자동 발행 세대 글이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "car-inspection-missed-cumulative-fine",
+      "action": "merge",
+      "target": "car-periodic-inspection-overdue-penalty",
+      "reason": "핵심 검색의도(검사 기한 넘기면 과태료 얼마·수검 가능 기간·조회 방법)가 구글 색인 생존 수동 세대 글과 완전히 겹치고, 이 글의 과태료 구간(4만→6만→8만, 상한 30만)과 부담금 20% 할증 주장은 target의 정확한 수치(4만원, 3일당 2만원, 상한 60만원)와 모순되는 오류라 상위호환 target으로 301이 맞다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-insurance-accident-rating-switch",
+      "action": "noindex",
+      "reason": "사고 할증 등급 체계와 보험사 이동 시 등급 유지라는 핵심 질문이 색인 생존 글 car-insurance-premium-discount-system과 겹치지만 두 글의 등급 체계 서술(1~29등급 신규 11등급 vs 18Z~29Z)이 서로 모순되어 명백한 상위호환이 없으므로 merge 대신 noindex가 안전하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "car-insurance-premium-discount-riders",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-20)이고 마일리지·블랙박스·안전운전 특약을 묶은 총괄 글로 단일 특약 글(마일리지)과 의도가 구분되어 기본 keep 대상이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-insurance-self-pay-deductible",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-21)이며 자차 자기부담금이라는 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-lease-vs-long-rental-tco",
+      "action": "keep",
+      "reason": "리스 vs 장기렌트 비교는 클러스터 내 유일 주제이고 본문 3394자로 밀도가 충분해 구세대여도 keep 요건을 충족한다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-purchase-bond-refund-guide",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-18)이고 지역개발채권 미환급 찾기라는 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "car-tax-auto-debit-discount-application",
+      "action": "keep",
+      "reason": "자동차세 자동이체 할인·신청은 연납 할인 글과 검색의도가 다른 클러스터 내 유일 주제이고 본문 3007자로 밀도 요건을 충족한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "car-tax-child-name-transfer-tax-saving",
+      "action": "noindex",
+      "reason": "자동 발행 세대(2026-06-07)의 6월 시즌 후크 글로 시의성이 소진됐고, 본문을 읽어보면 전보식 문체에 증여 공제 한도 서술이 FAQ(1,000만 초과 신고)와 본문 표(성년 5,000만 공제)에서 서로 어긋나는 등 내부 모순이 있어 keep 품질에 못 미치지만 결론 자체는 무해해 noindex가 적절하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "car-tax-refund-cases",
+      "action": "merge",
+      "target": "car-tax-refund-application-guide",
+      "reason": "폐차·이전 시 자동차세 일할 환급, 매매 시 환급권자, 과오납, 5년 시효, 위택스 신청 절차까지 답하는 질문이 색인 생존 글 car-tax-refund-application-guide와 사실상 전부 겹치고, 이 글은 1400자·FAQ 없음으로 명백한 하위호환이라 301 통합이 맞다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "drivers-license-class1-online-renewal",
+      "action": "keep",
+      "reason": "'1종 보통은 온라인만으로 갱신 가능한가'라는 롱테일 질문에 수수료·면허종류별 표·하이브리드 절차 등 구체 정보로 답하는 글로, 일반 갱신 가이드(drivers-license-renewal-mobile)와 검색의도가 구분되고 본문을 읽어보면 시력 기준 등 수치도 더 정확하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "korean-lemon-law-new-car-exchange",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-30)이고 한국형 레몬법 교환·환불 요건이라는 주제가 클러스터 내 유일하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "parking-lot-accident-fault-ratio",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-17)이고 주차장 사고 과실비율은 차로변경·교차로 과실 글과 구분되는 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "rental-car-insurance-comprehensive-self-deduction",
+      "action": "keep",
+      "reason": "렌터카 보험·면책금 조합은 클러스터 내 유일 주제이고 본문 2856자로 밀도 요건을 충족한다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "fake-3-3-contract-disguised-freelancer",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-05)이고 가짜 3.3 계약·위장 프리랜서 대응이라는 주제가 클러스터 내 유일하며 본문 밀도(2,809자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "health-insurance-special-copayment-severe",
+      "action": "keep",
+      "reason": "수동 세대(2026-06-29)로 본문이 짧지만(1,860자) 산정특례 5%/10%·30일 소급·본인부담상한제 구분 등 구체 수치가 촘촘하고 클러스터 내 유일 주제라 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "hearing-aid-health-insurance-subsidy",
+      "action": "keep",
+      "reason": "수동 세대(2026-06-17)이고 보청기 지원금 131만원·초기/후기 지원금 구조·등록→구입 순서 등 독창 정보가 뚜렷한 클러스터 내 유일 주제다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "industrial-accident-insurance-coverage",
+      "action": "keep",
+      "reason": "[새니티 조정] 감사 spot-check 결과 evergreen 산재보험 가이드로 품질·출처 준수 — 보수 원칙에 따라 keep. 원사유: 자동 세대(2026-04-06)로 색인 생존 글인 workers-compensation-claim(인정 기준·출퇴근 사고·신청 절차·요양/휴업급여·보복 금지)·workers-comp-self-employed-voluntary(자영업자 임의가입 섹션)와 부분 중복이나, 정신질환 산재 등 고유 섹션이 있어 검색의도가 완전 동일하지는 않으므로 merge 대신 noindex.",
+      "confidence": "high"
+    },
+    {
+      "slug": "infertility-treatment-leave-paid-4days",
+      "action": "keep",
+      "reason": "수동 세대(2026-07-31)이고 2026년 11월 시행 예정 제도를 다룬 클러스터 내 유일 주제로 본문 밀도(3,035자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "long-term-care-insurance-family-dependent-june-check",
+      "action": "noindex",
+      "reason": "자동 세대(2026-06-07)로 클러스터 내 유일 주제이긴 하나 제목·구성 전체가 '6월 점검·7월 정산' 시즌 후크에 묶여 시의성이 소진됐고 전보체 기계 문체가 강해 구글 재평가에 불리하므로 페이지는 유지하되 noindex.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "mandatory-annual-leave-employer-duty",
+      "action": "keep",
+      "reason": "자동 세대(2026-04-07)에 2,083자로 참고치 미달이지만 연차사용촉진 6개월/2개월 통보 절차·통상임금 포함 항목 표·209시간 산식·시효 3년 등 독창 정보 밀도가 높고 클러스터 내 유일한 연차 주제라 keep.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "national-pension-voluntary-payment",
+      "action": "keep",
+      "reason": "자동 세대(2026-04-08)지만 추납·임의가입·임의계속가입 종합 안내라는 의도가 비교 전용 글(nps-additional-vs-voluntary-before/after-60)과 구분되고, 보험료 산식·세액공제 등 구체 수치와 내부링크 5건을 갖춰 keep.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "nhis-copayment-rate-income-tier",
+      "action": "keep",
+      "reason": "자동 세대(2026-04-26)지만 의료급여 1종/2종·차상위 14%·본인부담상한제 표 등 밀도가 충분하고 클러스터 내 유일 주제이며 keep 판정한 산정특례 글이 내부링크로 참조하고 있어 keep.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "parental-leave-benefit-2025-expansion",
+      "action": "keep",
+      "reason": "수동 세대(2026-06-18)이고 구간별 급여 상한·6+6 특례 표 등 밀도가 충분하며, parental-leave-deferred-pay-abolished(사후지급금 단일 주제)와는 한 섹션만 겹칠 뿐 급여 인상 전반이라는 의도가 더 넓어 명백한 중복이 아니다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "salaried-extra-income-health-insurance",
+      "action": "keep",
+      "reason": "수동 세대(2026-06-27)로 본문이 짧지만(1,807자) 소득월액보험료라는 클러스터 내 유일 주제에 2,000만원 기준·금융소득 1,000만원 합산 제외·기준 연혁 등 구체 정보가 담겨 부실이 아니다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "short-term-parental-leave-1week-2week",
+      "action": "keep",
+      "reason": "수동 세대(2026-07-30)이고 2026년 8월 시행 단기 육아휴직이라는 클러스터 내 유일 주제로 본문 밀도(3,465자)가 최상위 수준이다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "sickness-benefit-pilot-2026",
+      "action": "keep",
+      "reason": "수동 세대(2026-07-24)이고 상병수당 시범사업이라는 클러스터 내 유일 주제이며 지급액·대기기간 등 구체 수치를 갖춰 keep.",
+      "confidence": "high"
+    },
+    {
+      "slug": "spouse-miscarriage-stillbirth-leave",
+      "action": "keep",
+      "reason": "수동 세대(2026-07-31)이고 2026년 9월 시행 배우자 유산·사산 휴가라는 클러스터 내 유일 주제로 본문 밀도(3,401자)도 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "workers-comp-benefit-types-guide",
+      "action": "keep",
+      "reason": "수동 세대(2026-06-20)로 workers-compensation-claim(색인 생존)과 '휴업급여 얼마·회사 거부 시' 질문이 일부 겹치지만, 이 글은 급여 종류 개요·공상 처리 비교 중심이고 저쪽은 청구 절차·시효 3년·거절 사유 중심이라 검색의도가 실질 동일하지 않아 명백한 중복이 아니다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "cataract-surgery-insurance-claim",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-17)이고 백내장 실손 입원·통원 기준 주제가 클러스터 내 유일하며 실손24 글에서 내부링크로 참조되는 정상 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "death-insurance-inheritance-renounce-tax",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-08-09)이고 상속포기+사망보험금+간주상속재산 상속세라는 주제가 클러스터 내 유일한 정상 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "driver-insurance-self-cost-accident-cap",
+      "action": "keep",
+      "reason": "구세대(2026-05-10)지만 운전자보험 자기부담금·면제특약 주제가 운전자보험 하위글 4편과 겹치지 않는 유일 주제이고, 원문 확인 결과 구간별 보험료 표·사례 3건·자동차보험 대비 비교표 등 2,796자 밀도가 충분.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "health-promotion-insurance-discount-steps",
+      "action": "noindex",
+      "reason": "구세대(2026-05-11) 자동 발행 글로, 원문 확인 결과 할인액 계산이 내부 모순(TLDR 연 9만 원 vs 본문 연 120만 원)이고 월 보험료 40~70만 원 등 비현실 수치가 많으며, 색인 생존 중인 insurance-discount-non-smoker-driver-health(건강 할인 누적)와 검색의도가 부분 중복되나 페이지 자체는 무해해 네이버 보존을 위해 구글만 제외.",
+      "confidence": "high"
+    },
+    {
+      "slug": "hidden-insurance-money-lookup",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-23)이고 내보험찾아줌 숨은 보험금 조회 주제가 클러스터 내 유일하며 내부링크 3건을 받는 정상 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "insurance-remodeling-overlap-coverage",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-30)로 1,902자로 짧지만 원문 확인 결과 실손 비례보상·정액 보장 구분·해지 순서 등 독자 정보가 있는 유일 주제이며(운전자 중복정리 글은 운전자보험 한정) 클러스터 내 허브 역할의 내부링크 구조도 정상.",
+      "confidence": "high"
+    },
+    {
+      "slug": "manual-therapy-management-benefit-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-28)이고 도수치료 관리급여 전환(2026-07 시행)이라는 시의성 있는 유일 주제로 구체 수가·횟수 제한 수치를 담은 정상 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "overseas-travel-insurance-coverage-guide",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-07-23)이고 해외여행자보험 vs 실손 보장 범위 주제가 클러스터 내 유일한 정상 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "silson-4gen-transfer-breakeven-calc",
+      "action": "keep",
+      "reason": "구세대(2026-04-15)지만 실손 갈아타기 손익분기 계산 방법론은 클러스터 내 유일 주제로 3,653자 고밀도(연령별 보험료 표·3단계 계산법·사례 3건)이며, merge 후보였던 silson-5gen-launch-transfer-guide 원문 대조 결과 5세대 글은 손익분기 계산을 다루지 않고 오히려 이 글을 본문에서 계산 참조로 내부링크하고 있어 검색의도가 동일하지 않음.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "silson-claim-simplification-silson24",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-18)로, 원문 대조 결과 실손24 전산청구 제도(시행 단계·참여 병원 확인·미참여 시 대안)에 집중해 구세대 silson-insurance-claim(청구 서류·거절 사유)과 검색의도가 구분되는 정상 글.",
+      "confidence": "high"
+    },
+    {
+      "slug": "variable-insurance-purchase-warning",
+      "action": "keep",
+      "reason": "구세대(2026-04-12)이고 2,373자로 참고치보다 약간 얇지만, 원문 확인 결과 사업비·환매수수료 구간표·해지 시뮬레이션 표 등 구체 수치 밀도가 높고 변액보험 단독 주의사항 주제는 클러스터 내 유일함(life-insurance-types-comparison 은 3종 비교 글로 의도가 다름).",
+      "confidence": "medium"
+    },
+    {
+      "slug": "whole-life-vs-term-insurance",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-27)로 구세대 life-insurance-types-comparison(종신·정기·변액 3종 비교, 1,404자)과 부분 겹치지만, 원문 대조 결과 종신 vs 정기 이진 비교 심층은 이 글이 본문 우위라 구세대 글이 상위호환이 아니어서 merge 요건 불성립이고 보험 리모델링 글에서 내부링크도 받는 중.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "business-closure-unemployment-eligibility",
+      "action": "merge",
+      "target": "self-employed-unemployment-benefit",
+      "reason": "자영업자 폐업 후 실업급여 수급 조건(임의가입·12개월)·인정 폐업 사유(매출 감소·질병·재해)·수령액·신청 절차라는 동일 질문을 target(구글 색인 생존·고용보험법 제49조의2 기준 정확·06-15 리프레시)이 이미 답하고 있고, 후보 글은 근로자 기준(24개월 중 180일, 최대 270일)을 자영업자에 혼입한 오류까지 있어 target이 상위호환이다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "departure-confirmation-employer-refusal",
+      "action": "keep",
+      "reason": "이직확인서 '미발급·사업주 거부 대처'라는 독립 검색의도로, 과태료 300만(제51조)·대처 5단계·증빙 표·피보험자격 확인 신청 비교 등 구체 정보 밀도가 충분하고 checklist 글과는 핵심 의도가 달라 클러스터 내 대체재가 없다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "departure-confirmation-issuance-procedure-checklist",
+      "action": "keep",
+      "reason": "'정상 발급 절차·처리 기간·단기 알바 케이스'라는 별개 의도를 다루며 사업주 신고 10일·처리 3~10일·월 60시간 가입 기준 등 구체 수치가 충분해 거부 대처 글과 부분 겹침에도 독자 가치가 뚜렷하다.",
+      "confidence": "medium"
+    },
+    {
+      "slug": "national-employment-support-2026",
+      "action": "keep",
+      "reason": "수동 발행 세대(2026-06-19)이며 국민취업지원제도는 클러스터 내 유일 주제이고, 2026년 인상 수당(월 60만·최대 360만·부양가족 +10만)과 요건(중위 60%·재산 4억) 등 구체 수치와 내부링크가 갖춰져 있다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "unemployment-overseas-travel-report",
+      "action": "keep",
+      "reason": "수급 중 해외 출국 신고·정지·재개는 클러스터 내 유일 주제이고 본문 2682자에 출국 유형별 신고 의무 표·체크리스트 5단계·부정수급 제재 기준(2~5배 환수) 등 독창 정보 밀도가 충분하다.",
+      "confidence": "high"
+    },
+    {
+      "slug": "unemployment-self-employed-registration",
+      "action": "keep",
+      "reason": "'수급 중 사업자 등록 신고'는 폐업 후 수급 글들과 다른 유일 의도이고 본문 3022자에 정지 기준 표(최저임금 50%·주 15시간)·14일 신고 의무·사례 대비 등 구체 조건이 충실해 구세대여도 유지 가치가 있다.",
+      "confidence": "high"
+    }
+  ]
+}
