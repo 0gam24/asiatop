@@ -4,10 +4,18 @@ name: Auto Create PR
 # 사용자 부담: branch push 후 PR 생성 클릭 X.
 # 후속: 운영자가 "merge-approved" 라벨을 붙이면 auto-merge.yml 이 enable →
 #   CI green 시 자동 squash merge (2026-08-26 opt-in 전환 — 라벨 없으면 머지 안 됨).
+#
+# 2026-09-02: 트리거에 'content/**' 추가.
+#   일일 포스팅 브랜치가 content/daily-YYYY-MM-DD 인데 트리거 목록에서 빠져 있어,
+#   클라우드 루틴이 브랜치를 push 해도 PR 이 생기지 않고 매일 그 지점에서 멈췄다
+#   (로컬 세션은 gh CLI 로 직접 PR 을 만들어 와서 공백이 드러나지 않았다).
+#   이 PR 생성은 기계적 단계일 뿐이며, 발행 승인 게이트는 그대로다.
+#   merge-approved 라벨이 없으면 auto-merge.yml 은 여전히 머지하지 않는다.
 
 on:
   push:
     branches:
+      - 'content/**'   # 일일 포스팅 브랜치 (content/daily-YYYY-MM-DD) — 2026-09-02 추가
       - 'fix/**'
       - 'feat/**'
       - 'chore/**'
