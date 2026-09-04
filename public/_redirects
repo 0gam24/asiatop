@@ -70,6 +70,13 @@
 /soft01            /404            410
 /tip               /404            410
 
+# ── 클러스터 오기재 URL 301 (수동 블록 — 2026-09-05 네이버 서치어드바이저 "접근 불가한 페이지") ──
+# culture-nuri-card 본문이 복지로 모바일 글을 /gov-support/ 경로로 잘못 링크해 Yeti 가 404 를 수집.
+# 글의 실제 클러스터는 public-services 였고 2026-08-27 프루닝으로 통합글에 흡수됨 (아래 자동 블록 참조).
+# 규칙: 슬러그·클러스터 변경이나 오기재 URL 발견 시 슬래시 유무 2줄을 이 블록에 추가한다 (CLAUDE.md).
+/gov-support/bokjiro-mobile-application/  /public-services/bokjiro-mobile-9-welfare-integrated/  301
+/gov-support/bokjiro-mobile-application   /public-services/bokjiro-mobile-9-welfare-integrated/  301
+
 # ── PRUNING REDIRECTS (자동 생성: scripts/prune/apply-pruning.mjs — 수동 편집 금지) ──
 /credit-loan/credit-inquiry-hard-vs-soft-score/  /credit-loan/  301
 /credit-loan/credit-inquiry-hard-vs-soft-score  /credit-loan/  301

@@ -3,9 +3,11 @@
 # R53 #4 정공 fix (개정판):
 #   1. `*` (catch-all) 그룹에 Allow + 모든 Disallow 명시 — 이전 버전은 Disallow 들이
 #      마지막 named 그룹(Meta-ExternalAgent) 에 묶이는 표준 위험.
-#   2. 한국 검색엔진·AI 답변 엔진 그룹 26종은 Allow / 만 명시 (정책 가시화 + e2e 회귀 안전망).
-#      명시 그룹과 매치된 봇은 robots 표준상 `*` 그룹의 Disallow 무시 → /search·/draft
-#      등이 명시 봇에는 허용되지만, production 빌드 산출물에 해당 경로 자체가 없어 무해.
+#   2. AI 답변 엔진 명시 그룹은 Allow / 만 명시 (정책 가시화 + e2e 회귀 안전망).
+#      명시 그룹과 매치된 봇은 robots 표준상 `*` 그룹의 Disallow 를 무시한다.
+#   3. 한국 검색엔진 명시 그룹(Yeti·NaverBot·Daum·Daumoa)에는 Disallow 를 직접 넣는다 (2026-09-05).
+#      Allow / 만 있던 시절 Yeti 가 /search·/llms*.txt 를 수집해 서치어드바이저 진단 오류로 집계됐다
+#      (meta robots 제외 1건 + <title>/description 없음 14+14건). llms*.txt 는 AI 봇용이므로 AI 그룹은 불변.
 
 User-agent: *
 Allow: /
@@ -18,20 +20,48 @@ Disallow: /briefs/_pool/
 Disallow: /search
 Disallow: /search?
 Disallow: /design-system
+# llms 텍스트 파일 — 검색엔진 색인 제외 (Googlebot·Bingbot 등 catch-all). AI 답변 엔진은 아래 명시 그룹으로 허용.
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+Disallow: /llms-cluster-
 
 # ── 한국 검색엔진 명시 그룹 (R50-1 정책 — Naver Search Advisor 진단 권장) ──
 User-agent: Yeti
 Allow: /
+Disallow: /search
+Disallow: /search?
+Disallow: /design-system
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+Disallow: /llms-cluster-
 
 User-agent: NaverBot
 Allow: /
+Disallow: /search
+Disallow: /search?
+Disallow: /design-system
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+Disallow: /llms-cluster-
 
 # Daum/Kakao
 User-agent: Daum
 Allow: /
+Disallow: /search
+Disallow: /search?
+Disallow: /design-system
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+Disallow: /llms-cluster-
 
 User-agent: Daumoa
 Allow: /
+Disallow: /search
+Disallow: /search?
+Disallow: /design-system
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+Disallow: /llms-cluster-
 
 # ── AI 답변 엔진 명시 허용 (PROJECT.md §B-3) ──
 User-agent: GPTBot

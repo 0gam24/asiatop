@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import remarkGfm from 'remark-gfm';
+import remarkTrailingSlash from './src/lib/remark-trailing-slash.mjs';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
@@ -49,9 +50,12 @@ export default defineConfig({
   // strikethrough로 렌더되던 버그를 차단. ~~이중 물결표~~ 취소선은 그대로 유지.
   // gfm:false로 Astro 기본 GFM을 끄고 remark-gfm을 직접 주입(표·자동링크 등 유지).
   // mdx()는 extendMarkdownConfig 기본값(true)으로 이 설정을 상속한다.
+  // remark-trailing-slash (2026-09-05): 본문 내부 링크 `](/tax/slug)` 를 빌드 시 `/tax/slug/` 로 정규화.
+  // 슬래시 없는 링크는 CF Pages 308 → 네이버 서치어드바이저 "리다이렉션된 페이지" 집계 원인.
+  // 소스 685편은 손대지 않는다 (lastmod 무변경). 산출물 게이트: scripts/audit/internal-links.mjs
   markdown: {
     gfm: false,
-    remarkPlugins: [[remarkGfm, { singleTilde: false }]],
+    remarkPlugins: [[remarkGfm, { singleTilde: false }], remarkTrailingSlash],
   },
   build: {
     format: 'directory',
@@ -75,6 +79,8 @@ export default defineConfig({
         !page.includes('/og/') &&
         !page.includes('/404') &&
         !/\/(design-system|search)\/?$/.test(page) &&
+        // llms*.txt 는 post-build 생성물이라 원래 sitemap 에 없지만 회귀 방어 (검색엔진 noindex 자산)
+        !/\/llms(-full|-cluster-[a-z-]+)?\.txt$/.test(page) &&
         !isNoindexedArticle(page),
       changefreq: 'daily',
       priority: 0.7,

@@ -8,12 +8,29 @@
 2026-08-18 구글 스팸 업데이트로 **사이트 단위 알고리즘 억제** (트래픽 -95%, 색인 371/685).
 원인은 기술이 아니라 발행 풋프린트(일 3~4편 기계 발행·익명 단일 저자·균일 메타/제목 템플릿).
 네이버는 건강(색인 670/685, 일 245클릭) — **네이버 영향 주는 변경 금지** (robots·canonical·RSS·네이버 인증·IndexNow 불변).
+단 하나의 예외: 네이버 서치어드바이저 진단 대응 (2026-09-05 운영자 지시 — robots 한국 검색엔진 그룹에 /search·/llms* Disallow, llms*.txt noindex). 이후 robots 변경도 운영자 명시 지시가 있을 때만.
 
 - **발행 캐던스: 신규 글 일 1편 이하** — `scripts/audit/publish-cadence.mjs` 가 빌드 차단. 리프레시는 별도.
 - **발행 승인 원칙은 사람**: `merge-approved` 라벨은 운영자 전용. **유일한 예외 — 루틴 일일 포스팅** (2026-08-27 운영자 지시): daily-post 사이클의 콘텐츠 PR 에 한해, `.claude/skills/daily-post/SKILL.md` §3-5 의 **조건 목록(SSoT — 신규 일 1편 이하·auditor PASS·전 가드·CI green·정책 이슈 0·PR 구성 제한 등)** 전부 충족 시 Claude 가 라벨을 부착할 수 있다. 프루닝·대량 변경·비루틴 콘텐츠 PR 은 여전히 운영자 전용이며, `no-auto-merge` 긴급 정지는 항상 우선한다.
 - 신규 글 메타/제목은 풋프린트 가드 준수 (`scripts/audit/template-footprint.mjs` — "총정리" 류 제목·"~정리했습니다" 류 종결 차단).
 - 구글 색인 재요청 자동화 금지 · 본문 무변경 lastmod 갱신 금지 · 대량 삭제 후 대량 재발행 금지.
 - 콘텐츠 에이전트 팀: content-strategist(의도·SERP 분석) → content-agent(작성 — `templates/claude-agents/google-content-master-prompt-v4.md` 적용) → content-auditor(발행 전 감사).
+
+## 내부 링크·URL 규칙 (2026-09-05 — 네이버 서치어드바이저 진단 대응)
+
+사이트 정책은 `trailingSlash: 'always'`. 슬래시 없는 내부 링크(`/tax`, `/calculators/salary`)는 CF Pages 가 308 로
+보내고, 네이버가 이를 "리다이렉션된 페이지"(2026-09-04 약 103건) 로 집계했다.
+
+- **모든 내부 링크는 `/` 로 끝난다.** 컴포넌트·페이지는 리터럴에 `/` 를 붙이거나 `src/lib/url.ts` 의 `href()` 를 거친다.
+  MDX 본문 링크는 빌드 시 `src/lib/remark-trailing-slash.mjs` 가 정규화하므로 기존 글 소스는 손대지 않는다 (lastmod 무변경).
+  같은 플러그인이 `scripts/prune/redirect-map.json` 을 읽어 프루닝된 글 링크를 통합글로 직결(merge)하거나 링크를 풀어 텍스트만 남긴다(delete).
+- **게이트**: `scripts/audit/internal-links.mjs` 가 build 체인 마지막에서 dist 를 검사 — 슬래시 누락·실존하지 않는 페이지로 가는
+  링크·`<title>`/description 누락이 1건이라도 있으면 빌드·CI 실패. 단독 실행 `pnpm audit:links` / `bash scripts/check-trailing-slash.sh`.
+- **슬러그·클러스터 변경, 글 삭제·통합 시 `public/_redirects` 301 필수** (슬래시 유무 2줄). 프루닝은 `scripts/prune/apply-pruning.mjs` 가
+  자동 생성하고, 그 외(오기재 URL·수동 이동)는 "클러스터 오기재 URL 301" 수동 블록에 추가한다. 내부 링크는 리다이렉트를 경유하지 말고
+  최종 URL 로 직결한다.
+- **llms*.txt 는 검색엔진 비색인 자산**: `_headers` X-Robots-Tag noindex + robots `*`·한국 검색엔진 그룹 Disallow. AI 봇 명시 그룹은
+  Allow 유지 (GEO 보존). HTML 의 llms 링크와 `/search/` 링크는 `rel="nofollow"`.
 
 ## 수동 발행 publishedAt 가드 (필수)
 
