@@ -14,11 +14,24 @@
  * 슬래시 규칙은 src/lib/url.ts 의 href() 와 동일해야 한다 (패리티 테스트: tests/lib/internal-links.test.mjs).
  * unist-util-visit 없이 자체 순회 — 의존성 추가 없음 (lockfile 재생성 환경 제약).
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const FILE_EXT_RE = /\.[a-z0-9]{2,12}$/i; // .webmanifest(11자) 까지 파일로 인식
-const REDIRECT_MAP_URL = new URL('../../scripts/prune/redirect-map.json', import.meta.url);
+const REDIRECT_MAP_REL = 'scripts/prune/redirect-map.json';
+
+/** redirect-map.json 후보 경로 — cwd(리포 루트에서 빌드·테스트) 우선, 모듈 상대 경로 폴백 */
+function redirectMapCandidates() {
+  const out = [resolve(process.cwd(), REDIRECT_MAP_REL)];
+  try {
+    // vitest/Vite 변환 환경에서는 import.meta.url 이 file: 이 아닐 수 있어 try 로 감싼다
+    out.push(fileURLToPath(new URL(`../../${REDIRECT_MAP_REL}`, import.meta.url)));
+  } catch {
+    // 무시 — cwd 후보만 사용
+  }
+  return out;
+}
 
 /** @param {string} path */
 export function normalizeInternalHref(path) {
@@ -32,12 +45,19 @@ export function normalizeInternalHref(path) {
 }
 
 /**
- * redirect-map.json → Map<from, {to, action}>. 파일이 없거나 깨지면 빈 맵 (슬래시 정규화만 수행).
+ * redirect-map.json → Map<from, {to, action}>. 파일을 못 찾거나 깨지면 경고 후 빈 맵 (슬래시 정규화만 수행).
+ * @param {string} [filePath] 명시 경로 (테스트·도구용). 생략 시 후보 경로 중 첫 실존 파일.
  * @returns {Map<string, {to: string, action: string}>}
  */
-export function loadRedirectMap(url = REDIRECT_MAP_URL) {
+export function loadRedirectMap(filePath) {
+  const candidates = filePath ? [filePath] : redirectMapCandidates();
+  const found = candidates.find((p) => existsSync(p));
+  if (!found) {
+    console.warn(`[remark-trailing-slash] redirect-map.json 없음 — 프루닝 링크 재작성 생략 (${candidates.join(' | ')})`);
+    return new Map();
+  }
   try {
-    const json = JSON.parse(readFileSync(fileURLToPath(url), 'utf8'));
+    const json = JSON.parse(readFileSync(found, 'utf8'));
     const map = new Map();
     for (const r of json.redirects ?? []) {
       if (typeof r.from === 'string' && typeof r.to === 'string') {
@@ -45,7 +65,8 @@ export function loadRedirectMap(url = REDIRECT_MAP_URL) {
       }
     }
     return map;
-  } catch {
+  } catch (err) {
+    console.warn(`[remark-trailing-slash] redirect-map.json 파싱 실패 — 재작성 생략: ${err?.message ?? err}`);
     return new Map();
   }
 }
