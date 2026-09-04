@@ -46,20 +46,26 @@
   Access-Control-Allow-Origin: *
 
 # llms.txt / .md — 짧은 캐시, AI 인용 정확도 유지
+# llms*.txt 는 2026-09-05 부터 검색엔진 noindex: 순수 텍스트라 <title>·description 이 있을 수 없는데
+# "index, follow" 를 주던 탓에 네이버 서치어드바이저가 14+14건 오류로 집계. AI 크롤러 fetch 는 robots.txt
+# 명시 그룹 Allow 로 유지 (GEO 보존). "! X-Robots-Tag" 는 전역 /* 규칙의 값을 떼어내 noindex 만 남긴다.
 /llms.txt
   Cache-Control: public, max-age=300, s-maxage=3600
   Content-Type: text/plain; charset=utf-8
-  X-Robots-Tag: index, follow
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex
 
 /llms-full.txt
   Cache-Control: public, max-age=300, s-maxage=3600
   Content-Type: text/plain; charset=utf-8
-  X-Robots-Tag: index, follow
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex
 
 /llms-cluster-*.txt
   Cache-Control: public, max-age=300, s-maxage=3600
   Content-Type: text/plain; charset=utf-8
-  X-Robots-Tag: index, follow
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex
 
 # .md 전문 미러는 Google 색인 차단 (canonical 0 상태 전문 복제 — docs/23 §3-3 PR-B).
 # AI 크롤러 fetch 는 robots.txt Allow 로 유지 (GEO 보존) — noindex 는 색인만 막는다.

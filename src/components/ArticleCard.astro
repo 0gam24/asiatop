@@ -1,5 +1,6 @@
 ---
 import { findCluster, clusterAccentDark } from '../data/clusters';
+import { href as normalizeHref } from '../lib/url';
 interface Props {
   href: string;
   title: string;
@@ -12,7 +13,7 @@ const { href, title, description, cluster, publishedAt, size = 'md' } = Astro.pr
 const c = findCluster(cluster);
 const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(publishedAt);
 ---
-<a class={`article-card size-${size}`} href={href}>
+<a class={`article-card size-${size}`} href={normalizeHref(href)}>
   <div class="meta">
     {c && <span class="tag" style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};`}>{c.shortTitle}</span>}
     <time class="date" datetime={publishedAt.toISOString()}>{dateStr}</time>

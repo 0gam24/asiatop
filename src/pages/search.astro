@@ -18,7 +18,7 @@ const monthLabel = new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(ne
       <h1>무엇을 찾고 계신가요?</h1>
       <p class="lede">
         12개 카테고리 전체 글에서 검색합니다.
-        <br/>예: <a href="/search?q=청년월세지원">청년월세지원</a> · <a href="/search?q=연말정산">연말정산</a> · <a href="/search?q=신용점수">신용점수</a>
+        <br/>예: <a href="/search/?q=청년월세지원">청년월세지원</a> · <a href="/search/?q=연말정산">연말정산</a> · <a href="/search/?q=신용점수">신용점수</a>
       </p>
     </header>
 
@@ -42,7 +42,7 @@ const monthLabel = new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(ne
             const c = s.cluster ? findCluster(s.cluster) : null;
             return (
               <li>
-                <a href={`/search?q=${encodeURIComponent(s.q)}`} data-track="search_suggestion_click" data-track-prop-source="seasonal" data-track-prop-query={s.q}>
+                <a href={`/search/?q=${encodeURIComponent(s.q)}`} data-track="search_suggestion_click" data-track-prop-source="seasonal" data-track-prop-query={s.q}>
                   <strong>{s.q}</strong>
                   {s.hint && <span class="hint">{s.hint}</span>}
                   {c && <span class="cat" style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};`}>{c.shortTitle}</span>}
@@ -66,7 +66,7 @@ const monthLabel = new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(ne
             const c = s.cluster ? findCluster(s.cluster) : null;
             return (
               <li>
-                <a href={`/search?q=${encodeURIComponent(s.q)}`} data-track="search_suggestion_click" data-track-prop-source="popular" data-track-prop-query={s.q}>
+                <a href={`/search/?q=${encodeURIComponent(s.q)}`} data-track="search_suggestion_click" data-track-prop-source="popular" data-track-prop-query={s.q}>
                   <strong>{s.q}</strong>
                   {s.hint && <span class="hint">{s.hint}</span>}
                   {c && <span class="cat" style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};`}>{c.shortTitle}</span>}
@@ -91,10 +91,10 @@ const monthLabel = new Intl.DateTimeFormat('ko-KR', { month: 'long' }).format(ne
         검색은 빌드 후에만 동작합니다. 개발 환경에서는 카테고리를 통해 글을 탐색해보세요:
       </p>
       <ul class="fallback-links">
-        <li><a href="/gov-support">정부지원·청년정책</a></li>
-        <li><a href="/tax">연말정산·세금</a></li>
-        <li><a href="/credit-loan">신용·대출</a></li>
-        <li><a href="/calculators">계산기</a></li>
+        <li><a href="/gov-support/">정부지원·청년정책</a></li>
+        <li><a href="/tax/">연말정산·세금</a></li>
+        <li><a href="/credit-loan/">신용·대출</a></li>
+        <li><a href="/calculators/">계산기</a></li>
       </ul>
     </div>
   </section>
