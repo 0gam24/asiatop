@@ -1,0 +1,2040 @@
+{
+ "pulledAt": "2026-09-07T14:19:13.003Z",
+ "kstDate": "2026-09-07",
+ "days": 14,
+ "minHits": 2,
+ "api": "NAVER API HUB",
+ "seeds": [
+  {
+   "keyword": "퇴직연금 국채",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "비거주 1주택 종부세",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "추석맞이 기초연금",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "걷힌다는데, 감면은 77%",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "퇴직연금 일임하는 AI",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "환급에 최대 20개월",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "마이키즈 적금 이주의",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "비거주 1주택 공제",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "추석 맞아 기초연금",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "복수국적자 기초연금",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "감면은 77% 더",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "인력 급여 관리",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "등 인력 급여",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "퇴직연금서 S&P500 85%까지",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "226만명에 3조760억원 환급",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "퇴직연금계좌로 개인투자용 국채",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "업무분담지원금의 통상임금 여부",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "오면우대! 하면우대! 정기적금",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "보험료만 80만원인데 실손이",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "퇴직연금서 S&P500 비중",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "고용보험기금 손질 보험료율",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "개인연금 갖추면 노후생활은",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "2.6배 불어나는 퇴직연금",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "5대銀 생계비계좌 20만좌",
+   "cluster": "credit-loan"
+  },
+  {
+   "keyword": "의협 반복되는 건강보험료",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "반복되는 건강보험료 동결",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "시설투자 R&D 세액공제",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "양천사랑상품권 40억 원",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "추석 맞아 양천사랑상품권",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "1주택 공제 9억→12억",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "월 보험료만 80만원인데",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "묶일라 5대銀 생계비계좌",
+   "cluster": "credit-loan"
+  },
+  {
+   "keyword": "생계비계좌 20만좌 넘어",
+   "cluster": "credit-loan"
+  },
+  {
+   "keyword": "퇴직연금으로 국채 직접",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "넘게 빌려줬는데 증여세",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "빌려줬는데 증여세 누락",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "서울 대부분이 종부세권",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "대부분이 종부세권 강북",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "퇴직연금 국채 선택지는",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "보험료율 인상 모성보호",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "전환, 실업급여 개선의",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "불어나는 퇴직연금 국채",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "최저임금 줄다리기 그만",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "건보 본인부담금 환급에",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "본인부담금 환급에 최대",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "건강보험료 동결 재정",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "박사과정생 연구장려금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "서울 22개구 종부세",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "급여 상한 250만원",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "흑자 전환, 실업급여",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "실업급여 개선의 숨은",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "퇴직 개인연금 갖추면",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "불합리한 폐차 과태료",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "절세계좌 및 퇴직연금",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "퇴직연금 ETF 거래",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "지방세 미환급금 일제",
+   "cluster": "auto"
+  },
+  {
+   "keyword": "미수령 지방세 환급금",
+   "cluster": "auto"
+  },
+  {
+   "keyword": "지방세 미환급금 1억",
+   "cluster": "auto"
+  },
+  {
+   "keyword": "인재 양성 돌봄수당",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "중위소득 70% 에",
+   "cluster": "gov-support"
+  }
+ ],
+ "rows": [
+  {
+   "keyword": "2026년 세제개편안",
+   "hits": 7,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "savings"
+   ],
+   "existing": "car-lease-vs-long-rental-tco",
+   "sampleTitles": [
+    "2026년 세제개편안…종부세·양도세",
+    "삼일PwC, 일본계 기업 대상 '2026년 세제개편안 세미나' 개최",
+    "삼일PwC, 일본계 기업 대상 ‘2026년 세제개편안 세미나’ 개최"
+   ],
+   "sampleLinks": [
+    "https://www.yonhapmidas.com/news/articleView.html",
+    "https://www.taxtimes.co.kr/news/article.html",
+    "https://n.news.naver.com/mnews/article/123/0002389702"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 국채",
+   "hits": 7,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate",
+    "insurance-labor",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "20년 묻어두면 원금 2.6배…퇴직연금 국채 투자해볼까",
+    "퇴직연금 국채 선택지는 10·20년뿐…3·5년물 확대는 미검토",
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/374/0000531644",
+    "http://www.updownnews.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/023/0003997030"
+   ]
+  },
+  {
+   "keyword": "비거주 1주택 종부세",
+   "hits": 6,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "비거주 1주택 종부세 원복에 강남권 집주인들도 '눈치보기'",
+    "비거주 1주택 종부세 공제… 9억→12억으로 ‘원상 복구’",
+    "비거주 1주택 종부세 ‘도로 12억’…종부세도 150% ‘현행 유지’"
+   ],
+   "sampleLinks": [
+    "https://news.einfomax.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/020/0003745079",
+    "https://n.news.naver.com/mnews/article/032/0003467876"
+   ]
+  },
+  {
+   "keyword": "추석맞이 기초연금",
+   "hits": 5,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국민연금공단, 추석맞이 기초연금 신청 집중 홍보 실시",
+    "국민연금 서청주지사, 추석맞이 기초연금 신청 집중 홍보",
+    "국민연금 동대전지사, 추석맞이 '기초연금' 집중 홍보 실시"
+   ],
+   "sampleLinks": [
+    "http://www.cctimes.kr/news/articleView.html",
+    "https://www.ccdn.co.kr/news/articleView.html",
+    "https://www.ggilbo.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "세제 개편안",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": "child-tax-credit-increase-2026-reform",
+   "sampleTitles": [
+    "[2026 세제 개편안] '부동산 정상화' 내걸고 세금제도 수술",
+    "[2026 세제 개편안] 6대 성장동력 조세특례…청년 지원 강화",
+    "세제 개편안 한발 물러섰지만…&quot;비거주 1주택자 보유세 부담 여전&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.yonhapmidas.com/news/articleView.html",
+    "https://www.yonhapmidas.com/news/articleView.html",
+    "https://www.newspim.com/news/view/20260902001023"
+   ]
+  },
+  {
+   "keyword": "건보 환급",
+   "hits": 4,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": "nhis-refund-co-payment-automatic",
+   "sampleTitles": [
+    "병원비 먼저 내고 최대 20개월 기다려…건보 환급 ‘분기 정산’ 제안",
+    "저소득·고령층 몰린 건보 환급…입법조사처 “분기별 지급 검토”",
+    "병원비 돌려받는 데 최대 20개월…&quot;건보 환급 분기별로 해야&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.kbmaeil.com/article/20260905500104",
+    "https://www.sentv.co.kr/article/view/sentv202609050019",
+    "https://www.ebn.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "걷힌다는데, 감면은 77%",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다",
+    "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다",
+    "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다"
+   ],
+   "sampleLinks": [
+    "https://newscham.net/articles/117163",
+    "https://newscham.net/articles/117163",
+    "https://newscham.net/articles/117163"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 일임하는 AI",
+   "hits": 3,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금 일임하는 AI 로보어드바이저 운용 수익률 뛴다",
+    "퇴직연금 일임하는 AI 로보어드바이저 운용 수익률 뛴다",
+    "퇴직연금 일임하는 AI 로보어드바이저 운용 수익률 뛴다"
+   ],
+   "sampleLinks": [
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "환급에 최대 20개월",
+   "hits": 3,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "의료비 환급에 최대 20개월…&quot;건보 늑장 지급 손질 필요&quot;",
+    "건보 본인부담상한 초과 환급에 '최대 20개월'…개선 목소리",
+    "건보 본인부담금 환급에 최대 20개월…&quot;분기별 정산 필요&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/656/0000185983",
+    "https://n.news.naver.com/mnews/article/374/0000531348",
+    "https://n.news.naver.com/mnews/article/001/0016291362"
+   ]
+  },
+  {
+   "keyword": "마이키즈 적금 이주의",
+   "hits": 3,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "24개월 최고 연 7.00%…케이뱅크 '마이키즈 적금' [이주의 은행 적금금리...",
+    "24개월 최고 연 7.00%…케이뱅크 '마이키즈 적금' [이주의 은행 적금금리...",
+    "24개월 최고 연 7.00%…케이뱅크 '마이키즈 적금' [이주의 은행 적금금리..."
+   ],
+   "sampleLinks": [
+    "https://www.fntimes.com/html/view.php",
+    "https://www.fntimes.com/html/view.php",
+    "https://www.fntimes.com/html/view.php"
+   ]
+  },
+  {
+   "keyword": "1주택 종부세 공제",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": "tax-reform-2026-real-estate-residence-based",
+   "sampleTitles": [
+    "비거주 1주택 종부세 공제… 9억→12억으로 ‘원상 복구’",
+    "세제개편안 국무회의 의결, '비거주 1주택' 종부세 공제 12억 유지·ISA 축...",
+    "비거주 1주택 종부세 공제 12억 유지…29일 만에 원복"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/020/0003745079",
+    "https://www.businesspost.co.kr/BP",
+    "http://www.metroseoul.co.kr/article/20260901500511"
+   ]
+  },
+  {
+   "keyword": "비거주 1주택 공제",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "결국 민심에 되돌렸다…비거주 1주택 공제 9억→12억",
+    "비거주 1주택 공제 9억→12억…성난 부동산 민심에 세제 개편안 후퇴",
+    "비거주 1주택 공제 12억 현행대로, 실거주 공제는 14억"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/025/0003548421",
+    "https://n.news.naver.com/mnews/article/025/0003548341",
+    "https://n.news.naver.com/mnews/article/417/0001157042"
+   ]
+  },
+  {
+   "keyword": "추석 맞아 기초연금",
+   "hits": 3,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국민연금공단 서청주지사, 추석 맞아 기초연금 신청 집중 홍보",
+    "국민연금 서청주지사, 추석 맞아 기초연금 신청 집중 홍보",
+    "국민연금공단 서청주지사, 추석 맞아 기초연금 신청 집중 홍보"
+   ],
+   "sampleLinks": [
+    "https://www.ccdailynews.com/news/articleView.html",
+    "https://www.dynews.co.kr/news/articleView.html",
+    "https://www.jbnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "복수국적자 기초연금",
+   "hits": 3,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“거주기간 문턱 세운다” 복수국적자 기초연금 손질",
+    "복수국적자 기초연금 '국내 거주기간' 요건 도입 다시 뜬다",
+    "&quot;복수국적자 기초연금 꼼수 방지&quot;…거주기간 요건 신설 추진"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/050/0000110547",
+    "https://www.mhns.co.kr/news/articleView.html",
+    "https://www.jnilbo.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "감면은 77% 더",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다",
+    "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다",
+    "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다"
+   ],
+   "sampleLinks": [
+    "https://newscham.net/articles/117163",
+    "https://newscham.net/articles/117163",
+    "https://newscham.net/articles/117163"
+   ]
+  },
+  {
+   "keyword": "구직급여 신청하고",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": "childcare-leave-resign-unemployment",
+   "sampleTitles": [
+    "8년 다닌 회사에서 잘렸다, 구직급여 신청하고 깨달은 것 [신필규의 아...",
+    "8년 다닌 회사에서 잘렸다, 구직급여 신청하고 깨달은 것 [신필규의 아...",
+    "8년 다닌 회사에서 잘렸다, 구직급여 신청하고 깨달은 것 [신필규의 아..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/047/0002528012",
+    "https://n.news.naver.com/mnews/article/047/0002528012",
+    "https://n.news.naver.com/mnews/article/047/0002528012"
+   ]
+  },
+  {
+   "keyword": "인력 급여 관리",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "범죄경력 조회 미실시 등 인력·급여 관리 부실",
+    "범죄경력 조회 미실시 등 인력·급여 관리 부실",
+    "범죄경력 조회 미실시 등 인력·급여 관리 부실"
+   ],
+   "sampleLinks": [
+    "https://www.jemin.com/news/articleView.html",
+    "https://www.jemin.com/news/articleView.html",
+    "https://www.jemin.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "등 인력 급여",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "범죄경력 조회 미실시 등 인력·급여 관리 부실",
+    "범죄경력 조회 미실시 등 인력·급여 관리 부실",
+    "범죄경력 조회 미실시 등 인력·급여 관리 부실"
+   ],
+   "sampleLinks": [
+    "https://www.jemin.com/news/articleView.html",
+    "https://www.jemin.com/news/articleView.html",
+    "https://www.jemin.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직연금서 S&P500 85%까지",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;퇴직연금서 S&amp;P500 85%까지&quot;..미래에셋, 美단기채혼합ETF 상장",
+    "&quot;퇴직연금서 S&amp;P500 85%까지&quot;..미래에셋, 美단기채혼합ETF 상장"
+   ],
+   "sampleLinks": [
+    "http://www.4th.kr/news/articleView.html",
+    "http://www.4th.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "226만명에 3조760억원 환급",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "건보공단, 226만명에 3조760억원 환급…병원비 환급은 최대 20개월 뒤",
+    "병원비 많이 냈다면 확인하세요…226만명에 3조760억원 환급"
+   ],
+   "sampleLinks": [
+    "https://www.ppss.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/088/0001026314"
+   ]
+  },
+  {
+   "keyword": "퇴직연금계좌로 개인투자용 국채",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금계좌로 개인투자용 국채 산다… 9일 첫 청약",
+    "퇴직연금계좌로 개인투자용 국채 산다… 9일 첫 청약"
+   ],
+   "sampleLinks": [
+    "https://www.insnews.co.kr/news/articleView.html",
+    "https://www.insnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "업무분담지원금의 통상임금 여부",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "업무분담지원금의 통상임금 여부 및 육아휴직시 DC부담금 산정",
+    "업무분담지원금의 통상임금 여부 및 육아휴직시 DC부담금 산정"
+   ],
+   "sampleLinks": [
+    "https://www.greenpostkorea.co.kr/news/articleView.html",
+    "https://www.greenpostkorea.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "오면우대! 하면우대! 정기적금",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "12개월 최고 연 7.00%…경남은행 '오면우대! 하면우대! 정기적금' [이주...",
+    "12개월 최고 연 7.00%…경남은행 '오면우대! 하면우대! 정기적금' [이주..."
+   ],
+   "sampleLinks": [
+    "https://www.fntimes.com/html/view.php",
+    "https://www.fntimes.com/html/view.php"
+   ]
+  },
+  {
+   "keyword": "보험료만 80만원인데 실손이",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "월 보험료만 80만원인데 실손이 없다? 40대 맞벌이 이상한 선택 [재테크...",
+    "월 보험료만 80만원인데 실손이 없다? 40대 맞벌이 이상한 선택 [재테크..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/665/0000008103",
+    "https://n.news.naver.com/mnews/article/665/0000008103"
+   ]
+  },
+  {
+   "keyword": "퇴직연금서 S&P500 비중",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금서 S&amp;P500 비중 85%까지…미래에셋 '주식·美국채' 혼합형 ETF 내...",
+    "퇴직연금서 S&amp;P500 비중 85%까지…미래에셋 '주식·美국채' 혼합형 ETF 내..."
+   ],
+   "sampleLinks": [
+    "https://www.ebn.co.kr/news/articleView.html",
+    "https://www.ebn.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "고용보험기금 손질 보험료율",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리",
+    "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리"
+   ],
+   "sampleLinks": [
+    "https://www.news2day.co.kr/article/20260906500028",
+    "https://www.news2day.co.kr/article/20260906500028"
+   ]
+  },
+  {
+   "keyword": "개인연금 갖추면 노후생활은",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[이종범의 60+Life story] 국민·퇴직·개인연금 갖추면 노후생활은 안정...",
+    "[이종범의 60+Life story] 국민·퇴직·개인연금 갖추면 노후생활은 안정..."
+   ],
+   "sampleLinks": [
+    "https://www.insnews.co.kr/news/articleView.html",
+    "https://www.insnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "2.6배 불어나는 퇴직연금",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까",
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/023/0003997030",
+    "https://n.news.naver.com/mnews/article/023/0003997030"
+   ]
+  },
+  {
+   "keyword": "5대銀 생계비계좌 20만좌",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "빚에 생활비까지 묶일라…5대銀 생계비계좌 20만좌 넘어",
+    "빚에 생활비까지 묶일라…5대銀 생계비계좌 20만좌 넘어"
+   ],
+   "sampleLinks": [
+    "https://www.asiatoday.co.kr/kn/view.php",
+    "https://www.asiatoday.co.kr/kn/view.php"
+   ]
+  },
+  {
+   "keyword": "의협 반복되는 건강보험료",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;",
+    "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;"
+   ],
+   "sampleLinks": [
+    "http://www.doctorsnews.co.kr/news/articleView.html",
+    "http://www.doctorsnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "반복되는 건강보험료 동결",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;",
+    "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;"
+   ],
+   "sampleLinks": [
+    "http://www.doctorsnews.co.kr/news/articleView.html",
+    "http://www.doctorsnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "시설투자 R&D 세액공제",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "시설투자·R&amp;D 세액공제 내년 27조…“더 정교한 공제 기준 마련해야”",
+    "시설투자·R&amp;D 세액공제 내년 27조…“더 정교한 공제 기준 마련해야”"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/011/0004659405",
+    "https://n.news.naver.com/mnews/article/011/0004659405"
+   ]
+  },
+  {
+   "keyword": "양천사랑상품권 40억 원",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "양천구, 추석 장바구니 부담 던다…양천사랑상품권 40억 원 발행",
+    "서울 양천구, 추석 맞아 양천사랑상품권 40억 원 발행"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/022/0004156633",
+    "https://news.bbsi.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "추석 맞아 양천사랑상품권",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "서울 양천구, 추석 맞아 양천사랑상품권 40억 원 발행",
+    "양천구, 추석 맞아 ‘양천사랑상품권’ 40억원 발행"
+   ],
+   "sampleLinks": [
+    "https://news.bbsi.co.kr/news/articleView.html",
+    "https://www.siminilbo.co.kr/news/newsview.php"
+   ]
+  },
+  {
+   "keyword": "1주택 공제 9억→12억",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "결국 민심에 되돌렸다…비거주 1주택 공제 9억→12억",
+    "비거주 1주택 공제 9억→12억…성난 부동산 민심에 세제 개편안 후퇴"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/025/0003548421",
+    "https://n.news.naver.com/mnews/article/025/0003548341"
+   ]
+  },
+  {
+   "keyword": "월 보험료만 80만원인데",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "월 보험료만 80만원인데 실손이 없다? 40대 맞벌이 이상한 선택 [재테크...",
+    "월 보험료만 80만원인데 실손이 없다? 40대 맞벌이 이상한 선택 [재테크..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/665/0000008103",
+    "https://n.news.naver.com/mnews/article/665/0000008103"
+   ]
+  },
+  {
+   "keyword": "묶일라 5대銀 생계비계좌",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "빚에 생활비까지 묶일라…5대銀 생계비계좌 20만좌 넘어",
+    "빚에 생활비까지 묶일라…5대銀 생계비계좌 20만좌 넘어"
+   ],
+   "sampleLinks": [
+    "https://www.asiatoday.co.kr/kn/view.php",
+    "https://www.asiatoday.co.kr/kn/view.php"
+   ]
+  },
+  {
+   "keyword": "생계비계좌 20만좌 넘어",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "빚에 생활비까지 묶일라…5대銀 생계비계좌 20만좌 넘어",
+    "빚에 생활비까지 묶일라…5대銀 생계비계좌 20만좌 넘어"
+   ],
+   "sampleLinks": [
+    "https://www.asiatoday.co.kr/kn/view.php",
+    "https://www.asiatoday.co.kr/kn/view.php"
+   ]
+  },
+  {
+   "keyword": "퇴직연금으로 국채 직접",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금으로 국채 직접 산다…10만원부터 연복리 혜택",
+    "퇴직연금으로 국채 직접 산다…10만원부터 연복리 혜택"
+   ],
+   "sampleLinks": [
+    "https://www.newspim.com/news/view/20260907000699",
+    "https://www.newspim.com/news/view/20260907000699"
+   ]
+  },
+  {
+   "keyword": "넘게 빌려줬는데 증여세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "최수진 “이소영 부부, 母에 전세금 2억 넘게 빌려줬는데 증여세 누락”",
+    "최수진 “이소영 부부, 母에 전세금 2억 넘게 빌려줬는데 증여세 누락”"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/021/0002816788",
+    "https://n.news.naver.com/mnews/article/021/0002816788"
+   ]
+  },
+  {
+   "keyword": "빌려줬는데 증여세 누락",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "최수진 “이소영 부부, 母에 전세금 2억 넘게 빌려줬는데 증여세 누락”",
+    "최수진 “이소영 부부, 母에 전세금 2억 넘게 빌려줬는데 증여세 누락”"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/021/0002816788",
+    "https://n.news.naver.com/mnews/article/021/0002816788"
+   ]
+  },
+  {
+   "keyword": "서울 대부분이 종부세권",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;5년 뒤 서울 대부분이 종부세권&quot;…강북·금천·도봉만 남는다",
+    "&quot;5년 뒤 서울 대부분이 종부세권&quot;…강북·금천·도봉만 남는다"
+   ],
+   "sampleLinks": [
+    "http://www.srtimes.kr/news/articleView.html",
+    "http://www.srtimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "대부분이 종부세권 강북",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;5년 뒤 서울 대부분이 종부세권&quot;…강북·금천·도봉만 남는다",
+    "&quot;5년 뒤 서울 대부분이 종부세권&quot;…강북·금천·도봉만 남는다"
+   ],
+   "sampleLinks": [
+    "http://www.srtimes.kr/news/articleView.html",
+    "http://www.srtimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 국채 선택지는",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금 국채 선택지는 10·20년뿐…3·5년물 확대는 미검토",
+    "퇴직연금 국채 선택지는 10·20년뿐…3·5년물 확대는 미검토"
+   ],
+   "sampleLinks": [
+    "http://www.updownnews.co.kr/news/articleView.html",
+    "http://www.updownnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "보험료율 인상 모성보호",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리",
+    "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리"
+   ],
+   "sampleLinks": [
+    "https://www.news2day.co.kr/article/20260906500028",
+    "https://www.news2day.co.kr/article/20260906500028"
+   ]
+  },
+  {
+   "keyword": "전환, 실업급여 개선의",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "고용보험 흑자 전환, 실업급여 개선의 숨은 전략은?",
+    "고용보험 흑자 전환, 실업급여 개선의 숨은 전략은?"
+   ],
+   "sampleLinks": [
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "불어나는 퇴직연금 국채",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까",
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/023/0003997030",
+    "https://n.news.naver.com/mnews/article/023/0003997030"
+   ]
+  },
+  {
+   "keyword": "최저임금 줄다리기 그만",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“최저임금 줄다리기 그만”…노동법·AI규제 함께 뜯어고쳐야",
+    "“최저임금 줄다리기 그만”…노동법·AI규제 함께 뜯어고쳐야"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/011/0004659202",
+    "https://n.news.naver.com/mnews/article/011/0004659202"
+   ]
+  },
+  {
+   "keyword": "건보 본인부담금 환급에",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "건보 본인부담금 환급에 최대 20개월... &quot;분기별 정산 우선&quot;",
+    "건보 본인부담금 환급에 최대 20개월…&quot;분기별 정산 필요&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.getnews.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/001/0016291362"
+   ]
+  },
+  {
+   "keyword": "본인부담금 환급에 최대",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "건보 본인부담금 환급에 최대 20개월... &quot;분기별 정산 우선&quot;",
+    "건보 본인부담금 환급에 최대 20개월…&quot;분기별 정산 필요&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.getnews.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/001/0016291362"
+   ]
+  },
+  {
+   "keyword": "건강보험료 동결 재정",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;",
+    "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;"
+   ],
+   "sampleLinks": [
+    "http://www.doctorsnews.co.kr/news/articleView.html",
+    "http://www.doctorsnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "박사과정생 연구장려금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "충북대, 석·박사과정생 연구장려금 다수 선정",
+    "한림대 김기쁨 박사과정생, 한국연구재단 박사과정생 연구장려금 지원..."
+   ],
+   "sampleLinks": [
+    "https://www.dynews.co.kr/news/articleView.html",
+    "https://dhnews.co.kr/news/view/1065595507784283"
+   ]
+  },
+  {
+   "keyword": "서울 22개구 종부세",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "집값 안 꺾이면 2030년 서울 22개구 종부세…비강남권도 사정권",
+    "집값 계속 오르면 2030년 서울 22개구 종부세 과세권"
+   ],
+   "sampleLinks": [
+    "https://www.thepublic.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/003/0014171944"
+   ]
+  },
+  {
+   "keyword": "급여 상한 250만원",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "육아휴직 급여 상한 250만원 인상안 국회 환노위 심의",
+    "육아휴직 급여 상한 250만원 인상안 국회 환노위 심의"
+   ],
+   "sampleLinks": [
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "흑자 전환, 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "고용보험 흑자 전환, 실업급여 개선의 숨은 전략은?",
+    "고용보험 흑자 전환, 실업급여 개선의 숨은 전략은?"
+   ],
+   "sampleLinks": [
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "실업급여 개선의 숨은",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "고용보험 흑자 전환, 실업급여 개선의 숨은 전략은?",
+    "고용보험 흑자 전환, 실업급여 개선의 숨은 전략은?"
+   ],
+   "sampleLinks": [
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직 개인연금 갖추면",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[이종범의 60+Life story] 국민·퇴직·개인연금 갖추면 노후생활은 안정...",
+    "[이종범의 60+Life story] 국민·퇴직·개인연금 갖추면 노후생활은 안정..."
+   ],
+   "sampleLinks": [
+    "https://www.insnews.co.kr/news/articleView.html",
+    "https://www.insnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "불합리한 폐차 과태료",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[속초소식] 불합리한 폐차 과태료 기준 개선…적극 행정 성과",
+    "[속초소식] 불합리한 폐차 과태료 기준 개선…적극 행정 성과"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/001/0016293424",
+    "https://n.news.naver.com/mnews/article/001/0016293424"
+   ]
+  },
+  {
+   "keyword": "절세계좌 및 퇴직연금",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "iM증권, 절세계좌 및 퇴직연금 ETF 거래 이벤트",
+    "iM증권, 절세계좌 및 퇴직연금 ETF 거래 이벤트"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002693660",
+    "https://n.news.naver.com/mnews/article/016/0002693660"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 ETF 거래",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "iM증권, 절세계좌 및 퇴직연금 ETF 거래 이벤트",
+    "iM증권, 절세계좌 및 퇴직연금 ETF 거래 이벤트"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002693660",
+    "https://n.news.naver.com/mnews/article/016/0002693660"
+   ]
+  },
+  {
+   "keyword": "지방세 미환급금 일제",
+   "hits": 2,
+   "cluster": "auto",
+   "clusters": [
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "예천군, 지방세 미환급금 일제 정리…납세자 환급 독려",
+    "예천군, 지방세 미환급금 일제 정리…9월 30일까지 신청 접수"
+   ],
+   "sampleLinks": [
+    "https://www.kbsm.net/news/view.php",
+    "https://www.straightnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "미수령 지방세 환급금",
+   "hits": 2,
+   "cluster": "auto",
+   "clusters": [
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "예천군, 미수령 지방세 환급금 2600만원 찾아준다",
+    "예천군, 미수령 지방세 환급금 1109건 정리 나서"
+   ],
+   "sampleLinks": [
+    "https://daily.hankooki.com/news/articleView.html",
+    "http://www.newsprime.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "지방세 미환급금 1억",
+   "hits": 2,
+   "cluster": "auto",
+   "clusters": [
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "유성구, 지방세 미환급금 1억 5000만원 일제정리",
+    "유성구, 지방세 미환급금 1억 5천만 원 일제정리"
+   ],
+   "sampleLinks": [
+    "https://www.newstnt.com/news/articleView.html",
+    "https://www.ccdn.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "인재 양성 돌봄수당",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "성남시, AI 인재 양성·돌봄수당 확대·아동보호 '스마트 복지행정' 총력",
+    "성남시, AI 인재 양성·돌봄수당 확대·아동보호 '스마트 복지행정' 총력"
+   ],
+   "sampleLinks": [
+    "https://www.cstimes.com/news/articleView.html",
+    "https://www.cstimes.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "중위소득 70% 에",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘중위소득 70%’에 발목 잡힌 기초연금 개편…소득 보장 실효성 낮고 ...",
+    "‘중위소득 70%’에 발목 잡힌 기초연금 개편…소득 보장 실효성 낮고 ..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002693970",
+    "https://n.news.naver.com/mnews/article/016/0002693970"
+   ]
+  },
+  {
+   "keyword": "발목 잡힌 기초연금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘중위소득 70%’에 발목 잡힌 기초연금 개편…소득 보장 실효성 낮고 ...",
+    "‘중위소득 70%’에 발목 잡힌 기초연금 개편…소득 보장 실효성 낮고 ..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002693970",
+    "https://n.news.naver.com/mnews/article/016/0002693970"
+   ]
+  },
+  {
+   "keyword": "통영시 납세자 납부",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국세청, 집중호우 피해 통영시 납세자 납부 기한 연장·압류 유예 등 세...",
+    "국세청, 집중호우 피해 통영시 납세자 납부 기한 연장·압류 유예 등 세..."
+   ],
+   "sampleLinks": [
+    "https://www.viva100.com/article/20260907501392",
+    "https://www.viva100.com/article/20260907501392"
+   ]
+  },
+  {
+   "keyword": "종부세권 강북 금천",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;5년 뒤 서울 대부분이 종부세권&quot;…강북·금천·도봉만 남는다",
+    "&quot;5년 뒤 서울 대부분이 종부세권&quot;…강북·금천·도봉만 남는다"
+   ],
+   "sampleLinks": [
+    "http://www.srtimes.kr/news/articleView.html",
+    "http://www.srtimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "종부세 공제 12억",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "세제개편안 국무회의 의결, '비거주 1주택' 종부세 공제 12억 유지·ISA 축...",
+    "비거주 1주택 종부세 공제 12억 유지…29일 만에 원복"
+   ],
+   "sampleLinks": [
+    "https://www.businesspost.co.kr/BP",
+    "http://www.metroseoul.co.kr/article/20260901500511"
+   ]
+  },
+  {
+   "keyword": "육아휴직 급여 상한",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "육아휴직 급여 상한 250만원 인상안 국회 환노위 심의",
+    "육아휴직 급여 상한 250만원 인상안 국회 환노위 심의"
+   ],
+   "sampleLinks": [
+    "https://www.gokorea.kr/news/articleView.html",
+    "https://www.gokorea.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "손질 보험료율 인상",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리",
+    "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리"
+   ],
+   "sampleLinks": [
+    "https://www.news2day.co.kr/article/20260906500028",
+    "https://www.news2day.co.kr/article/20260906500028"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 국채 예금",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까",
+    "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/023/0003997030",
+    "https://n.news.naver.com/mnews/article/023/0003997030"
+   ]
+  },
+  {
+   "keyword": "영업점 계좌 수수료",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "영업점 계좌 수수료 10배 차이, 금감원 개편 추진",
+    "'영업점 계좌' 수수료 왜 더 비쌀까…금감원 손질 나선다"
+   ],
+   "sampleLinks": [
+    "https://www.tokenpost.kr/news/policy/403723",
+    "https://news.einfomax.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "및 퇴직연금 ETF",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": "irp-portfolio-recommendation",
+   "sampleTitles": [
+    "iM증권, 절세계좌 및 퇴직연금 ETF 거래 이벤트",
+    "iM증권, 절세계좌 및 퇴직연금 ETF 거래 이벤트"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002693660",
+    "https://n.news.naver.com/mnews/article/016/0002693660"
+   ]
+  },
+  {
+   "keyword": "미환급금 일제 정리",
+   "hits": 2,
+   "cluster": "auto",
+   "clusters": [
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "예천군, 지방세 미환급금 일제 정리…납세자 환급 독려",
+    "예천군, 지방세 미환급금 일제 정리…9월 30일까지 신청 접수"
+   ],
+   "sampleLinks": [
+    "https://www.kbsm.net/news/view.php",
+    "https://www.straightnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "계좌 개설만 해도",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;계좌 개설만 해도 5천원&quot;…한화투자증권, ISA 투자시작 이벤트",
+    "&quot;계좌 개설만 해도 5천원&quot;…한화투자증권, ISA 투자시작 이벤트"
+   ],
+   "sampleLinks": [
+    "https://www.joongangenews.com/news/articleView.html",
+    "https://www.joongangenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "납세자 납부 기한",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국세청, 집중호우 피해 통영시 납세자 납부 기한 연장·압류 유예 등 세...",
+    "국세청, 집중호우 피해 통영시 납세자 납부 기한 연장·압류 유예 등 세..."
+   ],
+   "sampleLinks": [
+    "https://www.viva100.com/article/20260907501392",
+    "https://www.viva100.com/article/20260907501392"
+   ]
+  },
+  {
+   "keyword": "세제개편안 종부세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": "tax-reform-2026-real-estate-residence-based",
+   "sampleTitles": [
+    "2026년 세제개편안…종부세·양도세",
+    "유턴한 세제개편안…종부세 공제 축소·ISA 개편 '없던 일로'"
+   ],
+   "sampleLinks": [
+    "https://www.yonhapmidas.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/374/0000530667"
+   ]
+  },
+  {
+   "keyword": "2억 빌려 증여세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "최수진 &quot;이소영 모친, 딸 부부에 전세금 2억 빌려…증여세 누락 정황&quot;",
+    "최수진 &quot;이소영 모친, 딸 부부에 전세금 2억 빌려…증여세 누락 정황&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009154350",
+    "https://n.news.naver.com/mnews/article/421/0009154350"
+   ]
+  },
+  {
+   "keyword": "빌려 증여세 누락",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "최수진 &quot;이소영 모친, 딸 부부에 전세금 2억 빌려…증여세 누락 정황&quot;",
+    "최수진 &quot;이소영 모친, 딸 부부에 전세금 2억 빌려…증여세 누락 정황&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009154350",
+    "https://n.news.naver.com/mnews/article/421/0009154350"
+   ]
+  },
+  {
+   "keyword": "증여세 누락 정황",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "최수진 &quot;이소영 모친, 딸 부부에 전세금 2억 빌려…증여세 누락 정황&quot;",
+    "최수진 &quot;이소영 모친, 딸 부부에 전세금 2억 빌려…증여세 누락 정황&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009154350",
+    "https://n.news.naver.com/mnews/article/421/0009154350"
+   ]
+  },
+  {
+   "keyword": "아냐 종부세 완화",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[주간브리핑] 고용노동부 &quot;성과급 의무교섭 대상 아냐&quot;…종부세 완화 세...",
+    "[주간브리핑] 고용노동부 &quot;성과급 의무교섭 대상 아냐&quot;…종부세 완화 세..."
+   ],
+   "sampleLinks": [
+    "http://www.srtimes.kr/news/articleView.html",
+    "http://www.srtimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "상반기 근로장려금",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "office-tips"
+   ],
+   "existing": "earned-income-credit-semiannual-application",
+   "sampleTitles": [
+    "2026년 상반기 근로장려금 신청 받는다… 지급일 언제?",
+    "9월 세무일지…재산세 납부·상반기 근로장려금 신청 잊지 마세요"
+   ],
+   "sampleLinks": [
+    "https://www.gukjenews.com/news/articleView.html",
+    "https://www.taxtimes.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "공제 12억 유지",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "세제개편안 국무회의 의결, '비거주 1주택' 종부세 공제 12억 유지·ISA 축...",
+    "비거주 1주택 종부세 공제 12억 유지…29일 만에 원복"
+   ],
+   "sampleLinks": [
+    "https://www.businesspost.co.kr/BP",
+    "http://www.metroseoul.co.kr/article/20260901500511"
+   ]
+  },
+  {
+   "keyword": "실업급여 받은 날",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "실업급여 받은 날 첫 출근한 직장인…180만원대 환수 통보",
+    "실업급여 받은 날 첫 출근한 직장인…180만원대 환수 통보"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/DG4C0HI3GS3P",
+    "https://lawtalknews.co.kr/article/DG4C0HI3GS3P"
+   ]
+  },
+  {
+   "keyword": "만성적자 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "만성적자 실업급여 내년 흑자 전환…재정정상화는 정부전입금 관건",
+    "만성적자 실업급여 내년 흑자 전환…재정정상화는 정부전입금 관건"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/001/0016292037",
+    "https://n.news.naver.com/mnews/article/001/0016292037"
+   ]
+  },
+  {
+   "keyword": "내년부터 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "내년부터 '실업급여 지급 기준' 주 7일→6일로",
+    "내년부터 실업급여 월 지급액 23만 원가량 줄어"
+   ],
+   "sampleLinks": [
+    "https://www.tbc.co.kr/news/view",
+    "https://m.skyedaily.com/news_view.html"
+   ]
+  },
+  {
+   "keyword": "민생지원금 지급",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": "sokcho-minsaeng-support-fund-application",
+   "sampleTitles": [
+    "부안군, 전 군민 30만원 민생지원금 지급",
+    "&quot;650억원 적자&quot;…광양시, 민생지원금 '지급 유예' 결정"
+   ],
+   "sampleLinks": [
+    "http://www.hansbiz.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/018/0006365140"
+   ]
+  },
+  {
+   "keyword": "납부 기한 연장",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국세청, 집중호우 피해 통영시 납세자 납부 기한 연장·압류 유예 등 세...",
+    "국세청, 집중호우 피해 통영시 납세자 납부 기한 연장·압류 유예 등 세..."
+   ],
+   "sampleLinks": [
+    "https://www.viva100.com/article/20260907501392",
+    "https://www.viva100.com/article/20260907501392"
+   ]
+  },
+  {
+   "keyword": "더 정교한 공제",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "시설투자·R&amp;D 세액공제 내년 27조…“더 정교한 공제 기준 마련해야”",
+    "시설투자·R&amp;D 세액공제 내년 27조…“더 정교한 공제 기준 마련해야”"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/011/0004659405",
+    "https://n.news.naver.com/mnews/article/011/0004659405"
+   ]
+  },
+  {
+   "keyword": "비거주자 종부세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "비거주자 종부세 증세안 일부 완화",
+    "비거주자 ‘종부세 쇼크’ 피했지만…양도세 부담은 늘어난다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/023/0003996200",
+    "https://n.news.naver.com/mnews/article/020/0003744943"
+   ]
+  },
+  {
+   "keyword": "기금형 퇴직연금",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국민연금 기금형 퇴직연금 참여 놓고 금투업계 반발",
+    "[현장] '기금형 퇴직연금' 도입 막바지 국회 토론회, 자동편입·가입자..."
+   ],
+   "sampleLinks": [
+    "https://www.tokenpost.kr/news/policy/403626",
+    "https://www.businesspost.co.kr/BP"
+   ]
+  },
+  {
+   "keyword": "건강보험 환급금",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": "health-insurance-july-settlement-simulation",
+   "sampleTitles": [
+    "병원비 많이 썼다면 꼭 확인…건강보험 환급금 조회, 놓치면 그대로 지...",
+    "건강보험 환급금 조회 방법은? 의료비 본인부담상한액 3조 원대 환급 개..."
+   ],
+   "sampleLinks": [
+    "https://www.cbci.co.kr/news/articleView.html",
+    "https://www.cbci.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "농식품부 예산안",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "농식품부 예산안 22조 2,215억원, 증가액·증가율 모두 '00년 이후 최대",
+    "[Issue+] 내년도 농식품부 예산안 어떻게 짜여졌나"
+   ],
+   "sampleLinks": [
+    "https://www.newsam.co.kr/news/article.html",
+    "https://www.aflnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "종부세 12억",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": "property-tax-joint-vs-single-ownership-spouse",
+   "sampleTitles": [
+    "“급매물 떠나고 호가 오르나”…종부세 12억 유지에 ‘똘똘한 한 채’...",
+    "李, 국무회의 주재…비거주 1주택 종부세 12억 유지·ISA 개편도 수정"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/009/0005730827",
+    "http://www.enewstoday.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "종부세 과세권",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": "capital-gains-tax-june-seller-aug-31-prep",
+   "sampleTitles": [
+    "“이대로면 2030년 강북·금천·도봉 빼고 다 종부세 과세권”",
+    "집값 계속 오르면 2030년 서울 22개구 종부세 과세권"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/021/0002816649",
+    "https://n.news.naver.com/mnews/article/003/0014171944"
+   ]
+  },
+  {
+   "keyword": "50% 환급",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": "insurance-cancellation-refund-calculation",
+   "sampleTitles": [
+    "서천군, 7일부터 '반값 여행' 접수…경비 50% 환급",
+    "서천군, 7일부터 '반값 여행' 사전 접수… 여행경비 50% 환급"
+   ],
+   "sampleLinks": [
+    "https://www.newstnt.com/news/articleView.html",
+    "http://www.cctimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "종부세 부담",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": "capital-gains-tax-june-seller-aug-31-prep",
+   "sampleTitles": [
+    "종부세 부담 완화에도 세수효과 '3.4조' 그대로…이유는?",
+    "ISA 최대 계약기간 제한 철회…종부세 부담 상한 150% 유지"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/003/0014163917",
+    "https://www.koreareport.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "전역 종부세",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“집값 지금처럼 오르면… 4년뒤엔 서울 3개구 뺀 전역 종부세”",
+    "집값 계속 오르면 2030년 강북·금천·도봉 제외 서울 전역 종부세 낸다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/020/0003746079",
+    "http://www.segyebiz.com/newsView/20260906507873"
+   ]
+  },
+  {
+   "keyword": "관리급여 두",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": "manual-therapy-management-benefit-2026",
+   "sampleTitles": [
+    "관리급여 두 달, 도수치료 '후폭풍'… &quot;진료 줄이고 치료 바꿨다&quot;",
+    "관리급여 두 달, 도수치료 '후폭풍'… &quot;진료 줄이고 치료 바꿨다&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.medipana.com/news/articleView.html",
+    "https://www.medipana.com/news/articleView.html"
+   ]
+  }
+ ]
+}

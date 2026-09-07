@@ -20,6 +20,7 @@
     "audit:naver": "node scripts/audit/naver-demand.mjs",
     "audit:safe": "node scripts/audit/safe-expression.mjs",
     "audit:serp": "node scripts/audit/naver-serp.mjs",
+    "audit:discover": "node scripts/audit/naver-discover.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",
     "audit:frontmatter": "node scripts/audit/frontmatter-coverage.mjs",
     "audit:bundle": "node scripts/audit/bundle-size.mjs",
