@@ -5,7 +5,8 @@
 //       네이버는 건강(일 245클릭)하므로 네이버 수요를 1차 입력으로 쓴다 (docs/24 보완).
 //
 // 인증 (둘 중 하나, .env.local):
-//   A. NAVER API HUB (NCP) — NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET  ← 권장 (docs/25 §9-1)
+//   A. NAVER API HUB (NCP) — X_NCP_APIGW_API_KEY_ID / X_NCP_APIGW_API_KEY (콘솔 Application key 패널 이름 그대로,
+//      NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET 도 동일 취급)  ← 권장 (docs/25 §9-1)
 //      도메인 naverapihub.apigw.ntruss.com, 헤더 X-NCP-APIGW-API-KEY-ID / X-NCP-APIGW-API-KEY, 경로 /search/v1/<type>.
 //      검색어 트렌드(데이터랩)까지 측정한다 (trendRatio = 최근 4주 vs 직전 4주 상대 관심도).
 //   B. 네이버 개발자센터 — NAVER_CLIENT_ID / NAVER_CLIENT_SECRET (검색 API 만, 트렌드 없음).
@@ -51,10 +52,13 @@ function loadEnvLocal() {
   return out;
 }
 const env = { ...loadEnvLocal(), ...process.env };
-const HUB = !!(env.NAVER_APIHUB_CLIENT_ID && env.NAVER_APIHUB_CLIENT_SECRET);
+// HUB 키 이름은 콘솔 "Application key" 패널의 헤더명 그대로(X_NCP_APIGW_API_KEY_ID / X_NCP_APIGW_API_KEY)도 받는다.
+const HUB_ID = env.X_NCP_APIGW_API_KEY_ID || env.NCP_APIGW_API_KEY_ID || env.NAVER_APIHUB_CLIENT_ID;
+const HUB_SECRET = env.X_NCP_APIGW_API_KEY || env.NCP_APIGW_API_KEY || env.NAVER_APIHUB_CLIENT_SECRET;
+const HUB = !!(HUB_ID && HUB_SECRET);
 if (!HUB && !(env.NAVER_CLIENT_ID && env.NAVER_CLIENT_SECRET)) {
   console.error('❌ 네이버 API 자격증명 없음. NAVER API HUB(ncloud.com → NAVER API HUB → Application 등록, 검색 API + 검색어 트렌드 선택) 의');
-  console.error('   Client ID/Secret 을 .env.local 에 NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET 로 넣으세요 (docs/25 §9-1).');
+  console.error('   Application key 패널 값을 .env.local 에 X_NCP_APIGW_API_KEY_ID= / X_NCP_APIGW_API_KEY= 뒤에 붙여넣으세요 (docs/25 §9-1).');
   console.error('   개발자센터 키(NAVER_CLIENT_ID / NAVER_CLIENT_SECRET)도 2027-06-30 까지는 동작합니다.');
   process.exit(1);
 }
@@ -63,8 +67,8 @@ const API = HUB
       label: 'NAVER API HUB',
       base: env.NAVER_APIHUB_BASE || 'https://naverapihub.apigw.ntruss.com',
       search: (ep) => `/search/v1/${ep}`,
-      trend: env.NAVER_APIHUB_TREND_PATH || '/datalab/v1/search',
-      headers: { 'X-NCP-APIGW-API-KEY-ID': env.NAVER_APIHUB_CLIENT_ID, 'X-NCP-APIGW-API-KEY': env.NAVER_APIHUB_CLIENT_SECRET },
+      trend: env.NAVER_APIHUB_TREND_PATH || '/search-trend/v1/search', // 2026-09-07 실키로 확인 (/datalab/v1/search 는 HUB 에서 404)
+      headers: { 'X-NCP-APIGW-API-KEY-ID': HUB_ID, 'X-NCP-APIGW-API-KEY': HUB_SECRET },
     }
   : {
       label: '네이버 개발자센터 (2027-06-30 종료 예정, 트렌드 미지원)',
@@ -108,7 +112,9 @@ function loadSeeds() {
   if (SEEDS_FILE) {
     const raw = readFileSync(path.resolve(ROOT, SEEDS_FILE), 'utf8');
     if (SEEDS_FILE.endsWith('.json')) {
-      const j = JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      // 배열 그대로도, naver-discover.mjs 산출물({ seeds: [...] })도 받는다
+      const j = Array.isArray(parsed) ? parsed : (parsed.seeds || []);
       for (const it of Array.isArray(j) ? j : []) {
         if (typeof it === 'string') list.push({ keyword: it, cluster: '?', source: 'seeds' });
         else if (it.keyword) list.push({ keyword: it.keyword, cluster: it.cluster || '?', source: 'seeds' });
@@ -173,7 +179,7 @@ async function search(ep, query, params) {
   return r.json();
 }
 
-// 검색어 트렌드 (HUB 전용): 키워드 5개씩 묶어 최근 8주 주간 상대 관심도(구간 최고 = 100)를 받고
+// 검색어 트렌드 (HUB 전용, POST /search-trend/v1/search): 키워드 5개씩 묶어 최근 8주 주간 상대 관심도(구간 최고 = 100)를 받고
 // 최근 4주 평균 / 직전 4주 평균 = trendRatio (1.0 = 보합, 2.0 = 두 배). 호출 간 절대값 비교는 불가(호출 내 상대 지수).
 async function measureTrend(keywords) {
   const out = new Map();
@@ -181,31 +187,45 @@ async function measureTrend(keywords) {
   const end = new Date(Date.now() + 9 * 3600000); end.setUTCDate(end.getUTCDate() - 1);
   const start = new Date(end); start.setUTCDate(start.getUTCDate() - 8 * 7 + 1);
   const fmt = (d) => d.toISOString().slice(0, 10);
+  let failedBatches = 0;
   for (let i = 0; i < keywords.length; i += 5) {
     const group = keywords.slice(i, i + 5);
-    const body = { startDate: fmt(start), endDate: fmt(end), timeUnit: 'week', keywordGroups: group.map((k) => ({ groupName: k, keywords: [k] })) };
-    try {
-      const r = await fetch(API.base + API.trend, { method: 'POST', headers: { ...API.headers, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-      if (r.status === 429) { await sleep(1500); i -= 5; continue; }
-      if (!r.ok) {
-        console.error(`⚠️ 검색어 트렌드 API ${r.status}: ${(await r.text()).slice(0, 120)} — trend 지표 없이 진행 (경로 ${API.trend}, 환경변수 NAVER_APIHUB_TREND_PATH 로 조정 가능)`);
-        return out;
+    const body = JSON.stringify({ startDate: fmt(start), endDate: fmt(end), timeUnit: 'week', keywordGroups: group.map((k) => ({ groupName: k, keywords: [k] })) });
+    let j = null;
+    for (let attempt = 1; attempt <= 3 && !j; attempt++) {
+      try {
+        const r = await fetch(API.base + API.trend, { method: 'POST', headers: { ...API.headers, 'Content-Type': 'application/json' }, body });
+        if (r.status === 429) { await sleep(1500 * attempt); continue; }
+        if (r.status === 404 || r.status === 401 || r.status === 403) {
+          console.error(`⚠️ 검색어 트렌드 API ${r.status}: ${(await r.text()).slice(0, 120)} — trend 지표 없이 진행 (경로 ${API.trend}, 환경변수 NAVER_APIHUB_TREND_PATH 로 조정 가능)`);
+          return out;
+        }
+        if (!r.ok) { await sleep(1000 * attempt); continue; }
+        j = await r.json();
+      } catch (e) {
+        // 일시적 네트워크 오류(fetch failed 등)는 배치 단위로 재시도, 3회 실패 시 그 배치만 건너뛴다
+        if (attempt === 3) failedBatches++;
+        await sleep(1000 * attempt);
       }
-      const j = await r.json();
-      for (const res of j.results || []) {
-        const data = res.data || [];
-        const recent = data.slice(-4);
-        const prev = data.slice(0, Math.max(0, data.length - 4)).slice(-4);
-        const avg = (xs) => (xs.length ? xs.reduce((a, d) => a + (d.ratio || 0), 0) / xs.length : 0);
-        const ra = avg(recent), pa = avg(prev);
-        out.set(res.title, { trendRecent: +ra.toFixed(1), trendPrev: +pa.toFixed(1), trendRatio: pa ? +(ra / pa).toFixed(2) : null });
-      }
-    } catch (e) {
-      console.error('⚠️ 검색어 트렌드 API 오류:', e.message, '— trend 지표 없이 진행');
-      return out;
     }
-    await sleep(120);
+    if (!j) { failedBatches++; continue; }
+    for (const res of j.results || []) {
+      const data = res.data || [];
+      const recent = data.slice(-4);
+      const prev = data.slice(0, Math.max(0, data.length - 4)).slice(-4);
+      const avg = (xs) => (xs.length ? xs.reduce((a, d) => a + (d.ratio || 0), 0) / xs.length : 0);
+      const ra = avg(recent), pa = avg(prev);
+      // 직전 4주가 0인데 최근 4주에 값이 생겼다 = 무에서 생긴 검색어. 비율이 정의되지 않으므로 별도 플래그로 남긴다
+      // (수정 전에는 trendRatio null 이 되어 신생 키워드가 후보에서 탈락했다 — 2026-09-07, docs/26 §4-b)
+      out.set(res.title, {
+        trendRecent: +ra.toFixed(1), trendPrev: +pa.toFixed(1),
+        trendRatio: pa ? +(ra / pa).toFixed(2) : null,
+        trendFromZero: !pa && ra > 0 ? 1 : 0,
+      });
+    }
+    await sleep(150);
   }
+  if (failedBatches) console.error(`⚠️ 검색어 트렌드 배치 ${failedBatches}건 실패(3회 재시도 후) — 해당 키워드는 trend 없음`);
   return out;
 }
 const DAY = 86400000;
@@ -237,10 +257,13 @@ async function measure(kw, inv) {
   const existing = existingMatches(kw, inv);
   // gap: 기존 글이 없고 1차 출처(go.kr/or.kr)가 상위 10 안에 3개 이상 → 신규 후보로 올릴 만함 (최종 판단은 strategist)
   const gap = existing.length === 0 && official >= 3 ? 1 : 0;
+  // openness: 경쟁 문서 공급량(블로그 누적)이 얼마나 적은가. 신생 제도어는 blogTotal 이 한 자릿수~수백에 그친다.
+  // 신생 키워드는 지식iN 질문이 아직 쌓이지 않아 demand 점수에서 불이익을 받으므로 별도 지표로 뽑는다 (docs/26 §4-b).
+  const openness = +(( (news.total ? Math.min(newsPerDay, 10) : 0) + 1) / Math.log10(blog.total + 10)).toFixed(2);
   return {
     kinTotal: kin.total, blogTotal: blog.total, blogPerDay, newsTotal: news.total, newsPerDay,
     latestNews: latestNews ? { title: latestNews.title.replace(/<[^>]+>/g, ''), date: (latestNews.pubDate || '').slice(5, 16) } : null,
-    official, ourRank: ourIdx >= 0 ? ourIdx + 1 : 0, existing, gap, demand,
+    official, ourRank: ourIdx >= 0 ? ourIdx + 1 : 0, existing, gap, demand, openness,
   };
 }
 
@@ -264,6 +287,18 @@ for (const s of seeds) {
 if (!QUIET) console.log('\n');
 const trend = await measureTrend(rows.filter((r) => !r.error).map((r) => r.keyword));
 for (const r of rows) Object.assign(r, trend.get(r.keyword) || {});
+
+// ── 신생 키워드 판정 (docs/26 §4-b) ────────────────────────────────────
+// 새로 생긴 제도어는 경쟁 문서가 거의 없어 색인만 되면 바로 상위에 오른다. 반면 지식iN 질문이 아직 없어
+// demand 점수는 낮고, 직전 4주 관심도가 0 이라 trendRatio 도 못 구한다. 그래서 별도 축으로 뽑는다.
+//   조건: 기존 글 없음 + 1차 출처 확보 가능(go.kr ≥2) + 경쟁 블로그 누적 3,000 미만
+//         + (뉴스가 지금 나오는 중 ≥3/일  또는  무에서 생긴 검색어)
+for (const r of rows) {
+  if (r.error) continue;
+  const noRival = r.blogTotal < 3000;
+  const breaking = r.newsPerDay >= 3 || r.trendFromZero === 1;
+  r.newborn = r.existing.length === 0 && r.official >= 2 && noRival && breaking ? 1 : 0;
+}
 rows.sort((a, b) => (b.demand || 0) - (a.demand || 0));
 
 mkdirSync(LOG_DIR, { recursive: true });
@@ -282,6 +317,14 @@ if (!QUIET) {
     console.log(pad(r.demand, 5), pad(r.gap ? '★' : '', 3), pad(r.cluster, 18), pad(r.keyword.slice(0, 22), 24), pad(r.kinTotal, 7), pad(r.blogPerDay, 9), pad(r.newsPerDay, 7), pad(r.official, 5), pad(r.ourRank || '-', 4), T ? pad(r.trendRatio ?? '-', 6) : '', r.existing.join(',') || '-');
   }
   const gaps = rows.filter((r) => r.gap);
-  console.log(`\n→ ${path.relative(ROOT, outFile)} (${rows.length}건, 신규 후보 갭 ★ ${gaps.length}건${T ? ', 트렌드 측정 포함' : HUB ? ', 트렌드 미측정' : ', 트렌드 미측정(개발자센터 키 — HUB 키가 있어야 측정)'})`);
-  console.log('읽는 법: 지식iN 많음 = 꾸준한 질문 / 블로그·일 높음 = 지금 뜨거움(경쟁도 높음, 40 = 오늘만 20건 이상) / 뉴스·일 = 제도 변화 / go.kr = 1차 출처 / 우리 = 네이버 웹문서 10위 내 순위 / 트렌드 = 최근 4주÷직전 4주 관심도(HUB) / 기존글 = 겹칠 수 있는 슬러그 / ★ = 기존 글 없음 + 출처 3개 이상');
+  const newborns = rows.filter((r) => r.newborn).sort((a, b) => b.openness - a.openness);
+  if (newborns.length) {
+    console.log('\n=== 신생 키워드 (경쟁 문서 거의 없음 + 지금 뉴스 중, 색인되면 바로 상위 가능) ===');
+    console.log(pad('개방도', 7), pad('경쟁블로그', 11), pad('뉴스/일', 8), pad('지식iN', 7), pad('go.kr', 6), pad('클러스터', 18), '키워드');
+    for (const r of newborns.slice(0, 20)) {
+      console.log(pad(r.openness, 7), pad(r.blogTotal, 11), pad(r.newsPerDay, 8), pad(r.kinTotal, 7), pad(r.official, 6), pad(r.cluster, 18), r.keyword + (r.trendFromZero ? ' (무에서 생김)' : ''));
+    }
+  }
+  console.log(`\n→ ${path.relative(ROOT, outFile)} (${rows.length}건, 신규 후보 갭 ★ ${gaps.length}건, 신생 키워드 ${newborns.length}건${T ? ', 트렌드 측정 포함' : HUB ? ', 트렌드 미측정' : ', 트렌드 미측정(개발자센터 키가 아니라 HUB 키가 있어야 측정)'})`);
+  console.log('읽는 법: 지식iN 많음 = 꾸준한 질문 / 블로그·일 높음 = 지금 뜨거움(경쟁도 높음, 40 = 오늘만 20건 이상) / 경쟁블로그 = 누적 공급량(적을수록 무주공산) / 뉴스·일 = 제도 변화 / go.kr = 1차 출처 / 우리 = 네이버 웹문서 10위 내 순위 / 트렌드 = 최근 4주÷직전 4주 관심도 / 개방도 = 뉴스속도÷log(경쟁블로그) / ★ = 기존 글 없음 + 출처 3개 이상');
 }

@@ -41,9 +41,12 @@ docs/24(구글 회복 운영)·docs/23(애드센스)·docs/21(콘텐츠 규칙)�
 
 - 측정 도구 `scripts/audit/naver-demand.mjs`: 키워드당 지식iN 질문 수(장기 수요), 최신 블로그 20건의 일 속도(열기·경쟁),
   최신 뉴스 20건의 일 속도(시의성), 웹문서 상위 10 중 go.kr/or.kr 수(검증 가능성), 우리 글 순위(현재 노출),
-  인벤토리 제목 겹침(카니발리제이션). 네이버 검색 API 4종, LLM 0.
-- 판단 규칙 (/topics §2-3): 달력 발행 창(`bestPublishWindow`) 안 항목 → 네이버 갭 ★ 중 demand 상위 → GSC rising.
+  인벤토리 제목·설명 겹침(카니발리제이션), 그리고 NAVER API HUB 키일 때 **검색어 트렌드** `trendRatio`(최근 4주÷직전 4주 상대 관심도,
+  1.0 보합·2.0 두 배). 검색 API 4종 + 트렌드 1종, LLM 0. 2026-09-07 부터 HUB 키로 측정(§9-1).
+- 판단 규칙 (/topics §2-3): 달력 발행 창(`bestPublishWindow`) 안 항목 → **신생 키워드(`newborn=1`, 발행 창 기다리지 않고 즉시)**
+  → 네이버 갭 ★ 중 `trendRatio ≥ 1.3` 먼저, 그다음 demand 상위 → GSC rising.
   `blogPerDay ≥ 20` 은 과열(오늘만 20건 이상)이라 후순위. 네이버 `existing` 에 슬러그가 잡히면 신규가 아니라 리프레시.
+  신생 키워드 트랙의 근거·조건·주의는 docs/26 §4-b.
 - 클라우드 루틴은 자격증명이 없어 이 파일들을 **만들지 못하고 읽기만** 한다. 로컬 갱신·커밋이 루틴의 산소다.
 
 ## 3. 리프레시 엔진 (기존 유지 + 보강)
@@ -202,7 +205,8 @@ KPI (주 1회 기록, 방향만 본다):
 1. **NAVER API HUB 이관 (2026-09-30 전 권장)**: 네이버 개발자센터 공지(2026-06-29)로 검색 API·검색어 트렌드·쇼핑 인사이트가
    NCP 의 NAVER API HUB 로 이관된다. 개발자센터에서는 2026-07-31 부로 신규 신청이 막혔고(그래서 기존 앱에 데이터랩 권한을 더할 수 없다,
    인증 024 의 원인), 기존 키는 2027-06-30 까지만 동작한다. 할 일: ① NCP(ncloud.com) 가입 ② NAVER API HUB 이용 신청 ③ Application 등록에서
-   검색 API + 검색어 트렌드 선택 ④ 발급된 HUB Client ID/Secret 을 `.env.local` 에 `NAVER_APIHUB_CLIENT_ID` / `NAVER_APIHUB_CLIENT_SECRET` 로 저장.
+   검색 API + 검색어 트렌드 선택 ④ 콘솔 "Application key" 패널의 값을 `.env.local` 에 패널 이름 그대로 `X_NCP_APIGW_API_KEY_ID=` /
+   `X_NCP_APIGW_API_KEY=` 뒤에 붙여넣기 (`NAVER_APIHUB_APP_NAME=` 은 메모용. 옛 이름 `NAVER_APIHUB_CLIENT_ID/SECRET` 도 동일 취급).
    `naver-demand.mjs` 는 HUB 키가 있으면 HUB(`naverapihub.apigw.ntruss.com`, 헤더 `X-NCP-APIGW-API-KEY-ID/-KEY`)를 쓰고 검색어 트렌드
    지표(`trend`: 최근 4주 vs 직전 4주 상대 관심도)를 함께 뽑으며, 없으면 개발자센터 키로 검색 API 만 쓴다(2027-06-30 까지).
    프로모션: 2026-06-29~09-30 사이 NCP 신규가입 + API HUB Application 등록 완료 시 NCP 크레딧 20만원(3개월 유효, 일부 상품 제외).
