@@ -5,7 +5,8 @@
 //       네이버는 건강(일 245클릭)하므로 네이버 수요를 1차 입력으로 쓴다 (docs/24 보완).
 //
 // 인증 (둘 중 하나, .env.local):
-//   A. NAVER API HUB (NCP) — NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET  ← 권장 (docs/25 §9-1)
+//   A. NAVER API HUB (NCP) — X_NCP_APIGW_API_KEY_ID / X_NCP_APIGW_API_KEY (콘솔 Application key 패널 이름 그대로,
+//      NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET 도 동일 취급)  ← 권장 (docs/25 §9-1)
 //      도메인 naverapihub.apigw.ntruss.com, 헤더 X-NCP-APIGW-API-KEY-ID / X-NCP-APIGW-API-KEY, 경로 /search/v1/<type>.
 //      검색어 트렌드(데이터랩)까지 측정한다 (trendRatio = 최근 4주 vs 직전 4주 상대 관심도).
 //   B. 네이버 개발자센터 — NAVER_CLIENT_ID / NAVER_CLIENT_SECRET (검색 API 만, 트렌드 없음).
@@ -51,10 +52,13 @@ function loadEnvLocal() {
   return out;
 }
 const env = { ...loadEnvLocal(), ...process.env };
-const HUB = !!(env.NAVER_APIHUB_CLIENT_ID && env.NAVER_APIHUB_CLIENT_SECRET);
+// HUB 키 이름은 콘솔 "Application key" 패널의 헤더명 그대로(X_NCP_APIGW_API_KEY_ID / X_NCP_APIGW_API_KEY)도 받는다.
+const HUB_ID = env.X_NCP_APIGW_API_KEY_ID || env.NCP_APIGW_API_KEY_ID || env.NAVER_APIHUB_CLIENT_ID;
+const HUB_SECRET = env.X_NCP_APIGW_API_KEY || env.NCP_APIGW_API_KEY || env.NAVER_APIHUB_CLIENT_SECRET;
+const HUB = !!(HUB_ID && HUB_SECRET);
 if (!HUB && !(env.NAVER_CLIENT_ID && env.NAVER_CLIENT_SECRET)) {
   console.error('❌ 네이버 API 자격증명 없음. NAVER API HUB(ncloud.com → NAVER API HUB → Application 등록, 검색 API + 검색어 트렌드 선택) 의');
-  console.error('   Client ID/Secret 을 .env.local 에 NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET 로 넣으세요 (docs/25 §9-1).');
+  console.error('   Application key 패널 값을 .env.local 에 X_NCP_APIGW_API_KEY_ID= / X_NCP_APIGW_API_KEY= 뒤에 붙여넣으세요 (docs/25 §9-1).');
   console.error('   개발자센터 키(NAVER_CLIENT_ID / NAVER_CLIENT_SECRET)도 2027-06-30 까지는 동작합니다.');
   process.exit(1);
 }
@@ -63,8 +67,8 @@ const API = HUB
       label: 'NAVER API HUB',
       base: env.NAVER_APIHUB_BASE || 'https://naverapihub.apigw.ntruss.com',
       search: (ep) => `/search/v1/${ep}`,
-      trend: env.NAVER_APIHUB_TREND_PATH || '/datalab/v1/search',
-      headers: { 'X-NCP-APIGW-API-KEY-ID': env.NAVER_APIHUB_CLIENT_ID, 'X-NCP-APIGW-API-KEY': env.NAVER_APIHUB_CLIENT_SECRET },
+      trend: env.NAVER_APIHUB_TREND_PATH || '/search-trend/v1/search', // 2026-09-07 실키로 확인 (/datalab/v1/search 는 HUB 에서 404)
+      headers: { 'X-NCP-APIGW-API-KEY-ID': HUB_ID, 'X-NCP-APIGW-API-KEY': HUB_SECRET },
     }
   : {
       label: '네이버 개발자센터 (2027-06-30 종료 예정, 트렌드 미지원)',
@@ -173,7 +177,7 @@ async function search(ep, query, params) {
   return r.json();
 }
 
-// 검색어 트렌드 (HUB 전용): 키워드 5개씩 묶어 최근 8주 주간 상대 관심도(구간 최고 = 100)를 받고
+// 검색어 트렌드 (HUB 전용, POST /search-trend/v1/search): 키워드 5개씩 묶어 최근 8주 주간 상대 관심도(구간 최고 = 100)를 받고
 // 최근 4주 평균 / 직전 4주 평균 = trendRatio (1.0 = 보합, 2.0 = 두 배). 호출 간 절대값 비교는 불가(호출 내 상대 지수).
 async function measureTrend(keywords) {
   const out = new Map();
@@ -181,31 +185,39 @@ async function measureTrend(keywords) {
   const end = new Date(Date.now() + 9 * 3600000); end.setUTCDate(end.getUTCDate() - 1);
   const start = new Date(end); start.setUTCDate(start.getUTCDate() - 8 * 7 + 1);
   const fmt = (d) => d.toISOString().slice(0, 10);
+  let failedBatches = 0;
   for (let i = 0; i < keywords.length; i += 5) {
     const group = keywords.slice(i, i + 5);
-    const body = { startDate: fmt(start), endDate: fmt(end), timeUnit: 'week', keywordGroups: group.map((k) => ({ groupName: k, keywords: [k] })) };
-    try {
-      const r = await fetch(API.base + API.trend, { method: 'POST', headers: { ...API.headers, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-      if (r.status === 429) { await sleep(1500); i -= 5; continue; }
-      if (!r.ok) {
-        console.error(`⚠️ 검색어 트렌드 API ${r.status}: ${(await r.text()).slice(0, 120)} — trend 지표 없이 진행 (경로 ${API.trend}, 환경변수 NAVER_APIHUB_TREND_PATH 로 조정 가능)`);
-        return out;
+    const body = JSON.stringify({ startDate: fmt(start), endDate: fmt(end), timeUnit: 'week', keywordGroups: group.map((k) => ({ groupName: k, keywords: [k] })) });
+    let j = null;
+    for (let attempt = 1; attempt <= 3 && !j; attempt++) {
+      try {
+        const r = await fetch(API.base + API.trend, { method: 'POST', headers: { ...API.headers, 'Content-Type': 'application/json' }, body });
+        if (r.status === 429) { await sleep(1500 * attempt); continue; }
+        if (r.status === 404 || r.status === 401 || r.status === 403) {
+          console.error(`⚠️ 검색어 트렌드 API ${r.status}: ${(await r.text()).slice(0, 120)} — trend 지표 없이 진행 (경로 ${API.trend}, 환경변수 NAVER_APIHUB_TREND_PATH 로 조정 가능)`);
+          return out;
+        }
+        if (!r.ok) { await sleep(1000 * attempt); continue; }
+        j = await r.json();
+      } catch (e) {
+        // 일시적 네트워크 오류(fetch failed 등)는 배치 단위로 재시도, 3회 실패 시 그 배치만 건너뛴다
+        if (attempt === 3) failedBatches++;
+        await sleep(1000 * attempt);
       }
-      const j = await r.json();
-      for (const res of j.results || []) {
-        const data = res.data || [];
-        const recent = data.slice(-4);
-        const prev = data.slice(0, Math.max(0, data.length - 4)).slice(-4);
-        const avg = (xs) => (xs.length ? xs.reduce((a, d) => a + (d.ratio || 0), 0) / xs.length : 0);
-        const ra = avg(recent), pa = avg(prev);
-        out.set(res.title, { trendRecent: +ra.toFixed(1), trendPrev: +pa.toFixed(1), trendRatio: pa ? +(ra / pa).toFixed(2) : null });
-      }
-    } catch (e) {
-      console.error('⚠️ 검색어 트렌드 API 오류:', e.message, '— trend 지표 없이 진행');
-      return out;
     }
-    await sleep(120);
+    if (!j) { failedBatches++; continue; }
+    for (const res of j.results || []) {
+      const data = res.data || [];
+      const recent = data.slice(-4);
+      const prev = data.slice(0, Math.max(0, data.length - 4)).slice(-4);
+      const avg = (xs) => (xs.length ? xs.reduce((a, d) => a + (d.ratio || 0), 0) / xs.length : 0);
+      const ra = avg(recent), pa = avg(prev);
+      out.set(res.title, { trendRecent: +ra.toFixed(1), trendPrev: +pa.toFixed(1), trendRatio: pa ? +(ra / pa).toFixed(2) : null });
+    }
+    await sleep(150);
   }
+  if (failedBatches) console.error(`⚠️ 검색어 트렌드 배치 ${failedBatches}건 실패(3회 재시도 후) — 해당 키워드는 trend 없음`);
   return out;
 }
 const DAY = 86400000;

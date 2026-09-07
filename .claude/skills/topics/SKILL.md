@@ -25,8 +25,9 @@ description: GSC 실측 데이터로 오늘의 발행·리프레시 주제를 �
       입력원 우선순위 (2026-09-07 개정 — GSC rising 이 억제기에 0 으로 고착된 문제 해결):
       ① **제도 달력** `docs/editorial/policy-calendar-2026-Q4.json` 의 `bestPublishWindow` 안에 든
          항목 (verified=확인 만, 미확인 항목은 1차 출처 재확인 후에만)
-      ② **네이버 갭 ★** (`naver-demand` 의 `gap=1`: 기존 글 없음 + go.kr 출처 ≥3) 중 `demand` 상위,
-         `blogPerDay ≥ 20` 이면 과열·경쟁 과다로 후순위
+      ② **네이버 갭 ★** (`naver-demand` 의 `gap=1`: 기존 글 없음 + go.kr 출처 ≥3) 중 `trendRatio`(최근 4주÷직전 4주
+         검색 관심도, API HUB 키일 때만 존재) ≥ 1.3 인 것을 먼저, 그다음 `demand` 상위. `blogPerDay ≥ 20` 이면
+         과열·경쟁 과다로 후순위. `trendRatio` 가 없으면(개발자센터 키) `demand` 순만
       ③ GSC `rising` (있을 때만)
       네이버 `existing` 에 슬러그가 잡히면 신규가 아니라 그 글의 **리프레시 후보**로 돌린다.
    4. **카니발리제이션** → 통합(대표 1편 + 301) 후보 — 즉시 실행이 아니라 주간
