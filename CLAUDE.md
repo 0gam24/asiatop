@@ -15,6 +15,11 @@
 - 신규 글 메타/제목은 풋프린트 가드 준수 (`scripts/audit/template-footprint.mjs` — "총정리" 류 제목·"~정리했습니다" 류 종결 차단).
 - 구글 색인 재요청 자동화 금지 · 본문 무변경 lastmod 갱신 금지 · 대량 삭제 후 대량 재발행 금지.
 - 콘텐츠 에이전트 팀: content-strategist(의도·SERP 분석) → content-agent(작성 — `templates/claude-agents/google-content-master-prompt-v4.md` 적용) → content-auditor(발행 전 감사).
+- **신규 주제 3원 입력 (2026-09-07 — docs/25-growth-plan-2026-09.md)**: 억제기에 GSC rising 이 0 으로 고착돼 신규 0편이 반복된 문제의 해결.
+  ① 제도 달력 `docs/editorial/policy-calendar-2026-Q4.json` ② 네이버 수요 갭 `pnpm audit:naver` (`scripts/audit/naver-demand.mjs`, 네이버 검색 API,
+  로컬 전용·주 2회 커밋) ③ GSC rising. 판단 규칙은 `.claude/skills/topics/SKILL.md` §2-3. 클라우드 루틴은 이 파일들을 읽기만 한다.
+- **안전 표현 가드**: `scripts/audit/safe-expression.mjs` 가 빌드 체인에서 2026-09-07 이후 신규·리프레시 글의 금소법 22조·불법사금융 광고·
+  애드센스 허위 진술 문구를 차단 (`pnpm audit:safe`). 근거·대체 표현: docs/research/2026-09-07-adsense-topic-value.md §3.
 
 ## 내부 링크·URL 규칙 (2026-09-05 — 네이버 서치어드바이저 진단 대응)
 
