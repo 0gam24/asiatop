@@ -199,8 +199,17 @@ KPI (주 1회 기록, 방향만 본다):
 
 ## 9. 운영자(사람) 액션
 
-1. **네이버 데이터랩 권한**: developers.naver.com 앱에 "데이터랩(검색어 트렌드)" API 추가 (현재 검색 API 만 허용 → 인증 024).
-   추가되면 `naver-demand` 에 상대 트렌드 지표를 붙일 수 있다.
+1. **NAVER API HUB 이관 (2026-09-30 전 권장)**: 네이버 개발자센터 공지(2026-06-29)로 검색 API·검색어 트렌드·쇼핑 인사이트가
+   NCP 의 NAVER API HUB 로 이관된다. 개발자센터에서는 2026-07-31 부로 신규 신청이 막혔고(그래서 기존 앱에 데이터랩 권한을 더할 수 없다,
+   인증 024 의 원인), 기존 키는 2027-06-30 까지만 동작한다. 할 일: ① NCP(ncloud.com) 가입 ② NAVER API HUB 이용 신청 ③ Application 등록에서
+   검색 API + 검색어 트렌드 선택 ④ 발급된 HUB Client ID/Secret 을 `.env.local` 에 `NAVER_APIHUB_CLIENT_ID` / `NAVER_APIHUB_CLIENT_SECRET` 로 저장.
+   `naver-demand.mjs` 는 HUB 키가 있으면 HUB(`naverapihub.apigw.ntruss.com`, 헤더 `X-NCP-APIGW-API-KEY-ID/-KEY`)를 쓰고 검색어 트렌드
+   지표(`trend`: 최근 4주 vs 직전 4주 상대 관심도)를 함께 뽑으며, 없으면 개발자센터 키로 검색 API 만 쓴다(2027-06-30 까지).
+   프로모션: 2026-06-29~09-30 사이 NCP 신규가입 + API HUB Application 등록 완료 시 NCP 크레딧 20만원(3개월 유효, 일부 상품 제외).
+   요금(HUB 요금표 2026-09 기준): 검색 API 월 775,000건 무료(일 25,000건 상한), 검색어 트렌드 월 30,000건 무료(+50,000건까지 한시 무료).
+   우리 사용량은 측정 1회당 검색 약 1,300건 + 트렌드 약 65건, 주 2회 기준 월 1만 건 안팎이라 무료 구간이다.
+   계정 가입·신청은 운영자가 직접 한다. 출처: guide.ncloud-docs.com/docs/apihub-migration, api.ncloud-docs.com/docs/naver-api-hub-overview.
+   (참고: 네이버클라우드가 홍보한 `NCP-Claude-Project/ncp-mcp` 는 NCP 서버·스토리지 리소스를 만드는 MCP 이지 네이버 검색·트렌드 API 도구가 아니므로 여기엔 불필요.)
 2. **네이버 서치어드바이저 유입 검색어 내보내기** (월 1회 CSV): 245클릭이 어떤 검색어에서 오는지가 보강 우선순위의 근거.
    API 가 없어 사람만 할 수 있다 (docs/24 P4 대기 항목과 같은 자료).
 3. GSC 기회 파일 주 1회 로컬 갱신·커밋 (`node scripts/audit/gsc-opportunities.mjs`).
