@@ -4,8 +4,12 @@
 // 배경: 2026-08-18 구글 억제 이후 GSC rising 이 0 → 신규 주제 입력원이 사라짐.
 //       네이버는 건강(일 245클릭)하므로 네이버 수요를 1차 입력으로 쓴다 (docs/24 보완).
 //
-// 인증: .env.local 의 NAVER_CLIENT_ID / NAVER_CLIENT_SECRET (developers.naver.com 앱,
-//       "검색" API 사용 설정 필요. 데이터랩 트렌드는 별도 권한이라 쓰지 않는다).
+// 인증 (둘 중 하나, .env.local):
+//   A. NAVER API HUB (NCP) — NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET  ← 권장 (docs/25 §9-1)
+//      도메인 naverapihub.apigw.ntruss.com, 헤더 X-NCP-APIGW-API-KEY-ID / X-NCP-APIGW-API-KEY, 경로 /search/v1/<type>.
+//      검색어 트렌드(데이터랩)까지 측정한다 (trendRatio = 최근 4주 vs 직전 4주 상대 관심도).
+//   B. 네이버 개발자센터 — NAVER_CLIENT_ID / NAVER_CLIENT_SECRET (검색 API 만, 트렌드 없음).
+//      2026-06-29 공지: 개발자센터 검색·트렌드 API 는 HUB 로 이관, 신규 신청 2026-07-31 차단, 기존 키 2027-06-30 종료.
 // 실행: node scripts/audit/naver-demand.mjs [--seeds <json|txt>] [--calendar <json>] [--limit N] [--quiet]
 // 출력: 콘솔 표 + docs/revenue-log/naver-demand-YYYY-MM-DD.json
 //
@@ -47,11 +51,28 @@ function loadEnvLocal() {
   return out;
 }
 const env = { ...loadEnvLocal(), ...process.env };
-if (!env.NAVER_CLIENT_ID || !env.NAVER_CLIENT_SECRET) {
-  console.error('❌ NAVER_CLIENT_ID / NAVER_CLIENT_SECRET 없음. developers.naver.com 앱에 "검색" API 를 추가하고 .env.local 에 넣으세요.');
+const HUB = !!(env.NAVER_APIHUB_CLIENT_ID && env.NAVER_APIHUB_CLIENT_SECRET);
+if (!HUB && !(env.NAVER_CLIENT_ID && env.NAVER_CLIENT_SECRET)) {
+  console.error('❌ 네이버 API 자격증명 없음. NAVER API HUB(ncloud.com → NAVER API HUB → Application 등록, 검색 API + 검색어 트렌드 선택) 의');
+  console.error('   Client ID/Secret 을 .env.local 에 NAVER_APIHUB_CLIENT_ID / NAVER_APIHUB_CLIENT_SECRET 로 넣으세요 (docs/25 §9-1).');
+  console.error('   개발자센터 키(NAVER_CLIENT_ID / NAVER_CLIENT_SECRET)도 2027-06-30 까지는 동작합니다.');
   process.exit(1);
 }
-const HEADERS = { 'X-Naver-Client-Id': env.NAVER_CLIENT_ID, 'X-Naver-Client-Secret': env.NAVER_CLIENT_SECRET };
+const API = HUB
+  ? {
+      label: 'NAVER API HUB',
+      base: env.NAVER_APIHUB_BASE || 'https://naverapihub.apigw.ntruss.com',
+      search: (ep) => `/search/v1/${ep}`,
+      trend: env.NAVER_APIHUB_TREND_PATH || '/datalab/v1/search',
+      headers: { 'X-NCP-APIGW-API-KEY-ID': env.NAVER_APIHUB_CLIENT_ID, 'X-NCP-APIGW-API-KEY': env.NAVER_APIHUB_CLIENT_SECRET },
+    }
+  : {
+      label: '네이버 개발자센터 (2027-06-30 종료 예정, 트렌드 미지원)',
+      base: 'https://openapi.naver.com',
+      search: (ep) => `/v1/search/${ep}.json`,
+      trend: null,
+      headers: { 'X-Naver-Client-Id': env.NAVER_CLIENT_ID, 'X-Naver-Client-Secret': env.NAVER_CLIENT_SECRET },
+    };
 
 // ── 기본 씨앗 (클러스터별 Q4 시즌 키워드. 측정 대상일 뿐 발행 확정이 아니다) ──
 const DEFAULT_SEEDS = {
@@ -143,13 +164,49 @@ function existingMatches(kw, inv) {
 // ── API ─────────────────────────────────────────────────────────────────
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function search(ep, query, params) {
-  const u = new URL(`https://openapi.naver.com/v1/search/${ep}.json`);
+  const u = new URL(API.base + API.search(ep));
   u.searchParams.set('query', query);
   for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
-  const r = await fetch(u, { headers: HEADERS });
+  const r = await fetch(u, { headers: API.headers });
   if (r.status === 429) { await sleep(1500); return search(ep, query, params); }
   if (!r.ok) throw new Error(`${ep} ${r.status} ${(await r.text()).slice(0, 120)}`);
   return r.json();
+}
+
+// 검색어 트렌드 (HUB 전용): 키워드 5개씩 묶어 최근 8주 주간 상대 관심도(구간 최고 = 100)를 받고
+// 최근 4주 평균 / 직전 4주 평균 = trendRatio (1.0 = 보합, 2.0 = 두 배). 호출 간 절대값 비교는 불가(호출 내 상대 지수).
+async function measureTrend(keywords) {
+  const out = new Map();
+  if (!API.trend) return out;
+  const end = new Date(Date.now() + 9 * 3600000); end.setUTCDate(end.getUTCDate() - 1);
+  const start = new Date(end); start.setUTCDate(start.getUTCDate() - 8 * 7 + 1);
+  const fmt = (d) => d.toISOString().slice(0, 10);
+  for (let i = 0; i < keywords.length; i += 5) {
+    const group = keywords.slice(i, i + 5);
+    const body = { startDate: fmt(start), endDate: fmt(end), timeUnit: 'week', keywordGroups: group.map((k) => ({ groupName: k, keywords: [k] })) };
+    try {
+      const r = await fetch(API.base + API.trend, { method: 'POST', headers: { ...API.headers, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (r.status === 429) { await sleep(1500); i -= 5; continue; }
+      if (!r.ok) {
+        console.error(`⚠️ 검색어 트렌드 API ${r.status}: ${(await r.text()).slice(0, 120)} — trend 지표 없이 진행 (경로 ${API.trend}, 환경변수 NAVER_APIHUB_TREND_PATH 로 조정 가능)`);
+        return out;
+      }
+      const j = await r.json();
+      for (const res of j.results || []) {
+        const data = res.data || [];
+        const recent = data.slice(-4);
+        const prev = data.slice(0, Math.max(0, data.length - 4)).slice(-4);
+        const avg = (xs) => (xs.length ? xs.reduce((a, d) => a + (d.ratio || 0), 0) / xs.length : 0);
+        const ra = avg(recent), pa = avg(prev);
+        out.set(res.title, { trendRecent: +ra.toFixed(1), trendPrev: +pa.toFixed(1), trendRatio: pa ? +(ra / pa).toFixed(2) : null });
+      }
+    } catch (e) {
+      console.error('⚠️ 검색어 트렌드 API 오류:', e.message, '— trend 지표 없이 진행');
+      return out;
+    }
+    await sleep(120);
+  }
+  return out;
 }
 const DAY = 86400000;
 function spanDays(dates) {
@@ -191,7 +248,7 @@ async function measure(kw, inv) {
 const seeds = loadSeeds();
 const inv = loadInventory();
 const kst = new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
-if (!QUIET) console.log(`네이버 수요 측정: ${seeds.length} 키워드, 인벤토리 ${inv.length}편, ${kst} KST\n`);
+if (!QUIET) console.log(`네이버 수요 측정: ${seeds.length} 키워드, 인벤토리 ${inv.length}편, ${kst} KST, API = ${API.label}\n`);
 const rows = [];
 for (const s of seeds) {
   try {
@@ -205,22 +262,26 @@ for (const s of seeds) {
   await sleep(120);
 }
 if (!QUIET) console.log('\n');
+const trend = await measureTrend(rows.filter((r) => !r.error).map((r) => r.keyword));
+for (const r of rows) Object.assign(r, trend.get(r.keyword) || {});
 rows.sort((a, b) => (b.demand || 0) - (a.demand || 0));
 
 mkdirSync(LOG_DIR, { recursive: true });
 const outFile = path.join(LOG_DIR, `naver-demand-${kst}.json`);
 writeFileSync(outFile, JSON.stringify({
-  pulledAt: new Date().toISOString(), kstDate: kst, seedsSource: SEEDS_FILE || 'default', calendar: CAL_FILE || null, rows,
+  pulledAt: new Date().toISOString(), kstDate: kst, api: API.label, trendMeasured: trend.size > 0,
+  seedsSource: SEEDS_FILE || 'default', calendar: CAL_FILE || null, rows,
 }, null, 1));
 
 if (!QUIET) {
   const pad = (s, n) => String(s ?? '').padEnd(n);
-  console.log(pad('점수', 5), pad('갭', 3), pad('클러스터', 18), pad('키워드', 24), pad('지식iN', 7), pad('블로그/일', 9), pad('뉴스/일', 7), pad('go.kr', 5), pad('우리', 4), '기존글');
+  const T = trend.size > 0;
+  console.log(pad('점수', 5), pad('갭', 3), pad('클러스터', 18), pad('키워드', 24), pad('지식iN', 7), pad('블로그/일', 9), pad('뉴스/일', 7), pad('go.kr', 5), pad('우리', 4), T ? pad('트렌드', 6) : '', '기존글');
   for (const r of rows.slice(0, 40)) {
     if (r.error) { console.log(pad('ERR', 5), pad('', 3), pad(r.cluster, 18), pad(r.keyword, 24), r.error); continue; }
-    console.log(pad(r.demand, 5), pad(r.gap ? '★' : '', 3), pad(r.cluster, 18), pad(r.keyword.slice(0, 22), 24), pad(r.kinTotal, 7), pad(r.blogPerDay, 9), pad(r.newsPerDay, 7), pad(r.official, 5), pad(r.ourRank || '-', 4), r.existing.join(',') || '-');
+    console.log(pad(r.demand, 5), pad(r.gap ? '★' : '', 3), pad(r.cluster, 18), pad(r.keyword.slice(0, 22), 24), pad(r.kinTotal, 7), pad(r.blogPerDay, 9), pad(r.newsPerDay, 7), pad(r.official, 5), pad(r.ourRank || '-', 4), T ? pad(r.trendRatio ?? '-', 6) : '', r.existing.join(',') || '-');
   }
   const gaps = rows.filter((r) => r.gap);
-  console.log(`\n→ ${path.relative(ROOT, outFile)} (${rows.length}건, 신규 후보 갭 ★ ${gaps.length}건)`);
-  console.log('읽는 법: 지식iN 많음 = 꾸준한 질문 / 블로그·일 높음 = 지금 뜨거움(경쟁도 높음, 40 = 오늘만 20건 이상) / 뉴스·일 = 제도 변화 / go.kr = 1차 출처 / 우리 = 네이버 웹문서 10위 내 순위 / 기존글 = 겹칠 수 있는 슬러그 / ★ = 기존 글 없음 + 출처 3개 이상');
+  console.log(`\n→ ${path.relative(ROOT, outFile)} (${rows.length}건, 신규 후보 갭 ★ ${gaps.length}건${T ? ', 트렌드 측정 포함' : HUB ? ', 트렌드 미측정' : ', 트렌드 미측정(개발자센터 키 — HUB 키가 있어야 측정)'})`);
+  console.log('읽는 법: 지식iN 많음 = 꾸준한 질문 / 블로그·일 높음 = 지금 뜨거움(경쟁도 높음, 40 = 오늘만 20건 이상) / 뉴스·일 = 제도 변화 / go.kr = 1차 출처 / 우리 = 네이버 웹문서 10위 내 순위 / 트렌드 = 최근 4주÷직전 4주 관심도(HUB) / 기존글 = 겹칠 수 있는 슬러그 / ★ = 기존 글 없음 + 출처 3개 이상');
 }
