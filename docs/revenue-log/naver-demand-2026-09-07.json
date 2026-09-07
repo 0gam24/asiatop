@@ -1,0 +1,6907 @@
+{
+ "pulledAt": "2026-09-07T13:03:34.565Z",
+ "kstDate": "2026-09-07",
+ "seedsSource": "default",
+ "calendar": "docs/editorial/policy-calendar-2026-Q4.json",
+ "rows": [
+  {
+   "keyword": "디딤돌대출 조건",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 235183,
+   "blogTotal": 13898,
+   "blogPerDay": 40,
+   "newsTotal": 6726,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "LH 사내 대출 기준, 정부 지침 위배",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "didimdol-vs-bogeumjari-comparison",
+    "youth-housing-support-limits-2026"
+   ],
+   "gap": 0,
+   "demand": 17.37
+  },
+  {
+   "keyword": "급여명세서 확인",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 211838,
+   "blogTotal": 3714,
+   "blogPerDay": 40,
+   "newsTotal": 8845,
+   "newsPerDay": 17.06,
+   "latestNews": {
+    "title": "도수치료 했는데 다른 비급여로 청구…관리급여 ‘풍선 효과’",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "meal-allowance-200k-card-vs-cash"
+   ],
+   "gap": 0,
+   "demand": 17.26
+  },
+  {
+   "keyword": "신용회복위원회 채무조정",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 177048,
+   "blogTotal": 11157,
+   "blogPerDay": 20,
+   "newsTotal": 28180,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "서민금융통합지원센터 오목교역 인근 이전…7일부터 업무 시작",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "credit-recovery-pre-debt-adjustment"
+   ],
+   "gap": 0,
+   "demand": 17.08
+  },
+  {
+   "keyword": "햇살론 자격",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 397758,
+   "blogTotal": 21076,
+   "blogPerDay": 10,
+   "newsTotal": 4550,
+   "newsPerDay": 2.91,
+   "latestNews": {
+    "title": "대출 갚고 휴업비 보전…지역 맞춤형 무료 상생보험 문 연다",
+    "date": "01 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "haetsalon-card-june-self-employed-application",
+    "mid-range-loan-comparison-2026",
+    "misogeumyung-vs-sunshine-loan"
+   ],
+   "gap": 0,
+   "demand": 17.06
+  },
+  {
+   "keyword": "암보험 비교",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 491244,
+   "blogTotal": 31154,
+   "blogPerDay": 40,
+   "newsTotal": 6609,
+   "newsPerDay": 0.71,
+   "latestNews": {
+    "title": "보험비교사이트 플랜비보험 론칭...보험 가입정보 비교 편의성 강화",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [
+    "cancer-insurance-essentials"
+   ],
+   "gap": 0,
+   "demand": 16.39
+  },
+  {
+   "keyword": "주휴수당 계산",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 201271,
+   "blogTotal": 8284,
+   "blogPerDay": 20,
+   "newsTotal": 5582,
+   "newsPerDay": 2.63,
+   "latestNews": {
+    "title": "만성 적자였는데 '반전'…내년부터 흑자로 돌아선다",
+    "date": "06 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [
+    "mid-month-join-salary-proration",
+    "minimum-wage-2026",
+    "minimum-wage-2027"
+   ],
+   "gap": 0,
+   "demand": 16.26
+  },
+  {
+   "keyword": "전세대출 규제",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 74458,
+   "blogTotal": 25897,
+   "blogPerDay": 20,
+   "newsTotal": 102279,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "[따져보니] 살만한 집도 없는데…'세 살만한' 집도 없다?",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 16.22
+  },
+  {
+   "keyword": "청년월세지원 신청",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 70200,
+   "blogTotal": 23130,
+   "blogPerDay": 40,
+   "newsTotal": 29557,
+   "newsPerDay": 5.75,
+   "latestNews": {
+    "title": "장성군, 황룡면 청년상가 입점 창업자 6명 모집",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 16.16
+  },
+  {
+   "keyword": "기초생활수급자 조건",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 141785,
+   "blogTotal": 7201,
+   "blogPerDay": 20,
+   "newsTotal": 21246,
+   "newsPerDay": 3.19,
+   "latestNews": {
+    "title": "고흥군교육발전위, 저소득 청년 학업 체류 지원 '14일부터 장학금 신청...",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "culture-nuri-card-2026-eligibility",
+    "debtor-protection-deposit-1m-limit",
+    "eitc-basic-livelihood-recipient-income"
+   ],
+   "gap": 0,
+   "demand": 16.14
+  },
+  {
+   "keyword": "주민등록 사실조사",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 58798,
+   "blogTotal": 11259,
+   "blogPerDay": 40,
+   "newsTotal": 46618,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "주민등록 비대면 사실조사, 7일 24시로 마감",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "resident-registration-fact-survey-2026"
+   ],
+   "gap": 0,
+   "demand": 15.98
+  },
+  {
+   "keyword": "전세보증금 반환보증 가입",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 53213,
+   "blogTotal": 8924,
+   "blogPerDay": 40,
+   "newsTotal": 25648,
+   "newsPerDay": 19.15,
+   "latestNews": {
+    "title": "전세금 떼먹은 집주인 내달부터 보증가입 안된다",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "jeonse-deposit-protection",
+    "jeonse-fraud-deposit-risk-check",
+    "youth-jeonse-deposit-return-hug"
+   ],
+   "gap": 0,
+   "demand": 15.88
+  },
+  {
+   "keyword": "보험료 카드납부",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 453689,
+   "blogTotal": 2947,
+   "blogPerDay": 2.86,
+   "newsTotal": 29744,
+   "newsPerDay": 17.31,
+   "latestNews": {
+    "title": "사망신고 다음 날 고인 금융거래 자동 차단",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 15.88
+  },
+  {
+   "keyword": "전입신고 방법",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 182709,
+   "blogTotal": 15808,
+   "blogPerDay": 40,
+   "newsTotal": 8809,
+   "newsPerDay": 1.69,
+   "latestNews": {
+    "title": "영천시, 농촌왕진버스 현장에서 지적민원 상담",
+    "date": "06 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "government24-mobile-guide",
+    "jeonse-right-registration-vs-fixed-date",
+    "lease-fixed-date-mobile-vs-office"
+   ],
+   "gap": 0,
+   "demand": 15.79
+  },
+  {
+   "keyword": "육아휴직 급여 신청",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 47705,
+   "blogTotal": 13396,
+   "blogPerDay": 40,
+   "newsTotal": 13028,
+   "newsPerDay": 4.83,
+   "latestNews": {
+    "title": "출산·혼인 혜택 확대 속 비혼·무자녀 ‘복지 소외감’",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "birth-support-package",
+    "childcare-leave-resign-unemployment",
+    "maternity-childcare-pay-comparison"
+   ],
+   "gap": 0,
+   "demand": 15.7
+  },
+  {
+   "keyword": "국가장학금 신청 기간",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 145487,
+   "blogTotal": 9728,
+   "blogPerDay": 20,
+   "newsTotal": 5142,
+   "newsPerDay": 1.99,
+   "latestNews": {
+    "title": "양구군 대학생 2학기 등록금 지원 신청 접수",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "national-scholarship-2026-2nd-semester-2nd-round",
+    "national-scholarship-income-tier-9-vs-8"
+   ],
+   "gap": 0,
+   "demand": 15.68
+  },
+  {
+   "keyword": "국가장학금 신청기간",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-11-20",
+   "kinTotal": 145487,
+   "blogTotal": 9728,
+   "blogPerDay": 20,
+   "newsTotal": 5142,
+   "newsPerDay": 1.99,
+   "latestNews": {
+    "title": "양구군 대학생 2학기 등록금 지원 신청 접수",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "national-scholarship-2026-2nd-semester-2nd-round",
+    "national-scholarship-income-tier-9-vs-8"
+   ],
+   "gap": 0,
+   "demand": 15.68
+  },
+  {
+   "keyword": "모바일 신분증 발급",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 42980,
+   "blogTotal": 13015,
+   "blogPerDay": 40,
+   "newsTotal": 28734,
+   "newsPerDay": 6.41,
+   "latestNews": {
+    "title": "온라인화를 넘어 '연결된 정부'로, 남아공 전자정부의 다음 단계",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "government24-mobile-guide",
+    "ic-license-vs-mobile-license-difference",
+    "mobile-resident-card-issuance-guide"
+   ],
+   "gap": 0,
+   "demand": 15.67
+  },
+  {
+   "keyword": "대출 갈아타기 조건",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 111978,
+   "blogTotal": 7006,
+   "blogPerDay": 20,
+   "newsTotal": 12166,
+   "newsPerDay": 2.53,
+   "latestNews": {
+    "title": "[부동산 인사이트] 세금과 대출을 모르면 내 집 마련도, 갈아타기도, 정...",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "beotimmok-refinance-hf-general",
+    "loan-refinancing-guide",
+    "loan-refinancing-platform-comparison"
+   ],
+   "gap": 0,
+   "demand": 15.64
+  },
+  {
+   "keyword": "재산세 카드납부 혜택",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 43744,
+   "blogTotal": 4947,
+   "blogPerDay": 20,
+   "newsTotal": 2999,
+   "newsPerDay": 4.87,
+   "latestNews": {
+    "title": "&quot;어차피 내야하는 재산세 그냥 내면 아깝잖아요&quot;",
+    "date": "05 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 15.63
+  },
+  {
+   "keyword": "청약통장 전환",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 38148,
+   "blogTotal": 9038,
+   "blogPerDay": 40,
+   "newsTotal": 16915,
+   "newsPerDay": 5.94,
+   "latestNews": {
+    "title": "청약통장 외면에 주택도시기금도 줄어든다",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-account-strategy",
+    "housing-subscription-monthly-recognition-250k",
+    "youth-housing-dream-savings-account"
+   ],
+   "gap": 0,
+   "demand": 15.55
+  },
+  {
+   "keyword": "과태료 조회 방법",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 103250,
+   "blogTotal": 6648,
+   "blogPerDay": 40,
+   "newsTotal": 4138,
+   "newsPerDay": 2.52,
+   "latestNews": {
+    "title": "[기고-신유림]혼합기·파쇄기·분쇄기 안전검사 시행, 현장은 무엇을 준...",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "auto-mandatory-insurance-lapse-penalty-2026",
+    "car-inspection-comprehensive-vs-regular-environment",
+    "car-inspection-miss-penalty-fix"
+   ],
+   "gap": 0,
+   "demand": 15.55
+  },
+  {
+   "keyword": "재산세 9월 납부",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 38267,
+   "blogTotal": 9894,
+   "blogPerDay": 40,
+   "newsTotal": 26640,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "군위정기분 재산세 부과",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "property-tax-2026-payment-schedule-calculation"
+   ],
+   "gap": 0,
+   "demand": 15.55
+  },
+  {
+   "keyword": "실손보험 전환",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 41073,
+   "blogTotal": 6776,
+   "blogPerDay": 40,
+   "newsTotal": 20027,
+   "newsPerDay": 4.79,
+   "latestNews": {
+    "title": "2026 금융 국감 돋보기③ 보험업계, 5세대 실손 부진·전산화 지지부진...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "4th-gen-silson-renewal-strategy",
+    "cataract-surgery-insurance-claim",
+    "heat-illness-emergency-room-silson-claim"
+   ],
+   "gap": 0,
+   "demand": 15.54
+  },
+  {
+   "keyword": "출산휴가 급여",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 45102,
+   "blogTotal": 12067,
+   "blogPerDay": 20,
+   "newsTotal": 23139,
+   "newsPerDay": 4.43,
+   "latestNews": {
+    "title": "지방의회 젊어지고 여성의원 늘었지만 출산·육아 제도는 제자리",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "employment-insurance-maternity-short-term",
+    "maternity-childcare-pay-comparison",
+    "spouse-childbirth-leave-20days-expansion-2026"
+   ],
+   "gap": 0,
+   "demand": 15.49
+  },
+  {
+   "keyword": "정부24 사실조사",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 34986,
+   "blogTotal": 3854,
+   "blogPerDay": 40,
+   "newsTotal": 122420,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "“국정자원 화재 때 ‘전산망 손상 우려’ 3시간 물 못뿌리게 해”",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "resident-registration-fact-survey-2026"
+   ],
+   "gap": 0,
+   "demand": 15.46
+  },
+  {
+   "keyword": "자발적 퇴사 실업급여",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 159247,
+   "blogTotal": 4777,
+   "blogPerDay": 10,
+   "newsTotal": 1483,
+   "newsPerDay": 1.12,
+   "latestNews": {
+    "title": "&quot;일 그만둬도 실업급여?&quot;…예산 빠진 '청년 자발적 이직급여' 난항",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "childcare-leave-resign-unemployment",
+    "recommended-resignation-vs-voluntary"
+   ],
+   "gap": 0,
+   "demand": 15.43
+  },
+  {
+   "keyword": "출산지원금 신청",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 38917,
+   "blogTotal": 13542,
+   "blogPerDay": 40,
+   "newsTotal": 28902,
+   "newsPerDay": 4.6,
+   "latestNews": {
+    "title": "출산·혼인 혜택 확대 속 비혼·무자녀 ‘복지 소외감’",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "company-childbirth-support-tax-free-2026"
+   ],
+   "gap": 0,
+   "demand": 15.41
+  },
+  {
+   "keyword": "치아보험 보장",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 147729,
+   "blogTotal": 18478,
+   "blogPerDay": 20,
+   "newsTotal": 15280,
+   "newsPerDay": 1.25,
+   "latestNews": {
+    "title": "요양원 구강관리 사각지대…검진-치료 잇는 국가 구강돌봄 안전망 '절실...",
+    "date": "03 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [
+    "dental-insurance-coverage-truth",
+    "dental-insurance-waiting-coverage-check"
+   ],
+   "gap": 0,
+   "demand": 15.4
+  },
+  {
+   "keyword": "근로장려금 반기 신청",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 61515,
+   "blogTotal": 12319,
+   "blogPerDay": 40,
+   "newsTotal": 3501,
+   "newsPerDay": 3.3,
+   "latestNews": {
+    "title": "반기 근로장려금 지급일... 신청 요건은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-semiannual-application",
+    "earned-income-credit-semiannual-no-notice"
+   ],
+   "gap": 0,
+   "demand": 15.35
+  },
+  {
+   "keyword": "근로장려금 반기신청",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-01",
+   "kinTotal": 61515,
+   "blogTotal": 12319,
+   "blogPerDay": 40,
+   "newsTotal": 3501,
+   "newsPerDay": 3.3,
+   "latestNews": {
+    "title": "반기 근로장려금 지급일... 신청 요건은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-semiannual-application",
+    "earned-income-credit-semiannual-no-notice"
+   ],
+   "gap": 0,
+   "demand": 15.35
+  },
+  {
+   "keyword": "긴급복지 생계지원",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 41895,
+   "blogTotal": 4860,
+   "blogPerDay": 20,
+   "newsTotal": 53183,
+   "newsPerDay": 4.13,
+   "latestNews": {
+    "title": "8년 다닌 회사에서 잘렸다, 구직급여 신청하고 깨달은 것 [신필규의 아...",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "emergency-welfare-livelihood-support-2026",
+    "median-income-2026-reference"
+   ],
+   "gap": 0,
+   "demand": 15.29
+  },
+  {
+   "keyword": "건강보험 환급금 신청",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-10-08",
+   "kinTotal": 75162,
+   "blogTotal": 5075,
+   "blogPerDay": 40,
+   "newsTotal": 3436,
+   "newsPerDay": 2.66,
+   "latestNews": {
+    "title": "병원비 많이 썼다면 꼭 확인…건강보험 환급금 조회, 놓치면 그대로 지...",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "health-insurance-july-settlement-simulation",
+    "hearing-aid-health-insurance-subsidy",
+    "nhis-copayment-cap-refund-application"
+   ],
+   "gap": 0,
+   "demand": 15.29
+  },
+  {
+   "keyword": "사실조사 과태료",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 27055,
+   "blogTotal": 2540,
+   "blogPerDay": 40,
+   "newsTotal": 70357,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "주민등록 조사 안 하면 50만원?…참여 안 했다면 진짜 과태료 내야할까",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "resident-registration-fact-survey-2026"
+   ],
+   "gap": 0,
+   "demand": 15.21
+  },
+  {
+   "keyword": "기준 중위소득 4인 가구",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 50130,
+   "blogTotal": 2170,
+   "blogPerDay": 10,
+   "newsTotal": 41729,
+   "newsPerDay": 3.31,
+   "latestNews": {
+    "title": "與野, 재건축 용적률 상향 한목소리…늘어나는 건 '20억 아파트'?",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "emergency-welfare-livelihood-support-2026",
+    "median-income-2026-reference"
+   ],
+   "gap": 0,
+   "demand": 15.15
+  },
+  {
+   "keyword": "자동차보험 갱신 비교",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 135454,
+   "blogTotal": 15573,
+   "blogPerDay": 40,
+   "newsTotal": 3807,
+   "newsPerDay": 0.62,
+   "latestNews": {
+    "title": "차통령, 9월 말 회원가입 기반 포인트 리워드 이벤트 오픈",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 15.06
+  },
+  {
+   "keyword": "근로장려금 12월 지급",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-01",
+   "kinTotal": 39740,
+   "blogTotal": 976,
+   "blogPerDay": 20,
+   "newsTotal": 6446,
+   "newsPerDay": 3.53,
+   "latestNews": {
+    "title": "반기 근로장려금 지급일... 신청 요건은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-tax-credit-late-application-d-day"
+   ],
+   "gap": 0,
+   "demand": 15
+  },
+  {
+   "keyword": "주민등록 사실조사 방문조사",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 20991,
+   "blogTotal": 3587,
+   "blogPerDay": 40,
+   "newsTotal": 13000,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "주민등록 비대면 사실조사, 7일 24시로 마감",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "resident-registration-fact-survey-2026"
+   ],
+   "gap": 0,
+   "demand": 14.95
+  },
+  {
+   "keyword": "버팀목 전세대출 조건",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 95930,
+   "blogTotal": 10965,
+   "blogPerDay": 40,
+   "newsTotal": 3398,
+   "newsPerDay": 1.1,
+   "latestNews": {
+    "title": "LH 사내 주택대출 정부기준에서 벗어나, 국힘 김미애 &quot;한도는 높이고 금...",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "beotimmok-jeonse-loan",
+    "beotimmok-refinance-hf-general"
+   ],
+   "gap": 0,
+   "demand": 14.91
+  },
+  {
+   "keyword": "노령연금 신청",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 22040,
+   "blogTotal": 6523,
+   "blogPerDay": 20,
+   "newsTotal": 13692,
+   "newsPerDay": 4.78,
+   "latestNews": {
+    "title": "김미애 의원 '국민연금법 일부개정법률안' 대표 발의",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-income-replacement-rate-43-reform",
+    "national-pension-reduction-while-working",
+    "nps-early-pension-60-eligibility"
+   ],
+   "gap": 0,
+   "demand": 14.91
+  },
+  {
+   "keyword": "근로장려금 상반기 신청",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-01",
+   "kinTotal": 36786,
+   "blogTotal": 5757,
+   "blogPerDay": 40,
+   "newsTotal": 3428,
+   "newsPerDay": 3.41,
+   "latestNews": {
+    "title": "반기 근로장려금 지급일... 신청 요건은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-semiannual-application"
+   ],
+   "gap": 0,
+   "demand": 14.88
+  },
+  {
+   "keyword": "국가장학금 소득구간",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-11-20",
+   "kinTotal": 58629,
+   "blogTotal": 1942,
+   "blogPerDay": 6.67,
+   "newsTotal": 5869,
+   "newsPerDay": 4.57,
+   "latestNews": {
+    "title": "사립대 교수 &quot;국립대 등록금 0원, 수도권 빠지는 인재 불러오기 어렵다...",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "national-scholarship-2026-2nd-semester-2nd-round",
+    "national-scholarship-income-tier-9-vs-8"
+   ],
+   "gap": 0,
+   "demand": 14.81
+  },
+  {
+   "keyword": "연차수당 계산",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 85584,
+   "blogTotal": 4943,
+   "blogPerDay": 20,
+   "newsTotal": 4327,
+   "newsPerDay": 1.08,
+   "latestNews": {
+    "title": "[메가특구, 노동의 위기와 기회 ③] 노동시간 선진국 '눈앞'에서 과로 사...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "annual-leave-cash-claim",
+    "hourly-leave-half-day-leave-rules",
+    "ordinary-wage-calculation"
+   ],
+   "gap": 0,
+   "demand": 14.79
+  },
+  {
+   "keyword": "고용보험 가입 확인",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 275776,
+   "blogTotal": 1729,
+   "blogPerDay": 2.86,
+   "newsTotal": 21213,
+   "newsPerDay": 3.27,
+   "latestNews": {
+    "title": "지방의회 젊어지고 여성의원 늘었지만 출산·육아 제도는 제자리",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "artist-employment-insurance-eligibility",
+    "durunuri-social-insurance-subsidy-june-application",
+    "employment-insurance-maternity-short-term"
+   ],
+   "gap": 0,
+   "demand": 14.69
+  },
+  {
+   "keyword": "실업급여 신청 방법",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 108099,
+   "blogTotal": 25163,
+   "blogPerDay": 40,
+   "newsTotal": 1655,
+   "newsPerDay": 0.05,
+   "latestNews": {
+    "title": "[비바100] “모르면 나만 손해”⋯ 2026년 하반기 자영업자 핵심 지원사...",
+    "date": "29 Jul 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "artist-employment-insurance-eligibility",
+    "childcare-leave-resign-unemployment",
+    "contract-expiration-unemployment-benefit"
+   ],
+   "gap": 0,
+   "demand": 14.61
+  },
+  {
+   "keyword": "자동차 검사 과태료",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 63508,
+   "blogTotal": 5992,
+   "blogPerDay": 40,
+   "newsTotal": 20465,
+   "newsPerDay": 1.34,
+   "latestNews": {
+    "title": "불가리아 승용차용 타이어 시장동향",
+    "date": "04 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "car-inspection-comprehensive-vs-regular-environment",
+    "car-inspection-miss-penalty-fix",
+    "car-periodic-inspection-overdue-penalty"
+   ],
+   "gap": 0,
+   "demand": 14.59
+  },
+  {
+   "keyword": "예금자보호 한도",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 14369,
+   "blogTotal": 8054,
+   "blogPerDay": 20,
+   "newsTotal": 21035,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "[더밸류 브리핑] 오늘의 증권사 소식...한국투자증권·키움증권",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "cma-rp-vs-mmf-comparison",
+    "deposit-protection-50m-diversify-strategy",
+    "deposit-protection-covered-vs-not"
+   ],
+   "gap": 0,
+   "demand": 14.57
+  },
+  {
+   "keyword": "주택청약 납입 인정금액",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 26485,
+   "blogTotal": 806,
+   "blogPerDay": 20,
+   "newsTotal": 3820,
+   "newsPerDay": 3.46,
+   "latestNews": {
+    "title": "2027 예산안, '꼭 챙겨야 할' 청년·신혼부부 체크리스트 [이슈크래커]",
+    "date": "02 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-conversion-deadline-2026"
+   ],
+   "gap": 0,
+   "demand": 14.57
+  },
+  {
+   "keyword": "주민등록증 재발급",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 101422,
+   "blogTotal": 4036,
+   "blogPerDay": 6.67,
+   "newsTotal": 8491,
+   "newsPerDay": 2.41,
+   "latestNews": {
+    "title": "[위클리오늘][의정부시] 9월 7일 주요 소식",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "id-card-lost-reissue-procedure"
+   ],
+   "gap": 0,
+   "demand": 14.49
+  },
+  {
+   "keyword": "실업급여 구직활동 인정",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 60446,
+   "blogTotal": 6444,
+   "blogPerDay": 20,
+   "newsTotal": 2765,
+   "newsPerDay": 1.12,
+   "latestNews": {
+    "title": "8년 다닌 회사에서 잘렸다, 구직급여 신청하고 깨달은 것 [신필규의 아...",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "childcare-leave-resign-unemployment",
+    "job-search-activity-recognition"
+   ],
+   "gap": 0,
+   "demand": 14.46
+  },
+  {
+   "keyword": "사업주 보험료 부담",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 77164,
+   "blogTotal": 1065,
+   "blogPerDay": 4,
+   "newsTotal": 22852,
+   "newsPerDay": 4.86,
+   "latestNews": {
+    "title": "교보라이프플래닛생명, 충북·제주 소상공인 위한 신용생명보험 출시",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "employment-insurance-maternity-short-term",
+    "four-insurance-rate-2026-summary",
+    "four-insurance-regular-vs-freelance-cost"
+   ],
+   "gap": 0,
+   "demand": 14.4
+  },
+  {
+   "keyword": "전세사기 피해자 지원",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 11516,
+   "blogTotal": 9337,
+   "blogPerDay": 40,
+   "newsTotal": 57146,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "울산지역 전세사기 피해 인정 두 달새 4건 ↑ 누적 254건",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "jeonse-fraud-victim-support-priority-purchase"
+   ],
+   "gap": 0,
+   "demand": 14.35
+  },
+  {
+   "keyword": "신용점수 올리는 방법",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 82748,
+   "blogTotal": 4280,
+   "blogPerDay": 20,
+   "newsTotal": 531,
+   "newsPerDay": 0.06,
+   "latestNews": {
+    "title": "알면 돈 되는 금융꿀팁",
+    "date": "04 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "credit-score-improvement",
+    "credit-score-up-100-points-5-steps"
+   ],
+   "gap": 0,
+   "demand": 14.35
+  },
+  {
+   "keyword": "지역가입자 전환 보험료",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 35240,
+   "blogTotal": 2221,
+   "blogPerDay": 20,
+   "newsTotal": 11226,
+   "newsPerDay": 2.19,
+   "latestNews": {
+    "title": "[미리보는 이데일리 신문]트럼프, 韓급소 공략 파병·반도체 딜레마",
+    "date": "06 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "health-insurance-premium-spike-adjustment",
+    "health-insurance-reduction",
+    "health-insurance-voluntary-continuation-retiree"
+   ],
+   "gap": 0,
+   "demand": 14.35
+  },
+  {
+   "keyword": "지역가입자 보험료 계산",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 55253,
+   "blogTotal": 2102,
+   "blogPerDay": 10,
+   "newsTotal": 5250,
+   "newsPerDay": 1.06,
+   "latestNews": {
+    "title": "국민연금 산식 해부 '아는 만큼 보인다'...1년 더 내면 노후 현금흐름 5...",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "health-insurance-premium-spike-adjustment",
+    "health-insurance-reduction",
+    "health-insurance-voluntary-continuation-retiree"
+   ],
+   "gap": 0,
+   "demand": 14.34
+  },
+  {
+   "keyword": "근로장려금 신청기간 9월",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-01",
+   "kinTotal": 16526,
+   "blogTotal": 2992,
+   "blogPerDay": 40,
+   "newsTotal": 2437,
+   "newsPerDay": 4.04,
+   "latestNews": {
+    "title": "근로장려금 반기신청 기간·지급일·대상 조회",
+    "date": "06 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-semiannual-application",
+    "earned-income-credit-semiannual-no-notice"
+   ],
+   "gap": 0,
+   "demand": 14.33
+  },
+  {
+   "keyword": "연금저축 세액공제 한도",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 16585,
+   "blogTotal": 5352,
+   "blogPerDay": 40,
+   "newsTotal": 15597,
+   "newsPerDay": 3.98,
+   "latestNews": {
+    "title": "[1-LIFE] 1인 가구, 월급만 믿고 살기엔 불안하다...직장인의 필수 경제...",
+    "date": "06 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "irp-june-additional-payment-tax-credit-limit",
+    "isa-maturity-pension-transfer-tax-saving",
+    "pension-savings-early-termination-tax"
+   ],
+   "gap": 0,
+   "demand": 14.31
+  },
+  {
+   "keyword": "권고사직 실업급여",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 165238,
+   "blogTotal": 3498,
+   "blogPerDay": 6.67,
+   "newsTotal": 2998,
+   "newsPerDay": 0.65,
+   "latestNews": {
+    "title": "8년 다닌 회사에서 잘렸다, 구직급여 신청하고 깨달은 것 [신필규의 아...",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "recommended-resignation-agreement-rights",
+    "recommended-resignation-unemployment-eligibility",
+    "recommended-resignation-vs-voluntary"
+   ],
+   "gap": 0,
+   "demand": 14.28
+  },
+  {
+   "keyword": "국민연금 임의가입",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 28880,
+   "blogTotal": 4367,
+   "blogPerDay": 20,
+   "newsTotal": 8222,
+   "newsPerDay": 2.47,
+   "latestNews": {
+    "title": "국민연금 산식 해부 '아는 만큼 보인다'...1년 더 내면 노후 현금흐름 5...",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-voluntary-continued-payment",
+    "national-pension-voluntary-payment",
+    "nps-additional-vs-voluntary-after-60"
+   ],
+   "gap": 0,
+   "demand": 14.26
+  },
+  {
+   "keyword": "근로장려금 반기 지급액",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-17",
+   "kinTotal": 18723,
+   "blogTotal": 1034,
+   "blogPerDay": 40,
+   "newsTotal": 2132,
+   "newsPerDay": 3.45,
+   "latestNews": {
+    "title": "반기 근로장려금 지급일... 신청 요건은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-semiannual-application"
+   ],
+   "gap": 0,
+   "demand": 14.22
+  },
+  {
+   "keyword": "임대차 계약 갱신청구권",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 59829,
+   "blogTotal": 13443,
+   "blogPerDay": 6.67,
+   "newsTotal": 33967,
+   "newsPerDay": 2.79,
+   "latestNews": {
+    "title": "[따져보니] 살만한 집도 없는데…'세 살만한' 집도 없다?",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "housing-lease-protection-act-essentials",
+    "jeonse-early-move-brokerage-fee",
+    "jeonse-renewal-claim-5percent-cap"
+   ],
+   "gap": 0,
+   "demand": 14.12
+  },
+  {
+   "keyword": "직장가입자 건강보험료 계산",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 51449,
+   "blogTotal": 1522,
+   "blogPerDay": 10,
+   "newsTotal": 2581,
+   "newsPerDay": 0.65,
+   "latestNews": {
+    "title": "같은 투자, 다른 세금… 계좌가 가른다",
+    "date": "03 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "health-checkup-mandatory-fine-exemption",
+    "health-insurance-july-settlement-simulation",
+    "health-insurance-reduction"
+   ],
+   "gap": 0,
+   "demand": 14.11
+  },
+  {
+   "keyword": "자동차 명의이전 비용",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 275104,
+   "blogTotal": 1383,
+   "blogPerDay": 4,
+   "newsTotal": 2643,
+   "newsPerDay": 0.93,
+   "latestNews": {
+    "title": "장례비 잘못 썼다간 '빚 폭탄'…상속포기·한정승인 3개월 골든타임",
+    "date": "04 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 14.1
+  },
+  {
+   "keyword": "주택청약종합저축 전환",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 17515,
+   "blogTotal": 3766,
+   "blogPerDay": 40,
+   "newsTotal": 5185,
+   "newsPerDay": 3.31,
+   "latestNews": {
+    "title": "청약통장 외면에 주택도시기금도 줄어든다",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-account-strategy",
+    "housing-subscription-conversion-deadline-2026",
+    "housing-subscription-income-deduction-2026"
+   ],
+   "gap": 0,
+   "demand": 14.09
+  },
+  {
+   "keyword": "퇴직금 지급기한",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 26888,
+   "blogTotal": 2244,
+   "blogPerDay": 10,
+   "newsTotal": 2716,
+   "newsPerDay": 2.14,
+   "latestNews": {
+    "title": "'구사일생' 위니아, 인수대금 330억 완납…경영 정상화 '첫 발'",
+    "date": "06 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "severance-pay-calculation-method"
+   ],
+   "gap": 0,
+   "demand": 14.06
+  },
+  {
+   "keyword": "실손보험 청구 방법",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 46264,
+   "blogTotal": 5234,
+   "blogPerDay": 40,
+   "newsTotal": 5943,
+   "newsPerDay": 0.72,
+   "latestNews": {
+    "title": "[금융계 8월 동향] 교보생명, 지속가능경영 실천···디지털 금융 생태...",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "4th-gen-silson-renewal-strategy",
+    "cataract-surgery-insurance-claim",
+    "heat-illness-emergency-room-silson-claim"
+   ],
+   "gap": 0,
+   "demand": 14.03
+  },
+  {
+   "keyword": "근로장려금 지급 조회",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-17",
+   "kinTotal": 39184,
+   "blogTotal": 3394,
+   "blogPerDay": 10,
+   "newsTotal": 1858,
+   "newsPerDay": 0.89,
+   "latestNews": {
+    "title": "근로장려금 반기신청 기간·지급일·대상 조회",
+    "date": "06 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-child-credit-august-payment",
+    "earned-income-credit-clawback-appeal",
+    "earned-income-credit-expansion-2026-reform"
+   ],
+   "gap": 0,
+   "demand": 13.93
+  },
+  {
+   "keyword": "퇴직연금 IRP 세액공제",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 11652,
+   "blogTotal": 4456,
+   "blogPerDay": 20,
+   "newsTotal": 17189,
+   "newsPerDay": 3.75,
+   "latestNews": {
+    "title": "퇴직연금으로 국채 직접 산다…10만원부터 연복리 혜택",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "irp-june-additional-payment-tax-credit-limit"
+   ],
+   "gap": 0,
+   "demand": 13.86
+  },
+  {
+   "keyword": "여권 재발급 기간",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 40571,
+   "blogTotal": 10680,
+   "blogPerDay": 40,
+   "newsTotal": 3670,
+   "newsPerDay": 0.5,
+   "latestNews": {
+    "title": "아이 여권 온라인 재발급…부모 신청·방문 수령",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "passport-reissue-online-application-2026"
+   ],
+   "gap": 0,
+   "demand": 13.81
+  },
+  {
+   "keyword": "기초연금 신청 자격",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 43326,
+   "blogTotal": 6399,
+   "blogPerDay": 40,
+   "newsTotal": 4401,
+   "newsPerDay": 0.27,
+   "latestNews": {
+    "title": "국민연금공단 서청주지사, 추석 맞아 기초연금 신청 집중 홍보",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "basic-pension-income-asset-calculation",
+    "senior-jobs-2026-application-guide"
+   ],
+   "gap": 0,
+   "demand": 13.78
+  },
+  {
+   "keyword": "건강보험료 정산",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 87165,
+   "blogTotal": 6708,
+   "blogPerDay": 6.67,
+   "newsTotal": 11629,
+   "newsPerDay": 0.92,
+   "latestNews": {
+    "title": "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "health-insurance-settlement-installment-2026-july"
+   ],
+   "gap": 0,
+   "demand": 13.74
+  },
+  {
+   "keyword": "청년도약계좌 만기",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 18708,
+   "blogTotal": 11995,
+   "blogPerDay": 40,
+   "newsTotal": 8774,
+   "newsPerDay": 2.24,
+   "latestNews": {
+    "title": "‘청년 통장’ 가입 문은 넓어지는데…돈 적게 넣은 청년부터 적금 깼다",
+    "date": "02 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "hope-savings-leap-account-rollover",
+    "youth-hope-savings-maturity-strategy",
+    "youth-leap-account-simulation"
+   ],
+   "gap": 0,
+   "demand": 13.73
+  },
+  {
+   "keyword": "확정일자 받는 법",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 201883,
+   "blogTotal": 3694,
+   "blogPerDay": 3.33,
+   "newsTotal": 5636,
+   "newsPerDay": 1.19,
+   "latestNews": {
+    "title": "[무역은 리스크 관리다] 새콤달콤 재미있는 무역리스크 비책(75) 클레임...",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "lease-fixed-date-mobile-vs-office"
+   ],
+   "gap": 0,
+   "demand": 13.69
+  },
+  {
+   "keyword": "운전면허 갱신 기간",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 32634,
+   "blogTotal": 11080,
+   "blogPerDay": 40,
+   "newsTotal": 5074,
+   "newsPerDay": 0.73,
+   "latestNews": {
+    "title": "고려아연 온산제련소, ‘찾아가는 이동민원 서비스’ 운영…“상생 복...",
+    "date": "06 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "drivers-license-class1-online-renewal",
+    "drivers-license-renewal-mobile",
+    "road-name-address-change"
+   ],
+   "gap": 0,
+   "demand": 13.69
+  },
+  {
+   "keyword": "장기거주 소득공제",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 49842,
+   "blogTotal": 454,
+   "blogPerDay": 2.86,
+   "newsTotal": 6529,
+   "newsPerDay": 5.05,
+   "latestNews": {
+    "title": "우병탁 &quot;반포자이, 공동명의가 보유세 957만원 적어&quot;",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.67
+  },
+  {
+   "keyword": "재직증명서 발급",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 172900,
+   "blogTotal": 4331,
+   "blogPerDay": 4,
+   "newsTotal": 8689,
+   "newsPerDay": 0.87,
+   "latestNews": {
+    "title": "[아산 24시] 아산시, 공유재산 관리체계 개선 성과…충남 경진대회 '우수...",
+    "date": "04 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.61
+  },
+  {
+   "keyword": "기초연금 소득인정액 계산",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 10184,
+   "blogTotal": 1339,
+   "blogPerDay": 20,
+   "newsTotal": 1240,
+   "newsPerDay": 3.46,
+   "latestNews": {
+    "title": "작년 국민연금 받는다고 깎인 기초연금 804억원",
+    "date": "03 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "basic-pension-couple-simultaneous-eligibility",
+    "basic-pension-income-asset-calculation",
+    "eitc-basic-livelihood-recipient-income"
+   ],
+   "gap": 0,
+   "demand": 13.61
+  },
+  {
+   "keyword": "퇴직금 계산 방법",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 75401,
+   "blogTotal": 3101,
+   "blogPerDay": 6.67,
+   "newsTotal": 5107,
+   "newsPerDay": 0.84,
+   "latestNews": {
+    "title": "50대 직장인의 고민(4) 노후 자금, 지금 충분한가? [홍석환의 커리어 멘...",
+    "date": "05 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "fake-3-3-contract-disguised-freelancer",
+    "insolvency-substitute-payment-6month-expansion-2026",
+    "noran-umbrella-eligibility"
+   ],
+   "gap": 0,
+   "demand": 13.57
+  },
+  {
+   "keyword": "연말정산 미리보기",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 34384,
+   "blogTotal": 10037,
+   "blogPerDay": 20,
+   "newsTotal": 4799,
+   "newsPerDay": 0.23,
+   "latestNews": {
+    "title": "자소서 잘 써도 직장 적응은 별개…'입사 이후'도 가르쳐야",
+    "date": "28 Aug 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "yearend-tax-preview-service-guide"
+   ],
+   "gap": 0,
+   "demand": 13.54
+  },
+  {
+   "keyword": "연금저축 IRP 세액공제 한도",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 6778,
+   "blogTotal": 3079,
+   "blogPerDay": 40,
+   "newsTotal": 6675,
+   "newsPerDay": 4.3,
+   "latestNews": {
+    "title": "금리 높고 세제 혜택 큰 개인투자용 국채, ‘국채 ETF’처럼 샀다간 낭...",
+    "date": "06 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "irp-june-additional-payment-tax-credit-limit",
+    "pension-savings-vs-irp-tax-credit"
+   ],
+   "gap": 0,
+   "demand": 13.54
+  },
+  {
+   "keyword": "원천징수영수증 발급",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 147970,
+   "blogTotal": 7246,
+   "blogPerDay": 5,
+   "newsTotal": 4759,
+   "newsPerDay": 0.27,
+   "latestNews": {
+    "title": "소득금액증명·원천징수영수증, 발급 주체 다르다",
+    "date": "30 Aug 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "dual-employment-year-end-tax-combined-filing"
+   ],
+   "gap": 0,
+   "demand": 13.51
+  },
+  {
+   "keyword": "근로장려금 반기 35%",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-01",
+   "kinTotal": 10486,
+   "blogTotal": 412,
+   "blogPerDay": 20,
+   "newsTotal": 993,
+   "newsPerDay": 3.1,
+   "latestNews": {
+    "title": "근로장려금 반기신청 기간·지급일·대상 조회",
+    "date": "06 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-semiannual-application"
+   ],
+   "gap": 0,
+   "demand": 13.5
+  },
+  {
+   "keyword": "본인부담상한제 환급",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-10-08",
+   "kinTotal": 7905,
+   "blogTotal": 4121,
+   "blogPerDay": 40,
+   "newsTotal": 3204,
+   "newsPerDay": 3.63,
+   "latestNews": {
+    "title": "분구 전 인천 서구, 의료급여 1억1천810만 원 미지급…조직·인사도 부적...",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "nhis-refund-co-payment-automatic"
+   ],
+   "gap": 0,
+   "demand": 13.43
+  },
+  {
+   "keyword": "정기예금 이자 계산",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 24055,
+   "blogTotal": 1341,
+   "blogPerDay": 6.67,
+   "newsTotal": 6195,
+   "newsPerDay": 3.22,
+   "latestNews": {
+    "title": "[오늘의 브랜드] 유한킴벌리, 데이터 기반 위생소모품 비용 절감 B2B 솔...",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.38
+  },
+  {
+   "keyword": "청년 도약계좌 조건",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 23383,
+   "blogTotal": 20478,
+   "blogPerDay": 40,
+   "newsTotal": 4314,
+   "newsPerDay": 0.78,
+   "latestNews": {
+    "title": "김남구 회장의 35년 뚝심…아시아 대표 IB 정조준",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "hope-savings-leap-account-rollover",
+    "youth-asset-formation-3policy-compare",
+    "youth-future-savings-account-launch-comparison"
+   ],
+   "gap": 0,
+   "demand": 13.37
+  },
+  {
+   "keyword": "청년미래적금 가입조건",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 8243,
+   "blogTotal": 11990,
+   "blogPerDay": 40,
+   "newsTotal": 2529,
+   "newsPerDay": 3.36,
+   "latestNews": {
+    "title": "[담담한만남] ‘민간 최대 종합금융 싱크탱크’ 이끄는 정희수 하나금융...",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "youth-future-savings-account-launch-comparison",
+    "youth-future-savings-overlap-leap-isa",
+    "youth-future-savings-switch-rollover"
+   ],
+   "gap": 0,
+   "demand": 13.36
+  },
+  {
+   "keyword": "정부24 등본 발급",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 13376,
+   "blogTotal": 3953,
+   "blogPerDay": 20,
+   "newsTotal": 6729,
+   "newsPerDay": 2.12,
+   "latestNews": {
+    "title": "[혼삶 체험기] 도서관마다 따로 챙기던 회원증, '서울온' 하나로 줄여봤...",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "government24-mobile-guide",
+    "resident-registration-5min-mobile"
+   ],
+   "gap": 0,
+   "demand": 13.35
+  },
+  {
+   "keyword": "건강보험료율 인상",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 16962,
+   "blogTotal": 2291,
+   "blogPerDay": 6.67,
+   "newsTotal": 14160,
+   "newsPerDay": 3.98,
+   "latestNews": {
+    "title": "건보요율 인상 전에 ‘부과 형평성’ 제정비 필요",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.33
+  },
+  {
+   "keyword": "피부양자 자격 상실",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 28743,
+   "blogTotal": 3072,
+   "blogPerDay": 10,
+   "newsTotal": 1438,
+   "newsPerDay": 0.15,
+   "latestNews": {
+    "title": "연금 좀 올랐다고 건보 피부양자 탈락 막는다",
+    "date": "03 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.33
+  },
+  {
+   "keyword": "건강보험 본인부담상한제 환급",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 7122,
+   "blogTotal": 1965,
+   "blogPerDay": 20,
+   "newsTotal": 3062,
+   "newsPerDay": 3.52,
+   "latestNews": {
+    "title": "병원비 많이 썼다면 꼭 확인…건강보험 환급금 조회, 놓치면 그대로 지...",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "nhis-refund-co-payment-automatic"
+   ],
+   "gap": 0,
+   "demand": 13.28
+  },
+  {
+   "keyword": "에너지바우처 신청",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 8971,
+   "blogTotal": 16606,
+   "blogPerDay": 40,
+   "newsTotal": 15224,
+   "newsPerDay": 2.87,
+   "latestNews": {
+    "title": "[제약업계 소식] 9월 7일",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "energy-voucher-household-member-addition-june",
+    "energy-voucher-summer-cooling-application",
+    "heating-energy-voucher-eligibility"
+   ],
+   "gap": 0,
+   "demand": 13.25
+  },
+  {
+   "keyword": "연체 기록 삭제",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 120653,
+   "blogTotal": 3580,
+   "blogPerDay": 3.33,
+   "newsTotal": 4848,
+   "newsPerDay": 1.22,
+   "latestNews": {
+    "title": "&quot;치맥 옛말 되나&quot;…생맥주 주세 감면 종료에 '병맥주 갈아타기'까지",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.19
+  },
+  {
+   "keyword": "청약부금 종합저축",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 12381,
+   "blogTotal": 2775,
+   "blogPerDay": 40,
+   "newsTotal": 7065,
+   "newsPerDay": 1.84,
+   "latestNews": {
+    "title": "청약통장 외면에 주택도시기금도 줄어든다",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-conversion-deadline-2026"
+   ],
+   "gap": 0,
+   "demand": 13.16
+  },
+  {
+   "keyword": "청약예금 전환",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 23836,
+   "blogTotal": 1991,
+   "blogPerDay": 40,
+   "newsTotal": 3458,
+   "newsPerDay": 0.18,
+   "latestNews": {
+    "title": "[시론] 청약은 운이 아니라 준비다",
+    "date": "02 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-conversion-deadline-2026"
+   ],
+   "gap": 0,
+   "demand": 13.15
+  },
+  {
+   "keyword": "18세 국민연금 가입",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 27672,
+   "blogTotal": 1493,
+   "blogPerDay": 5,
+   "newsTotal": 5873,
+   "newsPerDay": 3.54,
+   "latestNews": {
+    "title": "[목멱칼럼]OECD 연금보고서가 국민연금에 내준 숙제",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 13.14
+  },
+  {
+   "keyword": "휴일근로수당 계산",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 59221,
+   "blogTotal": 1542,
+   "blogPerDay": 2.5,
+   "newsTotal": 6903,
+   "newsPerDay": 3.37,
+   "latestNews": {
+    "title": "“포괄임금 약정했어도 실제 일한 만큼 줘야”…노동부, 벤처기업 현장...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "holiday-work-pay-calculation",
+    "overtime-pay-calculation",
+    "weekend-work-allowance-vs-replacement"
+   ],
+   "gap": 0,
+   "demand": 13.09
+  },
+  {
+   "keyword": "건강보험료 조정 신청",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 64755,
+   "blogTotal": 1717,
+   "blogPerDay": 5,
+   "newsTotal": 9121,
+   "newsPerDay": 1.11,
+   "latestNews": {
+    "title": "[입법이 나라 바꾼다] 건강보험 권리구제, 기다림부터 줄여야",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "health-insurance-premium-spike-adjustment",
+    "health-insurance-reduction",
+    "nhis-premium-adjustment-income-drop"
+   ],
+   "gap": 0,
+   "demand": 13.02
+  },
+  {
+   "keyword": "운전자보험 필요성",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 135363,
+   "blogTotal": 3153,
+   "blogPerDay": 3.33,
+   "newsTotal": 2089,
+   "newsPerDay": 0.41,
+   "latestNews": {
+    "title": "&quot;돈 없으면 독박 쓴다&quot; 공포 확산…10월 앞두고 뜨는 '이 보험' [불신 청...",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [
+    "driver-insurance-essentials",
+    "driver-vs-car-insurance-overlap-cleanup"
+   ],
+   "gap": 0,
+   "demand": 12.98
+  },
+  {
+   "keyword": "5세대 실손보험 전환",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 4693,
+   "blogTotal": 2068,
+   "blogPerDay": 20,
+   "newsTotal": 1845,
+   "newsPerDay": 3.73,
+   "latestNews": {
+    "title": "2026 금융 국감 돋보기③ 보험업계, 5세대 실손 부진·전산화 지지부진...",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "silson-5gen-launch-transfer-guide"
+   ],
+   "gap": 0,
+   "demand": 12.95
+  },
+  {
+   "keyword": "기초연금 부부 감액",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 2828,
+   "blogTotal": 1571,
+   "blogPerDay": 20,
+   "newsTotal": 4208,
+   "newsPerDay": 14.11,
+   "latestNews": {
+    "title": "‘중위소득 70%’에 발목 잡힌 기초연금 개편…소득 보장 실효성 낮고 ...",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "basic-pension-couple-simultaneous-eligibility"
+   ],
+   "gap": 0,
+   "demand": 12.95
+  },
+  {
+   "keyword": "아이맞이지원금",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 2659,
+   "blogTotal": 2497,
+   "blogPerDay": 40,
+   "newsTotal": 346,
+   "newsPerDay": 5.92,
+   "latestNews": {
+    "title": "출산·혼인 혜택 확대 속 비혼·무자녀 ‘복지 소외감’",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 12.89
+  },
+  {
+   "keyword": "디지털 온누리상품권 10%",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 2492,
+   "blogTotal": 3428,
+   "blogPerDay": 40,
+   "newsTotal": 11021,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "[목포시 소식] 민선9기'관리재정·체감재정'두 축으로 재정운용 등",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "onnuri-gift-certificate-usage-discount"
+   ],
+   "gap": 0,
+   "demand": 12.82
+  },
+  {
+   "keyword": "월세 세액공제 조건",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 12096,
+   "blogTotal": 4382,
+   "blogPerDay": 10,
+   "newsTotal": 2428,
+   "newsPerDay": 1.03,
+   "latestNews": {
+    "title": "법인세 두 배 걷힌다는데, 감면은 77% 더 늘었다",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "housing-rent-lease-deduction-expansion-2026",
+    "monthly-rent-cash-receipt-income-deduction",
+    "monthly-rent-tax-credit-70m-non-owner"
+   ],
+   "gap": 0,
+   "demand": 12.81
+  },
+  {
+   "keyword": "청년미래적금 12월",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 3468,
+   "blogTotal": 1692,
+   "blogPerDay": 40,
+   "newsTotal": 1983,
+   "newsPerDay": 3.79,
+   "latestNews": {
+    "title": "[경제소식] 강태영 NH농협은행장 '윤리공감 우체통' 1호 편지..임직원에...",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "youth-future-savings-account-launch-comparison"
+   ],
+   "gap": 0,
+   "demand": 12.67
+  },
+  {
+   "keyword": "피부양자 재산요건",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 37937,
+   "blogTotal": 905,
+   "blogPerDay": 6.67,
+   "newsTotal": 2533,
+   "newsPerDay": 0.29,
+   "latestNews": {
+    "title": "해외 3개월 이상 머문다면⋯건보 ‘급여정지’ 출국 전 온라인 신고",
+    "date": "02 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "health-insurance-dependent-loss-recovery",
+    "health-insurance-dependent-qualification",
+    "nhis-family-cohabit-vs-non-cohabit"
+   ],
+   "gap": 0,
+   "demand": 12.66
+  },
+  {
+   "keyword": "IRP 900만원 세액공제",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 3804,
+   "blogTotal": 1955,
+   "blogPerDay": 20,
+   "newsTotal": 5801,
+   "newsPerDay": 3.54,
+   "latestNews": {
+    "title": "원금 2.6배 불어나는 퇴직연금 국채… 예금 대신 담아볼까",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 12.66
+  },
+  {
+   "keyword": "등기우편 조회",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 140057,
+   "blogTotal": 680,
+   "blogPerDay": 2.22,
+   "newsTotal": 3843,
+   "newsPerDay": 0.34,
+   "latestNews": {
+    "title": "금감원, 금융 인허가 사전협의 온라인화 '서류 부담 줄인다'",
+    "date": "06 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 12.65
+  },
+  {
+   "keyword": "청약통장 전환 방법",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 13452,
+   "blogTotal": 2337,
+   "blogPerDay": 40,
+   "newsTotal": 1760,
+   "newsPerDay": 0.18,
+   "latestNews": {
+    "title": "[산업소식] JW중외제약, 콜레스테롤의 날 맞아 '당부, 스타틴' 캠페인",
+    "date": "04 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-account-strategy",
+    "housing-subscription-monthly-recognition-250k",
+    "youth-housing-dream-savings-account"
+   ],
+   "gap": 0,
+   "demand": 12.58
+  },
+  {
+   "keyword": "연말정산 간소화 서비스",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 57560,
+   "blogTotal": 20443,
+   "blogPerDay": 5,
+   "newsTotal": 20347,
+   "newsPerDay": 0.27,
+   "latestNews": {
+    "title": "교육비 납입증명서, 홈택스 조회 후 회사 제출",
+    "date": "31 Aug 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "yearend-tax-2026-schedule-changes",
+    "yearend-tax-preview-service-guide"
+   ],
+   "gap": 0,
+   "demand": 12.57
+  },
+  {
+   "keyword": "연차 계산 방법",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 28381,
+   "blogTotal": 3622,
+   "blogPerDay": 6.67,
+   "newsTotal": 2800,
+   "newsPerDay": 0.77,
+   "latestNews": {
+    "title": "[메가특구, 노동의 위기와 기회 ③] 노동시간 선진국 '눈앞'에서 과로 사...",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "annual-leave-1year-vs-prorated",
+    "annual-leave-cash-claim",
+    "annual-leave-forced-use-response"
+   ],
+   "gap": 0,
+   "demand": 12.56
+  },
+  {
+   "keyword": "주택담보대출 DSR 계산",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 27401,
+   "blogTotal": 1423,
+   "blogPerDay": 5,
+   "newsTotal": 6209,
+   "newsPerDay": 2.05,
+   "latestNews": {
+    "title": "'가계빚' 총량만 따져…뇌관은 '가구 간 전이'",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [
+    "real-estate-mortgage-refinancing",
+    "stress-dsr-stage3-2026-loan-limit"
+   ],
+   "gap": 0,
+   "demand": 12.54
+  },
+  {
+   "keyword": "청년미래적금 기여금 12%",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 1880,
+   "blogTotal": 1876,
+   "blogPerDay": 20,
+   "newsTotal": 2004,
+   "newsPerDay": 4.92,
+   "latestNews": {
+    "title": "지방 중소기업 다니면 ‘청년미래적금’ 최대 450만원 더 받는다",
+    "date": "05 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "youth-future-savings-account-launch-comparison"
+   ],
+   "gap": 0,
+   "demand": 12.51
+  },
+  {
+   "keyword": "2026 추석 연휴",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-24",
+   "kinTotal": 1753,
+   "blogTotal": 9324,
+   "blogPerDay": 40,
+   "newsTotal": 6955,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "바다 바라보며 슬로우 독서 여행 떠나볼까",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 12.47
+  },
+  {
+   "keyword": "첫만남이용권 사용처",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 3654,
+   "blogTotal": 4254,
+   "blogPerDay": 20,
+   "newsTotal": 259,
+   "newsPerDay": 3.1,
+   "latestNews": {
+    "title": "148조 복지 예산, 어디에 쓰나 봤더니",
+    "date": "04 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "first-meeting-voucher-2m-eligibility"
+   ],
+   "gap": 0,
+   "demand": 12.44
+  },
+  {
+   "keyword": "병원비 환급금 조회",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-10-08",
+   "kinTotal": 9673,
+   "blogTotal": 3303,
+   "blogPerDay": 40,
+   "newsTotal": 111,
+   "newsPerDay": 0.58,
+   "latestNews": {
+    "title": "병원비 많이 썼다면 꼭 확인…건강보험 환급금 조회, 놓치면 그대로 지...",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "nhis-copayment-cap-refund-application"
+   ],
+   "gap": 0,
+   "demand": 12.41
+  },
+  {
+   "keyword": "실업급여 조건 계약만료",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 51478,
+   "blogTotal": 964,
+   "blogPerDay": 5,
+   "newsTotal": 393,
+   "newsPerDay": 0.07,
+   "latestNews": {
+    "title": "실업급여가 월급보다 많다?…30년 묵은 '거꾸로 셈법' 이번에 뜯어고쳤...",
+    "date": "03 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "contract-expiration-unemployment-benefit",
+    "labor-contract-1year-auto-vs-renewal",
+    "short-term-worker-unemployment-eligibility"
+   ],
+   "gap": 0,
+   "demand": 12.38
+  },
+  {
+   "keyword": "토지 재산세 납부기간",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 14569,
+   "blogTotal": 1869,
+   "blogPerDay": 6.67,
+   "newsTotal": 9582,
+   "newsPerDay": 1.78,
+   "latestNews": {
+    "title": "[시흥소식]9월 정기분 재산세 총 1242억원 부과 등",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 12.3
+  },
+  {
+   "keyword": "전기차 보조금 2026",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 1405,
+   "blogTotal": 17085,
+   "blogPerDay": 40,
+   "newsTotal": 16563,
+   "newsPerDay": 8.1,
+   "latestNews": {
+    "title": "여수시, 시민 호응 속 전기자동차 역대 최대 1,244대 보급",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "ev-subsidy-2026-amount-eligibility"
+   ],
+   "gap": 0,
+   "demand": 12.25
+  },
+  {
+   "keyword": "난방비 지원 신청",
+   "cluster": "gov-support",
+   "source": "default",
+   "kinTotal": 5235,
+   "blogTotal": 6694,
+   "blogPerDay": 40,
+   "newsTotal": 22877,
+   "newsPerDay": 1.7,
+   "latestNews": {
+    "title": "[단독] 대형마트가 마라톤까지…롯데마트, 업계 첫 3000명 '통큰런'",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "heating-energy-voucher-eligibility"
+   ],
+   "gap": 0,
+   "demand": 12.24
+  },
+  {
+   "keyword": "11월 가전 할인",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-29",
+   "kinTotal": 25803,
+   "blogTotal": 1273,
+   "blogPerDay": 0.07,
+   "newsTotal": 26465,
+   "newsPerDay": 6.44,
+   "latestNews": {
+    "title": "인천시, 미혼남녀 만남 3~5회 300명 모집",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 12.18
+  },
+  {
+   "keyword": "운전면허 적성검사 과태료",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 8680,
+   "blogTotal": 1610,
+   "blogPerDay": 10,
+   "newsTotal": 1587,
+   "newsPerDay": 0.22,
+   "latestNews": {
+    "title": "국민비서, 검진부터 차량검사까지 생활알림 제공",
+    "date": "01 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "drivers-license-renewal-mobile"
+   ],
+   "gap": 0,
+   "demand": 12.16
+  },
+  {
+   "keyword": "실업급여 하한액 계산",
+   "cluster": "unemployment",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 5831,
+   "blogTotal": 486,
+   "blogPerDay": 5,
+   "newsTotal": 460,
+   "newsPerDay": 4.85,
+   "latestNews": {
+    "title": "내년부터 '실업급여 지급 기준' 주 7일→6일로",
+    "date": "05 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "unemployment-benefit-duration-calculation"
+   ],
+   "gap": 0,
+   "demand": 12.11
+  },
+  {
+   "keyword": "국민연금 보험료 계산 10%",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 29111,
+   "blogTotal": 76,
+   "blogPerDay": 0.87,
+   "newsTotal": 7470,
+   "newsPerDay": 3.9,
+   "latestNews": {
+    "title": "국민연금 산식 해부 '아는 만큼 보인다'...1년 더 내면 노후 현금흐름 5...",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "durunuri-social-insurance-subsidy-june-application",
+    "national-pension-lump-sum-refund-repayment"
+   ],
+   "gap": 0,
+   "demand": 12.1
+  },
+  {
+   "keyword": "근로장려금 12월 지급일",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-17",
+   "kinTotal": 7021,
+   "blogTotal": 923,
+   "blogPerDay": 40,
+   "newsTotal": 829,
+   "newsPerDay": 0.48,
+   "latestNews": {
+    "title": "반기 근로장려금 지급일... 신청 요건은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-tax-credit-late-application-d-day"
+   ],
+   "gap": 0,
+   "demand": 12.05
+  },
+  {
+   "keyword": "국민연금 보험료율 10%",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 27063,
+   "blogTotal": 162,
+   "blogPerDay": 2,
+   "newsTotal": 12454,
+   "newsPerDay": 3.11,
+   "latestNews": {
+    "title": "“소득 4배라도 국민연금은 2배”…연금액 가르는 건 ‘가입기간’",
+    "date": "04 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "durunuri-social-insurance-subsidy-june-application",
+    "national-pension-lump-sum-refund-repayment"
+   ],
+   "gap": 0,
+   "demand": 12.05
+  },
+  {
+   "keyword": "청년 국민연금 첫 보험료 지원",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 1133,
+   "blogTotal": 369,
+   "blogPerDay": 20,
+   "newsTotal": 2335,
+   "newsPerDay": 6.58,
+   "latestNews": {
+    "title": "문체부 내년 예산안 9.6조…예술인 기초생활보장 강화",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 12.03
+  },
+  {
+   "keyword": "청년도약계좌 갈아타기",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 5849,
+   "blogTotal": 5797,
+   "blogPerDay": 20,
+   "newsTotal": 1317,
+   "newsPerDay": 0.73,
+   "latestNews": {
+    "title": "청년미래적금 2차 추가모집 언제? 신청기간·조건·이자까지 '총정리'",
+    "date": "01 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "youth-future-savings-account-launch-comparison",
+    "youth-future-savings-overlap-leap-isa",
+    "youth-future-savings-switch-rollover"
+   ],
+   "gap": 0,
+   "demand": 11.97
+  },
+  {
+   "keyword": "주택청약 소득공제 조건",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 17209,
+   "blogTotal": 1326,
+   "blogPerDay": 6.67,
+   "newsTotal": 2699,
+   "newsPerDay": 0.49,
+   "latestNews": {
+    "title": "한달 지나면 기회 없다…낡은 '청약통장' 막차 타야 할까?",
+    "date": "30 Aug 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "housing-subscription-conversion-deadline-2026",
+    "housing-subscription-income-deduction-2026"
+   ],
+   "gap": 0,
+   "demand": 11.95
+  },
+  {
+   "keyword": "국민연금 예상수령액 조회",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 6103,
+   "blogTotal": 6229,
+   "blogPerDay": 20,
+   "newsTotal": 834,
+   "newsPerDay": 0.54,
+   "latestNews": {
+    "title": "신청 안 해도 통장에 알아서 척척 지급…9월부터 개선되는 '이 제도'",
+    "date": "29 Aug 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-expected-amount-lookup"
+   ],
+   "gap": 0,
+   "demand": 11.93
+  },
+  {
+   "keyword": "온누리상품권 환급행사",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 971,
+   "blogTotal": 9077,
+   "blogPerDay": 40,
+   "newsTotal": 26115,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "양산시, 착한가격업소 이용시 최대 18% 캐시백",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 11.88
+  },
+  {
+   "keyword": "연말정산 부양가족 기준",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 23368,
+   "blogTotal": 2453,
+   "blogPerDay": 5,
+   "newsTotal": 5500,
+   "newsPerDay": 0.65,
+   "latestNews": {
+    "title": "[2026 세제 개편안] 6대 성장동력 조세특례…청년 지원 강화",
+    "date": "04 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "dependent-deduction-guide",
+    "education-expense-tax-credit",
+    "year-end-medical-5percent-self-vs-dependent"
+   ],
+   "gap": 0,
+   "demand": 11.82
+  },
+  {
+   "keyword": "한국장학재단 1차 신청",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-11-20",
+   "kinTotal": 80514,
+   "blogTotal": 976,
+   "blogPerDay": 0.71,
+   "newsTotal": 4195,
+   "newsPerDay": 0.76,
+   "latestNews": {
+    "title": "[기획특집] 'AI·글로벌·지역혁신' 이끄는 계명문화대학교, 수시 1685명...",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "national-scholarship-2026-2nd-semester-2nd-round"
+   ],
+   "gap": 0,
+   "demand": 11.81
+  },
+  {
+   "keyword": "홈택스 부가세 신고",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 31659,
+   "blogTotal": 5390,
+   "blogPerDay": 4,
+   "newsTotal": 3992,
+   "newsPerDay": 0.42,
+   "latestNews": {
+    "title": "“돈 못 받았는데 세금부터”…소상공인, 부가세 납부방식 손질 요구",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "business-registration-guide",
+    "comprehensive-income-tax-may-31-system-risk",
+    "vat-refund-timing-lookup-2026"
+   ],
+   "gap": 0,
+   "demand": 11.73
+  },
+  {
+   "keyword": "자동차세 연납 1월",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-16",
+   "kinTotal": 5516,
+   "blogTotal": 11596,
+   "blogPerDay": 10,
+   "newsTotal": 16215,
+   "newsPerDay": 0.24,
+   "latestNews": {
+    "title": "올해 마지막 절세 찬스, 9월 자동차세 연납으로 세테크를 완성하세요",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-june-installment-vs-january",
+    "car-tax-yeonnap-discount"
+   ],
+   "gap": 0,
+   "demand": 11.71
+  },
+  {
+   "keyword": "자동차세 연납 신청",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 5012,
+   "blogTotal": 16196,
+   "blogPerDay": 20,
+   "newsTotal": 18525,
+   "newsPerDay": 0.29,
+   "latestNews": {
+    "title": "&quot;주인 못 찾은 세금 환급금만 1만 건 육박&quot;… 강남구, 전면 환급 추진",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-auto-debit-discount-application",
+    "car-tax-june-1q-payment-card-cashback",
+    "car-tax-june-installment-vs-january"
+   ],
+   "gap": 0,
+   "demand": 11.64
+  },
+  {
+   "keyword": "주민등록 사실조사 2026",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 749,
+   "blogTotal": 3700,
+   "blogPerDay": 40,
+   "newsTotal": 1136,
+   "newsPerDay": 5.67,
+   "latestNews": {
+    "title": "주민등록 비대면 사실조사, 7일 24시로 마감",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "resident-registration-fact-survey-2026"
+   ],
+   "gap": 0,
+   "demand": 11.62
+  },
+  {
+   "keyword": "카드론 신용점수 영향",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 48793,
+   "blogTotal": 241,
+   "blogPerDay": 0.8,
+   "newsTotal": 1198,
+   "newsPerDay": 1.33,
+   "latestNews": {
+    "title": "&quot;과장 선에서 막혀? 알았어&quot;…김승원 '청탁 의혹' 일파만파[오늘아침]",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "second-tier-credit-loans"
+   ],
+   "gap": 0,
+   "demand": 11.57
+  },
+  {
+   "keyword": "본인부담상한액 2025",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-10-08",
+   "kinTotal": 924,
+   "blogTotal": 640,
+   "blogPerDay": 20,
+   "newsTotal": 556,
+   "newsPerDay": 4.36,
+   "latestNews": {
+    "title": "건보 본인부담금 226만 명에 3조 원 지급… 수혜자 89%가 저소득층, 긴 ...",
+    "date": "05 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 11.57
+  },
+  {
+   "keyword": "국가장학금 서류제출 가구원동의",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-11-20",
+   "kinTotal": 31027,
+   "blogTotal": 215,
+   "blogPerDay": 4,
+   "newsTotal": 1597,
+   "newsPerDay": 0.08,
+   "latestNews": {
+    "title": "2학기 국가장학금 2차 신청 기간 확인",
+    "date": "29 Aug 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 11.57
+  },
+  {
+   "keyword": "DSR 40% 대출한도",
+   "cluster": "credit-loan",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 20124,
+   "blogTotal": 993,
+   "blogPerDay": 3.33,
+   "newsTotal": 12167,
+   "newsPerDay": 1.62,
+   "latestNews": {
+    "title": "[기자의 눈] 집단대출 완화가 남긴 혼란",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 11.56
+  },
+  {
+   "keyword": "신용카드 소득공제 계산",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 51805,
+   "blogTotal": 700,
+   "blogPerDay": 1.67,
+   "newsTotal": 8917,
+   "newsPerDay": 0.48,
+   "latestNews": {
+    "title": "“개인 소비인가 사업비인가”…현금영수증 용도 선택 기준",
+    "date": "31 Aug 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "credit-card-deduction-child-reform-2026",
+    "credit-card-rejection-response",
+    "meal-expense-receipt-tax-treatment"
+   ],
+   "gap": 0,
+   "demand": 11.55
+  },
+  {
+   "keyword": "분양권 전매제한",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 20494,
+   "blogTotal": 14193,
+   "blogPerDay": 3.33,
+   "newsTotal": 51216,
+   "newsPerDay": 1.54,
+   "latestNews": {
+    "title": "“이름이 곧 프리미엄”… 지방 달구는 ‘1군 브랜드’ 아파트",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "apartment-pre-sale-transfer-restriction-tax"
+   ],
+   "gap": 0,
+   "demand": 11.54
+  },
+  {
+   "keyword": "연금저축 IRP 차이",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 3277,
+   "blogTotal": 2577,
+   "blogPerDay": 20,
+   "newsTotal": 2604,
+   "newsPerDay": 1.11,
+   "latestNews": {
+    "title": "퇴직연금 일임하는 AI 로보어드바이저 운용 수익률 뛴다",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "comprehensive-income-tax-refund-recycle-strategy",
+    "irp-june-additional-payment-tax-credit-limit",
+    "monthly-installment-etf-guide"
+   ],
+   "gap": 0,
+   "demand": 11.54
+  },
+  {
+   "keyword": "소액생계비대출 신청",
+   "cluster": "credit-loan",
+   "source": "default",
+   "kinTotal": 29977,
+   "blogTotal": 1952,
+   "blogPerDay": 3.33,
+   "newsTotal": 3248,
+   "newsPerDay": 0.24,
+   "latestNews": {
+    "title": "[사설] 고금리 시대 대출 확대식 포용금융, 취약계층엔 덫 될 수도",
+    "date": "01 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 11.4
+  },
+  {
+   "keyword": "아동기본수당 20만원",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 591,
+   "blogTotal": 228,
+   "blogPerDay": 10,
+   "newsTotal": 5615,
+   "newsPerDay": 5.12,
+   "latestNews": {
+    "title": "정부, 지역의사 490명 양성… 내년 '지역필수의료'에 1조 2614억 원",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 11.38
+  },
+  {
+   "keyword": "자동차 채권 환급",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 26101,
+   "blogTotal": 1041,
+   "blogPerDay": 3.33,
+   "newsTotal": 2994,
+   "newsPerDay": 0.51,
+   "latestNews": {
+    "title": "[치솟는 금리, 금융업 향방은-中] 보험사, '약점' 자본건전성 개선",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "car-purchase-bond-refund-guide"
+   ],
+   "gap": 0,
+   "demand": 11.37
+  },
+  {
+   "keyword": "중도퇴사 연말정산",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 51561,
+   "blogTotal": 2581,
+   "blogPerDay": 1.43,
+   "newsTotal": 1134,
+   "newsPerDay": 0.16,
+   "latestNews": {
+    "title": "[문답] 상반기 급여액만으로 연간 환산 근로소득 어떻게 계산하나요?",
+    "date": "01 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "mid-year-resignation-tax-settlement"
+   ],
+   "gap": 0,
+   "demand": 11.34
+  },
+  {
+   "keyword": "휘발유 가격 10월",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 10828,
+   "blogTotal": 327,
+   "blogPerDay": 0.06,
+   "newsTotal": 37656,
+   "newsPerDay": 5.09,
+   "latestNews": {
+    "title": "반도체 주주환원이 끌어내린 환율…‘강한 원화’ 경제 판도 바꾼다",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 11.31
+  },
+  {
+   "keyword": "난방비 지원 바우처",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 2951,
+   "blogTotal": 4503,
+   "blogPerDay": 20,
+   "newsTotal": 13738,
+   "newsPerDay": 0.8,
+   "latestNews": {
+    "title": "농식품부 예산안 22조 2,215억원, 증가액·증가율 모두 '00년 이후 최대",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "heating-energy-voucher-eligibility"
+   ],
+   "gap": 0,
+   "demand": 11.31
+  },
+  {
+   "keyword": "국민연금 조기수령 조건",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 3298,
+   "blogTotal": 2729,
+   "blogPerDay": 20,
+   "newsTotal": 814,
+   "newsPerDay": 0.29,
+   "latestNews": {
+    "title": "&quot;딸 결혼에 5000만원쯤이야&quot;··· 퇴직금 깨려던 아빠가 '멈칫' [머니설...",
+    "date": "05 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-early-receive-breakeven",
+    "national-pension-when-receive",
+    "nps-early-pension-60-eligibility"
+   ],
+   "gap": 0,
+   "demand": 11.22
+  },
+  {
+   "keyword": "에너지바우처 신청기간",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 2732,
+   "blogTotal": 3827,
+   "blogPerDay": 20,
+   "newsTotal": 1316,
+   "newsPerDay": 0.41,
+   "latestNews": {
+    "title": "'홀로사는 노인 에너지드림 지원사업' 2차 접수 추진",
+    "date": "31 Aug 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "energy-voucher-household-member-addition-june",
+    "energy-voucher-summer-cooling-application",
+    "heating-energy-voucher-eligibility"
+   ],
+   "gap": 0,
+   "demand": 11.08
+  },
+  {
+   "keyword": "추석 온누리상품권 할인",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 415,
+   "blogTotal": 3203,
+   "blogPerDay": 40,
+   "newsTotal": 12731,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "올해 추석 차례상 비용 30만 원대",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 11.03
+  },
+  {
+   "keyword": "자동차세 12월 납부",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-16",
+   "kinTotal": 8842,
+   "blogTotal": 5453,
+   "blogPerDay": 5,
+   "newsTotal": 27065,
+   "newsPerDay": 1,
+   "latestNews": {
+    "title": "인천시, 체납자별 징수·지원 분리… 134명 투입해 하반기 체납액 정리",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-d11-card-installment-latest-events"
+   ],
+   "gap": 0,
+   "demand": 10.99
+  },
+  {
+   "keyword": "실손보험 중복가입 확인",
+   "cluster": "insurance-personal",
+   "source": "default",
+   "kinTotal": 35875,
+   "blogTotal": 424,
+   "blogPerDay": 0.91,
+   "newsTotal": 4205,
+   "newsPerDay": 0.5,
+   "latestNews": {
+    "title": "[아산시의회소식] 이윤규 의원 &quot;탈성매매 지원사업 중단·조례 폐지 재검...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.96
+  },
+  {
+   "keyword": "종합부동산세 납부 기간",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 7752,
+   "blogTotal": 1425,
+   "blogPerDay": 1.54,
+   "newsTotal": 11000,
+   "newsPerDay": 3.77,
+   "latestNews": {
+    "title": "정연태 AI 연구소, 세무 사건 통합 검증 'OXMV GPT' 설계",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "comprehensive-property-tax-july-d37-publication-value",
+    "comprehensive-property-tax-june-1-baseline",
+    "officetel-housing-count-tax-subscription"
+   ],
+   "gap": 0,
+   "demand": 10.93
+  },
+  {
+   "keyword": "거주불명자 조사",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 7508,
+   "blogTotal": 109,
+   "blogPerDay": 0.01,
+   "newsTotal": 4867,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "주민등록 비대면 사실조사, 7일 24시로 마감",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.93
+  },
+  {
+   "keyword": "국민연금 개혁 시행",
+   "cluster": "pension",
+   "source": "default",
+   "kinTotal": 3988,
+   "blogTotal": 289,
+   "blogPerDay": 2,
+   "newsTotal": 16179,
+   "newsPerDay": 4.96,
+   "latestNews": {
+    "title": "[위클리국회세미나] '디폴트옵션 3년, 기금형 퇴직연금의 성공 조건' 등",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.88
+  },
+  {
+   "keyword": "파킹통장 금리 비교",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 1337,
+   "blogTotal": 6844,
+   "blogPerDay": 40,
+   "newsTotal": 3183,
+   "newsPerDay": 1.62,
+   "latestNews": {
+    "title": "반도체주 팔아 초단기 국채·배당 ETF로 피신…메타·알파벳은 매수[서...",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [
+    "parking-account-vs-cma"
+   ],
+   "gap": 0,
+   "demand": 10.85
+  },
+  {
+   "keyword": "인터넷등기소 확정일자",
+   "cluster": "public-services",
+   "source": "default",
+   "kinTotal": 18534,
+   "blogTotal": 1634,
+   "blogPerDay": 3.33,
+   "newsTotal": 759,
+   "newsPerDay": 0.06,
+   "latestNews": {
+    "title": "[자취꿀팁] 전입신고 안 하면 생기는 일...이사 당일 30분이 보증금을 지...",
+    "date": "29 Jul 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "lease-fixed-date-mobile-vs-office"
+   ],
+   "gap": 0,
+   "demand": 10.85
+  },
+  {
+   "keyword": "자동차세 1월 납부",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2027-01-16",
+   "kinTotal": 20411,
+   "blogTotal": 6757,
+   "blogPerDay": 2.22,
+   "newsTotal": 24567,
+   "newsPerDay": 0.62,
+   "latestNews": {
+    "title": "올해 마지막 절세 찬스, 9월 자동차세 연납으로 세테크를 완성하세요",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-june-installment-vs-january",
+    "car-tax-yeonnap-discount"
+   ],
+   "gap": 0,
+   "demand": 10.84
+  },
+  {
+   "keyword": "재산세 2기분",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 1895,
+   "blogTotal": 1608,
+   "blogPerDay": 20,
+   "newsTotal": 6391,
+   "newsPerDay": 0.62,
+   "latestNews": {
+    "title": "양산시 2026년 9월 정기분 재산세 628억원 부과",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.8
+  },
+  {
+   "keyword": "근로장려금 환수",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-17",
+   "kinTotal": 13389,
+   "blogTotal": 509,
+   "blogPerDay": 3.33,
+   "newsTotal": 1747,
+   "newsPerDay": 0.6,
+   "latestNews": {
+    "title": "2026년 근로장려금 반기신청…12월17일 지급",
+    "date": "06 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "earned-income-credit-clawback-appeal"
+   ],
+   "gap": 0,
+   "demand": 10.74
+  },
+  {
+   "keyword": "합산배제 임대주택",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 3150,
+   "blogTotal": 2092,
+   "blogPerDay": 4,
+   "newsTotal": 8877,
+   "newsPerDay": 3.65,
+   "latestNews": {
+    "title": "오세훈 &quot;전월세 대란 서울 전역 '주거 지옥'...민간임대사업자 규제 전...",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "property-tax-rental-housing-exclusion-application"
+   ],
+   "gap": 0,
+   "demand": 10.72
+  },
+  {
+   "keyword": "실업급여 연장 신청",
+   "cluster": "unemployment",
+   "source": "default",
+   "kinTotal": 30120,
+   "blogTotal": 506,
+   "blogPerDay": 0.47,
+   "newsTotal": 3973,
+   "newsPerDay": 0.65,
+   "latestNews": {
+    "title": "[위클립] 9월 1주",
+    "date": "05 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "labor-contract-1year-auto-vs-renewal",
+    "unemployment-individual-extension-benefit",
+    "unemployment-repeat-recipient-reduction"
+   ],
+   "gap": 0,
+   "demand": 10.71
+  },
+  {
+   "keyword": "자동차 취득세 계산",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 23354,
+   "blogTotal": 868,
+   "blogPerDay": 1.82,
+   "newsTotal": 1547,
+   "newsPerDay": 0.23,
+   "latestNews": {
+    "title": "위법 세무조사 자료 들고 &quot;수정신고하세요&quot;…뒤집힌 과세",
+    "date": "04 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-child-name-transfer-tax-saving",
+    "eco-friendly-vehicle-tax-benefits-2026",
+    "multi-child-2-kids-benefits-2026"
+   ],
+   "gap": 0,
+   "demand": 10.7
+  },
+  {
+   "keyword": "부동산공시가격알리미",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-18",
+   "kinTotal": 3775,
+   "blogTotal": 2681,
+   "blogPerDay": 1.43,
+   "newsTotal": 28109,
+   "newsPerDay": 5.75,
+   "latestNews": {
+    "title": "성남시, 김정운 명사 특강·공시지가 열람·치매극복 행사 추진",
+    "date": "06 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.67
+  },
+  {
+   "keyword": "한전 전기요금 2026",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 288,
+   "blogTotal": 764,
+   "blogPerDay": 10,
+   "newsTotal": 3592,
+   "newsPerDay": 4.86,
+   "latestNews": {
+    "title": "잭커리, IFA 2026 참가… 차세대 파워뱅크부터 가정용 ESS 신제품까지 전...",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 10.61
+  },
+  {
+   "keyword": "2027 최저임금",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 248,
+   "blogTotal": 5134,
+   "blogPerDay": 40,
+   "newsTotal": 5232,
+   "newsPerDay": 16.07,
+   "latestNews": {
+    "title": "파주시, 외국인 계절근로자 수요조사",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "minimum-wage-2026",
+    "minimum-wage-2027-net-take-home",
+    "minimum-wage-2027"
+   ],
+   "gap": 0,
+   "demand": 10.52
+  },
+  {
+   "keyword": "종합소득세 중간예납",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 3978,
+   "blogTotal": 4917,
+   "blogPerDay": 4,
+   "newsTotal": 3086,
+   "newsPerDay": 2.5,
+   "latestNews": {
+    "title": "내년 국세수입 584.4조 '역대 최대'…반도체 호황에 올해보다 194조↑",
+    "date": "01 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "interim-tax-payment-november-installment"
+   ],
+   "gap": 0,
+   "demand": 10.49
+  },
+  {
+   "keyword": "추석 고속도로 통행료 면제",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-24",
+   "kinTotal": 432,
+   "blogTotal": 5268,
+   "blogPerDay": 40,
+   "newsTotal": 10967,
+   "newsPerDay": 3.53,
+   "latestNews": {
+    "title": "이형일 재경부 1차관 “이번 주 중 추가적 추석 민생안정대책 보완 방안...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.48
+  },
+  {
+   "keyword": "2027 출산 지원금",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 232,
+   "blogTotal": 2704,
+   "blogPerDay": 40,
+   "newsTotal": 2328,
+   "newsPerDay": 5.81,
+   "latestNews": {
+    "title": "출산·혼인 혜택 확대 속 비혼·무자녀 ‘복지 소외감’",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "birth-support-package",
+    "company-childbirth-support-tax-free-2026"
+   ],
+   "gap": 0,
+   "demand": 10.45
+  },
+  {
+   "keyword": "부가세 예정신고 10월",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 11611,
+   "blogTotal": 1041,
+   "blogPerDay": 3.33,
+   "newsTotal": 1542,
+   "newsPerDay": 0.13,
+   "latestNews": {
+    "title": "[경남 브리핑 모음(8월13일)] 진주시, 가뭄 극복위한 ‘소방차 20대’ 배...",
+    "date": "13 Aug 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "vat-preliminary-notice-self-employed"
+   ],
+   "gap": 0,
+   "demand": 10.41
+  },
+  {
+   "keyword": "에너지바우처 동절기",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 1376,
+   "blogTotal": 1102,
+   "blogPerDay": 10,
+   "newsTotal": 7869,
+   "newsPerDay": 0.37,
+   "latestNews": {
+    "title": "연탄보일러 교체 취약계층 에너지 구입비 지원",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.38
+  },
+  {
+   "keyword": "지역가입자 건강보험료 11월",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 26312,
+   "blogTotal": 572,
+   "blogPerDay": 0.33,
+   "newsTotal": 4654,
+   "newsPerDay": 0.23,
+   "latestNews": {
+    "title": "세금 못 내서 쫓겨난다는 강남 부자 노인 레퍼토리: 슬로우레터 8월6일...",
+    "date": "06 Aug 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.37
+  },
+  {
+   "keyword": "부모급여 아동수당 개편",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 231,
+   "blogTotal": 424,
+   "blogPerDay": 10,
+   "newsTotal": 2554,
+   "newsPerDay": 4.79,
+   "latestNews": {
+    "title": "출산·혼인 혜택 확대 속 비혼·무자녀 ‘복지 소외감’",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.36
+  },
+  {
+   "keyword": "연금저축 12월 납입",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 22519,
+   "blogTotal": 191,
+   "blogPerDay": 0.08,
+   "newsTotal": 5810,
+   "newsPerDay": 0.59,
+   "latestNews": {
+    "title": "[Who Is ?] 빈대인 BNK금융지주 대표이사 회장",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "irp-june-additional-payment-tax-credit-limit"
+   ],
+   "gap": 0,
+   "demand": 10.28
+  },
+  {
+   "keyword": "부양가족 소득기준 300만원",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 15600,
+   "blogTotal": 63,
+   "blogPerDay": 1.05,
+   "newsTotal": 2868,
+   "newsPerDay": 0.67,
+   "latestNews": {
+    "title": "[2026 세제 개편안] 6대 성장동력 조세특례…청년 지원 강화",
+    "date": "04 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 1,
+   "existing": [
+    "dependent-deduction-income-threshold-300m-2026"
+   ],
+   "gap": 0,
+   "demand": 10.24
+  },
+  {
+   "keyword": "첫째 출산 1000만원",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 696,
+   "blogTotal": 315,
+   "blogPerDay": 6.67,
+   "newsTotal": 7133,
+   "newsPerDay": 4.09,
+   "latestNews": {
+    "title": "정부, 지역의사 490명 양성… 내년 '지역필수의료'에 1조 2614억 원",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 10.18
+  },
+  {
+   "keyword": "자동차세 연납 할인율",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2027-01-16",
+   "kinTotal": 1235,
+   "blogTotal": 3081,
+   "blogPerDay": 10,
+   "newsTotal": 1276,
+   "newsPerDay": 0.13,
+   "latestNews": {
+    "title": "'13월의 보너스'를 만드는 슬기로운 방법, 자동차세 연납 제도를 주목하...",
+    "date": "16 Jun 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-auto-debit-discount-application",
+    "car-tax-june-installment-vs-january",
+    "car-tax-yeonnap-discount"
+   ],
+   "gap": 0,
+   "demand": 10.17
+  },
+  {
+   "keyword": "청년미래적금 2차 신청",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 929,
+   "blogTotal": 1482,
+   "blogPerDay": 40,
+   "newsTotal": 350,
+   "newsPerDay": 0.8,
+   "latestNews": {
+    "title": "청년미래적금 2차 신청 앞두고…서금원, '오통지' 재발 방지 나선다",
+    "date": "06 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10.16
+  },
+  {
+   "keyword": "ISA 계좌 장단점",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 1140,
+   "blogTotal": 3003,
+   "blogPerDay": 10,
+   "newsTotal": 140,
+   "newsPerDay": 0.13,
+   "latestNews": {
+    "title": "[금융 풍향계] BNK금융, 500억 ‘생산적금융 펀드’로 지역 산업 지원 外",
+    "date": "01 Jul 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 10.09
+  },
+  {
+   "keyword": "누진제 전기요금 계산",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 11507,
+   "blogTotal": 438,
+   "blogPerDay": 2,
+   "newsTotal": 1630,
+   "newsPerDay": 0.31,
+   "latestNews": {
+    "title": "“450kWh 넘으면 전부 비쌀까”…전기요금은 구간별 합산",
+    "date": "29 Aug 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "summer-electricity-progressive-tariff-bill-guide"
+   ],
+   "gap": 0,
+   "demand": 10.07
+  },
+  {
+   "keyword": "실업급여 최저임금 80%",
+   "cluster": "unemployment",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 2938,
+   "blogTotal": 142,
+   "blogPerDay": 0.06,
+   "newsTotal": 3002,
+   "newsPerDay": 14.63,
+   "latestNews": {
+    "title": "실업급여가 월급보다 많다?…30년 묵은 '거꾸로 셈법' 이번에 뜯어고쳤...",
+    "date": "03 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 10
+  },
+  {
+   "keyword": "주거급여 기준 48%",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 3296,
+   "blogTotal": 348,
+   "blogPerDay": 3.33,
+   "newsTotal": 3289,
+   "newsPerDay": 2.22,
+   "latestNews": {
+    "title": "강진 '월 60만원' 통했나…출산율 3년 연속 전국 톱3",
+    "date": "06 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.99
+  },
+  {
+   "keyword": "1종 적성검사 준비물",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 6013,
+   "blogTotal": 795,
+   "blogPerDay": 4,
+   "newsTotal": 141,
+   "newsPerDay": 0.11,
+   "latestNews": {
+    "title": "운전면허증 갱신…챙길 것&amp;모바일 면허증도 추천",
+    "date": "23 Dec 2025"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.95
+  },
+  {
+   "keyword": "에너지바우처 금액 2026",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 666,
+   "blogTotal": 2482,
+   "blogPerDay": 40,
+   "newsTotal": 790,
+   "newsPerDay": 1.04,
+   "latestNews": {
+    "title": "[패트롤]대구시의회-경주시의회-칠곡군의회-칠곡군-iM뱅크-신용보증기금",
+    "date": "31 Aug 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "energy-voucher-summer-cooling-application",
+    "heating-energy-voucher-eligibility"
+   ],
+   "gap": 0,
+   "demand": 9.92
+  },
+  {
+   "keyword": "하이패스 통행료 면제",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-24",
+   "kinTotal": 911,
+   "blogTotal": 1075,
+   "blogPerDay": 40,
+   "newsTotal": 4879,
+   "newsPerDay": 0.2,
+   "latestNews": {
+    "title": "추석 고속도로 통행료 면제 4일간 KTX 40% 할인",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.9
+  },
+  {
+   "keyword": "부가세 예정신고 개인사업자",
+   "cluster": "tax",
+   "source": "default",
+   "kinTotal": 14356,
+   "blogTotal": 1151,
+   "blogPerDay": 0.5,
+   "newsTotal": 2911,
+   "newsPerDay": 0.32,
+   "latestNews": {
+    "title": "이만희, 매점운영 75억 조세포탈 혐의에 “신고 누락 고의 없어”",
+    "date": "02 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.85
+  },
+  {
+   "keyword": "추석 연휴 통행료 무료",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-24",
+   "kinTotal": 200,
+   "blogTotal": 1786,
+   "blogPerDay": 40,
+   "newsTotal": 3576,
+   "newsPerDay": 3.79,
+   "latestNews": {
+    "title": "부산시, 추석 연휴 중증 장애인 '두리발' 무료 운행…경남·울산·경주·...",
+    "date": "06 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.82
+  },
+  {
+   "keyword": "부가세 예정신고 기간",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 12585,
+   "blogTotal": 1294,
+   "blogPerDay": 0.48,
+   "newsTotal": 4887,
+   "newsPerDay": 0.58,
+   "latestNews": {
+    "title": "[판세] 원고 쇼핑몰 고객의 카드사 적립 포인트, 원고의 부가세 과표에...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "vat-preliminary-notice-self-employed"
+   ],
+   "gap": 0,
+   "demand": 9.82
+  },
+  {
+   "keyword": "실손보험 전환 할인",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 3655,
+   "blogTotal": 363,
+   "blogPerDay": 1.05,
+   "newsTotal": 3994,
+   "newsPerDay": 3.25,
+   "latestNews": {
+    "title": "2026 금융 국감 돋보기③ 보험업계, 5세대 실손 부진·전산화 지지부진...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.82
+  },
+  {
+   "keyword": "위택스 재산세 조회",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 771,
+   "blogTotal": 1380,
+   "blogPerDay": 10,
+   "newsTotal": 3489,
+   "newsPerDay": 0.38,
+   "latestNews": {
+    "title": "신안군, '태양광 토지 과세 반영'... 9월 재산세 29억 원 부과",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "property-tax-2026-payment-schedule-calculation"
+   ],
+   "gap": 0,
+   "demand": 9.8
+  },
+  {
+   "keyword": "자동차세 연납 5%",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2027-01-16",
+   "kinTotal": 2200,
+   "blogTotal": 2760,
+   "blogPerDay": 6.67,
+   "newsTotal": 9355,
+   "newsPerDay": 0.26,
+   "latestNews": {
+    "title": "대전 중구, '하반기 지방세 미환급금 일제정리' 추진",
+    "date": "01 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-yeonnap-discount"
+   ],
+   "gap": 0,
+   "demand": 9.8
+  },
+  {
+   "keyword": "전기요금 인상 10월",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 2333,
+   "blogTotal": 548,
+   "blogPerDay": 0.05,
+   "newsTotal": 19069,
+   "newsPerDay": 7.26,
+   "latestNews": {
+    "title": "[경북교육 소식] 적극행정 우수사례 경진대회 '최우수상'·경북학교스포...",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9.77
+  },
+  {
+   "keyword": "고금리 적금 추천",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 6399,
+   "blogTotal": 3638,
+   "blogPerDay": 2.86,
+   "newsTotal": 2598,
+   "newsPerDay": 0.32,
+   "latestNews": {
+    "title": "나채범 한화손보 대표, 콜센터 체험 外",
+    "date": "01 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9.75
+  },
+  {
+   "keyword": "암검진 대상 연령",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 13807,
+   "blogTotal": 46,
+   "blogPerDay": 0.15,
+   "newsTotal": 1816,
+   "newsPerDay": 0.35,
+   "latestNews": {
+    "title": "연말 검진 대란 피하려면… 9~10월 국가암검진 미리 확인해야",
+    "date": "02 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.72
+  },
+  {
+   "keyword": "종부세 부부공동명의 특례",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 281,
+   "blogTotal": 868,
+   "blogPerDay": 6.67,
+   "newsTotal": 1734,
+   "newsPerDay": 5.73,
+   "latestNews": {
+    "title": "김인만 소장 &quot;대출 규제에 15억 이하 쏠림…세입자 부담 ↑&quot; [경제일타강...",
+    "date": "05 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.64
+  },
+  {
+   "keyword": "국민연금 가입기간 늘리기",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 10176,
+   "blogTotal": 106,
+   "blogPerDay": 1.05,
+   "newsTotal": 820,
+   "newsPerDay": 0.16,
+   "latestNews": {
+    "title": "[증권 데일리] 생활 플랫폼 넓히고 절세·채권 공략…증권사 고객 접점...",
+    "date": "05 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-credit-birth-military-unemployment",
+    "national-pension-voluntary-continued-payment",
+    "nps-additional-payment-coverage-extension"
+   ],
+   "gap": 0,
+   "demand": 9.61
+  },
+  {
+   "keyword": "소득대체율 43%",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 1183,
+   "blogTotal": 1385,
+   "blogPerDay": 5,
+   "newsTotal": 7400,
+   "newsPerDay": 2.57,
+   "latestNews": {
+    "title": "퇴직연금 일임하는 AI 로보어드바이저 운용 수익률 뛴다",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-income-replacement-rate-43-reform"
+   ],
+   "gap": 0,
+   "demand": 9.6
+  },
+  {
+   "keyword": "위택스 자동차세 조회",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-16",
+   "kinTotal": 1743,
+   "blogTotal": 1130,
+   "blogPerDay": 6.67,
+   "newsTotal": 5821,
+   "newsPerDay": 0.31,
+   "latestNews": {
+    "title": "유성구, '지방세 미환급금' 일제정리",
+    "date": "03 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-d11-card-installment-latest-events",
+    "car-tax-june-1q-payment-card-cashback",
+    "car-tax-refund-application-guide"
+   ],
+   "gap": 0,
+   "demand": 9.59
+  },
+  {
+   "keyword": "추석 성수품 할인",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 96,
+   "blogTotal": 880,
+   "blogPerDay": 40,
+   "newsTotal": 13905,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "올해 추석 차례상 비용 30만 원대",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.57
+  },
+  {
+   "keyword": "에너지바우처 잔액조회",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 675,
+   "blogTotal": 1763,
+   "blogPerDay": 20,
+   "newsTotal": 77,
+   "newsPerDay": 0.08,
+   "latestNews": {
+    "title": "금융권, 지역사회 포용금융 확대와 미래세대 마케팅 강화에 총력",
+    "date": "14 Aug 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.55
+  },
+  {
+   "keyword": "종부세 계산 2026",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 257,
+   "blogTotal": 516,
+   "blogPerDay": 6.67,
+   "newsTotal": 667,
+   "newsPerDay": 19.3,
+   "latestNews": {
+    "title": "종부세, 실제 누가 내고 있을까…지역·나이·주택 수 뜯어보니",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "capital-gains-tax-august-filing-after-may-deed",
+    "capital-gains-tax-june-seller-aug-31-prep",
+    "comprehensive-property-tax-july-d37-publication-value"
+   ],
+   "gap": 0,
+   "demand": 9.55
+  },
+  {
+   "keyword": "기초연금 신청 시기 65세",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 1492,
+   "blogTotal": 346,
+   "blogPerDay": 6.67,
+   "newsTotal": 1470,
+   "newsPerDay": 0.44,
+   "latestNews": {
+    "title": "경남도 &quot;기초연금, 몰라서 놓치는 일 없도록 촘촘히 챙긴다&quot;",
+    "date": "06 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.49
+  },
+  {
+   "keyword": "청약통장 전환 마감",
+   "cluster": "savings",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 567,
+   "blogTotal": 807,
+   "blogPerDay": 40,
+   "newsTotal": 1730,
+   "newsPerDay": 0.27,
+   "latestNews": {
+    "title": "[산업소식] JW중외제약, 콜레스테롤의 날 맞아 '당부, 스타틴' 캠페인",
+    "date": "04 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9.45
+  },
+  {
+   "keyword": "건강보험료 11월 인상",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 10957,
+   "blogTotal": 155,
+   "blogPerDay": 0.07,
+   "newsTotal": 3536,
+   "newsPerDay": 0.2,
+   "latestNews": {
+    "title": "목돈 필요해도 IRP로 퇴직금 받는게 ‘상책’",
+    "date": "11 Aug 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.4
+  },
+  {
+   "keyword": "부가가치세 예정고지 납부",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 7640,
+   "blogTotal": 2460,
+   "blogPerDay": 0.43,
+   "newsTotal": 3625,
+   "newsPerDay": 0.8,
+   "latestNews": {
+    "title": "'특별재난지역' 통영 전체에 세정지원…국세납부 등 2년 연장",
+    "date": "06 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "vat-first-period-final-return-2026-july",
+    "vat-preliminary-notice-self-employed"
+   ],
+   "gap": 0,
+   "demand": 9.39
+  },
+  {
+   "keyword": "종부세 9월 신고",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 921,
+   "blogTotal": 355,
+   "blogPerDay": 6.67,
+   "newsTotal": 2799,
+   "newsPerDay": 1.39,
+   "latestNews": {
+    "title": "대출·세금 압박에… 2주택자 비중 44개월 만에 '최저'",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.38
+  },
+  {
+   "keyword": "연말정산 미리보기 2026",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-05",
+   "kinTotal": 1540,
+   "blogTotal": 910,
+   "blogPerDay": 6.67,
+   "newsTotal": 70,
+   "newsPerDay": 0.09,
+   "latestNews": {
+    "title": "34세 이하 청년이라면? 무조건 '이것'부터 가입해두세요",
+    "date": "18 Aug 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [
+    "yearend-tax-preview-service-guide"
+   ],
+   "gap": 0,
+   "demand": 9.38
+  },
+  {
+   "keyword": "종부세 기본공제 14억",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 76,
+   "blogTotal": 413,
+   "blogPerDay": 10,
+   "newsTotal": 3563,
+   "newsPerDay": 26.37,
+   "latestNews": {
+    "title": "집값 안 꺾이면 2030년 서울 22개구 종부세…비강남권도 사정권",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9.34
+  },
+  {
+   "keyword": "4분기 전기요금",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 1466,
+   "blogTotal": 1048,
+   "blogPerDay": 0.12,
+   "newsTotal": 35253,
+   "newsPerDay": 6.25,
+   "latestNews": {
+    "title": "&quot;연매출 40억달러&quot;...현대제철 美 제철소 '게임체인저' 노린다",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9.33
+  },
+  {
+   "keyword": "연말정산 연금계좌 환급",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 5984,
+   "blogTotal": 455,
+   "blogPerDay": 1.43,
+   "newsTotal": 3694,
+   "newsPerDay": 0.35,
+   "latestNews": {
+    "title": "[박곰희 칼럼] 연금저축·IRP, 안 할 이유가 있는가",
+    "date": "04 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.27
+  },
+  {
+   "keyword": "종부세 합산배제 신고",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 1149,
+   "blogTotal": 1122,
+   "blogPerDay": 6.67,
+   "newsTotal": 2517,
+   "newsPerDay": 0.52,
+   "latestNews": {
+    "title": "[절세톡톡] 법인이 주택임대사업자등록을 하면 종부세를 피할 수 있을까...",
+    "date": "04 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.26
+  },
+  {
+   "keyword": "자동차세 연납 신청 위택스",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2027-01-16",
+   "kinTotal": 2126,
+   "blogTotal": 2775,
+   "blogPerDay": 5,
+   "newsTotal": 13693,
+   "newsPerDay": 0.25,
+   "latestNews": {
+    "title": "올해 마지막 절세 찬스, 9월 자동차세 연납으로 세테크를 완성하세요",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-june-1q-payment-card-cashback"
+   ],
+   "gap": 0,
+   "demand": 9.26
+  },
+  {
+   "keyword": "실손보험 선택특약 할인",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 8903,
+   "blogTotal": 6,
+   "blogPerDay": 0,
+   "newsTotal": 2037,
+   "newsPerDay": 0.4,
+   "latestNews": {
+    "title": "2026 금융 국감 돋보기③ 보험업계, 5세대 실손 부진·전산화 지지부진...",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9.25
+  },
+  {
+   "keyword": "2027 예산 청년 지원",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 68,
+   "blogTotal": 409,
+   "blogPerDay": 10,
+   "newsTotal": 14240,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "&quot;청년 자립·기회 확대 우선&quot; 성남시, 청년기본소득 조례안 재의요구",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.23
+  },
+  {
+   "keyword": "동절기 에너지바우처 신청",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 1123,
+   "blogTotal": 650,
+   "blogPerDay": 6.67,
+   "newsTotal": 4229,
+   "newsPerDay": 0.37,
+   "latestNews": {
+    "title": "연탄보일러 교체 취약계층 에너지 구입비 지원",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.17
+  },
+  {
+   "keyword": "청년희망적금 만기 해지",
+   "cluster": "savings",
+   "source": "default",
+   "kinTotal": 5357,
+   "blogTotal": 1388,
+   "blogPerDay": 0.28,
+   "newsTotal": 2724,
+   "newsPerDay": 0.94,
+   "latestNews": {
+    "title": "‘청년 통장’ 가입 문은 넓어지는데…돈 적게 넣은 청년부터 적금 깼다",
+    "date": "02 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.05
+  },
+  {
+   "keyword": "짝수년 건강검진",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 7108,
+   "blogTotal": 388,
+   "blogPerDay": 0.36,
+   "newsTotal": 345,
+   "newsPerDay": 0.09,
+   "latestNews": {
+    "title": "[속보] 국힘 최고위, ‘당협위원장 당원 직선제’ 결론 못 내",
+    "date": "24 Aug 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 9.01
+  },
+  {
+   "keyword": "공시가격 의견제출",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-18",
+   "kinTotal": 713,
+   "blogTotal": 1235,
+   "blogPerDay": 1.43,
+   "newsTotal": 30881,
+   "newsPerDay": 5.83,
+   "latestNews": {
+    "title": "성남시, 김정운 명사 특강·공시지가 열람·치매극복 행사 추진",
+    "date": "06 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 9
+  },
+  {
+   "keyword": "고령 운전자 면허 갱신",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 1441,
+   "blogTotal": 687,
+   "blogPerDay": 3.33,
+   "newsTotal": 4963,
+   "newsPerDay": 1.72,
+   "latestNews": {
+    "title": "65세 이상 야간운전 제한하는 조건부 면허제 논의 본격화",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.96
+  },
+  {
+   "keyword": "기초연금 금액 2027",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 189,
+   "blogTotal": 128,
+   "blogPerDay": 6.67,
+   "newsTotal": 873,
+   "newsPerDay": 4.08,
+   "latestNews": {
+    "title": "[ASIA BIZ] 日, 장기금리 3% 시대 도래…다카이치 적극재정에 '시장 청구...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "telecom-fee-reduction-eligibility-application-2026"
+   ],
+   "gap": 0,
+   "demand": 8.88
+  },
+  {
+   "keyword": "추석 귀성길 혜택",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-24",
+   "kinTotal": 47,
+   "blogTotal": 219,
+   "blogPerDay": 20,
+   "newsTotal": 3163,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "네이버 추석 앞두고 네플스서 16일간 '추석+세일'",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 8.87
+  },
+  {
+   "keyword": "연말정산 회사 제출 기한",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-11-30",
+   "kinTotal": 6604,
+   "blogTotal": 41,
+   "blogPerDay": 0.03,
+   "newsTotal": 1430,
+   "newsPerDay": 0.11,
+   "latestNews": {
+    "title": "[금융家] 근로장려금 ㅣ130만 가구 상반기 신청 돌입…문턱 낮추고 혜택...",
+    "date": "02 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.85
+  },
+  {
+   "keyword": "퇴직 절차 인수인계",
+   "cluster": "office-tips",
+   "source": "default",
+   "kinTotal": 4895,
+   "blogTotal": 10,
+   "blogPerDay": 0,
+   "newsTotal": 832,
+   "newsPerDay": 0.74,
+   "latestNews": {
+    "title": "&quot;부당해고 당해 관리업무 인계 못해…&quot; 전 소장 '과태료 1000만 원' 이의...",
+    "date": "03 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.79
+  },
+  {
+   "keyword": "최저임금 실수령액 계산",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 4084,
+   "blogTotal": 951,
+   "blogPerDay": 1.25,
+   "newsTotal": 312,
+   "newsPerDay": 0.19,
+   "latestNews": {
+    "title": "2027년 실업급여 월 22만원 줄인다…대신 기간은 길어져",
+    "date": "02 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "minimum-wage-2027-net-take-home"
+   ],
+   "gap": 0,
+   "demand": 8.77
+  },
+  {
+   "keyword": "종합부동산세 과세특례 신고",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 1959,
+   "blogTotal": 597,
+   "blogPerDay": 2.86,
+   "newsTotal": 2866,
+   "newsPerDay": 0.78,
+   "latestNews": {
+    "title": "정연태 AI 연구소, 세무 사건 통합 검증 'OXMV GPT' 설계",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.75
+  },
+  {
+   "keyword": "건보료 소득 재산 반영",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 4919,
+   "blogTotal": 67,
+   "blogPerDay": 0.14,
+   "newsTotal": 3626,
+   "newsPerDay": 0.22,
+   "latestNews": {
+    "title": "One home is a place to live (KOR)",
+    "date": "19 Aug 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.63
+  },
+  {
+   "keyword": "중간예납 11월 납부",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 1654,
+   "blogTotal": 1786,
+   "blogPerDay": 1.25,
+   "newsTotal": 1459,
+   "newsPerDay": 1.97,
+   "latestNews": {
+    "title": "유가 급등→국채 발작→환율 출렁…1300원대 얼마 못 가나 ‘긴장모드’...",
+    "date": "03 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [
+    "interim-tax-payment-november-installment"
+   ],
+   "gap": 0,
+   "demand": 8.57
+  },
+  {
+   "keyword": "2027년 최저임금",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 34,
+   "blogTotal": 4398,
+   "blogPerDay": 20,
+   "newsTotal": 3883,
+   "newsPerDay": 15,
+   "latestNews": {
+    "title": "파주시, 외국인 계절근로자 수요조사",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "minimum-wage-2027-net-take-home",
+    "minimum-wage-2027"
+   ],
+   "gap": 0,
+   "demand": 8.56
+  },
+  {
+   "keyword": "건강검진 대상자 조회 2026",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 222,
+   "blogTotal": 1181,
+   "blogPerDay": 20,
+   "newsTotal": 74,
+   "newsPerDay": 0.12,
+   "latestNews": {
+    "title": "서천군 의료급여수급권자 건강검진 충남 TOP",
+    "date": "01 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.46
+  },
+  {
+   "keyword": "에너지바우처 복지로 신청",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 1496,
+   "blogTotal": 779,
+   "blogPerDay": 3.33,
+   "newsTotal": 1769,
+   "newsPerDay": 0.36,
+   "latestNews": {
+    "title": "연탄보일러 교체 취약계층 에너지 구입비 지원",
+    "date": "07 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [
+    "summer-cooling-subsidy-overlap-guide"
+   ],
+   "gap": 0,
+   "demand": 8.45
+  },
+  {
+   "keyword": "세일페스타 자동차 할인",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-29",
+   "kinTotal": 589,
+   "blogTotal": 739,
+   "blogPerDay": 0.07,
+   "newsTotal": 7510,
+   "newsPerDay": 6.73,
+   "latestNews": {
+    "title": "2026 K-세일페스타 참여기업 모집 시작…10월 29일 개막",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 8.4
+  },
+  {
+   "keyword": "국가건강검진 12월 마감",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 4111,
+   "blogTotal": 35,
+   "blogPerDay": 0.07,
+   "newsTotal": 297,
+   "newsPerDay": 0.12,
+   "latestNews": {
+    "title": "'모두의 AI' 본격 시동…AI 인프라 시장도 커진다",
+    "date": "04 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 8.39
+  },
+  {
+   "keyword": "홈택스 연말정산 예상세액",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-05",
+   "kinTotal": 3919,
+   "blogTotal": 384,
+   "blogPerDay": 0.1,
+   "newsTotal": 3586,
+   "newsPerDay": 0.17,
+   "latestNews": {
+    "title": "근로장려금・자녀장려금 오늘 지급…'이건' 꼭 확인하세요",
+    "date": "27 Aug 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "yearend-tax-preview-service-guide"
+   ],
+   "gap": 0,
+   "demand": 8.37
+  },
+  {
+   "keyword": "연말정산 맞벌이 몰아주기",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-05",
+   "kinTotal": 2377,
+   "blogTotal": 792,
+   "blogPerDay": 1.67,
+   "newsTotal": 143,
+   "newsPerDay": 0.02,
+   "latestNews": {
+    "title": "“산후조리원비 냈다면 필독”… 억대 연봉자도 세금 돌려받는 ‘출산...",
+    "date": "10 Aug 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 8.28
+  },
+  {
+   "keyword": "전월세 신고제 과태료",
+   "cluster": "realestate",
+   "source": "default",
+   "kinTotal": 1271,
+   "blogTotal": 3863,
+   "blogPerDay": 3.33,
+   "newsTotal": 2059,
+   "newsPerDay": 0.05,
+   "latestNews": {
+    "title": "묵시적 갱신, 집주인 잘못?…하남시 과태료에 법원 제동 [취재여담]",
+    "date": "13 Jul 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [
+    "lease-report-mandatory-fine-guide",
+    "monthly-rent-mandatory-report-2026"
+   ],
+   "gap": 0,
+   "demand": 8.17
+  },
+  {
+   "keyword": "세제개편안 국회 통과",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 216,
+   "blogTotal": 400,
+   "blogPerDay": 2,
+   "newsTotal": 9527,
+   "newsPerDay": 5.75,
+   "latestNews": {
+    "title": "'김승원·용혜인 리스크'에 與 비상…민심 이반 가속화",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "child-tax-credit-increase-2026-reform",
+    "credit-card-deduction-child-reform-2026",
+    "dependent-deduction-income-threshold-300m-2026"
+   ],
+   "gap": 0,
+   "demand": 7.98
+  },
+  {
+   "keyword": "2027년 기준 중위소득",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 18,
+   "blogTotal": 829,
+   "blogPerDay": 10,
+   "newsTotal": 2487,
+   "newsPerDay": 9.31,
+   "latestNews": {
+    "title": "2027년 정부 예산안이 담고 있는 뜻",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.94
+  },
+  {
+   "keyword": "종합소득세 11월 고지서",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 1458,
+   "blogTotal": 489,
+   "blogPerDay": 2,
+   "newsTotal": 506,
+   "newsPerDay": 0.08,
+   "latestNews": {
+    "title": "[알쓸신잡] '부모 건보에 얹혀 살다가'…1인가구 청년, 피부양자 끊기는...",
+    "date": "26 Jun 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.92
+  },
+  {
+   "keyword": "1세대 실손 갈아타기",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 2387,
+   "blogTotal": 114,
+   "blogPerDay": 0.22,
+   "newsTotal": 360,
+   "newsPerDay": 0.16,
+   "latestNews": {
+    "title": "실손보험 5세대 전환, 제자리걸음…&quot;성급한 갈아타기는 소탐대실&quot;",
+    "date": "04 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 7.91
+  },
+  {
+   "keyword": "국민연금 2027 인상",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 175,
+   "blogTotal": 76,
+   "blogPerDay": 1.82,
+   "newsTotal": 1902,
+   "newsPerDay": 5.2,
+   "latestNews": {
+    "title": "기초연금 2030년 지출 30조 돌파 전망⋯'하후상박' 개편 추진",
+    "date": "06 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-income-ceiling-2026-july",
+    "national-pension-income-replacement-rate-43-reform",
+    "self-employed-4-major-insurance-after-tax-filing"
+   ],
+   "gap": 0,
+   "demand": 7.72
+  },
+  {
+   "keyword": "생계급여 선정기준 2027",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 56,
+   "blogTotal": 163,
+   "blogPerDay": 6.67,
+   "newsTotal": 343,
+   "newsPerDay": 4.17,
+   "latestNews": {
+    "title": "장애등급제 폐지 9년 만에…연금 '사각지대' 중증장애인 26만명 품는다",
+    "date": "06 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.71
+  },
+  {
+   "keyword": "월세 세액공제 1200만원",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 491,
+   "blogTotal": 88,
+   "blogPerDay": 1,
+   "newsTotal": 938,
+   "newsPerDay": 2.94,
+   "latestNews": {
+    "title": "청년 월세 부담 줄여라…여야 청년 표심잡기 입법 경쟁",
+    "date": "04 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 7.67
+  },
+  {
+   "keyword": "최저임금 인상률 3.7%",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 398,
+   "blogTotal": 166,
+   "blogPerDay": 0.95,
+   "newsTotal": 1265,
+   "newsPerDay": 3.35,
+   "latestNews": {
+    "title": "[단독] 인천시 지자체 생활임금 제각각…서해구, 내년 최대 1만2630원 검...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "minimum-wage-2027"
+   ],
+   "gap": 0,
+   "demand": 7.61
+  },
+  {
+   "keyword": "건보료 2027",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 395,
+   "blogTotal": 72,
+   "blogPerDay": 1.05,
+   "newsTotal": 686,
+   "newsPerDay": 3.19,
+   "latestNews": {
+    "title": "[이슈플러스 경남] &quot;배워서 남 준다고?&quot; 경남 복지의 내일은?",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "eitc-tax-health-insurance-dependent-impact",
+    "workplace-vs-regional-insured"
+   ],
+   "gap": 0,
+   "demand": 7.57
+  },
+  {
+   "keyword": "운전면허 갱신 생일 6개월",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 557,
+   "blogTotal": 269,
+   "blogPerDay": 4,
+   "newsTotal": 230,
+   "newsPerDay": 0.1,
+   "latestNews": {
+    "title": "“내 적성검사 언제까지?”…운전면허 갱신기간 확인법",
+    "date": "29 Aug 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.56
+  },
+  {
+   "keyword": "청년 월세 세액공제 17%",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 236,
+   "blogTotal": 201,
+   "blogPerDay": 2.86,
+   "newsTotal": 1143,
+   "newsPerDay": 2.84,
+   "latestNews": {
+    "title": "[2026 세제 개편안] 6대 성장동력 조세특례…청년 지원 강화",
+    "date": "04 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.46
+  },
+  {
+   "keyword": "자동차세 2기분 납부",
+   "cluster": "auto",
+   "source": "default",
+   "kinTotal": 1086,
+   "blogTotal": 1339,
+   "blogPerDay": 0.24,
+   "newsTotal": 9870,
+   "newsPerDay": 0.63,
+   "latestNews": {
+    "title": "면허 갱신부터 자동차세까지…놓치면 돈 나가는 운전자 필수 기한 [모터...",
+    "date": "31 Jul 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.32
+  },
+  {
+   "keyword": "추석 민생안정대책 2026",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 9,
+   "blogTotal": 722,
+   "blogPerDay": 40,
+   "newsTotal": 412,
+   "newsPerDay": 15.55,
+   "latestNews": {
+    "title": "포항시, 현장 중심 적극행정 강화·추석 종합대책 점검",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.3
+  },
+  {
+   "keyword": "연말정산 일괄제공 신청",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-11-30",
+   "kinTotal": 1360,
+   "blogTotal": 529,
+   "blogPerDay": 0.08,
+   "newsTotal": 1824,
+   "newsPerDay": 0.09,
+   "latestNews": {
+    "title": "한달 지나면 기회 없다…낡은 '청약통장' 막차 타야 할까?",
+    "date": "30 Aug 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.28
+  },
+  {
+   "keyword": "부가세 예정고지 50%",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 1314,
+   "blogTotal": 124,
+   "blogPerDay": 0.13,
+   "newsTotal": 516,
+   "newsPerDay": 0.13,
+   "latestNews": {
+    "title": "역대급 폭염에 충북 기업 전기료도 '껑충'…중소기업 원가 부담 가중",
+    "date": "01 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "vat-preliminary-notice-self-employed"
+   ],
+   "gap": 0,
+   "demand": 7.27
+  },
+  {
+   "keyword": "간소화자료 일괄제공 동의",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-11-30",
+   "kinTotal": 1299,
+   "blogTotal": 426,
+   "blogPerDay": 0.19,
+   "newsTotal": 1491,
+   "newsPerDay": 0.11,
+   "latestNews": {
+    "title": "[인물탐구] ‘불편은 줄이고 권리는 두텁게’…김학선 전 광주국세청장...",
+    "date": "27 Aug 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.27
+  },
+  {
+   "keyword": "연금개혁 보험료율 13%",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 711,
+   "blogTotal": 317,
+   "blogPerDay": 0.32,
+   "newsTotal": 12810,
+   "newsPerDay": 1.48,
+   "latestNews": {
+    "title": "[윤민수 칼럼] 한 달 가입하고 평생 받는 연금? 국민연금의 ‘추납’ 제...",
+    "date": "03 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "national-pension-income-replacement-rate-43-reform"
+   ],
+   "gap": 0,
+   "demand": 7.26
+  },
+  {
+   "keyword": "홈택스 종부세 납부",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 1315,
+   "blogTotal": 279,
+   "blogPerDay": 0.07,
+   "newsTotal": 1621,
+   "newsPerDay": 0.09,
+   "latestNews": {
+    "title": "&quot;7월 재산세 고지서가 도착했다&quot; '송파구' 재산세 20.3% 올라",
+    "date": "07 Jul 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.24
+  },
+  {
+   "keyword": "고용보험료율 2027",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 79,
+   "blogTotal": 50,
+   "blogPerDay": 5,
+   "newsTotal": 343,
+   "newsPerDay": 3.33,
+   "latestNews": {
+    "title": "출산·혼인 혜택 확대 속 비혼·무자녀 ‘복지 소외감’",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.21
+  },
+  {
+   "keyword": "표준지 공시지가 열람",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-18",
+   "kinTotal": 258,
+   "blogTotal": 791,
+   "blogPerDay": 0.12,
+   "newsTotal": 17503,
+   "newsPerDay": 3.87,
+   "latestNews": {
+    "title": "성남시, 김정운 명사 특강·공시지가 열람·치매극복 행사 추진",
+    "date": "06 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 7.14
+  },
+  {
+   "keyword": "중간예납 분납",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 602,
+   "blogTotal": 1004,
+   "blogPerDay": 1.25,
+   "newsTotal": 1641,
+   "newsPerDay": 0.74,
+   "latestNews": {
+    "title": "30일 놓치면 부담 커진다… 재산세부터 법인세까지 줄줄이 마감 [9월 세...",
+    "date": "01 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "corporate-tax-interim-installment-penalty",
+    "interim-tax-payment-november-installment"
+   ],
+   "gap": 0,
+   "demand": 7.07
+  },
+  {
+   "keyword": "재산세 분납 250만원",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-09-16",
+   "kinTotal": 1052,
+   "blogTotal": 20,
+   "blogPerDay": 0.01,
+   "newsTotal": 592,
+   "newsPerDay": 0.05,
+   "latestNews": {
+    "title": "파주시, 재산세 729억 고지…지방세수 기반 확충",
+    "date": "14 Jul 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "property-tax-2026-payment-schedule-calculation"
+   ],
+   "gap": 0,
+   "demand": 6.98
+  },
+  {
+   "keyword": "홈택스 일괄제공 근로자 확인",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-11-30",
+   "kinTotal": 1005,
+   "blogTotal": 35,
+   "blogPerDay": 0.02,
+   "newsTotal": 1352,
+   "newsPerDay": 0.09,
+   "latestNews": {
+    "title": "근로장려금, 예상과 다른결과 대비 사전 확인 필요",
+    "date": "16 Aug 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.96
+  },
+  {
+   "keyword": "피부양자 소득요건 2000만원",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 905,
+   "blogTotal": 33,
+   "blogPerDay": 0.04,
+   "newsTotal": 870,
+   "newsPerDay": 0.19,
+   "latestNews": {
+    "title": "[CEO 상식의 배신] &quot;월급 올릴까, 배당할까?&quot; 건강보험료는 알고 있다",
+    "date": "24 Aug 2026"
+   },
+   "official": 1,
+   "ourRank": 5,
+   "existing": [],
+   "gap": 0,
+   "demand": 6.9
+  },
+  {
+   "keyword": "기초생활수급자 자격 2027",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 178,
+   "blogTotal": 27,
+   "blogPerDay": 0.49,
+   "newsTotal": 416,
+   "newsPerDay": 3.92,
+   "latestNews": {
+    "title": "세계적 대학으로 도약하는 우송대, 수시모집 진행",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [
+    "culture-nuri-card-2026-eligibility",
+    "debtor-protection-deposit-1m-limit",
+    "eitc-basic-livelihood-recipient-income"
+   ],
+   "gap": 0,
+   "demand": 6.9
+  },
+  {
+   "keyword": "2027년 예산안 국회",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 5,
+   "blogTotal": 173,
+   "blogPerDay": 10,
+   "newsTotal": 8816,
+   "newsPerDay": 40,
+   "latestNews": {
+    "title": "세종시, 법무부·성평등가족부 이전 대비 착수",
+    "date": "07 Sep 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.79
+  },
+  {
+   "keyword": "본인부담상한제 지급일",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-10-08",
+   "kinTotal": 107,
+   "blogTotal": 311,
+   "blogPerDay": 6.67,
+   "newsTotal": 22,
+   "newsPerDay": 0.01,
+   "latestNews": {
+    "title": "'의료비 초과금' 3조760억원 환급... 신청 방법·지급일은?",
+    "date": "31 Aug 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.69
+  },
+  {
+   "keyword": "양도세 기본공제 2500만원",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 432,
+   "blogTotal": 11,
+   "blogPerDay": 0.85,
+   "newsTotal": 285,
+   "newsPerDay": 0.8,
+   "latestNews": {
+    "title": "30억 아파트 10년 보유? 비거주시 양도세 4억대",
+    "date": "04 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 6.65
+  },
+  {
+   "keyword": "원천세 반기납부 신청",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 660,
+   "blogTotal": 338,
+   "blogPerDay": 0.25,
+   "newsTotal": 162,
+   "newsPerDay": 0.03,
+   "latestNews": {
+    "title": "9월 세무일지…재산세 납부·상반기 근로장려금 신청 잊지 마세요",
+    "date": "01 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.58
+  },
+  {
+   "keyword": "자동차세 2기분 납부기간",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-16",
+   "kinTotal": 521,
+   "blogTotal": 561,
+   "blogPerDay": 0.32,
+   "newsTotal": 5882,
+   "newsPerDay": 0.53,
+   "latestNews": {
+    "title": "면허 갱신부터 자동차세까지…놓치면 돈 나가는 운전자 필수 기한 [모터...",
+    "date": "31 Jul 2026"
+   },
+   "official": 9,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.57
+  },
+  {
+   "keyword": "직장인 건강검진 미수검 과태료",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 602,
+   "blogTotal": 94,
+   "blogPerDay": 0.32,
+   "newsTotal": 15,
+   "newsPerDay": 0,
+   "latestNews": {
+    "title": "[경일춘추]엔진오일 교체보다 중요한 내 삶의 지킴이, 국가건강검진",
+    "date": "12 Aug 2025"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [
+    "health-checkup-mandatory-fine-exemption"
+   ],
+   "gap": 0,
+   "demand": 6.5
+  },
+  {
+   "keyword": "산재보험료율 고시",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 571,
+   "blogTotal": 228,
+   "blogPerDay": 0.13,
+   "newsTotal": 361,
+   "newsPerDay": 0.09,
+   "latestNews": {
+    "title": "치과 원장도 ‘업무 중 사고’로 산재보상 가능",
+    "date": "07 Aug 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.42
+  },
+  {
+   "keyword": "대중교통 소득공제 폐지",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 233,
+   "blogTotal": 105,
+   "blogPerDay": 1.33,
+   "newsTotal": 805,
+   "newsPerDay": 1.05,
+   "latestNews": {
+    "title": "대중교통 카드 소득공제 줄어든다…'자체 할인' 챙겨라",
+    "date": "02 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 6.27
+  },
+  {
+   "keyword": "스트레스 금리 0.75%",
+   "cluster": "credit-loan",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 448,
+   "blogTotal": 135,
+   "blogPerDay": 0.04,
+   "newsTotal": 3565,
+   "newsPerDay": 0.33,
+   "latestNews": {
+    "title": "수도권 집값 잡으려 올린 금리…세입자 월세 부담만 키우나",
+    "date": "30 Aug 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.25
+  },
+  {
+   "keyword": "피부양자 탈락 12월",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 484,
+   "blogTotal": 33,
+   "blogPerDay": 0.01,
+   "newsTotal": 333,
+   "newsPerDay": 0.03,
+   "latestNews": {
+    "title": "배당 수익, 과세 방식따라 큰 차이… ‘비과세 감액배당’ 주목을",
+    "date": "11 Aug 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 6.2
+  },
+  {
+   "keyword": "종부세 납부기간 12월",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 366,
+   "blogTotal": 217,
+   "blogPerDay": 0.07,
+   "newsTotal": 2698,
+   "newsPerDay": 0.58,
+   "latestNews": {
+    "title": "[정부家] 이재명 대통령 ㉚ㅣ 프랑스 국빈외교부터 민생·노동까지…민...",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.16
+  },
+  {
+   "keyword": "원천세 반기납부 대상",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 436,
+   "blogTotal": 81,
+   "blogPerDay": 0.05,
+   "newsTotal": 197,
+   "newsPerDay": 0.03,
+   "latestNews": {
+    "title": "부가세 확정신고가 핵심…월말 제출기한도 빼곡 [7월 세무일지]",
+    "date": "01 Jul 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.11
+  },
+  {
+   "keyword": "에너지바우처 신청 마감",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 223,
+   "blogTotal": 213,
+   "blogPerDay": 2,
+   "newsTotal": 352,
+   "newsPerDay": 0.18,
+   "latestNews": {
+    "title": "[패트롤] 경기도-동두천시-양주시-의정부시-포천시",
+    "date": "27 Aug 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.08
+  },
+  {
+   "keyword": "1주택 양도세 개편 2028",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 49,
+   "blogTotal": 22,
+   "blogPerDay": 0.56,
+   "newsTotal": 1192,
+   "newsPerDay": 4.89,
+   "latestNews": {
+    "title": "8·3대책 여파 강남3구 수억원씩 뚝뚝… 8월 신고가 100건대",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 6.04
+  },
+  {
+   "keyword": "국민연금 임의가입 청년",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 332,
+   "blogTotal": 65,
+   "blogPerDay": 0.2,
+   "newsTotal": 748,
+   "newsPerDay": 0.4,
+   "latestNews": {
+    "title": "李 정부 '연금개혁' 시동…연금제도 어떻게 바뀌나",
+    "date": "02 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 6.03
+  },
+  {
+   "keyword": "국가장학금 1차 신청 2027",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-11-20",
+   "kinTotal": 113,
+   "blogTotal": 3,
+   "blogPerDay": 0.05,
+   "newsTotal": 210,
+   "newsPerDay": 3.12,
+   "latestNews": {
+    "title": "[기획특집] 'AI·글로벌·지역혁신' 이끄는 계명문화대학교, 수시 1685명...",
+    "date": "07 Sep 2026"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [
+    "national-scholarship-2026-2nd-semester-2nd-round"
+   ],
+   "gap": 0,
+   "demand": 6
+  },
+  {
+   "keyword": "소규모 사업장 원천세",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 322,
+   "blogTotal": 34,
+   "blogPerDay": 0.02,
+   "newsTotal": 89,
+   "newsPerDay": 0.01,
+   "latestNews": {
+    "title": "[초대석] '국제조세 스타' 조태윤 세무사 &quot;다국적 기업의 등대지기로 남...",
+    "date": "10 Aug 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.79
+  },
+  {
+   "keyword": "실업급여 상한액 66000원",
+   "cluster": "unemployment",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 311,
+   "blogTotal": 5,
+   "blogPerDay": 0,
+   "newsTotal": 43,
+   "newsPerDay": 0.1,
+   "latestNews": {
+    "title": "퇴사 하시게요? 생활비 줄이기 꼭 알아야 할 국가지원제도",
+    "date": "09 Jul 2020"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 5.78
+  },
+  {
+   "keyword": "종소세 중간예납 추계액 신고",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 311,
+   "blogTotal": 26,
+   "blogPerDay": 0.01,
+   "newsTotal": 107,
+   "newsPerDay": 0.03,
+   "latestNews": {
+    "title": "11월 세무일지…종소세 중간예납·장려금 신청 잘 챙겨야",
+    "date": "03 Nov 2025"
+   },
+   "official": 8,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.76
+  },
+  {
+   "keyword": "난방비 지원 신청 마감",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 273,
+   "blogTotal": 116,
+   "blogPerDay": 0.08,
+   "newsTotal": 801,
+   "newsPerDay": 0.22,
+   "latestNews": {
+    "title": "대구 서구, 취약계층 252가구 '난방비 부담' 낮춘다…에너지 효율 개선",
+    "date": "19 Aug 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.73
+  },
+  {
+   "keyword": "근로장려금 35% 선지급",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-17",
+   "kinTotal": 288,
+   "blogTotal": 19,
+   "blogPerDay": 0.05,
+   "newsTotal": 12,
+   "newsPerDay": 0.01,
+   "latestNews": {
+    "title": "2026년 상반기 근로장려금 9월 1일 반기 접수… 지급일 12월",
+    "date": "01 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 6,
+   "existing": [
+    "earned-income-credit-semiannual-application"
+   ],
+   "gap": 0,
+   "demand": 5.69
+  },
+  {
+   "keyword": "종부세 개편 2027",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 22,
+   "blogTotal": 145,
+   "blogPerDay": 1.82,
+   "newsTotal": 1104,
+   "newsPerDay": 16.26,
+   "latestNews": {
+    "title": "오세훈 &quot;전월세 대란 서울 전역 '주거 지옥'...민간임대사업자 규제 전...",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "tax-reform-2026-real-estate-residence-based"
+   ],
+   "gap": 0,
+   "demand": 5.68
+  },
+  {
+   "keyword": "홈택스 반기납부 신청 12월",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 245,
+   "blogTotal": 10,
+   "blogPerDay": 0,
+   "newsTotal": 157,
+   "newsPerDay": 0.16,
+   "latestNews": {
+    "title": "국세청, 상반기분 근로장려금 접수",
+    "date": "02 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.57
+  },
+  {
+   "keyword": "자동차 개소세 인하 종료",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 182,
+   "blogTotal": 497,
+   "blogPerDay": 0.36,
+   "newsTotal": 5876,
+   "newsPerDay": 0.6,
+   "latestNews": {
+    "title": "KDI &quot;경기 개선에도 소비는 아직&quot;",
+    "date": "07 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 5.56
+  },
+  {
+   "keyword": "종합부동산세 고지서 11월",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 209,
+   "blogTotal": 204,
+   "blogPerDay": 0.34,
+   "newsTotal": 1574,
+   "newsPerDay": 0.08,
+   "latestNews": {
+    "title": "[조남규칼럼] 부동산 세제에 낀 혈전(血栓)",
+    "date": "17 Aug 2026"
+   },
+   "official": 3,
+   "ourRank": 7,
+   "existing": [
+    "property-tax-d-day-june-1-confirmation"
+   ],
+   "gap": 0,
+   "demand": 5.48
+  },
+  {
+   "keyword": "스트레스 DSR 3단계 지방",
+   "cluster": "credit-loan",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 160,
+   "blogTotal": 503,
+   "blogPerDay": 0.77,
+   "newsTotal": 5247,
+   "newsPerDay": 0.43,
+   "latestNews": {
+    "title": "가계 빚 옥죄는 정부, 나라빚은 확대 '이중잣대' … 李 2기 장관 후보는...",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "stress-dsr-stage3-2026-loan-limit"
+   ],
+   "gap": 0,
+   "demand": 5.48
+  },
+  {
+   "keyword": "원천징수 반기별 납부 승인",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 222,
+   "blogTotal": 181,
+   "blogPerDay": 0.06,
+   "newsTotal": 153,
+   "newsPerDay": 0.01,
+   "latestNews": {
+    "title": "&quot;근로소득은 봉급·급료·보수·세비·임금·상여·수당과 이와 유사한 ...",
+    "date": "02 Oct 2025"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.43
+  },
+  {
+   "keyword": "유류세 인하 연장",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 98,
+   "blogTotal": 3377,
+   "blogPerDay": 1.43,
+   "newsTotal": 21207,
+   "newsPerDay": 0.59,
+   "latestNews": {
+    "title": "유가 90달러대, 임가공·표면처리는 연동 밖",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.26
+  },
+  {
+   "keyword": "세법개정안 시행 2027",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 36,
+   "blogTotal": 5,
+   "blogPerDay": 0.04,
+   "newsTotal": 1204,
+   "newsPerDay": 3.93,
+   "latestNews": {
+    "title": "[세무 경제] 부동산 과세 패러다임 전환, 불구덩이에서 살아남기",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 5.19
+  },
+  {
+   "keyword": "유류세 인하 종료",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 53,
+   "blogTotal": 1505,
+   "blogPerDay": 2.86,
+   "newsTotal": 13391,
+   "newsPerDay": 0.59,
+   "latestNews": {
+    "title": "유가 90달러대, 임가공·표면처리는 연동 밖",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 5.08
+  },
+  {
+   "keyword": "자동차세 12월 31일",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-16",
+   "kinTotal": 82,
+   "blogTotal": 102,
+   "blogPerDay": 0.09,
+   "newsTotal": 12929,
+   "newsPerDay": 0.87,
+   "latestNews": {
+    "title": "[1일 인천 강화군] 관외 대학생 주거비 지원 등",
+    "date": "01 Sep 2026"
+   },
+   "official": 10,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 4.79
+  },
+  {
+   "keyword": "종부세 분납 신청",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-01",
+   "kinTotal": 111,
+   "blogTotal": 401,
+   "blogPerDay": 0.08,
+   "newsTotal": 983,
+   "newsPerDay": 0.07,
+   "latestNews": {
+    "title": "종부세, 실제 누가 내고 있을까…지역·나이·주택 수 뜯어보니",
+    "date": "07 Sep 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [
+    "property-tax-nov-dec-payment-simulation"
+   ],
+   "gap": 0,
+   "demand": 4.77
+  },
+  {
+   "keyword": "표준주택 공시가격 2027",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-18",
+   "kinTotal": 56,
+   "blogTotal": 1,
+   "blogPerDay": 0,
+   "newsTotal": 586,
+   "newsPerDay": 1.68,
+   "latestNews": {
+    "title": "집값 안 꺾이면 2030년 서울 22개구 종부세…비강남권도 사정권",
+    "date": "07 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 4.72
+  },
+  {
+   "keyword": "2027 최저시급 주휴수당",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 35,
+   "blogTotal": 604,
+   "blogPerDay": 2.5,
+   "newsTotal": 181,
+   "newsPerDay": 0.84,
+   "latestNews": {
+    "title": "알바비만 매달 350만원…&quot;편의점주가 아니라 노예 생활&quot; 눈물 [벼랑 끝 ...",
+    "date": "23 Aug 2026"
+   },
+   "official": 5,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 4.67
+  },
+  {
+   "keyword": "주담대 한도 계산 2027",
+   "cluster": "credit-loan",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 58,
+   "blogTotal": 2,
+   "blogPerDay": 0.11,
+   "newsTotal": 51,
+   "newsPerDay": 0.34,
+   "latestNews": {
+    "title": "[THE CEO] 윤호영 카카오뱅크 대표",
+    "date": "28 Aug 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "bok-base-rate-frozen-fx-impact",
+    "didimdol-bogeumjari-general-mortgage",
+    "long-term-mortgage-interest-deduction-2026"
+   ],
+   "gap": 0,
+   "demand": 4.25
+  },
+  {
+   "keyword": "경유 유류세 인하율",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 31,
+   "blogTotal": 185,
+   "blogPerDay": 0.56,
+   "newsTotal": 6788,
+   "newsPerDay": 0.56,
+   "latestNews": {
+    "title": "7월까지 세금 274조원 걷혀…작년보다 41조원 늘었다",
+    "date": "31 Aug 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 3.86
+  },
+  {
+   "keyword": "2009년생 국민연금",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 11,
+   "blogTotal": 1,
+   "blogPerDay": 0,
+   "newsTotal": 133,
+   "newsPerDay": 3.41,
+   "latestNews": {
+    "title": "장애인연금 대상 26.7만명 확대…아동기본수당도 신설",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 3.85
+  },
+  {
+   "keyword": "건정심 보험료율",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 10,
+   "blogTotal": 213,
+   "blogPerDay": 0.05,
+   "newsTotal": 2392,
+   "newsPerDay": 3.25,
+   "latestNews": {
+    "title": "의협 &quot;반복되는 건강보험료 동결 재정 지속가능성 위협&quot;",
+    "date": "07 Sep 2026"
+   },
+   "official": 6,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 3.71
+  },
+  {
+   "keyword": "하이브리드 개별소비세 2027",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 17,
+   "blogTotal": 19,
+   "blogPerDay": 0.1,
+   "newsTotal": 673,
+   "newsPerDay": 1.77,
+   "latestNews": {
+    "title": "현대차 임협 타결…완성차 5社, 하반기 안방 사수전 본격화",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [
+    "eco-friendly-vehicle-tax-benefits-2026"
+   ],
+   "gap": 0,
+   "demand": 3.63
+  },
+  {
+   "keyword": "연료비조정단가 4분기",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-01",
+   "kinTotal": 22,
+   "blogTotal": 174,
+   "blogPerDay": 0.11,
+   "newsTotal": 8155,
+   "newsPerDay": 0.86,
+   "latestNews": {
+    "title": "한국전력 전날 하락 딛고 4퍼센트 반등 장중 3만2950원",
+    "date": "03 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 3.51
+  },
+  {
+   "keyword": "4대보험 요율 2027",
+   "cluster": "insurance-labor",
+   "source": "default",
+   "kinTotal": 28,
+   "blogTotal": 12,
+   "blogPerDay": 0.24,
+   "newsTotal": 22,
+   "newsPerDay": 0.02,
+   "latestNews": {
+    "title": "[2026 사이버보험 솔루션 리포트] 디지털재난 시대, 기업 '해킹 위험' 담...",
+    "date": "21 Aug 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [
+    "four-insurance-rate-2026-summary"
+   ],
+   "gap": 0,
+   "demand": 3.45
+  },
+  {
+   "keyword": "K세일페스타 참여기업",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-29",
+   "kinTotal": 3,
+   "blogTotal": 2,
+   "blogPerDay": 0,
+   "newsTotal": 512,
+   "newsPerDay": 6.73,
+   "latestNews": {
+    "title": "2026 K-세일페스타 참여기업 모집 시작…10월 29일 개막",
+    "date": "07 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 3.39
+  },
+  {
+   "keyword": "2027년 실업급여 하한액",
+   "cluster": "unemployment",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 0,
+   "blogTotal": 134,
+   "blogPerDay": 5,
+   "newsTotal": 68,
+   "newsPerDay": 4.22,
+   "latestNews": {
+    "title": "‘적자 늪’ 고용보험기금 손질…보험료율 인상·모성보호 분리",
+    "date": "06 Sep 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 3.19
+  },
+  {
+   "keyword": "실손 계약재매입",
+   "cluster": "insurance-personal",
+   "source": "calendar",
+   "date": "2026-11-01",
+   "kinTotal": 19,
+   "blogTotal": 128,
+   "blogPerDay": 0.13,
+   "newsTotal": 807,
+   "newsPerDay": 0.18,
+   "latestNews": {
+    "title": "[이재원의 보험이야기] 4000만명이 가입한 실손보험, 5세대 출시…갈아...",
+    "date": "04 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 3.11
+  },
+  {
+   "keyword": "전기차 개소세 감면 축소",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 14,
+   "blogTotal": 20,
+   "blogPerDay": 0.01,
+   "newsTotal": 439,
+   "newsPerDay": 0.71,
+   "latestNews": {
+    "title": "전기차 보조금 확 늘리나 ‘내년 EV’시장 커질까",
+    "date": "02 Sep 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 3
+  },
+  {
+   "keyword": "유류세 환원 리터당",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-09-30",
+   "kinTotal": 14,
+   "blogTotal": 31,
+   "blogPerDay": 0.01,
+   "newsTotal": 1730,
+   "newsPerDay": 0.15,
+   "latestNews": {
+    "title": "[사설]최고가격제 역설..교통량 되레 늘었다",
+    "date": "08 May 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 2.77
+  },
+  {
+   "keyword": "2027년 기초연금 선정기준액",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 4,
+   "blogTotal": 11,
+   "blogPerDay": 0.23,
+   "newsTotal": 187,
+   "newsPerDay": 2.74,
+   "latestNews": {
+    "title": "경남도 &quot;기초연금, 몰라서 놓치는 일 없도록 촘촘히 챙긴다&quot;",
+    "date": "06 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 2.77
+  },
+  {
+   "keyword": "K-세일페스타 2026",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-29",
+   "kinTotal": 1,
+   "blogTotal": 10,
+   "blogPerDay": 0.05,
+   "newsTotal": 484,
+   "newsPerDay": 6.73,
+   "latestNews": {
+    "title": "2026 K-세일페스타 참여기업 모집 시작…10월 29일 개막",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 2.71
+  },
+  {
+   "keyword": "최저임금 10700원 월급",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 11,
+   "blogTotal": 93,
+   "blogPerDay": 0.65,
+   "newsTotal": 3,
+   "newsPerDay": 0,
+   "latestNews": {
+    "title": "'10700원 최저임금' 고시...소상공인연합회 '취소소송 제기'",
+    "date": "05 Aug 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 2.68
+  },
+  {
+   "keyword": "코리아세일페스타 2026 기간",
+   "cluster": "public-services",
+   "source": "calendar",
+   "date": "2026-10-29",
+   "kinTotal": 2,
+   "blogTotal": 4,
+   "blogPerDay": 0.01,
+   "newsTotal": 422,
+   "newsPerDay": 3.92,
+   "latestNews": {
+    "title": "2026 K-세일페스타 참여기업 모집 시작…10월 29일 개막",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 2.67
+  },
+  {
+   "keyword": "지방 주담대 DSR 유예",
+   "cluster": "credit-loan",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 9,
+   "blogTotal": 89,
+   "blogPerDay": 0.31,
+   "newsTotal": 694,
+   "newsPerDay": 0.45,
+   "latestNews": {
+    "title": "“집 지을 돈 푼다”…PF 보증 26.3조→47.8조원+α 확대",
+    "date": "13 Aug 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [
+    "stress-dsr-stage3-2026-loan-limit"
+   ],
+   "gap": 0,
+   "demand": 2.58
+  },
+  {
+   "keyword": "친환경차 개소세 감면 종료",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 9,
+   "blogTotal": 26,
+   "blogPerDay": 0.02,
+   "newsTotal": 483,
+   "newsPerDay": 0.61,
+   "latestNews": {
+    "title": "엄태영, 전기차 개소세 감면 `29년까지 연장 추진…조특법 개정안 발의",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 2.55
+  },
+  {
+   "keyword": "구직급여 일액 2027",
+   "cluster": "unemployment",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 10,
+   "blogTotal": 0,
+   "blogPerDay": 0,
+   "newsTotal": 2,
+   "newsPerDay": 0,
+   "latestNews": {
+    "title": "[노동개혁 下] '쉬운 해고'보다 중요한 건 '공정한 평가'...사회안전망 ...",
+    "date": "20 Aug 2026"
+   },
+   "official": 4,
+   "ourRank": 0,
+   "existing": [
+    "unemployment-daily-payment-average-vs-ordinary"
+   ],
+   "gap": 0,
+   "demand": 2.4
+  },
+  {
+   "keyword": "2027년 건강보험료율",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-09-08",
+   "kinTotal": 2,
+   "blogTotal": 28,
+   "blogPerDay": 1.11,
+   "newsTotal": 761,
+   "newsPerDay": 1,
+   "latestNews": {
+    "title": "내년 건보료 동결 재검토하고 국고지원 법정기준 확보해야",
+    "date": "07 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 1.83
+  },
+  {
+   "keyword": "자동차세 연납 2027",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2027-01-16",
+   "kinTotal": 5,
+   "blogTotal": 6,
+   "blogPerDay": 0.03,
+   "newsTotal": 44,
+   "newsPerDay": 0.04,
+   "latestNews": {
+    "title": "[18일 안성시] ‘지방세 환급 안내문’ 발송 등",
+    "date": "18 Jun 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [
+    "car-tax-auto-debit-discount-application",
+    "car-tax-june-1q-payment-card-cashback",
+    "car-tax-june-installment-vs-january"
+   ],
+   "gap": 0,
+   "demand": 1.82
+  },
+  {
+   "keyword": "예산안 처리 12월 2일",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2026-12-02",
+   "kinTotal": 0,
+   "blogTotal": 65,
+   "blogPerDay": 0.03,
+   "newsTotal": 28391,
+   "newsPerDay": 4.17,
+   "latestNews": {
+    "title": "인천시 국비 반영 5건뿐… ‘인천사랑상품권’ 264억 감소",
+    "date": "07 Sep 2026"
+   },
+   "official": 2,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 1.68
+  },
+  {
+   "keyword": "에너지바우처 12월 31일",
+   "cluster": "gov-support",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 0,
+   "blogTotal": 161,
+   "blogPerDay": 2.86,
+   "newsTotal": 2282,
+   "newsPerDay": 0.77,
+   "latestNews": {
+    "title": "[Issue+] 내년도 농식품부 예산안 어떻게 짜여졌나",
+    "date": "07 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 1.17
+  },
+  {
+   "keyword": "연내 출고 세금 혜택",
+   "cluster": "auto",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 2,
+   "blogTotal": 0,
+   "blogPerDay": 0,
+   "newsTotal": 143,
+   "newsPerDay": 0.02,
+   "latestNews": {
+    "title": "생맥주 주세 20% 경감 운명은?…정부·국회 ‘종료 vs 연장’",
+    "date": "11 Aug 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 1.11
+  },
+  {
+   "keyword": "공시가격 현실화율 2027",
+   "cluster": "realestate",
+   "source": "calendar",
+   "date": "2026-12-18",
+   "kinTotal": 1,
+   "blogTotal": 1,
+   "blogPerDay": 0,
+   "newsTotal": 554,
+   "newsPerDay": 0.55,
+   "latestNews": {
+    "title": "&quot;강남만 내는 세금인 줄 알았는데&quot;…종부세, 서울 22개구로 확산",
+    "date": "06 Sep 2026"
+   },
+   "official": 0,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 0.91
+  },
+  {
+   "keyword": "2027년 세법 개정 연말정산",
+   "cluster": "tax",
+   "source": "calendar",
+   "date": "2027-01-01",
+   "kinTotal": 1,
+   "blogTotal": 1,
+   "blogPerDay": 0,
+   "newsTotal": 101,
+   "newsPerDay": 0.15,
+   "latestNews": {
+    "title": "종부세 개편안 완화…비거주 1주택 공제 12억원 유지",
+    "date": "01 Sep 2026"
+   },
+   "official": 3,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 0.75
+  },
+  {
+   "keyword": "청년 IRP 15% 세제개편",
+   "cluster": "pension",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 0,
+   "blogTotal": 6,
+   "blogPerDay": 0.2,
+   "newsTotal": 36,
+   "newsPerDay": 1.36,
+   "latestNews": {
+    "title": "34세 이하 청년이라면? 무조건 '이것'부터 가입해두세요",
+    "date": "18 Aug 2026"
+   },
+   "official": 1,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 0,
+   "demand": 0.6
+  },
+  {
+   "keyword": "2027년 산재보험료율",
+   "cluster": "insurance-labor",
+   "source": "calendar",
+   "date": "2026-12-31",
+   "kinTotal": 0,
+   "blogTotal": 2,
+   "blogPerDay": 0.29,
+   "newsTotal": 37,
+   "newsPerDay": 0.03,
+   "latestNews": {
+    "title": "[고용보험 제도개편②] 노동부, 고용보험료율 2027년 2.0%로 인상…월급...",
+    "date": "02 Sep 2026"
+   },
+   "official": 7,
+   "ourRank": 0,
+   "existing": [],
+   "gap": 1,
+   "demand": 0.1
+  },
+  {
+   "keyword": "연말정산 일정 2027년 1월",
+   "cluster": "office-tips",
+   "source": "calendar",
+   "date": "2026-11-30",
+   "kinTotal": 0,
+   "blogTotal": 0,
+   "blogPerDay": 0,
+   "newsTotal": 43,
+   "newsPerDay": 0.07,
+   "latestNews": {
+    "title": "[차호중의 재테크 칼럼] 소득과 세금에 대한 이해",
+    "date": "28 Aug 2026"
+   },
+   "official": 0,
+   "ourRank": 3,
+   "existing": [],
+   "gap": 0,
+   "demand": 0.03
+  }
+ ]
+}

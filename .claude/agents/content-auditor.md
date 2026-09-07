@@ -26,6 +26,7 @@ node scripts/audit/ai-tell-style.mjs        # 긴 줄표(—/–) — 신규 글
 node scripts/audit/publish-cadence.mjs      # 일 1편 캐던스
 node scripts/audit/template-footprint.mjs   # 제목·메타 풋프린트 (docs/24 P1)
 node scripts/audit/claims-guard.mjs         # 법정 수치 표기
+node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·애드센스 허위 진술 문구 (2026-09-07 신설, docs/25 §6)
 ```
 
 ## 수동 감사 체크 (PART 순서)
@@ -37,6 +38,11 @@ node scripts/audit/claims-guard.mjs         # 법정 수치 표기
 3. **FAQ 감사** (PART 31): 본문 복사 Q&A 인가. 새 정보 없는 FAQ 는 삭제 지시.
 4. **독창성 테스트** (PART 06): 경쟁 문서에 없는 정보·연결·판단 기준이 실재하는가.
    strategist 브리프의 ORIGINAL VALUE 후보가 본문에 실제 구현됐는가.
+   **독창 요소 1개 이상 의무** (2026-09-07, docs/25 §5 A5 — 구글 "커머디티 콘텐츠" 탈출 조건): 다음 중 하나가
+   실물로 있어야 PASS. ⓐ 머니룩 계산기 실행 결과 표 ⓑ 법령·고시 조문 직접 인용 + 시행일 ⓒ 익명화한 실제 사례 수치
+   ⓓ 기관 간 수치 차이 대조(예: 국세청 vs 지자체) ⓔ 원본 도표·스크린샷. 없으면 FAIL, 수정 지시에 어떤 요소를 넣을지 명시.
+   **안전 표현** (docs/research/2026-09-07-adsense-topic-value.md §3): "지금 가입 안 하면 손해"·"확정 수익"·"이 상품 추천"·
+   "여기서 신청" 류 판매 권유·이익 보장·절판 프레임은 FAIL. 보험·대출·연금은 제도 설명·비교 축 정의 프레임만.
 5. **사실 표기 감사** (PART 08·42): FACT/해석/추정/예시 구분이 무너진 문장.
    미검증 수치의 단정 표기 ("약 N" 근사 위반). 가짜 URL·기관명·문서명.
    1인칭 경험 위장 (PART 35). 내부링크가 실존 slug 인지 (`ls src/content/articles/<slug>.mdx`).
