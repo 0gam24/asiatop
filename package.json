@@ -21,6 +21,8 @@
     "audit:safe": "node scripts/audit/safe-expression.mjs",
     "audit:serp": "node scripts/audit/naver-serp.mjs",
     "audit:discover": "node scripts/audit/naver-discover.mjs",
+    "audit:rank": "node scripts/audit/naver-rank-track.mjs",
+    "audit:console": "node scripts/audit/naver-console-import.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",
     "audit:frontmatter": "node scripts/audit/frontmatter-coverage.mjs",
     "audit:bundle": "node scripts/audit/bundle-size.mjs",

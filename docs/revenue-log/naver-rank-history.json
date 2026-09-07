@@ -1,0 +1,231 @@
+{
+ "note": "네이버 웹문서 검색 API 기준 우리 글 순위 시계열. 0 = 30위 밖. 통합검색 첫 화면과 다름(docs/26 §2).",
+ "rows": [
+  {
+   "date": "2026-09-08",
+   "keyword": "부양가족 소득기준 300만원",
+   "rank": 1,
+   "url": "https://asiatop.co.kr/tax/dependent-deduction-income-threshold-300m-2026/",
+   "top1": "asiatop.co.kr",
+   "officialTop10": 2,
+   "total": 2726898
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "피부양자 소득요건 2000만원",
+   "rank": 5,
+   "url": "https://asiatop.co.kr/insurance-labor/health-insurance-dependent-loss-recovery/",
+   "top1": "chosun.com",
+   "officialTop10": 0,
+   "total": 168837
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "근로장려금 35% 선지급",
+   "rank": 6,
+   "url": "https://asiatop.co.kr/gov-support/earned-income-credit-semiannual-application/",
+   "top1": "nts.go.kr",
+   "officialTop10": 5,
+   "total": 3970497
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "종합부동산세 고지서 11월",
+   "rank": 7,
+   "url": "https://asiatop.co.kr/realestate/property-tax-nov-dec-payment-simulation/",
+   "top1": "nts.go.kr",
+   "officialTop10": 3,
+   "total": 71883
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "연말정산 일정 2027년 1월",
+   "rank": 3,
+   "url": "https://asiatop.co.kr/tax/yearend-tax-2026-schedule-changes/",
+   "top1": "shiftee.io",
+   "officialTop10": 0,
+   "total": 12506
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "K-세일페스타 2026",
+   "rank": 0,
+   "url": "",
+   "top1": "youtube.com",
+   "officialTop10": 2,
+   "total": 335715
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "거주불명자 조사",
+   "rank": 0,
+   "url": "",
+   "top1": "gov.kr",
+   "officialTop10": 9,
+   "total": 877099
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "실업급여 최저임금 80%",
+   "rank": 0,
+   "url": "",
+   "top1": "easylaw.go.kr",
+   "officialTop10": 7,
+   "total": 663653
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "2027년 예산안 국회",
+   "rank": 0,
+   "url": "",
+   "top1": "nsp.nanet.go.kr",
+   "officialTop10": 9,
+   "total": 1593875
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "코리아세일페스타 2026 기간",
+   "rank": 0,
+   "url": "",
+   "top1": "saledoctor.co.kr",
+   "officialTop10": 3,
+   "total": 570660
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "2009년생 국민연금",
+   "rank": 0,
+   "url": "",
+   "top1": "gbcsw.or.kr",
+   "officialTop10": 7,
+   "total": 1375608
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "종부세 기본공제 14억",
+   "rank": 0,
+   "url": "",
+   "top1": "seoul.co.kr",
+   "officialTop10": 2,
+   "total": 44266
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "2027 예산 청년 지원",
+   "rank": 0,
+   "url": "",
+   "top1": "mohw.go.kr",
+   "officialTop10": 6,
+   "total": 4228123
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "세법개정안 시행 2027",
+   "rank": 0,
+   "url": "",
+   "top1": "nabo.go.kr",
+   "officialTop10": 6,
+   "total": 80152
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "추석 민생안정대책 2026",
+   "rank": 0,
+   "url": "",
+   "top1": "korea.kr",
+   "officialTop10": 7,
+   "total": 1482433
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "추석 온누리상품권 할인",
+   "rank": 0,
+   "url": "",
+   "top1": "opengov.seoul.go.kr",
+   "officialTop10": 7,
+   "total": 395633
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "고령 운전자 면허 갱신",
+   "rank": 0,
+   "url": "",
+   "top1": "easylaw.go.kr",
+   "officialTop10": 10,
+   "total": 200052
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "본인부담상한제 지급일",
+   "rank": 0,
+   "url": "",
+   "top1": "nhis.or.kr",
+   "officialTop10": 8,
+   "total": 16109
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "2027년 건강보험료율",
+   "rank": 0,
+   "url": "",
+   "top1": "mohw.go.kr",
+   "officialTop10": 3,
+   "total": 1981104
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "온누리상품권 환급행사",
+   "rank": 0,
+   "url": "",
+   "top1": "mof.go.kr",
+   "officialTop10": 10,
+   "total": 340017
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "2026 추석 연휴",
+   "rank": 0,
+   "url": "",
+   "top1": "kholidayz.com",
+   "officialTop10": 5,
+   "total": 3259561
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "재산세 2기분",
+   "rank": 0,
+   "url": "",
+   "top1": "gyeongju.go.kr",
+   "officialTop10": 8,
+   "total": 399848
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "종부세 합산배제 신고",
+   "rank": 0,
+   "url": "",
+   "top1": "nts.go.kr",
+   "officialTop10": 9,
+   "total": 110818
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "자동차보험 갱신 비교",
+   "rank": 0,
+   "url": "",
+   "top1": "direct.hi.co.kr",
+   "officialTop10": 3,
+   "total": 1693755
+  },
+  {
+   "date": "2026-09-08",
+   "keyword": "에너지바우처 잔액조회",
+   "rank": 0,
+   "url": "",
+   "top1": "energyv.or.kr",
+   "officialTop10": 9,
+   "total": 65665
+  }
+ ],
+ "updatedAt": "2026-09-07T21:32:34.010Z"
+}
