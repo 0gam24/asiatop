@@ -1,0 +1,204 @@
+{
+  "pulledAt": "2026-09-03T08:27:57.799Z",
+  "site": "asiatop.co.kr",
+  "account": "accounts/pub-7830821732287404",
+  "policyIssues": [],
+  "last7days": [
+    {
+      "DATE": "2026-08-27",
+      "ESTIMATED_EARNINGS": "61.00",
+      "PAGE_VIEWS": "9011",
+      "IMPRESSIONS": "48808",
+      "CLICKS": "514"
+    },
+    {
+      "DATE": "2026-08-28",
+      "ESTIMATED_EARNINGS": "34.09",
+      "PAGE_VIEWS": "4135",
+      "IMPRESSIONS": "21445",
+      "CLICKS": "236"
+    },
+    {
+      "DATE": "2026-08-29",
+      "ESTIMATED_EARNINGS": "20.58",
+      "PAGE_VIEWS": "2477",
+      "IMPRESSIONS": "13076",
+      "CLICKS": "167"
+    },
+    {
+      "DATE": "2026-08-30",
+      "ESTIMATED_EARNINGS": "35.94",
+      "PAGE_VIEWS": "3678",
+      "IMPRESSIONS": "19178",
+      "CLICKS": "282"
+    },
+    {
+      "DATE": "2026-08-31",
+      "ESTIMATED_EARNINGS": "77.74",
+      "PAGE_VIEWS": "7329",
+      "IMPRESSIONS": "39156",
+      "CLICKS": "617"
+    },
+    {
+      "DATE": "2026-09-01",
+      "ESTIMATED_EARNINGS": "63.88",
+      "PAGE_VIEWS": "6951",
+      "IMPRESSIONS": "36476",
+      "CLICKS": "427"
+    },
+    {
+      "DATE": "2026-09-02",
+      "ESTIMATED_EARNINGS": "72.21",
+      "PAGE_VIEWS": "6650",
+      "IMPRESSIONS": "34517",
+      "CLICKS": "388"
+    }
+  ],
+  "adUnits_today": [],
+  "adUnits_yesterday": [],
+  "domains_today": [
+    {
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "1.68",
+      "PAGE_VIEWS": "228",
+      "IMPRESSIONS": "1258"
+    },
+    {
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "62.13",
+      "PAGE_VIEWS": "4247",
+      "IMPRESSIONS": "22898"
+    },
+    {
+      "DOMAIN_NAME": "beoppuri.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0"
+    },
+    {
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.33",
+      "PAGE_VIEWS": "54",
+      "IMPRESSIONS": "166"
+    },
+    {
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.01",
+      "PAGE_VIEWS": "19",
+      "IMPRESSIONS": "21"
+    },
+    {
+      "DOMAIN_NAME": "mureobom.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0"
+    },
+    {
+      "DOMAIN_NAME": "smartdatashop.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0"
+    }
+  ],
+  "gscProperty": "sc-domain:asiatop.co.kr",
+  "gscRange": {
+    "start": "2026-08-26",
+    "end": "2026-09-01"
+  },
+  "gscDaily": [
+    {
+      "date": "2026-08-26",
+      "clicks": 2,
+      "impressions": 89,
+      "ctr": 0.02247191011235955,
+      "position": 9.539325842696629
+    },
+    {
+      "date": "2026-08-27",
+      "clicks": 1,
+      "impressions": 70,
+      "ctr": 0.014285714285714285,
+      "position": 11.2
+    },
+    {
+      "date": "2026-08-28",
+      "clicks": 1,
+      "impressions": 49,
+      "ctr": 0.02040816326530612,
+      "position": 13.428571428571429
+    },
+    {
+      "date": "2026-08-29",
+      "clicks": 1,
+      "impressions": 35,
+      "ctr": 0.02857142857142857,
+      "position": 6.885714285714286
+    },
+    {
+      "date": "2026-08-30",
+      "clicks": 5,
+      "impressions": 68,
+      "ctr": 0.07352941176470588,
+      "position": 10.191176470588236
+    },
+    {
+      "date": "2026-08-31",
+      "clicks": 4,
+      "impressions": 82,
+      "ctr": 0.04878048780487805,
+      "position": 7.146341463414634
+    }
+  ],
+  "gscTopQueries": [
+    {
+      "query": "분양권 전매제한",
+      "clicks": 2,
+      "impressions": 9
+    },
+    {
+      "query": "실업급여 감액",
+      "clicks": 2,
+      "impressions": 4
+    },
+    {
+      "query": "갱신청구권 5프로",
+      "clicks": 1,
+      "impressions": 2
+    },
+    {
+      "query": "대학원생 국민연금",
+      "clicks": 1,
+      "impressions": 2
+    },
+    {
+      "query": "실업급여 연장",
+      "clicks": 1,
+      "impressions": 18
+    },
+    {
+      "query": "실업급여 연장 조건",
+      "clicks": 1,
+      "impressions": 11
+    },
+    {
+      "query": "전입신고 과태료",
+      "clicks": 1,
+      "impressions": 4
+    },
+    {
+      "query": "확정일자 모바일 조회",
+      "clicks": 1,
+      "impressions": 1
+    },
+    {
+      "query": "2026년 주민세",
+      "clicks": 0,
+      "impressions": 1
+    },
+    {
+      "query": "5인 미만 야간수당",
+      "clicks": 0,
+      "impressions": 1
+    }
+  ]
+}

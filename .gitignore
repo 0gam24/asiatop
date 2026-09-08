@@ -92,3 +92,6 @@ public/network-mirror.json
 .revenue-auth.json
 docs/revenue-log/inbox/*
 !docs/revenue-log/inbox/README.md
+
+# 예약 작업 런타임 락 (sessionId·pid 가 매 세션 바뀌어 커밋 노이즈만 남는다)
+.claude/scheduled_tasks.lock
