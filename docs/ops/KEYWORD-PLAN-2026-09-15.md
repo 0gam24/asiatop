@@ -70,16 +70,18 @@ awoo `naver-rank-check.mjs --mode=scout` 는 `search.naver.com` 을 크롬 User-
 |---|---|---|
 | `us` | asiatop.co.kr | |
 | `tool` | 조회·계산·발급 서비스 호스트 목록, 또는 제목·URL 에 계산기·모의계산 | hometax·wetax·si4n.nhis·4insure·gov.kr·plus.gov.kr·realtyprice·carinfo.knia·finlife.fss·safedriving |
-| `law` | 법률·노무 상담 | easylaw.go.kr·nodong.kr·lawtalk·scourt |
+| `law` | 민간 법률·노무 상담 (정부 운영 easylaw·law.go.kr·1350 은 gov) | nodong.kr·lawtalk·lawnb |
 | `gov` | *.go.kr · korea.kr | nts·moel·work24·mohw·molit·지자체 |
-| `public` | *.or.kr 공단·공공기관 | nhis·nps·kinfa·khug·silson24 |
+| `public` | 공단·공공기관·금융 협회 **목록** + *.re.kr | nhis·nps·kinfa·khug·silson24·kftc·crefia |
+| `org` | 목록 밖 *.or.kr·*.ac.kr·*.org (병원·학회·지역 재단·단체). **빈자리로 센다** | kdh.or.kr·gjworker.org |
 | `press` | 언론 호스트 목록 + news·ilbo·times 패턴 | yna·chosun·mk·taxtimes |
 | `finco` | 은행·카드·보험·증권·핀테크 | toss·banksalad·kbstar·wooribank·kebhana·miraeasset·kbsec·kakaobank |
-| `naver` | **신설** 네이버 자사 서비스 | pay.naver.com·terms.naver.com(지식백과) |
-| `ugc` | 블로그·카페·위키·커뮤니티 | blog.naver·tistory·brunch·namu.wiki |
+| `naver` | **신설** 네이버 자사 서비스. 거래형은 벽, 지식백과는 경고만 | pay.naver.com·land·finance / terms.naver.com |
+| `ugc` | 블로그·카페·지식iN·위키·커뮤니티 | blog.naver·kin.naver·tistory·brunch·namu.wiki |
 | `commercial` | 그 외 | 정보성 상업 사이트 |
 
 `stale` = 제목 속 연도 최댓값 < 올해. 옛 문서는 kind 와 무관하게 빈자리로 센다(자사 제외).
+구현: `scripts/audit/lib/naver-hosts.mjs` · 테스트 `tests/lib/naver-hosts.test.mjs`. 계산기 페이지가 있는 정보 사이트(사람인 등)는 호스트가 아니라 제목·URL 의 "계산기"로 도구 판정한다(호스트 통째로 넣으면 안내 글까지 도구가 된다, 2026-09-15 실측).
 
 ### 4-3. 웹문서 블록 위치 — 사람 눈 1분
 
@@ -97,8 +99,8 @@ API 로는 통합검색에서 웹문서 블록이 얼마나 아래 있는지 알
 |---|---|---|
 | 자사 순위 | null 또는 >3 | null 또는 >3 |
 | 도구 (상위 10) | ≤2 | ≤2 |
-| 관공서+공단+도구 (상위 5) | ≤3 | ≤4 |
-| 네이버 자사 서비스 (상위 3) | 0 | 0 |
+| 관공서+공단+도구 (상위 5) | ≤3 | ≤3 (상위 5 에 벽 4 면 잘해야 5~6위, 2026-09-15 청년미래적금 중도해지 실측으로 4→3) |
+| 네이버 거래형 서비스 (상위 3) | 0 | 0 (지식백과는 경고만) |
 | openSlots | ≥1 | 제한 없음 |
 | newsWall (7일 기사) | ≤15 | ≤40 (15 초과는 경고) |
 | eyeOffset | ≠3 | ≠3 |
