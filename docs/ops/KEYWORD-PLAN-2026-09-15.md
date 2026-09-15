@@ -141,7 +141,8 @@ API 로는 통합검색에서 웹문서 블록이 얼마나 아래 있는지 알
 - 673편을 **[제도 × 세그먼트 × 적용연도] × 패밀리** 로 분류. frontmatter 에 coreFacts 가 없으므로 제목·keywords·faq·첫 표에서 추출하고, 추출 실패는 `needsReview` 로 남긴다.
 - 30편 넘는 산출이라 CLAUDE.md 대규모 변경 패턴: dry-run 리포트 먼저, 샘플 20편 사람 확인 후 확정.
 - 신규 글부터 frontmatter 선택 필드 `targetQuery`·`coreFacts{who, amount|rate, deadline|effectiveDate, basis}` 추가(기존 글 무변경 → lastmod 영향 없음).
-- 명령: `--check "<제도 세그먼트 연도>" <A|B|V> [--facts=파일]` → PASS / VETO(같은 조합) / FIX(coreFacts 핵심값 2개 이상 겹침). `--append <파일>`.
+- 명령: `--check "<쿼리>" <A|B|V> [--facts=파일]` → PASS / VETO / FIX(coreFacts 핵심값 2개 이상 겹침). `--append <파일>`.
+- **운영자 결정(2026-09-15): 같은 주제라도 세부 키워드가 다르면 허용.** VETO 는 ① 그 세부 키워드를 이미 키워드로 쓴 글 ② 제도·세부 키워드·패밀리·세그먼트·연도 전부 같은 글, 두 경우만. 의도어(조건·신청·기간·계산)도 세부 키워드로 센다. 구현 `scripts/audit/naver-ledger.mjs`.
 - 패밀리 판정 정규식은 프로파일 §3 제목 단서.
 
 ### 6-2. 파이프라인 `audit/naver-pipeline.mjs`
