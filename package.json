@@ -25,6 +25,7 @@
     "audit:console": "node scripts/audit/naver-console-import.mjs",
     "audit:scout": "node scripts/audit/naver-scout.mjs",
     "audit:volume": "node scripts/audit/naver-volume.mjs",
+    "audit:ledger": "node scripts/audit/naver-ledger.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",
     "audit:frontmatter": "node scripts/audit/frontmatter-coverage.mjs",
     "audit:bundle": "node scripts/audit/bundle-size.mjs",
