@@ -7,7 +7,8 @@
 //         V 정말인가·확정인가(정부안·개정안·폐지 여부·미정)
 //   세부 주제(aspect) = 대표 키워드에서 제도 이름·세그먼트·연도·숫자·일반 의도어(방법·신청·조건…)를 뺀 나머지 낱말.
 //     종합소득세 글 16편이 한 칸에 몰리던 문제(2026-09-15 드라이런)를 푼다: "종합소득세 추계신고" ≠ "종합소득세 분납".
-//   판정 VETO = 같은 제도·패밀리·세그먼트·연도에 세부 주제까지 같은 글이 이미 있다
+//   운영자 결정(2026-09-15): 같은 주제라도 세부 키워드가 다르면 새 글 허용. 조건·신청·기간·계산 같은 의도어도 세부 키워드다.
+//   판정 VETO = 이 세부 키워드를 이미 키워드로 쓴 글이 있거나, 제도·패밀리·세그먼트·연도에 세부 주제까지 같은 글이 있다
 //        FIX  = 같은 제도 글과 coreFacts(금액·날짜·대상·근거) 핵심값이 2개 이상 겹친다 → 새 글 대신 기존 글 갱신 검토
 //        PASS = 그 외. 같은 제도 글 목록은 내부 링크 후보로 돌려준다
 // 글 frontmatter 에 coreFacts 가 없어(2026-09-15) 제목·description·keywords·sources 에서 뽑는다. 신규 글은 targetQuery·coreFacts 를 쓰면 그 값을 우선한다.
@@ -143,7 +144,11 @@ export function detectSegments(text, program = null) {
 }
 
 // ── 세부 주제 ────────────────────────────────────────────────────────────
-export const ASPECT_STOP = new Set(['방법', '총정리', '정리', '가이드', '완벽', '신청', '신청방법', '조건', '대상', '자격', '기간', '기준', '금액', '얼마', '계산', '계산법', '비교', '차이', '핵심', '체크리스트', '주의', '주의사항', '팁', '꿀팁', '올해', '내년', '최신', '변경', '달라지는', '안내', '뜻', '종류', '혜택', '지원', '받는', '받기', '하는', '하면', '되나요', '하나요', '언제', '어디서', '정확히', '한눈에', '신고', '납부']);
+// 운영자 결정(2026-09-15): "같은 주제라도 세부 키워드가 다르면 문제없다." → 조건·신청·기간·계산·비교 같은 의도어도
+// 세부 키워드로 센다("조기재취업수당 조건" ≠ "조기재취업수당 신청"). 여기엔 뜻을 바꾸지 않는 군더더기만 남긴다.
+export const ASPECT_STOP = new Set(['방법', '총정리', '정리', '가이드', '완벽', '핵심', '팁', '꿀팁', '올해', '내년', '최신', '안내', '받는', '받기', '하는', '하면', '되나요', '하나요', '정확히', '한눈에', '알아보기', '신고', '납부']);
+// 세부 키워드 비교용 정규화: 띄어쓰기·연도 무시
+export const normKeyword = (s) => String(s || '').toLowerCase().replace(/20\d{2}년?/g, '').replace(/\s+/g, '');
 export function detectAspect(primary, program) {
   let s = String(primary || '').replace(/기한\s+후/g, '기한후').replace(/중도\s+해지/g, '중도해지');
   const entry = PROGRAMS.find(([name]) => name === program);
@@ -221,7 +226,8 @@ export function buildEntry(slug, mdx) {
   return {
     slug, path: `src/content/articles/${slug}.mdx`, cluster: meta.cluster || null, title: meta.title || '',
     publishedAt: meta.publishedAt || null, updatedAt: meta.updatedAt || null,
-    targetQuery: primary, program, aspect, segments, year, yearInferred,
+    targetQuery: primary, keywordSet: [...new Set([primary, ...meta.keywords].map(normKeyword).filter(Boolean))],
+    program, aspect, segments, year, yearInferred,
     family: fam.family, familyEvidence: fam.evidence,
     coreFacts, coreFactsKeys: ['who', 'amount', 'deadline', 'basis'].filter((k) => coreFacts[k]),
     needsReview: reviewReason.length > 0, reviewReason,
@@ -258,8 +264,11 @@ export function checkCandidate(entries, { query, family, facts = null }) {
   const sameYear = (e) => year == null || e.year == null || e.year === year;
   const sameAspect = (e) => (e.aspect || []).join(',') === aspect.join(',');
   const overlapsAspect = (e) => { const ea = e.aspect || []; return ea.length > 0 && aspect.length > 0 && (ea.every((t) => aspect.includes(t)) || aspect.every((t) => ea.includes(t))); };
-  const veto = same.filter((e) => e.family === fam && sameSeg(e) && sameYear(e) && sameAspect(e));
-  if (veto.length) return { verdict: 'VETO', program, aspect, segments, year, family: fam, reason: '같은 제도·세부 주제·패밀리·세그먼트·연도 글이 이미 있다 → 새 글 대신 기존 글 갱신', matches: veto.map((e) => ({ slug: e.slug, title: e.title })) };
+  // ① 이 세부 키워드를 이미 키워드 목록에 넣고 쓴 글 ② 제도·세부 주제·패밀리·세그먼트·연도가 모두 같은 글
+  const nq = normKeyword(query);
+  const targeted = entries.filter((e) => (e.keywordSet || []).includes(nq));
+  const veto = [...new Set([...targeted, ...same.filter((e) => e.family === fam && sameSeg(e) && sameYear(e) && sameAspect(e))])];
+  if (veto.length) return { verdict: 'VETO', program, aspect, segments, year, family: fam, reason: targeted.length ? '이 세부 키워드로 이미 쓴 글이 있다 → 새 글 대신 기존 글 갱신' : '같은 제도·세부 주제·패밀리·세그먼트·연도 글이 이미 있다 → 새 글 대신 기존 글 갱신', matches: veto.map((e) => ({ slug: e.slug, title: e.title })) };
   if (facts) {
     const fix = same.map((e) => ({ e, o: factOverlap(e.coreFacts, facts) })).filter((x) => x.o.n >= 2);
     if (fix.length) return { verdict: 'FIX', program, aspect, segments, year, family: fam, reason: 'coreFacts 핵심값 2개 이상 겹침 → 각도를 바꾸거나 기존 글 갱신', matches: fix.map((x) => ({ slug: x.e.slug, title: x.e.title, overlap: x.o.hit })) };

@@ -71,7 +71,8 @@ describe('detectSegments / detectAspect / detectYear', () => {
   it('세부 주제는 일반 의도어·연도·숫자를 뺀 낱말', () => {
     expect(detectAspect('종합소득세 추계신고 방법 2026', '종합소득세')).toEqual(['추계신고']);
     expect(detectAspect('종합소득세 기한 후 신고 가산세', '종합소득세')).toEqual(['가산세', '기한후']);
-    expect(detectAspect('조기재취업수당 조건', '조기재취업수당')).toEqual([]);
+    expect(detectAspect('조기재취업수당 조건', '조기재취업수당')).toEqual(['조건']); // 의도어도 세부 키워드 (운영자 결정 2026-09-15)
+    expect(detectAspect('조기재취업수당 신청 방법', '조기재취업수당')).toEqual(['신청']);
   });
   it('연도는 제목 최댓값, 없으면 발행일에서 추정', () => {
     expect(detectYear('2025~2027 비교', '2026-01-01')).toEqual({ year: 2027, yearInferred: false });
@@ -111,19 +112,24 @@ describe('checkCandidate', () => {
     buildEntry('youth-rent-support', mdx({ title: '청년월세 20만원 지원, 9월 30일까지 신청', kw: '청년월세 지원' })),
   ];
 
-  it('같은 제도·세부 주제·패밀리면 VETO (조기재취업수당 조건 → 기존 신청 글)', () => {
-    const r = checkCandidate(entries, { query: '조기재취업수당 조건', family: 'A' });
+  it('이미 키워드로 쓴 세부 키워드면 VETO (띄어쓰기·연도 무시)', () => {
+    const r = checkCandidate(entries, { query: '2026 조기재취업 수당', family: 'A' });
     expect(r.verdict).toBe('VETO');
     expect(r.matches[0].slug).toBe('early-reemployment-allowance-application');
+  });
+  it('같은 주제라도 세부 키워드가 다르면 PASS (조기재취업수당 조건 ≠ 신청)', () => {
+    const r = checkCandidate(entries, { query: '조기재취업수당 조건', family: 'A' });
+    expect(r.verdict).toBe('PASS');
+    expect(r.matches.map((m) => m.slug)).toContain('early-reemployment-allowance-application');
   });
   it('세그먼트가 다르면 PASS + 같은 제도 글을 내부 링크 후보로 (주휴수당 퇴사하는 주)', () => {
     const r = checkCandidate(entries, { query: '주휴수당 퇴사하는 주', family: 'A' });
     expect(r.verdict).toBe('PASS');
     expect(r.matches.map((m) => m.slug)).toContain('weekly-holiday-allowance-calculation');
   });
-  it('패밀리가 다르면 PASS (실업급여 부정수급 A ≠ B)', () => {
-    expect(checkCandidate(entries, { query: '실업급여 부정수급', family: 'A' }).verdict).toBe('PASS');
-    expect(checkCandidate(entries, { query: '실업급여 부정수급', family: 'B' }).verdict).toBe('VETO');
+  it('같은 세부 키워드는 패밀리가 달라도 VETO, 세부 키워드를 더하면 PASS', () => {
+    expect(checkCandidate(entries, { query: '실업급여 부정수급', family: 'A' }).verdict).toBe('VETO');
+    expect(checkCandidate(entries, { query: '실업급여 부정수급 신고 포상금', family: 'A' }).verdict).toBe('PASS');
   });
   it('세부 주제가 달라도 핵심값이 2개 겹치면 FIX', () => {
     const r = checkCandidate(entries, { query: '청년월세 이사', family: 'A', facts: { amount: '20만원', deadline: '9월30일' } });
