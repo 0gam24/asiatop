@@ -1,0 +1,4838 @@
+{
+ "_readme": [
+  "2026-09-15 1회성 정찰 결과. docs/ops/KEYWORD-PLAN-2026-09-15.md §1 의 근거 원본.",
+  "공식 API 만 사용: 검색량 = NAVER API HUB /search-trend/v1/search (일간 30일, 호출마다 실업급여 포함 → 실업급여 30일 평균 = 100 환산, awoo 와 같은 눈금). 상위 문서 = /search/v1/webkr display=10. news7 = /search/v1/news 최근 7일 기사 수(롱테일만).",
+  "kind 분류표는 초안(SITE-KEYWORD-PROFILE §5). stale = 제목 속 연도 최댓값 < 2026. openSlots = commercial + ugc + stale.",
+  "rank 는 웹문서 검색 API 기준이며 통합검색 첫 화면 순위와 다르다.",
+  "2026-09-15 보정: 증권사·은행 호스트(miraeasset·kbsec·shinhansec·kebhana 등)가 commercial 로 잡혀 openSlots 가 부풀던 것을 finco 로 재분류했다(20건)."
+ ],
+ "measuredAt": "2026-09-15T04:56:21.759Z",
+ "anchor": "실업급여=100 (30일 평균)",
+ "heads": [
+  {
+   "axis": "월급·세금",
+   "keyword": "연말정산",
+   "rel30": 10.6,
+   "recent7": 10.9,
+   "prev7": 11.3,
+   "news7": null,
+   "webTotal": 4989585,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 5,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 6,
+     "host": "mob.tbys.hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "gtsa.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "snuh.org",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "월급·세금",
+   "keyword": "종합소득세",
+   "rel30": 22.6,
+   "recent7": 17,
+   "prev7": 27.9,
+   "news7": null,
+   "webTotal": 6716930,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 6,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 5,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "월급·세금",
+   "keyword": "근로장려금",
+   "rel30": 605.7,
+   "recent7": 237.6,
+   "prev7": 667.5,
+   "news7": null,
+   "webTotal": 4655705,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 4,
+   "public": 0,
+   "tool": 5,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 5,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 10,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "월급·세금",
+   "keyword": "원천징수영수증",
+   "rel30": 27.7,
+   "recent7": 27.8,
+   "prev7": 28.7,
+   "news7": null,
+   "webTotal": 1470373,
+   "rank": null,
+   "openSlots": 5,
+   "gov": 4,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "help.3o3.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 7,
+     "host": "taxlaw.nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 9,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "start.zuzu.network",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "월급·세금",
+   "keyword": "건강보험료",
+   "rel30": 14.3,
+   "recent7": 16.7,
+   "prev7": 15.5,
+   "news7": null,
+   "webTotal": 22190007,
+   "rank": null,
+   "openSlots": 4,
+   "gov": 0,
+   "public": 2,
+   "tool": 0,
+   "finco": 0,
+   "law": 4,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 8,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 9,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 10,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "월급·세금",
+   "keyword": "국민연금 보험료",
+   "rel30": 1.4,
+   "recent7": 1.1,
+   "prev7": 1.8,
+   "news7": null,
+   "webTotal": 5712703,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 1,
+   "public": 4,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "nps.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "nps.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 5,
+     "host": "npsonair.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "nps.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 7,
+     "host": "npsonair.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "si4n.nhis.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "nps.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "gov.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "월급·세금",
+   "keyword": "4대보험 계산",
+   "rel30": 1.8,
+   "recent7": 1.9,
+   "prev7": 2.2,
+   "news7": null,
+   "webTotal": 26730693,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 0,
+   "public": 1,
+   "tool": 9,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "m.4insure.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "4insure.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "4insure.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "nodong.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 6,
+     "host": "findsemusa.com",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "xn--989ap5sl4gg4bd12b.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "findsemusa.com",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "samdukcpa.co.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 10,
+     "host": "shiftee.io",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "실업급여",
+   "rel30": 100,
+   "recent7": 87.5,
+   "prev7": 152,
+   "news7": null,
+   "webTotal": 2831889,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 3,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 6,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "work24.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "work24.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 8,
+     "host": "eiac.ei.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 10,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "퇴직금",
+   "rel30": 14.8,
+   "recent7": 15.3,
+   "prev7": 15.3,
+   "news7": null,
+   "webTotal": 27191376,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 2,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 5,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 3,
+     "host": "saramin.co.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 8,
+     "host": "labor.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 10,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "주휴수당",
+   "rel30": 48.8,
+   "recent7": 47.4,
+   "prev7": 53,
+   "news7": null,
+   "webTotal": 11813233,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 1,
+   "public": 0,
+   "tool": 5,
+   "finco": 0,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 3,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "nodong.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "shiftee.io",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "findsemusa.com",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "findsemusa.com",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "m.alba.co.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "law.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "연차수당",
+   "rel30": 6,
+   "recent7": 6.1,
+   "prev7": 6.1,
+   "news7": null,
+   "webTotal": 15080518,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 6,
+   "public": 0,
+   "tool": 3,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nodong.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "glasswallet.com",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "law.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "labor.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "shiftee.io",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "cheongwon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "최저임금",
+   "rel30": 43.6,
+   "recent7": 43.4,
+   "prev7": 48.3,
+   "news7": null,
+   "webTotal": 11763589,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 6,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "minimumwage.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "minimumwage.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "minimumwage.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "index.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "moel.go.kr",
+     "kind": "gov",
+     "stale": true
+    },
+    {
+     "r": 7,
+     "host": "moel.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 9,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 10,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "퇴사 후 건강보험",
+   "rel30": 1.4,
+   "recent7": 1.4,
+   "prev7": 2.1,
+   "news7": null,
+   "webTotal": 929118,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 0,
+   "public": 2,
+   "tool": 1,
+   "finco": 0,
+   "law": 4,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 3,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "geonbocalc.com",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 7,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 8,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 9,
+     "host": "yna.co.kr",
+     "kind": "press"
+    },
+    {
+     "r": 10,
+     "host": "goeyi.kr",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "일·퇴사",
+   "keyword": "권고사직",
+   "rel30": 10.1,
+   "recent7": 11.9,
+   "prev7": 10.1,
+   "news7": null,
+   "webTotal": 1212367,
+   "rank": null,
+   "openSlots": 7,
+   "gov": 1,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 2,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "imhr.work",
+     "kind": "commercial"
+    },
+    {
+     "r": 2,
+     "host": "jobplanet.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 5,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 7,
+     "host": "changwon.scourt.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 8,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "adobe.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "lawtalk.co.kr",
+     "kind": "law"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "청년도약계좌",
+   "rel30": 49.1,
+   "recent7": 46.3,
+   "prev7": 53.1,
+   "news7": null,
+   "webTotal": 1965770,
+   "rank": null,
+   "openSlots": 5,
+   "gov": 2,
+   "public": 2,
+   "tool": 0,
+   "finco": 2,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "blog.naver.com",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "banksalad.com",
+     "kind": "finco",
+     "stale": true
+    },
+    {
+     "r": 5,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 7,
+     "host": "benefit.studygov.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "youthcenter.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "obank.kbstar.com",
+     "kind": "finco"
+    },
+    {
+     "r": 10,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "청년미래적금",
+   "rel30": 261.5,
+   "recent7": 269,
+   "prev7": 358.6,
+   "news7": null,
+   "webTotal": 832619,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 3,
+   "public": 3,
+   "tool": 0,
+   "finco": 3,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "fill4young.kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "job.gg.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 4,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 5,
+     "host": "kakaobank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 8,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "kbthink.com",
+     "kind": "finco"
+    },
+    {
+     "r": 10,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "ISA 계좌",
+   "rel30": 74.3,
+   "recent7": 57.1,
+   "prev7": 74.7,
+   "news7": null,
+   "webTotal": 747381,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 1,
+   "public": 1,
+   "tool": 0,
+   "finco": 5,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "obank.kbstar.com",
+     "kind": "finco"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "nicesongtoyou.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "securities.miraeasset.com",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "shinhansec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "portal.kfb.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 7,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 8,
+     "host": "kbsec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 9,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "신용점수 올리기",
+   "rel30": 2,
+   "recent7": 2,
+   "prev7": 1.8,
+   "news7": null,
+   "webTotal": 2033892,
+   "rank": null,
+   "openSlots": 4,
+   "gov": 3,
+   "public": 0,
+   "tool": 0,
+   "finco": 3,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "credit.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 2,
+     "host": "kakaobank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 3,
+     "host": "allcredit.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "gangnam.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "story.kakaopay.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "kca.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "council.gwangju.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "cardif.co.kr",
+     "kind": "finco"
+    },
+    {
+     "r": 9,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 10,
+     "host": "cardif.co.kr",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "햇살론유스",
+   "rel30": 10.5,
+   "recent7": 11.1,
+   "prev7": 10.1,
+   "news7": null,
+   "webTotal": 133337,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 2,
+   "public": 5,
+   "tool": 0,
+   "finco": 1,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "mmc.kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 4,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 5,
+     "host": "mmc.kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 6,
+     "host": "youthcenter.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "tossbank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 8,
+     "host": "youthcenter.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 10,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "비상금대출",
+   "rel30": 18.4,
+   "recent7": 17.5,
+   "prev7": 16.4,
+   "news7": null,
+   "webTotal": 4641756,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 0,
+   "public": 0,
+   "tool": 0,
+   "finco": 7,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nicesongtoyou.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 2,
+     "host": "kebhana.com",
+     "kind": "finco"
+    },
+    {
+     "r": 3,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 4,
+     "host": "tossbank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "kakaobank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "obank.kbstar.com",
+     "kind": "finco"
+    },
+    {
+     "r": 7,
+     "host": "finnq.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 9,
+     "host": "daolsb.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "banksalad.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "청년 금융·신용",
+   "keyword": "적금 이자 계산",
+   "rel30": 0.9,
+   "recent7": 0.8,
+   "prev7": 0.8,
+   "news7": null,
+   "webTotal": 522651,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 0,
+   "public": 0,
+   "tool": 9,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "brunch.co.kr",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "fsb.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "svc.wooribank.com",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "thekbank.co.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "banksalad.com",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "bohumkr.com",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "omoney.kbstar.com",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "omoney.kbstar.com",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "fincalc.co.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 10,
+     "host": "best79.com",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "청년 주거",
+   "keyword": "청년월세지원",
+   "rel30": 57.9,
+   "recent7": 94.2,
+   "prev7": 53.5,
+   "news7": null,
+   "webTotal": 2077026,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 9,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "bokjiro.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "young.busan.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "soco.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "housing.gg.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "youth.incheon.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "청년 주거",
+   "keyword": "버팀목전세자금대출",
+   "rel30": 6.4,
+   "recent7": 6.6,
+   "prev7": 6.8,
+   "news7": null,
+   "webTotal": 340277,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 6,
+   "public": 1,
+   "tool": 0,
+   "finco": 2,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 3,
+     "host": "svc.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 4,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 7,
+     "host": "khug.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 8,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "m.myhome.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "청년 주거",
+   "keyword": "전세보증보험",
+   "rel30": 15.9,
+   "recent7": 14.7,
+   "prev7": 16.5,
+   "news7": null,
+   "webTotal": 5794976,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 4,
+   "public": 3,
+   "tool": 1,
+   "finco": 1,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "khug.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "khug.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "xn--989a00af8jnslv3dba.com",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "hf.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "toss.im",
+     "kind": "finco"
+    },
+    {
+     "r": 7,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 9,
+     "host": "hf.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "khug.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "청년 주거",
+   "keyword": "확정일자",
+   "rel30": 10.3,
+   "recent7": 10.1,
+   "prev7": 10.7,
+   "news7": null,
+   "webTotal": 13629992,
+   "rank": null,
+   "openSlots": 4,
+   "gov": 3,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "iros.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "iros.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 7,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "data.iros.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "gov.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "청년 주거",
+   "keyword": "전입신고",
+   "rel30": 55.6,
+   "recent7": 48.8,
+   "prev7": 60.6,
+   "news7": null,
+   "webTotal": 5363735,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 4,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 3,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 3,
+     "host": "mylawstory.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "cheongju.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "sejong.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "gc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "yongin.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    }
+   ]
+  },
+  {
+   "axis": "청년 주거",
+   "keyword": "전세사기",
+   "rel30": 6.1,
+   "recent7": 5.7,
+   "prev7": 6,
+   "news7": null,
+   "webTotal": 7889347,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 3,
+   "public": 1,
+   "tool": 0,
+   "finco": 0,
+   "law": 2,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "bbc.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 3,
+     "host": "mk.co.kr",
+     "kind": "press"
+    },
+    {
+     "r": 4,
+     "host": "jeonse.kgeop.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "khug.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 6,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 7,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 10,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정·차",
+   "keyword": "자동차보험 갱신",
+   "rel30": 1.2,
+   "recent7": 1.3,
+   "prev7": 1.2,
+   "news7": null,
+   "webTotal": 4708445,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 1,
+   "public": 1,
+   "tool": 3,
+   "finco": 4,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "mycar.kidi.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "carinfo.knia.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "carinfo.knia.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "direct.hi.co.kr",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "carinfo.knia.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "store.meritzfire.com",
+     "kind": "finco"
+    },
+    {
+     "r": 7,
+     "host": "bucheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "direct.hi.co.kr",
+     "kind": "finco"
+    },
+    {
+     "r": 9,
+     "host": "directdb.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "toss.im",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정·차",
+   "keyword": "운전면허 갱신",
+   "rel30": 32.4,
+   "recent7": 30.8,
+   "prev7": 36.7,
+   "news7": null,
+   "webTotal": 1008114,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 1,
+   "public": 2,
+   "tool": 2,
+   "finco": 0,
+   "law": 3,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "safedriving.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 3,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "minwon24.police.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "pmaa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 8,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 9,
+     "host": "nhimc.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "xn--249al4y3qg64d9ybfzd827a.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정·차",
+   "keyword": "자동차세 연납",
+   "rel30": 1,
+   "recent7": 1,
+   "prev7": 0.9,
+   "news7": null,
+   "webTotal": 232111,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 4,
+   "public": 0,
+   "tool": 5,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "wetax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "110.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "wetax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "anyang.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "gwanak.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "wetax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 8,
+     "host": "etax.seoul.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "mois.go.kr",
+     "kind": "gov",
+     "stale": true
+    },
+    {
+     "r": 10,
+     "host": "etax.seoul.go.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정·차",
+   "keyword": "주민등록등본 발급",
+   "rel30": 50.4,
+   "recent7": 45.5,
+   "prev7": 55,
+   "news7": null,
+   "webTotal": 2588064,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 4,
+   "public": 0,
+   "tool": 5,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "plus.gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "ddm.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "transport.chungnam.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "sejong.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "incheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "help-me.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "gov.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정·차",
+   "keyword": "여권 재발급",
+   "rel30": 62.6,
+   "recent7": 61.7,
+   "prev7": 63.4,
+   "news7": null,
+   "webTotal": 501265,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 7,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "passport.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "opengov.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "passport.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "hsg.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "passport.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "passport.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "sd.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "보험·의료비",
+   "keyword": "실손보험 청구",
+   "rel30": 7,
+   "recent7": 7,
+   "prev7": 7.4,
+   "news7": null,
+   "webTotal": 1302518,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 3,
+   "public": 4,
+   "tool": 0,
+   "finco": 2,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "silson24.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "silson24.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "insurance-claim.pay.naver.com",
+     "kind": "finco"
+    },
+    {
+     "r": 4,
+     "host": "epostlife.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "xn--2e0bl2upwcvvbs6gj9bev4anjr.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "fss.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 9,
+     "host": "silson24.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "samsungfire.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "보험·의료비",
+   "keyword": "본인부담상한제",
+   "rel30": 44,
+   "recent7": 41.7,
+   "prev7": 65.8,
+   "news7": null,
+   "webTotal": 448968,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 1,
+   "public": 7,
+   "tool": 0,
+   "finco": 1,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 5,
+     "host": "kbinsure.co.kr",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "hira.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 8,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 9,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "보험·의료비",
+   "keyword": "건강검진 대상",
+   "rel30": 0.7,
+   "recent7": 0.7,
+   "prev7": 0.8,
+   "news7": null,
+   "webTotal": 18954078,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 4,
+   "public": 5,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "dongtan.hallym.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "kahp.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "cnuh.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "globaltopeco.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 5,
+     "host": "nrc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "nrc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "ncmh.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 9,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "기초연금",
+   "rel30": 62.9,
+   "recent7": 38.6,
+   "prev7": 76.7,
+   "news7": null,
+   "webTotal": 7067477,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 5,
+   "public": 1,
+   "tool": 1,
+   "finco": 0,
+   "law": 2,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "basicpension.mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "nps.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "geumcheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "gangdong.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "bokjiro.go.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "아동수당",
+   "rel30": 32.6,
+   "recent7": 18.3,
+   "prev7": 45,
+   "news7": null,
+   "webTotal": 4507386,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 9,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "gjdream.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "seocho.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "incheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "geumcheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "busan.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "청약통장",
+   "rel30": 25.3,
+   "recent7": 19,
+   "prev7": 21,
+   "news7": null,
+   "webTotal": 4474142,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 4,
+   "public": 0,
+   "tool": 0,
+   "finco": 2,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "molit.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "toss.im",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "m.myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 9,
+     "host": "kbthink.com",
+     "kind": "finco"
+    },
+    {
+     "r": 10,
+     "host": "molit.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "민생지원금",
+   "rel30": 108.6,
+   "recent7": 65.7,
+   "prev7": 120.8,
+   "news7": null,
+   "webTotal": 7862951,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 6,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 2,
+   "above": [
+    {
+     "r": 1,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 2,
+     "host": "bucheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "mois.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "search.paju.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "epeople.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "ulsannamgu.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 9,
+     "host": "gangnam.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "종부세",
+   "rel30": 18.2,
+   "recent7": 12.8,
+   "prev7": 31.2,
+   "news7": null,
+   "webTotal": 746893,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 3,
+   "public": 0,
+   "tool": 3,
+   "finco": 1,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 5,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "semutong.com",
+     "kind": "tool"
+    },
+    {
+     "r": 10,
+     "host": "kbthink.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "부가세 신고",
+   "rel30": 3,
+   "recent7": 2.4,
+   "prev7": 2.5,
+   "news7": null,
+   "webTotal": 29697317,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 5,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "newploy.net",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "uga.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "findsemusa.com",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "ceo.baemin.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "mybiz.pay.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "자매 각도 점검",
+   "keyword": "ETF 추천",
+   "rel30": 5.5,
+   "recent7": 4.7,
+   "prev7": 4.8,
+   "news7": null,
+   "webTotal": 3128936,
+   "rank": null,
+   "openSlots": 5,
+   "gov": 0,
+   "public": 2,
+   "tool": 0,
+   "finco": 3,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "cardif.co.kr",
+     "kind": "finco"
+    },
+    {
+     "r": 2,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "shinhansec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 4,
+     "host": "investments.miraeasset.com",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "funetf.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "kcie.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 7,
+     "host": "kcie.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 8,
+     "host": "plusetf.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "in.naver.com",
+     "kind": "ugc"
+    },
+    {
+     "r": 10,
+     "host": "in.naver.com",
+     "kind": "ugc"
+    }
+   ]
+  }
+ ],
+ "longtails": [
+  {
+   "axis": "청년미래적금",
+   "keyword": "청년미래적금 중도해지",
+   "rel30": 0.5,
+   "recent7": 0.4,
+   "prev7": 0.5,
+   "news7": 6,
+   "webTotal": 78673,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 6,
+   "public": 0,
+   "tool": 0,
+   "finco": 1,
+   "law": 0,
+   "sister": 2,
+   "above": [
+    {
+     "r": 1,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "kbthink.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 8,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "incheontoday.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    }
+   ]
+  },
+  {
+   "axis": "청년미래적금",
+   "keyword": "청년미래적금 청년도약계좌 갈아타기",
+   "rel30": 0,
+   "recent7": 0.1,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 61543,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 8,
+   "public": 0,
+   "tool": 0,
+   "finco": 1,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "youthcenter.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "kbthink.com",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 9,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "health.yangyang.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "청년미래적금",
+   "keyword": "청년미래적금 소득기준 초과",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 5,
+   "webTotal": 209096,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 4,
+   "public": 1,
+   "tool": 0,
+   "finco": 2,
+   "law": 0,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "kinfa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 4,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "kbthink.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "young.busan.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "obank.kbstar.com",
+     "kind": "finco"
+    },
+    {
+     "r": 9,
+     "host": "korcham.net",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    }
+   ]
+  },
+  {
+   "axis": "청년미래적금",
+   "keyword": "청년미래적금 가입 거절",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 76685,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 0,
+   "public": 0,
+   "tool": 0,
+   "finco": 7,
+   "law": 0,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "spib.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 2,
+     "host": "kebhana.com",
+     "kind": "finco"
+    },
+    {
+     "r": 3,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 4,
+     "host": "bank.shinhan.com",
+     "kind": "finco"
+    },
+    {
+     "r": 5,
+     "host": "bank.shinhan.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 7,
+     "host": "spot.wooribank.com",
+     "kind": "finco"
+    },
+    {
+     "r": 8,
+     "host": "instiz.net",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "news.bizwatch.co.kr",
+     "kind": "press"
+    },
+    {
+     "r": 10,
+     "host": "bank.shinhan.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "근로장려금",
+   "keyword": "근로장려금 지급일 조회",
+   "rel30": 0.1,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 139253,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 3,
+   "public": 0,
+   "tool": 5,
+   "finco": 0,
+   "law": 0,
+   "sister": 2,
+   "above": [
+    {
+     "r": 1,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 6,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 9,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "근로장려금",
+   "keyword": "근로장려금 감액 이유",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 457995,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 3,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 2,
+   "above": [
+    {
+     "r": 1,
+     "host": "taxtimes.co.kr",
+     "kind": "press"
+    },
+    {
+     "r": 2,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 3,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "tjinmoney.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 7,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "ai.bznav.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "근로장려금",
+   "keyword": "근로장려금 기한후 신청",
+   "rel30": 3.3,
+   "recent7": 0.8,
+   "prev7": 1.9,
+   "news7": 0,
+   "webTotal": 2332341,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 4,
+   "public": 1,
+   "tool": 4,
+   "finco": 0,
+   "law": 0,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 4,
+     "host": "youthcenter.go.kr",
+     "kind": "gov",
+     "stale": true
+    },
+    {
+     "r": 5,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 6,
+     "host": "g.nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "g.nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 9,
+     "host": "gbcsw.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    }
+   ]
+  },
+  {
+   "axis": "근로장려금",
+   "keyword": "근로장려금 재산 2억",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 3458163,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 5,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "hometax.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "taxlaw.nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "mybiz.pay.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "icbp.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "index.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 7,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "morningstudy.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "실업급여",
+   "keyword": "실업급여 수급 중 알바",
+   "rel30": 0.5,
+   "recent7": 0.5,
+   "prev7": 0.5,
+   "news7": 0,
+   "webTotal": 58976,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 8,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "makewiselife.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 3,
+     "host": "work24.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 8,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "eiac.ei.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "실업급여",
+   "keyword": "조기재취업수당 조건",
+   "rel30": 1.9,
+   "recent7": 1.7,
+   "prev7": 2.7,
+   "news7": 1,
+   "webTotal": 144906,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 6,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 2,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 2,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 3,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 4,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "eiac.ei.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "edrm.ei.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "gangbuk.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "moel.go.kr",
+     "kind": "gov",
+     "stale": true
+    },
+    {
+     "r": 10,
+     "host": "law.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "실업급여",
+   "keyword": "실업급여 자진퇴사 인정",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 1,
+   "webTotal": 238905,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 6,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 1,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 2,
+     "host": "partner.yogiyo.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 3,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 4,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 7,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "실업급여",
+   "keyword": "실업급여 부정수급",
+   "rel30": 2.6,
+   "recent7": 2.7,
+   "prev7": 2.5,
+   "news7": 5,
+   "webTotal": 609583,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 6,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 4,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "work24.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "work24.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 6,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 8,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 9,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "edrm.ei.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "청년월세지원",
+   "keyword": "청년월세지원 부모 소득",
+   "rel30": 0,
+   "recent7": 0.1,
+   "prev7": 0,
+   "news7": 17,
+   "webTotal": 909721,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 6,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "molit.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "bokjiro.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "dalseong.daegu.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "benefit.studygov.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 7,
+     "host": "seoulhousing.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "youth.incheon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "gg.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "청년월세지원",
+   "keyword": "청년월세지원 지급일",
+   "rel30": 2.6,
+   "recent7": 4.7,
+   "prev7": 2.2,
+   "news7": 1,
+   "webTotal": 57463,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 10,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "young.busan.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "myhome.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "청년월세지원",
+   "keyword": "청년월세지원 이사",
+   "rel30": 0.3,
+   "recent7": 0.5,
+   "prev7": 0.2,
+   "news7": 36,
+   "webTotal": 1223748,
+   "rank": null,
+   "openSlots": 0,
+   "gov": 10,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "housing.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "young.busan.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "suwon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "daedeok.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "hanam.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "housing.gg.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "bokjiro.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "주휴수당",
+   "keyword": "주휴수당 15시간 미만",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 4,
+   "webTotal": 252387,
+   "rank": null,
+   "openSlots": 5,
+   "gov": 1,
+   "public": 1,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 1,
+   "above": [
+    {
+     "r": 1,
+     "host": "awoo.or.kr",
+     "kind": "sister"
+    },
+    {
+     "r": 2,
+     "host": "ko.wikipedia.org",
+     "kind": "ugc"
+    },
+    {
+     "r": 3,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 4,
+     "host": "nodong.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "ppfk.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 6,
+     "host": "law.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "mybiz.pay.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "shiftee.io",
+     "kind": "tool"
+    },
+    {
+     "r": 9,
+     "host": "albup.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "주휴수당",
+   "keyword": "주휴수당 퇴사 주",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 84715,
+   "rank": null,
+   "openSlots": 7,
+   "gov": 1,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 2,
+     "host": "findsemusa.com",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "1350.moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "nodong.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 5,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 7,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "morningstudy.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "findsemusa.com",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "본인부담상한제",
+   "keyword": "본인부담상한제 환급 신청 안하면",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 567101,
+   "rank": null,
+   "openSlots": 3,
+   "gov": 2,
+   "public": 7,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 4,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 5,
+     "host": "health.seoulmc.or.kr",
+     "kind": "public",
+     "stale": true
+    },
+    {
+     "r": 6,
+     "host": "mohw.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "jayacode.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "tbn.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 9,
+     "host": "korea.kr",
+     "kind": "gov",
+     "stale": true
+    },
+    {
+     "r": 10,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "본인부담상한제",
+   "keyword": "본인부담상한제 사전급여",
+   "rel30": 0.1,
+   "recent7": 0,
+   "prev7": 0.1,
+   "news7": 4,
+   "webTotal": 220394,
+   "rank": null,
+   "openSlots": 4,
+   "gov": 0,
+   "public": 6,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 2,
+     "host": "nhis.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 3,
+     "host": "terms.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 4,
+     "host": "koa.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 5,
+     "host": "kdh.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 6,
+     "host": "kin.naver.com",
+     "kind": "ugc"
+    },
+    {
+     "r": 7,
+     "host": "xn--om3bn2foli5o.kr",
+     "kind": "commercial",
+     "stale": true
+    },
+    {
+     "r": 8,
+     "host": "ai.bznav.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "sj-equity.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "hallym.hallym.or.kr",
+     "kind": "public"
+    }
+   ]
+  },
+  {
+   "axis": "ISA",
+   "keyword": "ISA 만기 연금계좌 이전",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 6,
+   "webTotal": 74332,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 2,
+   "public": 2,
+   "tool": 0,
+   "finco": 4,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "securities.miraeasset.com",
+     "kind": "finco"
+    },
+    {
+     "r": 2,
+     "host": "docs.channel.io",
+     "kind": "commercial"
+    },
+    {
+     "r": 3,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "kbsec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "kbsec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 7,
+     "host": "in.naver.com",
+     "kind": "ugc"
+    },
+    {
+     "r": 8,
+     "host": "kcie.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 9,
+     "host": "kcie.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 10,
+     "host": "magazine.securities.miraeasset.com",
+     "kind": "finco"
+    }
+   ]
+  },
+  {
+   "axis": "ISA",
+   "keyword": "ISA 중도인출 세금",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 2,
+   "webTotal": 54464,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 2,
+   "public": 1,
+   "tool": 0,
+   "finco": 6,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "kbsec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 2,
+     "host": "m.shinhansec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 3,
+     "host": "kbsec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 4,
+     "host": "fsc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "kbthink.com",
+     "kind": "finco"
+    },
+    {
+     "r": 6,
+     "host": "truefriend.com",
+     "kind": "finco"
+    },
+    {
+     "r": 7,
+     "host": "financefairy.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "kcie.or.kr",
+     "kind": "public",
+     "stale": true
+    },
+    {
+     "r": 9,
+     "host": "m.shinhansec.com",
+     "kind": "finco"
+    },
+    {
+     "r": 10,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "원천징수·종소세",
+   "keyword": "원천징수영수증 퇴사자 발급",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 1473253,
+   "rank": null,
+   "openSlots": 4,
+   "gov": 5,
+   "public": 1,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "seoullabor.or.kr",
+     "kind": "public"
+    },
+    {
+     "r": 4,
+     "host": "minwon.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "start.zuzu.network",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "opengov.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "kisti.re.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "help.3o3.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "ebs.co.kr",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "원천징수·종소세",
+   "keyword": "종합소득세 기한후 신고 가산세",
+   "rel30": 0.4,
+   "recent7": 0.2,
+   "prev7": 0.3,
+   "news7": 3,
+   "webTotal": 624643,
+   "rank": null,
+   "openSlots": 5,
+   "gov": 5,
+   "public": 0,
+   "tool": 0,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "mybiz.pay.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 2,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "help.3o3.co.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 7,
+     "host": "nts.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "watax.kr",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "mybiz.pay.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "save-tax.co.kr",
+     "kind": "commercial"
+    }
+   ]
+  },
+  {
+   "axis": "최저임금",
+   "keyword": "2027 최저임금 월급 환산",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 31,
+   "webTotal": 353317,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 8,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "minimumwage.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "gc.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "namu.wiki",
+     "kind": "ugc"
+    },
+    {
+     "r": 5,
+     "host": "gangwon.childcare.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 6,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "moel.go.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 8,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "minimumwage.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 10,
+     "host": "moel.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정",
+   "keyword": "운전면허 갱신 기간 지나면",
+   "rel30": 0.6,
+   "recent7": 0.4,
+   "prev7": 0.6,
+   "news7": 0,
+   "webTotal": 320673,
+   "rank": null,
+   "openSlots": 1,
+   "gov": 3,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 3,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 2,
+     "host": "police.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "dgpolice.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 5,
+     "host": "contents.premium.naver.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "safedriving.or.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 7,
+     "host": "korea.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 9,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 10,
+     "host": "it.donga.com",
+     "kind": "press"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정",
+   "keyword": "전입신고 세대주 동의",
+   "rel30": 0.3,
+   "recent7": 0.3,
+   "prev7": 0.4,
+   "news7": 1,
+   "webTotal": 644395,
+   "rank": null,
+   "openSlots": 4,
+   "gov": 3,
+   "public": 0,
+   "tool": 2,
+   "finco": 0,
+   "law": 1,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 2,
+     "host": "gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 3,
+     "host": "sasang.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "seedmoa.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 5,
+     "host": "easylaw.go.kr",
+     "kind": "law"
+    },
+    {
+     "r": 6,
+     "host": "yongin.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "mylawstory.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 8,
+     "host": "webcoreonline.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 9,
+     "host": "zippoom.com",
+     "kind": "commercial"
+    },
+    {
+     "r": 10,
+     "host": "mois.go.kr",
+     "kind": "gov"
+    }
+   ]
+  },
+  {
+   "axis": "생활 행정",
+   "keyword": "여권 재발급 급하게",
+   "rel30": 0,
+   "recent7": 0,
+   "prev7": 0,
+   "news7": 0,
+   "webTotal": 30189,
+   "rank": null,
+   "openSlots": 2,
+   "gov": 7,
+   "public": 0,
+   "tool": 1,
+   "finco": 0,
+   "law": 0,
+   "sister": 0,
+   "above": [
+    {
+     "r": 1,
+     "host": "passport.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 2,
+     "host": "passport.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 3,
+     "host": "suwon.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 4,
+     "host": "gimhae.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 5,
+     "host": "info.fandit.net",
+     "kind": "commercial"
+    },
+    {
+     "r": 6,
+     "host": "mediahub.seoul.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 7,
+     "host": "daegu.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 8,
+     "host": "jp.go.kr",
+     "kind": "gov"
+    },
+    {
+     "r": 9,
+     "host": "plus.gov.kr",
+     "kind": "tool"
+    },
+    {
+     "r": 10,
+     "host": "ko.phongnhaexplorer.com",
+     "kind": "commercial"
+    }
+   ]
+  }
+ ],
+ "indexCheck": {
+  "_note": "2026-09-08~15 신규 8편. 정확한 제목으로 webkr 검색 시 자사 순위(=색인 여부) vs 대표 키워드 순위(30위까지).",
+  "rows": [
+   {
+    "publishedAt": "2026-09-08",
+    "keyword": "실업급여 주 6일 지급",
+    "exactTitleRank": 1,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-09",
+    "keyword": "2027년 건강보험료율",
+    "exactTitleRank": 1,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-10",
+    "keyword": "종부세 주택 수 산정 제외",
+    "exactTitleRank": 11,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-11",
+    "keyword": "고령 운전자 면허 갱신",
+    "exactTitleRank": 3,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-12",
+    "keyword": "2009년생 국민연금",
+    "exactTitleRank": 22,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-13",
+    "keyword": "2027년 기준 중위소득",
+    "exactTitleRank": 5,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-14",
+    "keyword": "아동기본수당",
+    "exactTitleRank": 16,
+    "keywordRankTop30": null
+   },
+   {
+    "publishedAt": "2026-09-15",
+    "keyword": "고용보험료율 2027",
+    "exactTitleRank": null,
+    "keywordRankTop30": null
+   }
+  ]
+ }
+}

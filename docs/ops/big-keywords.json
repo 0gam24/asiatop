@@ -1,0 +1,916 @@
+{
+  "_readme": [
+    "T2 대형 세부 롱테일 트랙의 입력(초안, 운영자 확인 전). 계획 docs/ops/KEYWORD-PLAN-2026-09-15.md §3.",
+    "evidence 는 docs/ops/research/2026-09-15-naver-probe.json 실측(실업급여 30일 평균 = 100, 2026-08-16~09-14). 검색량은 정렬용이고 발행 게이트가 아니다.",
+    "wallTop5 = 웹문서 상위 5 안의 관공서+공단+도구 수. 헤드 42개 전부 자사 10위 밖이라 헤드 자체는 타깃이 아니다.",
+    "aliases 는 롱테일 생성용. 파이프라인이 aliases × 의도 템플릿(조건·계산·기한·예외·비교·사후)으로 후보를 만든다.",
+    "2026-09-15 운영자 결정: 머니룩은 범용. 12 클러스터 안이면 전부 후보이고 다른 사이트와의 역할 분담은 선정에 쓰지 않는다. 자매 제외 목록(excluded)은 삭제하고 해당 키워드를 A1·A3·A4·A5·A6 축으로 옮겼다."
+  ],
+  "updatedAt": "2026-09-15",
+  "status": "draft",
+  "anchor": "실업급여=100",
+  "axes": [
+    {
+      "id": "A1",
+      "name": "월급·세금",
+      "clusters": [
+        "tax"
+      ],
+      "keywords": [
+        {
+          "keyword": "근로장려금",
+          "aliases": [
+            "근로장려금 반기",
+            "자녀장려금"
+          ],
+          "evidence": {
+            "rel30": 605.7,
+            "recent7": 237.6,
+            "prev7": 667.5,
+            "top10": {
+              "gov": 4,
+              "public": 0,
+              "tool": 5,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          },
+          "note": "9월 반기신청·정기지급 물결(최근7일 238 < 직전 668, 지나는 중)"
+        },
+        {
+          "keyword": "원천징수영수증",
+          "aliases": [
+            "근로소득 원천징수영수증"
+          ],
+          "evidence": {
+            "rel30": 27.7,
+            "recent7": 27.8,
+            "prev7": 28.7,
+            "top10": {
+              "gov": 4,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 5
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "종합소득세",
+          "aliases": [
+            "종소세",
+            "3.3% 환급"
+          ],
+          "evidence": {
+            "rel30": 22.6,
+            "recent7": 17,
+            "prev7": 27.9,
+            "top10": {
+              "gov": 6,
+              "public": 0,
+              "tool": 2,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 2
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "연말정산",
+          "aliases": [
+            "연말정산 간소화",
+            "13월의 월급"
+          ],
+          "evidence": {
+            "rel30": 10.6,
+            "recent7": 10.9,
+            "prev7": 11.3,
+            "top10": {
+              "gov": 5,
+              "public": 0,
+              "tool": 2,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          },
+          "note": "9월 비수기, 10~1월 물결"
+        },
+        {
+          "keyword": "부가세 신고",
+          "aliases": [
+            "부가가치세 신고",
+            "프리랜서 종합소득세"
+          ],
+          "evidence": {
+            "rel30": 3,
+            "recent7": 2.4,
+            "prev7": 2.5,
+            "top10": {
+              "gov": 5,
+              "public": 0,
+              "tool": 2,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "일·퇴사",
+      "clusters": [
+        "unemployment",
+        "insurance-labor",
+        "office-tips"
+      ],
+      "keywords": [
+        {
+          "keyword": "실업급여",
+          "aliases": [
+            "구직급여",
+            "조기재취업수당"
+          ],
+          "evidence": {
+            "rel30": 100,
+            "recent7": 87.5,
+            "prev7": 152,
+            "top10": {
+              "gov": 3,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 6,
+              "openSlots": 0
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          },
+          "note": "기준어(=100)"
+        },
+        {
+          "keyword": "주휴수당",
+          "aliases": [],
+          "evidence": {
+            "rel30": 48.8,
+            "recent7": 47.4,
+            "prev7": 53,
+            "top10": {
+              "gov": 1,
+              "public": 0,
+              "tool": 5,
+              "finco": 0,
+              "law": 1,
+              "openSlots": 3
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "최저임금",
+          "aliases": [
+            "2027 최저임금"
+          ],
+          "evidence": {
+            "rel30": 43.6,
+            "recent7": 43.4,
+            "prev7": 48.3,
+            "top10": {
+              "gov": 6,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 1,
+              "openSlots": 3
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "퇴직금",
+          "aliases": [
+            "퇴직금 계산"
+          ],
+          "evidence": {
+            "rel30": 14.8,
+            "recent7": 15.3,
+            "prev7": 15.3,
+            "top10": {
+              "gov": 2,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 5,
+              "openSlots": 2
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          },
+          "note": "계산형은 도구 점령"
+        },
+        {
+          "keyword": "권고사직",
+          "aliases": [],
+          "evidence": {
+            "rel30": 10.1,
+            "recent7": 11.9,
+            "prev7": 10.1,
+            "top10": {
+              "gov": 1,
+              "public": 0,
+              "tool": 0,
+              "finco": 0,
+              "law": 2,
+              "openSlots": 7
+            },
+            "wallTop5": 1,
+            "ourRank": null
+          },
+          "note": "헤드에 상업 7 — 열림"
+        },
+        {
+          "keyword": "연차수당",
+          "aliases": [
+            "연차 미사용 수당"
+          ],
+          "evidence": {
+            "rel30": 6,
+            "recent7": 6.1,
+            "prev7": 6.1,
+            "top10": {
+              "gov": 6,
+              "public": 0,
+              "tool": 3,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "퇴사 후 건강보험",
+          "aliases": [
+            "임의계속가입"
+          ],
+          "evidence": {
+            "rel30": 1.4,
+            "recent7": 1.4,
+            "prev7": 2.1,
+            "top10": {
+              "gov": 0,
+              "public": 2,
+              "tool": 1,
+              "finco": 0,
+              "law": 4,
+              "openSlots": 2
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "건강보험료",
+          "aliases": [
+            "건보료",
+            "건강보험료 정산"
+          ],
+          "evidence": {
+            "rel30": 14.3,
+            "recent7": 16.7,
+            "prev7": 15.5,
+            "top10": {
+              "gov": 0,
+              "public": 2,
+              "tool": 0,
+              "finco": 0,
+              "law": 4,
+              "openSlots": 4
+            },
+            "wallTop5": 1,
+            "ourRank": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "금융·신용·저축",
+      "clusters": [
+        "savings",
+        "credit-loan"
+      ],
+      "keywords": [
+        {
+          "keyword": "청년미래적금",
+          "aliases": [
+            "청년미래적금 가입"
+          ],
+          "evidence": {
+            "rel30": 261.5,
+            "recent7": 269,
+            "prev7": 358.6,
+            "top10": {
+              "gov": 3,
+              "public": 3,
+              "tool": 0,
+              "finco": 3,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          },
+          "note": "축 최대 수요"
+        },
+        {
+          "keyword": "ISA 계좌",
+          "aliases": [
+            "ISA 만기",
+            "ISA 중도인출"
+          ],
+          "evidence": {
+            "rel30": 74.3,
+            "recent7": 57.1,
+            "prev7": 74.7,
+            "top10": {
+              "gov": 1,
+              "public": 1,
+              "tool": 0,
+              "finco": 5,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 0,
+            "ourRank": null
+          },
+          "note": "절세 계좌 제도 정보. 상품 가입 권유 금지(audit:safe)"
+        },
+        {
+          "keyword": "청년도약계좌",
+          "aliases": [
+            "청년도약계좌 해지"
+          ],
+          "evidence": {
+            "rel30": 49.1,
+            "recent7": 46.3,
+            "prev7": 53.1,
+            "top10": {
+              "gov": 2,
+              "public": 2,
+              "tool": 0,
+              "finco": 2,
+              "law": 0,
+              "openSlots": 5
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "비상금대출",
+          "aliases": [],
+          "evidence": {
+            "rel30": 18.4,
+            "recent7": 17.5,
+            "prev7": 16.4,
+            "top10": {
+              "gov": 0,
+              "public": 0,
+              "tool": 0,
+              "finco": 7,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 0,
+            "ourRank": null
+          },
+          "note": "금융사 6·금소법 가드 대상"
+        },
+        {
+          "keyword": "햇살론유스",
+          "aliases": [],
+          "evidence": {
+            "rel30": 10.5,
+            "recent7": 11.1,
+            "prev7": 10.1,
+            "top10": {
+              "gov": 2,
+              "public": 5,
+              "tool": 0,
+              "finco": 1,
+              "law": 0,
+              "openSlots": 2
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "신용점수 올리기",
+          "aliases": [
+            "신용점수"
+          ],
+          "evidence": {
+            "rel30": 2,
+            "recent7": 2,
+            "prev7": 1.8,
+            "top10": {
+              "gov": 3,
+              "public": 0,
+              "tool": 0,
+              "finco": 3,
+              "law": 0,
+              "openSlots": 4
+            },
+            "wallTop5": 1,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "ETF 추천",
+          "aliases": [
+            "연금저축 ETF",
+            "ISA ETF"
+          ],
+          "evidence": {
+            "rel30": 5.5,
+            "recent7": 4.7,
+            "prev7": 4.8,
+            "top10": {
+              "gov": 0,
+              "public": 2,
+              "tool": 0,
+              "finco": 3,
+              "law": 0,
+              "openSlots": 5
+            },
+            "wallTop5": 0,
+            "ourRank": null
+          },
+          "note": "정보형만. 종목 추천·수익 약속 금지(audit:safe)"
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "부동산·주거",
+      "clusters": [
+        "realestate"
+      ],
+      "keywords": [
+        {
+          "keyword": "청년월세지원",
+          "aliases": [
+            "청년월세 특별지원"
+          ],
+          "evidence": {
+            "rel30": 57.9,
+            "recent7": 94.2,
+            "prev7": 53.5,
+            "top10": {
+              "gov": 9,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 0
+            },
+            "wallTop5": 5,
+            "ourRank": null
+          },
+          "note": "상승 1.76배. 지역 분해(시도·시군구)도 T1 후보"
+        },
+        {
+          "keyword": "전입신고",
+          "aliases": [],
+          "evidence": {
+            "rel30": 55.6,
+            "recent7": 48.8,
+            "prev7": 60.6,
+            "top10": {
+              "gov": 4,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 3,
+              "openSlots": 2
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          },
+          "note": "정부24 도구 1위"
+        },
+        {
+          "keyword": "전세보증보험",
+          "aliases": [
+            "HUG 전세보증"
+          ],
+          "evidence": {
+            "rel30": 15.9,
+            "recent7": 14.7,
+            "prev7": 16.5,
+            "top10": {
+              "gov": 4,
+              "public": 3,
+              "tool": 1,
+              "finco": 1,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 5,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "확정일자",
+          "aliases": [],
+          "evidence": {
+            "rel30": 10.3,
+            "recent7": 10.1,
+            "prev7": 10.7,
+            "top10": {
+              "gov": 3,
+              "public": 0,
+              "tool": 2,
+              "finco": 0,
+              "law": 1,
+              "openSlots": 4
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "버팀목전세자금대출",
+          "aliases": [
+            "버팀목"
+          ],
+          "evidence": {
+            "rel30": 6.4,
+            "recent7": 6.6,
+            "prev7": 6.8,
+            "top10": {
+              "gov": 6,
+              "public": 1,
+              "tool": 0,
+              "finco": 2,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "전세사기",
+          "aliases": [
+            "전세사기 피해자"
+          ],
+          "evidence": {
+            "rel30": 6.1,
+            "recent7": 5.7,
+            "prev7": 6,
+            "top10": {
+              "gov": 3,
+              "public": 1,
+              "tool": 0,
+              "finco": 0,
+              "law": 2,
+              "openSlots": 3
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "청약통장",
+          "aliases": [
+            "청약통장 해지",
+            "주택청약종합저축 소득공제"
+          ],
+          "evidence": {
+            "rel30": 25.3,
+            "recent7": 19,
+            "prev7": 21,
+            "top10": {
+              "gov": 4,
+              "public": 0,
+              "tool": 0,
+              "finco": 2,
+              "law": 1,
+              "openSlots": 3
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "종부세",
+          "aliases": [
+            "종부세 고지서",
+            "종부세 합산배제",
+            "주택 수 산정"
+          ],
+          "evidence": {
+            "rel30": 18.2,
+            "recent7": 12.8,
+            "prev7": 31.2,
+            "top10": {
+              "gov": 3,
+              "public": 0,
+              "tool": 3,
+              "finco": 1,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "정부지원금·복지",
+      "clusters": [
+        "gov-support"
+      ],
+      "keywords": [
+        {
+          "keyword": "민생지원금",
+          "aliases": [
+            "민생회복지원금",
+            "지역화폐 지원금"
+          ],
+          "evidence": {
+            "rel30": 108.6,
+            "recent7": 65.7,
+            "prev7": 120.8,
+            "top10": {
+              "gov": 6,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          },
+          "note": "지자체 × 패밀리(A/B/V) 지역 분해가 T1 주력. 시군구 공고 URL 필수"
+        },
+        {
+          "keyword": "아동수당",
+          "aliases": [
+            "아동기본수당",
+            "부모급여"
+          ],
+          "evidence": {
+            "rel30": 32.6,
+            "recent7": 18.3,
+            "prev7": 45,
+            "top10": {
+              "gov": 9,
+              "public": 0,
+              "tool": 0,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "name": "연금·노후",
+      "clusters": [
+        "pension"
+      ],
+      "keywords": [
+        {
+          "keyword": "기초연금",
+          "aliases": [
+            "기초연금 선정기준액",
+            "기초연금 수급"
+          ],
+          "evidence": {
+            "rel30": 62.9,
+            "recent7": 38.6,
+            "prev7": 76.7,
+            "top10": {
+              "gov": 5,
+              "public": 1,
+              "tool": 1,
+              "finco": 0,
+              "law": 2,
+              "openSlots": 1
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "국민연금 보험료",
+          "aliases": [
+            "국민연금 추납",
+            "군복무 크레딧"
+          ],
+          "evidence": {
+            "rel30": 1.4,
+            "recent7": 1.1,
+            "prev7": 1.8,
+            "top10": {
+              "gov": 1,
+              "public": 4,
+              "tool": 2,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          },
+          "note": "가입·추납·크레딧·수령 전부 후보"
+        }
+      ]
+    },
+    {
+      "id": "A7",
+      "name": "생활 행정·차",
+      "clusters": [
+        "public-services",
+        "auto"
+      ],
+      "keywords": [
+        {
+          "keyword": "여권 재발급",
+          "aliases": [],
+          "evidence": {
+            "rel30": 62.6,
+            "recent7": 61.7,
+            "prev7": 63.4,
+            "top10": {
+              "gov": 7,
+              "public": 0,
+              "tool": 2,
+              "finco": 0,
+              "law": 1,
+              "openSlots": 0
+            },
+            "wallTop5": 5,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "주민등록등본 발급",
+          "aliases": [],
+          "evidence": {
+            "rel30": 50.4,
+            "recent7": 45.5,
+            "prev7": 55,
+            "top10": {
+              "gov": 4,
+              "public": 0,
+              "tool": 5,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 5,
+            "ourRank": null
+          },
+          "note": "도구 점령 — 발급 방법 글 금지"
+        },
+        {
+          "keyword": "운전면허 갱신",
+          "aliases": [
+            "적성검사"
+          ],
+          "evidence": {
+            "rel30": 32.4,
+            "recent7": 30.8,
+            "prev7": 36.7,
+            "top10": {
+              "gov": 1,
+              "public": 2,
+              "tool": 2,
+              "finco": 0,
+              "law": 3,
+              "openSlots": 2
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          },
+          "note": "고령자 적성검사 포함"
+        }
+      ]
+    },
+    {
+      "id": "A8",
+      "name": "보험·의료비",
+      "clusters": [
+        "insurance-personal"
+      ],
+      "keywords": [
+        {
+          "keyword": "본인부담상한제",
+          "aliases": [
+            "본인부담상한제 환급"
+          ],
+          "evidence": {
+            "rel30": 44,
+            "recent7": 41.7,
+            "prev7": 65.8,
+            "top10": {
+              "gov": 1,
+              "public": 7,
+              "tool": 0,
+              "finco": 1,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          },
+          "note": "공단 7, 롱테일은 옛 문서가 빈자리"
+        },
+        {
+          "keyword": "실손보험 청구",
+          "aliases": [],
+          "evidence": {
+            "rel30": 7,
+            "recent7": 7,
+            "prev7": 7.4,
+            "top10": {
+              "gov": 3,
+              "public": 4,
+              "tool": 0,
+              "finco": 2,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          },
+          "note": "네이버페이·실손24 점령"
+        }
+      ]
+    }
+  ],
+  "intentTemplates": {
+    "condition": [
+      "조건",
+      "기준 초과",
+      "자격"
+    ],
+    "calc": [
+      "얼마",
+      "월급 {n}만원",
+      "계산"
+    ],
+    "deadline": [
+      "기한",
+      "지나면",
+      "기한후 신청"
+    ],
+    "exception": [
+      "15시간 미만",
+      "자진퇴사",
+      "중복"
+    ],
+    "compare": [
+      "갈아타기",
+      "차이",
+      "vs"
+    ],
+    "after": [
+      "지급일",
+      "감액 이유",
+      "중도해지",
+      "가산세",
+      "환급",
+      "이의신청"
+    ]
+  }
+}
