@@ -231,81 +231,165 @@
    "keyword": "실업급여 주 6일 지급",
    "rank": 0,
    "url": "",
+   "expectedSlug": "unemployment-benefit-weekly-6day-payment-reform",
+   "otherArticle": false,
    "top1": "1350.moel.go.kr",
    "officialTop10": 6,
-   "total": 2578767
+   "total": 2583926
   },
   {
    "date": "2026-09-15",
    "keyword": "2027년 건강보험료율",
    "rank": 0,
    "url": "",
+   "expectedSlug": "health-insurance-rate-2027-frozen",
+   "otherArticle": false,
    "top1": "mohw.go.kr",
    "officialTop10": 5,
-   "total": 2433869
+   "total": 2442599
   },
   {
    "date": "2026-09-15",
    "keyword": "종부세 주택 수 산정 제외",
    "rank": 0,
    "url": "",
+   "expectedSlug": "property-tax-house-count-exclusion-september",
+   "otherArticle": false,
    "top1": "blog.naver.com",
    "officialTop10": 9,
-   "total": 5231360
+   "total": 5239550
   },
   {
    "date": "2026-09-15",
    "keyword": "고령 운전자 면허 갱신",
    "rank": 0,
    "url": "",
+   "expectedSlug": "elderly-driver-license-renewal-age-75",
+   "otherArticle": false,
    "top1": "easylaw.go.kr",
    "officialTop10": 10,
-   "total": 238822
+   "total": 239472
   },
   {
    "date": "2026-09-15",
    "keyword": "2009년생 국민연금",
    "rank": 0,
    "url": "",
+   "expectedSlug": "national-pension-first-premium-support-2009",
+   "otherArticle": false,
    "top1": "mohw.go.kr",
    "officialTop10": 7,
-   "total": 1575654
+   "total": 1579942
   },
   {
    "date": "2026-09-15",
    "keyword": "2027년 기준 중위소득",
    "rank": 0,
    "url": "",
+   "expectedSlug": "median-income-2027-reference",
+   "otherArticle": false,
    "top1": "mohw.go.kr",
    "officialTop10": 5,
-   "total": 522215
+   "total": 524259
   },
   {
    "date": "2026-09-15",
    "keyword": "아동기본수당",
    "rank": 0,
    "url": "",
+   "expectedSlug": "child-basic-allowance-2027-july-birth",
+   "otherArticle": false,
    "top1": "mohw.go.kr",
    "officialTop10": 9,
-   "total": 3577629
+   "total": 3585427
   },
   {
    "date": "2026-09-15",
    "keyword": "고용보험료율 2027",
    "rank": 0,
    "url": "",
+   "expectedSlug": "employment-insurance-rate-2027-increase-plan",
+   "otherArticle": false,
    "top1": "news2day.co.kr",
    "officialTop10": 8,
-   "total": 5878254
+   "total": 5891135
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "조기재취업수당 조건",
+   "rank": 0,
+   "url": "",
+   "expectedSlug": "early-reemployment-allowance-application",
+   "otherArticle": false,
+   "top1": "awoo.or.kr",
+   "officialTop10": 9,
+   "total": 145465
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "주휴수당 15시간 미만",
+   "rank": 0,
+   "url": "",
+   "expectedSlug": "weekly-holiday-allowance-calculation",
+   "otherArticle": false,
+   "top1": "awoo.or.kr",
+   "officialTop10": 3,
+   "total": 253673
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "주휴수당 퇴사하는 주",
+   "rank": 0,
+   "url": "",
+   "expectedSlug": "weekly-holiday-allowance-calculation",
+   "otherArticle": false,
+   "top1": "findsemusa.com",
+   "officialTop10": 3,
+   "total": 35718
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "ISA 중도해지 세금",
+   "rank": 18,
+   "url": "https://asiatop.co.kr/savings/isa-early-termination-tax/",
+   "expectedSlug": "isa-early-termination-tax",
+   "otherArticle": false,
+   "top1": "kbsec.com",
+   "officialTop10": 3,
+   "total": 77365
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "권고사직 실업급여",
+   "rank": 0,
+   "url": "",
+   "expectedSlug": "recommended-resignation-unemployment-eligibility",
+   "otherArticle": false,
+   "top1": "namu.wiki",
+   "officialTop10": 5,
+   "total": 156107
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "근로장려금 환수",
+   "rank": 14,
+   "url": "https://asiatop.co.kr/gov-support/earned-income-credit-clawback-appeal/",
+   "expectedSlug": "earned-income-credit-clawback-appeal",
+   "otherArticle": false,
+   "top1": "nhis.or.kr",
+   "officialTop10": 8,
+   "total": 462616
   },
   {
    "date": "2026-09-15",
    "keyword": "부양가족 소득기준 300만원",
    "rank": 1,
    "url": "https://asiatop.co.kr/tax/dependent-deduction-income-threshold-300m-2026/",
+   "expectedSlug": "dependent-deduction-income-threshold-300m-2026",
+   "otherArticle": false,
    "top1": "asiatop.co.kr",
    "officialTop10": 2,
-   "total": 3110964
+   "total": 3116970
   },
   {
    "date": "2026-09-15",
@@ -314,7 +398,7 @@
    "url": "https://asiatop.co.kr/insurance-labor/health-insurance-dependent-loss-recovery/",
    "top1": "chosun.com",
    "officialTop10": 0,
-   "total": 177961
+   "total": 178287
   },
   {
    "date": "2026-09-15",
@@ -323,7 +407,7 @@
    "url": "https://asiatop.co.kr/gov-support/earned-income-credit-semiannual-application/",
    "top1": "awoo.or.kr",
    "officialTop10": 5,
-   "total": 4410002
+   "total": 4419324
   },
   {
    "date": "2026-09-15",
@@ -332,7 +416,7 @@
    "url": "https://asiatop.co.kr/realestate/property-tax-nov-dec-payment-simulation/",
    "top1": "nts.go.kr",
    "officialTop10": 5,
-   "total": 76617
+   "total": 76783
   },
   {
    "date": "2026-09-15",
@@ -341,8 +425,161 @@
    "url": "",
    "top1": "shiftee.io",
    "officialTop10": 0,
-   "total": 17523
+   "total": 17573
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "K-세일페스타 2026",
+   "rank": 0,
+   "url": "",
+   "top1": "youtube.com",
+   "officialTop10": 1,
+   "total": 354779
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "거주불명자 조사",
+   "rank": 0,
+   "url": "",
+   "top1": "law.go.kr",
+   "officialTop10": 9,
+   "total": 966405
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "실업급여 최저임금 80%",
+   "rank": 0,
+   "url": "",
+   "top1": "easylaw.go.kr",
+   "officialTop10": 6,
+   "total": 720501
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "2027년 예산안 국회",
+   "rank": 0,
+   "url": "",
+   "top1": "nsp.nanet.go.kr",
+   "officialTop10": 9,
+   "total": 2060083
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "코리아세일페스타 2026 기간",
+   "rank": 0,
+   "url": "",
+   "top1": "saledoctor.co.kr",
+   "officialTop10": 3,
+   "total": 477181
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "종부세 기본공제 14억",
+   "rank": 0,
+   "url": "",
+   "top1": "seoul.co.kr",
+   "officialTop10": 3,
+   "total": 38949
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "2027 예산 청년 지원",
+   "rank": 0,
+   "url": "",
+   "top1": "mohw.go.kr",
+   "officialTop10": 6,
+   "total": 5267445
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "세법개정안 시행 2027",
+   "rank": 0,
+   "url": "",
+   "top1": "nts.go.kr",
+   "officialTop10": 7,
+   "total": 82740
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "추석 민생안정대책 2026",
+   "rank": 0,
+   "url": "",
+   "top1": "korea.kr",
+   "officialTop10": 4,
+   "total": 2207226
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "추석 온누리상품권 할인",
+   "rank": 0,
+   "url": "",
+   "top1": "opengov.seoul.go.kr",
+   "officialTop10": 7,
+   "total": 745652
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "본인부담상한제 지급일",
+   "rank": 0,
+   "url": "",
+   "top1": "nhis.or.kr",
+   "officialTop10": 8,
+   "total": 18560
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "온누리상품권 환급행사",
+   "rank": 0,
+   "url": "",
+   "top1": "mof.go.kr",
+   "officialTop10": 10,
+   "total": 473653
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "2026 추석 연휴",
+   "rank": 0,
+   "url": "",
+   "top1": "kholidayz.com",
+   "officialTop10": 3,
+   "total": 4566240
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "재산세 2기분",
+   "rank": 0,
+   "url": "",
+   "top1": "gyeongju.go.kr",
+   "officialTop10": 7,
+   "total": 530169
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "종부세 합산배제 신고",
+   "rank": 0,
+   "url": "",
+   "top1": "nts.go.kr",
+   "officialTop10": 9,
+   "total": 117636
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "자동차보험 갱신 비교",
+   "rank": 0,
+   "url": "",
+   "top1": "carinfo.knia.or.kr",
+   "officialTop10": 3,
+   "total": 2489051
+  },
+  {
+   "date": "2026-09-15",
+   "keyword": "에너지바우처 잔액조회",
+   "rank": 0,
+   "url": "",
+   "top1": "energyv.or.kr",
+   "officialTop10": 9,
+   "total": 66717
   }
  ],
- "updatedAt": "2026-09-15T05:01:39.952Z"
+ "updatedAt": "2026-09-15T06:35:34.063Z"
 }

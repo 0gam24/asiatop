@@ -1,0 +1,100 @@
+{
+  "_readme": [
+    "네이버 웹문서 순위 추적 대상(naver-rank-track.mjs 1순위 입력). docs/ops/KEYWORD-PLAN-2026-09-15.md §4-6.",
+    "slug 가 있으면 그 글이 잡혔는지 본다. 다른 우리 글이 잡히면 기록에 otherArticle:true (자기잠식 신호).",
+    "추가: 발행한 글의 타깃 쿼리, 갱신한 글, 파이프라인이 갱신·진단 후보로 올린 기존 글. 빼기: 90일 동안 30위 밖이고 갱신 계획이 없는 쿼리."
+  ],
+  "updatedAt": "2026-09-15",
+  "targets": [
+    {
+      "query": "실업급여 주 6일 지급",
+      "slug": "unemployment-benefit-weekly-6day-payment-reform",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/8 — 9/15 대표 키워드 30위 밖(색인됨)"
+    },
+    {
+      "query": "2027년 건강보험료율",
+      "slug": "health-insurance-rate-2027-frozen",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/9 — 30위 밖(색인됨)"
+    },
+    {
+      "query": "종부세 주택 수 산정 제외",
+      "slug": "property-tax-house-count-exclusion-september",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/10 — 30위 밖(색인됨)"
+    },
+    {
+      "query": "고령 운전자 면허 갱신",
+      "slug": "elderly-driver-license-renewal-age-75",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/11 — 30위 밖(색인됨)"
+    },
+    {
+      "query": "2009년생 국민연금",
+      "slug": "national-pension-first-premium-support-2009",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/12 — 30위 밖(색인됨)"
+    },
+    {
+      "query": "2027년 기준 중위소득",
+      "slug": "median-income-2027-reference",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/13 — 30위 밖(색인됨)"
+    },
+    {
+      "query": "아동기본수당",
+      "slug": "child-basic-allowance-2027-july-birth",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/14 — 30위 밖(색인됨)"
+    },
+    {
+      "query": "고용보험료율 2027",
+      "slug": "employment-insurance-rate-2027-increase-plan",
+      "since": "2026-09-15",
+      "reason": "루틴 신규 9/15 — 미색인"
+    },
+    {
+      "query": "조기재취업수당 조건",
+      "slug": "early-reemployment-allowance-application",
+      "since": "2026-09-15",
+      "reason": "기존 글 있는데 10위 밖, 정보 사이트 1위 — 갱신·진단 후보"
+    },
+    {
+      "query": "주휴수당 15시간 미만",
+      "slug": "weekly-holiday-allowance-calculation",
+      "since": "2026-09-15",
+      "reason": "기존 글 있는데 10위 밖, 정보 사이트 1위 — 갱신·진단 후보"
+    },
+    {
+      "query": "주휴수당 퇴사하는 주",
+      "slug": "weekly-holiday-allowance-calculation",
+      "since": "2026-09-15",
+      "reason": "scout T1·T2 open(9/15), 기존 주휴수당 글 30위 밖"
+    },
+    {
+      "query": "ISA 중도해지 세금",
+      "slug": "isa-early-termination-tax",
+      "since": "2026-09-15",
+      "reason": "기존 글 있는데 10위 밖 — 갱신·진단 후보"
+    },
+    {
+      "query": "권고사직 실업급여",
+      "slug": "recommended-resignation-unemployment-eligibility",
+      "since": "2026-09-15",
+      "reason": "권고사직 헤드 상업 7(열림), 기존 글 3편 — 자기잠식 확인"
+    },
+    {
+      "query": "근로장려금 환수",
+      "slug": "earned-income-credit-clawback-appeal",
+      "since": "2026-09-15",
+      "reason": "근로장려금 감액·환수 롱테일 — 기존 글 확인"
+    },
+    {
+      "query": "부양가족 소득기준 300만원",
+      "slug": "dependent-deduction-income-threshold-300m-2026",
+      "since": "2026-09-15",
+      "reason": "9/8·9/15 1위 유지 — 이탈 감시"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ const HISTORY = path.join(LOG_DIR, 'naver-rank-history.json');
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const KW_FILE = opt('--keywords', null);
-const LIMIT = Number(opt('--limit', 40)) || 40;
+const LIMIT = Number(opt('--limit', 60)) || 60; // 공식 API 라 수집 예의 상한이 아니라 무료 한도(일 25,000)가 기준. 추적 대상이 늘어 40 → 60 (2026-09-15)
 const QUIET = args.includes('--quiet');
 
 function loadEnvLocal() {
@@ -60,6 +60,21 @@ function latest(prefix) {
   const files = readdirSync(LOG_DIR).filter((f) => f.startsWith(prefix) && f.endsWith('.json')).sort();
   return files.length ? JSON.parse(readFileSync(path.join(LOG_DIR, files[files.length - 1]), 'utf8')) : null;
 }
+const TARGETS_FILE = path.join(ROOT, 'docs', 'ops', 'rank-targets.json');
+const TARGETS = existsSync(TARGETS_FILE) ? (JSON.parse(readFileSync(TARGETS_FILE, 'utf8')).targets || []).filter((t) => t && t.query) : [];
+const TARGET_SLUG = new Map(TARGETS.filter((t) => t.slug).map((t) => [t.query, t.slug]));
+function frontmatterTargets() {
+  const dir = path.join(ROOT, 'src', 'content', 'articles');
+  if (!existsSync(dir)) return [];
+  const out = [];
+  for (const f of readdirSync(dir).filter((x) => x.endsWith('.mdx'))) {
+    const head = readFileSync(path.join(dir, f), 'utf8').split(/\r?\n---\r?\n/)[0];
+    const m = head.match(/^targetQuery:\s*"?([^"\r\n]+)"?\s*$/m);
+    if (m) { out.push(m[1].trim()); TARGET_SLUG.set(m[1].trim(), f.replace(/\.mdx$/, '')); }
+  }
+  return out;
+}
+
 function loadKeywords() {
   if (KW_FILE) {
     const raw = readFileSync(path.resolve(ROOT, KW_FILE), 'utf8');
@@ -71,6 +86,10 @@ function loadKeywords() {
     return raw.split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith('#')).slice(0, LIMIT);
   }
   const picks = [];
+  // 1순위: 운영자·파이프라인이 등록한 추적 대상 (docs/ops/rank-targets.json, KEYWORD-PLAN-2026-09-15 §4-6)
+  for (const t of TARGETS) if (!picks.includes(t.query)) picks.push(t.query);
+  // 2순위: 글 frontmatter 의 targetQuery (신규 글부터 선택 필드)
+  for (const q of frontmatterTargets()) if (!picks.includes(q)) picks.push(q);
   // 과거에 우리가 잡혔던 키워드는 계속 추적한다 (이탈 감지)
   const hist = existsSync(HISTORY) ? JSON.parse(readFileSync(HISTORY, 'utf8')) : { rows: [] };
   for (const r of hist.rows || []) if (!picks.includes(r.keyword)) picks.push(r.keyword);
@@ -99,10 +118,12 @@ for (const kw of keywords) {
     const items = j.items || [];
     const idx = items.findIndex((i) => (i.link || '').includes('asiatop.co.kr'));
     const ours = idx >= 0 ? items[idx] : null;
+    const expected = TARGET_SLUG.get(kw);
     today.push({
       date: kst, keyword: kw,
       rank: idx >= 0 ? idx + 1 : 0,                       // 0 = 30위 밖
       url: ours ? (ours.link || '').split('?')[0] : '',
+      ...(expected ? { expectedSlug: expected, otherArticle: ours ? !(ours.link || '').includes(`/${expected}`) : false } : {}), // 다른 우리 글이 잡히면 자기잠식 신호
       top1: items[0] ? host(items[0].link) : '',
       officialTop10: items.slice(0, 10).filter((i) => /\.(go|or)\.kr/.test(i.link || '')).length,
       total: j.total ?? null,
