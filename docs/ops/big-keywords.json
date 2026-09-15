@@ -4,7 +4,7 @@
     "evidence 는 docs/ops/research/2026-09-15-naver-probe.json 실측(실업급여 30일 평균 = 100, 2026-08-16~09-14). 검색량은 정렬용이고 발행 게이트가 아니다.",
     "wallTop5 = 웹문서 상위 5 안의 관공서+공단+도구 수. 헤드 42개 전부 자사 10위 밖이라 헤드 자체는 타깃이 아니다.",
     "aliases 는 롱테일 생성용. 파이프라인이 aliases × 의도 템플릿(조건·계산·기한·예외·비교·사후)으로 후보를 만든다.",
-    "excluded 는 자매 사이트 몫(SITE-KEYWORD-PROFILE §6). 신규 후보에서 뺀다."
+    "2026-09-15 운영자 결정: 머니룩은 범용. 12 클러스터 안이면 전부 후보이고 다른 사이트와의 역할 분담은 선정에 쓰지 않는다. 자매 제외 목록(excluded)은 삭제하고 해당 키워드를 A1·A3·A4·A5·A6 축으로 옮겼다."
   ],
   "updatedAt": "2026-09-15",
   "status": "draft",
@@ -14,8 +14,7 @@
       "id": "A1",
       "name": "월급·세금",
       "clusters": [
-        "tax",
-        "insurance-labor"
+        "tax"
       ],
       "keywords": [
         {
@@ -34,7 +33,6 @@
               "tool": 5,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 4,
@@ -57,7 +55,6 @@
               "tool": 1,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 5
             },
             "wallTop5": 4,
@@ -80,33 +77,9 @@
               "tool": 2,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 2
             },
             "wallTop5": 3,
-            "ourRank": null
-          }
-        },
-        {
-          "keyword": "건강보험료",
-          "aliases": [
-            "건보료",
-            "건강보험료 정산"
-          ],
-          "evidence": {
-            "rel30": 14.3,
-            "recent7": 16.7,
-            "prev7": 15.5,
-            "top10": {
-              "gov": 0,
-              "public": 2,
-              "tool": 0,
-              "finco": 0,
-              "law": 4,
-              "sister": 0,
-              "openSlots": 4
-            },
-            "wallTop5": 1,
             "ourRank": null
           }
         },
@@ -126,7 +99,6 @@
               "tool": 2,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 3
             },
             "wallTop5": 3,
@@ -135,28 +107,26 @@
           "note": "9월 비수기, 10~1월 물결"
         },
         {
-          "keyword": "국민연금 보험료",
+          "keyword": "부가세 신고",
           "aliases": [
-            "국민연금 추납",
-            "군복무 크레딧"
+            "부가가치세 신고",
+            "프리랜서 종합소득세"
           ],
           "evidence": {
-            "rel30": 1.4,
-            "recent7": 1.1,
-            "prev7": 1.8,
+            "rel30": 3,
+            "recent7": 2.4,
+            "prev7": 2.5,
             "top10": {
-              "gov": 1,
-              "public": 4,
+              "gov": 5,
+              "public": 0,
               "tool": 2,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 3
             },
-            "wallTop5": 3,
+            "wallTop5": 4,
             "ourRank": null
-          },
-          "note": "첫 가입·추납 각도만(수령은 retiredata)"
+          }
         }
       ]
     },
@@ -185,7 +155,6 @@
               "tool": 1,
               "finco": 0,
               "law": 6,
-              "sister": 0,
               "openSlots": 0
             },
             "wallTop5": 2,
@@ -206,7 +175,6 @@
               "tool": 5,
               "finco": 0,
               "law": 1,
-              "sister": 0,
               "openSlots": 3
             },
             "wallTop5": 2,
@@ -228,7 +196,6 @@
               "tool": 1,
               "finco": 0,
               "law": 1,
-              "sister": 0,
               "openSlots": 3
             },
             "wallTop5": 4,
@@ -250,7 +217,6 @@
               "tool": 1,
               "finco": 0,
               "law": 5,
-              "sister": 0,
               "openSlots": 2
             },
             "wallTop5": 2,
@@ -271,7 +237,6 @@
               "tool": 0,
               "finco": 0,
               "law": 2,
-              "sister": 0,
               "openSlots": 7
             },
             "wallTop5": 1,
@@ -294,7 +259,6 @@
               "tool": 3,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 4,
@@ -316,10 +280,31 @@
               "tool": 1,
               "finco": 0,
               "law": 4,
-              "sister": 0,
               "openSlots": 2
             },
             "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "건강보험료",
+          "aliases": [
+            "건보료",
+            "건강보험료 정산"
+          ],
+          "evidence": {
+            "rel30": 14.3,
+            "recent7": 16.7,
+            "prev7": 15.5,
+            "top10": {
+              "gov": 0,
+              "public": 2,
+              "tool": 0,
+              "finco": 0,
+              "law": 4,
+              "openSlots": 4
+            },
+            "wallTop5": 1,
             "ourRank": null
           }
         }
@@ -327,7 +312,7 @@
     },
     {
       "id": "A3",
-      "name": "청년 금융·신용",
+      "name": "금융·신용·저축",
       "clusters": [
         "savings",
         "credit-loan"
@@ -348,7 +333,6 @@
               "tool": 0,
               "finco": 3,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 4,
@@ -372,13 +356,12 @@
               "tool": 0,
               "finco": 5,
               "law": 0,
-              "sister": 0,
               "openSlots": 3
             },
             "wallTop5": 0,
             "ourRank": null
           },
-          "note": "절세 계좌 제도 각도만(투자 상품 비교는 iknowhowinfo) — 결정 3"
+          "note": "절세 계좌 제도 정보. 상품 가입 권유 금지(audit:safe)"
         },
         {
           "keyword": "청년도약계좌",
@@ -395,7 +378,6 @@
               "tool": 0,
               "finco": 2,
               "law": 0,
-              "sister": 0,
               "openSlots": 5
             },
             "wallTop5": 3,
@@ -415,7 +397,6 @@
               "tool": 0,
               "finco": 7,
               "law": 0,
-              "sister": 0,
               "openSlots": 3
             },
             "wallTop5": 0,
@@ -436,7 +417,6 @@
               "tool": 0,
               "finco": 1,
               "law": 0,
-              "sister": 0,
               "openSlots": 2
             },
             "wallTop5": 4,
@@ -458,18 +438,40 @@
               "tool": 0,
               "finco": 3,
               "law": 0,
-              "sister": 0,
               "openSlots": 4
             },
             "wallTop5": 1,
             "ourRank": null
           }
+        },
+        {
+          "keyword": "ETF 추천",
+          "aliases": [
+            "연금저축 ETF",
+            "ISA ETF"
+          ],
+          "evidence": {
+            "rel30": 5.5,
+            "recent7": 4.7,
+            "prev7": 4.8,
+            "top10": {
+              "gov": 0,
+              "public": 2,
+              "tool": 0,
+              "finco": 3,
+              "law": 0,
+              "openSlots": 5
+            },
+            "wallTop5": 0,
+            "ourRank": null
+          },
+          "note": "정보형만. 종목 추천·수익 약속 금지(audit:safe)"
         }
       ]
     },
     {
       "id": "A4",
-      "name": "청년 주거",
+      "name": "부동산·주거",
       "clusters": [
         "realestate"
       ],
@@ -489,13 +491,12 @@
               "tool": 1,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 0
             },
             "wallTop5": 5,
             "ourRank": null
           },
-          "note": "상승 1.76배. 지자체형 분해는 awoo 몫"
+          "note": "상승 1.76배. 지역 분해(시도·시군구)도 T1 후보"
         },
         {
           "keyword": "전입신고",
@@ -510,7 +511,6 @@
               "tool": 1,
               "finco": 0,
               "law": 3,
-              "sister": 0,
               "openSlots": 2
             },
             "wallTop5": 3,
@@ -533,7 +533,6 @@
               "tool": 1,
               "finco": 1,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 5,
@@ -553,7 +552,6 @@
               "tool": 2,
               "finco": 0,
               "law": 1,
-              "sister": 0,
               "openSlots": 4
             },
             "wallTop5": 3,
@@ -575,7 +573,6 @@
               "tool": 0,
               "finco": 2,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 3,
@@ -597,10 +594,54 @@
               "tool": 0,
               "finco": 0,
               "law": 2,
-              "sister": 0,
               "openSlots": 3
             },
             "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "청약통장",
+          "aliases": [
+            "청약통장 해지",
+            "주택청약종합저축 소득공제"
+          ],
+          "evidence": {
+            "rel30": 25.3,
+            "recent7": 19,
+            "prev7": 21,
+            "top10": {
+              "gov": 4,
+              "public": 0,
+              "tool": 0,
+              "finco": 2,
+              "law": 1,
+              "openSlots": 3
+            },
+            "wallTop5": 2,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "종부세",
+          "aliases": [
+            "종부세 고지서",
+            "종부세 합산배제",
+            "주택 수 산정"
+          ],
+          "evidence": {
+            "rel30": 18.2,
+            "recent7": 12.8,
+            "prev7": 31.2,
+            "top10": {
+              "gov": 3,
+              "public": 0,
+              "tool": 3,
+              "finco": 1,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 3,
             "ourRank": null
           }
         }
@@ -608,6 +649,114 @@
     },
     {
       "id": "A5",
+      "name": "정부지원금·복지",
+      "clusters": [
+        "gov-support"
+      ],
+      "keywords": [
+        {
+          "keyword": "민생지원금",
+          "aliases": [
+            "민생회복지원금",
+            "지역화폐 지원금"
+          ],
+          "evidence": {
+            "rel30": 108.6,
+            "recent7": 65.7,
+            "prev7": 120.8,
+            "top10": {
+              "gov": 6,
+              "public": 0,
+              "tool": 1,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          },
+          "note": "지자체 × 패밀리(A/B/V) 지역 분해가 T1 주력. 시군구 공고 URL 필수"
+        },
+        {
+          "keyword": "아동수당",
+          "aliases": [
+            "아동기본수당",
+            "부모급여"
+          ],
+          "evidence": {
+            "rel30": 32.6,
+            "recent7": 18.3,
+            "prev7": 45,
+            "top10": {
+              "gov": 9,
+              "public": 0,
+              "tool": 0,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 1
+            },
+            "wallTop5": 4,
+            "ourRank": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "name": "연금·노후",
+      "clusters": [
+        "pension"
+      ],
+      "keywords": [
+        {
+          "keyword": "기초연금",
+          "aliases": [
+            "기초연금 선정기준액",
+            "기초연금 수급"
+          ],
+          "evidence": {
+            "rel30": 62.9,
+            "recent7": 38.6,
+            "prev7": 76.7,
+            "top10": {
+              "gov": 5,
+              "public": 1,
+              "tool": 1,
+              "finco": 0,
+              "law": 2,
+              "openSlots": 1
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          }
+        },
+        {
+          "keyword": "국민연금 보험료",
+          "aliases": [
+            "국민연금 추납",
+            "군복무 크레딧"
+          ],
+          "evidence": {
+            "rel30": 1.4,
+            "recent7": 1.1,
+            "prev7": 1.8,
+            "top10": {
+              "gov": 1,
+              "public": 4,
+              "tool": 2,
+              "finco": 0,
+              "law": 0,
+              "openSlots": 3
+            },
+            "wallTop5": 3,
+            "ourRank": null
+          },
+          "note": "가입·추납·크레딧·수령 전부 후보"
+        }
+      ]
+    },
+    {
+      "id": "A7",
       "name": "생활 행정·차",
       "clusters": [
         "public-services",
@@ -627,7 +776,6 @@
               "tool": 2,
               "finco": 0,
               "law": 1,
-              "sister": 0,
               "openSlots": 0
             },
             "wallTop5": 5,
@@ -647,7 +795,6 @@
               "tool": 5,
               "finco": 0,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 5,
@@ -670,18 +817,17 @@
               "tool": 2,
               "finco": 0,
               "law": 3,
-              "sister": 0,
               "openSlots": 2
             },
             "wallTop5": 3,
             "ourRank": null
           },
-          "note": "고령자 각도는 retiredata"
+          "note": "고령자 적성검사 포함"
         }
       ]
     },
     {
-      "id": "A6",
+      "id": "A8",
       "name": "보험·의료비",
       "clusters": [
         "insurance-personal"
@@ -702,7 +848,6 @@
               "tool": 0,
               "finco": 1,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 3,
@@ -723,7 +868,6 @@
               "tool": 0,
               "finco": 2,
               "law": 0,
-              "sister": 0,
               "openSlots": 1
             },
             "wallTop5": 4,
@@ -768,147 +912,5 @@
       "환급",
       "이의신청"
     ]
-  },
-  "excluded": [
-    {
-      "keyword": "민생지원금",
-      "sister": "awoo.or.kr",
-      "evidence": {
-        "rel30": 108.6,
-        "recent7": 65.7,
-        "prev7": 120.8,
-        "top10": {
-          "gov": 6,
-          "public": 0,
-          "tool": 1,
-          "finco": 0,
-          "law": 0,
-          "sister": 2,
-          "openSlots": 1
-        },
-        "wallTop5": 4,
-        "ourRank": null
-      }
-    },
-    {
-      "keyword": "기초연금",
-      "sister": "retiredata.kr",
-      "evidence": {
-        "rel30": 62.9,
-        "recent7": 38.6,
-        "prev7": 76.7,
-        "top10": {
-          "gov": 5,
-          "public": 1,
-          "tool": 1,
-          "finco": 0,
-          "law": 2,
-          "sister": 0,
-          "openSlots": 1
-        },
-        "wallTop5": 3,
-        "ourRank": null
-      }
-    },
-    {
-      "keyword": "아동수당",
-      "sister": "familydata.kr",
-      "evidence": {
-        "rel30": 32.6,
-        "recent7": 18.3,
-        "prev7": 45,
-        "top10": {
-          "gov": 9,
-          "public": 0,
-          "tool": 0,
-          "finco": 0,
-          "law": 0,
-          "sister": 0,
-          "openSlots": 1
-        },
-        "wallTop5": 4,
-        "ourRank": null
-      }
-    },
-    {
-      "keyword": "청약통장",
-      "sister": "homedata.kr",
-      "evidence": {
-        "rel30": 25.3,
-        "recent7": 19,
-        "prev7": 21,
-        "top10": {
-          "gov": 4,
-          "public": 0,
-          "tool": 0,
-          "finco": 2,
-          "law": 1,
-          "sister": 0,
-          "openSlots": 3
-        },
-        "wallTop5": 2,
-        "ourRank": null
-      }
-    },
-    {
-      "keyword": "종부세",
-      "sister": "homedata.kr",
-      "evidence": {
-        "rel30": 18.2,
-        "recent7": 12.8,
-        "prev7": 31.2,
-        "top10": {
-          "gov": 3,
-          "public": 0,
-          "tool": 3,
-          "finco": 1,
-          "law": 0,
-          "sister": 0,
-          "openSlots": 3
-        },
-        "wallTop5": 3,
-        "ourRank": null
-      }
-    },
-    {
-      "keyword": "부가세 신고",
-      "sister": "bizdata.kr",
-      "evidence": {
-        "rel30": 3,
-        "recent7": 2.4,
-        "prev7": 2.5,
-        "top10": {
-          "gov": 5,
-          "public": 0,
-          "tool": 2,
-          "finco": 0,
-          "law": 0,
-          "sister": 0,
-          "openSlots": 3
-        },
-        "wallTop5": 4,
-        "ourRank": null
-      }
-    },
-    {
-      "keyword": "ETF 추천",
-      "sister": "iknowhowinfo.com",
-      "evidence": {
-        "rel30": 5.5,
-        "recent7": 4.7,
-        "prev7": 4.8,
-        "top10": {
-          "gov": 0,
-          "public": 2,
-          "tool": 0,
-          "finco": 3,
-          "law": 0,
-          "sister": 0,
-          "openSlots": 5
-        },
-        "wallTop5": 0,
-        "ourRank": null
-      }
-    }
-  ]
+  }
 }
