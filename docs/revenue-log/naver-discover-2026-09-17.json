@@ -1,0 +1,2335 @@
+{
+ "pulledAt": "2026-09-17T04:59:37.699Z",
+ "kstDate": "2026-09-17",
+ "days": 7,
+ "minHits": 2,
+ "api": "NAVER API HUB",
+ "seeds": [
+  {
+   "keyword": "생산적금융 연간 목표",
+   "cluster": "credit-loan"
+  },
+  {
+   "keyword": "9월 정기분 재산세",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "생산적금융 25.3조 공급",
+   "cluster": "credit-loan"
+  },
+  {
+   "keyword": "국내생산세액공제 신설, 품목",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "청년미래적금 2차 모집",
+   "cluster": "savings"
+  },
+  {
+   "keyword": "취약계층 에너지바우처",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "30일까지 납부",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "휴먼컨설팅그룹 연말정산 기초자료",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "연말정산 기초자료 9월부터",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "혼인신고 안한다? 부정수급",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "받으려 혼인신고 안한다?",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "혜택 받으려 혼인신고",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "부과 30일까지 납부",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "생활임금 1만2630원 최저임금+α",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "1만2630원 최저임금+α 복지",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "40만명인데 실업급여는 3천명",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "폐업 40만명인데 실업급여는",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "300만원 청년 근속장려금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "근속장려금 희망자 40명",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "연휴 착한수레 바우처택시",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "착한수레 바우처택시 정상",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "넣으면 79만원 세액공제",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "79만원 세액공제 연봉별",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "재산세 2112억원 부과",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "청년 근속장려금 희망자",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "성과급 퇴직연금 뭐길래",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "실업급여는 3천명 벼랑",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "생산적금융 25조 공급",
+   "cluster": "credit-loan"
+  },
+  {
+   "keyword": "세액공제 연봉별 절세",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "꺼낸 성과급 퇴직연금",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "재산세 22억 원",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "급여이체 14배",
+   "cluster": "savings"
+  },
+  {
+   "keyword": "일했다면 아르바이트생도 주휴수당",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "추석 민생지원금 10만~50만",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "70만원 에너지바우처 취약계층",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "민생지원금 10만~50만 원",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "아르바이트생도 주휴수당 받을",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "최대 70만원 에너지바우처",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "에너지바우처 취약계층 겨울",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "연금절세 따라잡기 1억으로",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "정기분 재산세 2112억원",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "실업급여? 보장 넓어질수록",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "전세대출 연말정산 소득공제",
+   "cluster": "savings"
+  },
+  {
+   "keyword": "충남 노란우산 희망장려금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "폐업해도 실업급여? 보장",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "시럽급여 실업급여 요건만",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "2630원 확정 공정수당",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "공정수당 최대 248만원",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "4000억 육박 퇴직급여",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "육아휴직급여 누락도 논의",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "보험료 지원에도 자영업자",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "플랫폼 노동자 산재보험료",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "산재보험료 부담 지자체가",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "1408명 월세 지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "얼마? 추석 민생지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "1,408명 첫 지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "구리시 보훈수당 지급액",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "보훈수당 지급액 3년간",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "지급액 3년간 4.4배",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "덧셈컴퍼니, 세금 환급",
+   "cluster": "tax"
+  }
+ ],
+ "rows": [
+  {
+   "keyword": "생산적금융 연간 목표",
+   "hits": 17,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "우리금융, 생산적금융 연간 목표 116% 달성",
+    "우리금융, 생산적금융 연간 목표 116% 달성…지방·중소기업 지원 확대",
+    "우리금융, 생산적금융 연간 목표 116% 달성…지방·중소기업 지원 확대"
+   ],
+   "sampleLinks": [
+    "https://www.m-i.kr/news/articleView.html",
+    "http://www.newsian.co.kr/news/articleView.html",
+    "https://www.techm.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "9월 정기분 재산세",
+   "hits": 14,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안읍, 9월 정기분 재산세 30일까지 납부",
+    "[위클리오늘] 속초시, 9월 정기분 재산세 부과… 30일까지 납부",
+    "울산시, 9월 정기분 재산세 2112억원 부과…전년 대비 3.3% 증가"
+   ],
+   "sampleLinks": [
+    "https://sjbnews.com/news/news.php",
+    "http://www.weeklytoday.com/news/articleView.html",
+    "https://www.cnbnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "생산적금융 25.3조 공급",
+   "hits": 11,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "우리금융, 생산적금융 25.3조 공급…연간 목표 116% 조기 달성",
+    "우리금융, 생산적금융 25.3조 공급…연간 목표 116% 달성",
+    "우리금융, 생산적금융 25.3조 공급…연간 목표 116% 달성"
+   ],
+   "sampleLinks": [
+    "http://www.newsdream.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/018/0006370988",
+    "https://n.news.naver.com/mnews/article/003/0014196428"
+   ]
+  },
+  {
+   "keyword": "국내생산세액공제 신설, 품목",
+   "hits": 7,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "tax",
+    "insurance-labor",
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;국내생산세액공제 신설, 품목 선정 주기적 재평가해야&quot;",
+    "&quot;국내생산세액공제 신설, 품목 선정 주기적 재평가해야&quot;",
+    "&quot;국내생산세액공제 신설, 품목 선정 주기적 재평가해야&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.taxtimes.co.kr/news/article.html",
+    "https://www.taxtimes.co.kr/news/article.html",
+    "https://www.taxtimes.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "청년미래적금 2차 모집",
+   "hits": 5,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "청년미래적금 2차 모집···다음 달 7일 신청",
+    "청년미래적금 2차 모집 내달 7일 시작",
+    "청년미래적금 2차 모집 내달 시작…우대형 최대 연 19.4%"
+   ],
+   "sampleLinks": [
+    "https://www.ktv.go.kr/content/view",
+    "http://www.segyebiz.com/newsView/20260916511496",
+    "https://www.news2day.co.kr/article/20260916500182"
+   ]
+  },
+  {
+   "keyword": "취약계층 에너지바우처",
+   "hits": 5,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "김포시, 취약계층 에너지바우처 지원…최대 70만 원",
+    "김포시, 취약계층 에너지바우처 지원…12월 말까지 신청",
+    "김포시, 취약계층 에너지바우처 지원…최대 70만 원"
+   ],
+   "sampleLinks": [
+    "https://www.obsnews.co.kr/news/articleView.html",
+    "https://news.ifm.kr/news/articleView.html",
+    "https://www.obsnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "30일까지 납부",
+   "hits": 5,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안읍, 9월 정기분 재산세 30일까지 납부",
+    "[위클리오늘] 속초시, 9월 정기분 재산세 부과… 30일까지 납부",
+    "속초시 9월 재산세 129억 부과…30일까지 납부"
+   ],
+   "sampleLinks": [
+    "https://sjbnews.com/news/news.php",
+    "http://www.weeklytoday.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/421/0009176236"
+   ]
+  },
+  {
+   "keyword": "휴먼컨설팅그룹 연말정산 기초자료",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "office-tips"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "휴먼컨설팅그룹 &quot;연말정산 기초자료 9월부터 사전 점검 필요&quot;",
+    "휴먼컨설팅그룹 &quot;연말정산 기초자료 9월부터 사전 점검 필요&quot;",
+    "휴먼컨설팅그룹 &quot;연말정산 기초자료 9월부터 사전 점검 필요&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.discoverynews.kr/news/articleView.html",
+    "https://www.discoverynews.kr/news/articleView.html",
+    "https://www.discoverynews.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "연말정산 기초자료 9월부터",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "office-tips"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "휴먼컨설팅그룹 &quot;연말정산 기초자료 9월부터 사전 점검 필요&quot;",
+    "휴먼컨설팅그룹 &quot;연말정산 기초자료 9월부터 사전 점검 필요&quot;",
+    "휴먼컨설팅그룹 &quot;연말정산 기초자료 9월부터 사전 점검 필요&quot;"
+   ],
+   "sampleLinks": [
+    "https://www.discoverynews.kr/news/articleView.html",
+    "https://www.discoverynews.kr/news/articleView.html",
+    "https://www.discoverynews.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "혼인신고 안한다? 부정수급",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는",
+    "[팩트체크] 한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는",
+    "한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388944",
+    "https://n.news.naver.com/mnews/article/001/0016316319",
+    "https://n.news.naver.com/mnews/article/055/0001388944"
+   ]
+  },
+  {
+   "keyword": "받으려 혼인신고 안한다?",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는",
+    "[팩트체크] 한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는",
+    "한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388944",
+    "https://n.news.naver.com/mnews/article/001/0016316319",
+    "https://n.news.naver.com/mnews/article/055/0001388944"
+   ]
+  },
+  {
+   "keyword": "실업급여 받는 자영업자",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "unemployment"
+   ],
+   "existing": "early-reemployment-allowance-application",
+   "sampleTitles": [
+    "실업급여 받는 자영업자 1~7월 벌써 3000명 ‘역대 최대’ [H-EXCLUSIVE]",
+    "장사 접고 실업급여 받는 자영업자 급증 … 7개월 만에 3000명 [위기의 자...",
+    "실업급여 받는 자영업자 1~7월 벌써 3000명 ‘역대 최대’ [H-EXCLUSIVE]"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697500",
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/15/2026091500311.html",
+    "https://n.news.naver.com/mnews/article/016/0002697500"
+   ]
+  },
+  {
+   "keyword": "혜택 받으려 혼인신고",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는",
+    "[팩트체크] 한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는",
+    "한부모가족 혜택 받으려 혼인신고 안한다?…부정수급 실태는"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388944",
+    "https://n.news.naver.com/mnews/article/001/0016316319",
+    "https://n.news.naver.com/mnews/article/055/0001388944"
+   ]
+  },
+  {
+   "keyword": "부과 30일까지 납부",
+   "hits": 4,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[위클리오늘] 속초시, 9월 정기분 재산세 부과… 30일까지 납부",
+    "속초시 9월 재산세 129억 부과…30일까지 납부",
+    "단양군, 9월 재산세 22억 원 부과…30일까지 납부"
+   ],
+   "sampleLinks": [
+    "http://www.weeklytoday.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/421/0009176236",
+    "https://www.newstnt.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "생활임금 1만2630원 최저임금+α",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "수원시 내년 생활임금 1만2630원…'최저임금+α' 복지 강화",
+    "수원시 내년 생활임금 1만2630원…'최저임금+α' 복지 강화",
+    "수원시 내년 생활임금 1만2630원…'최저임금+α' 복지 강화"
+   ],
+   "sampleLinks": [
+    "https://www.newsworks.co.kr/news/articleView.html",
+    "https://www.newsworks.co.kr/news/articleView.html",
+    "https://www.newsworks.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "1만2630원 최저임금+α 복지",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "수원시 내년 생활임금 1만2630원…'최저임금+α' 복지 강화",
+    "수원시 내년 생활임금 1만2630원…'최저임금+α' 복지 강화",
+    "수원시 내년 생활임금 1만2630원…'최저임금+α' 복지 강화"
+   ],
+   "sampleLinks": [
+    "https://www.newsworks.co.kr/news/articleView.html",
+    "https://www.newsworks.co.kr/news/articleView.html",
+    "https://www.newsworks.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "40만명인데 실업급여는 3천명",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고...",
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고...",
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고..."
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ",
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ",
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ"
+   ]
+  },
+  {
+   "keyword": "폐업 40만명인데 실업급여는",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고...",
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고...",
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고..."
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ",
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ",
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ"
+   ]
+  },
+  {
+   "keyword": "300만원 청년 근속장려금",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집",
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집",
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/001/0016317257",
+    "https://n.news.naver.com/mnews/article/001/0016317257",
+    "https://n.news.naver.com/mnews/article/001/0016317257"
+   ]
+  },
+  {
+   "keyword": "근속장려금 희망자 40명",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집",
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집",
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/001/0016317257",
+    "https://n.news.naver.com/mnews/article/001/0016317257",
+    "https://n.news.naver.com/mnews/article/001/0016317257"
+   ]
+  },
+  {
+   "keyword": "연휴 착한수레 바우처택시",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "안양시, 추석 연휴 '착한수레·바우처택시' 정상 운행",
+    "안양시, 추석 연휴 ‘착한수레·바우처택시’ 정상 가동…교통약자 이동...",
+    "안양시, 추석 연휴 '착한수레·바우처택시' 정상 운행"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009174414",
+    "https://n.news.naver.com/mnews/article/666/0000123604",
+    "https://www.m-i.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "착한수레 바우처택시 정상",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "안양시, 추석 연휴 '착한수레·바우처택시' 정상 운행",
+    "안양시, 추석 연휴 ‘착한수레·바우처택시’ 정상 가동…교통약자 이동...",
+    "안양시, 추석 연휴 '착한수레·바우처택시' 정상 운행"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009174414",
+    "https://n.news.naver.com/mnews/article/666/0000123604",
+    "https://www.m-i.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "넣으면 79만원 세액공제",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재...",
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재...",
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재..."
+   ],
+   "sampleLinks": [
+    "http://www.dailypop.kr/news/articleView.html",
+    "http://www.dailypop.kr/news/articleView.html",
+    "http://www.dailypop.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "79만원 세액공제 연봉별",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재...",
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재...",
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재..."
+   ],
+   "sampleLinks": [
+    "http://www.dailypop.kr/news/articleView.html",
+    "http://www.dailypop.kr/news/articleView.html",
+    "http://www.dailypop.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 2112억원 부과",
+   "hits": 3,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "울산시, 9월 정기분 재산세 2112억원 부과…전년 대비 3.3% 증가",
+    "울산시, 9월 재산세 2112억원 부과",
+    "울산시, 9월 정기분 재산세 2112억원 부과"
+   ],
+   "sampleLinks": [
+    "https://www.cnbnews.com/news/articleView.html",
+    "https://news.bbsi.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/016/0002697928"
+   ]
+  },
+  {
+   "keyword": "청년 근속장려금 희망자",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집",
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집",
+    "[이천소식] '최대 300만원' 청년 근속장려금 희망자 40명 모집"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/001/0016317257",
+    "https://n.news.naver.com/mnews/article/001/0016317257",
+    "https://n.news.naver.com/mnews/article/001/0016317257"
+   ]
+  },
+  {
+   "keyword": "성과급 퇴직연금 뭐길래",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "삼성전자 성과급 '절세' 요구…전삼노가 꺼낸 '성과급 퇴직연금' 뭐길래",
+    "삼성전자 성과급 '절세' 요구…전삼노가 꺼낸 '성과급 퇴직연금' 뭐길래",
+    "삼성전자 성과급 '절세' 요구…전삼노가 꺼낸 '성과급 퇴직연금' 뭐길래"
+   ],
+   "sampleLinks": [
+    "https://bizhankook.com/articles/samsung-performance-bonus-pension-plan.html",
+    "https://bizhankook.com/articles/samsung-performance-bonus-pension-plan.html",
+    "https://bizhankook.com/articles/samsung-performance-bonus-pension-plan.html"
+   ]
+  },
+  {
+   "keyword": "실업급여는 3천명 벼랑",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고...",
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고...",
+    "폐업 40만명인데 실업급여는 3천명… 벼랑 끝 자영업자 두 번 울리는 '고..."
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ",
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ",
+    "https://lawtalknews.co.kr/article/WWIJ2WWG9WKZ"
+   ]
+  },
+  {
+   "keyword": "생산적금융 25조 공급",
+   "hits": 3,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "우리금융, 생산적금융 25조 공급…지방·중소기업 지원 확대",
+    "우리금융, 생산적금융 25조 공급…지방·중소기업 지원 확대",
+    "우리금융, 생산적금융 25조 공급…연간 목표 116% 조기 달성"
+   ],
+   "sampleLinks": [
+    "https://www.g-enews.com/view.php",
+    "https://www.g-enews.com/view.php",
+    "https://www.megaeconomy.co.kr/news/newsview.php"
+   ]
+  },
+  {
+   "keyword": "세액공제 연봉별 절세",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재...",
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재...",
+    "IRP에 600만원 넣으면 79만원 세액공제…연봉별 절세 효과는 [1인가구 재..."
+   ],
+   "sampleLinks": [
+    "http://www.dailypop.kr/news/articleView.html",
+    "http://www.dailypop.kr/news/articleView.html",
+    "http://www.dailypop.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "꺼낸 성과급 퇴직연금",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "삼성전자 성과급 '절세' 요구…전삼노가 꺼낸 '성과급 퇴직연금' 뭐길래",
+    "삼성전자 성과급 '절세' 요구…전삼노가 꺼낸 '성과급 퇴직연금' 뭐길래",
+    "삼성전자 성과급 '절세' 요구…전삼노가 꺼낸 '성과급 퇴직연금' 뭐길래"
+   ],
+   "sampleLinks": [
+    "https://bizhankook.com/articles/samsung-performance-bonus-pension-plan.html",
+    "https://bizhankook.com/articles/samsung-performance-bonus-pension-plan.html",
+    "https://bizhankook.com/articles/samsung-performance-bonus-pension-plan.html"
+   ]
+  },
+  {
+   "keyword": "재산세 22억 원",
+   "hits": 3,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "단양군, 2026년 9월 정기분 재산세 22억 원 부과",
+    "단양군, 9월 재산세 22억 원 부과…30일까지 납부",
+    "단양군, 9월 정기분 재산세 22억 원 부과"
+   ],
+   "sampleLinks": [
+    "http://www.enewstoday.co.kr/news/articleView.html",
+    "https://www.newstnt.com/news/articleView.html",
+    "https://www.ggilbo.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "급여이체 14배",
+   "hits": 3,
+   "cluster": "savings",
+   "clusters": [
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "하나은행, 나라사랑카드 시장 안착...&quot;첫해 점유율 42%, 급여이체 14배 ...",
+    "하나은행 나라사랑카드 8개월 만에 점유율 42%⋯군 급여이체 14배 증가",
+    "하나은행, 나라사랑카드 첫해 존재감…급여이체 14배 늘었다"
+   ],
+   "sampleLinks": [
+    "http://www.kdfnews.com/news/articleView.html",
+    "https://www.autodaily.co.kr/news/articleView.html",
+    "https://sports.hankooki.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "일했다면 아르바이트생도 주휴수당",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘주 15시간 이상’ 일했다면…아르바이트생도 주휴수당 받을 수 있다",
+    "‘주 15시간 이상’ 일했다면…아르바이트생도 주휴수당 받을 수 있다"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/ZYLQ5QWDTNLM",
+    "https://lawtalknews.co.kr/article/ZYLQ5QWDTNLM"
+   ]
+  },
+  {
+   "keyword": "추석 민생지원금 10만~50만",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;우리 동네는 얼마?&quot;…추석 민생지원금 10만~50만 원",
+    "&quot;우리 동네는 얼마?&quot;…추석 민생지원금 10만~50만 원"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/660/0000117381",
+    "https://n.news.naver.com/mnews/article/660/0000117381"
+   ]
+  },
+  {
+   "keyword": "70만원 에너지바우처 취약계층",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "김포시, ‘최대 70만원 에너지바우처’…취약계층 겨울·여름 냉난방비...",
+    "김포시, ‘최대 70만원 에너지바우처’…취약계층 겨울·여름 냉난방비..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/382/0001294518",
+    "https://n.news.naver.com/mnews/article/382/0001294518"
+   ]
+  },
+  {
+   "keyword": "민생지원금 10만~50만 원",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;우리 동네는 얼마?&quot;…추석 민생지원금 10만~50만 원",
+    "&quot;우리 동네는 얼마?&quot;…추석 민생지원금 10만~50만 원"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/660/0000117381",
+    "https://n.news.naver.com/mnews/article/660/0000117381"
+   ]
+  },
+  {
+   "keyword": "아르바이트생도 주휴수당 받을",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘주 15시간 이상’ 일했다면…아르바이트생도 주휴수당 받을 수 있다",
+    "‘주 15시간 이상’ 일했다면…아르바이트생도 주휴수당 받을 수 있다"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/ZYLQ5QWDTNLM",
+    "https://lawtalknews.co.kr/article/ZYLQ5QWDTNLM"
+   ]
+  },
+  {
+   "keyword": "최대 70만원 에너지바우처",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "김포시, ‘최대 70만원 에너지바우처’…취약계층 겨울·여름 냉난방비...",
+    "김포시, ‘최대 70만원 에너지바우처’…취약계층 겨울·여름 냉난방비..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/382/0001294518",
+    "https://n.news.naver.com/mnews/article/382/0001294518"
+   ]
+  },
+  {
+   "keyword": "에너지바우처 취약계층 겨울",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "김포시, ‘최대 70만원 에너지바우처’…취약계층 겨울·여름 냉난방비...",
+    "김포시, ‘최대 70만원 에너지바우처’…취약계층 겨울·여름 냉난방비..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/382/0001294518",
+    "https://n.news.naver.com/mnews/article/382/0001294518"
+   ]
+  },
+  {
+   "keyword": "연금절세 따라잡기 1억으로",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[연금절세 따라잡기] 1억으로 2억 만드는 투자 개인투자용 국채 투자 어...",
+    "[연금절세 따라잡기] 1억으로 2억 만드는 투자 개인투자용 국채 투자 어..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/374/0000533282",
+    "https://n.news.naver.com/mnews/article/374/0000533282"
+   ]
+  },
+  {
+   "keyword": "정기분 재산세 2112억원",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "울산시, 9월 정기분 재산세 2112억원 부과…전년 대비 3.3% 증가",
+    "울산시, 9월 정기분 재산세 2112억원 부과"
+   ],
+   "sampleLinks": [
+    "https://www.cnbnews.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/016/0002697928"
+   ]
+  },
+  {
+   "keyword": "실업급여? 보장 넓어질수록",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴사해도, 폐업해도 실업급여? 보장 넓어질수록 커지는 딜레마",
+    "퇴사해도, 폐업해도 실업급여? 보장 넓어질수록 커지는 딜레마"
+   ],
+   "sampleLinks": [
+    "https://www.smartbizn.com/news/articleView.html",
+    "https://www.smartbizn.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "전세대출 연말정산 소득공제",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "충남 노란우산 희망장려금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "충남 노란우산 희망장려금 38억 원으로 대폭 확대",
+    "충남 노란우산 희망장려금 지원 확대... 천안 소상공인도 포함"
+   ],
+   "sampleLinks": [
+    "https://www.ggilbo.com/news/articleView.html",
+    "http://www.chungnamilbo.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "폐업해도 실업급여? 보장",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴사해도, 폐업해도 실업급여? 보장 넓어질수록 커지는 딜레마",
+    "퇴사해도, 폐업해도 실업급여? 보장 넓어질수록 커지는 딜레마"
+   ],
+   "sampleLinks": [
+    "https://www.smartbizn.com/news/articleView.html",
+    "https://www.smartbizn.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "시럽급여 실업급여 요건만",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "2630원 확정 공정수당",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "수원시, '2027년 생활임금' 시급 1만 2630원 확정…'공정수당' 신설",
+    "수원시, '2027년 생활임금' 시급 1만 2630원 확정…'공정수당' 신설"
+   ],
+   "sampleLinks": [
+    "https://www.joongangenews.com/news/articleView.html",
+    "https://www.joongangenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "공정수당 최대 248만원",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "수원 생활임금 10% 인상…기간제 ‘공정수당’ 최대 248만원",
+    "수원 생활임금 10% 인상…기간제 ‘공정수당’ 최대 248만원"
+   ],
+   "sampleLinks": [
+    "https://www.etoday.co.kr/news/view/2626537",
+    "https://www.etoday.co.kr/news/view/2626537"
+   ]
+  },
+  {
+   "keyword": "4000억 육박 퇴직급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "홈플러스 체불임금 4000억 육박…퇴직급여 적립도 법정 기준 미달",
+    "홈플러스 체불임금 4000억 육박…퇴직급여 적립도 법정 기준 미달"
+   ],
+   "sampleLinks": [
+    "https://www.kyongbuk.co.kr/news/articleView.html",
+    "https://www.kyongbuk.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "육아휴직급여 누락도 논의",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'임금 없는 채용공고' 개선 추진…육아휴직급여 누락도 논의",
+    "'임금 없는 채용공고' 개선 추진…육아휴직급여 누락도 논의"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/003/0014195006",
+    "https://n.news.naver.com/mnews/article/003/0014195006"
+   ]
+  },
+  {
+   "keyword": "보험료 지원에도 자영업자",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "보험료 지원에도 자영업자 고용보험 1%…&quot;미가입 구조 원인 살펴야&quot;",
+    "보험료 지원에도 자영업자 고용보험 가입률 1.2%"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009169888",
+    "https://n.news.naver.com/mnews/article/421/0009168074"
+   ]
+  },
+  {
+   "keyword": "플랫폼 노동자 산재보험료",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다",
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다"
+   ],
+   "sampleLinks": [
+    "https://www.ngetnews.com/news/articleView.html",
+    "https://www.ngetnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "산재보험료 부담 지자체가",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다",
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다"
+   ],
+   "sampleLinks": [
+    "https://www.ngetnews.com/news/articleView.html",
+    "https://www.ngetnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "연말정산 소득공제 조건과",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": "marriage-tax-credit-2026",
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "1408명 월세 지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "동작구, 청년 1인 가구 1408명 월세 지원금 지급…최대 480만원",
+    "동작구, 청년 1인 가구 1408명 월세 지원금 지급…최대 480만원"
+   ],
+   "sampleLinks": [
+    "https://www.hg-times.com/news/articleView.html",
+    "https://www.hg-times.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "얼마? 추석 민생지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;우리 동네는 얼마?&quot;…추석 민생지원금 10만~50만 원",
+    "&quot;우리 동네는 얼마?&quot;…추석 민생지원금 10만~50만 원"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/660/0000117381",
+    "https://n.news.naver.com/mnews/article/660/0000117381"
+   ]
+  },
+  {
+   "keyword": "1,408명 첫 지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "동작구, 9월 23일부터 청년 월세 지원…1,408명 첫 지원금 지급",
+    "동작구, 9월 23일부터 청년 월세 지원…1,408명 첫 지원금 지급"
+   ],
+   "sampleLinks": [
+    "https://www.gukjenews.com/news/articleView.html",
+    "https://www.gukjenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "구리시 보훈수당 지급액",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "구리시 보훈수당 지급액 3년간 4.4배 증가…'위장전입 의심' 사례 점검",
+    "구리시 보훈수당 지급액 3년간 4.4배 증가…'위장전입 의심' 사례 점검"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009176611",
+    "https://n.news.naver.com/mnews/article/421/0009176611"
+   ]
+  },
+  {
+   "keyword": "보훈수당 지급액 3년간",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "구리시 보훈수당 지급액 3년간 4.4배 증가…'위장전입 의심' 사례 점검",
+    "구리시 보훈수당 지급액 3년간 4.4배 증가…'위장전입 의심' 사례 점검"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009176611",
+    "https://n.news.naver.com/mnews/article/421/0009176611"
+   ]
+  },
+  {
+   "keyword": "지급액 3년간 4.4배",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "구리시 보훈수당 지급액 3년간 4.4배 증가…'위장전입 의심' 사례 점검",
+    "구리시 보훈수당 지급액 3년간 4.4배 증가…'위장전입 의심' 사례 점검"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009176611",
+    "https://n.news.naver.com/mnews/article/421/0009176611"
+   ]
+  },
+  {
+   "keyword": "덧셈컴퍼니, 세금 환급",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "덧셈컴퍼니, 세금 환급 서비스 이용자 166만명",
+    "덧셈컴퍼니, 세금 환급 서비스 이용자 166만명"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/029/0003048532",
+    "https://n.news.naver.com/mnews/article/029/0003048532"
+   ]
+  },
+  {
+   "keyword": "정기분 재산세 22억원",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "단양군, 2026년 9월 정기분 재산세 22억원 부과",
+    "단양군, 9월 정기분 재산세 22억원 부과"
+   ],
+   "sampleLinks": [
+    "http://www.cctimes.kr/news/articleView.html",
+    "https://www.ccdailynews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "구직급여 요건만 채우고",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477"
+   ]
+  },
+  {
+   "keyword": "바에 시럽급여 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "실업급여 요건만 채우고",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "노동자 산재보험료 부담",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다",
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다"
+   ],
+   "sampleLinks": [
+    "https://www.ngetnews.com/news/articleView.html",
+    "https://www.ngetnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "모집 도약계좌 갈아타기",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'최대 연 19% 수익' 청년미래적금, 2차 모집…'도약계좌 갈아타기' 허용",
+    "청년미래적금 2차 모집…‘도약계좌 갈아타기’ 문 다시 열린다"
+   ],
+   "sampleLinks": [
+    "https://www.getnews.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/123/0002390302"
+   ]
+  },
+  {
+   "keyword": "전환, 밀린 연차수당",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "근무 중 5인 미만 전환, 밀린 연차수당 진정 범위는 어디까지?",
+    "근무 중 5인 미만 전환, 밀린 연차수당 진정 범위는 어디까지?"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/A0E0YPJY0UN7",
+    "https://lawtalknews.co.kr/article/A0E0YPJY0UN7"
+   ]
+  },
+  {
+   "keyword": "연차수당 진정 범위는",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "근무 중 5인 미만 전환, 밀린 연차수당 진정 범위는 어디까지?",
+    "근무 중 5인 미만 전환, 밀린 연차수당 진정 범위는 어디까지?"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/A0E0YPJY0UN7",
+    "https://lawtalknews.co.kr/article/A0E0YPJY0UN7"
+   ]
+  },
+  {
+   "keyword": "바우처택시 정상 운행",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "안양시, 추석 연휴 '착한수레·바우처택시' 정상 운행",
+    "안양시, 추석 연휴 '착한수레·바우처택시' 정상 운행"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009174414",
+    "https://www.m-i.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "개소세 환급 유지하되",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'3高'에 경차 판매 23%↑…KDI &quot;개소세 환급 유지하되 연비·소득 기준 개...",
+    "'3高'에 경차 판매 23%↑…KDI &quot;개소세 환급 유지하되 연비·소득 기준 개..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/277/0005817076",
+    "https://n.news.naver.com/mnews/article/277/0005817076"
+   ]
+  },
+  {
+   "keyword": "완주군 정기분 재산세",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "완주군 정기분 재산세 부과, 전비 1.9% 증가",
+    "완주군 정기분 재산세 부과, 전비 1.9% 증가"
+   ],
+   "sampleLinks": [
+    "https://sjbnews.com/news/news.php",
+    "http://www.jeollailbo.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 22억원 부과",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "단양군, 2026년 9월 정기분 재산세 22억원 부과",
+    "단양군, 9월 정기분 재산세 22억원 부과"
+   ],
+   "sampleLinks": [
+    "http://www.cctimes.kr/news/articleView.html",
+    "https://www.ccdailynews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "급여 구직급여 요건만",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": "unemployment-individual-extension-benefit",
+   "sampleTitles": [
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477"
+   ]
+  },
+  {
+   "keyword": "인상 기간제 공정수당",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "수원 생활임금 10% 인상…기간제 ‘공정수당’ 최대 248만원",
+    "수원 생활임금 10% 인상…기간제 ‘공정수당’ 최대 248만원"
+   ],
+   "sampleLinks": [
+    "https://www.etoday.co.kr/news/view/2626537",
+    "https://www.etoday.co.kr/news/view/2626537"
+   ]
+  },
+  {
+   "keyword": "기간제 공정수당 최대",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "수원 생활임금 10% 인상…기간제 ‘공정수당’ 최대 248만원",
+    "수원 생활임금 10% 인상…기간제 ‘공정수당’ 최대 248만원"
+   ],
+   "sampleLinks": [
+    "https://www.etoday.co.kr/news/view/2626537",
+    "https://www.etoday.co.kr/news/view/2626537"
+   ]
+  },
+  {
+   "keyword": "대법 연차 미사용수당",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘연차 발생 전날’ 퇴직했어도…대법 “연차 미사용수당 청구 가능”",
+    "‘연차 발생 전날’ 퇴직했어도…대법 “연차 미사용수당 청구 가능”"
+   ],
+   "sampleLinks": [
+    "http://www.worklaw.co.kr/view/view.asp",
+    "http://www.worklaw.co.kr/view/view.asp"
+   ]
+  },
+  {
+   "keyword": "연차 미사용수당 청구",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘연차 발생 전날’ 퇴직했어도…대법 “연차 미사용수당 청구 가능”",
+    "‘연차 발생 전날’ 퇴직했어도…대법 “연차 미사용수당 청구 가능”"
+   ],
+   "sampleLinks": [
+    "http://www.worklaw.co.kr/view/view.asp",
+    "http://www.worklaw.co.kr/view/view.asp"
+   ]
+  },
+  {
+   "keyword": "육박 퇴직급여 적립도",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "홈플러스 체불임금 4000억 육박…퇴직급여 적립도 법정 기준 미달",
+    "홈플러스 체불임금 4000억 육박…퇴직급여 적립도 법정 기준 미달"
+   ],
+   "sampleLinks": [
+    "https://www.kyongbuk.co.kr/news/articleView.html",
+    "https://www.kyongbuk.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직급여 적립도 법정",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "홈플러스 체불임금 4000억 육박…퇴직급여 적립도 법정 기준 미달",
+    "홈플러스 체불임금 4000억 육박…퇴직급여 적립도 법정 기준 미달"
+   ],
+   "sampleLinks": [
+    "https://www.kyongbuk.co.kr/news/articleView.html",
+    "https://www.kyongbuk.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "기초연금 외국인 꼼수",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "국민·기초연금 '외국인 꼼수' 막는다…정부, 거주기간 논의",
+    "정부, 국민·기초연금 ‘외국인 꼼수’ 막는다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/448/0000639745",
+    "https://n.news.naver.com/mnews/article/029/0003048390"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 고객 맞춤형",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "하나은행, 퇴직연금 고객 맞춤형 세미나…1대1 연금상담 강화",
+    "하나은행, 퇴직연금 고객 맞춤형 세미나…1대1 자산관리 상담까지"
+   ],
+   "sampleLinks": [
+    "https://www.lcnews.co.kr/news/articleView.html",
+    "http://www.srtimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "소득공제 조건과 한도",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "생산적금융 목표 조기",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "우리금융, 생산적금융 목표 조기 달성 … 8월까지 총 25.3조 공급",
+    "우리금융, 생산적금융 목표 조기 달성 … 8월까지 총 25.3조 공급"
+   ],
+   "sampleLinks": [
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/17/2026091700170.html",
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/17/2026091700170.html"
+   ]
+  },
+  {
+   "keyword": "밀린 연차수당 진정",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "근무 중 5인 미만 전환, 밀린 연차수당 진정 범위는 어디까지?",
+    "근무 중 5인 미만 전환, 밀린 연차수당 진정 범위는 어디까지?"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/A0E0YPJY0UN7",
+    "https://lawtalknews.co.kr/article/A0E0YPJY0UN7"
+   ]
+  },
+  {
+   "keyword": "남은 연차수당 받을",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴사 시 남은 연차수당 받을 수 있을까… 체크해야 할 법적 조건",
+    "퇴사 시 남은 연차수당 받을 수 있을까… 체크해야 할 법적 조건"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/QXDQSBRYJPO7",
+    "https://lawtalknews.co.kr/article/QXDQSBRYJPO7"
+   ]
+  },
+  {
+   "keyword": "환급 서비스 이용자",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "덧셈컴퍼니, 세금 환급 서비스 이용자 166만명",
+    "덧셈컴퍼니, 세금 환급 서비스 이용자 166만명"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/029/0003048532",
+    "https://n.news.naver.com/mnews/article/029/0003048532"
+   ]
+  },
+  {
+   "keyword": "KDI 개소세 환급",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'3高'에 경차 판매 23%↑…KDI &quot;개소세 환급 유지하되 연비·소득 기준 개...",
+    "'3高'에 경차 판매 23%↑…KDI &quot;개소세 환급 유지하되 연비·소득 기준 개..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/277/0005817076",
+    "https://n.news.naver.com/mnews/article/277/0005817076"
+   ]
+  },
+  {
+   "keyword": "환급 유지하되 연비",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "auto"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'3高'에 경차 판매 23%↑…KDI &quot;개소세 환급 유지하되 연비·소득 기준 개...",
+    "'3高'에 경차 판매 23%↑…KDI &quot;개소세 환급 유지하되 연비·소득 기준 개..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/277/0005817076",
+    "https://n.news.naver.com/mnews/article/277/0005817076"
+   ]
+  },
+  {
+   "keyword": "정기분 재산세 부과",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[위클리오늘] 속초시, 9월 정기분 재산세 부과… 30일까지 납부",
+    "완주군, 9월 정기분 재산세 부과…1.9% 증가"
+   ],
+   "sampleLinks": [
+    "http://www.weeklytoday.com/news/articleView.html",
+    "https://news.skbroadband.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 부과, 전비",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "완주군 정기분 재산세 부과, 전비 1.9% 증가",
+    "완주군 정기분 재산세 부과, 전비 1.9% 증가"
+   ],
+   "sampleLinks": [
+    "https://sjbnews.com/news/news.php",
+    "http://www.jeollailbo.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "9월 재산세 22억",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "단양군, 9월 재산세 22억 원 부과…30일까지 납부",
+    "단양군, 26년 9월 재산세 22억 부과…전년比 1.78%↑"
+   ],
+   "sampleLinks": [
+    "https://www.newstnt.com/news/articleView.html",
+    "https://www.gukjenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 22억 부과",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "단양군, 9월 정기분 재산세 22억 부과",
+    "단양군, 26년 9월 재산세 22억 부과…전년比 1.78%↑"
+   ],
+   "sampleLinks": [
+    "https://www.dynews.co.kr/news/articleView.html",
+    "https://www.gukjenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "장사 접고 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "장사 접고 실업급여 받는 자영업자 급증 … 7개월 만에 3000명 [위기의 자...",
+    "장사 접고 실업급여 받는 자영업자 급증 … 7개월 만에 3000명 [위기의 자..."
+   ],
+   "sampleLinks": [
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/15/2026091500311.html",
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/15/2026091500311.html"
+   ]
+  },
+  {
+   "keyword": "접고 실업급여 받는",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "장사 접고 실업급여 받는 자영업자 급증 … 7개월 만에 3000명 [위기의 자...",
+    "장사 접고 실업급여 받는 자영업자 급증 … 7개월 만에 3000명 [위기의 자..."
+   ],
+   "sampleLinks": [
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/15/2026091500311.html",
+    "https://biz.newdaily.co.kr/site/data/html/2026/09/15/2026091500311.html"
+   ]
+  },
+  {
+   "keyword": "시럽 급여 구직급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477"
+   ]
+  },
+  {
+   "keyword": "다닐 바에 시럽급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "조건과 한도 총정리",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": "basic-livelihood-medical-eligibility",
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "한도 금리 조회부터",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "카카오뱅크 분양잔금대출 출시, 한도·금리 조회부터 실행까지 비대면으...",
+    "카카오뱅크, '분양잔금대출' 출시…한도·금리 조회부터 실행까지 모바..."
+   ],
+   "sampleLinks": [
+    "https://www.businesspost.co.kr/BP",
+    "http://www.press9.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "청년미래적금, 2차",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;연 19% 적금이라더니&quot;… 청년미래적금, 2차 가입 전 따져볼 변수는?",
+    "'최대 연 19% 수익' 청년미래적금, 2차 모집…'도약계좌 갈아타기' 허용"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/029/0003048429",
+    "https://www.getnews.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "2차 모집 도약계좌",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'최대 연 19% 수익' 청년미래적금, 2차 모집…'도약계좌 갈아타기' 허용",
+    "청년미래적금 2차 모집…‘도약계좌 갈아타기’ 문 다시 열린다"
+   ],
+   "sampleLinks": [
+    "https://www.getnews.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/123/0002390302"
+   ]
+  },
+  {
+   "keyword": "8월까지 생산적금융",
+   "hits": 2,
+   "cluster": "credit-loan",
+   "clusters": [
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "우리금융, 8월까지 생산적금융 25.3조 공급…연간 목표 116% 달성",
+    "우리금융 임종룡號, 8월까지 생산적금융 25.3조원 공급…지방·중소기업..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/008/0005415177",
+    "https://www.seoultimes.news/news/article.html"
+   ]
+  },
+  {
+   "keyword": "월세 지원금 지급",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "동작구, 청년 1인 가구 1408명 월세 지원금 지급…최대 480만원",
+    "동작구, 청년 1인 가구 1408명 월세 지원금 지급…최대 480만원"
+   ],
+   "sampleLinks": [
+    "https://www.hg-times.com/news/articleView.html",
+    "https://www.hg-times.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "지원금 지급 최대",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": "company-childbirth-support-tax-free-2026",
+   "sampleTitles": [
+    "동작구, 청년 1인 가구 1408명 월세 지원금 지급…최대 480만원",
+    "동작구, 청년 1인 가구 1408명 월세 지원금 지급…최대 480만원"
+   ],
+   "sampleLinks": [
+    "https://www.hg-times.com/news/articleView.html",
+    "https://www.hg-times.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "시 남은 연차수당",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴사 시 남은 연차수당 받을 수 있을까… 체크해야 할 법적 조건",
+    "퇴사 시 남은 연차수당 받을 수 있을까… 체크해야 할 법적 조건"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/QXDQSBRYJPO7",
+    "https://lawtalknews.co.kr/article/QXDQSBRYJPO7"
+   ]
+  },
+  {
+   "keyword": "연차수당 받을 수",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": "annual-leave-cash-claim",
+   "sampleTitles": [
+    "퇴사 시 남은 연차수당 받을 수 있을까… 체크해야 할 법적 조건",
+    "퇴사 시 남은 연차수당 받을 수 있을까… 체크해야 할 법적 조건"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/QXDQSBRYJPO7",
+    "https://lawtalknews.co.kr/article/QXDQSBRYJPO7"
+   ]
+  },
+  {
+   "keyword": "세금 환급 서비스",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "덧셈컴퍼니, 세금 환급 서비스 이용자 166만명",
+    "덧셈컴퍼니, 세금 환급 서비스 이용자 166만명"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/029/0003048532",
+    "https://n.news.naver.com/mnews/article/029/0003048532"
+   ]
+  },
+  {
+   "keyword": "혼인신고 안 하고",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "혼인신고 안 하고 혜택 챙긴다?…한부모 부정수급의 '진짜 모습'",
+    "혼인신고 안 하고 혜택 챙긴다?…한부모 부정수급의 '진짜 모습'"
+   ],
+   "sampleLinks": [
+    "https://www.jnilbo.com/news/articleView.html",
+    "https://www.jnilbo.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "실업급여 안 타면",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;실업급여 안 타면 바보&quot; 조기 이직 부추기나…청년 자발적 실업 '우려...",
+    "&quot;실업급여 안 타면 바보&quot; 조기 이직 부추기나…청년 자발적 실업 '우려..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/666/0000123578",
+    "https://n.news.naver.com/mnews/article/666/0000123578"
+   ]
+  },
+  {
+   "keyword": "주휴수당 받을 수",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘주 15시간 이상’ 일했다면…아르바이트생도 주휴수당 받을 수 있다",
+    "‘주 15시간 이상’ 일했다면…아르바이트생도 주휴수당 받을 수 있다"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/ZYLQ5QWDTNLM",
+    "https://lawtalknews.co.kr/article/ZYLQ5QWDTNLM"
+   ]
+  },
+  {
+   "keyword": "첫 지원금 지급",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": "chuseok-holiday-support-payment-2026",
+   "sampleTitles": [
+    "동작구, 9월 23일부터 청년 월세 지원…1,408명 첫 지원금 지급",
+    "동작구, 9월 23일부터 청년 월세 지원…1,408명 첫 지원금 지급"
+   ],
+   "sampleLinks": [
+    "https://www.gukjenews.com/news/articleView.html",
+    "https://www.gukjenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 117억",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "완주군, 정기분 재산세 117억 원 부과",
+    "완주군 재산세 117억 부과…30일까지 납부"
+   ],
+   "sampleLinks": [
+    "https://www.thepowernews.co.kr/view.php",
+    "https://www.newsfreezone.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "기금형 퇴직연금",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "기금형 퇴직연금 '새로운 룰' 이르면 9월內 공개",
+    "기금형 퇴직연금 도입 언제쯤? 554조 머니무브 가능성에 금융권 '예의주..."
+   ],
+   "sampleLinks": [
+    "https://weekly.hankooki.com/news/articleView.html",
+    "https://www.businesspost.co.kr/BP"
+   ]
+  },
+  {
+   "keyword": "맞춤형 퇴직연금",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "하나은행, 전문가 '맞춤형 퇴직연금 세미나' 진행...퇴직연금 경쟁 가열",
+    "[은행가] 하나은행 '맞춤형 퇴직연금 세미나' 개최 外"
+   ],
+   "sampleLinks": [
+    "http://www.choicenews.co.kr/news/articleView.html",
+    "https://www.slist.kr/news/articleView.html"
+   ]
+  }
+ ]
+}

@@ -236,7 +236,7 @@ content-auditor 에 추가: 잠금 장부 `--check` · 14자 shingle ≤15% · �
 - 제목 형태 3일 연속 금지(`template-footprint.mjs` 확장).
 - 이미 자사가 1~3위인 자리에 새 글 금지. 없는 제도·가짜 이름 금지.
 - 품질 점수 noindex 구조는 머니룩에 없음 → 해당 없음.
-- 루틴은 `pipeline-queue.json` 의 `approved` 를 **첫 입력**으로 읽는다(자격증명 없이 읽기만). 승인 항목이 없으면 기존 §2-3 순서(달력 → 신생 → 갭 → GSC).
+- **운영자 결정(2026-09-17): "앞으로 확인한 빈틈 포스팅만 올린다."** 루틴의 신규 입력원은 `pipeline-queue.json` **하나뿐**이다(자격증명 없이 읽기만). approved → `autoPick` proposed 점수순, `measuredAt` 10일 이내, 같은 `targetQuery` 글이 없을 것. 통과 항목이 없으면 신규 0편이고 달력·신생·갭·GSC·WebSearch 로 대신 고르지 않는다(그 입력원은 대기열 재료·리프레시 선정용). 첫 대기열은 2026-09-17 수동 측정 9건.
 
 ## 9. 자동화
 

@@ -1,0 +1,568 @@
+{
+ "_readme": [
+  "네이버 빈틈 키워드 대기열. 신규 글의 유일한 입력원이다 (운영자 결정 2026-09-17: \"앞으로 확인한 빈틈 포스팅만 올린다\"). docs/ops/KEYWORD-PLAN-2026-09-15.md §6-4·§8.",
+  "고르는 법: ① status=approved 먼저 ② 그다음 status=proposed 이면서 autoPick=true 인 것을 score 내림차순. measuredAt 이 10일 넘게 지난 항목과, 이미 같은 targetQuery 로 발행된 항목(글 frontmatter targetQuery 가 query 또는 altQueries 와 같음)은 건너뛴다.",
+  "통과 항목이 없으면 그날 신규는 0편이다. 달력·뉴스·GSC·WebSearch 로 대신 고르지 않는다.",
+  "autoPick=false 는 운영자가 [발행 지시]로 approved 로 바꿔야 쓴다. status: proposed / approved / published / hold / rejected.",
+  "이 파일은 로컬·GitHub Actions 의 측정 도구만 쓴다. 클라우드 루틴은 읽기만 한다(발행 표시는 글의 targetQuery 로 남긴다).",
+  "serp.eyeOffset 은 운영자가 네이버에서 직접 보고 채우는 값(1 첫 화면 / 2 한 번 스크롤 / 3 그 아래 = 닫힘). API 로는 잴 수 없다."
+ ],
+ "updatedAt": "2026-09-17",
+ "measuredBy": "수동 v0.1 (naver-scout·naver-ledger·naver-volume + 블로그 제목 접미어·지식iN 같은 질문 수)",
+ "anchor": "실업급여=100",
+ "items": [
+  {
+   "id": "gap:2026-09-17:확정일자-부여현황",
+   "query": "확정일자 부여현황",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 75,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 62건(지식iN 상위 100)",
+    "자리 열림",
+    "뉴스 벽 없음"
+   ],
+   "condition": "열람 절차·수수료·열람 가능한 사람은 인터넷등기소·주택임대차보호법(제3조의6)에서 확인",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 62,
+    "altKinExact": [],
+    "rel30": 3.4,
+    "ratio7": 1.02,
+    "blogFreq": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 3,
+    "wallTop5": 1,
+    "mainGovAbove": 1,
+    "publicAbove": 0,
+    "toolAbove": 2,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 1,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "gov:chuncheon.go.kr",
+     "law:mylawstory.com",
+     "commercial:dobiho.com",
+     "ugc:blog.naver.com",
+     "ugc:in.naver.com",
+     "gov:suwon.go.kr",
+     "tool:data.iros.go.kr",
+     "tool:iros.go.kr",
+     "gov:suwon.go.kr",
+     "gov:easylaw.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "jeonse-right-registration-vs-fixed-date",
+     "lease-fixed-date-mobile-vs-office"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:청년도약계좌-조건",
+   "query": "청년도약계좌 조건",
+   "altQueries": [
+    "청년도약계좌 가입조건",
+    "청년도약계좌 신청방법"
+   ],
+   "track": "T2",
+   "family": "A",
+   "cluster": "savings",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 70,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 100건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 4"
+   ],
+   "condition": "신규 가입 종료 여부를 서민금융진흥원·금융위 공지에서 먼저 확인. 종료됐으면 V형(\"지금 가입되나\")으로 쓴다. 세 쿼리는 한 글로 합친다",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 100,
+    "altKinExact": [
+     99,
+     51
+    ],
+    "rel30": 1.3,
+    "ratio7": 1.2,
+    "blogFreq": 10
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 4,
+    "wallTop5": 2,
+    "mainGovAbove": 1,
+    "publicAbove": 1,
+    "toolAbove": 0,
+    "fincoAbove": 3,
+    "naverAbove": 0,
+    "newsWall": 14,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "ugc:namu.wiki",
+     "commercial:nicesongtoyou.com",
+     "finco:banksalad.com",
+     "public:kinfa.or.kr",
+     "gov:youthcenter.go.kr",
+     "commercial:benefit.studygov.kr",
+     "finco:kbthink.com",
+     "gov:korea.kr",
+     "public:kinfa.or.kr",
+     "finco:spot.wooribank.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "youth-asset-formation-3policy-compare",
+     "youth-leap-account-non-applicants-june-final-check",
+     "youth-leap-account-simulation"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:청약통장-비대면-해지",
+   "query": "청약통장 비대면 해지",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 70,
+   "label": "높음",
+   "reasons": [
+    "자리 열림",
+    "빈자리 6",
+    "상위 5 관공서·공단·도구 없음"
+   ],
+   "condition": "해지 시 소득공제 추징 기준은 국세청·조세특례제한법 원문 확인. 은행별 앱 절차는 \"약\"·예시 표기, 특정 은행 권유 금지",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 14,
+    "altKinExact": [],
+    "rel30": 0,
+    "ratio7": null,
+    "blogFreq": 4
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 6,
+    "wallTop5": 0,
+    "mainGovAbove": 0,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 4,
+    "naverAbove": 0,
+    "newsWall": 0,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [
+     "금융사 4 — 상업 의도, 광고 블록이 위에 설 수 있다"
+    ],
+    "top10": [
+     "finco:kbthink.com",
+     "commercial:mingom-how-to-earn.com",
+     "commercial:mingom-how-to-earn.com",
+     "commercial:zippoom.com",
+     "finco:bank.shinhan.com",
+     "commercial:mingom-how-to-earn.com",
+     "finco:kebhana.com",
+     "commercial:mingom-how-to-earn.com",
+     "finco:obank.kbstar.com",
+     "commercial:mingom-how-to-earn.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "apartment-pre-sale-transfer-restriction-tax",
+     "housing-subscription-account-strategy",
+     "housing-subscription-conversion-deadline-2026"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:연말정산-서류",
+   "query": "연말정산 서류",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "tax",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 70,
+   "label": "높음",
+   "reasons": [
+    "자리 열림",
+    "빈자리 7",
+    "뉴스 벽 없음"
+   ],
+   "condition": "제철은 1월. 의료비 영수증 등 발급처별 서류 의도를 포함. 귀속연도·신고연도 구분 명시",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 8,
+    "altKinExact": [],
+    "rel30": 0.1,
+    "ratio7": 0.89,
+    "blogFreq": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 7,
+    "wallTop5": 2,
+    "mainGovAbove": 1,
+    "publicAbove": 0,
+    "toolAbove": 1,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 3,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "tool:hometax.go.kr",
+     "org:snuh.org",
+     "gov:nts.go.kr",
+     "org:snuh.org",
+     "commercial:gilhospital.com",
+     "gov:nts.go.kr",
+     "org:nmc.or.kr",
+     "org:cmcep.or.kr",
+     "org:cmcvincent.or.kr",
+     "commercial:knuh.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "dependent-deduction-guide",
+     "dual-employment-year-end-tax-combined-filing",
+     "holiday-bonus-tax-withholding-year-end"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:실손보험-청구-서류",
+   "query": "실손보험 청구 서류",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "insurance-personal",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 65,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 22건(지식iN 상위 100)",
+    "자리 열림"
+   ],
+   "condition": "기존 실손 글 8편과 세부 키워드 다르게(서류 목록·금액대별 차이). insurance-personal 주 1편 상한·정보 프레임",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 22,
+    "altKinExact": [],
+    "rel30": 2.6,
+    "ratio7": 1.05,
+    "blogFreq": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 2,
+    "wallTop5": 3,
+    "mainGovAbove": 2,
+    "publicAbove": 1,
+    "toolAbove": 0,
+    "fincoAbove": 2,
+    "naverAbove": 0,
+    "newsWall": 15,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "public:consumer.knia.or.kr",
+     "finco:samsungfire.com",
+     "gov:epostlife.go.kr",
+     "commercial:samsunglife.com",
+     "gov:fsc.go.kr",
+     "public:fss.or.kr",
+     "gov:fsc.go.kr",
+     "public:silson24.or.kr",
+     "commercial:nhfire.co.kr",
+     "finco:hi.co.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "4th-gen-silson-renewal-strategy",
+     "cataract-surgery-insurance-claim",
+     "heat-illness-emergency-room-silson-claim"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:민생지원금-신청방법",
+   "query": "민생지원금 신청방법",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "gov-support",
+   "status": "proposed",
+   "autoPick": false,
+   "score": 65,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 68건(지식iN 상위 100)",
+    "자리 열림"
+   ],
+   "condition": "어느 지자체·어느 차수인지 시군구 공고 URL 을 확보한 뒤에만. 운영자 지정 필요",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 68,
+    "altKinExact": [],
+    "rel30": 0.2,
+    "ratio7": 0.97,
+    "blogFreq": 6
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 2,
+    "wallTop5": 3,
+    "mainGovAbove": 3,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 1,
+    "naverAbove": 0,
+    "newsWall": 14,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "commercial:awoo.or.kr",
+     "gov:guri.go.kr",
+     "gov:daegu.go.kr",
+     "commercial:awoo.or.kr",
+     "gov:mois.go.kr",
+     "gov:namwon.go.kr",
+     "finco:card.nonghyup.com",
+     "gov:epeople.go.kr",
+     "gov:namwon.go.kr",
+     "gov:sokcho.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "sokcho-minsaeng-support-fund-application"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:버팀목전세자금대출-연장",
+   "query": "버팀목전세자금대출 연장",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 55,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 30건(지식iN 상위 100)",
+    "자리 열림",
+    "뉴스 벽 없음"
+   ],
+   "condition": "주택도시기금 연장 요건 공고 확인. 대출 권유·\"가능\" 표현 금지(금소법 가드)",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 30,
+    "altKinExact": [],
+    "rel30": 0.2,
+    "ratio7": 1.34,
+    "blogFreq": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 1,
+    "wallTop5": 2,
+    "mainGovAbove": 2,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 4,
+    "naverAbove": 0,
+    "newsWall": 1,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [
+     "금융사 4 — 상업 의도, 광고 블록이 위에 설 수 있다"
+    ],
+    "top10": [
+     "gov:housing.gg.go.kr",
+     "commercial:infoday.kr",
+     "finco:spot.wooribank.com",
+     "finco:spot.wooribank.com",
+     "gov:myhome.go.kr",
+     "gov:myhome.go.kr",
+     "public:khug.or.kr",
+     "finco:spot.wooribank.com",
+     "public:khug.or.kr",
+     "finco:spib.wooribank.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "beotimmok-jeonse-loan",
+     "beotimmok-refinance-hf-general"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:전입신고-필요서류",
+   "query": "전입신고 필요서류",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "public-services",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 55,
+   "label": "중간",
+   "reasons": [
+    "자리 열림"
+   ],
+   "condition": "서류 목록만으로는 약하다. 대리 신고·세대주 동의 상황을 포함",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 0,
+    "altKinExact": [],
+    "rel30": 14.8,
+    "ratio7": 0.96,
+    "blogFreq": 4
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 2,
+    "wallTop5": 3,
+    "mainGovAbove": 2,
+    "publicAbove": 0,
+    "toolAbove": 2,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 9,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "tool:gov.kr",
+     "law:mylawstory.com",
+     "commercial:goldpond.kr",
+     "gov:easylaw.go.kr",
+     "gov:easylaw.go.kr",
+     "ugc:in.naver.com",
+     "gov:gunpo.go.kr",
+     "gov:yongin.go.kr",
+     "tool:gov.kr",
+     "gov:sejong.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "move-in-14day-deadline-fine",
+     "move-in-report-missing-fine",
+     "online-resident-transfer-procedure"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-17:청약통장-종류",
+   "query": "청약통장 종류",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": false,
+   "score": 45,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 54건(지식iN 상위 100)",
+    "자리 열림",
+    "금융사 5"
+   ],
+   "condition": "점수 45(은행 글 5·비슷한 우리 글 1편). 기존 청약통장 전략 글과 세부 키워드가 달라야 한다",
+   "measuredAt": "2026-09-17",
+   "demand": {
+    "kinExact": 54,
+    "altKinExact": [],
+    "rel30": 0.3,
+    "ratio7": 0.92,
+    "blogFreq": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 2,
+    "wallTop5": 2,
+    "mainGovAbove": 1,
+    "publicAbove": 1,
+    "toolAbove": 0,
+    "fincoAbove": 5,
+    "naverAbove": 0,
+    "newsWall": 4,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [
+     "금융사 5 — 상업 의도, 광고 블록이 위에 설 수 있다"
+    ],
+    "top10": [
+     "ugc:namu.wiki",
+     "gov:anbang.daegu.go.kr",
+     "finco:toss.im",
+     "public:khug.or.kr",
+     "finco:kbthink.com",
+     "finco:mybank.ibk.co.kr",
+     "finco:spot.wooribank.com",
+     "org:kspo.or.kr",
+     "finco:oland.kbstar.com",
+     "gov:easylaw.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "apartment-pre-sale-transfer-restriction-tax",
+     "housing-subscription-account-strategy",
+     "housing-subscription-conversion-deadline-2026"
+    ]
+   }
+  }
+ ]
+}

@@ -59,6 +59,10 @@ const articles = defineCollection({
     // reviewedBy: 검증 주체 — author slug 또는 "moneylook-auto" (자동 발행).
     //             Article.reviewedBy schema에 매핑 — AI 답변 엔진의 신뢰 시그널.
     reviewedBy: z.string().optional(),
+    // targetQuery: 이 글이 노린 네이버 검색어 (2026-09-17 — docs/ops/pipeline-queue.json 의 query 와 같은 문자열).
+    //              빈틈 대기열의 "이미 발행됨" 판정과 순위 추적(naver-rank-track)·잠금 장부(naver-ledger)가 읽는다.
+    //              렌더링에는 쓰지 않는다. 기존 글에는 넣지 않는다(본문 무변경 lastmod 금지).
+    targetQuery: z.string().min(2).max(60).optional(),
   }),
 });
 
