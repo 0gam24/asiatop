@@ -26,8 +26,9 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 - `node scripts/audit/gsc-opportunities.mjs` 실행 + `pnpm audit:naver` (네이버 수요 측정,
   2026-09-07 신설 — /topics §1-b). 두 JSON 모두 `docs/revenue-log/` 에 커밋.
 - 오늘 패키지 구성 (구글 회복 캐던스 — docs/24 P0):
-  - **신규 최대 1편** (입력원 3개: ① 제도 달력 `docs/editorial/policy-calendar-2026-Q4.json` 발행 창 안 항목
-    ② 네이버 갭 ★ ③ GSC rising — /topics §2-3 우선순위. 카니발리제이션 grep+GSC 대조 통과 필수).
+  - **신규 최대 1편** — 입력원은 **빈틈 대기열 `docs/ops/pipeline-queue.json` 하나뿐** (2026-09-17 운영자 지시,
+    /topics §2-3: approved → autoPick proposed 점수순, 잠금 장부 `audit:ledger --check` 통과, frontmatter `targetQuery` 기록).
+    통과 항목이 없으면 신규 0편, 달력·뉴스·GSC 로 대신 고르지 않는다.
     2편째 자동승인 슬롯은 **폐지** (2026-08-26). 신규 0편인 날도 정상 — 리프레시만 진행 가능.
   - **리프레시 2~3편** (주 10 목표 페이스): 우선순위 ①고위험 클러스터 ②스트라이킹 디스턴스 ③시즌
 - 클러스터 주간 점유 ≤30%·고위험 주 1편 상한 점검

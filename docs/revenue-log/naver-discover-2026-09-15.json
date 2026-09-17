@@ -1,0 +1,2385 @@
+{
+ "pulledAt": "2026-09-15T07:00:04.550Z",
+ "kstDate": "2026-09-15",
+ "days": 7,
+ "minHits": 2,
+ "api": "NAVER API HUB",
+ "seeds": [
+  {
+   "keyword": "9월 정기분 재산세",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "고유가 위기대응 지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "플랫폼 노동자 산재보험료",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "보이는 경제 퇴직연금으로",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "경제 퇴직연금으로 국채",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "부동산 세제 개편안에",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "세제 개편안에 대하여",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "연금저축 수익률 공시",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "재산세 290억 원",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "경영성과급 DC형 퇴직연금-개인형",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "DC형 퇴직연금-개인형 IRP",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "퇴직연금-개인형 IRP 선택제",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "감면은 기본, 시드머니까지",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "퇴직연금은 18일이 기한",
+   "cluster": "insurance-personal"
+  },
+  {
+   "keyword": "임금체불 최저임금 위반",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "정기분 재산세 428억",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "정기분 재산세 290억",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "구직급여 요건만 채우고",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "전세대출 모집인 접수",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "최저임금 위반 무료",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "시럽 급여 구직급여",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "연금저축 공시 오류",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "멀리 이자 감면은",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "모집인 접수 재개",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "붓고 평생 연금",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "평생 연금 편법",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "군민에 민생안정지원금 30만원",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "민생안정지원금 1인당 30만원",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "민생안정지원금 30만원 지급",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "50만원 지자체들 민생지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "전문가들, 취브닝 장학금으로",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "앞두고 민생안정지원금 1인당",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "알바노동자 임금체불 최저임금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "9월 재산세 4조8천236억",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "세무사, 2026 양도소득세",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "양도소득세 종부세 세법개정안",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "추석 앞두고 민생안정지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "노동자 4000명에 지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "제왕절개 미고지에 태아보험",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "제왕절개 미고지로 태아보험",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "전세대출 연말정산 소득공제",
+   "cluster": "savings"
+  },
+  {
+   "keyword": "전 군민에 민생안정지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "지자체들 민생지원금 지급",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "취브닝 장학금으로 영국행",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "종합소득세 신고에 대하여",
+   "cluster": "tax"
+  },
+  {
+   "keyword": "있나 정부, 청년미래적금",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "금감원 제왕절개 미고지로",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "9월분 재산세 1945억",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "9월분 재산세 7144억",
+   "cluster": "realestate"
+  },
+  {
+   "keyword": "시럽급여 실업급여 요건만",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "30%인데 청년 실업급여",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "보험료 지원에도 자영업자",
+   "cluster": "unemployment"
+  },
+  {
+   "keyword": "산재보험료 부담 지자체가",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "배달 대리기사 산재보험료",
+   "cluster": "insurance-labor"
+  },
+  {
+   "keyword": "모셔라 절세계좌 퇴직연금",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "절세계좌 퇴직연금 이벤트",
+   "cluster": "pension"
+  },
+  {
+   "keyword": "민생지원금 지급 잇따라",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "추석 앞두고 민생지원금",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "거둬들이고 부산 재산세",
+   "cluster": "gov-support"
+  },
+  {
+   "keyword": "문화복지카드 3차 접수",
+   "cluster": "gov-support"
+  }
+ ],
+ "rows": [
+  {
+   "keyword": "9월 정기분 재산세",
+   "hits": 13,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "영양군, 9월 정기분 재산세 8억300만원 부과",
+    "구리시, 9월 정기분 재산세 428억 부과",
+    "서산시, 9월 정기분 재산세 290억 원 부과"
+   ],
+   "sampleLinks": [
+    "https://www.kbsm.net/news/view.php",
+    "https://www.newspim.com/news/view/20260915000964",
+    "http://www.cctimes.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "고유가 위기대응 지원금",
+   "hits": 6,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "문경시, 고유가 위기대응 지원금 추석 전 지급 총력",
+    "문경시, 고유가 위기대응 지원금 지급 개시...추석 앞두고 민생 안정 '총...",
+    "문경시, 고유가 위기대응 지원금 신청 시작…현장 점검 강화"
+   ],
+   "sampleLinks": [
+    "https://www.kyongbuk.co.kr/news/articleView.html",
+    "https://news.bbsi.co.kr/news/articleView.html",
+    "https://www.shinailbo.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "플랫폼 노동자 산재보험료",
+   "hits": 5,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다",
+    "부산시, 16일부터 플랫폼 노동자 산재보험료 지원키로",
+    "부산시, 플랫폼 노동자 산재보험료 특별 지원"
+   ],
+   "sampleLinks": [
+    "https://www.ngetnews.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/082/0001398156",
+    "https://n.news.naver.com/mnews/article/079/0004188957"
+   ]
+  },
+  {
+   "keyword": "보이는 경제 퇴직연금으로",
+   "hits": 4,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[돈이 보이는 경제] 퇴직연금으로 국채 산다…&quot;10년 만기 때 확정 수익 ...",
+    "[돈이 보이는 경제] 퇴직연금으로 국채 산다…&quot;10년 만기 때 60% 확정 수...",
+    "[돈이 보이는 경제] 퇴직연금으로 국채 산다…&quot;10년 만기 때 확정 수익 ..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/448/0000639141",
+    "https://n.news.naver.com/mnews/article/448/0000639100",
+    "https://n.news.naver.com/mnews/article/448/0000639141"
+   ]
+  },
+  {
+   "keyword": "실업급여 받는 자영업자",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": "early-reemployment-allowance-application",
+   "sampleTitles": [
+    "실업급여 받는 자영업자 1~7월 벌써 3000명 ‘역대 최대’ [H-EXCLUSIVE]",
+    "실업급여 받는 자영업자 1~7월 벌써 3000명 ‘역대 최대’ [H-EXCLUSIVE]",
+    "실업급여 받는 자영업자 1~7월 벌써 3000명 ‘역대 최대’ [H-EXCLUSIVE]"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697500",
+    "https://n.news.naver.com/mnews/article/016/0002697500",
+    "https://n.news.naver.com/mnews/article/016/0002697500"
+   ]
+  },
+  {
+   "keyword": "경제 퇴직연금으로 국채",
+   "hits": 4,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[돈이 보이는 경제] 퇴직연금으로 국채 산다…&quot;10년 만기 때 확정 수익 ...",
+    "[돈이 보이는 경제] 퇴직연금으로 국채 산다…&quot;10년 만기 때 60% 확정 수...",
+    "[돈이 보이는 경제] 퇴직연금으로 국채 산다…&quot;10년 만기 때 확정 수익 ..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/448/0000639141",
+    "https://n.news.naver.com/mnews/article/448/0000639100",
+    "https://n.news.naver.com/mnews/article/448/0000639141"
+   ]
+  },
+  {
+   "keyword": "부동산 세제 개편안에",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&lt;14&gt; 2026년 부동산 세제 개편안에 대하여",
+    "&lt;14&gt; 2026년 부동산 세제 개편안에 대하여",
+    "&lt;14&gt; 2026년 부동산 세제 개편안에 대하여"
+   ],
+   "sampleLinks": [
+    "https://www.yakup.com/pharmplus/index.html",
+    "https://www.yakup.com/pharmplus/index.html",
+    "https://www.yakup.com/pharmplus/index.html"
+   ]
+  },
+  {
+   "keyword": "세제 개편안에 대하여",
+   "hits": 4,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&lt;14&gt; 2026년 부동산 세제 개편안에 대하여",
+    "&lt;14&gt; 2026년 부동산 세제 개편안에 대하여",
+    "&lt;14&gt; 2026년 부동산 세제 개편안에 대하여"
+   ],
+   "sampleLinks": [
+    "https://www.yakup.com/pharmplus/index.html",
+    "https://www.yakup.com/pharmplus/index.html",
+    "https://www.yakup.com/pharmplus/index.html"
+   ]
+  },
+  {
+   "keyword": "연금저축 수익률 공시",
+   "hits": 4,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "연금저축 수익률 공시 오류 5년간 302건…올해 다시 급증",
+    "연금저축 수익률 공시 오류 302건…절반 이상 ‘수치·산출’ 문제",
+    "연금저축 수익률 공시 오류 5년간 302건"
+   ],
+   "sampleLinks": [
+    "https://www.ebn.co.kr/news/articleView.html",
+    "https://sateconomy.co.kr/news/view/1065589599014363",
+    "http://www.metroseoul.co.kr/article/20260914500233"
+   ]
+  },
+  {
+   "keyword": "재산세 290억 원",
+   "hits": 4,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "서산시, 9월 정기분 재산세 290억 원 부과",
+    "서산시, 9월 정기분 재산세 290억 원 부과",
+    "서산시, '공시지가 상승 영향'... 9월 재산세 290억 원 부과"
+   ],
+   "sampleLinks": [
+    "http://www.cctimes.kr/news/articleView.html",
+    "https://www.ggilbo.com/news/articleView.html",
+    "https://www.newsworker.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "경영성과급 DC형 퇴직연금-개인형",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구",
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구",
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009171692",
+    "https://n.news.naver.com/mnews/article/421/0009171692",
+    "https://n.news.naver.com/mnews/article/421/0009171692"
+   ]
+  },
+  {
+   "keyword": "DC형 퇴직연금-개인형 IRP",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구",
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구",
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009171692",
+    "https://n.news.naver.com/mnews/article/421/0009171692",
+    "https://n.news.naver.com/mnews/article/421/0009171692"
+   ]
+  },
+  {
+   "keyword": "퇴직연금-개인형 IRP 선택제",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구",
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구",
+    "전삼노, 경영성과급 DC형 퇴직연금-개인형 IRP 선택제 도입 요구"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009171692",
+    "https://n.news.naver.com/mnews/article/421/0009171692",
+    "https://n.news.naver.com/mnews/article/421/0009171692"
+   ]
+  },
+  {
+   "keyword": "감면은 기본, 시드머니까지",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[함께 더 멀리]이자 감면은 기본, 시드머니까지…'자산 사다리' 된 금융",
+    "[함께 더 멀리]이자 감면은 기본, 시드머니까지…'자산 사다리' 된 금융",
+    "[함께 더 멀리]이자 감면은 기본, 시드머니까지…'자산 사다리' 된 금융"
+   ],
+   "sampleLinks": [
+    "https://www.businessplus.kr/news/articleView.html",
+    "https://www.businessplus.kr/news/articleView.html",
+    "https://www.businessplus.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직연금은 18일이 기한",
+   "hits": 3,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal",
+    "pension",
+    "credit-loan"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "연휴 전 목돈 받으려면 22일까지 신청…퇴직연금은 18일이 기한",
+    "연휴 전 목돈 받으려면 22일까지 신청…퇴직연금은 18일이 기한",
+    "연휴 전 목돈 받으려면 22일까지 신청…퇴직연금은 18일이 기한"
+   ],
+   "sampleLinks": [
+    "https://www.raonnews.com/news/article.html",
+    "https://www.raonnews.com/news/article.html",
+    "https://www.raonnews.com/news/article.html"
+   ]
+  },
+  {
+   "keyword": "임금체불 최저임금 위반",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "대구 시민·노동단체, 알바노동자 임금체불·최저임금 위반 무료 소송 ...",
+    "대구 시민·노동단체, 알바노동자 임금체불·최저임금 위반 무료 소송 ...",
+    "대구 시민단체, 아르바이트 노동자 '임금체불·최저임금 위반' 무료 소송..."
+   ],
+   "sampleLinks": [
+    "https://www.newsmin.co.kr/news/137222/",
+    "https://www.newsmin.co.kr/news/137222/",
+    "https://news.bbsi.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "정기분 재산세 428억",
+   "hits": 3,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "구리시, 9월 정기분 재산세 428억 부과",
+    "구리시, 9월 정기분 재산세 428억 부과…'야간 민원실' 오후 8시까지 연...",
+    "구리시, 9월 정기분 재산세 428억 원 부과"
+   ],
+   "sampleLinks": [
+    "https://www.newspim.com/news/view/20260915000964",
+    "https://www.cstimes.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/021/0002818816"
+   ]
+  },
+  {
+   "keyword": "정기분 재산세 290억",
+   "hits": 3,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "서산시, 9월 정기분 재산세 290억 원 부과",
+    "서산시, 9월 정기분 재산세 290억 원 부과",
+    "충남 서산시, 9월 정기분 재산세 290억 원 부과"
+   ],
+   "sampleLinks": [
+    "http://www.cctimes.kr/news/articleView.html",
+    "https://www.ggilbo.com/news/articleView.html",
+    "https://www.ccdn.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "구직급여 요건만 채우고",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477"
+   ]
+  },
+  {
+   "keyword": "전세대출 모집인 접수",
+   "hits": 3,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IBK기업은행, 주담대·전세대출 모집인 접수 재개",
+    "기업은행, 주담대·전세대출 모집인 접수 다시 받는다",
+    "IBK기업은행, 주담대·전세대출 모집인 접수 재개"
+   ],
+   "sampleLinks": [
+    "https://www.slist.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/014/0005576075",
+    "https://n.news.naver.com/mnews/article/001/0016311391"
+   ]
+  },
+  {
+   "keyword": "급여 구직급여 요건만",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": "unemployment-individual-extension-benefit",
+   "sampleTitles": [
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477"
+   ]
+  },
+  {
+   "keyword": "최저임금 위반 무료",
+   "hits": 3,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "대구 시민·노동단체, 알바노동자 임금체불·최저임금 위반 무료 소송 ...",
+    "대구 시민·노동단체, 알바노동자 임금체불·최저임금 위반 무료 소송 ...",
+    "대구 시민단체, 아르바이트 노동자 '임금체불·최저임금 위반' 무료 소송..."
+   ],
+   "sampleLinks": [
+    "https://www.newsmin.co.kr/news/137222/",
+    "https://www.newsmin.co.kr/news/137222/",
+    "https://news.bbsi.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "시럽 급여 구직급여",
+   "hits": 3,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030",
+    "“월급보다 ‘시럽’급여”…구직급여 요건만 채우고 떠나는 2030"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477",
+    "https://n.news.naver.com/mnews/article/016/0002697477"
+   ]
+  },
+  {
+   "keyword": "연금저축 공시 오류",
+   "hits": 3,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "'대충 공시 후 수정'…연금저축 공시 오류 최근 5년간 302건",
+    "국민 노후자금 성적표가 '엉터리'…연금저축 공시 오류 5년간 302건",
+    "박성훈, &quot;연금저축 공시 오류 302건… 관리 '부실' 심각&quot;"
+   ],
+   "sampleLinks": [
+    "http://www.intn.co.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/003/0014188162",
+    "https://www.gukjenews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "멀리 이자 감면은",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[함께 더 멀리]이자 감면은 기본, 시드머니까지…'자산 사다리' 된 금융",
+    "[함께 더 멀리]이자 감면은 기본, 시드머니까지…'자산 사다리' 된 금융",
+    "[함께 더 멀리]이자 감면은 기본, 시드머니까지…'자산 사다리' 된 금융"
+   ],
+   "sampleLinks": [
+    "https://www.businessplus.kr/news/articleView.html",
+    "https://www.businessplus.kr/news/articleView.html",
+    "https://www.businessplus.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "모집인 접수 재개",
+   "hits": 3,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IBK기업은행, 주담대·전세대출 모집인 접수 재개",
+    "기업은행, 주담대·전세대출 제한 일부 완화…모집인 접수 재개",
+    "IBK기업은행, 주담대·전세대출 모집인 접수 재개"
+   ],
+   "sampleLinks": [
+    "https://www.slist.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/016/0002697588",
+    "https://n.news.naver.com/mnews/article/001/0016311391"
+   ]
+  },
+  {
+   "keyword": "붓고 평생 연금",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;정부, 뜯어고친다&quot; 외국인, 한 달 붓고 '평생 연금' 편법… 국민연금 추...",
+    "&quot;정부, 뜯어고친다&quot; 외국인, 한 달 붓고 '평생 연금' 편법… 국민연금 추...",
+    "&quot;정부, 뜯어고친다&quot; 외국인, 한 달 붓고 '평생 연금' 편법… 국민연금 추..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/052/0002406862",
+    "https://n.news.naver.com/mnews/article/052/0002406862",
+    "https://n.news.naver.com/mnews/article/052/0002406862"
+   ]
+  },
+  {
+   "keyword": "평생 연금 편법",
+   "hits": 3,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;정부, 뜯어고친다&quot; 외국인, 한 달 붓고 '평생 연금' 편법… 국민연금 추...",
+    "&quot;정부, 뜯어고친다&quot; 외국인, 한 달 붓고 '평생 연금' 편법… 국민연금 추...",
+    "&quot;정부, 뜯어고친다&quot; 외국인, 한 달 붓고 '평생 연금' 편법… 국민연금 추..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/052/0002406862",
+    "https://n.news.naver.com/mnews/article/052/0002406862",
+    "https://n.news.naver.com/mnews/article/052/0002406862"
+   ]
+  },
+  {
+   "keyword": "군민에 민생안정지원금 30만원",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안군, 전 군민에 민생안정지원금 30만원 지급",
+    "부안군, 전 군민에 민생안정지원금 30만원 지급"
+   ],
+   "sampleLinks": [
+    "https://www.thepowernews.co.kr/view.php",
+    "https://www.thepowernews.co.kr/view.php"
+   ]
+  },
+  {
+   "keyword": "민생안정지원금 1인당 30만원",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안군, 추석 앞두고 민생안정지원금 1인당 30만원 지급",
+    "부안군, 추석 앞두고 민생안정지원금 1인당 30만원 지급"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/003/0014191597",
+    "https://n.news.naver.com/mnews/article/003/0014191597"
+   ]
+  },
+  {
+   "keyword": "민생안정지원금 30만원 지급",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안군, 전 군민에 민생안정지원금 30만원 지급",
+    "부안군, 전 군민에 민생안정지원금 30만원 지급"
+   ],
+   "sampleLinks": [
+    "https://www.thepowernews.co.kr/view.php",
+    "https://www.thepowernews.co.kr/view.php"
+   ]
+  },
+  {
+   "keyword": "50만원 지자체들 민생지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“추석 앞두고 50만원”…지자체들 민생지원금 지급 잇따라",
+    "“추석 앞두고 50만원”…지자체들 민생지원금 지급 잇따라"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/005/0001873061",
+    "https://n.news.naver.com/mnews/article/005/0001873061"
+   ]
+  },
+  {
+   "keyword": "전문가들, 취브닝 장학금으로",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“한국 현장 전문가들, 취브닝 장학금으로 영국행”",
+    "“한국 현장 전문가들, 취브닝 장학금으로 영국행”"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/009/0005735481",
+    "https://n.news.naver.com/mnews/article/009/0005735481"
+   ]
+  },
+  {
+   "keyword": "앞두고 민생안정지원금 1인당",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안군, 추석 앞두고 민생안정지원금 1인당 30만원 지급",
+    "부안군, 추석 앞두고 민생안정지원금 1인당 30만원 지급"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/003/0014191597",
+    "https://n.news.naver.com/mnews/article/003/0014191597"
+   ]
+  },
+  {
+   "keyword": "알바노동자 임금체불 최저임금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "대구 시민·노동단체, 알바노동자 임금체불·최저임금 위반 무료 소송 ...",
+    "대구 시민·노동단체, 알바노동자 임금체불·최저임금 위반 무료 소송 ..."
+   ],
+   "sampleLinks": [
+    "https://www.newsmin.co.kr/news/137222/",
+    "https://www.newsmin.co.kr/news/137222/"
+   ]
+  },
+  {
+   "keyword": "9월 재산세 4조8천236억",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "서울시 9월 재산세 4조8천236억 부과...전년보다 8.9% 증가",
+    "서울시 9월 재산세 4조8천236억 부과...전년보다 8.9% 증가"
+   ],
+   "sampleLinks": [
+    "https://www.newstnt.com/news/articleView.html",
+    "https://www.newstnt.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "세무사, 2026 양도소득세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의",
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의"
+   ],
+   "sampleLinks": [
+    "https://www.tfmedia.co.kr/news/article.html",
+    "https://www.tfmedia.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "양도소득세 종부세 세법개정안",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의",
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의"
+   ],
+   "sampleLinks": [
+    "https://www.tfmedia.co.kr/news/article.html",
+    "https://www.tfmedia.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "건강보험료율 7.19% 동결",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": "health-insurance-rate-2027-frozen",
+   "sampleTitles": [
+    "내년 건강보험료율 7.19% '동결'…정부 &quot;동결해도 재정 안정&quot;",
+    "내년 건강보험료율 7.19% 동결…가계 부담 고려"
+   ],
+   "sampleLinks": [
+    "https://www.idaegu.co.kr/news/articleView.html",
+    "https://www.hemophilia.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "추석 앞두고 민생안정지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안군, 추석 앞두고 민생안정지원금 1인당 30만원 지급",
+    "부안군, 추석 앞두고 민생안정지원금 1인당 30만원 지급"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/003/0014191597",
+    "https://n.news.naver.com/mnews/article/003/0014191597"
+   ]
+  },
+  {
+   "keyword": "노동자 4000명에 지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부산 소상공인 25만 명, 플랫폼 노동자 4000명에 지원금",
+    "부산 소상공인 25만 명, 플랫폼 노동자 4000명에 지원금"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/469/0000953930",
+    "https://n.news.naver.com/mnews/article/469/0000953930"
+   ]
+  },
+  {
+   "keyword": "제왕절개 미고지에 태아보험",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "제왕절개 미고지에 태아보험 해지…금감원, 보험사에 &quot;소비자보호&quot; 당부",
+    "제왕절개 미고지에 태아보험 통째 해지? 금감원 &quot;과도한 불이익 제공 안..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/277/0005816018",
+    "https://www.financialpost.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "제왕절개 미고지로 태아보험",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "금감원 &quot;제왕절개 미고지로 태아보험 해지 사례…과도한 불이익 안돼&quot;",
+    "금감원 &quot;제왕절개 미고지로 태아보험 해지…과도한 불이익 안돼&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388155",
+    "https://n.news.naver.com/mnews/article/001/0016309275"
+   ]
+  },
+  {
+   "keyword": "전세대출 연말정산 소득공제",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "전 군민에 민생안정지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부안군, 전 군민에 민생안정지원금 30만원 지급",
+    "부안군, 전 군민에 민생안정지원금 30만원 지급"
+   ],
+   "sampleLinks": [
+    "https://www.thepowernews.co.kr/view.php",
+    "https://www.thepowernews.co.kr/view.php"
+   ]
+  },
+  {
+   "keyword": "지자체들 민생지원금 지급",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“추석 앞두고 50만원”…지자체들 민생지원금 지급 잇따라",
+    "“추석 앞두고 50만원”…지자체들 민생지원금 지급 잇따라"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/005/0001873061",
+    "https://n.news.naver.com/mnews/article/005/0001873061"
+   ]
+  },
+  {
+   "keyword": "취브닝 장학금으로 영국행",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“한국 현장 전문가들, 취브닝 장학금으로 영국행”",
+    "“한국 현장 전문가들, 취브닝 장학금으로 영국행”"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/009/0005735481",
+    "https://n.news.naver.com/mnews/article/009/0005735481"
+   ]
+  },
+  {
+   "keyword": "종합소득세 신고에 대하여",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&lt;13&gt; 주택임대소득에 대한 종합소득세 신고에 대하여",
+    "&lt;13&gt; 주택임대소득에 대한 종합소득세 신고에 대하여"
+   ],
+   "sampleLinks": [
+    "https://www.yakup.com/pharmplus/index.html",
+    "https://www.yakup.com/pharmplus/index.html"
+   ]
+  },
+  {
+   "keyword": "있나 정부, 청년미래적금",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "청년 목돈·취업·주거 지원 뭐가 있나…정부, ‘청년미래적금’ 등 4대...",
+    "청년 목돈·취업·주거 지원 뭐가 있나…정부, ‘청년미래적금’ 등 4대..."
+   ],
+   "sampleLinks": [
+    "https://www.gosiweek.com/article/1065578081051821",
+    "https://www.gosiweek.com/article/1065578081051821"
+   ]
+  },
+  {
+   "keyword": "금감원 제왕절개 미고지로",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "금감원 &quot;제왕절개 미고지로 태아보험 해지 사례…과도한 불이익 안돼&quot;",
+    "금감원 &quot;제왕절개 미고지로 태아보험 해지…과도한 불이익 안돼&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388155",
+    "https://n.news.naver.com/mnews/article/001/0016309275"
+   ]
+  },
+  {
+   "keyword": "9월분 재산세 1945억",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "충북도 9월분 재산세 1945억 원 부과",
+    "충북도 9월분 재산세 1945억 부과…지난해보다 3.5%↑"
+   ],
+   "sampleLinks": [
+    "https://www.ggilbo.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/421/0009170408"
+   ]
+  },
+  {
+   "keyword": "9월분 재산세 7144억",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부산시, 9월분 재산세 7144억 부과…작년보다 196억 ↑",
+    "부산시, 9월분 재산세 7144억 원 부과 고지"
+   ],
+   "sampleLinks": [
+    "https://www.gukjenews.com/news/articleView.html",
+    "https://www.newspim.com/news/view/20260915000399"
+   ]
+  },
+  {
+   "keyword": "시럽급여 실업급여 요건만",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "30%인데 청년 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "재취업율 3년째 30%인데…청년 실업급여 확대 답일까?",
+    "재취업율 3년째 30%인데…청년 실업급여 확대 답일까?"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/374/0000532250",
+    "https://n.news.naver.com/mnews/article/374/0000532250"
+   ]
+  },
+  {
+   "keyword": "보험료 지원에도 자영업자",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "보험료 지원에도 자영업자 고용보험 1%…&quot;미가입 구조 원인 살펴야&quot;",
+    "보험료 지원에도 자영업자 고용보험 가입률 1.2%"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009169888",
+    "https://n.news.naver.com/mnews/article/421/0009168074"
+   ]
+  },
+  {
+   "keyword": "산재보험료 부담 지자체가",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다",
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다"
+   ],
+   "sampleLinks": [
+    "https://www.ngetnews.com/news/articleView.html",
+    "https://www.ngetnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "배달 대리기사 산재보험료",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "부산시, 배달·대리기사 산재보험료 80% 지원",
+    "부산 배달·대리기사 산재보험료 부담 줄인다…본인부담 80% 지원"
+   ],
+   "sampleLinks": [
+    "https://www.gukjenews.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/031/0001058012"
+   ]
+  },
+  {
+   "keyword": "모셔라 절세계좌 퇴직연금",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행",
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행"
+   ],
+   "sampleLinks": [
+    "https://www.goodkyung.com/news/articleView.html",
+    "https://www.goodkyung.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "절세계좌 퇴직연금 이벤트",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행",
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행"
+   ],
+   "sampleLinks": [
+    "https://www.goodkyung.com/news/articleView.html",
+    "https://www.goodkyung.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "연말정산 소득공제 조건과",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": "marriage-tax-credit-2026",
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "민생지원금 지급 잇따라",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“추석 앞두고 50만원”…지자체들 민생지원금 지급 잇따라",
+    "“추석 앞두고 50만원”…지자체들 민생지원금 지급 잇따라"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/005/0001873061",
+    "https://n.news.naver.com/mnews/article/005/0001873061"
+   ]
+  },
+  {
+   "keyword": "추석 앞두고 민생지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;소득 상관없이 1인당 50만원&quot;…추석 앞두고 민생지원금 푸는 지역은",
+    "일부 기초단체, 추석 앞두고 민생지원금 나눠준다 : 전남 함평, 경남 의..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/666/0000123439",
+    "https://www.huffingtonpost.kr/article/260501"
+   ]
+  },
+  {
+   "keyword": "거둬들이고 부산 재산세",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "나눠주고, 거둬들이고…부산 재산세 2.8% 증가",
+    "나눠주고, 거둬들이고…부산 재산세 2.8% 증가"
+   ],
+   "sampleLinks": [
+    "https://news.bbsi.co.kr/news/articleView.html",
+    "https://news.bbsi.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "문화복지카드 3차 접수",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "화순군, 청년 문화복지카드 3차 접수…최대 25만원 지원",
+    "여수시, '전남광주 청년 문화복지카드' 3차 접수 &quot;연 25만 원 충전 혜택..."
+   ],
+   "sampleLinks": [
+    "http://www.newsmaker.or.kr/news/articleView.html",
+    "https://www.ngonews.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "종부세 세법개정안 핵심",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의",
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의"
+   ],
+   "sampleLinks": [
+    "https://www.tfmedia.co.kr/news/article.html",
+    "https://www.tfmedia.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "도곡렉슬 재산세 30%",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "은마·도곡렉슬 재산세 30% 폭증…상한까지 찼다",
+    "은마·도곡렉슬 재산세 30% 폭증…상한까지 찼다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/031/0001058589",
+    "https://n.news.naver.com/mnews/article/031/0001058589"
+   ]
+  },
+  {
+   "keyword": "정부, 청년미래적금 등",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate",
+    "savings"
+   ],
+   "existing": "youth-future-savings-account-launch-comparison",
+   "sampleTitles": [
+    "청년 목돈·취업·주거 지원 뭐가 있나…정부, ‘청년미래적금’ 등 4대...",
+    "청년 목돈·취업·주거 지원 뭐가 있나…정부, ‘청년미래적금’ 등 4대..."
+   ],
+   "sampleLinks": [
+    "https://www.gosiweek.com/article/1065578081051821",
+    "https://www.gosiweek.com/article/1065578081051821"
+   ]
+  },
+  {
+   "keyword": "미고지로 태아보험 해지",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "금감원 &quot;제왕절개 미고지로 태아보험 해지 사례…과도한 불이익 안돼&quot;",
+    "금감원 &quot;제왕절개 미고지로 태아보험 해지…과도한 불이익 안돼&quot;"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388155",
+    "https://n.news.naver.com/mnews/article/001/0016309275"
+   ]
+  },
+  {
+   "keyword": "재산세 1945억 부과",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "충북도 9월분 재산세 1945억 부과…지난해보다 3.5%↑",
+    "충북도, 9월 정기분 재산세 1945억 부과…전년比 3.5%↑"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/421/0009170408",
+    "https://n.news.naver.com/mnews/article/003/0014190253"
+   ]
+  },
+  {
+   "keyword": "바에 시럽급여 실업급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "실업급여 요건만 채우고",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "임금, 퇴직금, 수당은",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": "small-workplace-under-5-labor-law-rights",
+   "sampleTitles": [
+    "‘임금, 퇴직금, 수당은 언제쯤’… 홈플러스 아직 못 준 돈 664억",
+    "‘임금, 퇴직금, 수당은 언제쯤’… 홈플러스 아직 못 준 돈 664억"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/005/0001872940",
+    "https://n.news.naver.com/mnews/article/005/0001872940"
+   ]
+  },
+  {
+   "keyword": "퇴직금, 수당은 언제쯤",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘임금, 퇴직금, 수당은 언제쯤’… 홈플러스 아직 못 준 돈 664억",
+    "‘임금, 퇴직금, 수당은 언제쯤’… 홈플러스 아직 못 준 돈 664억"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/005/0001872940",
+    "https://n.news.naver.com/mnews/article/005/0001872940"
+   ]
+  },
+  {
+   "keyword": "수당은 언제쯤 홈플러스",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘임금, 퇴직금, 수당은 언제쯤’… 홈플러스 아직 못 준 돈 664억",
+    "‘임금, 퇴직금, 수당은 언제쯤’… 홈플러스 아직 못 준 돈 664억"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/005/0001872940",
+    "https://n.news.naver.com/mnews/article/005/0001872940"
+   ]
+  },
+  {
+   "keyword": "노동자 산재보험료 부담",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor",
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다",
+    "플랫폼 노동자 산재보험료 부담 지자체가 덜어준다"
+   ],
+   "sampleLinks": [
+    "https://www.ngetnews.com/news/articleView.html",
+    "https://www.ngetnews.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 캡티브 시험대",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[더벨][퇴직연금 캡티브 시험대] 현대차그룹, 경영성과급 DC형 도입…현...",
+    "[더벨][퇴직연금 캡티브 시험대] 현대차그룹, 경영성과급 DC형 도입…현..."
+   ],
+   "sampleLinks": [
+    "https://www.thebell.co.kr/free/content/ArticleView.asp",
+    "https://www.thebell.co.kr/free/content/ArticleView.asp"
+   ]
+  },
+  {
+   "keyword": "1780만 계좌 활용법",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "1780만 계좌 '활용법' 넓히는 키움…주식 넘어 자산관리·생활혜택 승부",
+    "1780만 계좌 '활용법' 넓히는 키움…주식 넘어 자산관리·생활혜택 승부"
+   ],
+   "sampleLinks": [
+    "https://www.asiatoday.co.kr/kn/view.php",
+    "https://www.asiatoday.co.kr/kn/view.php"
+   ]
+  },
+  {
+   "keyword": "고객님 모셔라 절세계좌",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행",
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행"
+   ],
+   "sampleLinks": [
+    "https://www.goodkyung.com/news/articleView.html",
+    "https://www.goodkyung.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "위기대응 지원금 추석",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "문경시, 고유가 위기대응 지원금 추석 전 지급 총력",
+    "문경시, 고유가 위기대응 지원금 추석 전 지급 총력"
+   ],
+   "sampleLinks": [
+    "https://www.kyongbuk.co.kr/news/articleView.html",
+    "https://www.kyongbuk.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "곳곳 소도시서 지원금",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "&quot;1인당 50만 원&quot;…곳곳 소도시서 지원금 푼다",
+    "&quot;1인당 50만 원&quot;…곳곳 소도시서 지원금 푼다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/055/0001388397",
+    "https://n.news.naver.com/mnews/article/055/0001388397"
+   ]
+  },
+  {
+   "keyword": "부산 재산세 2.8%",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "나눠주고, 거둬들이고…부산 재산세 2.8% 증가",
+    "나눠주고, 거둬들이고…부산 재산세 2.8% 증가"
+   ],
+   "sampleLinks": [
+    "https://news.bbsi.co.kr/news/articleView.html",
+    "https://news.bbsi.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 2.8% 증가",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "나눠주고, 거둬들이고…부산 재산세 2.8% 증가",
+    "나눠주고, 거둬들이고…부산 재산세 2.8% 증가"
+   ],
+   "sampleLinks": [
+    "https://news.bbsi.co.kr/news/articleView.html",
+    "https://news.bbsi.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "강남구 재산세만 1조",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "강남구 재산세만 1조 넘었다… 성동구는 증가율 15.6% ‘최고’",
+    "강남구 재산세만 1조 넘었다… 성동구는 증가율 15.6% ‘최고’"
+   ],
+   "sampleLinks": [
+    "https://m.skyedaily.com/news_view.html",
+    "https://m.skyedaily.com/news_view.html"
+   ]
+  },
+  {
+   "keyword": "절반? 양도세 줄어도",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야",
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/138/0002241392",
+    "https://n.news.naver.com/mnews/article/138/0002241392"
+   ]
+  },
+  {
+   "keyword": "양도세 줄어도 종부세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야",
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/138/0002241392",
+    "https://n.news.naver.com/mnews/article/138/0002241392"
+   ]
+  },
+  {
+   "keyword": "줄어도 종부세 건보료",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야",
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/138/0002241392",
+    "https://n.news.naver.com/mnews/article/138/0002241392"
+   ]
+  },
+  {
+   "keyword": "종부세 건보료 따져야",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야",
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/138/0002241392",
+    "https://n.news.naver.com/mnews/article/138/0002241392"
+   ]
+  },
+  {
+   "keyword": "세법개정안 핵심 강의",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의",
+    "이재홍 세무사, '2026 양도소득세·종부세 세법개정안' 핵심 강의"
+   ],
+   "sampleLinks": [
+    "https://www.tfmedia.co.kr/news/article.html",
+    "https://www.tfmedia.co.kr/news/article.html"
+   ]
+  },
+  {
+   "keyword": "연금 年 1500만원",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "연금 年 1500만원 넘어도 종합과세가 유리한 경우 있어",
+    "연금 年 1500만원 넘어도 종합과세가 유리한 경우 있어"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/023/0003998207",
+    "https://n.news.naver.com/mnews/article/023/0003998207"
+   ]
+  },
+  {
+   "keyword": "은마 도곡렉슬 재산세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "은마·도곡렉슬 재산세 30% 폭증…상한까지 찼다",
+    "은마·도곡렉슬 재산세 30% 폭증…상한까지 찼다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/031/0001058589",
+    "https://n.news.naver.com/mnews/article/031/0001058589"
+   ]
+  },
+  {
+   "keyword": "주담대 전세대출 접수",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "가계대출 규제 풀리나…기업은행, 주담대·전세대출 접수 재개",
+    "IBK기업은행, 가계대출 제한 일부 풀어…주담대·전세대출 접수 재개"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/029/0003048093",
+    "https://sateconomy.co.kr/news/view/1065587236112922"
+   ]
+  },
+  {
+   "keyword": "재산세 428억 부과",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "구리시, 9월 정기분 재산세 428억 부과",
+    "구리시, 9월 정기분 재산세 428억 부과…'야간 민원실' 오후 8시까지 연..."
+   ],
+   "sampleLinks": [
+    "https://www.newspim.com/news/view/20260915000964",
+    "https://www.cstimes.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "부과 30일까지 납부",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "충북도, 9월분 재산세 1천945억원 부과…30일까지 납부",
+    "울산 북구, 9월 정기분 재산세 360억 부과…30일까지 납부"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/001/0016311882",
+    "https://www.iusm.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "충북도 9월분 재산세",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "충북도 9월분 재산세 1945억 원 부과",
+    "충북도 9월분 재산세 1945억 부과…지난해보다 3.5%↑"
+   ],
+   "sampleLinks": [
+    "https://www.ggilbo.com/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/421/0009170408"
+   ]
+  },
+  {
+   "keyword": "나우 퇴직연금, 은퇴",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[민주영의 마켓 나우] 퇴직연금, ‘은퇴 후 디폴트옵션’이 필요하다",
+    "[민주영의 마켓 나우] 퇴직연금, ‘은퇴 후 디폴트옵션’이 필요하다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/025/0003551336",
+    "https://n.news.naver.com/mnews/article/025/0003551336"
+   ]
+  },
+  {
+   "keyword": "역대 최대 퇴직급여도",
+   "hits": 2,
+   "cluster": "insurance-labor",
+   "clusters": [
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "홈플러스 임금체불 3871억원 '역대 최대'…퇴직급여도 '빨간불'",
+    "홈플러스 임금체불 3871억 ‘역대 최대’…퇴직급여도 1254억 부족"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/586/0000138193",
+    "https://n.news.naver.com/mnews/article/016/0002697215"
+   ]
+  },
+  {
+   "keyword": "더벨 퇴직연금 캡티브",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[더벨][퇴직연금 캡티브 시험대] 현대차그룹, 경영성과급 DC형 도입…현...",
+    "[더벨][퇴직연금 캡티브 시험대] 현대차그룹, 경영성과급 DC형 도입…현..."
+   ],
+   "sampleLinks": [
+    "https://www.thebell.co.kr/free/content/ArticleView.asp",
+    "https://www.thebell.co.kr/free/content/ArticleView.asp"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 계좌로 국채",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금 계좌로 국채 투자하면 포인트 제공",
+    "퇴직연금 계좌로 국채 투자하면 포인트 제공"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/081/0003679760",
+    "https://n.news.naver.com/mnews/article/081/0003679760"
+   ]
+  },
+  {
+   "keyword": "계좌로 국채 투자하면",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "퇴직연금 계좌로 국채 투자하면 포인트 제공",
+    "퇴직연금 계좌로 국채 투자하면 포인트 제공"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/081/0003679760",
+    "https://n.news.naver.com/mnews/article/081/0003679760"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 이벤트 진행",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행",
+    "IM증권, &quot;ETF 고객님 모셔라&quot;…절세계좌·퇴직연금 이벤트 진행"
+   ],
+   "sampleLinks": [
+    "https://www.goodkyung.com/news/articleView.html",
+    "https://www.goodkyung.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "마이키즈 적금 이주의",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "24개월 최고 연 7.00%…케이뱅크 '마이키즈 적금' [이주의 은행 적금금리...",
+    "24개월 최고 연 7.00%…케이뱅크 '마이키즈 적금' [이주의 은행 적금금리..."
+   ],
+   "sampleLinks": [
+    "https://www.fntimes.com/html/view.php",
+    "https://www.fntimes.com/html/view.php"
+   ]
+  },
+  {
+   "keyword": "소득공제 조건과 한도",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "서울시 9월 재산세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "서울시 9월 재산세 4조8천236억 부과...전년보다 8.9% 증가",
+    "서울시 9월 재산세 4조8천236억 부과...전년보다 8.9% 증가"
+   ],
+   "sampleLinks": [
+    "https://www.newstnt.com/news/articleView.html",
+    "https://www.newstnt.com/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "세금 절반? 양도세",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "insurance-labor"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야",
+    "“부부 공동명의면 세금 절반?”…양도세 줄어도 종부세·건보료 따져야"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/138/0002241392",
+    "https://n.news.naver.com/mnews/article/138/0002241392"
+   ]
+  },
+  {
+   "keyword": "재산세 30% 폭증",
+   "hits": 2,
+   "cluster": "tax",
+   "clusters": [
+    "tax",
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "은마·도곡렉슬 재산세 30% 폭증…상한까지 찼다",
+    "은마·도곡렉슬 재산세 30% 폭증…상한까지 찼다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/031/0001058589",
+    "https://n.news.naver.com/mnews/article/031/0001058589"
+   ]
+  },
+  {
+   "keyword": "전세대출 접수 재개",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "가계대출 규제 풀리나…기업은행, 주담대·전세대출 접수 재개",
+    "IBK기업은행, 가계대출 제한 일부 풀어…주담대·전세대출 접수 재개"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/029/0003048093",
+    "https://sateconomy.co.kr/news/view/1065587236112922"
+   ]
+  },
+  {
+   "keyword": "다닐 바에 시럽급여",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다...",
+    "‘좋소’ 다닐 바에 ‘시럽급여’…실업급여 요건만 채우고 회사 떠났다..."
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/016/0002696363",
+    "https://n.news.naver.com/mnews/article/016/0002696363"
+   ]
+  },
+  {
+   "keyword": "퇴직연금, 은퇴 후",
+   "hits": 2,
+   "cluster": "unemployment",
+   "clusters": [
+    "unemployment",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "[민주영의 마켓 나우] 퇴직연금, ‘은퇴 후 디폴트옵션’이 필요하다",
+    "[민주영의 마켓 나우] 퇴직연금, ‘은퇴 후 디폴트옵션’이 필요하다"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/025/0003551336",
+    "https://n.news.naver.com/mnews/article/025/0003551336"
+   ]
+  },
+  {
+   "keyword": "계좌 활용법 넓히는",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension",
+    "savings"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "1780만 계좌 '활용법' 넓히는 키움…주식 넘어 자산관리·생활혜택 승부",
+    "1780만 계좌 '활용법' 넓히는 키움…주식 넘어 자산관리·생활혜택 승부"
+   ],
+   "sampleLinks": [
+    "https://www.asiatoday.co.kr/kn/view.php",
+    "https://www.asiatoday.co.kr/kn/view.php"
+   ]
+  },
+  {
+   "keyword": "조건과 한도 총정리",
+   "hits": 2,
+   "cluster": "savings",
+   "clusters": [
+    "savings",
+    "office-tips"
+   ],
+   "existing": "basic-livelihood-medical-eligibility",
+   "sampleTitles": [
+    "전세대출 연말정산 소득공제 조건과 한도 총정리",
+    "전세대출 연말정산 소득공제 조건과 한도 총정리"
+   ],
+   "sampleLinks": [
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15",
+    "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+   ]
+  },
+  {
+   "keyword": "모집인 접수 다시",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "기업은행, 주담대·전세대출 모집인 접수 다시 받는다",
+    "기업은행, 변동형 주담대 재개…모집인 접수 다시 열어"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/014/0005576075",
+    "https://n.news.naver.com/mnews/article/421/0009171106"
+   ]
+  },
+  {
+   "keyword": "지원금 추석 전",
+   "hits": 2,
+   "cluster": "gov-support",
+   "clusters": [
+    "gov-support",
+    "public-services"
+   ],
+   "existing": "chuseok-holiday-support-payment-2026",
+   "sampleTitles": [
+    "문경시, 고유가 위기대응 지원금 추석 전 지급 총력",
+    "문경시, 고유가 위기대응 지원금 추석 전 지급 총력"
+   ],
+   "sampleLinks": [
+    "https://www.kyongbuk.co.kr/news/articleView.html",
+    "https://www.kyongbuk.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "재산세 960억",
+   "hits": 2,
+   "cluster": "realestate",
+   "clusters": [
+    "realestate"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "천안시, 9월 재산세 960억 부과…전년보다 28억 늘었다",
+    "천안시, 9월 정기분 재산세 960억 원 부과"
+   ],
+   "sampleLinks": [
+    "https://www.ccdn.co.kr/news/articleView.html",
+    "http://www.chungnamilbo.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "보험료 올렸는데",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "보험료 올렸는데 손해액 더 늘어…자동차보험, 상반기 수익성 '경고등'",
+    "보험료 올렸는데 車보험 1848억 적자…6년 만에 '적자 전환'"
+   ],
+   "sampleLinks": [
+    "https://www.thepublic.kr/news/articleView.html",
+    "https://n.news.naver.com/mnews/article/469/0000954094"
+   ]
+  },
+  {
+   "keyword": "건강보험 환급금",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal"
+   ],
+   "existing": "health-insurance-july-settlement-simulation",
+   "sampleTitles": [
+    "건강보험 환급금 공식통지 감지해야…대상 여부와 조회 방법은",
+    "건강보험 환급금 놓치면 사라질 수도…우편 기다리지 말고 직접 조회해..."
+   ],
+   "sampleLinks": [
+    "https://www.cbci.co.kr/news/articleView.html",
+    "https://www.cbci.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "건강보험 재정",
+   "hits": 2,
+   "cluster": "insurance-personal",
+   "clusters": [
+    "insurance-personal",
+    "pension"
+   ],
+   "existing": null,
+   "sampleTitles": [
+    "정부는 문제 없다지만…커지는 건강보험 재정 불안",
+    "내년 건강보험료율 7.19%로 동결…건강보험 재정 안정적"
+   ],
+   "sampleLinks": [
+    "https://n.news.naver.com/mnews/article/003/0014178201",
+    "https://n.news.naver.com/mnews/article/087/0001216486"
+   ]
+  },
+  {
+   "keyword": "건강보험료 안",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": "eitc-tax-health-insurance-dependent-impact",
+   "sampleTitles": [
+    "내년 건강보험료 안 오른다… 3년 만에 보험료율 다시 동결",
+    "내년 건강보험료 안 오른다…보험료율 7.19%로 동결"
+   ],
+   "sampleLinks": [
+    "https://www.newscj.com/news/articleView.html",
+    "https://www.delighti.co.kr/news/articleView.html"
+   ]
+  },
+  {
+   "keyword": "퇴직연금 운용",
+   "hits": 2,
+   "cluster": "pension",
+   "clusters": [
+    "pension"
+   ],
+   "existing": "db-vs-dc-retirement-pension",
+   "sampleTitles": [
+    "NH농협은행, 퇴직연금 운용 전환…수익률 제고 지원체계 마련",
+    "[금융 풍향계] NH농협은행, 퇴직연금 운용 대전환…투자지원 체계 강화..."
+   ],
+   "sampleLinks": [
+    "https://www.sentv.co.kr/article/view/sentv202609150071",
+    "https://www.ekn.kr/web/view.php"
+   ]
+  }
+ ]
+}
