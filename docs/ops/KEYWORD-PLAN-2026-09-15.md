@@ -270,6 +270,8 @@ content-auditor 에 추가: 잠금 장부 `--check` · 14자 shingle ≤15% · �
 | | 13 | `naver-keywords.yml` | 시크릿 등록(결정 7) |
 | | 14 | CLAUDE.md 개정 (라벨 권한·신규 입력원) | 결정 4·5 |
 
+구현 현황(2026-09-17): #1~5 완료, #6 은 `targetQuery` 만(coreFacts 는 아직), **#8 완료** — `pnpm audit:pipeline`(드라이런) / `--write`. #7 달력 파일은 아직 없고 파이프라인은 있으면 읽는다. 첫 자동 실행에서 큐 8 → 17건(정찰 77 · 열림 27 · 호출 약 400). v0.1 에 없던 규칙 3개: ① 민간 대출·지원금 류·수요 신호 없는 항목은 autoPick=false ② 뉴스 신생어는 지식iN 5건 이상일 때만 ③ 재측정에서 닫힌 proposed 는 먼저 hold(holdBy:pipeline), 두 번째에 rejected(뉴스 15↔16 출렁임 방지).
+
 P1~P3 는 인프라 PR 3개(draft + `no-auto-merge`), P4 는 루틴에 닿으므로 따로 1개.
 
 ## 11. 완료 기준

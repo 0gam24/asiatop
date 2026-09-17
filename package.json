@@ -26,6 +26,7 @@
     "audit:scout": "node scripts/audit/naver-scout.mjs",
     "audit:volume": "node scripts/audit/naver-volume.mjs",
     "audit:ledger": "node scripts/audit/naver-ledger.mjs",
+    "audit:pipeline": "node scripts/audit/naver-pipeline.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",
     "audit:frontmatter": "node scripts/audit/frontmatter-coverage.mjs",
     "audit:bundle": "node scripts/audit/bundle-size.mjs",
