@@ -18,7 +18,7 @@
    "track": "T2",
    "family": "A",
    "cluster": "realestate",
-   "status": "proposed",
+   "status": "published",
    "autoPick": true,
    "score": 75,
    "label": "높음",
@@ -69,6 +69,15 @@
      "jeonse-right-registration-vs-fixed-date",
      "lease-fixed-date-mobile-vs-office"
     ]
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-09-17",
+   "publishedAt": "2026-09-17",
+   "slug": "fixed-date-grant-status-before-lease",
+   "pr": 449,
+   "refreshDue": {
+    "date": "2026-10-01",
+    "reason": "발행 14일째 웹문서 순위 확인(audit:rank). 10위 밖이면 제목·첫 문단 진단"
    }
   },
   {
