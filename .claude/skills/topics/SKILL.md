@@ -37,7 +37,8 @@ description: GSC 실측 데이터로 오늘의 발행·리프레시 주제를 �
       브리프 맨 앞에 항목의 `reasons`·`serp.top10`(누구를 밀어내야 하는가)·`ledger.relatedSlugs`(내부 링크 후보)를 둔다.
       새 글 frontmatter 에 `targetQuery: "<항목 query>"` 를 넣는다(발행 표시·순위 추적). 제목 선두에 그 검색어를 둔다.
       **통과 항목이 없으면 그날 신규는 0편**이고 다른 입력원으로 채우지 않는다. 보고에 "대기열 보충 필요"를 남긴다.
-      대기열은 로컬·GitHub Actions 측정 도구만 쓴다(`pnpm audit:scout`·`audit:ledger`·`audit:volume`). 클라우드 루틴은 읽기만.
+      대기열은 로컬·GitHub Actions 의 `pnpm audit:pipeline --write`(scout·ledger·volume 을 이어 돌림)만 쓴다. 클라우드 루틴은 읽기만.
+      `hold` 중 `holdBy: "pipeline"` 은 재측정에서 한 번 닫힌 항목이다(다음 측정에서 열리면 proposed 로 돌아온다). 루틴은 건너뛴다.
    4. **카니발리제이션** → 통합(대표 1편 + 301) 후보, 즉시 실행이 아니라 주간
       리프레시 묶음에 편입.
 3. 출력: **오늘의 액션 1~3개** (리프레시 우선, 신규는 최대 1). 각 액션에 대상 파일
