@@ -30,7 +30,7 @@ description: GSC 실측 데이터로 오늘의 발행·리프레시 주제를 �
       고르는 순서:
       ① `status: "approved"` (운영자가 목록에서 [발행 지시]를 누른 항목)
       ② `status: "proposed"` 이면서 `autoPick: true` 인 항목을 `score` 내림차순
-      건너뛰는 항목: `measuredAt` 이 10일 넘게 지남 / 글 frontmatter `targetQuery` 가 그 항목의 `query`·`altQueries` 와
+      건너뛰는 항목: `measuredAt` 이 오늘(KST)이 아님(매일 KST 01:00 자동 측정 — 2026-09-28, 그날 측정분만) / 글 frontmatter `targetQuery` 가 그 항목의 `query`·`altQueries` 와
       같은 글이 이미 있음 / `autoPick: false` 인데 approved 가 아님 / `hold`·`rejected`·`published`.
       고른 뒤: 항목의 `condition`(1차 출처 확인 과제)을 먼저 푼다. 못 풀면 그 항목은 버리고 다음 항목.
       `node scripts/audit/naver-ledger.mjs --check "<query>" <family>` 가 VETO 면 버린다(세부 키워드가 다르면 PASS — 2026-09-15 결정).
@@ -38,6 +38,7 @@ description: GSC 실측 데이터로 오늘의 발행·리프레시 주제를 �
       새 글 frontmatter 에 `targetQuery: "<항목 query>"` 를 넣는다(발행 표시·순위 추적). 제목 선두에 그 검색어를 둔다.
       **통과 항목이 없으면 그날 신규는 0편**이고 다른 입력원으로 채우지 않는다. 보고에 "대기열 보충 필요"를 남긴다.
       대기열은 로컬·GitHub Actions 의 `pnpm audit:pipeline --write`(scout·ledger·volume 을 이어 돌림)만 쓴다. 클라우드 루틴은 읽기만.
+      매일 KST 01:17 `.github/workflows/naver-queue-daily.yml` 이 자동으로 재서 main 에 커밋한다. 대기열 `updatedAt` 이 오늘이 아니면 그날 측정이 실패한 것이니 신규 0편 + "오늘 대기열 측정 실패, Actions 확인" 보고.
       `hold` 중 `holdBy: "pipeline"` 은 재측정에서 한 번 닫힌 항목이다(다음 측정에서 열리면 proposed 로 돌아온다). 루틴은 건너뛴다.
    4. **카니발리제이션** → 통합(대표 1편 + 301) 후보, 즉시 실행이 아니라 주간
       리프레시 묶음에 편입.
