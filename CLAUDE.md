@@ -19,7 +19,7 @@
   `docs/ops/pipeline-queue.json` 에서만 고른다(approved → `autoPick` proposed 점수순). 통과 항목이 없으면 그날 신규 0편이며
   제도 달력·신생 키워드·GSC rising·WebSearch 로 대신 고르지 않는다. 그 입력원(2026-09-07 3원 입력, docs/25)은 대기열을 만드는 재료와
   **리프레시 선정**에만 쓴다. 대기열은 공식 네이버 API 측정(`pnpm audit:pipeline --write` 가 scout·volume·ledger 를 이어 돌려 큐와 `docs/ops/DAILY-KEYWORDS.md` 를 갱신, search.naver.com 수집 금지)으로
-  로컬·GitHub Actions 에서만 갱신하고 클라우드 루틴은 읽기만 한다. 신규 글은 frontmatter `targetQuery` 에 노린 검색어를 남긴다.
+  로컬·GitHub Actions 에서만 갱신하고 클라우드 루틴은 읽기만 한다. **매일 KST 01:17 `.github/workflows/naver-queue-daily.yml` 이 자동으로 다시 재서 main 에 커밋**(2026-09-28 운영자 지시 "오늘 빈틈 키워드로 자동 발행") → KST 03:05 루틴은 그날 측정분만 쓴다. 측정 실패일은 신규 0편. 신규 글은 frontmatter `targetQuery` 에 노린 검색어를 남긴다.
   잠금 장부 기준: 같은 주제라도 세부 키워드가 다르면 새 글 허용(2026-09-15). 주제 범위는 범용(12 클러스터).
   목록 위젯의 [발행 지시] = 운영자 승인 → 그 항목 PR 에 한해 Claude 가 `merge-approved` 부착 가능(일 1편 이내, 전 가드·CI green).
 - **안전 표현 가드**: `scripts/audit/safe-expression.mjs` 가 빌드 체인에서 2026-09-07 이후 신규·리프레시 글의 금소법 22조·불법사금융 광고·
