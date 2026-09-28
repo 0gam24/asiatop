@@ -56,7 +56,7 @@ jobs:
           fi
           KST=$(TZ=Asia/Seoul date +"%Y-%m-%d")
           git commit -m "chore(queue): 빈틈 대기열 자동 갱신 ${KST} [CF-Pages-Skip]"
-          for i in 1 2 3; do
+          for _ in 1 2 3; do
             git pull --rebase origin main && git push origin main && exit 0
             sleep 10
           done
