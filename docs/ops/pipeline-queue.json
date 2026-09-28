@@ -13,6 +13,65 @@
  "anchor": "실업급여=100",
  "items": [
   {
+   "id": "gap:2026-09-28:전세사기-형사고소",
+   "query": "전세사기 형사고소",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 85,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 73건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 8",
+    "상위 5 관공서·공단·도구 없음"
+   ],
+   "condition": "전세사기 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 전세사기 글 1편과 세부 키워드 다르게",
+   "measuredAt": "2026-09-28",
+   "demand": {
+    "kinExact": 73,
+    "blogFreq": 1,
+    "rel30": 0,
+    "ratio7": 0
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 8,
+    "wallTop5": 0,
+    "mainGovAbove": 0,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 2,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "commercial:primelaw.co.kr",
+     "commercial:daeryunlaw-estate.com",
+     "commercial:daeryunlaw-estate.com",
+     "commercial:daeryunlaw-detective.com",
+     "law:lawtalk.co.kr",
+     "commercial:daeryunlaw-detective.com",
+     "commercial:nikecriminal.com",
+     "commercial:realestate.kimnpartners.co.kr",
+     "law:lawtalk.co.kr",
+     "commercial:jclpartnerslaw.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "jeonse-fraud-victim-support-priority-purchase"
+    ]
+   }
+  },
+  {
    "id": "gap:2026-09-28:종소세-낼때",
    "query": "종소세 낼때",
    "altQueries": [
@@ -78,6 +137,68 @@
    }
   },
   {
+   "id": "gap:2026-09-28:권고사직-이런경우",
+   "query": "권고사직 이런경우",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "unemployment",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 80,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 80건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 9",
+    "뉴스 벽 없음"
+   ],
+   "condition": "권고사직 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 권고사직 글 4편과 세부 키워드 다르게",
+   "measuredAt": "2026-09-28",
+   "demand": {
+    "kinExact": 80,
+    "blogFreq": 0,
+    "rel30": 0,
+    "ratio7": null
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 9,
+    "wallTop5": 1,
+    "mainGovAbove": 1,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 3,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "ugc:namu.wiki",
+     "commercial:findsemusa.com",
+     "gov:1350.moel.go.kr",
+     "commercial:findsemusa.com",
+     "commercial:findsemusa.com",
+     "org:nodong.org",
+     "commercial:captainlawfirm.com",
+     "commercial:awoo.or.kr",
+     "commercial:a-ha.io",
+     "commercial:help.3o3.co.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "recommended-resignation-agreement-rights",
+     "recommended-resignation-business-downturn",
+     "recommended-resignation-unemployment-eligibility",
+     "recommended-resignation-vs-voluntary"
+    ]
+   }
+  },
+  {
    "id": "gap:2026-09-28:권고사직-받고",
    "query": "권고사직 받고",
    "altQueries": [],
@@ -96,7 +217,7 @@
    "condition": "권고사직 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 권고사직 글 4편과 세부 키워드 다르게",
    "measuredAt": "2026-09-28",
    "demand": {
-    "kinExact": 6,
+    "kinExact": 7,
     "blogFreq": 0,
     "rel30": 0,
     "ratio7": null
@@ -200,6 +321,68 @@
      "health-insurance-rate-2027-frozen",
      "health-insurance-reduction",
      "health-insurance-settlement-installment-2026-july"
+    ]
+   }
+  },
+  {
+   "id": "gap:2026-09-28:신용점수-올리기-자격",
+   "query": "신용점수 올리기 자격",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "savings",
+   "status": "proposed",
+   "autoPick": false,
+   "score": 75,
+   "label": "높음",
+   "reasons": [
+    "자리 열림",
+    "빈자리 8",
+    "상위 5 관공서·공단·도구 없음",
+    "뉴스 벽 없음"
+   ],
+   "condition": "신용점수 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 신용점수 글 4편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
+   "measuredAt": "2026-09-28",
+   "demand": {
+    "kinExact": 0,
+    "blogFreq": 0,
+    "rel30": 0,
+    "ratio7": null
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 8,
+    "wallTop5": 0,
+    "mainGovAbove": 0,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 1,
+    "naverAbove": 0,
+    "newsWall": 0,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "finco:kakaobank.com",
+     "commercial:sbsnewstech.co.kr",
+     "ugc:namu.wiki",
+     "commercial:info.dasgno.com",
+     "commercial:allcredit.co.kr",
+     "public:fss.or.kr",
+     "commercial:credit.co.kr",
+     "commercial:info.dasgno.com",
+     "commercial:allcredit.co.kr",
+     "commercial:gorgopage.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "credit-score-30day-delinquency-recovery",
+     "credit-score-improvement",
+     "credit-score-up-100-points-5-steps",
+     "kcb-vs-nice-credit-score-difference"
     ]
    }
   },
@@ -421,7 +604,7 @@
     "toolAbove": 0,
     "fincoAbove": 1,
     "naverAbove": 0,
-    "newsWall": 9,
+    "newsWall": 10,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -923,7 +1106,7 @@
     "toolAbove": 0,
     "fincoAbove": 3,
     "naverAbove": 0,
-    "newsWall": 3,
+    "newsWall": 2,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -1238,8 +1421,8 @@
      "org:kofod.or.kr",
      "gov:minimumwage.go.kr",
      "commercial:wegive.co.kr",
-     "gov:labor.moel.go.kr",
      "tool:excel.yesform.com",
+     "gov:minimumwage.go.kr",
      "gov:minimumwage.go.kr"
     ]
    },
@@ -1379,141 +1562,6 @@
      "isa-maturity-next-product-comparison"
     ]
    }
-  },
-  {
-   "id": "gap:2026-09-17:청약통장-종류",
-   "query": "청약통장 종류",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": "realestate",
-   "status": "hold",
-   "autoPick": false,
-   "score": 40,
-   "label": "낮음",
-   "reasons": [
-    "같은 질문 53건(지식iN 상위 100)",
-    "자리 열림",
-    "금융사 4",
-    "비슷한 우리 글 2편"
-   ],
-   "condition": "점수 45(은행 글 5·비슷한 우리 글 1편). 기존 청약통장 전략 글과 세부 키워드가 달라야 한다",
-   "measuredAt": "2026-09-28",
-   "demand": {
-    "kinExact": 53,
-    "altKinExact": [],
-    "rel30": 0.2,
-    "ratio7": 1.02,
-    "blogFreq": 3
-   },
-   "serp": {
-    "rank": null,
-    "openSlots": 1,
-    "wallTop5": 2,
-    "mainGovAbove": 1,
-    "publicAbove": 1,
-    "toolAbove": 0,
-    "fincoAbove": 4,
-    "naverAbove": 0,
-    "newsWall": 6,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [
-     "금융사 4 — 상업 의도, 광고 블록이 위에 설 수 있다"
-    ],
-    "top10": [
-     "ugc:namu.wiki",
-     "public:khug.or.kr",
-     "gov:anbang.daegu.go.kr",
-     "finco:toss.im",
-     "finco:spot.wooribank.com",
-     "finco:mybank.ibk.co.kr",
-     "gov:easylaw.go.kr",
-     "gov:mofe.go.kr",
-     "finco:kbthink.com",
-     "gov:molit.go.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "apartment-pre-sale-transfer-restriction-tax",
-     "housing-subscription-account-strategy",
-     "housing-subscription-conversion-deadline-2026",
-     "housing-subscription-income-deduction-2026",
-     "housing-subscription-ineligible-rewin-restriction"
-    ]
-   },
-   "holdBy": "pipeline",
-   "holdReason": "재측정 2026-09-28: 점수 40"
-  },
-  {
-   "id": "gap:2026-09-17:연금저축-ETF-조건",
-   "query": "연금저축 ETF 조건",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": "savings",
-   "status": "hold",
-   "autoPick": false,
-   "score": 0,
-   "label": "낮음",
-   "reasons": [
-    "빈자리 5",
-    "금융사 5",
-    "비슷한 우리 글 1편"
-   ],
-   "condition": "연금저축 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 연금저축 글 9편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-09-28",
-   "demand": {
-    "kinExact": 0,
-    "blogFreq": 0,
-    "rel30": 0,
-    "ratio7": null
-   },
-   "serp": {
-    "rank": null,
-    "openSlots": 5,
-    "wallTop5": 1,
-    "mainGovAbove": 1,
-    "publicAbove": 0,
-    "toolAbove": 0,
-    "fincoAbove": 5,
-    "naverAbove": 0,
-    "newsWall": 20,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "closed",
-    "warn": [
-     "뉴스 블록 경고 (7일 기사 20)",
-     "금융사 5 — 상업 의도, 광고 블록이 위에 설 수 있다"
-    ],
-    "top10": [
-     "finco:shinhansec.com",
-     "finco:shinhansec.com",
-     "org:kcie.or.kr",
-     "finco:investments.miraeasset.com",
-     "stale-gov:fsc.go.kr",
-     "finco:toss.im",
-     "ugc:namu.wiki",
-     "ugc:namu.wiki",
-     "finco:kbthink.com",
-     "org:kcie.or.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "pension-fund-to-etf-rollover",
-     "pension-savings-early-termination-tax",
-     "pension-savings-fund-vs-insurance",
-     "pension-savings-insurance-fund-bank",
-     "pension-savings-vs-general-etf"
-    ]
-   },
-   "holdBy": "pipeline",
-   "holdReason": "재측정 2026-09-28: 7일 기사 20"
   },
   {
    "id": "gap:2026-09-17:ISA-만기-연장",
@@ -2235,6 +2283,141 @@
    },
    "slug": "move-in-report-required-documents",
    "publishedAt": "2026-09-28"
+  },
+  {
+   "id": "gap:2026-09-17:청약통장-종류",
+   "query": "청약통장 종류",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "rejected",
+   "autoPick": false,
+   "score": 40,
+   "label": "낮음",
+   "reasons": [
+    "같은 질문 53건(지식iN 상위 100)",
+    "자리 열림",
+    "금융사 4",
+    "비슷한 우리 글 2편"
+   ],
+   "condition": "점수 45(은행 글 5·비슷한 우리 글 1편). 기존 청약통장 전략 글과 세부 키워드가 달라야 한다",
+   "measuredAt": "2026-09-28",
+   "demand": {
+    "kinExact": 53,
+    "altKinExact": [],
+    "rel30": 0.2,
+    "ratio7": 1.02,
+    "blogFreq": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 1,
+    "wallTop5": 2,
+    "mainGovAbove": 1,
+    "publicAbove": 1,
+    "toolAbove": 0,
+    "fincoAbove": 4,
+    "naverAbove": 0,
+    "newsWall": 6,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [
+     "금융사 4 — 상업 의도, 광고 블록이 위에 설 수 있다"
+    ],
+    "top10": [
+     "ugc:namu.wiki",
+     "public:khug.or.kr",
+     "gov:anbang.daegu.go.kr",
+     "finco:toss.im",
+     "finco:spot.wooribank.com",
+     "finco:mybank.ibk.co.kr",
+     "gov:easylaw.go.kr",
+     "gov:mofe.go.kr",
+     "finco:kbthink.com",
+     "gov:molit.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "apartment-pre-sale-transfer-restriction-tax",
+     "housing-subscription-account-strategy",
+     "housing-subscription-conversion-deadline-2026",
+     "housing-subscription-income-deduction-2026",
+     "housing-subscription-ineligible-rewin-restriction"
+    ]
+   },
+   "rejectedReason": "재측정 2026-09-28: 점수 40",
+   "rejectedBy": "pipeline"
+  },
+  {
+   "id": "gap:2026-09-17:연금저축-ETF-조건",
+   "query": "연금저축 ETF 조건",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "savings",
+   "status": "rejected",
+   "autoPick": false,
+   "score": 0,
+   "label": "낮음",
+   "reasons": [
+    "빈자리 5",
+    "금융사 5",
+    "비슷한 우리 글 1편"
+   ],
+   "condition": "연금저축 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 연금저축 글 9편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
+   "measuredAt": "2026-09-28",
+   "demand": {
+    "kinExact": 0,
+    "blogFreq": 0,
+    "rel30": 0,
+    "ratio7": null
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 5,
+    "wallTop5": 1,
+    "mainGovAbove": 1,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 5,
+    "naverAbove": 0,
+    "newsWall": 21,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "closed",
+    "warn": [
+     "뉴스 블록 경고 (7일 기사 21)",
+     "금융사 5 — 상업 의도, 광고 블록이 위에 설 수 있다"
+    ],
+    "top10": [
+     "finco:shinhansec.com",
+     "finco:shinhansec.com",
+     "org:kcie.or.kr",
+     "finco:investments.miraeasset.com",
+     "stale-gov:fsc.go.kr",
+     "finco:toss.im",
+     "ugc:namu.wiki",
+     "ugc:namu.wiki",
+     "finco:kbthink.com",
+     "org:kcie.or.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "pension-fund-to-etf-rollover",
+     "pension-savings-early-termination-tax",
+     "pension-savings-fund-vs-insurance",
+     "pension-savings-insurance-fund-bank",
+     "pension-savings-vs-general-etf"
+    ]
+   },
+   "rejectedReason": "재측정 2026-09-28: 7일 기사 21",
+   "rejectedBy": "pipeline"
   }
  ]
 }
