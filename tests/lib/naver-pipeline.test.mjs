@@ -6,6 +6,7 @@ import { describe, it, expect } from 'vitest';
 import {
   suffixesOf, mineSuffixes, foldNearDuplicates, roundRobin, kinExactCount,
   exposureOf, autoPickOf, mergeQueue, renderReport, headsOf, templateSuffixes,
+  isSisterTopic, regionOf, sisterTopOf,
 } from '../../scripts/audit/naver-pipeline.mjs';
 
 describe('suffixesOf', () => {
@@ -231,5 +232,112 @@ describe('renderReport', () => {
     expect(md).toContain('신규 0편');
     expect(md).toContain('지정 필요');
     expect(md).toContain('a/b');
+  });
+  it('자매 겹침 제외·해제 건수를 한 줄로 낸다', () => {
+    const log = { added: [], updated: [], closed: [], published: [], dropped: [], refresh: [], sisterHold: ['x'], sisterSkipped: [], sisterTop: ['y', 'z'] };
+    const md = renderReport({ queue: { items: [] }, log, today: '2026-09-30', stats: { heads: 1, scouted: 0, open: 0, veto: 0, calls: 2, sisterSkipped: 4, sisterHeads: 3 } });
+    expect(md).toContain('주제라 재지 않고 뺀 후보 4건(헤드 3개 포함) · 큐에서 보류로 돌림 1건 · 자매 상위 3 이라 자동 선택 해제 2건');
+  });
+});
+
+// 2026-09-30 운영자 결정: 머니룩은 금융 주제, 지자체 지원금(민생지원금·지역화폐·상품권 사용처·반값여행)은 자매 awoo 몫
+describe('자매 awoo 주제 제외', () => {
+  it.each([
+    ['김해 민생지원금 사용처', true],
+    ['영천 반값여행', true],
+    ['민생지원금 신청방법', true],
+    ['지역화폐 지원금', true],
+    ['서울사랑상품권 할인', true],
+    ['온누리상품권 사용처', true],
+    ['경기도 청년기본소득', true],
+    ['화성시 출산장려금', true],
+    ['마포구 청년 지원금', true],
+    ['근로장려금 반기', false],
+    ['자녀장려금 지급일', false],
+    ['청년 지원금 조건', false],
+    ['국민취업지원제도 구직촉진수당', false],
+    ['고령 근로자 지원금', false],
+    ['예산 지원사업', false],
+    ['고향사랑기부제 세액공제', false],
+    ['온누리상품권 소득공제', false],
+  ])('%s → 제외 %s', (q, want) => {
+    expect(isSisterTopic(q)).toBe(want);
+  });
+  it('흔한 낱말과 겹치는 지역 이름은 접미어가 붙을 때만 지역으로 본다', () => {
+    expect(regionOf('고령 근로자 지원금')).toBeNull();
+    expect(regionOf('고령군 지원금')).toBe('고령군');
+    expect(regionOf('김해 민생지원금')).toBe('김해');
+    expect(regionOf('청년 지원금')).toBeNull();
+  });
+});
+
+describe('sisterTopOf', () => {
+  it('상위 3 안의 자매 사이트 순위를 준다(serp.top10 문자열·scout.above 객체 모두)', () => {
+    expect(sisterTopOf(['ugc:namu.wiki', 'gov:korea.kr', 'commercial:awoo.or.kr'])).toEqual({ rank: 3, name: 'awoo' });
+    expect(sisterTopOf(['stale-commercial:m.awoo.or.kr'])).toEqual({ rank: 1, name: 'awoo' });
+    expect(sisterTopOf([{ host: 'www.awoo.or.kr' }])).toEqual({ rank: 1, name: 'awoo' });
+  });
+  it('4위 아래이거나 없으면 null', () => {
+    expect(sisterTopOf(['ugc:namu.wiki', 'gov:korea.kr', 'gov:x.go.kr', 'commercial:awoo.or.kr'])).toBeNull();
+    expect(sisterTopOf(['commercial:notawoo.or.kr'])).toBeNull();
+    expect(sisterTopOf(undefined)).toBeNull();
+  });
+});
+
+describe('mergeQueue 자매 규칙', () => {
+  const today = '2026-09-30';
+  const awooAt = (r) => ({ above: [...Array.from({ length: r - 1 }, () => ({ kind: 'ugc', host: 'blog.naver.com' })), { kind: 'commercial', host: 'awoo.or.kr' }] });
+
+  it('큐의 자매 주제 proposed·파이프라인 hold 는 hold(holdBy:sister), approved·운영자 hold 는 그대로', () => {
+    const items = [
+      { id: 'a', query: '김해 민생지원금 사용처', track: 'T2', status: 'proposed', autoPick: false, measuredAt: today },
+      { id: 'b', query: '지역화폐 지원금', track: 'T2', status: 'hold', holdBy: 'pipeline', holdReason: '재측정', measuredAt: today },
+      { id: 'c', query: '영천 반값여행', track: 'T2', status: 'approved', measuredAt: today },
+      { id: 'd', query: '민생지원금 신청방법', track: 'T2', status: 'hold', holdReason: '운영자 보류', measuredAt: today },
+    ];
+    const { queue, log } = mergeQueue({ items }, [meas('지역화폐 지원금')], { today });
+    const by = (id) => queue.items.find((i) => i.id === id);
+    expect(by('a')).toMatchObject({ status: 'hold', holdBy: 'sister', autoPick: false });
+    expect(by('a').holdReason).toContain('awoo');
+    expect(by('b')).toMatchObject({ status: 'hold', holdBy: 'sister' }); // 열린 측정값이 와도 proposed 로 되돌리지 않는다
+    expect(by('c').status).toBe('approved');
+    expect(by('d')).toEqual(items[3]);
+    expect(log.sisterHold).toEqual(['김해 민생지원금 사용처', '지역화폐 지원금']);
+  });
+  it('자매 주제 새 후보는 큐에 올리지 않는다', () => {
+    const { queue, log } = mergeQueue({ items: [] }, [meas('김해 민생지원금 사용처'), meas('확정일자 효력')], { today });
+    expect(queue.items.map((i) => i.query)).toEqual(['확정일자 효력']);
+    expect(log.sisterSkipped).toEqual(['김해 민생지원금 사용처']);
+  });
+  it('자매가 상위 3 이면 autoPick=false 와 이유, 다음 측정에서 빠지면 다시 자동', () => {
+    const first = mergeQueue({ items: [] }, [meas('확정일자 효력', { scout: awooAt(2) })], { today });
+    expect(first.queue.items[0]).toMatchObject({ status: 'proposed', autoPick: false, sisterTop: 2 });
+    expect(first.queue.items[0].reasons[0]).toBe('자매 사이트 awoo 상위 2위, 같은 계정 자리 중복');
+    expect(first.log.sisterTop).toEqual(['확정일자 효력']);
+    const back = mergeQueue(first.queue, [meas('확정일자 효력')], { today: '2026-10-01' });
+    expect(back.queue.items[0].autoPick).toBe(true);
+    expect(back.queue.items[0].sisterTop).toBeUndefined();
+    expect(back.queue.items[0].reasons.some((r) => r.startsWith('자매 사이트'))).toBe(false);
+    expect(back.log.sisterTop).toEqual([]);
+  });
+  it('자매가 4위면 건드리지 않는다', () => {
+    const { queue } = mergeQueue({ items: [] }, [meas('확정일자 효력', { scout: awooAt(4) })], { today });
+    expect(queue.items[0]).toMatchObject({ autoPick: true });
+    expect(queue.items[0].sisterTop).toBeUndefined();
+  });
+  it('재지 못한 항목도 지난 serp 의 자매 상위를 반영한다', () => {
+    const items = [{ id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: true, score: 70, reasons: ['자리 열림'], measuredAt: today, serp: { top10: ['commercial:awoo.or.kr', 'gov:korea.kr'] } }];
+    const { queue, log } = mergeQueue({ items }, [], { today });
+    expect(queue.items[0]).toMatchObject({ autoPick: false, sisterTop: 1, reasons: ['자매 사이트 awoo 상위 1위, 같은 계정 자리 중복', '자리 열림'] });
+    expect(log.sisterTop).toEqual(['x y']);
+  });
+  it('다른 이유로 이미 autoPick=false 면 이유만 붙이고, 자매가 빠져도 false 그대로', () => {
+    const items = [{ id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: false, condition: '운영자 지정 필요', measuredAt: '2026-09-29' }];
+    const first = mergeQueue({ items }, [meas('x y', { scout: awooAt(1) })], { today });
+    expect(first.queue.items[0]).toMatchObject({ autoPick: false });
+    expect(first.queue.items[0].sisterTop).toBeUndefined();
+    expect(first.queue.items[0].reasons[0]).toContain('자매 사이트 awoo 상위 1위');
+    const later = mergeQueue(first.queue, [meas('x y')], { today: '2026-10-01' });
+    expect(later.queue.items[0].autoPick).toBe(false);
   });
 });

@@ -8,6 +8,7 @@
 //   2026-09-15 운영자 결정 "범용": 자매 사이트를 따로 세지 않는다. awoo.or.kr 같은 .or.kr 정보 사이트는 commercial.
 //   2026-09-15 .or.kr 을 통째로 공단으로 보니 병원·학회·지역 재단이 벽으로 잡혔다
 //              → 공공기관 목록과 .re.kr 만 public(벽), 나머지 .or.kr·.ac.kr·.org 는 org(뺏을 수 있는 자리)
+//   2026-09-30 운영자 결정 "awoo 와 주제 나누기": 분류는 그대로 commercial 이고, 자매 목록(SISTER_HOSTS)은 파이프라인이 자동 선택을 끌 때만 본다.
 // ════════════════════════════════════════════════════════════════════════
 
 export const SITE_HOST = 'asiatop.co.kr';
@@ -63,8 +64,13 @@ export const PUBLIC_HOSTS = [
   'kcredit.or.kr', 'kodit.or.kr', 'kibo.or.kr', 'koreg.or.kr', 'kipa.or.kr',
 ];
 
-// .or.kr 이지만 기관이 아닌 정보 사이트(상업으로 센다)
-export const OR_KR_INFO_SITES = ['awoo.or.kr'];
+// 운영자 자매 사이트(같은 애드센스 계정). 웹문서 상위 3 안에 있으면 naver-pipeline 이 자동 선택을 끈다(2026-09-30).
+// 자매 사이트가 늘면 여기에만 더한다.
+export const SISTER_HOSTS = ['awoo.or.kr'];
+export const isSisterHost = (host) => onDomain(String(host || '').toLowerCase().replace(/^www\./, '').replace(/^m\./, ''), SISTER_HOSTS);
+
+// .or.kr 이지만 기관이 아닌 정보 사이트(상업으로 센다). 자매 .or.kr 은 자매 목록에서 가져오고, 그 밖의 사이트는 뒤에 더한다.
+export const OR_KR_INFO_SITES = [...SISTER_HOSTS.filter((d) => d.endsWith('.or.kr'))];
 
 export const KINDS = ['us', 'naver', 'tool', 'law', 'gov', 'public', 'org', 'press', 'finco', 'ugc', 'commercial'];
 
