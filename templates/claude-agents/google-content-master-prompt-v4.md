@@ -6,7 +6,7 @@
 >
 > 머니룩 하네스와의 우선순위 (충돌 시):
 > 1. CLAUDE.md·사이트 가드 — frontmatter 스키마(content.config.ts), 긴 줄표(—/–) 금지,
->    일 1편 캐던스, AdSense·YMYL 가드, 내부링크 실링크 3~5개
+>    신규 캐던스 상한(docs/ops/cadence.json), AdSense·YMYL 가드, 내부링크 실링크 3~5개
 > 2. 본 마스터 프롬프트 (콘텐츠 품질·구조·독창성·중복 통제)
 > 3. docs/21·docs/12 기존 게이트 (본 프롬프트와 대부분 정합 — 세부 규격 참조용)
 >

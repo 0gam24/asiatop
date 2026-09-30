@@ -11,8 +11,8 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 ## 0. 사전 가드
 
 - `Get-Date` 로 시스템 실시각 → KST 오늘 날짜 확정 (CLAUDE.md publishedAt 가드 — system reminder 날짜 신뢰 금지)
-- **구글 회복 체제 (2026-08-26, docs/24)**: 신규 글 **일 1편 이하 고정** (publish-cadence 가드가 빌드 차단). 머지는 `merge-approved` 라벨 승인제. **루틴 예외 (2026-08-27 운영자 지시)**: 이 사이클의 일 1편 이하 콘텐츠 PR 에 한해 전 가드·CI green 확인 후 Claude 가 라벨 부착 가능 (직접 머지는 금지 — 자동 머지 체인 경유).
-- 케이던스 규칙 확인: docs/23 §4-1·§4-2 는 리프레시 페이스에만 참조 (신규 쿼터는 docs/24 가 우선)
+- **구글 회복 체제 (2026-08-26, docs/24)**: 신규 글 **캐던스 상한 이하** (`docs/ops/cadence.json`, 2026-10-01부터 A단계 일 2편. 2026-09-30 운영자 결정으로 일 1편 고정을 대체, publish-cadence 가드가 날짜별 상한으로 빌드 차단). 머지는 `merge-approved` 라벨 승인제. **루틴 예외 (2026-08-27 운영자 지시)**: 이 사이클의 캐던스 상한 이하 콘텐츠 PR 에 한해 전 가드·CI green 확인 후 Claude 가 라벨 부착 가능 (직접 머지는 금지 — 자동 머지 체인 경유).
+- 케이던스 규칙 확인: docs/23 §4-1·§4-2 는 리프레시 페이스에만 참조 (신규 쿼터는 docs/ops/cadence.json 이 우선)
 
 ## 1. 수익 점검 (/revenue 절차)
 
@@ -25,15 +25,21 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 
 - `node scripts/audit/gsc-opportunities.mjs` 실행 + `pnpm audit:naver` (네이버 수요 측정,
   2026-09-07 신설 — /topics §1-b). 두 JSON 모두 `docs/revenue-log/` 에 커밋.
-- 오늘 패키지 구성 (구글 회복 캐던스 — docs/24 P0):
-  - **신규 최대 1편** — 입력원은 **빈틈 대기열 `docs/ops/pipeline-queue.json` 하나뿐** (2026-09-17 운영자 지시,
-    /topics §2-3: approved → autoPick proposed 점수순, 잠금 장부 `audit:ledger --check` 통과, frontmatter `targetQuery` 기록).
+- 오늘 패키지 구성 (단계 캐던스 `docs/ops/cadence.json`. 2026-09-30 운영자 결정으로 docs/24 P0 의 일 1편 고정을 대체):
+  - **신규는 오늘의 캐던스 상한까지** (2026-10-01부터 A단계 일 2편, 오늘 상한은 `node scripts/audit/publish-cadence.mjs` 출력으로 확인). 입력원은 **빈틈 대기열 `docs/ops/pipeline-queue.json` 하나뿐** (2026-09-17 운영자 지시,
+    /topics §2-3: approved → autoPick proposed 점수순으로 상한까지, 잠금 장부 `audit:ledger --check` 통과, frontmatter `targetQuery` 기록).
     통과 항목이 없으면 신규 0편, 달력·뉴스·GSC 로 대신 고르지 않는다.
-    2편째 자동승인 슬롯은 **폐지** (2026-08-26). 신규 0편인 날도 정상 — 리프레시만 진행 가능.
+    NEW 트랙(`unverified`) 항목은 소관 부처 보도자료·법령 원문을 WebFetch 로 직접 확인한 경우에만 두 번째 자리부터 쓴다 (2026-09-30).
+    WebFetch 확인은 '1차 출처 미확인' 만 풀어 준다. `condition` 에 '운영자 지정 필요'(민간 대출·지원금 류·수요 신호 없음)가 있거나
+    `ledger.verdict` 가 PASS 가 아니면(FIX 포함) `approved` 일 때만 쓴다. NEW 항목을 쓴 PR 본문에는 확인한 1차 출처 URL 을 적는다.
+    자매 사이트 awoo 영역(지자체 민생지원금·지역화폐·상품권 사용처·반값여행 류)은 건너뛴다 (2026-09-30).
+    docs/23 의 '2편째 자동승인 슬롯'(달력·GSC 근거)은 **폐지** 그대로다 (2026-08-26). A단계의 두 번째 자리도 대기열 규칙으로만 채운다.
+    상한은 할당량이 아니다. 신규 0편인 날도 정상이고, 리프레시만 진행해도 된다.
   - **리프레시 2~3편** (주 10 목표 페이스): 우선순위 ①고위험 클러스터 ②스트라이킹 디스턴스 ③시즌
 - 클러스터 주간 점유 ≤30%·고위험 주 1편 상한 점검
 - 주제 선정은 위 기존 방식(gsc-opportunities + docs/23 규칙) 그대로. **선정된 주제의 본문 제작**만
   에이전트 팀 경유 (2026-08-26 운영자 지시): content-strategist(의도·갭 분석) → content-agent(작성, 마스터 프롬프트 v4) → content-auditor(감사)
+  content-auditor 1차 판정(PASS/FAIL)은 PR 본문에 남긴다 (단계 올리기 조건 측정용, `docs/ops/cadence.json` stageUpCriteria).
 
 ## 3. 발행 실행 (편당)
 
@@ -45,10 +51,10 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
    **루틴 예외 조건 전부 충족 시 Claude 가 `merge-approved` 라벨 부착** (2026-08-27 운영자 지시).
    이 6+1 조건 목록이 예외의 **단일 기준(SSoT)** 이다 — CLAUDE.md·docs/24 의 요약 서술과
    다르게 읽히면 이 목록이 우선한다:
-   ① 신규 일 1편 이하 캐던스 통과 ② content-auditor PASS ③ 풋프린트·ai-style·claims 가드 통과
+   ① 신규 캐던스 상한 이하 통과 (publish-cadence, `docs/ops/cadence.json`. `stageDownCriteria` 가 생긴 뒤에는 내리는 PR 이 머지되기 전이라도 한 단계 낮은 상한으로 센다) ② content-auditor PASS ③ 풋프린트·ai-style·claims 가드 통과
    ④ CI 전체 green ⑤ 정책 이슈 0건 ⑥ PR 구성 제한: 브랜치명 `content/daily-YYYY-MM-DD` 이고,
    변경 파일이 `src/content/articles/*.mdx` 콘텐츠뿐(인프라·스크립트·설정 미혼입)이며,
-   신규 ≤1편 + 리프레시 ≤3편, 30 파일 미만 ⑦ 라벨 부착은 일 1개 PR 까지.
+   신규 ≤ 캐던스 상한 + 리프레시 ≤3편, 30 파일 미만 ⑦ 라벨 부착은 일 1개 PR 까지.
    하나라도 미충족·판단 애매 → 라벨 금지, 운영자에게 PR 링크 보고로 전환.
    라벨 명령은 이 형태 고정: `gh pr edit --add-label merge-approved <PR번호>`
    (permission 허용이 이 프리픽스뿐 — 다른 라벨 조작·no-auto-merge 해제는 불가).
@@ -69,7 +75,7 @@ description: 일일 운영 사이클 원스톱 — 사용자가 "오늘 포스�
 ## 금지
 
 - 자동화 브라우저로 프로덕션 광고 페이지 열기 (무효 트래픽 — CLAUDE.md 가드)
-- 검증 없는 법정 수치 단정 / 무기명 신규 / 일 신규 1편 초과
+- 검증 없는 법정 수치 단정 / 무기명 신규 / 일 신규 캐던스 상한 초과
 - 루틴 예외 조건(위 3-5) 미충족 상태의 `merge-approved` 라벨 부착 / 콘텐츠 PR 직접 머지 (라벨은 자동 머지 체인 경유만) / 프루닝·대량 변경 PR 라벨 부착 (운영자 전용 — docs/24 P0)
 - 구글 색인 재요청(Indexing API 등) 자동화
 - 정책 이슈 발견 시 발행 강행

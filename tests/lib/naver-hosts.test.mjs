@@ -3,7 +3,22 @@
  * 사례는 2026-09-15 실측 SERP 에서 가져왔다.
  */
 import { describe, it, expect } from 'vitest';
-import { classifyHost, classifyItems, isStale, summarize, verdicts } from '../../scripts/audit/lib/naver-hosts.mjs';
+import { classifyHost, classifyItems, isStale, summarize, verdicts, isSisterHost, sisterHostOf } from '../../scripts/audit/lib/naver-hosts.mjs';
+
+describe('isSisterHost (2026-09-30)', () => {
+  it('awoo 와 그 하위 도메인은 자매, 분류는 그대로 commercial', () => {
+    expect(isSisterHost('awoo.or.kr')).toBe(true);
+    expect(isSisterHost('m.awoo.or.kr')).toBe(true);
+    expect(isSisterHost('notawoo.or.kr')).toBe(false);
+    expect(classifyHost('awoo.or.kr')).toBe('commercial');
+  });
+  it('sisterHostOf 는 걸린 자매 목록 도메인을 준다', () => {
+    expect(sisterHostOf('blog.awoo.or.kr')).toBe('awoo.or.kr');
+    expect(sisterHostOf('www.awoo.or.kr')).toBe('awoo.or.kr');
+    expect(sisterHostOf('asiatop.co.kr')).toBeNull();
+    expect(sisterHostOf(undefined)).toBeNull();
+  });
+});
 
 describe('classifyHost — 금융·생활 행정 분류표', () => {
   const cases = [

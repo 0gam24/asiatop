@@ -11,6 +11,8 @@
 //   NEW  최신 naver-discover 뉴스 신생어. 1차 출처를 기계가 확인 못 하므로 unverified(−10, autoPick=false)
 //   재측정 큐의 proposed·approved
 // 거르기  잠금 장부 VETO · 이미 큐에 있는 쿼리 · 14일 안에 닫힘으로 잰 쿼리(docs/ops/radar/pipeline-seen.json)
+// 자매    (2026-09-30 운영자 결정) awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행)는 재기 전에 빼고 큐의 proposed 는 hold(holdBy:sister),
+//         approved 는 상태를 두고 재측정만 멈춘다. 웹문서 상위 3 에 자매 사이트가 있으면 autoPick=false(sisterTop)
 // 측정    쿼리당 webkr + news + kin(같은 질문 수) 3회, 열린 것만 검색어 트렌드
 // 점수    exposureOf (§6-3). 실유입 CSV 가 없는 동안은 지식iN 같은 질문 수가 수요 대리지표다(v0.1).
 // 병합    approved·published·rejected 와 운영자가 건 hold 의 상태는 건드리지 않는다. proposed 가 재측정에서 닫히면 먼저 hold(holdBy:pipeline),
@@ -30,6 +32,7 @@ import { naverSearch, stripTags, sleep, kstDate, isMain, NaverAuthError, ROOT } 
 import { scoutQuery } from './naver-scout.mjs';
 import { measureVolume } from './naver-volume.mjs';
 import { buildLedger, checkCandidate, classifyFamily, normKeyword, parseArticleMeta } from './naver-ledger.mjs';
+import { sisterHostOf } from './lib/naver-hosts.mjs';
 
 const OPS = path.join(ROOT, 'docs', 'ops');
 const QUEUE = path.join(OPS, 'pipeline-queue.json');
@@ -199,6 +202,99 @@ export function conditionOf({ query, program, sameProgram = 0, serp = {}, unveri
   return parts.join('. ');
 }
 
+// ── 자매 사이트 awoo 와 주제 나누기 (운영자 결정 2026-09-30) ─────────────────────
+// 머니룩은 세금·연금·연말정산·대출·보험 같은 금융 주제에 집중하고, awoo 영역인 지자체 지원금은 피한다.
+// ① 주제 제외: 아래 주제는 재기 전에 후보에서 뺀다(API 예산 절약). 큐에 이미 있는 proposed 는 hold(holdBy:sister).
+// ② 자매 상위: 웹문서 상위 3 안에 자매 사이트(lib/naver-hosts.mjs SISTER_HOSTS)가 있으면 autoPick=false.
+//    같은 애드센스 계정끼리 한 자리를 나눠 먹게 되므로 운영자가 [발행 지시]로 고를 때만 쓴다.
+// 근로장려금·자녀장려금·국민취업지원·청년 지원금 같은 국가 제도는 걸리지 않게 좁게 잡는다.
+export const SISTER_TOPIC = /민생\s?(회복|안정)?\s?(지원금|쿠폰)|소비\s?쿠폰|지역\s?화폐|사랑\s?상품권|지역\s?상품권|상품권\s?(사용처|가맹점)|반값\s?여행/;
+// "지역 이름 + 지원금 류"는 지자체 사업이다. 장려금은 출산장려금만 본다(근로·자녀장려금은 국세청 제도).
+const LOCAL_MONEY = /지원금|지원사업|바우처|쿠폰|기본소득|청년\s?수당|농어?민\s?수당|출산\s?장려금|축하금/;
+// 시·도와 시·군·구 이름(행정 접미어를 뗀 꼴). 광역시의 자치구는 이름이 따로 서는 것만 넣었다.
+const REGION_NAMES = new Set(`
+  서울 부산 대구 인천 광주 대전 울산 세종 경기 강원 충북 충남 전북 전남 경북 경남 제주
+  충청북도 충청남도 전라북도 전라남도 경상북도 경상남도
+  수원 성남 의정부 안양 부천 광명 평택 동두천 안산 고양 과천 구리 남양주 오산 시흥 군포 의왕 하남 용인 파주 이천 안성 김포 화성 양주 포천 여주 연천 가평 양평
+  춘천 원주 강릉 동해 태백 속초 삼척 홍천 횡성 영월 평창 정선 철원 화천 양구 인제 고성 양양
+  청주 충주 제천 보은 옥천 영동 증평 진천 괴산 음성 단양
+  천안 공주 보령 아산 서산 논산 계룡 당진 금산 부여 서천 청양 홍성 예산 태안
+  전주 군산 익산 정읍 남원 김제 완주 진안 무주 장수 임실 순창 고창 부안
+  목포 여수 순천 나주 광양 담양 곡성 구례 고흥 보성 화순 장흥 강진 해남 영암 무안 함평 영광 장성 완도 진도 신안
+  포항 경주 김천 안동 구미 영주 영천 상주 문경 경산 군위 의성 청송 영양 영덕 청도 고령 성주 칠곡 예천 봉화 울진 울릉
+  창원 진주 통영 사천 김해 밀양 거제 양산 의령 함안 창녕 남해 하동 산청 함양 거창 합천 서귀포
+  종로 중구 용산 성동 광진 동대문 중랑 성북 강북 도봉 노원 은평 서대문 마포 양천 강서 구로 금천 영등포 동작 관악 서초 강남 송파 강동
+  동구 서구 남구 북구 영도 부산진 동래 해운대 사하 금정 연제 수영 사상 기장 수성 달서 달성 미추홀 연수 남동 부평 계양 강화 옹진 광산 유성 대덕 울주
+`.trim().split(/\s+/));
+// 흔한 낱말과 겹치는 이름("예산 지원사업"·"고령 근로자 지원금"·"연수 지원금")은 "예산군"처럼 접미어가 붙을 때만 지역으로 본다.
+const REGION_AMBIGUOUS = new Set('구리 오산 이천 양주 정선 인제 보은 음성 공주 부여 예산 완주 장수 강진 영광 장성 진도 신안 상주 영양 고령 성주 거창 동해 사상 수영 기장 수성 달성 연수 남동 광산 유성 강화 동작'.split(' '));
+const REGION_SUFFIX = /(특별자치시|특별자치도|특별시|광역시|시|군|구|도)$/;
+// 지역 이름에 붙여 쓴 꼴("서울청년수당"·"경기도기본소득"·"마포구청")은 바로 뒤가 행정 접미어나 지원금 류 말일 때만 지역으로 본다.
+// 그래서 "고양이"·"영주권"·"원주민"은 지역이 아니다.
+const REGION_JOINED_TAIL = /^(특별자치시|특별자치도|특별시|광역시|시|군|구|도|청년|민생|지원금|지원사업|바우처|쿠폰|기본소득|수당|출산장려금|축하금|농어?민수당)/;
+// 바로 뒤 낱말이 이 말이면 지역이 아니다("경기 침체 지원금"의 경기는 경제 경기).
+const NOT_REGION_BEFORE = { 경기: /^(침체|불황|부양|둔화|호황|회복|악화|하강|위축|변동|전망|지표)/ };
+
+// 쿼리 안의 지역 이름 낱말(없으면 null)
+export function regionOf(query) {
+  const toks = String(query || '').split(/[\s·,/()]+/).filter(Boolean);
+  for (const [i, tok] of toks.entries()) {
+    if (NOT_REGION_BEFORE[tok]?.test(toks[i + 1] || '')) continue;
+    if (REGION_NAMES.has(tok) && !REGION_AMBIGUOUS.has(tok)) return tok;
+    const m = tok.match(REGION_SUFFIX);
+    if (m && tok.length > m[0].length && REGION_NAMES.has(tok.slice(0, -m[0].length))) return tok;
+    // 붙여 쓴 꼴. 긴 이름부터 본다("부산진구" → 부산진). 흔한 낱말과 겹치는 이름은 붙여 쓴 꼴로는 보지 않는다.
+    for (let n = Math.min(tok.length - 1, 4); n >= 2; n--) {
+      const head = tok.slice(0, n);
+      if (REGION_NAMES.has(head) && !REGION_AMBIGUOUS.has(head) && REGION_JOINED_TAIL.test(tok.slice(n))) return head;
+    }
+  }
+  return null;
+}
+
+export const isSisterTopic = (query) => SISTER_TOPIC.test(String(query || '')) || (LOCAL_MONEY.test(String(query || '')) && regionOf(query) != null);
+export const SISTER_TOPIC_REASON = '자매 사이트 awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행), 머니룩은 금융 주제에 집중';
+
+// 웹문서 상위 n 안의 자매 사이트 순위(없으면 null). serp.top10("commercial:awoo.or.kr") 이나 scout.above({host}) 둘 다 받는다.
+export const SISTER_TOP_N = 3;
+export function sisterTopOf(top = [], n = SISTER_TOP_N) {
+  for (const [i, x] of (top || []).slice(0, n).entries()) {
+    const host = typeof x === 'string' ? x.slice(x.indexOf(':') + 1) : x?.host;
+    // 이름은 걸린 자매 목록의 도메인에서 딴다(blog.awoo.or.kr 도 'awoo')
+    const sister = sisterHostOf(host);
+    if (sister) return { rank: i + 1, name: sister.split('.')[0] };
+  }
+  return null;
+}
+export const sisterTopReason = ({ rank, name }) => `자매 사이트 ${name} 상위 ${rank}위, 같은 계정 자리 중복`;
+
+// 자매 상위 규칙을 큐 항목에 반영한다. 이번 실행에서 새로 자동 선택을 껐을 때만 true(보고서 건수용).
+// sisterTop 은 "이 규칙이 자동 선택을 껐다"는 표시라서 다른 이유로 이미 autoPick=false 인 항목과
+// approved(운영자가 고른 항목이라 자동 선택과 무관)에는 새로 붙이지 않고 이유만 남긴다.
+// 자매가 빠지면(재측정 결과든, SISTER_HOSTS 에서 빠졌든) 표시를 지우고 autoPick 을 저장된 점수·장부·수요로 다시 계산한다.
+// 그래서 sisterTop 이 붙은 항목에 운영자가 손으로 autoPick=false 를 넣어도 나중에 풀릴 수 있다. 확실히 막으려면 hold 나 rejected 로 둔다.
+function applySisterTop(item, sis) {
+  const reasons = (item.reasons || []).filter((r) => !String(r).startsWith('자매 사이트'));
+  const was = item.sisterTop != null;
+  if (!sis) {
+    if (item.reasons) item.reasons = reasons;
+    if (was) {
+      delete item.sisterTop;
+      item.autoPick = autoPickOf({ score: item.score, track: item.track, query: item.query, unverified: !!item.unverified, ledgerVerdict: item.ledger?.verdict, demand: item.demand });
+    }
+    return false;
+  }
+  item.reasons = [sisterTopReason(sis), ...reasons];
+  if (was) { item.autoPick = false; item.sisterTop = sis.rank; return false; }
+  if (item.status === 'approved' || item.autoPick === false) return false;
+  item.autoPick = false; item.sisterTop = sis.rank;
+  return true;
+}
+
+// 큐 파일 _readme 에 자매 규칙 설명을 한 번만 붙인다(큐 파일은 매일 자동 커밋이라 손으로 고치지 않는다)
+const SISTER_README_KEY = 'hold 중 holdBy=sister';
+export const SISTER_README = `${SISTER_README_KEY} 는 자매 사이트 awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행)라 naver-pipeline.mjs 가 뺀 항목이다(2026-09-30 운영자 결정). 다시 재지 않고 마지막 측정 21일 뒤 삭제된다. approved 인 awoo 주제는 상태를 두되 재측정을 멈추고 remeasureWarn 을 남긴다. sisterTop=N 은 웹문서 상위 N위에 자매 사이트가 있어 파이프라인이 autoPick 을 끈 표시다. 자매가 빠지면 autoPick 을 다시 계산하므로, 그런 항목을 확실히 막으려면 autoPick 대신 hold 나 rejected 로 둔다.`;
+
 // ── 큐 병합 ──────────────────────────────────────────────────────────────
 const isManual = (it) => it.manual === true || String(it.id || '').startsWith('빈틈:');
 export const queriesOf = (it) => [it.query, ...(it.altQueries || [])].map(normKeyword);
@@ -214,7 +310,7 @@ const serpOfScout = (sc, eyeOffset = null) => ({
 // measured: [{ query, track, cluster, altQueries, unverified, inWindow, scout, demand, ledger:{verdict,adjacent,relatedSlugs,program,sameProgram} }]
 // published: Map(normKeyword(targetQuery) → slug)
 export function mergeQueue(queue, measured, { today, published = new Map() }) {
-  const log = { added: [], updated: [], closed: [], published: [], dropped: [], refresh: [] };
+  const log = { added: [], updated: [], closed: [], published: [], dropped: [], refresh: [], sisterHold: [], sisterSkipped: [], sisterTop: [] };
   const byQuery = new Map();
   for (const m of measured) byQuery.set(normKeyword(m.query), m);
   const items = [];
@@ -226,9 +322,19 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
       Object.assign(next, { status: 'published', slug: it.slug || pubSlug, publishedAt: it.publishedAt || today });
       log.published.push(it.query);
     }
+    // 자매 주제: 파이프라인이 올린 proposed·hold 는 hold(holdBy:sister). 운영자 hold 는 그대로 둔다.
+    // approved 는 운영자가 [발행 지시]로 고른 항목이라 상태는 두고, 재측정을 멈춘 뒤 루틴이 건너뛴다는 표시만 남긴다.
+    const sisterTopic = isSisterTopic(it.query);
+    if (sisterTopic && (next.status === 'proposed' || (next.status === 'hold' && next.holdBy === 'pipeline'))) {
+      Object.assign(next, { status: 'hold', holdBy: 'sister', holdReason: `${today}: ${SISTER_TOPIC_REASON}`, autoPick: false });
+      delete next.sisterTop; delete next.remeasureWarn;
+      log.sisterHold.push(it.query);
+    } else if (sisterTopic && next.status === 'approved' && !String(next.remeasureWarn || '').includes('자매 사이트 awoo')) {
+      next.remeasureWarn = `${today}: ${SISTER_TOPIC_REASON}. 승인 항목이라 상태는 그대로 두고 재측정은 멈춘다. 루틴은 건너뛰므로 쓰려면 운영자가 직접 지시`;
+    }
     const m = byQuery.get(normKeyword(it.query));
-    const pipelineHold = next.status === 'hold' && it.holdBy === 'pipeline';
-    if (m && !m.scout.error && (['proposed', 'approved'].includes(next.status) || pipelineHold)) {
+    const pipelineHold = next.status === 'hold' && next.holdBy === 'pipeline';
+    if (m && !m.scout.error && !sisterTopic && (['proposed', 'approved'].includes(next.status) || pipelineHold)) {
       const serp = serpOfScout(m.scout, it.serp?.eyeOffset ?? null);
       const demand = { ...it.demand, ...m.demand };
       const ledger = { verdict: m.ledger.verdict, relatedSlugs: m.ledger.relatedSlugs };
@@ -246,10 +352,13 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
         if (pipelineHold) { next.status = 'proposed'; delete next.holdBy; delete next.holdReason; }
         if (closedWhy) next.remeasureWarn = `재측정 ${today}: ${closedWhy} — 승인 항목이라 상태는 그대로`;
         else delete next.remeasureWarn;
-        if (it.autoPick !== false) next.autoPick = autoPickOf({ score: ex.score, track: it.track, query: it.query, unverified: !!it.unverified, ledgerVerdict: m.ledger.verdict, demand });
+        // autoPick=false 는 지킨다. 단 자매 상위 규칙이 끈 것(sisterTop)은 다시 계산해 자매가 빠지면 풀리게 한다.
+        if (it.autoPick !== false || it.sisterTop != null) next.autoPick = autoPickOf({ score: ex.score, track: it.track, query: it.query, unverified: !!it.unverified, ledgerVerdict: m.ledger.verdict, demand });
         log.updated.push(it.query);
       }
     }
+    // 자매 상위: 이번에 잰 serp(못 쟀으면 지난 serp)의 상위 3 에 자매 사이트가 있으면 자동 선택을 끈다. 건수는 이번에 새로 끈 것만 센다
+    if (['proposed', 'approved'].includes(next.status) && applySisterTop(next, sisterTopOf(next.serp?.top10))) log.sisterTop.push(it.query);
     // 보존 기한
     const keep = KEEP_DAYS[next.status];
     const stamp = next.status === 'published' ? next.publishedAt : next.measuredAt;
@@ -262,6 +371,8 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
   const fresh = [];
   for (const m of measured) {
     if (m.scout.error || known.has(normKeyword(m.query)) || published.has(normKeyword(m.query))) continue;
+    // 실행부가 재기 전에 거르지만, 이 함수만 불러도 자매 주제가 큐에 오르지 않게 한 번 더 막는다
+    if (isSisterTopic(m.query)) { log.sisterSkipped.push(m.query); continue; }
     const serp = serpOfScout(m.scout);
     const ex = exposureOf({ track: m.track, serp, demand: m.demand, ledger: m.ledger, unverified: !!m.unverified, inWindow: !!m.inWindow });
     if (ex.label === '갱신' || (serp.rank != null && serp.rank <= 30)) { log.refresh.push({ query: m.query, rank: serp.rank, url: m.scout.ourUrl, why: serp.rank <= 3 ? '자사 1~3위 — 새 글 금지, 갱신만' : '자사 4~30위 — 새 글보다 기존 글 진단 먼저' }); continue; }
@@ -269,7 +380,7 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
     if (ex.score < (m.track === 'NEW' ? NEW_MIN_SCORE : QUEUE_MIN_SCORE)) continue;
     // 뉴스 제목에서 나온 말은 조각난 문구가 많다. 사람들이 실제로 묻는 말(지식iN 5건 이상)일 때만 올린다
     if (m.track === 'NEW' && (m.demand.kinExact ?? 0) < 5) continue;
-    fresh.push({
+    const item = {
       id: slugId(today, m.query), query: m.query, altQueries: (m.altQueries || []).filter((q) => !known.has(normKeyword(q))),
       track: m.track, family: classifyFamily(m.query).family, cluster: m.cluster || null, status: 'proposed',
       autoPick: autoPickOf({ score: ex.score, track: m.track, query: m.query, unverified: !!m.unverified, ledgerVerdict: m.ledger.verdict, demand: m.demand }),
@@ -277,14 +388,18 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
       score: ex.score, label: ex.label, reasons: ex.reasons,
       condition: conditionOf({ query: m.query, program: m.ledger.program, sameProgram: m.ledger.sameProgram, serp, unverified: !!m.unverified, demand: m.demand }),
       measuredAt: today, demand: m.demand, serp, ledger: { verdict: m.ledger.verdict, relatedSlugs: m.ledger.relatedSlugs },
-    });
+    };
+    applySisterTop(item, sisterTopOf(serp.top10));
+    fresh.push(item);
   }
   fresh.sort((a, b) => b.score - a.score || (b.demand.kinExact ?? 0) - (a.demand.kinExact ?? 0));
-  for (const f of fresh.slice(0, room)) { items.push(f); log.added.push(f.query); }
+  for (const f of fresh.slice(0, room)) { items.push(f); log.added.push(f.query); if (f.sisterTop != null) log.sisterTop.push(f.query); }
 
   const order = { approved: 0, proposed: 1, hold: 2, published: 3, rejected: 4 };
   items.sort((a, b) => (order[a.status] ?? 9) - (order[b.status] ?? 9) || (b.score ?? 0) - (a.score ?? 0));
-  return { queue: { ...queue, updatedAt: today, items }, log };
+  const out = { ...queue, updatedAt: today, items };
+  if (Array.isArray(queue._readme) && !queue._readme.some((l) => String(l).startsWith(SISTER_README_KEY))) out._readme = [...queue._readme, SISTER_README];
+  return { queue: out, log };
 }
 
 // ── 보고서 ───────────────────────────────────────────────────────────────
@@ -296,6 +411,9 @@ export function renderReport({ queue, log, today, stats, tried = [] }) {
   L.push('`scripts/audit/naver-pipeline.mjs` 가 만든다(손으로 고치면 다음 실행에 덮인다). 원본은 `pipeline-queue.json`.', '');
   L.push(`- 쓸 수 있는 항목 ${live.length}건 (자동 선택 가능 ${auto.length} · 운영자 지정 필요 ${live.length - auto.length})`);
   L.push(`- 이번 실행: 새로 올림 ${log.added.length} · 다시 잼 ${log.updated.length} · 닫혀서 내림 ${log.closed.length} · 발행 표시 ${log.published.length} · 기한 지나 삭제 ${log.dropped.length}`);
+  const sisterSkipped = (stats?.sisterSkipped ?? 0) + (log.sisterSkipped || []).length;
+  const sisterOff = queue.items.filter((i) => i.status === 'proposed' && i.sisterTop != null).length;
+  L.push(`- 자매 awoo 겹침 (2026-09-30 결정): 주제라 재지 않고 뺀 후보 ${sisterSkipped}건${stats?.sisterHeads ? `(헤드 ${stats.sisterHeads}개 포함)` : ''} · 큐에서 보류로 돌림 ${(log.sisterHold || []).length}건 · 자매 상위 3 이라 이번에 자동 선택을 끈 항목 ${(log.sisterTop || []).length}건(지금 꺼져 있는 항목 ${sisterOff}건)`);
   if (stats) L.push(`- 측정: 헤드 ${stats.heads} · 정찰 ${stats.scouted} (열림 ${stats.open}) · 잠금 장부 VETO ${stats.veto} · API 호출 약 ${stats.calls}`);
   if (auto.length === 0) L.push('- **자동 선택 가능한 항목이 없다 → 운영자 지정이 없으면 신규 0편.**');
   L.push('', '## 상위 10', '', '| # | 검색어 | 점수 | 상태 | 이유 | 쓰기 전 확인 |', '|---|---|---|---|---|---|');
@@ -360,7 +478,9 @@ if (isMain(import.meta.url)) {
   const published = publishedTargets();
   const inbound = inboundMap();
   const known = new Set((queue.items || []).flatMap(queriesOf));
-  const stats = { heads: 0, scouted: 0, open: 0, veto: 0, calls: 0 };
+  const stats = { heads: 0, scouted: 0, open: 0, veto: 0, calls: 0, sisterSkipped: 0, sisterHeads: 0 };
+  // 자매 awoo 주제는 재기 전에 뺀다(API 예산 절약). 뺀 수는 보고서 한 줄에 남긴다.
+  const notSister = (q) => { if (!isSisterTopic(q)) return true; stats.sisterSkipped++; return false; };
   const recentlyClosed = (q) => { const s = seen.queries[normKeyword(q)]; return s && !s.open && daysBetween(s.at, today) <= SEEN_CLOSED_DAYS; };
   const ledgerOf = (query) => {
     const r = checkCandidate(entries, { query, family: classifyFamily(query).family });
@@ -371,7 +491,9 @@ if (isMain(import.meta.url)) {
     const plan = []; // { query, track, cluster, altQueries, unverified, inWindow, hint:{blogFreq} }
 
     if (want('remeasure')) {
+      // 자매 주제는 재지 않는다. proposed·파이프라인 hold 는 mergeQueue 가 hold(holdBy:sister)로 돌리고, approved 는 상태만 두고 표시를 남긴다.
       const due = (queue.items || []).filter((i) => ['proposed', 'approved'].includes(i.status) || (i.status === 'hold' && i.holdBy === 'pipeline'))
+        .filter((i) => !isSisterTopic(i.query))
         .sort((a, b) => String(a.measuredAt).localeCompare(String(b.measuredAt))).slice(0, budget.remeasure);
       for (const i of due) plan.push({ query: i.query, track: i.track, cluster: i.cluster, remeasure: true, inWindow: false, hint: {} });
     }
@@ -379,6 +501,8 @@ if (isMain(import.meta.url)) {
     if (want('t2') && budget.t2 > 0) {
       let heads = headsOf(big);
       if (opt('--heads')) { const pick = opt('--heads').split(',').map((s) => s.trim()); heads = pick.map((h) => heads.find((x) => x.head === h) || { head: h, axis: null, cluster: null }); }
+      // 헤드부터 자매 주제면(민생지원금·지역화폐 지원금 등) 제목 수집 호출도 하지 않는다
+      heads = heads.filter((h) => { if (notSister(h.head)) return true; stats.sisterHeads++; return false; });
       const tpl = templateSuffixes(big);
       const groups = [];
       for (const h of heads) {
@@ -387,7 +511,7 @@ if (isMain(import.meta.url)) {
         const mined = mineSuffixes(h.head, { blogTitles, kinTitles });
         const rows = mined.length >= 3 ? mined : [...mined, ...tpl.filter((s) => !mined.some((m) => m.suffix === s)).map((s) => ({ suffix: s, blogFreq: 0, kinFreq: 0, freq: 0 }))];
         const cands = foldNearDuplicates(rows.map((r) => ({ ...r, head: h.head, query: `${h.head} ${r.suffix}`, cluster: h.cluster })))
-          .filter((c) => !known.has(normKeyword(c.query)) && !published.has(normKeyword(c.query)) && !recentlyClosed(c.query));
+          .filter((c) => !known.has(normKeyword(c.query)) && !published.has(normKeyword(c.query)) && !recentlyClosed(c.query) && notSister(c.query));
         const passed = [];
         for (const c of cands) { const lg = ledgerOf(c.query); if (lg.verdict === 'VETO') { stats.veto++; continue; } passed.push({ ...c, lg }); }
         groups.push(passed);
@@ -400,13 +524,13 @@ if (isMain(import.meta.url)) {
 
     if (want('t3') && existsSync(CALENDAR)) {
       const cal = readJson(CALENDAR, {});
-      const due = (cal.items || []).filter((x) => x.query && x.writeBy && x.writeBy <= today && !(x.closeAt && x.closeAt < today) && !known.has(normKeyword(x.query)) && !recentlyClosed(x.query));
+      const due = (cal.items || []).filter((x) => x.query && x.writeBy && x.writeBy <= today && !(x.closeAt && x.closeAt < today) && !known.has(normKeyword(x.query)) && !recentlyClosed(x.query) && notSister(x.query));
       for (const x of due.slice(0, budget.t3)) plan.push({ query: x.query, track: 'T3', cluster: x.cluster || null, inWindow: true, hint: {} });
     }
 
     if (want('new')) {
       const d = latestLog('naver-discover-');
-      const rows = (d?.rows || []).filter((r) => !r.existing && !known.has(normKeyword(r.keyword)) && !recentlyClosed(r.keyword)).sort((a, b) => b.hits - a.hits);
+      const rows = (d?.rows || []).filter((r) => !r.existing && !known.has(normKeyword(r.keyword)) && !recentlyClosed(r.keyword) && notSister(r.keyword)).sort((a, b) => b.hits - a.hits);
       for (const r of rows.slice(0, budget.new)) plan.push({ query: r.keyword, track: 'NEW', cluster: r.cluster || null, unverified: true, inWindow: false, hint: {} });
     }
 

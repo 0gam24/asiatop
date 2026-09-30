@@ -1,0 +1,78 @@
+{
+  "_readme": [
+    "신규 글 하루 상한의 단일 기준(SSoT)이다. scripts/audit/publish-cadence.mjs 가 빌드 체인에서 이 파일을 읽어 날짜별로 검사한다 (pnpm audit:cadence).",
+    "어떤 날짜의 상한 = history 에서 effectiveFrom(KST 날짜)이 그 날짜 이하인 항목 중 가장 늦은 항목의 maxPerDay. 과거 날짜는 당시 상한으로 검사한다.",
+    "파일이 없거나, JSON 이 깨졌거나, 항목이 규격(stages 객체 필수, history 의 stage 는 stages 에 있는 이름, maxPerDay 1~4 정수이고 stages 값과 일치, effectiveFrom YYYY-MM-DD, 날짜 중복 없음)을 벗어나면 가드는 가장 보수적인 1편으로 검사하고 경고를 낸다.",
+    "이 보수 처리는 배포도 멈출 수 있다. 하루 2편 이상 낸 날이 한 번이라도 있으면, 이 파일에 오타가 난 순간부터 모든 빌드(일일 리빌드·긴급 수정 포함)가 그날 때문에 실패한다. 이 파일을 고친 PR 은 node scripts/audit/publish-cadence.mjs 를 돌려 경고(⚠️)가 없는지 확인한다. 앞에 붙은 UTF-8 BOM 은 가드가 떼어 낸다.",
+    "리프레시(updatedAt 갱신)는 집계하지 않는다. 신규 publishedAt 만 센다 (루틴·수동 합산).",
+    "상한은 채워야 하는 할당량이 아니다. 대기열에 통과 항목이 없으면 신규 0편이 정상이다.",
+    "단계 변경은 운영자 승인으로만 한다. Claude 는 stageUpCriteria 를 모두 충족했을 때 근거와 함께 제안만 하고, 이 파일의 단계를 스스로 올리지 않는다. 운영자가 승인하면 history 에 항목을 추가하고 currentStage 를 바꾸는 PR 을 만든다.",
+    "새 history 항목의 effectiveFrom 은 아직 신규 글이 없는 날(보통 다음 날 KST)로 넣는다. 오늘 날짜로 넣으면 오늘 이미 발행된 글에도 새 상한이 소급 적용돼, 내리는 PR 이 CI 에서 실패한다. 이미 발행된 글의 publishedAt 은 옮기지 않는다.",
+    "currentStage 는 history 마지막 항목(가장 최근에 결정된 단계)이다. 그 항목의 effectiveFrom 전날까지는 이전 단계가 적용된다. 예: A단계는 2026-10-01 부터이고 2026-09-30 은 R단계(1편)다.",
+    "stageDownCriteria 가 하나라도 생기면 루틴은 그 뒤 첫 발행부터 한 단계 낮은 상한으로 줄여 발행하고 (이미 낸 글은 그대로 둔다. 덜 쓰는 것은 가드 위반이 아니다), Claude 는 단계를 내리는 PR(effectiveFrom 은 다음 날)을 만들어 운영자에게 알린다. 내리는 PR 이 머지되기 전에도 daily-post §3-5 ① 은 낮춘 상한으로 센다. 파일 변경의 머지는 운영자 승인으로 한다.",
+    "C단계(일 4편)가 최고 단계다. 그 위로 올리려면 publish-cadence.mjs 의 HARD_MAX 도 함께 바꿔야 한다."
+  ],
+  "currentStage": "A",
+  "stages": {
+    "R": { "maxPerDay": 1, "label": "구글 회복 체제 (docs/24 P0)" },
+    "A": { "maxPerDay": 2, "label": "단계적 네이버 성장 1단계" },
+    "B": { "maxPerDay": 3, "label": "단계적 네이버 성장 2단계" },
+    "C": { "maxPerDay": 4, "label": "단계적 네이버 성장 3단계 (최고 단계)" }
+  },
+  "history": [
+    {
+      "stage": "R",
+      "maxPerDay": 1,
+      "effectiveFrom": "2026-08-27",
+      "decidedBy": "운영자 (2026-08-26 구글 회복 작업 지시서, docs/24 P0)",
+      "note": "2026-08-18 구글 스팸 업데이트의 사이트 단위 억제 대응. 원인이 일 3~4편 기계 발행 풋프린트라 신규 글을 하루 1편으로 고정했다."
+    },
+    {
+      "stage": "A",
+      "maxPerDay": 2,
+      "effectiveFrom": "2026-10-01",
+      "decidedBy": "운영자 (2026-09-30 채팅 결정: 단계적 네이버 성장)",
+      "note": "하루 2편부터 시작해 성과를 보며 3~4편까지 올린다. 막 공고된 제도·마감 주제로 글감을 넓힌다(대기열 경유). 품질 검사(content-auditor·전 가드)는 그대로. 구글 회복이 늦어질 수 있음을 감수한다."
+    }
+  ],
+  "stageUpCriteria": {
+    "window": "직전 14일 (KST)",
+    "rule": "아래 조건을 모두 충족해야 한 단계 올릴 수 있다. 충족해도 Claude 는 제안만 하고, 단계 변경은 운영자 승인 후 history 에 항목을 추가하는 PR 로만 한다.",
+    "conditions": [
+      {
+        "id": "policy",
+        "text": "애드센스 정책 센터 이슈 0건이고, 클릭 품질 경고가 나빠지지 않았다.",
+        "source": "/revenue (scripts/audit/revenue-pull.mjs) 정책 상태"
+      },
+      {
+        "id": "naver-rank",
+        "text": "창 안에 발행한 신규 글 중 노린 검색어(targetQuery)로 네이버 웹문서 30위 안에 든 글이 30% 이상이고, 10위 안에 든 글이 1편 이상이다.",
+        "source": "pnpm audit:rank (공식 웹문서 검색 API 순위)"
+      },
+      {
+        "id": "naver-clicks",
+        "text": "네이버 서치어드바이저 클릭이 직전 14일보다 줄지 않았다.",
+        "source": "운영자가 내려받은 서치어드바이저 CSV (pnpm audit:console)"
+      },
+      {
+        "id": "naver-index",
+        "text": "네이버 색인 수가 유지됐다 (직전 창보다 줄지 않음).",
+        "source": "서치어드바이저 색인 현황 (운영자 확인)"
+      },
+      {
+        "id": "auditor",
+        "text": "창 안 신규 글의 content-auditor 1차 판정 FAIL 비율이 50% 이하다.",
+        "source": "daily-post PR 본문에 남긴 content-auditor 1차 판정"
+      }
+    ]
+  },
+  "stageDownCriteria": {
+    "rule": "아래 중 하나라도 생기면 한 단계 내린다 (A단계면 일 1편으로). 애드센스 정책 알림은 CLAUDE.md 대로 모든 발행을 먼저 멈춘 뒤 처리한다.",
+    "conditions": [
+      { "id": "policy-alert", "text": "애드센스 정책 센터 알림이 생겼다." },
+      { "id": "naver-quality", "text": "네이버 서치어드바이저에서 저품질 신호가 보이거나 색인 수가 급감했다." },
+      { "id": "google-manual", "text": "구글 서치 콘솔에 수동 조치가 걸렸다." },
+      { "id": "fact-errors", "text": "신규 글 사실 오류 정정이 한 주에 2건 이상 나왔다." }
+    ]
+  }
+}
