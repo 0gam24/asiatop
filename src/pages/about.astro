@@ -21,47 +21,11 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', position: 2, name: '머니룩 소개', item: url },
   ],
 };
-
-// R52-B: SoftwareApplication schema — 머니룩 자동검증시스템을 schema.org
-// SoftwareApplication 으로 노출. 기존 자동 발행 글(aiAssisted)의 reviewedBy/creditText 와 연결.
-// 2026-06-11 자동 발행 폐기 — 시스템은 2026-06 이전 발행분 검증 이력으로만 유효 (과거형 서술).
-const softwareSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  '@id': new URL('/about/#auto-verification-pipeline', Astro.site).toString(),
-  name: 'MoneyLook 자동검증시스템 (G0~G9, 2026-06 이전 발행분)',
-  applicationCategory: 'BusinessApplication',
-  applicationSubCategory: 'Editorial Content Verification Pipeline',
-  operatingSystem: 'Cross-platform (Cloud)',
-  inLanguage: 'ko-KR',
-  description: '2026년 6월 이전 자동 발행 콘텐츠에 적용된 10단계 검증 파이프라인. 1차 정부 자료(공공데이터·법제처·홈택스·복지로·한국은행 ECOS·고용24·국민연금공단·금융감독원)와 자동 1:1 매칭 — G0 중복 → G1 PII/욕설/정치 → G2 클러스터 매핑 → G3 권위 출처 가용성 → G4 사실 1:1 매칭(임계 70%) → G5 AdSense 정책 → G6 YMYL/AI 면책 → G7 표절 → G8 AI다움 → G9 Naver 스팸. 2026년 6월부터 신규 글은 편집팀이 수동 작성하며 1차 출처를 직접 확인·검수합니다.',
-  publisher: { '@id': new URL('#organization', Astro.site).toString() },
-  creator: { '@id': new URL('#organization', Astro.site).toString() },
-  url: new URL('/editorial-policy/', Astro.site).toString(),
-  isAccessibleForFree: true,
-  offers: {
-    '@type': 'Offer',
-    price: 0,
-    priceCurrency: 'KRW',
-  },
-  featureList: [
-    '정부·공공 1차 자료 1:1 사실 매칭',
-    'AdSense YMYL 정책 자동 준수',
-    '표절·LLM 부산물·Naver 스팸 4룰 자동 차단',
-    'IndexNow + WebSub + Naver/Bing/Yandex 동시 push',
-    '24시간 정정 정책',
-  ],
-  audience: {
-    '@type': 'Audience',
-    audienceType: '한국 직장인·청년',
-    geographicArea: { '@type': 'Country', name: 'South Korea', sameAs: 'https://www.wikidata.org/wiki/Q884' },
-  },
-};
 ---
 <Base
   title="머니룩 소개 — 직장인·청년 생활금융 종합 가이드"
   description="머니룩은 공공데이터포털·법제처·홈택스·복지로·한국은행 ECOS 등 1차 정부·공공 자료에 기반해 한국 직장인·청년이 매일 마주치는 돈 문제를 풀어 설명하는 생활금융 미디어입니다."
-  jsonLd={[breadcrumbSchema, aboutSchema, softwareSchema]}
+  jsonLd={[breadcrumbSchema, aboutSchema]}
 >
   <article class="container narrow">
     <header>
@@ -76,8 +40,8 @@ const softwareSchema = {
     <section class="prose">
       <h2>왜 머니룩인가요?</h2>
       <p>
-        직장인이 받을 수 있는 정부 지원금은 매년 수백 가지가 신설·개편됩니다. 세금환급·실업급여·청년정책·
-        4대보험 등 한 사람당 1년에 평균 23만원 이상의 환급·지원을 놓친다는 국세청·복지부 통계가 있습니다.
+        직장인이 받을 수 있는 정부 지원 제도는 해마다 새로 생기거나 조건이 바뀝니다. 세금환급·실업급여·청년정책처럼
+        본인이 직접 신청해야 받는 제도가 많아, 몰라서 놓치는 경우가 생깁니다.
         머니룩은 이 정보 격차를 줄이는 데 집중합니다.
       </p>
 
@@ -117,8 +81,8 @@ const softwareSchema = {
 
       <h2>운영자 소개</h2>
       <p>
-        <strong>김준혁</strong>이 직접 운영합니다. 스마트데이터샵(사업자등록 406-06-34485) 대표로
-        2020년 5월부터 전자상거래·해외직구대행업과 함께 머니룩을 만들었습니다. 자격증을 보유한
+        <strong>김준혁</strong>이 직접 운영합니다. 2020년 5월 문을 연 스마트데이터샵(사업자등록 406-06-34485)의 대표로
+        전자상거래·해외직구대행업을 하면서 머니룩을 만들었습니다. 자격증을 보유한
         전문가는 아니며, 본 사이트의 글은 일반 정보 제공이지 세무·법률·재무 자문이 아닙니다.
         모든 법령·요율·정책 정보는 정부 공식 1차 자료에서 직접 확인합니다.
       </p>
