@@ -356,7 +356,7 @@ GitHub Actions secrets: CF_DEPLOY_HOOK, NAVER_SEARCH_ADVISOR_TOKEN (옵션)
 
 ## 17. JSON-LD / SEO
 - Schema.org 사용: ✓
-- 사용 type: Article, NewsArticle, Audience, Organization, FAQPage, BreadcrumbList, ListItem, Question, Answer, ClaimReview, Claim, Rating, CollectionPage, AboutPage, QAPage, HowTo, HowToStep, Dataset, DataDownload, ImageObject, CreativeWork, SoftwareApplication, Country
+- 사용 type: Article, NewsArticle, Audience, Organization, FAQPage, BreadcrumbList, ListItem, Question, Answer, ClaimReview, Claim, Rating, CollectionPage, AboutPage, QAPage, HowTo, HowToStep, Dataset, DataDownload, ImageObject, CreativeWork, Country
 - canonical: ✓ (Base.astro 에서 trailingSlash 'always' 일치)
 - sitemap: ✓ (sitemap-index + sitemap-0 + sitemap-images + sitemap-news)
 - RSS: ✓ (전체 /rss.xml + /atom.xml + /feed.json + 카테고리별 /rss/[cluster].xml)

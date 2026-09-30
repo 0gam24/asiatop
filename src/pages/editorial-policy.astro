@@ -23,7 +23,7 @@ const policyDocSchema = {
   publisher: { '@id': new URL('#organization', Astro.site).toString() },
   about: '사실 확인·정정·AI 사용·1차 자료 검증',
   inLanguage: 'ko-KR',
-  dateModified: '2026-04-29',
+  dateModified: '2026-09-30',
   isAccessibleForFree: true,
   hasPart: [
     { '@type': 'WebPageElement', name: '사실 확인 절차', url: `${url}#verification` },
@@ -43,7 +43,7 @@ const policyDocSchema = {
     <header>
       <p class="kicker">Editorial</p>
       <h1>편집 정책</h1>
-      <p class="meta">최종 갱신: 2026년 6월 11일 · 검토 주기: 6개월</p>
+      <p class="meta">최종 갱신: 2026년 9월 30일 · 검토 주기: 6개월</p>
     </header>
 
     <h2>사실 확인 절차</h2>
@@ -51,7 +51,7 @@ const policyDocSchema = {
     <ol>
       <li><strong>1차 자료 직접 확인</strong> — 공공데이터포털(data.go.kr)·법제처(law.go.kr)·홈택스·복지로·한국은행 ECOS·금융감독원 공시 등 공식 출처를 우선 인용합니다. 모든 출처 URL을 본문에 명시해 누구나 검증할 수 있도록 합니다.</li>
       <li><strong>통계·수치 검증</strong> — 모든 통계는 발행 시점·단위·출처 URL을 명시합니다. 출처 없는 수치는 사용하지 않습니다. 법정·공시 수치는 법령 조문·공식 안내 확인 후에만 단정 표기하고, 추정·변동 수치는 "약 N" 근사 표현으로 구분합니다.</li>
-      <li><strong>법령·정책 시점 표기</strong> — 본문 상단에 "데이터 기준 YYYY년 M월" 형식으로 시점을 명시합니다. 발행 후 180일 경과 시 자동으로 갱신 알림 배너를 노출합니다.</li>
+      <li><strong>법령·정책 시점 표기</strong> — 본문 상단에 "데이터 기준 YYYY년 M월" 형식으로 시점을 명시합니다. 마지막 갱신 후 180일이 지나면 갱신 알림 배너를 자동으로 표시합니다.</li>
       <li><strong>법정 수치 개정 추적</strong> — 세법·사회보험 요율 등 연 단위 개정 수치는 개정 확인 시 본문을 정정하고 갱신일을 표기합니다.</li>
     </ol>
 
@@ -81,7 +81,7 @@ const policyDocSchema = {
 
     <h3>금지 사항</h3>
     <ul>
-      <li>저자란에 가짜 인물(AI 페르소나)을 쓰지 않습니다. 모든 글은 <strong>"머니룩 편집팀"</strong> 단일 표기입니다.</li>
+      <li>저자란에 가짜 인물(AI 페르소나)을 쓰지 않습니다. 모든 글의 저자란에는 운영자 <strong>김준혁</strong>의 실명을 표기합니다.</li>
       <li>출처 없는 통계·수치는 본문에 사용하지 않습니다.</li>
       <li>"추천", "최고의", "1위" 같은 표현은 [제휴]/[광고] 명시가 있을 때만 사용합니다.</li>
     </ul>
@@ -96,7 +96,7 @@ const policyDocSchema = {
 
     <h2>저자 정책</h2>
     <ul>
-      <li>모든 글의 저자는 <strong>"머니룩 편집팀"</strong>(스마트데이터샵 운영진)으로 표기됩니다.</li>
+      <li>모든 글의 저자는 운영자 <a href="/author/kim-junhyeok/"><strong>김준혁</strong></a>(스마트데이터샵 대표)의 실명으로 표기합니다. 예전의 "머니룩 편집팀" 표기는 2026년 8월 26일 실명 표기로 바꿨습니다.</li>
       <li>가상 인물·AI 페르소나로 자격 보유자를 사칭하지 않습니다.</li>
       <li>외부 자격 보유 전문가(세무사·노무사·CFP 등)의 글이 게재될 경우 그분의 실명·자격증 등록 사실·연락처를 함께 명시합니다.</li>
       <li>제휴·후원 콘텐츠는 본문 상단에 명시 라벨을 부착합니다.</li>
