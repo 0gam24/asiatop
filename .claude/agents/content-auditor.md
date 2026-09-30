@@ -23,7 +23,7 @@ tools:
 
 ```
 node scripts/audit/ai-tell-style.mjs        # 긴 줄표(—/–) — 신규 글
-node scripts/audit/publish-cadence.mjs      # 일 1편 캐던스
+node scripts/audit/publish-cadence.mjs      # 신규 캐던스 상한 (docs/ops/cadence.json)
 node scripts/audit/template-footprint.mjs   # 제목·메타 풋프린트 (docs/24 P1)
 node scripts/audit/claims-guard.mjs         # 법정 수치 표기
 node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·애드센스 허위 진술 문구 (2026-09-07 신설, docs/25 §6)

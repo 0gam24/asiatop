@@ -10,18 +10,26 @@
 네이버는 건강(색인 670/685, 일 245클릭) — **네이버 영향 주는 변경 금지** (robots·canonical·RSS·네이버 인증·IndexNow 불변).
 단 하나의 예외: 네이버 서치어드바이저 진단 대응 (2026-09-05 운영자 지시 — robots 한국 검색엔진 그룹에 /search·/llms* Disallow, llms*.txt noindex). 이후 robots 변경도 운영자 명시 지시가 있을 때만.
 
-- **발행 캐던스: 신규 글 일 1편 이하** — `scripts/audit/publish-cadence.mjs` 가 빌드 차단. 리프레시는 별도.
-- **발행 승인 원칙은 사람**: `merge-approved` 라벨은 운영자 전용. **유일한 예외 — 루틴 일일 포스팅** (2026-08-27 운영자 지시): daily-post 사이클의 콘텐츠 PR 에 한해, `.claude/skills/daily-post/SKILL.md` §3-5 의 **조건 목록(SSoT — 신규 일 1편 이하·auditor PASS·전 가드·CI green·정책 이슈 0·PR 구성 제한 등)** 전부 충족 시 Claude 가 라벨을 부착할 수 있다. 프루닝·대량 변경·비루틴 콘텐츠 PR 은 여전히 운영자 전용이며, `no-auto-merge` 긴급 정지는 항상 우선한다.
+- **발행 캐던스: 신규 글은 캐던스 상한까지 (docs/ops/cadence.json, 현재 A단계 일 2편)**. 2026-09-30 운영자 결정(단계적 네이버 성장)으로 일 1편 고정을 대체했다.
+  `scripts/audit/publish-cadence.mjs` 가 날짜별 상한(2026-10-01 전 날짜는 당시 1편)으로 빌드 차단. 리프레시는 별도.
+  단계(A 2편 → B 3편 → C 4편)는 **운영자 승인으로만** 바꾼다. Claude 는 cadence.json 의 `stageUpCriteria`(14일 창, 전부 충족)가 채워지면 근거와 함께 제안만 한다.
+  `stageDownCriteria` 가 하나라도 생기면 그날부터 한 단계 낮춰 발행하고 내리는 PR 을 올린다. 상한은 할당량이 아니다(통과 항목이 없으면 0편). 구글 회복이 늦어질 수 있음을 감수한 결정이다.
+- **발행 승인 원칙은 사람**: `merge-approved` 라벨은 운영자 전용. **유일한 예외 — 루틴 일일 포스팅** (2026-08-27 운영자 지시): daily-post 사이클의 콘텐츠 PR 에 한해, `.claude/skills/daily-post/SKILL.md` §3-5 의 **조건 목록(SSoT — 신규 캐던스 상한 이하·auditor PASS·전 가드·CI green·정책 이슈 0·PR 구성 제한 등)** 전부 충족 시 Claude 가 라벨을 부착할 수 있다. 프루닝·대량 변경·비루틴 콘텐츠 PR 은 여전히 운영자 전용이며, `no-auto-merge` 긴급 정지는 항상 우선한다.
 - 신규 글 메타/제목은 풋프린트 가드 준수 (`scripts/audit/template-footprint.mjs` — "총정리" 류 제목·"~정리했습니다" 류 종결 차단).
 - 구글 색인 재요청 자동화 금지 · 본문 무변경 lastmod 갱신 금지 · 대량 삭제 후 대량 재발행 금지.
 - 콘텐츠 에이전트 팀: content-strategist(의도·SERP 분석) → content-agent(작성 — `templates/claude-agents/google-content-master-prompt-v4.md` 적용) → content-auditor(발행 전 감사).
 - **신규 글 = 네이버 빈틈 대기열 단일 입력 (2026-09-17 운영자 지시 — docs/ops/KEYWORD-PLAN-2026-09-15.md)**: 신규 글은 오직
-  `docs/ops/pipeline-queue.json` 에서만 고른다(approved → `autoPick` proposed 점수순). 통과 항목이 없으면 그날 신규 0편이며
+  `docs/ops/pipeline-queue.json` 에서만 고른다(대기열에서 approved → `autoPick` proposed 점수순으로 캐던스 상한까지). 통과 항목이 없으면 그날 신규 0편이며
   제도 달력·신생 키워드·GSC rising·WebSearch 로 대신 고르지 않는다. 그 입력원(2026-09-07 3원 입력, docs/25)은 대기열을 만드는 재료와
   **리프레시 선정**에만 쓴다. 대기열은 공식 네이버 API 측정(`pnpm audit:pipeline --write` 가 scout·volume·ledger 를 이어 돌려 큐와 `docs/ops/DAILY-KEYWORDS.md` 를 갱신, search.naver.com 수집 금지)으로
   로컬·GitHub Actions 에서만 갱신하고 클라우드 루틴은 읽기만 한다. **매일 KST 01:17 `.github/workflows/naver-queue-daily.yml` 이 자동으로 다시 재서 main 에 커밋**(2026-09-28 운영자 지시 "오늘 빈틈 키워드로 자동 발행") → KST 03:05 루틴은 그날 측정분만 쓴다. 측정 실패일은 신규 0편. 신규 글은 frontmatter `targetQuery` 에 노린 검색어를 남긴다.
-  잠금 장부 기준: 같은 주제라도 세부 키워드가 다르면 새 글 허용(2026-09-15). 주제 범위는 범용(12 클러스터).
-  목록 위젯의 [발행 지시] = 운영자 승인 → 그 항목 PR 에 한해 Claude 가 `merge-approved` 부착 가능(일 1편 이내, 전 가드·CI green).
+  잠금 장부 기준: 같은 주제라도 세부 키워드가 다르면 새 글 허용(2026-09-15). 주제 범위는 범용(12 클러스터, 단 아래 awoo 영역은 제외).
+  목록 위젯의 [발행 지시] = 운영자 승인 → 그 항목 PR 에 한해 Claude 가 `merge-approved` 부착 가능(캐던스 상한 이내, 전 가드·CI green).
+  **막 공고된 제도·마감 주제 (2026-09-30 운영자 결정)**: 대기열의 NEW 트랙(`unverified`, 뉴스 신생어) 항목은 루틴이 소관 부처 보도자료·법령 원문을
+  WebFetch 로 직접 열어 제도 실재·금액·기한을 확인한 경우에만 **두 번째 자리부터** 쓸 수 있다. 첫 자리는 approved·autoPick 항목만 쓰고, 확인하지 못한 NEW 항목은 버린다.
+  T3 선점 달력(`docs/ops/landgrab-calendar.json`, 파일이 있을 때) 항목도 대기열을 거쳐서만 들어온다. 대기열 밖에서 직접 고르지 않는 원칙은 그대로다.
+- **자매 사이트 awoo 와 주제 분리 (2026-09-30 운영자 결정)**: 지자체 민생지원금·지역화폐·상품권 사용처·반값여행 류는 자매 사이트 awoo 영역이다.
+  머니룩 신규 글로 쓰지 않는다(대기열에 올라와도 건너뛴다). 머니룩은 세금·연금·연말정산·대출·보험 같은 금융 주제에 집중한다.
 - **안전 표현 가드**: `scripts/audit/safe-expression.mjs` 가 빌드 체인에서 2026-09-07 이후 신규·리프레시 글의 금소법 22조·불법사금융 광고·
   애드센스 허위 진술 문구를 차단 (`pnpm audit:safe`). 근거·대체 표현: docs/research/2026-09-07-adsense-topic-value.md §3.
 
@@ -99,9 +107,9 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
 ## 콘텐츠 PR 머지 흐름 (수동 발행 — 2026-08-26 opt-in 전환)
 
 - `auto-merge.yml` 은 **opt-in**: 운영자가 `merge-approved` 라벨을 붙인 PR 만 CI green 시 자동 squash merge. 라벨 없으면 owner PR 도 머지되지 않는다. `no-auto-merge` 라벨은 긴급 정지로 우선.
-- **콘텐츠 PR**: 기본은 Claude 가 PR 생성·CI 확인·보고까지, `merge-approved` 라벨 부착과 머지는 **운영자 전용**. **루틴 예외 (2026-08-27 운영자 지시)**: daily-post 사이클의 일 1편 이하 콘텐츠 PR 은 전 가드·CI green 확인 후 Claude 가 라벨 부착 가능 (자동 머지 체인 경유 — 직접 머지는 여전히 금지). 프루닝·대량 변경·비루틴 PR 은 운영자 전용 유지.
+- **콘텐츠 PR**: 기본은 Claude 가 PR 생성·CI 확인·보고까지, `merge-approved` 라벨 부착과 머지는 **운영자 전용**. **루틴 예외 (2026-08-27 운영자 지시)**: daily-post 사이클의 캐던스 상한 이하 콘텐츠 PR 은 전 가드·CI green 확인 후 Claude 가 라벨 부착 가능 (자동 머지 체인 경유 — 직접 머지는 여전히 금지). 프루닝·대량 변경·비루틴 PR 은 운영자 전용 유지.
 - **인프라 PR**: draft + `no-auto-merge` 라벨로 생성, 가드(perf+ads 듀얼 게이트 등) 통과 후 Claude 가 CI green 확인 후 직접 머지 (기존 위임 유지).
-- 일일 수동 포스팅 패턴: 글 작성(일 1편 이하) → 브랜치/PR → CI green 확인 → **라벨 승인 (루틴 예외로 Claude 부착 가능, 2026-08-27)** → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
+- 일일 수동 포스팅 패턴: 글 작성(캐던스 상한 이하, docs/ops/cadence.json) → 브랜치/PR → CI green 확인 → **라벨 승인 (루틴 예외로 Claude 부착 가능, 2026-08-27)** → 자동 머지 → CF Pages 빌드 큐 (무료 플랜 동시 1건, 편당 ~3분)
 - 머지 후 URL 200 확인까지가 발행 완료
 
 ## content-agent 사용 후 검증

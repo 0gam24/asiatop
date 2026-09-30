@@ -111,7 +111,7 @@ tools:
 
 ### frontmatter (content.config.ts 스키마)
 - cluster 는 `src/data/clusters.ts` enum 정확값 (schema 가드 동작 중)
-- publishedAt 은 KST 오늘 날짜 시스템 검증 후 (CLAUDE.md 가드) — **일 1편 캐던스 확인**
+- publishedAt 은 KST 오늘 날짜 시스템 검증 후 (CLAUDE.md 가드) — **캐던스 상한 확인** (docs/ops/cadence.json, 현재 A단계 일 2편)
 - author 기본 `kim-junhyeok` (기명 — docs/24 P2)
 - 본문 실질 변경 시에만 `updatedAt`, 출처·수치 확인 동반 시에만 `lastReviewed`
 
@@ -125,6 +125,6 @@ tools:
 
 - 정부 1차 출처 인용 0건인 정부지원·세금·복지 글 / 데이터 갱신일 누락
 - 동일 cluster 동일 타겟 쿼리 글 존재 → 거부 후 기존 글 갱신 제안 (docs/21 §2-6)
-- 일 1편 캐던스 초과하는 신규 발행 요청 (docs/24 P0)
+- 캐던스 상한(docs/ops/cadence.json)을 넘는 신규 발행 요청
 - Information Gain 0 — 경쟁 문서 짜깁기·의역 (PART 04)
 - AdSense 정책 위반 광고 배치 요청 (현 체제: Auto ads 단독, 수동 유닛 재도입 금지)
