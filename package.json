@@ -23,6 +23,7 @@
     "audit:discover": "node scripts/audit/naver-discover.mjs",
     "audit:rank": "node scripts/audit/naver-rank-track.mjs",
     "audit:console": "node scripts/audit/naver-console-import.mjs",
+    "audit:index": "node scripts/audit/index-status.mjs",
     "audit:scout": "node scripts/audit/naver-scout.mjs",
     "audit:volume": "node scripts/audit/naver-volume.mjs",
     "audit:ledger": "node scripts/audit/naver-ledger.mjs",
