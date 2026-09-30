@@ -67,10 +67,16 @@ export const PUBLIC_HOSTS = [
 // 운영자 자매 사이트(같은 애드센스 계정). 웹문서 상위 3 안에 있으면 naver-pipeline 이 자동 선택을 끈다(2026-09-30).
 // 자매 사이트가 늘면 여기에만 더한다.
 export const SISTER_HOSTS = ['awoo.or.kr'];
-export const isSisterHost = (host) => onDomain(String(host || '').toLowerCase().replace(/^www\./, '').replace(/^m\./, ''), SISTER_HOSTS);
+// host 가 자매 사이트면 목록의 도메인(예: 'awoo.or.kr')을, 아니면 null. 하위 도메인(www.·m.·blog.)도 그 도메인으로 돌려준다.
+export const sisterHostOf = (host) => {
+  const h = String(host || '').toLowerCase();
+  return SISTER_HOSTS.find((d) => onDomain(h, [d])) || null;
+};
+export const isSisterHost = (host) => sisterHostOf(host) != null;
 
-// .or.kr 이지만 기관이 아닌 정보 사이트(상업으로 센다). 자매 .or.kr 은 자매 목록에서 가져오고, 그 밖의 사이트는 뒤에 더한다.
-export const OR_KR_INFO_SITES = [...SISTER_HOSTS.filter((d) => d.endsWith('.or.kr'))];
+// .or.kr 이지만 기관이 아닌 정보 사이트(상업으로 센다). 자매 목록과 따로 둔다.
+// 자매 목록에서 어떤 사이트를 빼더라도 분류(commercial)는 그대로여야 하기 때문이다.
+export const OR_KR_INFO_SITES = ['awoo.or.kr'];
 
 export const KINDS = ['us', 'naver', 'tool', 'law', 'gov', 'public', 'org', 'press', 'finco', 'ugc', 'commercial'];
 

@@ -6,7 +6,7 @@ import { describe, it, expect } from 'vitest';
 import {
   suffixesOf, mineSuffixes, foldNearDuplicates, roundRobin, kinExactCount,
   exposureOf, autoPickOf, mergeQueue, renderReport, headsOf, templateSuffixes,
-  isSisterTopic, regionOf, sisterTopOf,
+  isSisterTopic, regionOf, sisterTopOf, SISTER_README,
 } from '../../scripts/audit/naver-pipeline.mjs';
 
 describe('suffixesOf', () => {
@@ -235,8 +235,9 @@ describe('renderReport', () => {
   });
   it('자매 겹침 제외·해제 건수를 한 줄로 낸다', () => {
     const log = { added: [], updated: [], closed: [], published: [], dropped: [], refresh: [], sisterHold: ['x'], sisterSkipped: [], sisterTop: ['y', 'z'] };
-    const md = renderReport({ queue: { items: [] }, log, today: '2026-09-30', stats: { heads: 1, scouted: 0, open: 0, veto: 0, calls: 2, sisterSkipped: 4, sisterHeads: 3 } });
-    expect(md).toContain('주제라 재지 않고 뺀 후보 4건(헤드 3개 포함) · 큐에서 보류로 돌림 1건 · 자매 상위 3 이라 자동 선택 해제 2건');
+    const items = [{ query: 'y', status: 'proposed', sisterTop: 2 }, { query: 'z', status: 'proposed', sisterTop: 1 }, { query: 'w', status: 'proposed', sisterTop: 3 }, { query: 'v', status: 'hold', holdBy: 'sister' }];
+    const md = renderReport({ queue: { items }, log, today: '2026-09-30', stats: { heads: 1, scouted: 0, open: 0, veto: 0, calls: 2, sisterSkipped: 4, sisterHeads: 3 } });
+    expect(md).toContain('주제라 재지 않고 뺀 후보 4건(헤드 3개 포함) · 큐에서 보류로 돌림 1건 · 자매 상위 3 이라 이번에 자동 선택을 끈 항목 2건(지금 꺼져 있는 항목 3건)');
   });
 });
 
@@ -260,8 +261,24 @@ describe('자매 awoo 주제 제외', () => {
     ['예산 지원사업', false],
     ['고향사랑기부제 세액공제', false],
     ['온누리상품권 소득공제', false],
+    // 붙여 쓴 지역 이름(리뷰 2026-09-30)
+    ['서울청년수당 신청', true],
+    ['경기도기본소득 신청', true],
+    ['마포구청 지원금', true],
+    ['경기 청년 기본소득', true],
+    // 지역 이름으로 시작하지만 지역이 아닌 말
+    ['고양이 입양 지원금', false],
+    ['영주권 지원금', false],
+    ['경기 침체 지원금', false],
+    ['경기침체 지원금', false],
   ])('%s → 제외 %s', (q, want) => {
     expect(isSisterTopic(q)).toBe(want);
+  });
+  it('붙여 쓴 꼴은 뒤가 행정 접미어나 지원금 류일 때만 지역', () => {
+    expect(regionOf('서울청년수당')).toBe('서울');
+    expect(regionOf('부산진구청 지원금')).toBe('부산진');
+    expect(regionOf('예산지원금')).toBeNull();
+    expect(regionOf('고양이')).toBeNull();
   });
   it('흔한 낱말과 겹치는 지역 이름은 접미어가 붙을 때만 지역으로 본다', () => {
     expect(regionOf('고령 근로자 지원금')).toBeNull();
@@ -276,6 +293,9 @@ describe('sisterTopOf', () => {
     expect(sisterTopOf(['ugc:namu.wiki', 'gov:korea.kr', 'commercial:awoo.or.kr'])).toEqual({ rank: 3, name: 'awoo' });
     expect(sisterTopOf(['stale-commercial:m.awoo.or.kr'])).toEqual({ rank: 1, name: 'awoo' });
     expect(sisterTopOf([{ host: 'www.awoo.or.kr' }])).toEqual({ rank: 1, name: 'awoo' });
+  });
+  it('하위 도메인도 이름은 자매 목록 도메인에서 딴다', () => {
+    expect(sisterTopOf(['commercial:blog.awoo.or.kr'])).toEqual({ rank: 1, name: 'awoo' });
   });
   it('4위 아래이거나 없으면 null', () => {
     expect(sisterTopOf(['ugc:namu.wiki', 'gov:korea.kr', 'gov:x.go.kr', 'commercial:awoo.or.kr'])).toBeNull();
@@ -339,5 +359,43 @@ describe('mergeQueue 자매 규칙', () => {
     expect(first.queue.items[0].reasons[0]).toContain('자매 사이트 awoo 상위 1위');
     const later = mergeQueue(first.queue, [meas('x y')], { today: '2026-10-01' });
     expect(later.queue.items[0].autoPick).toBe(false);
+  });
+  it('보고서 건수는 이번에 새로 끈 것만 센다(두 번째 실행은 0, 표시는 그대로)', () => {
+    const first = mergeQueue({ items: [] }, [meas('확정일자 효력', { scout: awooAt(2) })], { today });
+    const second = mergeQueue(first.queue, [meas('확정일자 효력', { scout: awooAt(1) })], { today: '2026-10-01' });
+    expect(second.log.sisterTop).toEqual([]);
+    expect(second.queue.items[0]).toMatchObject({ autoPick: false, sisterTop: 1 });
+    expect(second.queue.items[0].reasons[0]).toBe('자매 사이트 awoo 상위 1위, 같은 계정 자리 중복');
+  });
+  it('approved 는 자매가 상위여도 autoPick·sisterTop 을 건드리지 않고 이유만 남긴다', () => {
+    const items = [{ id: 'a', query: '확정일자 효력', track: 'T2', status: 'approved', autoPick: true, measuredAt: '2026-09-29' }];
+    const { queue, log } = mergeQueue({ items }, [meas('확정일자 효력', { scout: awooAt(1) })], { today });
+    expect(queue.items[0]).toMatchObject({ status: 'approved', autoPick: true });
+    expect(queue.items[0].sisterTop).toBeUndefined();
+    expect(queue.items[0].reasons[0]).toContain('자매 사이트 awoo 상위 1위');
+    expect(log.sisterTop).toEqual([]);
+  });
+  it('approved 인 자매 주제는 상태를 두고 재측정하지 않으며 표시를 한 번만 남긴다', () => {
+    const items = [{ id: 'a', query: '영천 반값여행', track: 'T2', status: 'approved', measuredAt: '2026-09-29', score: 60 }];
+    const first = mergeQueue({ items }, [meas('영천 반값여행')], { today });
+    expect(first.queue.items[0]).toMatchObject({ status: 'approved', measuredAt: '2026-09-29', score: 60 });
+    expect(first.queue.items[0].remeasureWarn).toContain('재측정은 멈춘다');
+    expect(first.log.updated).toEqual([]);
+    const again = mergeQueue(first.queue, [], { today: '2026-10-01' });
+    expect(again.queue.items[0].remeasureWarn).toBe(first.queue.items[0].remeasureWarn);
+  });
+  it('재측정 없이 자매가 빠져도(자매 목록이 줄어든 경우) 저장된 값으로 autoPick 을 다시 계산한다', () => {
+    const items = [{ id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: false, sisterTop: 1, score: 70, reasons: ['자매 사이트 awoo 상위 1위, 같은 계정 자리 중복', '자리 열림'], measuredAt: today, demand: { kinExact: 30 }, ledger: { verdict: 'PASS' }, serp: { top10: ['commercial:other.or.kr', 'gov:korea.kr'] } }];
+    const { queue } = mergeQueue({ items }, [], { today });
+    expect(queue.items[0].autoPick).toBe(true);
+    expect(queue.items[0].sisterTop).toBeUndefined();
+    expect(queue.items[0].reasons).toEqual(['자리 열림']);
+  });
+  it('큐 _readme 에 자매 규칙 설명을 한 번만 붙인다', () => {
+    const first = mergeQueue({ _readme: ['a'], items: [] }, [], { today });
+    expect(first.queue._readme).toEqual(['a', SISTER_README]);
+    const again = mergeQueue(first.queue, [], { today });
+    expect(again.queue._readme).toEqual(['a', SISTER_README]);
+    expect(mergeQueue({ items: [] }, [], { today }).queue._readme).toBeUndefined();
   });
 });

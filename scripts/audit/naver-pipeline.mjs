@@ -11,7 +11,8 @@
 //   NEW  최신 naver-discover 뉴스 신생어. 1차 출처를 기계가 확인 못 하므로 unverified(−10, autoPick=false)
 //   재측정 큐의 proposed·approved
 // 거르기  잠금 장부 VETO · 이미 큐에 있는 쿼리 · 14일 안에 닫힘으로 잰 쿼리(docs/ops/radar/pipeline-seen.json)
-// 자매    (2026-09-30 운영자 결정) awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행)는 재기 전에 빼고 큐의 proposed 는 hold(holdBy:sister), 웹문서 상위 3 에 자매 사이트가 있으면 autoPick=false
+// 자매    (2026-09-30 운영자 결정) awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행)는 재기 전에 빼고 큐의 proposed 는 hold(holdBy:sister),
+//         approved 는 상태를 두고 재측정만 멈춘다. 웹문서 상위 3 에 자매 사이트가 있으면 autoPick=false(sisterTop)
 // 측정    쿼리당 webkr + news + kin(같은 질문 수) 3회, 열린 것만 검색어 트렌드
 // 점수    exposureOf (§6-3). 실유입 CSV 가 없는 동안은 지식iN 같은 질문 수가 수요 대리지표다(v0.1).
 // 병합    approved·published·rejected 와 운영자가 건 hold 의 상태는 건드리지 않는다. proposed 가 재측정에서 닫히면 먼저 hold(holdBy:pipeline),
@@ -31,7 +32,7 @@ import { naverSearch, stripTags, sleep, kstDate, isMain, NaverAuthError, ROOT } 
 import { scoutQuery } from './naver-scout.mjs';
 import { measureVolume } from './naver-volume.mjs';
 import { buildLedger, checkCandidate, classifyFamily, normKeyword, parseArticleMeta } from './naver-ledger.mjs';
-import { isSisterHost } from './lib/naver-hosts.mjs';
+import { sisterHostOf } from './lib/naver-hosts.mjs';
 
 const OPS = path.join(ROOT, 'docs', 'ops');
 const QUEUE = path.join(OPS, 'pipeline-queue.json');
@@ -228,13 +229,25 @@ const REGION_NAMES = new Set(`
 // 흔한 낱말과 겹치는 이름("예산 지원사업"·"고령 근로자 지원금"·"연수 지원금")은 "예산군"처럼 접미어가 붙을 때만 지역으로 본다.
 const REGION_AMBIGUOUS = new Set('구리 오산 이천 양주 정선 인제 보은 음성 공주 부여 예산 완주 장수 강진 영광 장성 진도 신안 상주 영양 고령 성주 거창 동해 사상 수영 기장 수성 달성 연수 남동 광산 유성 강화 동작'.split(' '));
 const REGION_SUFFIX = /(특별자치시|특별자치도|특별시|광역시|시|군|구|도)$/;
+// 지역 이름에 붙여 쓴 꼴("서울청년수당"·"경기도기본소득"·"마포구청")은 바로 뒤가 행정 접미어나 지원금 류 말일 때만 지역으로 본다.
+// 그래서 "고양이"·"영주권"·"원주민"은 지역이 아니다.
+const REGION_JOINED_TAIL = /^(특별자치시|특별자치도|특별시|광역시|시|군|구|도|청년|민생|지원금|지원사업|바우처|쿠폰|기본소득|수당|출산장려금|축하금|농어?민수당)/;
+// 바로 뒤 낱말이 이 말이면 지역이 아니다("경기 침체 지원금"의 경기는 경제 경기).
+const NOT_REGION_BEFORE = { 경기: /^(침체|불황|부양|둔화|호황|회복|악화|하강|위축|변동|전망|지표)/ };
 
 // 쿼리 안의 지역 이름 낱말(없으면 null)
 export function regionOf(query) {
-  for (const tok of String(query || '').split(/[\s·,/()]+/).filter(Boolean)) {
+  const toks = String(query || '').split(/[\s·,/()]+/).filter(Boolean);
+  for (const [i, tok] of toks.entries()) {
+    if (NOT_REGION_BEFORE[tok]?.test(toks[i + 1] || '')) continue;
     if (REGION_NAMES.has(tok) && !REGION_AMBIGUOUS.has(tok)) return tok;
     const m = tok.match(REGION_SUFFIX);
     if (m && tok.length > m[0].length && REGION_NAMES.has(tok.slice(0, -m[0].length))) return tok;
+    // 붙여 쓴 꼴. 긴 이름부터 본다("부산진구" → 부산진). 흔한 낱말과 겹치는 이름은 붙여 쓴 꼴로는 보지 않는다.
+    for (let n = Math.min(tok.length - 1, 4); n >= 2; n--) {
+      const head = tok.slice(0, n);
+      if (REGION_NAMES.has(head) && !REGION_AMBIGUOUS.has(head) && REGION_JOINED_TAIL.test(tok.slice(n))) return head;
+    }
   }
   return null;
 }
@@ -247,25 +260,40 @@ export const SISTER_TOP_N = 3;
 export function sisterTopOf(top = [], n = SISTER_TOP_N) {
   for (const [i, x] of (top || []).slice(0, n).entries()) {
     const host = typeof x === 'string' ? x.slice(x.indexOf(':') + 1) : x?.host;
-    if (isSisterHost(host)) return { rank: i + 1, name: String(host).replace(/^(www|m)\./, '').split('.')[0] };
+    // 이름은 걸린 자매 목록의 도메인에서 딴다(blog.awoo.or.kr 도 'awoo')
+    const sister = sisterHostOf(host);
+    if (sister) return { rank: i + 1, name: sister.split('.')[0] };
   }
   return null;
 }
 export const sisterTopReason = ({ rank, name }) => `자매 사이트 ${name} 상위 ${rank}위, 같은 계정 자리 중복`;
 
-// 자매 상위 규칙을 큐 항목에 반영한다. sisterTop 은 "이 규칙이 자동 선택을 껐다"는 표시라서
-// 다른 이유로 이미 autoPick=false 인 항목에는 붙이지 않는다(자매가 빠져도 그 false 는 그대로 둔다).
+// 자매 상위 규칙을 큐 항목에 반영한다. 이번 실행에서 새로 자동 선택을 껐을 때만 true(보고서 건수용).
+// sisterTop 은 "이 규칙이 자동 선택을 껐다"는 표시라서 다른 이유로 이미 autoPick=false 인 항목과
+// approved(운영자가 고른 항목이라 자동 선택과 무관)에는 새로 붙이지 않고 이유만 남긴다.
+// 자매가 빠지면(재측정 결과든, SISTER_HOSTS 에서 빠졌든) 표시를 지우고 autoPick 을 저장된 점수·장부·수요로 다시 계산한다.
+// 그래서 sisterTop 이 붙은 항목에 운영자가 손으로 autoPick=false 를 넣어도 나중에 풀릴 수 있다. 확실히 막으려면 hold 나 rejected 로 둔다.
 function applySisterTop(item, sis) {
   const reasons = (item.reasons || []).filter((r) => !String(r).startsWith('자매 사이트'));
+  const was = item.sisterTop != null;
   if (!sis) {
-    delete item.sisterTop;
     if (item.reasons) item.reasons = reasons;
+    if (was) {
+      delete item.sisterTop;
+      item.autoPick = autoPickOf({ score: item.score, track: item.track, query: item.query, unverified: !!item.unverified, ledgerVerdict: item.ledger?.verdict, demand: item.demand });
+    }
     return false;
   }
   item.reasons = [sisterTopReason(sis), ...reasons];
-  if (item.autoPick !== false || item.sisterTop != null) { item.autoPick = false; item.sisterTop = sis.rank; }
-  return item.sisterTop != null;
+  if (was) { item.autoPick = false; item.sisterTop = sis.rank; return false; }
+  if (item.status === 'approved' || item.autoPick === false) return false;
+  item.autoPick = false; item.sisterTop = sis.rank;
+  return true;
 }
+
+// 큐 파일 _readme 에 자매 규칙 설명을 한 번만 붙인다(큐 파일은 매일 자동 커밋이라 손으로 고치지 않는다)
+const SISTER_README_KEY = 'hold 중 holdBy=sister';
+export const SISTER_README = `${SISTER_README_KEY} 는 자매 사이트 awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행)라 naver-pipeline.mjs 가 뺀 항목이다(2026-09-30 운영자 결정). 다시 재지 않고 마지막 측정 21일 뒤 삭제된다. approved 인 awoo 주제는 상태를 두되 재측정을 멈추고 remeasureWarn 을 남긴다. sisterTop=N 은 웹문서 상위 N위에 자매 사이트가 있어 파이프라인이 autoPick 을 끈 표시다. 자매가 빠지면 autoPick 을 다시 계산하므로, 그런 항목을 확실히 막으려면 autoPick 대신 hold 나 rejected 로 둔다.`;
 
 // ── 큐 병합 ──────────────────────────────────────────────────────────────
 const isManual = (it) => it.manual === true || String(it.id || '').startsWith('빈틈:');
@@ -294,15 +322,19 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
       Object.assign(next, { status: 'published', slug: it.slug || pubSlug, publishedAt: it.publishedAt || today });
       log.published.push(it.query);
     }
-    // 자매 주제: 파이프라인이 올린 proposed·hold 는 hold(holdBy:sister). 운영자가 approved 로 바꾼 항목과 운영자 hold 는 그대로 둔다.
-    if (isSisterTopic(it.query) && (next.status === 'proposed' || (next.status === 'hold' && next.holdBy === 'pipeline'))) {
+    // 자매 주제: 파이프라인이 올린 proposed·hold 는 hold(holdBy:sister). 운영자 hold 는 그대로 둔다.
+    // approved 는 운영자가 [발행 지시]로 고른 항목이라 상태는 두고, 재측정을 멈춘 뒤 루틴이 건너뛴다는 표시만 남긴다.
+    const sisterTopic = isSisterTopic(it.query);
+    if (sisterTopic && (next.status === 'proposed' || (next.status === 'hold' && next.holdBy === 'pipeline'))) {
       Object.assign(next, { status: 'hold', holdBy: 'sister', holdReason: `${today}: ${SISTER_TOPIC_REASON}`, autoPick: false });
       delete next.sisterTop; delete next.remeasureWarn;
       log.sisterHold.push(it.query);
+    } else if (sisterTopic && next.status === 'approved' && !String(next.remeasureWarn || '').includes('자매 사이트 awoo')) {
+      next.remeasureWarn = `${today}: ${SISTER_TOPIC_REASON}. 승인 항목이라 상태는 그대로 두고 재측정은 멈춘다. 루틴은 건너뛰므로 쓰려면 운영자가 직접 지시`;
     }
     const m = byQuery.get(normKeyword(it.query));
     const pipelineHold = next.status === 'hold' && next.holdBy === 'pipeline';
-    if (m && !m.scout.error && (['proposed', 'approved'].includes(next.status) || pipelineHold)) {
+    if (m && !m.scout.error && !sisterTopic && (['proposed', 'approved'].includes(next.status) || pipelineHold)) {
       const serp = serpOfScout(m.scout, it.serp?.eyeOffset ?? null);
       const demand = { ...it.demand, ...m.demand };
       const ledger = { verdict: m.ledger.verdict, relatedSlugs: m.ledger.relatedSlugs };
@@ -325,7 +357,7 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
         log.updated.push(it.query);
       }
     }
-    // 자매 상위: 이번에 잰 serp(못 쟀으면 지난 serp)의 상위 3 에 자매 사이트가 있으면 자동 선택을 끈다
+    // 자매 상위: 이번에 잰 serp(못 쟀으면 지난 serp)의 상위 3 에 자매 사이트가 있으면 자동 선택을 끈다. 건수는 이번에 새로 끈 것만 센다
     if (['proposed', 'approved'].includes(next.status) && applySisterTop(next, sisterTopOf(next.serp?.top10))) log.sisterTop.push(it.query);
     // 보존 기한
     const keep = KEEP_DAYS[next.status];
@@ -365,7 +397,9 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
 
   const order = { approved: 0, proposed: 1, hold: 2, published: 3, rejected: 4 };
   items.sort((a, b) => (order[a.status] ?? 9) - (order[b.status] ?? 9) || (b.score ?? 0) - (a.score ?? 0));
-  return { queue: { ...queue, updatedAt: today, items }, log };
+  const out = { ...queue, updatedAt: today, items };
+  if (Array.isArray(queue._readme) && !queue._readme.some((l) => String(l).startsWith(SISTER_README_KEY))) out._readme = [...queue._readme, SISTER_README];
+  return { queue: out, log };
 }
 
 // ── 보고서 ───────────────────────────────────────────────────────────────
@@ -378,7 +412,8 @@ export function renderReport({ queue, log, today, stats, tried = [] }) {
   L.push(`- 쓸 수 있는 항목 ${live.length}건 (자동 선택 가능 ${auto.length} · 운영자 지정 필요 ${live.length - auto.length})`);
   L.push(`- 이번 실행: 새로 올림 ${log.added.length} · 다시 잼 ${log.updated.length} · 닫혀서 내림 ${log.closed.length} · 발행 표시 ${log.published.length} · 기한 지나 삭제 ${log.dropped.length}`);
   const sisterSkipped = (stats?.sisterSkipped ?? 0) + (log.sisterSkipped || []).length;
-  L.push(`- 자매 awoo 겹침 (2026-09-30 결정): 주제라 재지 않고 뺀 후보 ${sisterSkipped}건${stats?.sisterHeads ? `(헤드 ${stats.sisterHeads}개 포함)` : ''} · 큐에서 보류로 돌림 ${(log.sisterHold || []).length}건 · 자매 상위 3 이라 자동 선택 해제 ${(log.sisterTop || []).length}건`);
+  const sisterOff = queue.items.filter((i) => i.status === 'proposed' && i.sisterTop != null).length;
+  L.push(`- 자매 awoo 겹침 (2026-09-30 결정): 주제라 재지 않고 뺀 후보 ${sisterSkipped}건${stats?.sisterHeads ? `(헤드 ${stats.sisterHeads}개 포함)` : ''} · 큐에서 보류로 돌림 ${(log.sisterHold || []).length}건 · 자매 상위 3 이라 이번에 자동 선택을 끈 항목 ${(log.sisterTop || []).length}건(지금 꺼져 있는 항목 ${sisterOff}건)`);
   if (stats) L.push(`- 측정: 헤드 ${stats.heads} · 정찰 ${stats.scouted} (열림 ${stats.open}) · 잠금 장부 VETO ${stats.veto} · API 호출 약 ${stats.calls}`);
   if (auto.length === 0) L.push('- **자동 선택 가능한 항목이 없다 → 운영자 지정이 없으면 신규 0편.**');
   L.push('', '## 상위 10', '', '| # | 검색어 | 점수 | 상태 | 이유 | 쓰기 전 확인 |', '|---|---|---|---|---|---|');
@@ -456,9 +491,9 @@ if (isMain(import.meta.url)) {
     const plan = []; // { query, track, cluster, altQueries, unverified, inWindow, hint:{blogFreq} }
 
     if (want('remeasure')) {
-      // 자매 주제인 proposed·파이프라인 hold 는 재지 않는다(mergeQueue 가 hold(holdBy:sister)로 돌린다). approved 는 운영자 선택이라 잰다.
+      // 자매 주제는 재지 않는다. proposed·파이프라인 hold 는 mergeQueue 가 hold(holdBy:sister)로 돌리고, approved 는 상태만 두고 표시를 남긴다.
       const due = (queue.items || []).filter((i) => ['proposed', 'approved'].includes(i.status) || (i.status === 'hold' && i.holdBy === 'pipeline'))
-        .filter((i) => i.status === 'approved' || !isSisterTopic(i.query))
+        .filter((i) => !isSisterTopic(i.query))
         .sort((a, b) => String(a.measuredAt).localeCompare(String(b.measuredAt))).slice(0, budget.remeasure);
       for (const i of due) plan.push({ query: i.query, track: i.track, cluster: i.cluster, remeasure: true, inWindow: false, hint: {} });
     }
