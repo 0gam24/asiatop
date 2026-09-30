@@ -185,9 +185,8 @@ button {
 .prose .tldr { background: linear-gradient(135deg, var(--color-tldr-from) 0%, var(--color-tldr-to) 100%); border-radius: var(--radius-card); padding: 1rem 1.25rem; margin-block: 1.5rem; border-left: 4px solid var(--color-primary); }
 .prose .tldr h2, .prose .tldr h3, .prose .tldr p { margin: 0.25rem 0; }
 
-/* Auto ads 인아티클 간격·라벨 (2026-09-30 — 클릭 품질 가드)
-   실측(2026-09-30, 수치는 비공개 로그): 모바일 인아티클에서 우발 클릭 신호(높은 CTR·매우 낮은 CPC).
-   구글 Confirmed Click 해제 권고 그대로: 광고 주변 여백, 명확한 라벨, 링크와 분리.
+/* Auto ads 인페이지 광고 여백·라벨 (2026-09-30, #468)
+   구글 Confirmed Click 도움말이 권하는 배치(광고 주변 여백, 명확한 라벨, 링크와 분리)를 따른다.
    Google 이 inline style 로 margin 을 박으므로 !important 필요. 높이 예약은 하지 않는다
    (미채움 공백 = 정책 리스크). 라벨 문구는 정책 허용 표기 "광고" 만.
    div 로 한정: 인페이지 광고 틀(div.google-auto-placed)만 대상, 앵커·사이드레일(ins, position:fixed)은 건드리지 않는다. */

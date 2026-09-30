@@ -41,7 +41,7 @@
     "conditions": [
       {
         "id": "policy",
-        "text": "애드센스 정책 센터 이슈 0건이고, 클릭 품질 경고가 나빠지지 않았다.",
+        "text": "애드센스 정책 센터 이슈 0건이다.",
         "source": "/revenue (scripts/audit/revenue-pull.mjs) 정책 상태"
       },
       {
