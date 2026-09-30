@@ -7,7 +7,8 @@
 //      1) https://oauth2.googleapis.com/token  (access_token 갱신, scripts/lib/google-auth.mjs)
 //      2) POST https://searchconsole.googleapis.com/v1/urlInspection/index:inspect  (상태 조회만)
 //    토큰 범위도 webmasters.readonly 라 색인 요청은 권한상으로도 불가능하다.
-//    inspect() 는 위 조회 주소 말고 다른 주소로는 요청을 보내지 않도록 막아 두었다.
+//    이 파일에서 구글로 요청을 보내는 곳은 inspect() 하나뿐이고, 주소는 INSPECT_URL 상수로 고정돼 있다.
+//    다른 주소를 부르려면 코드를 고쳐야 하니, 리뷰 때 fetch 호출과 주소 상수를 확인한다.
 //
 // 무엇을 보나: 글 URL 마다 verdict·coverageState·lastCrawlTime·googleCanonical
 //             (+ indexingState·pageFetchState·robotsTxtState·userCanonical)
@@ -22,17 +23,21 @@
 //
 // 한도 (공식: 속성당 하루 2,000건·분당 600건): 순차 호출 + 호출 사이 최소 간격(기본 200ms, 분당 최대 300건).
 //   오늘 쓴 호출 수는 private/index-status-quota.json 에 태평양 시간 날짜 기준으로 적고, 하루 1,950건에서 멈춘다.
+//   재시도도 한 건으로 세고, 호출할 때마다 장부를 다시 확인한다.
+//   장부는 체크아웃(리포 폴더)마다 따로 있다. 원 체크아웃과 워크트리에서 같은 날 둘 다 돌리면 서로의 호출을 모른다.
 //   --limit 으로 줄이면 세그먼트를 돌아가며 뽑고, 최근에 안 본 URL 부터 본다.
 //
 // 실행:
 //   node scripts/audit/index-status.mjs --dry-run                 대상·세그먼트만 보여 준다 (API 안 부름, 파일 안 씀)
 //   node scripts/audit/index-status.mjs --limit 3                  3건만 조회
 //   node scripts/audit/index-status.mjs --segment new,refresh      해당 세그먼트만
-//   --secrets-dir <dir>  .revenue-auth.json·.env.local 이 있는 폴더 (기본: 리포 루트. 워크트리에서는 원 체크아웃)
+//   --secrets-dir <dir>  .revenue-auth.json·.env.local 이 있는 폴더 (기본: 이 스크립트가 든 체크아웃의 루트.
+//                        워크트리에서 돌리면 워크트리 루트가 기본이라, 원 체크아웃 경로를 직접 넘겨야 한다)
 //   --delay-ms <n>       호출 사이 최소 간격 ms (기본 200, 최소 110)
 //   --quiet              진행 줄 생략
 // 출력:
 //   docs/revenue-log/index-status-YYYY-MM-DD.json          세그먼트별 색인 비율 요약. URL 없음, 커밋용
+//                                                          중간에 멈춘 경우 멈춘 까닭은 상태 코드만 적는다 (구글 오류 원문은 private 에만)
 //   docs/revenue-log/private/index-status-YYYY-MM-DD.json  URL 별 상세 (gitignore)
 //   같은 날 여러 번 돌리면 상세를 URL 기준으로 합치고 요약을 다시 계산한다.
 // 색인 비율의 분모는 "조회한 URL 수"(오류 제외)다. 전체 글 수는 population 으로 따로 적는다.
@@ -73,7 +78,14 @@ const SEGMENT_RULES = {
 
 // ── 옵션 ────────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
-const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] !== undefined ? args[i + 1] : d; };
+// 값이 필요한 옵션인데 값이 없거나 다음 칸이 다른 옵션이면 멈춘다 (--limit 만 쓰고 값을 빠뜨려 전체 조회로 가는 일 방지)
+const opt = (k, d) => {
+  const i = args.indexOf(k);
+  if (i < 0) return d;
+  const v = args[i + 1];
+  if (v === undefined || v.startsWith('--')) die(`${k} 뒤에 값이 없다`);
+  return v;
+};
 if (args.includes('--help') || args.includes('-h')) {
   const src = readFileSync(fileURLToPath(import.meta.url), 'utf8').split(/\r?\n/);
   console.log(src.slice(2, src.findIndex((l, i) => i > 2 && l.startsWith('// ════'))).map((l) => l.replace(/^\/\/ ?/, '')).join('\n'));
@@ -82,7 +94,8 @@ if (args.includes('--help') || args.includes('-h')) {
 const DRY = args.includes('--dry-run');
 const QUIET = args.includes('--quiet');
 const SECRETS_DIR = path.resolve(opt('--secrets-dir', ROOT));
-const LIMIT = opt('--limit', null) === null ? null : Number(opt('--limit'));
+const LIMIT_RAW = opt('--limit', null);
+const LIMIT = LIMIT_RAW === null ? null : Number(LIMIT_RAW);
 if (LIMIT !== null && !(Number.isInteger(LIMIT) && LIMIT > 0)) die('--limit 은 1 이상의 정수');
 const DELAY = Math.max(110, Number(opt('--delay-ms', 200)) || 200);
 const SEG_FILTER = parseSegments(opt('--segment', 'all'));
@@ -192,19 +205,20 @@ function writeQuota(q) {
 }
 
 // ── API (조회 전용) ─────────────────────────────────────────────────────
-class StopRun extends Error {}   // 한도·권한 문제. 더 불러도 소용없다
+// 한도·권한 문제. 더 불러도 소용없다. reason 은 커밋 요약에 남기는 짧은 까닭(상태 코드만),
+// message 는 구글 오류 원문을 포함할 수 있어 콘솔과 private 상세에만 쓴다 (GCP 프로젝트 번호 등이 섞일 수 있다)
+class StopRun extends Error { constructor(reason, detail = '') { super(detail ? `${reason}: ${detail}` : reason); this.reason = reason; } }
 class UrlError extends Error {}  // 그 URL 만 실패. 다음 URL 로 넘어간다
 
 async function inspect(token, url, quota) {
-  const endpoint = INSPECT_URL;
-  // 조회 주소 말고는 절대 부르지 않는다 (색인 요청 API 차단)
-  if (endpoint !== 'https://searchconsole.googleapis.com/v1/urlInspection/index:inspect') throw new StopRun('조회 주소가 아니다. 호출 중단');
   let waitedForMinute = false;
   for (let attempt = 1; ; attempt++) {
+    // 재시도까지 포함해 호출마다 하루 멈춤선을 다시 확인한다
+    if (quota.used >= DAILY_STOP) throw new StopRun(`하루 멈춤선 ${DAILY_STOP}건 도달 (태평양 시간 ${quota.day})`);
     quota.used++; writeQuota(quota); // 실패한 시도도 보수적으로 센다
     let r;
     try {
-      r = await fetch(endpoint, {
+      r = await fetch(INSPECT_URL, {
         method: 'POST',
         headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
         // languageCode 는 en-US 고정: coverageState 문구가 바뀌지 않아야 날짜별로 비교할 수 있다
@@ -219,9 +233,9 @@ async function inspect(token, url, quota) {
     if (r.status === 429) {
       // 분당 한도면 1분 쉬고 한 번 더. 그래도 429 면 하루 한도로 보고 멈춘다
       if (!waitedForMinute && !/per day|PerDay/i.test(text)) { waitedForMinute = true; await sleep(61_000); continue; }
-      throw new StopRun(`호출 한도 초과 (429): ${text}`);
+      throw new StopRun('호출 한도 초과 (HTTP 429)', text);
     }
-    if (r.status === 401 || r.status === 403) throw new StopRun(`권한 오류 (${r.status}): ${text}`);
+    if (r.status === 401 || r.status === 403) throw new StopRun(`권한 오류 (HTTP ${r.status})`, text);
     if (r.status >= 500 && attempt < 3) { await sleep(2000 * attempt); continue; }
     throw new UrlError(`HTTP ${r.status}: ${text}`);
   }
@@ -321,7 +335,8 @@ try {
 }
 
 const rows = [];
-let stopped = null;
+let stopped = null;       // 커밋 요약용 짧은 까닭
+let stoppedDetail = null; // 콘솔·private 상세용 원문
 const startedAt = new Date().toISOString();
 for (let i = 0; i < plan.length; i++) {
   const a = plan[i];
@@ -329,7 +344,7 @@ for (let i = 0; i < plan.length; i++) {
   try {
     rows.push(toRow(a, await inspect(token, a.url, quota)));
   } catch (e) {
-    if (e instanceof StopRun) { stopped = e.message; break; }
+    if (e instanceof StopRun) { stopped = e.reason; stoppedDetail = e.message; break; }
     rows.push({ url: a.url, slug: a.slug, cluster: a.cluster, segment: a.segment, tags: a.tags, inspectedAt: new Date().toISOString(), error: e.message.slice(0, 300) });
   }
   const r = rows[rows.length - 1];
@@ -343,7 +358,8 @@ mkdirSync(PRIVATE_DIR, { recursive: true });
 const detailPath = path.join(PRIVATE_DIR, `index-status-${kst}.json`);
 const summaryPath = path.join(LOG_DIR, `index-status-${kst}.json`);
 const readJson = (p) => { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return null; } };
-const merged = new Map(((readJson(detailPath) || {}).rows || []).map((r) => [r.url, r]));
+const prevDetail = readJson(detailPath) || {};
+const merged = new Map((prevDetail.rows || []).map((r) => [r.url, r]));
 for (const r of rows) { const prev = merged.get(r.url); if (!r.error || !prev || prev.error) merged.set(r.url, r); }
 // 세그먼트는 오늘 글 목록 기준으로 다시 붙인다 (그사이 frontmatter 가 바뀌었을 수 있다)
 const allRows = [...merged.values()].map((r) => { const a = byUrl.get(r.url); return a ? { ...r, segment: a.segment, tags: a.tags } : r; })
@@ -353,7 +369,8 @@ const run = { startedAt, finishedAt: new Date().toISOString(), limit: LIMIT, seg
 const prevSummary = readJson(summaryPath);
 const runs = [...((prevSummary && prevSummary.runs) || []), run];
 
-writeFileSync(detailPath, JSON.stringify({ kstDate: kst, property: PROPERTY, note: 'URL 별 상세. gitignore 대상이라 커밋되지 않는다', rows: allRows }, null, 1));
+const stops = [...(prevDetail.stops || []), ...(stoppedDetail ? [{ at: run.finishedAt, detail: stoppedDetail.slice(0, 400) }] : [])];
+writeFileSync(detailPath, JSON.stringify({ kstDate: kst, property: PROPERTY, note: 'URL 별 상세. gitignore 대상이라 커밋되지 않는다', ...(stops.length ? { stops } : {}), rows: allRows }, null, 1));
 
 const summary = summarize(allRows, articles);
 writeFileSync(summaryPath, JSON.stringify({
@@ -384,4 +401,4 @@ const t = summary.indexable;
 console.log(`\n색인 대상 글(googlebot-noindex 제외): 조회 ${t.inspected} · 색인 ${t.indexed} · 비율 ${t.rate ?? '-'}% · 크롤 기록 없음 ${t.neverCrawled} · 구글이 다른 canonical 선택 ${t.canonicalMismatch}`);
 console.log(`오늘 호출 ${quota.used}건 (태평양 시간 ${quota.day}, 한도 ${DAILY_LIMIT})`);
 console.log(`→ ${path.relative(ROOT, summaryPath)}\n→ ${path.relative(ROOT, detailPath)} (gitignore)`);
-if (stopped) die(`중간에 멈춤: ${stopped}. 여기까지 결과는 저장했다`, 2);
+if (stopped) die(`중간에 멈춤: ${stoppedDetail}. 여기까지 결과는 저장했다`, 2);

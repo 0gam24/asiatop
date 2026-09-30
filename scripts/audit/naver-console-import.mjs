@@ -12,19 +12,24 @@
 //   4) 파일을 docs/revenue-log/inbox/ 에 넣고 이 스크립트 실행
 //
 // 파일 구분 (파일마다 따로 판정):
-//   출처 source  searchadvisor | analytics   헤더에 노출 컬럼이 있으면 서치어드바이저 (--source 로 강제 가능)
+//   출처 source  searchadvisor | analytics   정하는 순서: --source → 파일 이름 → 컬럼
+//                파일 이름에 analytics·애널리틱스 가 있으면 애널리틱스, searchadvisor·서치어드바이저 가 있으면 서치어드바이저.
+//                이름에 없으면 유입(방문) 컬럼이 있을 때만 애널리틱스, 그 밖(클릭·노출 컬럼)은 모두 서치어드바이저로 본다.
+//                노출 컬럼 유무로는 정하지 않는다. 노출 컬럼 이름이 달라 못 읽은 서치어드바이저 파일이
+//                애널리틱스로 둔갑해 통과하는 일을 막기 위해서다 (그런 파일은 아래 필수 헤더 검사에서 멈춘다).
 //   탭   tab     keyword(검색어 탭) | document(문서 탭: '검색 웹문서'·'URL' 컬럼)
 //   기간 period  파일 이름의 YYYYMMDD~YYYYMMDD, YYYY-MM-DD_YYYY-MM-DD 류 (없으면 파일 앞머리 줄). 못 읽으면 경고
 //   출처·탭·기간이 모두 같은 묶음(dataset) 안에서만 값을 다룬다. 서치어드바이저와 애널리틱스 값은 더하지 않는다.
 //
-// 멈춤: 필수 헤더를 못 찾은 파일이 하나라도 있으면 JSON 을 쓰지 않고 종료 코드 1.
+// 멈춤: 필수 헤더를 못 찾거나 출처를 정하지 못한 파일이 하나라도 있으면 JSON 을 쓰지 않고 종료 코드 1.
 //   서치어드바이저 검색어 탭 = 검색어·클릭·노출 / 문서 탭 = 검색 웹문서(URL)·클릭·노출 / 애널리틱스 = 검색어·유입
 //
 // 실행: node scripts/audit/naver-console-import.mjs [--file <csv> ...] [--source searchadvisor|analytics]
 //                                                  [--manual-totals <txt>] [--quiet]
-//       --file 없으면 docs/revenue-log/inbox/ 의 *.csv·*.tsv·*.txt 를 전부 읽는다 (manual-totals.txt 제외).
+//       --file 없으면 docs/revenue-log/inbox/ 의 *.csv·*.tsv·*.txt 를 전부 읽는다 (manual-totals.txt·--manual-totals 파일 제외).
 // 출력:
 //   docs/revenue-log/naver-console-YYYY-MM-DD.json          합계·분류별 건수·상위 문서 URL. 검색어 원문 없음 (커밋용)
+//                                                           URL 로 못 읽은 문서 칸 값은 여기에 넣지 않는다 (private 에만)
 //   docs/revenue-log/private/naver-console-YYYY-MM-DD.json  검색어 원문 행·분류 목록 (gitignore)
 //   콘솔: 개선 후보 3분류 (검색어 목록은 콘솔과 private 에만)
 // ════════════════════════════════════════════════════════════════════════
@@ -43,8 +48,10 @@ const MANUAL_FILE_NAME = 'manual-totals.txt';
 const TOP_DOCS = 20;
 
 const args = process.argv.slice(2);
-const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] !== undefined ? args[i + 1] : d; };
-const optAll = (k) => args.flatMap((a, i) => (a === k && args[i + 1] !== undefined ? [args[i + 1]] : []));
+// 값이 필요한 옵션인데 값이 없거나 다음 칸이 다른 옵션이면 멈춘다 (조용히 기본값으로 가지 않게)
+const valueAt = (k, i) => { const v = args[i + 1]; if (v === undefined || v.startsWith('--')) fail(`${k} 뒤에 값이 없다`); return v; };
+const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? valueAt(k, i) : d; };
+const optAll = (k) => args.flatMap((a, i) => (a === k ? [valueAt(k, i)] : []));
 const FILES = optAll('--file');
 const SOURCE = opt('--source', null);
 const QUIET = args.includes('--quiet');
@@ -143,9 +150,11 @@ function inputFiles() {
   const all = readdirSync(INBOX);
   const excel = all.filter((f) => /\.xlsx?$/i.test(f));
   if (excel.length) warn(`엑셀 파일은 읽지 못한다: ${excel.join(', ')}. CSV 로 받거나 엑셀에서 "CSV UTF-8" 로 저장해 넣어라`);
-  return all.filter((f) => /\.(csv|tsv|txt)$/i.test(f) && f !== MANUAL_FILE_NAME).sort().map((f) => path.join(INBOX, f));
+  return all.filter((f) => /\.(csv|tsv|txt)$/i.test(f) && f.toLowerCase() !== MANUAL_FILE_NAME).sort().map((f) => path.join(INBOX, f));
 }
-const files = inputFiles();
+// 손으로 적은 총계 파일은 이름·대소문자와 상관없이 CSV 로 읽지 않는다
+const samePath = (a, b) => (process.platform === 'win32' ? path.resolve(a).toLowerCase() === path.resolve(b).toLowerCase() : path.resolve(a) === path.resolve(b));
+const files = inputFiles().filter((fp) => !samePath(fp, MANUAL_FILE));
 if (!files.length) {
   mkdirSync(INBOX, { recursive: true });
   console.error('❌ 넣을 파일이 없다.');
@@ -153,6 +162,23 @@ if (!files.length) {
   console.error(`   2) 그 파일을 ${relPath(INBOX)}/ 에 넣고 다시 실행 (또는 --file 로 지정)`);
   console.error('   네이버 애널리틱스 유입검색어 CSV 도 같은 폴더에 넣으면 출처를 나눠 함께 기록한다.');
   process.exit(1);
+}
+
+// 출처 판정: --source → 파일 이름 → 컬럼. 노출 컬럼 유무는 쓰지 않는다 (머리말 참고)
+function detectSource(name, cols) {
+  if (SOURCE) return { source: SOURCE, sourceFrom: 'option' };
+  const n = name.toLowerCase();
+  const byName = { analytics: /analytics|애널리틱스/.test(n), searchadvisor: /searchadvisor|search-advisor|서치어드바이저/.test(n) };
+  if (byName.analytics && !byName.searchadvisor) return { source: 'analytics', sourceFrom: 'filename' };
+  if (byName.searchadvisor && !byName.analytics) return { source: 'searchadvisor', sourceFrom: 'filename' };
+  const hasVisits = cols.visits !== undefined;
+  const hasSaMetric = cols.clicks !== undefined || cols.impressions !== undefined;
+  if (hasVisits && cols.impressions !== undefined) {
+    return { error: '유입 컬럼과 노출 컬럼이 함께 있어 출처를 정할 수 없다. 파일 이름에 "서치어드바이저" 또는 "애널리틱스"를 넣거나 --source 로 지정' };
+  }
+  if (hasVisits) return { source: 'analytics', sourceFrom: 'columns' };
+  if (hasSaMetric) return { source: 'searchadvisor', sourceFrom: 'columns' };
+  return { error: '클릭·노출·유입 컬럼이 하나도 없다' };
 }
 
 function readOne(fp) {
@@ -168,21 +194,26 @@ function readOne(fp) {
   }
   if (hi < 0) return { error: `${name}: 헤더 줄을 찾지 못함 (${encoding}). 첫 줄: ${(rows[0] || []).join(' | ').slice(0, 120) || '(빈 파일)'}` };
   const tab = cols.keyword !== undefined ? 'keyword' : 'document';
-  const source = SOURCE || (cols.impressions !== undefined ? 'searchadvisor' : 'analytics');
-  const missing = REQUIRED[`${source}|${tab}`].filter((k) => !k.split('|').some((x) => cols[x] !== undefined));
   const header = rows[hi].map((h) => String(h).trim()).join(' | ').slice(0, 160);
-  if (missing.length) return { error: `${name}: 필수 헤더 없음 (${source} ${tab} 탭: ${missing.map((k) => LABEL[k]).join(', ')}). 읽은 헤더: ${header}` };
+  const src = detectSource(name, cols);
+  if (src.error) return { error: `${name}: ${src.error}. 읽은 헤더: ${header}` };
+  const { source, sourceFrom } = src;
+  const missing = REQUIRED[`${source}|${tab}`].filter((k) => !k.split('|').some((x) => cols[x] !== undefined));
+  if (missing.length) {
+    const why = sourceFrom === 'columns' ? ' (출처는 컬럼으로 추정. 애널리틱스 파일이면 이름에 "애널리틱스"를 넣거나 --source analytics)' : ` (출처: ${sourceFrom === 'option' ? '--source' : '파일 이름'})`;
+    return { error: `${name}: 필수 헤더 없음 (${source} ${tab} 탭: ${missing.map((k) => LABEL[k]).join(', ')})${why}. 읽은 헤더: ${header}` };
+  }
   let period = parsePeriod(name); let periodFrom = period ? 'filename' : null;
   if (!period) { period = parsePeriod(rows.slice(0, hi).map((r) => r.join(' ')).join(' ')); if (period) periodFrom = 'file-head'; }
-  if (!period) warn(`${name}: 파일 이름에서 기간을 못 읽었다. 이름 끝에 _20260702~20260929 처럼 기간을 붙여 달라 (이 파일은 다른 파일과 합치지 않는다)`);
+  if (!period) warn(`${name}: 파일 이름과 파일 앞머리 줄 어디에서도 기간을 못 읽었다. 이름 끝에 _20260702~20260929 처럼 기간을 붙여 달라 (이 파일은 다른 파일과 합치지 않는다)`);
   const data = rows.slice(hi + 1);
   if (!data.length) warn(`${name}: 헤더만 있고 데이터 행이 없다`);
-  return { file: name, source, tab, encoding, period, periodFrom, header, cols, data };
+  return { file: name, source, sourceFrom, tab, encoding, period, periodFrom, header, cols, data };
 }
 
 const parsed = files.map(readOne);
 const bad = parsed.filter((p) => p.error);
-if (bad.length) fail(`필수 헤더를 못 찾은 파일 ${bad.length}개`, bad.map((b) => b.error), { headerHint: true });
+if (bad.length) fail(`필수 헤더나 출처를 확인하지 못한 파일 ${bad.length}개`, bad.map((b) => b.error), { headerHint: true });
 
 // ── 우리 자산 ───────────────────────────────────────────────────────────
 function loadInventory() {
@@ -407,7 +438,7 @@ const publicOut = {
   kstDate: kst,
   note: '합계·분류별 건수·상위 문서 URL 만 둔다. 검색어 원문 행은 private 파일에만 있다. 서치어드바이저(searchadvisor)와 애널리틱스(analytics) 값은 더하지 않고 묶음(dataset)별로 따로 적는다.',
   privateDetail: `${relPath(privFile)} (gitignore)`,
-  files: parsed.map((f) => ({ file: f.file, source: f.source, tab: f.tab, period: f.period, periodFrom: f.periodFrom, encoding: f.encoding, dataRows: f.data.length, header: f.header, ...(f.skipped ? { skipped: true } : {}) })),
+  files: parsed.map((f) => ({ file: f.file, source: f.source, sourceFrom: f.sourceFrom, tab: f.tab, period: f.period, periodFrom: f.periodFrom, encoding: f.encoding, dataRows: f.data.length, header: f.header, ...(f.skipped ? { skipped: true } : {}) })),
   manualTotals,
   datasets: built.map((d) => ({
     source: d.source, tab: d.tab, period: d.period, files: d.files, metric: d.metric,
@@ -415,7 +446,8 @@ const publicOut = {
     ...(d.byKind ? { byKind: d.byKind } : {}),
     categories: countLists(d.lists),
     ...(d.manualTotal ? { manualTotal: d.manualTotal, exportShare: d.exportShare } : {}),
-    ...(d.tab === 'document' ? { topDocuments: d.rows.slice(0, TOP_DOCS) } : {}),
+    // URL 로 못 읽은 칸 값(kind unknown)은 무엇이 들었는지 모르니 커밋 파일에 싣지 않는다. 건수는 byKind.unknown 에 있다
+    ...(d.tab === 'document' ? { topDocuments: d.rows.filter((r) => r.kind !== 'unknown').slice(0, TOP_DOCS) } : {}),
   })),
   warnings,
 };
@@ -429,8 +461,10 @@ const publicOut = {
   }
 })(publicOut);
 
-// naver-pipeline.mjs 의 inboundMap() 은 rows[].keyword·clicks 를 읽는다. 기간 7일 전후의 서치어드바이저 검색어 묶음을
-// 같은 모양으로 private 에 둔다 (지금 파이프라인은 private 을 읽지 않는다. 연결은 별도 결정)
+// naver-pipeline.mjs 의 inboundMap() 은 커밋 폴더(docs/revenue-log)의 최신 naver-console-*.json 에서 rows[].keyword·clicks 를 읽는다.
+// 커밋 파일에는 이제 검색어 행이 없어서 그 입력(inbound7d)은 비어 있다. 기간 7일 전후의 서치어드바이저 검색어 묶음을
+// 같은 모양으로 private 에만 둔다. 파이프라인이 private 을 읽게 할지는 운영자 결정 대기
+// (GitHub Actions 에는 private 파일이 없어 로컬과 Actions 의 입력이 달라진다)
 const inbound = saDatasets.filter((d) => d.tab === 'keyword' && d.period && d.period.days <= 8).sort((a, b) => b.period.end.localeCompare(a.period.end))[0];
 const privateOut = {
   pulledAt: publicOut.pulledAt, kstDate: kst,

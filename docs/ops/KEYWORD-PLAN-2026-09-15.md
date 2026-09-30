@@ -115,7 +115,7 @@ API 로는 통합검색에서 웹문서 블록이 얼마나 아래 있는지 알
 ### 4-6. 순위·실유입
 
 - 순위: 기존 `naver-rank-track.mjs` 에 `docs/ops/rank-targets.json` 입력을 추가. 매일 1회.
-- 실유입: 기존 `naver-console-import.mjs`. 서치어드바이저 **검색어** + **문서** 탭, 네이버 애널리틱스 검색어를 **주 1회** inbox 투입(§13-6). 결과 JSON 을 파이프라인이 읽어 `inbound7d` 로 쓴다.
+- 실유입: 기존 `naver-console-import.mjs`. 서치어드바이저 **검색어** + **문서** 탭, 네이버 애널리틱스 검색어를 **주 1회** inbox 투입(§13-6). 결과 JSON 을 파이프라인이 읽어 `inbound7d` 로 쓴다. (2026-09-30 변경: 커밋 결과 JSON 에서 검색어 행을 빼서 이 연결은 지금 끊겨 있다. 검색어 행은 private 파일에만 있고, 파이프라인이 그것을 읽게 할지는 운영자 결정 대기. docs/revenue-log/inbox/README.md "파이프라인과의 관계")
 
 ## 5. 기존 도구와 awoo 대응 (새로 만들지 않고 확장)
 
