@@ -27,14 +27,17 @@ description: GSC 실측 데이터로 오늘의 발행·리프레시 주제를 �
       제도 달력·신생 키워드·네이버 갭·GSC rising·WebSearch 로 신규 주제를 직접 고르지 않는다
       (9/8~9/15 그 방식의 신규 8편은 색인은 됐지만 대표 키워드로 전부 네이버 30위 밖이었다 — docs/ops/KEYWORD-PLAN-2026-09-15.md §1).
       그 입력원들은 대기열을 만드는 측정 도구의 재료와 **리프레시 선정**에만 쓴다.
-      고르는 순서 (오늘의 캐던스 상한까지, `docs/ops/cadence.json` 현재 A단계 일 2편):
+      고르는 순서 (오늘의 캐던스 상한까지, `docs/ops/cadence.json` 2026-10-01부터 A단계 일 2편):
       ① `status: "approved"` (운영자가 목록에서 [발행 지시]를 누른 항목)
       ② `status: "proposed"` 이면서 `autoPick: true` 인 항목을 `score` 내림차순
       ③ (2026-09-30, 막 공고된 제도·마감 주제) `track: "NEW"`(`unverified`) 항목은 **두 번째 자리부터만** 쓸 수 있다.
          소관 부처 보도자료·법령 원문을 WebFetch 로 직접 열어 제도 실재·금액·기한을 확인한 경우에만 쓰고, 확인하지 못하면 버린다.
+         WebFetch 확인이 푸는 것은 '1차 출처 미확인' 하나뿐이다. `naver-pipeline.mjs` 의 autoPickOf 는 NEW 트랙이면 나머지 조건을 보지 않고
+         false 를 내므로, 나머지 운영자 게이트는 여기서 직접 본다: `condition` 에 '운영자 지정 필요'(민간 대출, 지원금·쿠폰·지역화폐·상품권·바우처,
+         수요 신호 없음)가 있거나 `ledger.verdict` 가 PASS 가 아니면(FIX 포함) `approved` 일 때만 쓴다. 쓴 경우 PR 본문에 확인한 1차 출처 URL 을 적는다.
          T3 선점 달력(`docs/ops/landgrab-calendar.json`) 항목도 대기열에 올라온 것만 쓴다.
       건너뛰는 항목: `measuredAt` 이 오늘(KST)이 아님(매일 KST 01:00 자동 측정 — 2026-09-28, 그날 측정분만) / 글 frontmatter `targetQuery` 가 그 항목의 `query`·`altQueries` 와
-      같은 글이 이미 있음 / `autoPick: false` 인데 approved 가 아님(③ NEW 트랙만 위 조건으로 예외) / `hold`·`rejected`·`published` /
+      같은 글이 이미 있음 / `autoPick: false` 인데 approved 가 아님(③ NEW 트랙만 위 조건을 모두 통과하면 예외) / `hold`·`rejected`·`published` /
       자매 사이트 awoo 영역(지자체 민생지원금·지역화폐·상품권 사용처·반값여행 류, 2026-09-30 운영자 결정).
       고른 뒤: 항목의 `condition`(1차 출처 확인 과제)을 먼저 푼다. 못 풀면 그 항목은 버리고 다음 항목.
       `node scripts/audit/naver-ledger.mjs --check "<query>" <family>` 가 VETO 면 버린다(세부 키워드가 다르면 PASS — 2026-09-15 결정).
@@ -46,14 +49,14 @@ description: GSC 실측 데이터로 오늘의 발행·리프레시 주제를 �
       `hold` 중 `holdBy: "pipeline"` 은 재측정에서 한 번 닫힌 항목이다(다음 측정에서 열리면 proposed 로 돌아온다). 루틴은 건너뛴다.
    4. **카니발리제이션** → 통합(대표 1편 + 301) 후보, 즉시 실행이 아니라 주간
       리프레시 묶음에 편입.
-3. 출력: **오늘의 액션** (리프레시 1~3개 우선, 신규는 오늘의 캐던스 상한까지. 현재 A단계 일 2편). 각 액션에 대상 파일
+3. 출력: **오늘의 액션** (리프레시 1~3개 우선, 신규는 오늘의 캐던스 상한까지. 2026-10-01부터 A단계 일 2편). 각 액션에 대상 파일
    경로·근거 수치(순위·노출)·예상 작업(보강 섹션/제목안) 명시.
 4. 실행으로 이어지면: content-agent 산출물 실존 검증 → publishedAt/updatedAt KST
    실시각 검증 → docs/21 게이트 → 일 묶음 PR.
 
-## 가드 (docs/23 §4-2, 위반 제안 금지)
+## 가드 (docs/23 §4-2 + docs/ops/cadence.json, 위반 제안 금지)
 
-- 신규 발행 상한은 `docs/ops/cadence.json` 단계 캐던스 (현재 A단계 일 2편). 단계 변경은 운영자 승인으로만, Claude 는 stageUpCriteria 충족 시 제안만 (2026-09-30)
+- 신규 발행 상한은 `docs/ops/cadence.json` 단계 캐던스 (2026-10-01부터 A단계 일 2편, docs/23 §4-2 의 일 1~2편·Stage 서술보다 우선). 단계 변경은 운영자 승인으로만, Claude 는 stageUpCriteria 충족 시 제안만 (2026-09-30)
 - 단일 클러스터 주간 발행 점유 ≤30%
 - credit-loan·insurance-personal 은 주 1편 상한 + explainer 프레임 강제
 - 색인률 <70% 또는 90일 무노출 >30% → 신규 반감, 통합·리프레시 우선

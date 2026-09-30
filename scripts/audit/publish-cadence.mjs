@@ -12,6 +12,9 @@
 // 상한은 effectiveFrom 이 그 날짜 이하인 항목 중 가장 늦은 항목의 maxPerDay 이므로,
 // 과거 날짜는 당시 상한(1편)으로 검사한다. 파일이 없거나 깨지면 가장 보수적인
 // 1편으로 검사하고 경고한다. 단계 변경은 운영자 승인으로만 한다.
+// history 의 stage 는 모두 stages 에 있어야 하고 maxPerDay 가 같아야 한다 (오타 방지).
+// 단계를 바꾸는 항목의 effectiveFrom 은 아직 신규 글이 없는 날(보통 다음 날 KST)로 넣는다.
+// 이미 발행된 글의 publishedAt 은 옮기지 않는다.
 //
 // - 리프레시(updatedAt 갱신)는 집계하지 않는다 — 신규 publishedAt 만 검사.
 // - 규칙 발효일 이전 발행분(685편 히스토리)은 검사 대상 아님.
@@ -47,11 +50,22 @@ function loadCadence() {
   if (!existsSync(CADENCE_FILE)) return { error: `${CADENCE_REL} 없음` };
   let data;
   try {
-    data = JSON.parse(readFileSync(CADENCE_FILE, 'utf8'));
+    // Windows PowerShell 5.1 의 -Encoding utf8 저장은 BOM 을 붙인다. BOM 때문에 1편으로 떨어지지 않게 떼어 낸다.
+    data = JSON.parse(readFileSync(CADENCE_FILE, 'utf8').replace(/^\uFEFF/, ''));
   } catch (e) {
     return { error: `${CADENCE_REL} JSON 파싱 실패 (${e.message})` };
   }
-  const history = data?.history;
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return { error: `${CADENCE_REL} 최상위가 객체가 아님` };
+  const stages = data.stages;
+  if (!stages || typeof stages !== 'object' || Array.isArray(stages) || Object.keys(stages).length === 0) {
+    return { error: `${CADENCE_REL} stages 객체가 없거나 비어 있음` };
+  }
+  for (const [name, st] of Object.entries(stages)) {
+    if (!st || !Number.isInteger(st.maxPerDay) || st.maxPerDay < 1 || st.maxPerDay > HARD_MAX) {
+      return { error: `${CADENCE_REL} stages.${name}.maxPerDay 는 1~${HARD_MAX} 정수여야 함 (${JSON.stringify(st?.maxPerDay)})` };
+    }
+  }
+  const history = data.history;
   if (!Array.isArray(history) || history.length === 0) return { error: `${CADENCE_REL} history 배열이 없거나 비어 있음` };
   const seen = new Set();
   for (const [i, h] of history.entries()) {
@@ -62,8 +76,11 @@ function loadCadence() {
     if (!Number.isInteger(h.maxPerDay) || h.maxPerDay < 1 || h.maxPerDay > HARD_MAX) {
       return { error: `${at}.maxPerDay 는 1~${HARD_MAX} 정수여야 함 (${JSON.stringify(h.maxPerDay)})` };
     }
-    const stageMax = data.stages?.[h.stage]?.maxPerDay;
-    if (stageMax !== undefined && stageMax !== h.maxPerDay) {
+    if (!Object.hasOwn(stages, h.stage)) {
+      return { error: `${at}.stage "${h.stage}" 가 stages 에 없음 (있는 단계: ${Object.keys(stages).join(', ')})` };
+    }
+    const stageMax = stages[h.stage].maxPerDay;
+    if (stageMax !== h.maxPerDay) {
       return { error: `${at}.maxPerDay(${h.maxPerDay}) 가 stages.${h.stage}.maxPerDay(${stageMax}) 와 다름` };
     }
     if (seen.has(h.effectiveFrom)) return { error: `${at}.effectiveFrom ${h.effectiveFrom} 중복` };
@@ -124,7 +141,8 @@ if (violations.length > 0) {
   for (const v of violations) {
     console.error(`   ${v.date}: ${v.slugs.length}편 (그날 상한 ${v.max}편, ${v.label}): ${v.slugs.join(', ')}`);
   }
-  console.error('   신규 글은 그 날짜의 상한까지만 냅니다. 넘친 글은 이번 PR 에서 빼거나 publishedAt 을 다음 날로 미루세요.');
+  console.error('   신규 글은 그 날짜의 상한까지만 냅니다. 넘친 글은 이번 PR 에서 빼거나, 아직 발행 전인 이번 PR 의 글만 publishedAt 을 다음 날로 미루세요.');
+  console.error('   이미 발행된 글의 publishedAt 은 옮기지 않습니다. 단계 변경 PR 때문에 실패했다면 그 항목의 effectiveFrom 을 신규 글이 없는 날(보통 다음 날)로 바꾸세요.');
   console.error(`   상한 변경은 운영자 승인으로만 합니다 (${CADENCE_REL} history 에 항목 추가).`);
   process.exit(1);
 }

@@ -2,11 +2,14 @@
   "_readme": [
     "신규 글 하루 상한의 단일 기준(SSoT)이다. scripts/audit/publish-cadence.mjs 가 빌드 체인에서 이 파일을 읽어 날짜별로 검사한다 (pnpm audit:cadence).",
     "어떤 날짜의 상한 = history 에서 effectiveFrom(KST 날짜)이 그 날짜 이하인 항목 중 가장 늦은 항목의 maxPerDay. 과거 날짜는 당시 상한으로 검사한다.",
-    "파일이 없거나, JSON 이 깨졌거나, 항목이 규격(maxPerDay 1~4 정수, stages 값과 일치, effectiveFrom YYYY-MM-DD, 날짜 중복 없음)을 벗어나면 가드는 가장 보수적인 1편으로 검사하고 경고를 낸다.",
+    "파일이 없거나, JSON 이 깨졌거나, 항목이 규격(stages 객체 필수, history 의 stage 는 stages 에 있는 이름, maxPerDay 1~4 정수이고 stages 값과 일치, effectiveFrom YYYY-MM-DD, 날짜 중복 없음)을 벗어나면 가드는 가장 보수적인 1편으로 검사하고 경고를 낸다.",
+    "이 보수 처리는 배포도 멈출 수 있다. 하루 2편 이상 낸 날이 한 번이라도 있으면, 이 파일에 오타가 난 순간부터 모든 빌드(일일 리빌드·긴급 수정 포함)가 그날 때문에 실패한다. 이 파일을 고친 PR 은 node scripts/audit/publish-cadence.mjs 를 돌려 경고(⚠️)가 없는지 확인한다. 앞에 붙은 UTF-8 BOM 은 가드가 떼어 낸다.",
     "리프레시(updatedAt 갱신)는 집계하지 않는다. 신규 publishedAt 만 센다 (루틴·수동 합산).",
     "상한은 채워야 하는 할당량이 아니다. 대기열에 통과 항목이 없으면 신규 0편이 정상이다.",
     "단계 변경은 운영자 승인으로만 한다. Claude 는 stageUpCriteria 를 모두 충족했을 때 근거와 함께 제안만 하고, 이 파일의 단계를 스스로 올리지 않는다. 운영자가 승인하면 history 에 항목을 추가하고 currentStage 를 바꾸는 PR 을 만든다.",
-    "stageDownCriteria 가 하나라도 생기면 루틴은 그날부터 한 단계 낮은 상한으로 줄여 발행하고 (덜 쓰는 것은 가드 위반이 아니다), Claude 는 단계를 내리는 PR 을 만들어 운영자에게 알린다. 파일 변경의 머지는 운영자 승인으로 한다.",
+    "새 history 항목의 effectiveFrom 은 아직 신규 글이 없는 날(보통 다음 날 KST)로 넣는다. 오늘 날짜로 넣으면 오늘 이미 발행된 글에도 새 상한이 소급 적용돼, 내리는 PR 이 CI 에서 실패한다. 이미 발행된 글의 publishedAt 은 옮기지 않는다.",
+    "currentStage 는 history 마지막 항목(가장 최근에 결정된 단계)이다. 그 항목의 effectiveFrom 전날까지는 이전 단계가 적용된다. 예: A단계는 2026-10-01 부터이고 2026-09-30 은 R단계(1편)다.",
+    "stageDownCriteria 가 하나라도 생기면 루틴은 그 뒤 첫 발행부터 한 단계 낮은 상한으로 줄여 발행하고 (이미 낸 글은 그대로 둔다. 덜 쓰는 것은 가드 위반이 아니다), Claude 는 단계를 내리는 PR(effectiveFrom 은 다음 날)을 만들어 운영자에게 알린다. 내리는 PR 이 머지되기 전에도 daily-post §3-5 ① 은 낮춘 상한으로 센다. 파일 변경의 머지는 운영자 승인으로 한다.",
     "C단계(일 4편)가 최고 단계다. 그 위로 올리려면 publish-cadence.mjs 의 HARD_MAX 도 함께 바꿔야 한다."
   ],
   "currentStage": "A",

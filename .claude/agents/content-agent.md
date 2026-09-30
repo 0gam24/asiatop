@@ -111,7 +111,7 @@ tools:
 
 ### frontmatter (content.config.ts 스키마)
 - cluster 는 `src/data/clusters.ts` enum 정확값 (schema 가드 동작 중)
-- publishedAt 은 KST 오늘 날짜 시스템 검증 후 (CLAUDE.md 가드) — **캐던스 상한 확인** (docs/ops/cadence.json, 현재 A단계 일 2편)
+- publishedAt 은 KST 오늘 날짜 시스템 검증 후 (CLAUDE.md 가드) — **캐던스 상한 확인** (docs/ops/cadence.json, 2026-10-01부터 A단계 일 2편)
 - author 기본 `kim-junhyeok` (기명 — docs/24 P2)
 - 본문 실질 변경 시에만 `updatedAt`, 출처·수치 확인 동반 시에만 `lastReviewed`
 
