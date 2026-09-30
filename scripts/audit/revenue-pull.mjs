@@ -20,7 +20,11 @@
 //
 // 이후 조회 (무인):
 //   node scripts/audit/revenue-pull.mjs
-//   → 콘솔 요약 + docs/revenue-log/pull-YYYY-MM-DD.json 저장
+//   → 콘솔 요약 + docs/revenue-log/private/pull-YYYY-MM-DD.json 저장 (gitignore)
+//
+// 기밀 (2026-09-30): 애드센스 약관 11조는 클릭률 등 사이트 성과 통계를 구글 기밀 정보로 정하고
+// 공개 예외는 총지급액뿐이다. 리포가 공개라 출력은 private/ 에만 쓰고 커밋하지 않는다.
+// 종료 코드: 정책 이슈 1건 이상이면 2 (자동화에서 발행 중단 신호로 쓴다).
 // ════════════════════════════════════════════════════════════════════════
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { createServer } from 'node:http';
@@ -29,7 +33,7 @@ import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const AUTH_FILE = path.join(ROOT, '.revenue-auth.json');
-const LOG_DIR = path.join(ROOT, 'docs', 'revenue-log');
+const LOG_DIR = path.join(ROOT, 'docs', 'revenue-log', 'private');
 const PORT = 53682;
 const REDIRECT_URI = `http://127.0.0.1:${PORT}/cb`;
 const SCOPES = [
@@ -265,7 +269,11 @@ async function pull() {
   const kst = new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10);
   const logPath = path.join(LOG_DIR, `pull-${kst}.json`);
   writeFileSync(logPath, JSON.stringify(out, null, 2));
-  console.log(`\n💾 저장: ${path.relative(ROOT, logPath)}`);
+  console.log(`\n💾 저장: ${path.relative(ROOT, logPath)} (비공개 — 커밋 금지)`);
+  if (Array.isArray(out.policyIssues) && out.policyIssues.length > 0) {
+    console.error(`\n🚨 정책 이슈 ${out.policyIssues.length}건 — 모든 발행을 멈추고 정책 센터를 확인하세요 (종료 코드 2)`);
+    process.exitCode = 2;
+  }
 }
 
 // ── entry ────────────────────────────────────────────────────────────────

@@ -140,7 +140,14 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - **현재 상태 (2026-08-25~)**: **Auto ads 단독**. 수동 유닛 전면 철거 — `AdSlot.astro`·
   `src/lib/ads-lazy.ts`·`.ad-wrap` CSS·`PUBLIC_ADSENSE_SLOT_*` 삭제 완료. 소스에 수동
   `<ins class="adsbygoogle">` 0건이 정상이며, 재도입은 운영자 지시가 있을 때만.
-  광고 진입점은 `Base.astro` head 로더 1개. 신규 Auto ads 기능(앵커·vignette) 활성화 금지.
+  광고 진입점은 `Base.astro` head 로더 1개. **포맷 실측 (2026-09-30, `pnpm audit:revenue:deep`)**: 앵커·vignette·
+  사이드레일·인텐트는 이미 켜져 있고 수익의 큰 몫을 낸다. 현 구성 유지 — 새 포맷 추가·빈도 상향은 운영자 지시가 있을 때만.
+- **클릭 품질 가드 (2026-09-30)**: 모바일 인아티클에서 우발 클릭 신호(높은 CTR·매우 낮은 CPC)가 확인됐다. 같은 계정의
+  다른 사이트 수익까지 걸리므로 인페이지 광고 틀 여백·"광고" 라벨(`div.google-auto-placed` CSS)을 유지하고, 주 1회
+  `pnpm audit:revenue:deep` 경고를 본다. CTR 을 올리는 시도는 여전히 금지 — 이 가드는 CTR 을 **낮추고** CPC 를 정상화하는 방향만 허용한다.
+- **성과 통계 비공개 (2026-09-30, 애드센스 약관 11조)**: 리포가 공개다. 수익·RPM·CTR·CPC·노출·클릭 등 애드센스 성과 통계는
+  커밋·PR 본문·커밋 메시지·공개 문서에 적지 않는다(공개 예외는 총지급액뿐). `revenue-pull`·`revenue-deep` 출력은
+  `docs/revenue-log/private/`(gitignore)에만 쌓인다. 공개 문서에는 "우발 클릭 신호" 같은 판정만 쓴다. GSC·네이버 수치는 해당 없음.
 - 긴급 차단 2단: ① 즉시(수 초) = CF Pages **Rollback to previous deployment**
   ② 정식(5~10분+큐 대기) = env `PUBLIC_ADSENSE_CLIENT` 비우기 + Retry.
   `public` ads.txt 는 킬스위치와 무관 — 건드리지 않는다.
