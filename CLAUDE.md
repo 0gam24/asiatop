@@ -140,7 +140,11 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - **현재 상태 (2026-08-25~)**: **Auto ads 단독**. 수동 유닛 전면 철거 — `AdSlot.astro`·
   `src/lib/ads-lazy.ts`·`.ad-wrap` CSS·`PUBLIC_ADSENSE_SLOT_*` 삭제 완료. 소스에 수동
   `<ins class="adsbygoogle">` 0건이 정상이며, 재도입은 운영자 지시가 있을 때만.
-  광고 진입점은 `Base.astro` head 로더 1개. 신규 Auto ads 기능(앵커·vignette) 활성화 금지.
+  광고 진입점은 `Base.astro` head 로더 1개. **Auto ads 포맷 실측 (2026-09-30, `pnpm audit:revenue:deep`)**: 앵커·vignette·
+  사이드레일·인아티클·인텐트가 이미 활성이며 앵커+vignette 가 수익의 57%. 현 포맷 구성 유지 — 추가 포맷·빈도 상향은 운영자 지시가 있을 때만.
+- **클릭 품질 가드 (2026-09-30)**: 모바일 인아티클 CTR 4.8%·CPC $0.012 (자매 사이트 0.6%·$0.16) = 우발 클릭 신호. 같은 계정의
+  awoo 수익까지 위험하므로 광고 주변 여백·"광고" 라벨·링크 분리(`.google-auto-placed` CSS)를 유지하고, 주 1회 `pnpm audit:revenue:deep`
+  경고를 본다. CTR 을 올리는 시도는 여전히 금지 — 이 가드는 CTR 을 **낮추고** CPC 를 정상화하는 방향만 허용한다.
 - 긴급 차단 2단: ① 즉시(수 초) = CF Pages **Rollback to previous deployment**
   ② 정식(5~10분+큐 대기) = env `PUBLIC_ADSENSE_CLIENT` 비우기 + Retry.
   `public` ads.txt 는 킬스위치와 무관 — 건드리지 않는다.

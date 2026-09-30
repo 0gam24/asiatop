@@ -1,0 +1,204 @@
+{
+  "pulledAt": "2026-09-30T02:05:58.792Z",
+  "site": "asiatop.co.kr",
+  "account": "accounts/pub-7830821732287404",
+  "policyIssues": [],
+  "last7days": [
+    {
+      "DATE": "2026-09-23",
+      "ESTIMATED_EARNINGS": "132.09",
+      "PAGE_VIEWS": "6151",
+      "IMPRESSIONS": "31062",
+      "CLICKS": "494"
+    },
+    {
+      "DATE": "2026-09-24",
+      "ESTIMATED_EARNINGS": "75.06",
+      "PAGE_VIEWS": "3403",
+      "IMPRESSIONS": "17005",
+      "CLICKS": "288"
+    },
+    {
+      "DATE": "2026-09-25",
+      "ESTIMATED_EARNINGS": "62.65",
+      "PAGE_VIEWS": "3000",
+      "IMPRESSIONS": "14795",
+      "CLICKS": "236"
+    },
+    {
+      "DATE": "2026-09-26",
+      "ESTIMATED_EARNINGS": "34.56",
+      "PAGE_VIEWS": "2895",
+      "IMPRESSIONS": "13400",
+      "CLICKS": "180"
+    },
+    {
+      "DATE": "2026-09-27",
+      "ESTIMATED_EARNINGS": "38.23",
+      "PAGE_VIEWS": "3502",
+      "IMPRESSIONS": "15729",
+      "CLICKS": "201"
+    },
+    {
+      "DATE": "2026-09-28",
+      "ESTIMATED_EARNINGS": "58.52",
+      "PAGE_VIEWS": "6442",
+      "IMPRESSIONS": "28690",
+      "CLICKS": "364"
+    },
+    {
+      "DATE": "2026-09-29",
+      "ESTIMATED_EARNINGS": "45.38",
+      "PAGE_VIEWS": "6197",
+      "IMPRESSIONS": "27146",
+      "CLICKS": "281"
+    }
+  ],
+  "adUnits_today": [],
+  "adUnits_yesterday": [],
+  "domains_today": [
+    {
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "0.17",
+      "PAGE_VIEWS": "46",
+      "IMPRESSIONS": "239"
+    },
+    {
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "11.72",
+      "PAGE_VIEWS": "1644",
+      "IMPRESSIONS": "7568"
+    },
+    {
+      "DOMAIN_NAME": "beoppuri.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0"
+    },
+    {
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.33",
+      "PAGE_VIEWS": "17",
+      "IMPRESSIONS": "57"
+    },
+    {
+      "DOMAIN_NAME": "donnavi.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0"
+    },
+    {
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "8",
+      "IMPRESSIONS": "0"
+    },
+    {
+      "DOMAIN_NAME": "smartdatashop.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "19",
+      "IMPRESSIONS": "0"
+    }
+  ],
+  "gscProperty": "sc-domain:asiatop.co.kr",
+  "gscRange": {
+    "start": "2026-09-22",
+    "end": "2026-09-28"
+  },
+  "gscDaily": [
+    {
+      "date": "2026-09-22",
+      "clicks": 1,
+      "impressions": 76,
+      "ctr": 0.013157894736842105,
+      "position": 11.276315789473685
+    },
+    {
+      "date": "2026-09-23",
+      "clicks": 0,
+      "impressions": 28,
+      "ctr": 0,
+      "position": 7.892857142857143
+    },
+    {
+      "date": "2026-09-24",
+      "clicks": 2,
+      "impressions": 29,
+      "ctr": 0.06896551724137931,
+      "position": 12.241379310344827
+    },
+    {
+      "date": "2026-09-25",
+      "clicks": 1,
+      "impressions": 26,
+      "ctr": 0.038461538461538464,
+      "position": 8.153846153846153
+    },
+    {
+      "date": "2026-09-26",
+      "clicks": 2,
+      "impressions": 40,
+      "ctr": 0.05,
+      "position": 8.95
+    },
+    {
+      "date": "2026-09-27",
+      "clicks": 2,
+      "impressions": 48,
+      "ctr": 0.041666666666666664,
+      "position": 8
+    }
+  ],
+  "gscTopQueries": [
+    {
+      "query": "분양권 전매제한",
+      "clicks": 1,
+      "impressions": 4
+    },
+    {
+      "query": "실업급여 감액",
+      "clicks": 1,
+      "impressions": 7
+    },
+    {
+      "query": "실업급여 연장 조건",
+      "clicks": 1,
+      "impressions": 18
+    },
+    {
+      "query": "국가장학금 소득분위",
+      "clicks": 0,
+      "impressions": 1
+    },
+    {
+      "query": "국민연금 임의계속가입",
+      "clicks": 0,
+      "impressions": 2
+    },
+    {
+      "query": "내일배움카드 조건",
+      "clicks": 0,
+      "impressions": 1
+    },
+    {
+      "query": "당근마켓 세금",
+      "clicks": 0,
+      "impressions": 1
+    },
+    {
+      "query": "대출 실행",
+      "clicks": 0,
+      "impressions": 2
+    },
+    {
+      "query": "등기와 우편 차이",
+      "clicks": 0,
+      "impressions": 2
+    },
+    {
+      "query": "반복수급자 기준",
+      "clicks": 0,
+      "impressions": 1
+    }
+  ]
+}

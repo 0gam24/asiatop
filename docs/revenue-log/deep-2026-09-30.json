@@ -1,0 +1,1401 @@
+{
+  "pulledAt": "2026-09-30T02:23:11.684Z",
+  "account": "accounts/pub-7830821732287404",
+  "site": "asiatop.co.kr",
+  "compare": "awoo.or.kr",
+  "sites": [
+    {
+      "domain": "asiatop.co.kr",
+      "state": "READY",
+      "autoAds": true
+    },
+    {
+      "domain": "awoo.or.kr",
+      "state": "READY",
+      "autoAds": true
+    },
+    {
+      "domain": "beoppuri.com",
+      "state": "GETTING_READY"
+    },
+    {
+      "domain": "bupyeongn.kr",
+      "state": "GETTING_READY"
+    },
+    {
+      "domain": "calculatorhost.com",
+      "state": "READY",
+      "autoAds": true
+    },
+    {
+      "domain": "donnavi.kr",
+      "state": "GETTING_READY"
+    },
+    {
+      "domain": "iknowhowinfo.com",
+      "state": "READY",
+      "autoAds": true
+    },
+    {
+      "domain": "mureobom.com",
+      "state": "GETTING_READY",
+      "autoAds": true
+    },
+    {
+      "domain": "smartdatashop.kr",
+      "state": "NEEDS_ATTENTION",
+      "autoAds": true
+    }
+  ],
+  "monthly_by_domain": [
+    {
+      "MONTH": "2026-04",
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.06",
+      "PAGE_VIEWS": "49",
+      "IMPRESSIONS": "38",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-05",
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.79",
+      "PAGE_VIEWS": "327",
+      "IMPRESSIONS": "1126",
+      "CLICKS": "15"
+    },
+    {
+      "MONTH": "2026-05",
+      "DOMAIN_NAME": "www.calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "2",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-05",
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "0.61",
+      "PAGE_VIEWS": "912",
+      "IMPRESSIONS": "1283",
+      "CLICKS": "7"
+    },
+    {
+      "MONTH": "2026-06",
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.51",
+      "PAGE_VIEWS": "76",
+      "IMPRESSIONS": "186",
+      "CLICKS": "1"
+    },
+    {
+      "MONTH": "2026-06",
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "25.87",
+      "PAGE_VIEWS": "6311",
+      "IMPRESSIONS": "33351",
+      "CLICKS": "331"
+    },
+    {
+      "MONTH": "2026-06",
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "2.27",
+      "PAGE_VIEWS": "959",
+      "IMPRESSIONS": "4256",
+      "CLICKS": "42"
+    },
+    {
+      "MONTH": "2026-06",
+      "DOMAIN_NAME": "www.iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-06",
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "5.28",
+      "PAGE_VIEWS": "1051",
+      "IMPRESSIONS": "3658",
+      "CLICKS": "65"
+    },
+    {
+      "MONTH": "2026-06",
+      "DOMAIN_NAME": "www.calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "5",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-07",
+      "DOMAIN_NAME": "www.calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-07",
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "7.86",
+      "PAGE_VIEWS": "1593",
+      "IMPRESSIONS": "5419",
+      "CLICKS": "111"
+    },
+    {
+      "MONTH": "2026-07",
+      "DOMAIN_NAME": "www.iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "3",
+      "IMPRESSIONS": "3",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-07",
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.39",
+      "PAGE_VIEWS": "283",
+      "IMPRESSIONS": "570",
+      "CLICKS": "6"
+    },
+    {
+      "MONTH": "2026-07",
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "99.49",
+      "PAGE_VIEWS": "18498",
+      "IMPRESSIONS": "114060",
+      "CLICKS": "2139"
+    },
+    {
+      "MONTH": "2026-07",
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "94.05",
+      "PAGE_VIEWS": "15808",
+      "IMPRESSIONS": "102749",
+      "CLICKS": "899"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "www.beoppuri.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "smartdatashop.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "smartdatashop.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "44",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "moneylook.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "2",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "0.83",
+      "PAGE_VIEWS": "747",
+      "IMPRESSIONS": "732",
+      "CLICKS": "7"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "iknow-how.tistory.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "mureobom.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "4",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "10.54",
+      "PAGE_VIEWS": "3010",
+      "IMPRESSIONS": "10909",
+      "CLICKS": "347"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "bupyeongn.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "5",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "www.calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "4",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "donnavi.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "13",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "guide-to-financial.tistory.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "2",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "577.16",
+      "PAGE_VIEWS": "73926",
+      "IMPRESSIONS": "417952",
+      "CLICKS": "4025"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "45.53",
+      "PAGE_VIEWS": "11973",
+      "IMPRESSIONS": "74409",
+      "CLICKS": "1903"
+    },
+    {
+      "MONTH": "2026-08",
+      "DOMAIN_NAME": "beoppuri.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "11",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "www.calculatorhost.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "www.beoppuri.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "smartdatashop.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "280",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "mureobom.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "26",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "mureobom-com.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "11",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "iknowhowinfo.com",
+      "ESTIMATED_EARNINGS": "1.48",
+      "PAGE_VIEWS": "544",
+      "IMPRESSIONS": "527",
+      "CLICKS": "4"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "donnavi.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "donnavi.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "27",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "moneylook.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "2",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "smartdatashop.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "content-2026-09-15-employmen.smartdatashop.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "calculatorhost.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "1",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "calculatorhost.com",
+      "ESTIMATED_EARNINGS": "9.20",
+      "PAGE_VIEWS": "1819",
+      "IMPRESSIONS": "6555",
+      "CLICKS": "197"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "bupyeongn.kr",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "18",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "beoppuri.pages.dev",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "2",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "beoppuri.com",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "46",
+      "IMPRESSIONS": "0",
+      "CLICKS": "0"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "awoo.or.kr",
+      "ESTIMATED_EARNINGS": "2267.08",
+      "PAGE_VIEWS": "146313",
+      "IMPRESSIONS": "748143",
+      "CLICKS": "10478"
+    },
+    {
+      "MONTH": "2026-09",
+      "DOMAIN_NAME": "asiatop.co.kr",
+      "ESTIMATED_EARNINGS": "31.72",
+      "PAGE_VIEWS": "6496",
+      "IMPRESSIONS": "35076",
+      "CLICKS": "1098"
+    }
+  ],
+  "site_daily_30d": [
+    {
+      "DATE": "2026-08-31",
+      "ESTIMATED_EARNINGS": "1.70",
+      "PAGE_VIEWS": "367",
+      "IMPRESSIONS": "2066",
+      "CLICKS": "57",
+      "CTR": "2.76%",
+      "CPC": "0.030"
+    },
+    {
+      "DATE": "2026-09-01",
+      "ESTIMATED_EARNINGS": "2.18",
+      "PAGE_VIEWS": "331",
+      "IMPRESSIONS": "1888",
+      "CLICKS": "49",
+      "CTR": "2.60%",
+      "CPC": "0.044"
+    },
+    {
+      "DATE": "2026-09-02",
+      "ESTIMATED_EARNINGS": "1.41",
+      "PAGE_VIEWS": "302",
+      "IMPRESSIONS": "1707",
+      "CLICKS": "29",
+      "CTR": "1.70%",
+      "CPC": "0.049"
+    },
+    {
+      "DATE": "2026-09-03",
+      "ESTIMATED_EARNINGS": "1.98",
+      "PAGE_VIEWS": "301",
+      "IMPRESSIONS": "1637",
+      "CLICKS": "47",
+      "CTR": "2.87%",
+      "CPC": "0.042"
+    },
+    {
+      "DATE": "2026-09-04",
+      "ESTIMATED_EARNINGS": "1.61",
+      "PAGE_VIEWS": "277",
+      "IMPRESSIONS": "1528",
+      "CLICKS": "66",
+      "CTR": "4.32%",
+      "CPC": "0.024"
+    },
+    {
+      "DATE": "2026-09-05",
+      "ESTIMATED_EARNINGS": "1.19",
+      "PAGE_VIEWS": "173",
+      "IMPRESSIONS": "963",
+      "CLICKS": "35",
+      "CTR": "3.63%",
+      "CPC": "0.034"
+    },
+    {
+      "DATE": "2026-09-06",
+      "ESTIMATED_EARNINGS": "1.12",
+      "PAGE_VIEWS": "165",
+      "IMPRESSIONS": "972",
+      "CLICKS": "26",
+      "CTR": "2.67%",
+      "CPC": "0.043"
+    },
+    {
+      "DATE": "2026-09-07",
+      "ESTIMATED_EARNINGS": "1.32",
+      "PAGE_VIEWS": "313",
+      "IMPRESSIONS": "1663",
+      "CLICKS": "45",
+      "CTR": "2.71%",
+      "CPC": "0.029"
+    },
+    {
+      "DATE": "2026-09-08",
+      "ESTIMATED_EARNINGS": "1.63",
+      "PAGE_VIEWS": "267",
+      "IMPRESSIONS": "1541",
+      "CLICKS": "56",
+      "CTR": "3.63%",
+      "CPC": "0.029"
+    },
+    {
+      "DATE": "2026-09-09",
+      "ESTIMATED_EARNINGS": "1.19",
+      "PAGE_VIEWS": "279",
+      "IMPRESSIONS": "1496",
+      "CLICKS": "65",
+      "CTR": "4.34%",
+      "CPC": "0.018"
+    },
+    {
+      "DATE": "2026-09-10",
+      "ESTIMATED_EARNINGS": "1.15",
+      "PAGE_VIEWS": "268",
+      "IMPRESSIONS": "1499",
+      "CLICKS": "56",
+      "CTR": "3.74%",
+      "CPC": "0.021"
+    },
+    {
+      "DATE": "2026-09-11",
+      "ESTIMATED_EARNINGS": "1.37",
+      "PAGE_VIEWS": "248",
+      "IMPRESSIONS": "1324",
+      "CLICKS": "48",
+      "CTR": "3.63%",
+      "CPC": "0.029"
+    },
+    {
+      "DATE": "2026-09-12",
+      "ESTIMATED_EARNINGS": "0.97",
+      "PAGE_VIEWS": "196",
+      "IMPRESSIONS": "1041",
+      "CLICKS": "51",
+      "CTR": "4.90%",
+      "CPC": "0.019"
+    },
+    {
+      "DATE": "2026-09-13",
+      "ESTIMATED_EARNINGS": "0.69",
+      "PAGE_VIEWS": "184",
+      "IMPRESSIONS": "863",
+      "CLICKS": "27",
+      "CTR": "3.13%",
+      "CPC": "0.026"
+    },
+    {
+      "DATE": "2026-09-14",
+      "ESTIMATED_EARNINGS": "1.13",
+      "PAGE_VIEWS": "250",
+      "IMPRESSIONS": "1428",
+      "CLICKS": "34",
+      "CTR": "2.38%",
+      "CPC": "0.033"
+    },
+    {
+      "DATE": "2026-09-15",
+      "ESTIMATED_EARNINGS": "1.14",
+      "PAGE_VIEWS": "262",
+      "IMPRESSIONS": "1414",
+      "CLICKS": "38",
+      "CTR": "2.69%",
+      "CPC": "0.030"
+    },
+    {
+      "DATE": "2026-09-16",
+      "ESTIMATED_EARNINGS": "1.19",
+      "PAGE_VIEWS": "264",
+      "IMPRESSIONS": "1380",
+      "CLICKS": "38",
+      "CTR": "2.75%",
+      "CPC": "0.031"
+    },
+    {
+      "DATE": "2026-09-17",
+      "ESTIMATED_EARNINGS": "1.05",
+      "PAGE_VIEWS": "233",
+      "IMPRESSIONS": "1234",
+      "CLICKS": "19",
+      "CTR": "1.54%",
+      "CPC": "0.055"
+    },
+    {
+      "DATE": "2026-09-18",
+      "ESTIMATED_EARNINGS": "0.93",
+      "PAGE_VIEWS": "210",
+      "IMPRESSIONS": "1102",
+      "CLICKS": "18",
+      "CTR": "1.63%",
+      "CPC": "0.052"
+    },
+    {
+      "DATE": "2026-09-19",
+      "ESTIMATED_EARNINGS": "0.53",
+      "PAGE_VIEWS": "127",
+      "IMPRESSIONS": "699",
+      "CLICKS": "25",
+      "CTR": "3.58%",
+      "CPC": "0.021"
+    },
+    {
+      "DATE": "2026-09-20",
+      "ESTIMATED_EARNINGS": "0.48",
+      "PAGE_VIEWS": "94",
+      "IMPRESSIONS": "504",
+      "CLICKS": "15",
+      "CTR": "2.98%",
+      "CPC": "0.032"
+    },
+    {
+      "DATE": "2026-09-21",
+      "ESTIMATED_EARNINGS": "0.94",
+      "PAGE_VIEWS": "240",
+      "IMPRESSIONS": "1309",
+      "CLICKS": "33",
+      "CTR": "2.52%",
+      "CPC": "0.028"
+    },
+    {
+      "DATE": "2026-09-22",
+      "ESTIMATED_EARNINGS": "1.07",
+      "PAGE_VIEWS": "216",
+      "IMPRESSIONS": "1202",
+      "CLICKS": "33",
+      "CTR": "2.75%",
+      "CPC": "0.032"
+    },
+    {
+      "DATE": "2026-09-23",
+      "ESTIMATED_EARNINGS": "0.76",
+      "PAGE_VIEWS": "180",
+      "IMPRESSIONS": "975",
+      "CLICKS": "39",
+      "CTR": "4.00%",
+      "CPC": "0.019"
+    },
+    {
+      "DATE": "2026-09-24",
+      "ESTIMATED_EARNINGS": "0.74",
+      "PAGE_VIEWS": "135",
+      "IMPRESSIONS": "683",
+      "CLICKS": "19",
+      "CTR": "2.78%",
+      "CPC": "0.039"
+    },
+    {
+      "DATE": "2026-09-25",
+      "ESTIMATED_EARNINGS": "0.71",
+      "PAGE_VIEWS": "104",
+      "IMPRESSIONS": "570",
+      "CLICKS": "16",
+      "CTR": "2.81%",
+      "CPC": "0.044"
+    },
+    {
+      "DATE": "2026-09-26",
+      "ESTIMATED_EARNINGS": "0.56",
+      "PAGE_VIEWS": "144",
+      "IMPRESSIONS": "698",
+      "CLICKS": "28",
+      "CTR": "4.01%",
+      "CPC": "0.020"
+    },
+    {
+      "DATE": "2026-09-27",
+      "ESTIMATED_EARNINGS": "0.69",
+      "PAGE_VIEWS": "159",
+      "IMPRESSIONS": "830",
+      "CLICKS": "39",
+      "CTR": "4.70%",
+      "CPC": "0.018"
+    },
+    {
+      "DATE": "2026-09-28",
+      "ESTIMATED_EARNINGS": "0.99",
+      "PAGE_VIEWS": "275",
+      "IMPRESSIONS": "1426",
+      "CLICKS": "57",
+      "CTR": "4.00%",
+      "CPC": "0.017"
+    },
+    {
+      "DATE": "2026-09-29",
+      "ESTIMATED_EARNINGS": "0.78",
+      "PAGE_VIEWS": "251",
+      "IMPRESSIONS": "1258",
+      "CLICKS": "37",
+      "CTR": "2.94%",
+      "CPC": "0.021"
+    }
+  ],
+  "site_format_by_month": [
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "0.77",
+      "IMPRESSIONS": "3194",
+      "CLICKS": "4",
+      "CTR": "0.13%",
+      "CPC": "0.193"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "8.68",
+      "IMPRESSIONS": "17673",
+      "CLICKS": "157",
+      "CTR": "0.89%",
+      "CPC": "0.055"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "6.01",
+      "IMPRESSIONS": "8778",
+      "CLICKS": "78",
+      "CTR": "0.89%",
+      "CPC": "0.077"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "0.17",
+      "IMPRESSIONS": "22",
+      "CLICKS": "1",
+      "CTR": "4.55%",
+      "CPC": "0.170"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "3.17",
+      "IMPRESSIONS": "1483",
+      "CLICKS": "54",
+      "CTR": "3.64%",
+      "CPC": "0.059"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "Ad intent anchor",
+      "ESTIMATED_EARNINGS": "0.20",
+      "IMPRESSIONS": "9",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "0.26",
+      "IMPRESSIONS": "22",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-06",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "6.62",
+      "IMPRESSIONS": "2170",
+      "CLICKS": "37",
+      "CTR": "1.71%",
+      "CPC": "0.179"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "15.02",
+      "IMPRESSIONS": "26195",
+      "CLICKS": "381",
+      "CTR": "1.45%",
+      "CPC": "0.039"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Unfilled fallback term",
+      "ESTIMATED_EARNINGS": "0.02",
+      "IMPRESSIONS": "26",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "37.70",
+      "IMPRESSIONS": "15043",
+      "CLICKS": "344",
+      "CTR": "2.29%",
+      "CPC": "0.110"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "1.64",
+      "IMPRESSIONS": "8982",
+      "CLICKS": "9",
+      "CTR": "0.10%",
+      "CPC": "0.182"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "23.90",
+      "IMPRESSIONS": "57790",
+      "CLICKS": "1235",
+      "CTR": "2.14%",
+      "CPC": "0.019"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "0.21",
+      "IMPRESSIONS": "69",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "1.38",
+      "IMPRESSIONS": "294",
+      "CLICKS": "7",
+      "CTR": "2.38%",
+      "CPC": "0.197"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "19.48",
+      "IMPRESSIONS": "5632",
+      "CLICKS": "163",
+      "CTR": "2.89%",
+      "CPC": "0.120"
+    },
+    {
+      "MONTH": "2026-07",
+      "AD_FORMAT_NAME": "Ad intent anchor",
+      "ESTIMATED_EARNINGS": "0.15",
+      "IMPRESSIONS": "29",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Ad intent anchor",
+      "ESTIMATED_EARNINGS": "0.23",
+      "IMPRESSIONS": "30",
+      "CLICKS": "2",
+      "CTR": "6.67%",
+      "CPC": "0.115"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "9.08",
+      "IMPRESSIONS": "3222",
+      "CLICKS": "74",
+      "CTR": "2.30%",
+      "CPC": "0.123"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Unfilled fallback term",
+      "ESTIMATED_EARNINGS": "0.02",
+      "IMPRESSIONS": "14",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "0.77",
+      "IMPRESSIONS": "4592",
+      "CLICKS": "6",
+      "CTR": "0.13%",
+      "CPC": "0.128"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "3.26",
+      "IMPRESSIONS": "9636",
+      "CLICKS": "289",
+      "CTR": "3.00%",
+      "CPC": "0.011"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "14.80",
+      "IMPRESSIONS": "47391",
+      "CLICKS": "1384",
+      "CTR": "2.92%",
+      "CPC": "0.011"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "16.74",
+      "IMPRESSIONS": "9307",
+      "CLICKS": "144",
+      "CTR": "1.55%",
+      "CPC": "0.116"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "0.34",
+      "IMPRESSIONS": "65",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-08",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "0.30",
+      "IMPRESSIONS": "152",
+      "CLICKS": "4",
+      "CTR": "2.63%",
+      "CPC": "0.075"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "12.07",
+      "IMPRESSIONS": "25847",
+      "CLICKS": "989",
+      "CTR": "3.83%",
+      "CPC": "0.012"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "11.26",
+      "IMPRESSIONS": "4883",
+      "CLICKS": "67",
+      "CTR": "1.37%",
+      "CPC": "0.168"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "0.18",
+      "IMPRESSIONS": "22",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "0.59",
+      "IMPRESSIONS": "89",
+      "CLICKS": "3",
+      "CTR": "3.37%",
+      "CPC": "0.197"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "6.68",
+      "IMPRESSIONS": "1369",
+      "CLICKS": "35",
+      "CTR": "2.56%",
+      "CPC": "0.191"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Unfilled fallback term",
+      "ESTIMATED_EARNINGS": "0.03",
+      "IMPRESSIONS": "6",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "0.51",
+      "IMPRESSIONS": "2183",
+      "CLICKS": "3",
+      "CTR": "0.14%",
+      "CPC": "0.170"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "0.27",
+      "IMPRESSIONS": "668",
+      "CLICKS": "1",
+      "CTR": "0.15%",
+      "CPC": "0.270"
+    },
+    {
+      "MONTH": "2026-09",
+      "AD_FORMAT_NAME": "Ad intent anchor",
+      "ESTIMATED_EARNINGS": "0.13",
+      "IMPRESSIONS": "10",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    }
+  ],
+  "site_platform_format_30d": [
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "10.61",
+      "IMPRESSIONS": "21240",
+      "CLICKS": "1027",
+      "CTR": "4.84%",
+      "CPC": "0.010"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "10.08",
+      "IMPRESSIONS": "3403",
+      "CLICKS": "65",
+      "CTR": "1.91%",
+      "CPC": "0.155"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "5.31",
+      "IMPRESSIONS": "857",
+      "CLICKS": "29",
+      "CTR": "3.38%",
+      "CPC": "0.183"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "1.68",
+      "IMPRESSIONS": "589",
+      "CLICKS": "7",
+      "CTR": "1.19%",
+      "CPC": "0.240"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "1.78",
+      "IMPRESSIONS": "1725",
+      "CLICKS": "6",
+      "CTR": "0.35%",
+      "CPC": "0.297"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "0.54",
+      "IMPRESSIONS": "2302",
+      "CLICKS": "4",
+      "CTR": "0.17%",
+      "CPC": "0.135"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "1.80",
+      "IMPRESSIONS": "5665",
+      "CLICKS": "2",
+      "CTR": "0.04%",
+      "CPC": "0.900"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "0.37",
+      "IMPRESSIONS": "54",
+      "CLICKS": "2",
+      "CTR": "3.70%",
+      "CPC": "0.185"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "0.17",
+      "IMPRESSIONS": "26",
+      "CLICKS": "1",
+      "CTR": "3.85%",
+      "CPC": "0.170"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "0.08",
+      "IMPRESSIONS": "194",
+      "CLICKS": "1",
+      "CTR": "0.52%",
+      "CPC": "0.080"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Tablets",
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "0.05",
+      "IMPRESSIONS": "10",
+      "CLICKS": "1",
+      "CTR": "10.00%",
+      "CPC": "0.050"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "Unfilled fallback term",
+      "ESTIMATED_EARNINGS": "0.00",
+      "IMPRESSIONS": "3",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "Unfilled fallback term",
+      "ESTIMATED_EARNINGS": "0.03",
+      "IMPRESSIONS": "3",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Tablets",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "0.01",
+      "IMPRESSIONS": "13",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "0.02",
+      "IMPRESSIONS": "9",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Tablets",
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "0.00",
+      "IMPRESSIONS": "4",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Tablets",
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "0.16",
+      "IMPRESSIONS": "236",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Tablets",
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "0.01",
+      "IMPRESSIONS": "26",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Tablets",
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "0.05",
+      "IMPRESSIONS": "9",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "High-end mobile devices",
+      "AD_FORMAT_NAME": "Ad intent anchor",
+      "ESTIMATED_EARNINGS": "0.13",
+      "IMPRESSIONS": "10",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "0.19",
+      "IMPRESSIONS": "509",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "PLATFORM_TYPE_NAME": "Desktop",
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "0.16",
+      "IMPRESSIONS": "13",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    }
+  ],
+  "site_targeting_30d": [
+    {
+      "TARGETING_TYPE_NAME": "Personalized",
+      "ESTIMATED_EARNINGS": "25.78",
+      "IMPRESSIONS": "23237",
+      "CLICKS": "552",
+      "CTR": "2.38%",
+      "CPC": "0.047"
+    },
+    {
+      "TARGETING_TYPE_NAME": "None",
+      "ESTIMATED_EARNINGS": "0.72",
+      "IMPRESSIONS": "3922",
+      "CLICKS": "446",
+      "CTR": "11.37%",
+      "CPC": "0.002"
+    },
+    {
+      "TARGETING_TYPE_NAME": "Placement",
+      "ESTIMATED_EARNINGS": "0.40",
+      "IMPRESSIONS": "3373",
+      "CLICKS": "0",
+      "CTR": "0.00%",
+      "CPC": "-"
+    },
+    {
+      "TARGETING_TYPE_NAME": "Run of Network",
+      "ESTIMATED_EARNINGS": "2.92",
+      "IMPRESSIONS": "3307",
+      "CLICKS": "46",
+      "CTR": "1.39%",
+      "CPC": "0.063"
+    },
+    {
+      "TARGETING_TYPE_NAME": "Contextual",
+      "ESTIMATED_EARNINGS": "3.41",
+      "IMPRESSIONS": "3061",
+      "CLICKS": "101",
+      "CTR": "3.30%",
+      "CPC": "0.034"
+    }
+  ],
+  "site_country_30d": [
+    {
+      "COUNTRY_CODE": "KR",
+      "ESTIMATED_EARNINGS": "33.10",
+      "PAGE_VIEWS": "6458",
+      "IMPRESSIONS": "36655",
+      "CLICKS": "1145"
+    },
+    {
+      "COUNTRY_CODE": "CN",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "182",
+      "IMPRESSIONS": "25",
+      "CLICKS": "0"
+    },
+    {
+      "COUNTRY_CODE": "US",
+      "ESTIMATED_EARNINGS": "0.08",
+      "PAGE_VIEWS": "103",
+      "IMPRESSIONS": "100",
+      "CLICKS": "0"
+    },
+    {
+      "COUNTRY_CODE": "GH",
+      "ESTIMATED_EARNINGS": "0.00",
+      "PAGE_VIEWS": "10",
+      "IMPRESSIONS": "1",
+      "CLICKS": "0"
+    },
+    {
+      "COUNTRY_CODE": "JP",
+      "ESTIMATED_EARNINGS": "0.02",
+      "PAGE_VIEWS": "8",
+      "IMPRESSIONS": "30",
+      "CLICKS": "0"
+    }
+  ],
+  "compare_format_30d": [
+    {
+      "AD_FORMAT_NAME": "In-page",
+      "ESTIMATED_EARNINGS": "738.40",
+      "IMPRESSIONS": "130861",
+      "CLICKS": "2812",
+      "CTR": "2.15%",
+      "CPC": "0.263"
+    },
+    {
+      "AD_FORMAT_NAME": "Anchor",
+      "ESTIMATED_EARNINGS": "566.43",
+      "IMPRESSIONS": "114508",
+      "CLICKS": "2478",
+      "CTR": "2.16%",
+      "CPC": "0.229"
+    },
+    {
+      "AD_FORMAT_NAME": "In-article",
+      "ESTIMATED_EARNINGS": "439.76",
+      "IMPRESSIONS": "466179",
+      "CLICKS": "2694",
+      "CTR": "0.58%",
+      "CPC": "0.163"
+    },
+    {
+      "AD_FORMAT_NAME": "Vignette",
+      "ESTIMATED_EARNINGS": "438.59",
+      "IMPRESSIONS": "31995",
+      "CLICKS": "2244",
+      "CTR": "7.01%",
+      "CPC": "0.195"
+    },
+    {
+      "AD_FORMAT_NAME": "Ad intent chip",
+      "ESTIMATED_EARNINGS": "82.64",
+      "IMPRESSIONS": "5855",
+      "CLICKS": "426",
+      "CTR": "7.28%",
+      "CPC": "0.194"
+    },
+    {
+      "AD_FORMAT_NAME": "Ad intent anchor",
+      "ESTIMATED_EARNINGS": "46.36",
+      "IMPRESSIONS": "2127",
+      "CLICKS": "199",
+      "CTR": "9.36%",
+      "CPC": "0.233"
+    },
+    {
+      "AD_FORMAT_NAME": "Ad intent link",
+      "ESTIMATED_EARNINGS": "10.34",
+      "IMPRESSIONS": "1139",
+      "CLICKS": "41",
+      "CTR": "3.60%",
+      "CPC": "0.252"
+    },
+    {
+      "AD_FORMAT_NAME": "Side rail",
+      "ESTIMATED_EARNINGS": "5.74",
+      "IMPRESSIONS": "23923",
+      "CLICKS": "39",
+      "CTR": "0.16%",
+      "CPC": "0.147"
+    },
+    {
+      "AD_FORMAT_NAME": "Unfilled fallback term",
+      "ESTIMATED_EARNINGS": "2.71",
+      "IMPRESSIONS": "659",
+      "CLICKS": "12",
+      "CTR": "1.82%",
+      "CPC": "0.226"
+    }
+  ],
+  "summary": {
+    "days": 30,
+    "earnings": "33.20",
+    "pageViews": 6815,
+    "impressions": 36900,
+    "clicks": 1145,
+    "pageRPM": "4.87",
+    "ctr": "3.10%",
+    "cpc": "0.029",
+    "impPerPV": "5.4",
+    "warnings": [
+      "모바일 인아티클 CTR 4.8%·CPC $0.010 — 우발 클릭 신호 (기준: CTR>2% 이고 CPC<$0.05). 광고 간격·라벨·링크 분리 점검, 대시보드 '페이지당 최대 광고 수·광고 간 최소 거리' 조정 검토",
+      "사이트 평균 CPC $0.029 — 클릭 품질 낮음"
+    ]
+  }
+}
