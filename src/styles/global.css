@@ -189,13 +189,14 @@ button {
    실측: 모바일 인아티클 CTR 4.8%·CPC $0.012 (자매 사이트 0.6%·$0.16) = 우발 클릭 신호.
    구글 Confirmed Click 해제 권고 그대로: 광고 주변 여백, 명확한 라벨, 링크와 분리.
    Google 이 inline style 로 margin 을 박으므로 !important 필요. 높이 예약은 하지 않는다
-   (미채움 공백 = 정책 리스크). 라벨 문구는 정책 허용 표기 "광고" 만. */
-.google-auto-placed {
+   (미채움 공백 = 정책 리스크). 라벨 문구는 정책 허용 표기 "광고" 만.
+   div 로 한정: 인페이지 광고 틀(div.google-auto-placed)만 대상, 앵커·사이드레일(ins, position:fixed)은 건드리지 않는다. */
+div.google-auto-placed {
   margin-block: 2rem !important;
   padding-block: 0.5rem !important;
   clear: both;
 }
-.prose .google-auto-placed::before {
+.prose div.google-auto-placed::before {
   content: '광고';
   display: block;
   font-size: 0.7rem;
