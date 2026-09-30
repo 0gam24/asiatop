@@ -3,7 +3,7 @@
     "T3 선점 달력. scripts/audit/naver-pipeline.mjs 가 읽는다(계획 docs/ops/KEYWORD-PLAN-2026-09-15.md §3 T3·§6-2). 파일이 없으면 T3 는 건너뛴다.",
     "파이프라인이 쓰는 필드는 items[] 의 네 개뿐이다. query(3~5어절 검색어) · writeBy(YYYY-MM-DD) · closeAt(YYYY-MM-DD) · cluster(src/data/clusters.ts 의 slug). writeBy ≤ 오늘(KST) ≤ closeAt 이고, 대기열에 같은 검색어가 없고, 14일 안에 닫힘으로 잰 적이 없으면 T3 로 정찰한다(하루 최대 10건, 창 안 +5점).",
     "writeBy~closeAt = 피크 D-14~D-10. 네이버 색인에 1~6일 걸리므로(계획 §1 표 3) 이 창에 쓰면 피크 전에 검색에 걸린다. peakDate 는 마감일·시행일·고지서 도착일 가운데 검색이 몰리는 날이다.",
-    "나머지 필드(id·event·peakDate·basis·relatedSlugs·note)는 사람용이다. basis 는 원천 docs/editorial/policy-calendar-2026-Q4.json 의 배열 순번(calendarIndex, 0부터)·날짜·mainKeyword·검증 등급·출처 URL 이다.",
+    "나머지 필드(id·event·peakDate·basis·relatedSlugs·note)는 사람용이다. basis 는 원천 docs/editorial/policy-calendar-2026-Q4.json 의 배열 순번(calendarIndex, 0부터)·날짜·mainKeyword·검증 등급·출처 URL 이다. calendarIndex 는 원천 배열의 위치일 뿐이라 원천에 줄이 끼면 밀린다. 원천 행은 calendarDate 와 mainKeyword 로 찾는다.",
     "넣는 기준: 정책 달력에서 verified=확인 인 항목만 넣는다(뉴스만·미확인 제외). src/content/articles 에 같은 주제 글이 이미 있으면 넣지 않고 리프레시 후보로 돌린다. query 는 node scripts/audit/naver-ledger.mjs --check 에서 PASS 여야 한다(VETO 면 파이프라인이 정찰만 하고 버린다).",
     "이 파일은 후보만 만든다. 정찰·점수·autoPick·발행은 파이프라인과 루틴 규칙 그대로이고 신규 일 1편 한도도 그대로다. 금액·날짜는 쓰기 직전에 basis.sourceUrl 원문으로 다시 확인한다."
   ],
@@ -32,7 +32,7 @@
         "car-tax-auto-debit-discount-application",
         "car-tax-yeonnap-discount"
       ],
-      "note": "피크는 고지서가 오는 납부 시작일이고, 마감 12/31 직전에 두 번째 물결이 온다. 연납자는 대상이 아니다. 6월 1기분 글은 제목이 6월이라 12월 갱신으로 받을 수 없어 새 글 자리다. 2027 연납(1/16~1/31) 안내로 이어 준다. '자동차세 12월 납부'는 6월 납부 글과 같은 칸으로 잡혀 VETO 라 쓰지 않는다."
+      "note": "피크는 고지서가 오는 납부 시작일이고, 마감 12/31 직전에 두 번째 물결이 온다. 연납자는 대상이 아니다. 6월 1기분 글은 제목이 6월이라 12월 갱신으로 받을 수 없어 새 글 자리다. 2027 연납(1/16~1/31) 안내로 이어 준다. '자동차세 12월 납부'는 6월 납부 글과 같은 칸으로 잡혀 VETO 라 쓰지 않는다. '자동차세 12월 납부기간'이 PASS 인 것은 '납부기간'이 세부 주제로 잡혀서다. 6월 1기분과 12월 2기분은 실제로 다른 납부라 세부 키워드 규칙(2026-09-15)에 맞지만, 장부는 6월과 12월을 가리지 않으므로 글을 쓸 때 content-auditor 가 6월 글(car-tax-june-1q-payment-card-cashback)과 겹치는지 손으로 확인한다. 창(12/02~12/06)은 원천 bestPublishWindow(12/10~12/20)보다 이르다. 색인 1~6일을 넣은 D-14~D-10 규칙이라 일부러 당겼다. 첫 정찰에서 닫힘이면 14일 재측정 금지 때문에 창 안에서 다시 재지 않는다(사실상 한 번 정찰)."
     },
     {
       "id": "t3:2027-01-01:국민연금-보험료율-10",
@@ -56,7 +56,7 @@
         "national-pension-income-ceiling-2026-july",
         "national-pension-first-premium-support-2009"
       ],
-      "note": "2027년 1월분부터 10.0%, 직장가입자는 사업주와 절반씩(각 5.0%). 각도는 월급별 본인 부담이 얼마 늘어나는지. 기존 글은 2026년 9.5%·연금개혁 개요라 세부 키워드가 다르다(잠금 장부 PASS). '국민연금 보험료율 2027 인상'은 연금개혁 글 keywords 의 '국민연금 보험료율 인상'과 겹쳐 VETO 라 쓰지 않는다."
+      "note": "2027년 1월분부터 10.0%, 직장가입자는 사업주와 절반씩(각 5.0%). 각도는 월급별 본인 부담이 얼마 늘어나는지다. 주의: 잠금 장부 PASS 는 세부 키워드가 달라서 나온 결과가 아니다. 이 쿼리의 세부 주제는 VETO 된 '국민연금 보험료율 인상'(연금개혁 글 national-pension-income-replacement-rate-43-reform 의 keywords)과 같은 [보험료율, 인상] 이고, normKeyword 가 연도만 지우고 '10%' 는 남겨서 글자가 달라져 통과했을 뿐이다. 연금개혁 글 FAQ·본문이 이미 9%에서 13%까지 매년 0.5%p 일정(2026년 9.5%)을 다룬다. 그래서 이 항목은 2026-09-30 PR 에서 운영자 확인을 받는다. 운영자가 동의하지 않으면 항목을 빼고 연금개혁 글 리프레시로 돌린다. 세부 키워드를 진짜로 다르게 하려면 '국민연금 보험료 월급별 인상액'(세부 주제 [보험료, 월급별, 인상액], PASS)으로 바꾼다. 또 '10%' 낱말은 지식iN 제목에 그대로 들어가야 세어지므로 같은 질문 수(kinExact)가 낮게 나오기 쉽고, T3 에는 블로그 빈도 힌트가 없어 수요 신호가 검색 트렌드(rel30) 하나에 달린다. autoPick=false 로 나오면 운영자가 직접 고른다. '국민연금 보험료율 2027 인상'은 VETO 라 쓰지 않는다."
     }
   ]
 }
