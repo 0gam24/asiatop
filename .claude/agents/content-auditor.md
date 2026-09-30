@@ -56,12 +56,14 @@ node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·
    (docs/ops/KEYWORD-PLAN-2026-09-15.md). 하나라도 ❌ 면 FAIL 이고, 수정 지시에 고칠 문장을 적는다.
    - ① **검색어 어절이 제목에 다 있나**: frontmatter `targetQuery` 를 공백으로 나눈 어절이 `title` 에 모두 들어 있어야 한다.
      띄어쓰기·조사·어순 같은 자연스러운 변형은 허용 ("권고사직 이런경우" → "이런 경우도 권고사직일까" 는 PASS).
+     이 예시는 어절이 다 들어 있는지만 보여 준다. 질문형 제목을 권하는 것은 아니다 (아래 로테이션 규칙 참고).
      어절이 하나라도 빠지면 FAIL ("청년도약계좌 조건" 인데 제목에 "조건" 이 없으면 FAIL). `targetQuery` 가 없어도 FAIL.
-   - ② **첫 문장이 바로 답하나**: 본문 첫 문단의 첫 문장이 `targetQuery` 에 곧바로 답해야 한다. 조건·금액·기한 중 핵심을
-     숫자로 담는다. 배경 설명·인사·"이 글에서는" 류로 시작하면 FAIL.
+   - ② **첫 문장이 바로 답하나**: 본문 첫 문단의 첫 문장이 `targetQuery` 에 곧바로 답해야 한다. 배경 설명·인사·
+     "이 글에서는" 류로 시작하면 FAIL. 조건·금액·기한 중 핵심을 숫자로 담으면 더 좋지만 **권장**일 뿐이다.
+     "전입신고 필요서류" 처럼 답에 숫자가 없는 검색어는 숫자가 없어도 곧바로 답하면 PASS.
    - ③ **description 길이**: 스키마 범위 80~170자(`src/content.config.ts`) 안이면서 네이버 권고 80자 근처여야 한다.
-     스키마 하한이 80자라서 **80~90자 권장**. 80자 미만·170자 초과는 FAIL(빌드도 깨진다). 91~170자는 FAIL 은 아니지만
-     줄일 부분을 수정 지시에 적는다.
+     스키마 하한이 80자라서 **80~90자 권장**. 80자 미만·170자 초과는 ❌ FAIL(빌드도 깨진다). 91~170자는 ✅ 로 두고,
+     반환 형식의 `권고` 칸에 줄일 부분을 적는다.
    - ④ **조건·금액·기한 표 1개 이상**: 대상 조건·금액·기한을 정리한 표가 본문에 1개 이상 있어야 한다 (주제에 없는 칸은
      빼도 된다). 표 전후 산문 5룰(docs/12 §2-6-b)은 그대로 적용.
    - ⑤ **1차 출처 원문 링크 1개 이상**: 본문 또는 `sources` 에 `.go.kr`·`.or.kr` 원문 링크(조문·고시·공고·안내 페이지)가
@@ -70,10 +72,10 @@ node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·
      3일 연속 금지(docs/ops/SITE-KEYWORD-PROFILE.md §7)와 충돌하지 않게 직전 2편 제목과 형태를 대조한다
      (이 규칙은 아직 스크립트가 자동 검사하지 않는다). 질문형("~일까")은 제목보다 H2·FAQ 에 쓴다.
 
-   확인 명령 (`<slug>` 를 바꿔서):
+   확인 명령 (Bash 기준, `<slug>` 를 바꿔서. PowerShell 에서는 따옴표가 깨지니 Bash 도구로 돌린다):
    ```
    grep -h "^title:\|^targetQuery:\|^description:" src/content/articles/<slug>.mdx
-   node -e "const m=require('fs').readFileSync('src/content/articles/<slug>.mdx','utf8').match(/^description:\s*\"?(.+?)\"?\s*$/m);console.log(m[1].length+'자')"
+   node -e 'const m=require("fs").readFileSync("src/content/articles/<slug>.mdx","utf8").match(/^description:[ \t]*(.*)$/m);const v=m?m[1].trim().replace(/^(["\x27])(.*)\1$/,"$2"):"";console.log(!m?"description 줄 없음 (FAIL)":/^[>|]/.test(v)||!v?"description 이 여러 줄 형식, 직접 세기":v.length+"자")'
    grep -oE "https?://[^ )\"]+\.(go|or)\.kr[^ )\"]*" src/content/articles/<slug>.mdx
    ```
 
@@ -85,6 +87,7 @@ node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·
 수동 감사: 8항목 각 ✅/❌ + 위반 상세 (파일:줄, 무엇이, 왜)
 신규 글 규격: ①제목 어절 ②첫 문장 즉답 ③description N자 ④표 ⑤go.kr·or.kr 링크 각 ✅/❌ (리프레시는 "해당 없음")
 수정 지시: (FAIL 시) 우선순위순 — 사실 오류 → 중복 → 풋프린트 → 구조 → 가독성
+권고: (판정과 무관, PASS 여도 적는다) ③ description 91~170자면 줄일 부분, ② 첫 문장에 넣을 만한 숫자 등. 없으면 "없음"
 ```
 
 FAIL 이면 content-agent 로 되돌린다. PASS 여도 머지는 `merge-approved` 라벨 승인
