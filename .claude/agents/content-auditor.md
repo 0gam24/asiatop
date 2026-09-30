@@ -23,7 +23,7 @@ tools:
 
 ```
 node scripts/audit/ai-tell-style.mjs        # 긴 줄표(—/–) — 신규 글
-node scripts/audit/publish-cadence.mjs      # 일 1편 캐던스
+node scripts/audit/publish-cadence.mjs      # 신규 캐던스 상한 (docs/ops/cadence.json)
 node scripts/audit/template-footprint.mjs   # 제목·메타 풋프린트 (docs/24 P1)
 node scripts/audit/claims-guard.mjs         # 법정 수치 표기
 node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·애드센스 허위 진술 문구 (2026-09-07 신설, docs/25 §6)
@@ -69,7 +69,8 @@ node scripts/audit/safe-expression.mjs      # 금소법 22조·불법사금융·
    - ⑤ **1차 출처 원문 링크 1개 이상**: 본문 또는 `sources` 에 `.go.kr`·`.or.kr` 원문 링크(조문·고시·공고·안내 페이지)가
      있어야 한다. 기관 첫 화면이나 검색 결과 주소만 있으면 FAIL.
    - **제목 형태 로테이션**: 조건형·금액형·질문 답변형·비교형·기한형을 돌려 쓴다. template-footprint 의 같은 형태
-     3일 연속 금지(docs/ops/SITE-KEYWORD-PROFILE.md §7)와 충돌하지 않게 직전 2편 제목과 형태를 대조한다
+     3일 연속 금지(docs/ops/SITE-KEYWORD-PROFILE.md §7)와 충돌하지 않게 직전 2편 제목과 형태를 대조한다.
+     하루 2편 이상 내는 날(docs/ops/cadence.json)은 같은 날 먼저 쓴 신규 글과도 형태가 달라야 한다
      (이 규칙은 아직 스크립트가 자동 검사하지 않는다). 질문형("~일까")은 제목보다 H2·FAQ 에 쓴다.
 
    확인 명령 (Bash 기준, `<slug>` 를 바꿔서. PowerShell 에서는 따옴표가 깨지니 Bash 도구로 돌린다):

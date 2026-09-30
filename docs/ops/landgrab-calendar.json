@@ -5,7 +5,7 @@
     "writeBy~closeAt = 피크 D-14~D-10. 네이버 색인에 1~6일 걸리므로(계획 §1 표 3) 이 창에 쓰면 피크 전에 검색에 걸린다. peakDate 는 마감일·시행일·고지서 도착일 가운데 검색이 몰리는 날이다.",
     "나머지 필드(id·event·peakDate·basis·relatedSlugs·note)는 사람용이다. basis 는 원천 docs/editorial/policy-calendar-2026-Q4.json 의 배열 순번(calendarIndex, 0부터)·날짜·mainKeyword·검증 등급·출처 URL 이다. calendarIndex 는 원천 배열의 위치일 뿐이라 원천에 줄이 끼면 밀린다. 원천 행은 calendarDate 와 mainKeyword 로 찾는다.",
     "넣는 기준: 정책 달력에서 verified=확인 인 항목만 넣는다(뉴스만·미확인 제외). src/content/articles 에 같은 주제 글이 이미 있으면 넣지 않고 리프레시 후보로 돌린다. query 는 node scripts/audit/naver-ledger.mjs --check 에서 PASS 여야 한다(VETO 면 파이프라인이 정찰만 하고 버린다).",
-    "이 파일은 후보만 만든다. 정찰·점수·autoPick·발행은 파이프라인과 루틴 규칙 그대로이고 신규 일 1편 한도도 그대로다. 금액·날짜는 쓰기 직전에 basis.sourceUrl 원문으로 다시 확인한다."
+    "이 파일은 후보만 만든다. 정찰·점수·autoPick·발행은 파이프라인과 루틴 규칙 그대로이고 신규 하루 상한(docs/ops/cadence.json 단계 캐던스)도 그대로다. 금액·날짜는 쓰기 직전에 basis.sourceUrl 원문으로 다시 확인한다."
   ],
   "updatedAt": "2026-09-30",
   "source": "docs/editorial/policy-calendar-2026-Q4.json (2026-09-07 작성, 확인 33건) 1차 변환",
