@@ -95,7 +95,7 @@ docs/23(수익 운영)·docs/24(구글 회복)·docs/25(성장)·docs/26(네이�
 
 ## 5. 주간 기록
 
-- **매일**: 정책 센터, 03:05 루틴 결과(신규 수·리프레시 수·URL 200).
+- **매일**: 정책 센터, 09:05 루틴 결과(신규 수·리프레시 수·URL 200).
 - **월요일**: `pnpm audit:revenue` + `pnpm audit:revenue:deep` 값을 전주와 나란히(채팅·비공개 로그), `pnpm audit:rank`, 서치어드바이저 CSV 적재.
 - **2주마다**: `docs/ops/cadence.json` 올리기·내리기 조건을 측정값으로 채워 보고.
 - **매월 첫 월요일**: `pnpm audit:index` 전체, 지급 페이지 무효 트래픽 공제 값, OAuth 상태.
