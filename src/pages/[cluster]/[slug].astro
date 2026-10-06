@@ -490,9 +490,9 @@ const ageMonths = Math.floor(ageInDays / 30);
         )}
       </header>
 
-      <!-- 갱신 필요 배너 (180일 경과 시) -->
+      <!-- 갱신 필요 배너 (180일 경과 시). aside 에 role="status" 를 두면 axe aria-allowed-role 위반으로 Lighthouse CI 가 실패한다 (2026-10-01 credit-score-improvement 사례) -->
       {isStale && (
-        <aside class={`stale-banner ${isVeryStale ? 'very-stale' : ''}`} role="status" aria-label="갱신 알림">
+        <aside class={`stale-banner ${isVeryStale ? 'very-stale' : ''}`} aria-label="갱신 알림">
           <span class="icon" aria-hidden="true">{isVeryStale ? '⚠️' : '🕐'}</span>
           <div>
             <strong>{isVeryStale ? '1년 이상 갱신되지 않은 글입니다' : '6개월 이상 갱신되지 않은 글입니다'}</strong>
