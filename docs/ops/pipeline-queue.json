@@ -3127,6 +3127,324 @@
    },
    "rejectedReason": "재측정 2026-09-28: 7일 기사 21",
    "rejectedBy": "pipeline"
+  },
+  {
+   "id": "빈틈:국민연금 해지",
+   "query": "국민연금 해지",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "pension",
+   "status": "proposed",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "국민연금",
+   "score": 75,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 93건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 5"
+   ],
+   "condition": "국민연금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 국민연금 글 29편과 세부 키워드 다르게. 선점 항목(다음 물결 \"국민연금\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-07",
+   "demand": {
+    "rel30": 5.7,
+    "ratio7": 0.94,
+    "born": false,
+    "kinExact": 93
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 5,
+    "wallTop5": 1,
+    "mainGovAbove": 0,
+    "publicAbove": 1,
+    "toolAbove": 2,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 13,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "commercial:edithvolo.com",
+     "press:kukinews.com",
+     "ugc:blog.naver.com",
+     "commercial:npsonair.kr",
+     "public:nps.or.kr",
+     "public:nps.or.kr",
+     "tool:gov.kr",
+     "tool:si4n.nhis.or.kr",
+     "commercial:npsonair.kr",
+     "commercial:npsonair.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "national-pension-credit-birth-military-unemployment",
+     "national-pension-early-receive-breakeven",
+     "national-pension-expected-amount-lookup",
+     "national-pension-first-premium-support-2009",
+     "national-pension-income-ceiling-2026-july"
+    ]
+   }
+  },
+  {
+   "id": "빈틈:국민연금 지급일",
+   "query": "국민연금 지급일",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "pension",
+   "status": "proposed",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "국민연금",
+   "score": 75,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 25건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 4",
+    "뉴스 벽 없음"
+   ],
+   "condition": "국민연금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 국민연금 글 29편과 세부 키워드 다르게. 선점 항목(다음 물결 \"국민연금\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-07",
+   "demand": {
+    "rel30": 0.8,
+    "ratio7": 0.59,
+    "born": false,
+    "kinExact": 25
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 4,
+    "wallTop5": 3,
+    "mainGovAbove": 0,
+    "publicAbove": 3,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 1,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "public:pensioner.nps.or.kr",
+     "public:pensioner.nps.or.kr",
+     "commercial:npsonair.kr",
+     "org:geps.or.kr",
+     "public:nps.or.kr",
+     "commercial:awoo.or.kr",
+     "gov:easylaw.go.kr",
+     "commercial:npsonair.kr",
+     "public:nps.or.kr",
+     "public:nps.or.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "national-pension-credit-birth-military-unemployment",
+     "national-pension-early-receive-breakeven",
+     "national-pension-expected-amount-lookup",
+     "national-pension-first-premium-support-2009",
+     "national-pension-income-ceiling-2026-july"
+    ]
+   }
+  },
+  {
+   "id": "빈틈:전입신고 하는법",
+   "query": "전입신고 하는법",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "public-services",
+   "status": "proposed",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "전입신고",
+   "score": 55,
+   "label": "중간",
+   "reasons": [
+    "자리 열림"
+   ],
+   "condition": "전입신고 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 전입신고 글 4편과 세부 키워드 다르게. 선점 항목(다음 물결 \"전입신고\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-07",
+   "demand": {
+    "rel30": 12.9,
+    "ratio7": 1.39,
+    "born": false,
+    "kinExact": 3
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 2,
+    "wallTop5": 3,
+    "mainGovAbove": 2,
+    "publicAbove": 0,
+    "toolAbove": 2,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 5,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "tool:gov.kr",
+     "law:mylawstory.com",
+     "gov:easylaw.go.kr",
+     "ugc:blog.naver.com",
+     "gov:yongin.go.kr",
+     "gov:gc.go.kr",
+     "gov:easylaw.go.kr",
+     "tool:gov.kr",
+     "commercial:goeyi.kr",
+     "gov:cheongju.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "move-in-14day-deadline-fine",
+     "move-in-report-missing-fine",
+     "move-in-report-required-documents",
+     "online-resident-transfer-procedure"
+    ]
+   }
+  },
+  {
+   "id": "빈틈:전입신고 확정일자",
+   "query": "전입신고 확정일자",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "전입신고",
+   "score": 65,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 100건(지식iN 상위 100)",
+    "자리 열림"
+   ],
+   "condition": "전입신고 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 전입신고 글 4편과 세부 키워드 다르게. 선점 항목(다음 물결 \"전입신고\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-07",
+   "demand": {
+    "rel30": 7.1,
+    "ratio7": 1.47,
+    "born": false,
+    "kinExact": 100
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 3,
+    "wallTop5": 3,
+    "mainGovAbove": 3,
+    "publicAbove": 0,
+    "toolAbove": 1,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 12,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "ugc:brunch.co.kr",
+     "gov:easylaw.go.kr",
+     "commercial:goldpond.kr",
+     "gov:easylaw.go.kr",
+     "gov:easylaw.go.kr",
+     "tool:gov.kr",
+     "gov:easylaw.go.kr",
+     "gov:council.gwangju.go.kr",
+     "ugc:in.naver.com",
+     "gov:easylaw.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "move-in-14day-deadline-fine",
+     "move-in-report-missing-fine",
+     "move-in-report-required-documents",
+     "online-resident-transfer-procedure"
+    ]
+   }
+  },
+  {
+   "id": "빈틈:아동수당 지급일",
+   "query": "아동수당 지급일",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "gov-support",
+   "status": "proposed",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "아동수당",
+   "score": 70,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 57건(지식iN 상위 100)",
+    "자리 열림",
+    "뉴스 벽 없음"
+   ],
+   "condition": "아동수당 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 아동수당 글 2편과 세부 키워드 다르게. 선점 항목(다음 물결 \"아동수당\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-07",
+   "demand": {
+    "rel30": 1,
+    "ratio7": 0.42,
+    "born": false,
+    "kinExact": 57
+   },
+   "serp": {
+    "rank": null,
+    "openSlots": 3,
+    "wallTop5": 2,
+    "mainGovAbove": 2,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 2,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "stale-commercial:nicesongtoyou.com",
+     "stale-commercial:nicesongtoyou.com",
+     "gov:incheon.go.kr",
+     "commercial:suseong.kr",
+     "gov:gimpo.go.kr",
+     "gov:seocho.go.kr",
+     "gov:sd.go.kr",
+     "gov:bundang-gu.go.kr",
+     "gov:korea.kr",
+     "gov:mohw.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "child-allowance-child-account-gift-tax",
+     "child-basic-allowance-2027-july-birth"
+    ]
+   }
   }
  ]
 }
