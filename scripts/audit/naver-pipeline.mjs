@@ -70,7 +70,7 @@ const SUFFIX_STOP = new Set(['질문', '문의', '관련', '관련해서', '대�
 // 지식iN 질문 말투 조각 (2026-10-07 대기열 실측: "건보료 등등"·"종소세 낼때"·"연말정산 뜨는거"·"권고사직 해준다고"·"권고사직 이런경우"·
 // "아동수당 증여 관련문제" 가 80~85점으로 자동 선택 후보에 올랐다). 채굴과 재측정에서 같이 쓴다.
 // 같은 날 드라이런에서 "건보료 두번이나"·"청년도약계좌 어느"·"최저임금 만오백원이" 가 더 나왔다.
-const CHATTY_WORDS = new Set(['등등', '이런', '이런경우', '이럴때', '그런', '저런', '관련문제', '관련질문', '어느', '어떤', '무슨']);
+const CHATTY_WORDS = new Set(['등등', '이런', '이런경우', '이럴때', '그런', '저런', '관련문제', '관련질문', '어느', '어떤', '무슨', 'vs']);
 const CHATTY_END = /(때|다고|라고|않고|받고|는거|은거|해달라|이나|원이)$/;
 export const isChattyToken = (x) => CHATTY_WORDS.has(x) || CHATTY_END.test(x);
 // 쿼리의 둘째 낱말부터 하나라도 질문 말투 조각이면 검색어가 아니라 질문 문장의 일부다
@@ -176,7 +176,7 @@ export function exposureOf({ track = 'T2', serp = {}, demand = {}, ledger = {}, 
   // 검색 신호: 데이터랩 눈금이 잡히거나, 블로그 제목 100건 중 3번 이상 쓰였거나, 실유입이 있다. 지식iN 같은 질문 수는 넣지 않는다
   // (후보 낱말을 지식iN 제목에서 뽑으므로 그 제목을 다시 세면 스스로를 세는 셈이다. 2026-10-07 드라이런: "최저임금 만오백원이" 지식iN 7 · 블로그 0 · 눈금 0 · 웹문서 17건).
   const rel = demand.rel30 ?? 0;
-  const searchSignal = rel > 0 || (demand.blogFreq ?? 0) >= 3 || inbound > 0;
+  const searchSignal = hasSearchSignal(demand);
   const docs = serp.webDocCount;
   if (docs != null) {
     const n = docs >= 10000 ? `${Math.round(docs / 10000)}만` : String(docs);
@@ -209,10 +209,13 @@ export const isCommercialLoan = (q) => /대출|대환|카드론|현금서비스/
 
 // 수요 신호: 지식iN 같은 질문 5건 · 블로그 제목 3회 · 검색량 눈금 1 · 실유입 중 하나. 없으면 자리가 열려 있어도 운영자가 고른다
 export const hasDemand = (d = {}) => (d.kinExact ?? 0) >= 5 || (d.blogFreq ?? 0) >= 3 || (d.rel30 ?? 0) >= 1 || (d.inbound7d ?? 0) > 0;
+// 검색 신호 (v0.2, 2026-10-07): 지식iN 같은 질문 수를 빼고 본다. 후보 낱말을 지식iN 제목에서 뽑으므로 그 수는 스스로를 센다.
+// 드라이런에서 "주휴수당 매커니즘"·"건보료 차량세금"(블로그 제목 0 · 눈금 0)이 자동 선택 1·2위였다. 자동 선택은 이 신호가 있을 때만, 없으면 운영자 지정.
+export const hasSearchSignal = (d = {}) => (d.rel30 ?? 0) > 0 || (d.blogFreq ?? 0) >= 3 || (d.inbound7d ?? 0) > 0;
 
 export function autoPickOf({ score, track, query, unverified, ledgerVerdict, demand }) {
   if (unverified || track === 'NEW') return false;
-  if (demand && !hasDemand(demand)) return false;
+  if (demand && !hasSearchSignal(demand)) return false;
   if (ledgerVerdict !== 'PASS') return false;
   if (NEEDS_OPERATOR.test(query) || isCommercialLoan(query)) return false;
   return score >= AUTOPICK_MIN_SCORE;
@@ -227,6 +230,7 @@ export function conditionOf({ query, program, sameProgram = 0, serp = {}, unveri
   if (SALES_INTENT.test(query) || (serp.fincoAbove ?? 0) >= 4) parts.push('특정 금융사 권유·"가능" 표현 금지(금소법 가드), 정보 프레임');
   if (sameProgram > 0) parts.push(`기존 ${program} 글 ${sameProgram}편과 세부 키워드 다르게`);
   if (demand && !hasDemand(demand)) parts.push('수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요');
+  else if (demand && !hasSearchSignal(demand)) parts.push('검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요');
   return parts.join('. ');
 }
 

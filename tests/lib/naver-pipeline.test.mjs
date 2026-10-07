@@ -6,7 +6,7 @@ import { describe, it, expect } from 'vitest';
 import {
   suffixesOf, mineSuffixes, foldNearDuplicates, roundRobin, kinExactCount,
   exposureOf, autoPickOf, mergeQueue, renderReport, headsOf, templateSuffixes,
-  isSisterTopic, regionOf, sisterTopOf, SISTER_README, isChattyQuery,
+  isSisterTopic, regionOf, sisterTopOf, SISTER_README, isChattyQuery, conditionOf,
 } from '../../scripts/audit/naver-pipeline.mjs';
 
 describe('suffixesOf', () => {
@@ -138,7 +138,7 @@ describe('exposureOf', () => {
 
 describe('질문 말투 조각 (v0.2)', () => {
   it('2026-10-07 대기열에 오른 조각은 검색어가 아니다', () => {
-    for (const q of ['건보료 등등', '종소세 낼때', '연말정산 뜨는거', '권고사직 해준다고', '권고사직 이런경우', '아동수당 증여 관련문제', '건강보험료 정산 해달라고', '권고사직 받고', '청년도약계좌 해지 않고', '건보료 두번이나', '청년도약계좌 어느', '최저임금 만오백원이']) {
+    for (const q of ['건보료 등등', '종소세 낼때', '연말정산 뜨는거', '권고사직 해준다고', '권고사직 이런경우', '아동수당 증여 관련문제', '건강보험료 정산 해달라고', '권고사직 받고', '청년도약계좌 해지 않고', '건보료 두번이나', '청년도약계좌 어느', '최저임금 만오백원이', '청년도약계좌 vs']) {
       expect(isChattyQuery(q), q).toBe(true);
     }
   });
@@ -166,6 +166,12 @@ describe('autoPickOf', () => {
     expect(autoPickOf({ ...ok, demand: { kinExact: 0, blogFreq: 0, rel30: 0 } })).toBe(false);
     expect(autoPickOf({ ...ok, demand: { kinExact: 0, rel30: 14.8 } })).toBe(true);
   });
+  it('지식iN 같은 질문 수만 있고 검색 신호(눈금·블로그 제목·실유입)가 없으면 운영자 지정 (v0.2)', () => {
+    expect(autoPickOf({ ...ok, demand: { kinExact: 29, blogFreq: 0, rel30: 0 } })).toBe(false);
+    expect(autoPickOf({ ...ok, demand: { kinExact: 29, rel30: 0.1 } })).toBe(true);
+    expect(autoPickOf({ ...ok, demand: { kinExact: 0, blogFreq: 3 } })).toBe(true);
+    expect(conditionOf({ query: '건보료 차량세금', demand: { kinExact: 11, blogFreq: 0, rel30: 0 } })).toContain('검색 신호 없음');
+  });
   it('민간 대출은 운영자 지정, 정책 대출은 자동', () => {
     expect(autoPickOf({ ...ok, query: '퇴직금 담보대출' })).toBe(false);
     expect(autoPickOf({ ...ok, query: '버팀목전세자금대출 연장' })).toBe(true);
@@ -174,14 +180,14 @@ describe('autoPickOf', () => {
 
 const scout = (over = {}) => ({ rank: null, openSlots: 4, wallTop5: 1, mainGovAbove: 1, publicAbove: 0, toolAbove: 0, fincoAbove: 0, naverAbove: 0, newsWall: 2, verdictT1: 'open', verdictT2: 'open', reason: [], warn: [], above: [{ kind: 'ugc', host: 'blog.naver.com' }], ...over });
 const ledger = (over = {}) => ({ verdict: 'PASS', program: '확정일자', adjacent: 0, sameProgram: 2, relatedSlugs: ['a'], ...over });
-const meas = (query, over = {}) => ({ query, track: 'T2', cluster: 'realestate', altQueries: [], scout: scout(over.scout), ledger: ledger(over.ledger), demand: { kinExact: 30, ...(over.demand || {}) }, ...over.top });
+const meas = (query, over = {}) => ({ query, track: 'T2', cluster: 'realestate', altQueries: [], scout: scout(over.scout), ledger: ledger(over.ledger), demand: { kinExact: 30, rel30: 1.2, ...(over.demand || {}) }, ...over.top });
 
 describe('mergeQueue', () => {
   const today = '2026-09-18';
   it('열린 새 후보를 proposed 로 올린다', () => {
     const { queue, log } = mergeQueue({ items: [] }, [meas('확정일자 효력')], { today });
     expect(log.added).toEqual(['확정일자 효력']);
-    expect(queue.items[0]).toMatchObject({ id: 'gap:2026-09-18:확정일자-효력', status: 'proposed', autoPick: true, score: 70, measuredAt: today, family: 'A' });
+    expect(queue.items[0]).toMatchObject({ id: 'gap:2026-09-18:확정일자-효력', status: 'proposed', autoPick: true, score: 80, measuredAt: today, family: 'A' });
     expect(queue.items[0].serp.top10).toEqual(['ugc:blog.naver.com']);
     expect(queue.items[0].condition).toContain('기존 확정일자 글 2편');
   });
@@ -189,7 +195,7 @@ describe('mergeQueue', () => {
     const { queue, log } = mergeQueue({ items: [] }, [
       meas('a b', { scout: { verdictT2: 'closed', reason: ['도구 3'] } }),
       meas('c d', { ledger: { verdict: 'VETO' } }),
-      meas('e f', { scout: { openSlots: 0, wallTop5: 3, newsWall: 20, verdictT2: 'open' }, demand: { kinExact: 0 } }),
+      meas('e f', { scout: { openSlots: 0, wallTop5: 3, newsWall: 20, verdictT2: 'open' }, demand: { kinExact: 0, rel30: 0 } }),
       meas('g h', { scout: { rank: 7, ourUrl: 'https://asiatop.co.kr/x/' } }),
     ], { today });
     expect(queue.items).toEqual([]);
@@ -254,7 +260,7 @@ describe('mergeQueue', () => {
   it('재측정한 항목에 웹문서 결과 수를 남긴다', () => {
     const { queue } = mergeQueue({ items: [] }, [meas('확정일자 효력', { scout: { webDocCount: 1795109 } })], { today });
     expect(queue.items[0].serp.webDocCount).toBe(1795109);
-    expect(queue.items[0].score).toBe(55);
+    expect(queue.items[0].score).toBe(65);
   });
   it('측정 실패한 항목은 그대로 둔다', () => {
     const items = [{ id: 'a', query: 'x y', track: 'T2', status: 'proposed', score: 70, measuredAt: '2026-09-17' }];
@@ -448,7 +454,7 @@ describe('mergeQueue 자매 규칙', () => {
     expect(again.queue.items[0].remeasureWarn).toBe(first.queue.items[0].remeasureWarn);
   });
   it('재측정 없이 자매가 빠져도(자매 목록이 줄어든 경우) 저장된 값으로 autoPick 을 다시 계산한다', () => {
-    const items = [{ id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: false, sisterTop: 1, score: 70, reasons: ['자매 사이트 awoo 상위 1위, 같은 계정 자리 중복', '자리 열림'], measuredAt: today, demand: { kinExact: 30 }, ledger: { verdict: 'PASS' }, serp: { top10: ['commercial:other.or.kr', 'gov:korea.kr'] } }];
+    const items = [{ id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: false, sisterTop: 1, score: 70, reasons: ['자매 사이트 awoo 상위 1위, 같은 계정 자리 중복', '자리 열림'], measuredAt: today, demand: { kinExact: 30, rel30: 1.2 }, ledger: { verdict: 'PASS' }, serp: { top10: ['commercial:other.or.kr', 'gov:korea.kr'] } }];
     const { queue } = mergeQueue({ items }, [], { today });
     expect(queue.items[0].autoPick).toBe(true);
     expect(queue.items[0].sisterTop).toBeUndefined();
