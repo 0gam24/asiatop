@@ -30,7 +30,7 @@
   },
   "families": 43,
   "measured": 43,
-  "newsTitles": 2595
+  "newsTitles": 2594
  },
  "items": [
   {
@@ -228,7 +228,7 @@
    "posts": 50,
    "lastPost": "2026-10-06",
    "cluster": "tax",
-   "queued": 1,
+   "queued": 0,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -349,7 +349,7 @@
    "posts": 35,
    "lastPost": "2026-10-07",
    "cluster": "unemployment",
-   "queued": 0,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "뉴스"
@@ -392,7 +392,7 @@
    "posts": 11,
    "lastPost": "2026-10-06",
    "cluster": "savings",
-   "queued": 1,
+   "queued": 0,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -435,7 +435,7 @@
    "posts": 10,
    "lastPost": "2026-09-26",
    "cluster": "savings",
-   "queued": 2,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -556,7 +556,7 @@
    "posts": 6,
    "lastPost": "2026-09-09",
    "cluster": "unemployment",
-   "queued": 1,
+   "queued": 0,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -724,7 +724,7 @@
    "posts": 21,
    "lastPost": "2026-10-01",
    "cluster": "insurance-labor",
-   "queued": 3,
+   "queued": 2,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -766,7 +766,7 @@
    "posts": 7,
    "lastPost": "2026-06-28",
    "cluster": "credit-loan",
-   "queued": 1,
+   "queued": 2,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -922,7 +922,7 @@
    "posts": 6,
    "lastPost": "2026-10-07",
    "cluster": "unemployment",
-   "queued": 3,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -1508,7 +1508,7 @@
    "posts": 14,
    "lastPost": "2026-10-06",
    "cluster": "tax",
-   "queued": 0,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -1551,7 +1551,7 @@
    "posts": 5,
    "lastPost": "2026-10-07",
    "cluster": "gov-support",
-   "queued": 2,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -1758,7 +1758,7 @@
    "posts": 15,
    "lastPost": "2026-09-29",
    "cluster": "realestate",
-   "queued": 0,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "감시 목록"
