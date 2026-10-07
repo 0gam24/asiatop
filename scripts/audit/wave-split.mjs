@@ -48,14 +48,21 @@ async function titlesOf(ep, query) {
   return (j.items || []).map((x) => stripTags(x.title));
 }
 
-function usedTargets() {
-  const out = new Set();
+// 이미 쓴 targetQuery 와, 주제 이름이 든 우리 글의 cluster 빈도(감시 목록에 cluster 가 없을 때 큐 항목 cluster 로 쓴다)
+function scanArticles(term) {
+  const used = new Set();
+  const clusters = new Map();
+  const key = normKeyword(term);
   for (const f of readdirSync(ARTICLES)) {
     if (!f.endsWith('.mdx')) continue;
     const m = parseArticleMeta(readFileSync(path.join(ARTICLES, f), 'utf8'));
-    if (m?.targetQuery) out.add(normKeyword(m.targetQuery));
+    if (!m) continue;
+    if (m.targetQuery) used.add(normKeyword(m.targetQuery));
+    const hay = normKeyword([m.title, m.targetQuery, ...(m.keywords || [])].join(' '));
+    if (m.cluster && hay.includes(key)) clusters.set(m.cluster, (clusters.get(m.cluster) ?? 0) + 1);
   }
-  return out;
+  const top = [...clusters.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+  return { used, cluster: top };
 }
 
 async function main() {
@@ -71,12 +78,13 @@ async function main() {
   const wave = readJson(WAVE, { items: [] });
   const w = (wave.items || []).find((x) => normKeyword(x.term) === normKeyword(term)) ?? null;
   const seed = (readJson(SEEDS, { seeds: [] }).seeds || []).find((s) => normKeyword(s.term) === normKeyword(term)) ?? null;
-  const cluster = seed?.cluster ?? w?.cluster ?? null;
 
   const queue = readJson(QUEUE, null);
   if (!queue) { console.error('❌ docs/ops/pipeline-queue.json 을 읽지 못했다'); process.exit(1); }
   const known = new Set((queue.items || []).flatMap(queriesOf));
-  const used = usedTargets();
+  const scan = scanArticles(term);
+  const used = scan.used;
+  const cluster = seed?.cluster ?? w?.cluster ?? scan.cluster;
   const entries = buildLedger();
   let calls = 0;
 

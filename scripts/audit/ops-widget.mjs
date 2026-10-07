@@ -34,6 +34,7 @@ const LIMIT = argNum('limit', 10);
 const WAVES = argNum('waves', 6);
 const GOAL_USD = 200; // 운영자 목표 2026-10-07 (docs/28)
 const EYE_TOP = 5;
+const MIN_VOL = 0.5; // 검색량(실업급여 = 100)이 이 값 이상이면 '검색량이 잡힌' 글감 (wave-split.mjs MIN_REL30 과 같음)
 
 const DAY = 864e5;
 const kst = (offset = 0) => new Date(Date.now() + 9 * 3600e3 + offset * DAY).toISOString().slice(0, 10);
@@ -120,6 +121,10 @@ function top10Line(top10 = []) {
   return [...c.entries()].sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ${n}`).join(' · ');
 }
 
+function top3Line(top10 = []) {
+  return top10.slice(0, 3).map((x) => KIND[String(x).split(':')[0]] ?? '기타').join(' · ');
+}
+
 function designationReason(it) {
   const c = String(it.condition || '');
   const out = [];
@@ -160,6 +165,7 @@ function gapRow(it, idx, eyeLog) {
   const vol = (d.rel30 ?? 0) > 0 ? `검색량 ${r1(d.rel30)} (실업급여 = 100)` : '검색량 데이터랩에 안 잡힘';
   const rank = s.rank ? `우리 글 ${s.rank}위` : '우리 글 30위 밖';
   const comp = top10Line(s.top10);
+  const top3 = top3Line(s.top10);
   const ev = it.serp?.eyeOffset ?? null;
   const evAt = eyeLog?.entries?.[it.query]?.at ?? null;
   let eye = '';
@@ -170,7 +176,7 @@ function gapRow(it, idx, eyeLog) {
   return `<div class="row"><div class="l">
 <div><span class="q">${esc(it.query)}</span><span class="tag ${hi ? 't-hi' : 't-mid'}">${hi ? '높음' : '중간'} ${it.score}</span>${it.status === 'approved' ? '<span class="tag t-acc">승인됨</span>' : ''}${it.wave ? `<span class="tag t-acc">${esc(`선점 · ${it.wave}`)}</span>` : ''}</div>
 <div class="sub">${esc(facts)}</div>
-<div class="mut">${esc(`${vol} · ${rank}${comp ? ` · 위 10개: ${comp}` : ''}`)}</div>
+<div class="mut">${esc(`${vol} · ${rank}${top3 ? ` · 1~3위: ${top3}` : ''}${comp ? ` · 위 10개: ${comp}` : ''}`)}</div>
 ${eye}</div><div class="btns">${btn('발행 지시 ↗', `발행: ${it.query}. 목록 버튼 지시, 큐 id ${it.id}`)}${btn('보류', `보류: ${it.query}. 목록 버튼, 큐를 hold 로`)}</div></div>`;
 }
 
@@ -203,8 +209,12 @@ function render() {
   const isUsed = (it) => [it.query, ...(it.altQueries || [])].some((q) => usedQ.has(norm(q)));
   const live = (queue.items || []).filter((it) => (it.measuredAt === queue.updatedAt || it.measuredAt === TODAY) && (it.score ?? 0) >= 45);
   const isWave = (it) => it.manual === true || String(it.id || '').startsWith('빈틈:');
-  const picks = live.filter((it) => (it.status === 'approved' || (it.status === 'proposed' && (it.autoPick || isWave(it)))) && !isUsed(it))
-    .sort((a, b) => (a.status === 'approved' ? 0 : 1) - (b.status === 'approved' ? 0 : 1) || b.score - a.score || (b.demand?.kinExact ?? 0) - (a.demand?.kinExact ?? 0));
+  // 정렬(2026-10-07 운영자 "네이버 상위 노출할 빈틈"): 승인 → 검색량이 잡힌 것(MIN_VOL 이상)을 점수 순. 검색량이 데이터랩에 안 잡힌 자동 글감은 아래로 접는다
+  const hasVol = (it) => (it.demand?.rel30 ?? 0) >= MIN_VOL;
+  const eligible = live.filter((it) => (it.status === 'approved' || (it.status === 'proposed' && (it.autoPick || isWave(it)))) && !isUsed(it));
+  const byScore = (a, b) => b.score - a.score || (b.demand?.rel30 ?? 0) - (a.demand?.rel30 ?? 0) || (b.demand?.kinExact ?? 0) - (a.demand?.kinExact ?? 0);
+  const picks = eligible.filter((it) => it.status === 'approved' || hasVol(it)).sort((a, b) => (a.status === 'approved' ? 0 : 1) - (b.status === 'approved' ? 0 : 1) || byScore(a, b));
+  const noVol = eligible.filter((it) => it.status !== 'approved' && !hasVol(it)).sort(byScore);
   const shown = picks.slice(0, LIMIT);
   const manual = live.filter((it) => it.status === 'proposed' && !it.autoPick && !isWave(it) && !isUsed(it)).sort((a, b) => b.score - a.score);
   const publishedToday = (queue.items || []).filter((it) => [it.query, ...(it.altQueries || [])].some((q) => todayQ.has(norm(q))));
@@ -237,19 +247,20 @@ function render() {
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 </style>`);
   h.push('<div class="w">');
-  h.push(`<div class="hd"><span>${esc(`오늘 쓸 글감 ${picks.length}건 · 자리 잡을 수 있는 것 중 점수 순 · 큐 ${md(queue.updatedAt)} 측정`)}</span><span>${esc(countLine(pc))}</span></div>`);
+  h.push(`<div class="hd"><span>${esc(`오늘 쓸 글감 ${picks.length}건 · 자리 열리고 검색량이 잡힌 것 · 큐 ${md(queue.updatedAt)} 측정`)}</span><span>${esc(countLine(pc))}</span></div>`);
   if (!fresh) h.push(`<div class="sub" style="color:var(--text-danger);padding:0 0 8px">${esc(`오늘(${md(TODAY)}) 측정분이 아직 없습니다. 큐는 ${queue.updatedAt ?? '없음'} 측정입니다.`)}</div>`);
   if (rev) {
     const pct = Math.min(100, (rev.avg / GOAL_USD) * 100);
-    h.push(`<div class="goal"><div class="g1"><span style="font-weight:500">목표 하루 ${GOAL_USD}달러</span><span>${esc(`최근 7일 하루 평균 $${rev.avg.toFixed(2)} (${md(rev.from)}~${md(rev.to)} 애드센스 측정)`)}</span></div><div class="bar"><span style="width:${pct.toFixed(2)}%"></span></div></div>`);
+    h.push(`<div class="goal"><div class="g1"><span style="font-weight:500">목표 하루 ${GOAL_USD}달러</span><span>${esc(`최근 7일 하루 평균 $${rev.avg.toFixed(2)} (${md(rev.from)}~${md(rev.to)} 애드센스 측정)`)}</span></div><div class="bar"><span style="width:${pct.toFixed(2)}%"></span></div><div class="mut">${esc('주제별 1000회당 수익은 아직 모릅니다(애드센스 글별 보고서에 머니룩 글 0행). 그래서 돈 되는 순 정렬은 하지 않았습니다.')}</div></div>`);
   }
-  if (!shown.length) h.push(`<div class="row"><div class="sub">${esc('자동으로 고를 수 있는 오늘 글감이 없습니다. 아래 운영자 지정 글감이나 다음 물결의 선점으로 채울 수 있습니다.')}</div></div>`);
+  if (!shown.length) h.push(`<div class="row"><div class="sub">${esc('자리가 열리고 검색량이 잡힌 오늘 글감이 없습니다. 아래 접어 둔 글감이나 다음 물결의 선점으로 채울 수 있습니다.')}</div></div>`);
   shown.forEach((it, i) => h.push(gapRow(it, i, eyeLog)));
   if (picks.length > shown.length) h.push(`<div class="mut" style="padding:6px 0">${esc(`점수 순 ${shown.length}건만 보였습니다. 나머지 ${picks.length - shown.length}건: ${picks.slice(shown.length).map((x) => `${x.query} ${x.score}`).join(' · ')}`)}</div>`);
 
   const notes = [];
-  if (publishedToday.length) notes.push(`<div>${esc(`오늘 발행됨: ${publishedToday.map((x) => x.query).join(' · ')}`)}</div>`);
-  if (manual.length) notes.push(`<div style="margin-top:6px">${esc(`운영자가 지정해야 쓰는 글감 ${manual.length}건 (누르면 발행 지시)`)}<div class="chips">${manual.map((x) => btn(`${x.query} ${x.score} · ${designationReason(x)}`, `발행: ${x.query}. 목록 버튼 지시(운영자 지정), 큐 id ${x.id}`)).join('')}</div></div>`);
+  if (noVol.length) notes.push(`<div>${esc(`자리는 열렸지만 검색량이 데이터랩에 안 잡혀 접어 둔 글감 ${noVol.length}건 (누르면 발행 지시)`)}<div class="chips">${noVol.map((x) => btn(`${x.query} ${x.score}`, `발행: ${x.query}. 목록 버튼 지시, 큐 id ${x.id}`)).join('')}</div></div>`);
+  if (publishedToday.length) notes.push(`<div style="margin-top:6px">${esc(`오늘 발행됨: ${publishedToday.map((x) => x.query).join(' · ')}`)}</div>`);
+  if (manual.length) notes.push(`<div style="margin-top:6px">${esc(`자동 선택이 꺼져 운영자가 지정해야 쓰는 글감 ${manual.length}건 (누르면 발행 지시)`)}<div class="chips">${manual.map((x) => btn(`${x.query} ${x.score} · ${designationReason(x)}`, `발행: ${x.query}. 목록 버튼 지시(운영자 지정), 큐 id ${x.id}`)).join('')}</div></div>`);
   if (refresh.length) notes.push(`<div style="margin-top:6px">${esc('새 글 대신 기존 글을 고칠 후보 (오늘 측정에서 우리 글이 4~30위)')}<div class="chips">${refresh.map((x) => btn(`${x.query}${x.rank ? ` · 우리 ${x.rank}위` : ''}`, `갱신: "${x.query}" 기존 글 ${x.url} 진단·갱신 후보 보기`)).join('')}</div></div>`);
   if (sister.length) notes.push(`<div style="margin-top:6px">${esc(`자매 사이트 awoo 주제라 뺀 것: ${sister.map((x) => x.query).join(' · ')}`)}</div>`);
   if (notes.length) h.push(`<div class="note">${notes.join('')}</div>`);
