@@ -14,6 +14,277 @@
  "anchor": "실업급여=100",
  "items": [
   {
+   "id": "빈틈:국민연금 지급일",
+   "query": "국민연금 지급일",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "pension",
+   "status": "approved",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "국민연금",
+   "score": 65,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 25건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 4",
+    "뉴스 벽 없음",
+    "웹문서 28만건"
+   ],
+   "condition": "국민연금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 국민연금 글 29편과 세부 키워드 다르게. 선점 항목(다음 물결 \"국민연금\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-08",
+   "demand": {
+    "rel30": 0.9,
+    "ratio7": 0.7,
+    "kinExact": 25
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 280110,
+    "openSlots": 4,
+    "wallTop5": 3,
+    "mainGovAbove": 0,
+    "publicAbove": 3,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 1,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "public:pensioner.nps.or.kr",
+     "public:pensioner.nps.or.kr",
+     "commercial:npsonair.kr",
+     "org:geps.or.kr",
+     "public:nps.or.kr",
+     "commercial:awoo.or.kr",
+     "commercial:npsonair.kr",
+     "gov:easylaw.go.kr",
+     "public:nps.or.kr",
+     "public:nps.or.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "national-pension-credit-birth-military-unemployment",
+     "national-pension-early-receive-breakeven",
+     "national-pension-expected-amount-lookup",
+     "national-pension-first-premium-support-2009",
+     "national-pension-income-ceiling-2026-july"
+    ]
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-10-08",
+   "approvedVia": "목록 [발행 지시] 버튼 2번째"
+  },
+  {
+   "id": "빈틈:국민연금 해지",
+   "query": "국민연금 해지",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "pension",
+   "status": "approved",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "국민연금",
+   "score": 60,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 93건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 4",
+    "웹문서 163만건"
+   ],
+   "condition": "국민연금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 국민연금 글 29편과 세부 키워드 다르게. 선점 항목(다음 물결 \"국민연금\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-08",
+   "demand": {
+    "rel30": 5.8,
+    "ratio7": 0.75,
+    "kinExact": 93
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 1629444,
+    "openSlots": 4,
+    "wallTop5": 1,
+    "mainGovAbove": 0,
+    "publicAbove": 1,
+    "toolAbove": 2,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 13,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "commercial:edithvolo.com",
+     "press:kukinews.com",
+     "ugc:blog.naver.com",
+     "commercial:npsonair.kr",
+     "public:nps.or.kr",
+     "public:nps.or.kr",
+     "tool:gov.kr",
+     "tool:si4n.nhis.or.kr",
+     "public:nps.or.kr",
+     "commercial:npsonair.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "national-pension-credit-birth-military-unemployment",
+     "national-pension-early-receive-breakeven",
+     "national-pension-expected-amount-lookup",
+     "national-pension-first-premium-support-2009",
+     "national-pension-income-ceiling-2026-july"
+    ]
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-10-08",
+   "approvedVia": "목록 [발행 지시] 버튼 1번째"
+  },
+  {
+   "id": "gap:2026-09-28:조기재취업수당-신청",
+   "query": "조기재취업수당 신청",
+   "altQueries": [
+    "조기재취업수당 신청 조건이",
+    "조기재취업수당 신청기간"
+   ],
+   "track": "T2",
+   "family": "A",
+   "cluster": "unemployment",
+   "status": "approved",
+   "autoPick": true,
+   "score": 60,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 100건(지식iN 상위 100)",
+    "자리 열림",
+    "뉴스 벽 없음",
+    "웹문서 18만건"
+   ],
+   "condition": "조기재취업수당 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 조기재취업수당 글 1편과 세부 키워드 다르게",
+   "measuredAt": "2026-10-08",
+   "demand": {
+    "kinExact": 100,
+    "blogFreq": 0,
+    "rel30": 1.1,
+    "ratio7": 0.82
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 179621,
+    "openSlots": 3,
+    "wallTop5": 3,
+    "mainGovAbove": 2,
+    "publicAbove": 0,
+    "toolAbove": 1,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 0,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "gov:work24.go.kr",
+     "commercial:nicesongtoyou.com",
+     "gov:easylaw.go.kr",
+     "tool:gov.kr",
+     "commercial:awoo.or.kr",
+     "gov:edrm.ei.go.kr",
+     "gov:moel.go.kr",
+     "stale-gov:moel.go.kr",
+     "gov:moel.go.kr",
+     "gov:edrm.ei.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "early-reemployment-allowance-application"
+    ]
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-10-08",
+   "approvedVia": "목록 [발행 지시] 버튼 3번째"
+  },
+  {
+   "id": "빈틈:아동수당 지급일",
+   "query": "아동수당 지급일",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "gov-support",
+   "status": "approved",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "아동수당",
+   "score": 60,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 57건(지식iN 상위 100)",
+    "자리 열림",
+    "뉴스 벽 없음",
+    "웹문서 13만건"
+   ],
+   "condition": "아동수당 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 아동수당 글 2편과 세부 키워드 다르게. 선점 항목(다음 물결 \"아동수당\"), 운영자 [발행 지시]로만 쓴다",
+   "measuredAt": "2026-10-08",
+   "demand": {
+    "rel30": 1.1,
+    "ratio7": 0.77,
+    "kinExact": 57
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 125243,
+    "openSlots": 3,
+    "wallTop5": 2,
+    "mainGovAbove": 2,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 2,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "stale-commercial:nicesongtoyou.com",
+     "stale-commercial:nicesongtoyou.com",
+     "gov:incheon.go.kr",
+     "commercial:suseong.kr",
+     "gov:seocho.go.kr",
+     "gov:bundang-gu.go.kr",
+     "gov:gimpo.go.kr",
+     "gov:sd.go.kr",
+     "gov:mohw.go.kr",
+     "gov:korea.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "child-allowance-child-account-gift-tax",
+     "child-basic-allowance-2027-july-birth"
+    ]
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-10-08",
+   "approvedVia": "목록 [발행 지시] 버튼 4번째"
+  },
+  {
    "id": "gap:2026-09-29:주휴수당-매커니즘",
    "query": "주휴수당 매커니즘",
    "altQueries": [],
@@ -274,73 +545,6 @@
    }
   },
   {
-   "id": "빈틈:국민연금 지급일",
-   "query": "국민연금 지급일",
-   "altQueries": [],
-   "track": "T2",
-   "family": "B",
-   "cluster": "pension",
-   "status": "proposed",
-   "autoPick": false,
-   "manual": true,
-   "addedBy": "wave-split",
-   "wave": "국민연금",
-   "score": 65,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 25건(지식iN 상위 100)",
-    "자리 열림",
-    "빈자리 4",
-    "뉴스 벽 없음",
-    "웹문서 28만건"
-   ],
-   "condition": "국민연금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 국민연금 글 29편과 세부 키워드 다르게. 선점 항목(다음 물결 \"국민연금\"), 운영자 [발행 지시]로만 쓴다",
-   "measuredAt": "2026-10-08",
-   "demand": {
-    "rel30": 0.9,
-    "ratio7": 0.7,
-    "kinExact": 25
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 280110,
-    "openSlots": 4,
-    "wallTop5": 3,
-    "mainGovAbove": 0,
-    "publicAbove": 3,
-    "toolAbove": 0,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 1,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "public:pensioner.nps.or.kr",
-     "public:pensioner.nps.or.kr",
-     "commercial:npsonair.kr",
-     "org:geps.or.kr",
-     "public:nps.or.kr",
-     "commercial:awoo.or.kr",
-     "commercial:npsonair.kr",
-     "gov:easylaw.go.kr",
-     "public:nps.or.kr",
-     "public:nps.or.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "national-pension-credit-birth-military-unemployment",
-     "national-pension-early-receive-breakeven",
-     "national-pension-expected-amount-lookup",
-     "national-pension-first-premium-support-2009",
-     "national-pension-income-ceiling-2026-july"
-    ]
-   }
-  },
-  {
    "id": "gap:2026-10-08:햇살론유스-실업급여",
    "query": "햇살론유스 실업급여",
    "altQueries": [],
@@ -403,198 +607,6 @@
      "misogeumyung-vs-sunshine-loan",
      "sunshine-loan-17-vs-card-comparison",
      "sunshine-loan-comparison"
-    ]
-   }
-  },
-  {
-   "id": "gap:2026-09-28:조기재취업수당-신청",
-   "query": "조기재취업수당 신청",
-   "altQueries": [
-    "조기재취업수당 신청 조건이",
-    "조기재취업수당 신청기간"
-   ],
-   "track": "T2",
-   "family": "A",
-   "cluster": "unemployment",
-   "status": "proposed",
-   "autoPick": true,
-   "score": 60,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 100건(지식iN 상위 100)",
-    "자리 열림",
-    "뉴스 벽 없음",
-    "웹문서 18만건"
-   ],
-   "condition": "조기재취업수당 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 조기재취업수당 글 1편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-08",
-   "demand": {
-    "kinExact": 100,
-    "blogFreq": 0,
-    "rel30": 1.1,
-    "ratio7": 0.82
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 179621,
-    "openSlots": 3,
-    "wallTop5": 3,
-    "mainGovAbove": 2,
-    "publicAbove": 0,
-    "toolAbove": 1,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 0,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "gov:work24.go.kr",
-     "commercial:nicesongtoyou.com",
-     "gov:easylaw.go.kr",
-     "tool:gov.kr",
-     "commercial:awoo.or.kr",
-     "gov:edrm.ei.go.kr",
-     "gov:moel.go.kr",
-     "stale-gov:moel.go.kr",
-     "gov:moel.go.kr",
-     "gov:edrm.ei.go.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "early-reemployment-allowance-application"
-    ]
-   }
-  },
-  {
-   "id": "빈틈:국민연금 해지",
-   "query": "국민연금 해지",
-   "altQueries": [],
-   "track": "T2",
-   "family": "B",
-   "cluster": "pension",
-   "status": "proposed",
-   "autoPick": false,
-   "manual": true,
-   "addedBy": "wave-split",
-   "wave": "국민연금",
-   "score": 60,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 93건(지식iN 상위 100)",
-    "자리 열림",
-    "빈자리 4",
-    "웹문서 163만건"
-   ],
-   "condition": "국민연금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 국민연금 글 29편과 세부 키워드 다르게. 선점 항목(다음 물결 \"국민연금\"), 운영자 [발행 지시]로만 쓴다",
-   "measuredAt": "2026-10-08",
-   "demand": {
-    "rel30": 5.8,
-    "ratio7": 0.75,
-    "kinExact": 93
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 1629444,
-    "openSlots": 4,
-    "wallTop5": 1,
-    "mainGovAbove": 0,
-    "publicAbove": 1,
-    "toolAbove": 2,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 13,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "commercial:edithvolo.com",
-     "press:kukinews.com",
-     "ugc:blog.naver.com",
-     "commercial:npsonair.kr",
-     "public:nps.or.kr",
-     "public:nps.or.kr",
-     "tool:gov.kr",
-     "tool:si4n.nhis.or.kr",
-     "public:nps.or.kr",
-     "commercial:npsonair.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "national-pension-credit-birth-military-unemployment",
-     "national-pension-early-receive-breakeven",
-     "national-pension-expected-amount-lookup",
-     "national-pension-first-premium-support-2009",
-     "national-pension-income-ceiling-2026-july"
-    ]
-   }
-  },
-  {
-   "id": "빈틈:아동수당 지급일",
-   "query": "아동수당 지급일",
-   "altQueries": [],
-   "track": "T2",
-   "family": "B",
-   "cluster": "gov-support",
-   "status": "proposed",
-   "autoPick": false,
-   "manual": true,
-   "addedBy": "wave-split",
-   "wave": "아동수당",
-   "score": 60,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 57건(지식iN 상위 100)",
-    "자리 열림",
-    "뉴스 벽 없음",
-    "웹문서 13만건"
-   ],
-   "condition": "아동수당 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 아동수당 글 2편과 세부 키워드 다르게. 선점 항목(다음 물결 \"아동수당\"), 운영자 [발행 지시]로만 쓴다",
-   "measuredAt": "2026-10-08",
-   "demand": {
-    "rel30": 1.1,
-    "ratio7": 0.77,
-    "kinExact": 57
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 125243,
-    "openSlots": 3,
-    "wallTop5": 2,
-    "mainGovAbove": 2,
-    "publicAbove": 0,
-    "toolAbove": 0,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 2,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "stale-commercial:nicesongtoyou.com",
-     "stale-commercial:nicesongtoyou.com",
-     "gov:incheon.go.kr",
-     "commercial:suseong.kr",
-     "gov:seocho.go.kr",
-     "gov:bundang-gu.go.kr",
-     "gov:gimpo.go.kr",
-     "gov:sd.go.kr",
-     "gov:mohw.go.kr",
-     "gov:korea.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "child-allowance-child-account-gift-tax",
-     "child-basic-allowance-2027-july-birth"
     ]
    }
   },
