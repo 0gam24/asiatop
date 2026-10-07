@@ -1,0 +1,174 @@
+{
+  "_readme": [
+    "scripts/audit/next-wave.mjs 의 고정 감시 목록. 뉴스 제목에서 자동으로 뽑는 묶음과 별개로, 해마다 돌아오거나 이미 큰 금융 묶음을 매일 같은 자(실업급여 28일 평균 = 100)로 잰다.",
+    "seeds 의 term 은 묶음 이름, cluster 는 src/data/clusters.ts slug(선점 때 큐 항목 cluster 로 쓴다), match 는 우리 글을 셀 때 같은 묶음으로 보는 다른 이름(선택). 30개 안팎으로 둔다. 트렌드 요청 1회 = 기준어 + 4묶음.",
+    "자매 사이트 awoo 영역(지자체 민생지원금·소비쿠폰·지역화폐·상품권 사용처·반값여행, 바우처)은 넣지 않는다(2026-09-30 운영자 결정).",
+    "ignore 는 운영자가 목록 위젯에서 물결 [보류]를 누른 묶음이다. 다음 실행부터 재지도 보여주지도 않는다. 다시 보려면 여기서 지운다."
+  ],
+  "seeds": [
+    {
+      "term": "연말정산",
+      "cluster": "tax"
+    },
+    {
+      "term": "종합소득세",
+      "cluster": "tax",
+      "match": [
+        "종합소득세",
+        "종소세"
+      ]
+    },
+    {
+      "term": "부가세 신고",
+      "cluster": "tax",
+      "match": [
+        "부가세",
+        "부가가치세"
+      ]
+    },
+    {
+      "term": "근로장려금",
+      "cluster": "tax"
+    },
+    {
+      "term": "자녀장려금",
+      "cluster": "tax"
+    },
+    {
+      "term": "자동차세 연납",
+      "cluster": "auto",
+      "match": [
+        "자동차세"
+      ]
+    },
+    {
+      "term": "재산세",
+      "cluster": "realestate"
+    },
+    {
+      "term": "종부세",
+      "cluster": "realestate",
+      "match": [
+        "종부세",
+        "종합부동산세"
+      ]
+    },
+    {
+      "term": "건강보험료",
+      "cluster": "insurance-labor",
+      "match": [
+        "건강보험료",
+        "건보료"
+      ]
+    },
+    {
+      "term": "본인부담상한제",
+      "cluster": "insurance-labor"
+    },
+    {
+      "term": "국민연금",
+      "cluster": "pension"
+    },
+    {
+      "term": "기초연금",
+      "cluster": "pension"
+    },
+    {
+      "term": "연금저축",
+      "cluster": "pension"
+    },
+    {
+      "term": "조기재취업수당",
+      "cluster": "unemployment"
+    },
+    {
+      "term": "퇴직금",
+      "cluster": "unemployment"
+    },
+    {
+      "term": "최저임금",
+      "cluster": "unemployment"
+    },
+    {
+      "term": "주휴수당",
+      "cluster": "unemployment"
+    },
+    {
+      "term": "권고사직",
+      "cluster": "unemployment"
+    },
+    {
+      "term": "청년도약계좌",
+      "cluster": "savings"
+    },
+    {
+      "term": "청년미래적금",
+      "cluster": "savings"
+    },
+    {
+      "term": "ISA 계좌",
+      "cluster": "savings",
+      "match": [
+        "ISA"
+      ]
+    },
+    {
+      "term": "청약통장",
+      "cluster": "realestate",
+      "match": [
+        "청약통장",
+        "주택청약"
+      ]
+    },
+    {
+      "term": "디딤돌대출",
+      "cluster": "realestate",
+      "match": [
+        "디딤돌"
+      ]
+    },
+    {
+      "term": "버팀목전세자금대출",
+      "cluster": "realestate",
+      "match": [
+        "버팀목"
+      ]
+    },
+    {
+      "term": "전세보증보험",
+      "cluster": "realestate",
+      "match": [
+        "전세보증보험",
+        "전세보증금반환보증"
+      ]
+    },
+    {
+      "term": "청년월세",
+      "cluster": "gov-support"
+    },
+    {
+      "term": "아동수당",
+      "cluster": "gov-support"
+    },
+    {
+      "term": "부모급여",
+      "cluster": "gov-support"
+    },
+    {
+      "term": "실손보험",
+      "cluster": "insurance-personal",
+      "match": [
+        "실손"
+      ]
+    },
+    {
+      "term": "햇살론",
+      "cluster": "credit-loan"
+    },
+    {
+      "term": "신용점수",
+      "cluster": "credit-loan"
+    }
+  ],
+  "ignore": []
+}
