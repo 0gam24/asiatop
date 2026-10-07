@@ -87,7 +87,7 @@ function capFor(date) {
 
 function publishCount(articles) {
   const count = (day) => {
-    const list = articles.filter((a) => a.tracked && a.publishedAt === day);
+    const list = articles.filter((a) => a.tracked && String(a.publishedAt || '').slice(0, 10) === day);
     let routine = 0;
     for (const a of list) if (/사이클/.test(addedBySubject(a.file))) routine++;
     return { total: list.length, routine, manual: list.length - routine, list };
@@ -194,14 +194,14 @@ function waveRow(w) {
 function render() {
   const articles = loadArticles();
   const usedQ = new Set(articles.filter((a) => a.targetQuery).map((a) => norm(a.targetQuery)));
-  const todayQ = new Set(articles.filter((a) => a.targetQuery && a.publishedAt === TODAY).map((a) => norm(a.targetQuery)));
+  const todayQ = new Set(articles.filter((a) => a.targetQuery && String(a.publishedAt || '').slice(0, 10) === TODAY).map((a) => norm(a.targetQuery)));
   const pc = publishCount(articles);
   const queue = readJson(path.join(OPS, 'pipeline-queue.json'), { items: [] });
   const eyeLog = readJson(path.join(OPS, 'radar', 'eye-offset.json'), { entries: {} });
   const wave = readJson(path.join(OPS, 'next-wave.json'), null);
   const fresh = queue.updatedAt === TODAY;
   const isUsed = (it) => [it.query, ...(it.altQueries || [])].some((q) => usedQ.has(norm(q)));
-  const live = (queue.items || []).filter((it) => it.measuredAt === queue.updatedAt && (it.score ?? 0) >= 45);
+  const live = (queue.items || []).filter((it) => (it.measuredAt === queue.updatedAt || it.measuredAt === TODAY) && (it.score ?? 0) >= 45);
   const isWave = (it) => it.manual === true || String(it.id || '').startsWith('빈틈:');
   const picks = live.filter((it) => (it.status === 'approved' || (it.status === 'proposed' && (it.autoPick || isWave(it)))) && !isUsed(it))
     .sort((a, b) => (a.status === 'approved' ? 0 : 1) - (b.status === 'approved' ? 0 : 1) || b.score - a.score || (b.demand?.kinExact ?? 0) - (a.demand?.kinExact ?? 0));
