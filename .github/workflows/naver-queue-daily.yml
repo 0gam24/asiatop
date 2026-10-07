@@ -2,16 +2,18 @@ name: Naver Gap Queue (빈틈 대기열 매일 갱신)
 
 # 2026-09-28 운영자 지시 "글감은 오늘 빈틈 키워드를 찾아서 자동 발행하도록".
 # 매일 KST 01:17 에 공식 네이버 API(HUB)로 빈틈 대기열을 새로 재서 main 에 커밋한다.
-# KST 03:05 클라우드 루틴(02 Asiatop)이 이 대기열에서 신규 글 1편을 고른다 — 루틴은 읽기만 한다.
+# KST 09:05 클라우드 루틴(02 Asiatop)이 이 대기열에서 신규 글을 고른다(2026-10-06 03:05 → 09:05, 상한은 docs/ops/cadence.json). 루틴은 읽기만 한다.
+# 같은 잡이 다음 물결(next-wave.mjs)과 targetQuery 글 순위(naver-rank-track.mjs → gap-outcomes.mjs 결과표)도 잰다(2026-10-07, docs/28 3-2·3-4). 둘은 실패해도 대기열 커밋을 막지 않는다.
 #
-# - 쓰는 파일: docs/ops/pipeline-queue.json · docs/ops/DAILY-KEYWORDS.md · docs/ops/radar/pipeline-seen.json (사이트 빌드와 무관)
+# - 쓰는 파일: docs/ops/pipeline-queue.json · docs/ops/DAILY-KEYWORDS.md · docs/ops/radar/pipeline-seen.json · docs/ops/next-wave.json ·
+#   docs/revenue-log/naver-rank-history.json · docs/ops/gap-outcomes.md (사이트 빌드와 무관, 애드센스 수치 없음)
 # - 커밋 메시지의 [CF-Pages-Skip] 으로 Cloudflare Pages 빌드를 건너뛴다 (빌드 큐 동시 1건 보호)
 # - 측정 실패(인증·네트워크)면 커밋 없이 잡이 실패한다 → 루틴은 오늘 측정분이 없으므로 신규 0편
 # - search.naver.com 수집 없음. 공식 API 만 (scripts/audit/naver-pipeline.mjs)
 
 on:
   schedule:
-    - cron: '17 16 * * *' # UTC 16:17 = KST 01:17 daily (정각 혼잡 회피, 루틴 KST 03:05 보다 약 1시간 50분 앞)
+    - cron: '17 16 * * *' # UTC 16:17 = KST 01:17 daily (정각 혼잡 회피. 실제 도착은 KST 04~08시라 루틴을 09:05 로 옮겼다)
   workflow_dispatch: {}
 
 permissions:
@@ -45,11 +47,30 @@ jobs:
           X_NCP_APIGW_API_KEY: ${{ secrets.X_NCP_APIGW_API_KEY }}
         run: node scripts/audit/naver-pipeline.mjs --write
 
+      # 다음에 크게 뜰 주제(묶음 검색량). 목록 위젯이 읽는다. 실패해도 대기열 커밋은 계속한다
+      - name: Measure next wave (official Naver API)
+        continue-on-error: true
+        env:
+          X_NCP_APIGW_API_KEY_ID: ${{ secrets.X_NCP_APIGW_API_KEY_ID }}
+          X_NCP_APIGW_API_KEY: ${{ secrets.X_NCP_APIGW_API_KEY }}
+        run: node scripts/audit/next-wave.mjs
+
+      # targetQuery 글 전부와 rank-targets.json 의 웹문서 순위를 매일 쌓는다(빈틈 글 결과 기록, docs/28 3-2)
+      - name: Track Naver web-doc ranks (official Naver API)
+        continue-on-error: true
+        env:
+          X_NCP_APIGW_API_KEY_ID: ${{ secrets.X_NCP_APIGW_API_KEY_ID }}
+          X_NCP_APIGW_API_KEY: ${{ secrets.X_NCP_APIGW_API_KEY }}
+        run: |
+          node scripts/audit/naver-rank-track.mjs --quiet
+          node scripts/audit/gap-outcomes.mjs --write > /dev/null
+
       - name: Commit queue to main
         run: |
           git config user.name "moneylook-naver-queue"
           git config user.email "auto@moneylook"
           git add docs/ops/pipeline-queue.json docs/ops/DAILY-KEYWORDS.md docs/ops/radar/pipeline-seen.json
+          git add docs/ops/next-wave.json docs/revenue-log/naver-rank-history.json docs/ops/gap-outcomes.md 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
             exit 0
