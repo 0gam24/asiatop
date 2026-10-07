@@ -32,6 +32,7 @@
     "audit:wave": "node scripts/audit/next-wave.mjs",
     "audit:wave:split": "node scripts/audit/wave-split.mjs",
     "audit:queue:set": "node scripts/audit/queue-set.mjs",
+    "audit:gap:outcomes": "node scripts/audit/gap-outcomes.mjs",
     "audit:revenue": "node scripts/audit/revenue-pull.mjs",
     "audit:revenue:deep": "node scripts/audit/revenue-deep.mjs",
     "audit:title": "node scripts/audit/title-length.mjs",

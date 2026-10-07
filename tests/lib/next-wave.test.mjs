@@ -93,3 +93,16 @@ describe('queue-set 눈 확인', () => {
     expect(rescore(it, 3).score).toBe(80);
   });
 });
+
+describe('gap-outcomes rankAt', async () => {
+  const { rankAt } = await import('../../scripts/audit/gap-outcomes.mjs');
+  const series = [{ date: '2026-09-30', rank: 0 }, { date: '2026-10-07', rank: 15 }];
+  it('발행 후 n일에 가장 가까운 측정(±2일)', () => {
+    expect(rankAt(series, '2026-09-23', 7, '2026-10-07')).toBe(0);
+    expect(rankAt(series, '2026-09-23', 14, '2026-10-07')).toBe(15);
+    expect(rankAt(series, '2026-09-20', 14, '2026-10-07')).toBeNull();
+  });
+  it('아직 n일이 안 지났으면 빈칸', () => {
+    expect(rankAt(series, '2026-10-06', 3, '2026-10-07')).toBeNull();
+  });
+});
