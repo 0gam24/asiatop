@@ -15,6 +15,9 @@
 //         approved 는 상태를 두고 재측정만 멈춘다. 웹문서 상위 3 에 자매 사이트가 있으면 autoPick=false(sisterTop)
 // 측정    쿼리당 webkr + news + kin(같은 질문 수) 3회, 열린 것만 검색어 트렌드
 // 점수    exposureOf (§6-3). 실유입 CSV 가 없는 동안은 지식iN 같은 질문 수가 수요 대리지표다(v0.1).
+//         v0.2 (2026-10-07, docs/28 §1-5·§3-3): 웹문서 검색 결과 수로 가감, 검색량 눈금을 수요 점수에 포함,
+//         검색 신호(눈금·블로그 제목·실유입)가 없으면 정렬 감점, 지식iN 질문 말투 조각("등등"·"~할때"·"~다고")은 후보에서 빼고
+//         큐에 있던 것은 재측정 때 닫는다.
 // 병합    approved·published·rejected 와 운영자가 건 hold 의 상태는 건드리지 않는다. proposed 가 재측정에서 닫히면 먼저 hold(holdBy:pipeline),
 //         다음 측정에도 닫혀 있으면 사유를 적어 rejected(21일 뒤 삭제), 다시 열리면 proposed 로 되돌린다.
 //         사람이 넣은 항목(id 접두 `빈틈:` 또는 manual:true)은 닫혀도 hold 까지만.
@@ -64,6 +67,14 @@ const stripTail = (x) => (x.length >= 5 ? x.replace(/(으로|에서|에게|로|�
 const ASKING = /질문|문의|궁금|드립니다|드려요|부탁|여쭤|받을|받는|받은|받기/;
 const SUFFIX_STOP = new Set(['질문', '문의', '관련', '관련해서', '대해', '대해서', '궁금', '궁금한', '궁금합니다', '도와주세요', '알려주세요', '부탁드립니다',
   '제가', '저는', '지금', '현재', '이번', '그리고', '그런데', '혹시', '정말', '진짜', '어떻게', '언제', '얼마나', '무엇', '뭔가요', '방법', '총정리', '정리', '안내', '후기', '및', '등', '또는']);
+// 지식iN 질문 말투 조각 (2026-10-07 대기열 실측: "건보료 등등"·"종소세 낼때"·"연말정산 뜨는거"·"권고사직 해준다고"·"권고사직 이런경우"·
+// "아동수당 증여 관련문제" 가 80~85점으로 자동 선택 후보에 올랐다). 채굴과 재측정에서 같이 쓴다.
+// 같은 날 드라이런에서 "건보료 두번이나"·"청년도약계좌 어느"·"최저임금 만오백원이" 가 더 나왔다.
+const CHATTY_WORDS = new Set(['등등', '이런', '이런경우', '이럴때', '그런', '저런', '관련문제', '관련질문', '어느', '어떤', '무슨']);
+const CHATTY_END = /(때|다고|라고|않고|받고|는거|은거|해달라|이나|원이)$/;
+export const isChattyToken = (x) => CHATTY_WORDS.has(x) || CHATTY_END.test(x);
+// 쿼리의 둘째 낱말부터 하나라도 질문 말투 조각이면 검색어가 아니라 질문 문장의 일부다
+export const isChattyQuery = (query) => String(query || '').trim().split(/\s+/).slice(1).some(isChattyToken);
 
 const escapeRe = (t) => t.replace(/[\\^$.*+?()[\]{}|]/g, (c) => `\\${c}`);
 const headRegex = (head) => new RegExp(head.trim().split(/\s+/).map(escapeRe).join('\\s*'), 'i');
@@ -76,7 +87,7 @@ export function suffixesOf(head, title) {
   let rest = t.slice(m.index + m[0].length).replace(PARTICLE, ' ');
   const toks = rest.split(/[\s·,/()[\]?!.:~"'“”‘’|<>-]+/).map((x) => stripTail(x.trim())).filter(Boolean);
   // 숫자로 시작하는 말("10년이상"·"2027")은 지식iN 말투 잡음이 많아 뺀다
-  const ok = (x) => x && x.length >= 2 && x.length <= 10 && !SUFFIX_STOP.has(x) && !ASKING.test(x) && !VERBISH.test(x) && !/^\d/.test(x);
+  const ok = (x) => x && x.length >= 2 && x.length <= 10 && !SUFFIX_STOP.has(x) && !ASKING.test(x) && !VERBISH.test(x) && !isChattyToken(x) && !/^\d/.test(x);
   if (!ok(toks[0])) return [];
   return ok(toks[1]) ? [toks[0], `${toks[0]} ${toks[1]}`] : [toks[0]];
 }
@@ -140,7 +151,7 @@ export function kinExactCount(query, titles) {
   return titles.filter((t) => { const s = stripTags(t).toLowerCase().replace(/\s+/g, ''); return toks.every((k) => s.includes(k)); }).length;
 }
 
-// ── 점수 (§6-3, v0.1 실측 9건과 같은 값이 나오게 맞춤 — tests/lib/naver-pipeline.test.mjs) ──────
+// ── 점수 (§6-3, v0.1 실측 9건과 같은 값이 나오게 맞춤 — tests/lib/naver-pipeline.test.mjs. v0.2 가감은 docs/28 §3-3) ──────
 export function exposureOf({ track = 'T2', serp = {}, demand = {}, ledger = {}, unverified = false, inWindow = false }) {
   const reasons = [];
   const rank = serp.rank ?? null;
@@ -159,9 +170,25 @@ export function exposureOf({ track = 'T2', serp = {}, demand = {}, ledger = {}, 
   if (serp.newsWall != null) { if (serp.newsWall <= 3) add(10, '뉴스 벽 없음'); else if (serp.newsWall <= 15) add(5); }
   if (serp.eyeOffset === 1) add(10, '웹문서 첫 화면(눈 확인)'); else if (serp.eyeOffset === 2) add(5);
   if (rank != null && rank <= 10) add(5, `자사 ${rank}위`); else if (rank != null && rank <= 30) add(3, `자사 ${rank}위`);
-  // 수요: 실유입(서치어드바이저 CSV)이 있으면 그 값, 없으면 지식iN 같은 질문 수. 둘 중 큰 쪽 한 번만.
-  const demandPts = Math.max(inbound >= 100 ? 10 : inbound >= 30 ? 5 : 0, kin >= 20 ? 10 : kin >= 5 ? 5 : 0);
-  add(demandPts, inbound >= 30 ? `주간 실유입 ${inbound}` : null);
+  // v0.2 (2026-10-07, docs/28 §1-5): 웹문서 검색 결과 수. 우리 글 649편의 대표 검색어를 같은 API 로 쟀을 때 10위 안 비율이
+  // 3만 건 미만 37% · 3만~10만 15% · 10만~100만 5~7% · 100만 이상 3% 였다(열림 판정 안에서도 10만 미만 28% · 이상 5~10%).
+  // 값이 없는 항목(재측정 전)은 더하거나 빼지 않는다.
+  // 검색 신호: 데이터랩 눈금이 잡히거나, 블로그 제목 100건 중 3번 이상 쓰였거나, 실유입이 있다. 지식iN 같은 질문 수는 넣지 않는다
+  // (후보 낱말을 지식iN 제목에서 뽑으므로 그 제목을 다시 세면 스스로를 세는 셈이다. 2026-10-07 드라이런: "최저임금 만오백원이" 지식iN 7 · 블로그 0 · 눈금 0 · 웹문서 17건).
+  const rel = demand.rel30 ?? 0;
+  const searchSignal = rel > 0 || (demand.blogFreq ?? 0) >= 3 || inbound > 0;
+  const docs = serp.webDocCount;
+  if (docs != null) {
+    const n = docs >= 10000 ? `${Math.round(docs / 10000)}만` : String(docs);
+    // 결과 수가 적은 것은 검색 신호가 있을 때만 더한다(이상한 문구일수록 결과 수가 적다)
+    if (docs < 30000) { if (searchSignal) add(5, `웹문서 ${n}건`); } else if (docs >= 1000000) add(-15, `웹문서 ${n}건`); else if (docs >= 100000) add(-10, `웹문서 ${n}건`);
+  }
+  // 정렬용 감점(하한 아님 — docs/28 §3-3). 검색 신호가 있는 항목이 같은 조건의 신호 없는 항목보다 앞에 온다.
+  if (!searchSignal) add(-10, '검색 신호 없음(눈금·블로그 제목)');
+  // 수요: 실유입(서치어드바이저 CSV)·지식iN 같은 질문 수·검색량 눈금(데이터랩, 실업급여 30일 평균 = 100) 중 큰 쪽 한 번만.
+  // 검색량은 정렬에만 쓴다(하한 아님 — docs/28 §3-3).
+  const demandPts = Math.max(inbound >= 100 ? 10 : inbound >= 30 ? 5 : 0, kin >= 20 ? 10 : kin >= 5 ? 5 : 0, rel >= 1 ? 10 : rel > 0 ? 5 : 0);
+  add(demandPts, inbound >= 30 ? `주간 실유입 ${inbound}` : rel >= 1 && kin < 20 ? `검색량 눈금 ${rel}` : null);
   if ((demand.ratio7 ?? 0) >= 1.5) add(5, `최근 7일 ${demand.ratio7}배`);
   if (demand.born) add(5, '신생 검색어');
   if (inWindow) add(5, '창 안');
@@ -169,7 +196,8 @@ export function exposureOf({ track = 'T2', serp = {}, demand = {}, ledger = {}, 
   if (unverified) add(-10, '1차 출처 미확인');
   if ((ledger.adjacent ?? 0) >= 1) add(-10, `비슷한 우리 글 ${ledger.adjacent}편`);
   const score = Math.max(0, Math.min(100, s));
-  return { score, label: score >= 70 ? '높음' : score >= QUEUE_MIN_SCORE ? '중간' : '낮음', open, reasons: reasons.slice(0, 4) };
+  // 6개까지 남긴다(v0.2 에서 웹문서 결과 수 이유가 늘었고, queue-set.mjs 가 "비슷한 우리 글 N편"을 이유에서 되살린다)
+  return { score, label: score >= 70 ? '높음' : score >= QUEUE_MIN_SCORE ? '중간' : '낮음', open, reasons: reasons.slice(0, 6) };
 }
 
 // 기계가 1차 출처를 정할 수 없는 주제: 지자체·차수가 갈리는 지원금 류는 운영자 지정이 있어야 쓴다 (v0.1 민생지원금)
@@ -301,7 +329,7 @@ export const queriesOf = (it) => [it.query, ...(it.altQueries || [])].map(normKe
 export const slugId = (date, query) => `gap:${date}:${String(query).trim().replace(/\s+/g, '-')}`;
 
 const serpOfScout = (sc, eyeOffset = null) => ({
-  rank: sc.rank ?? null, openSlots: sc.openSlots, wallTop5: sc.wallTop5, mainGovAbove: sc.mainGovAbove, publicAbove: sc.publicAbove,
+  rank: sc.rank ?? null, webDocCount: sc.webDocCount ?? null, openSlots: sc.openSlots, wallTop5: sc.wallTop5, mainGovAbove: sc.mainGovAbove, publicAbove: sc.publicAbove,
   toolAbove: sc.toolAbove, fincoAbove: sc.fincoAbove, naverAbove: sc.naverAbove, newsWall: sc.newsWall, eyeOffset,
   verdictT1: sc.verdictT1, verdictT2: sc.verdictT2, warn: sc.warn || [],
   top10: (sc.above || []).slice(0, 10).map((a) => `${a.stale ? 'stale-' : ''}${a.kind}:${a.host}`),
@@ -340,7 +368,8 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
       const ledger = { verdict: m.ledger.verdict, relatedSlugs: m.ledger.relatedSlugs };
       const ex = exposureOf({ track: it.track, serp, demand, ledger: m.ledger, unverified: !!it.unverified, inWindow: !!m.inWindow });
       Object.assign(next, { serp, demand, ledger, score: ex.score, label: ex.label, reasons: ex.reasons, measuredAt: today });
-      const closedWhy = !ex.open ? (m.scout.reason || []).join(' · ') || '닫힘' : m.ledger.verdict === 'VETO' ? '잠금 장부 VETO' : ex.score < QUEUE_MIN_SCORE ? `점수 ${ex.score}` : null;
+      const chatty = !isManual(it) && isChattyQuery(it.query);
+      const closedWhy = !ex.open ? (m.scout.reason || []).join(' · ') || '닫힘' : m.ledger.verdict === 'VETO' ? '잠금 장부 VETO' : ex.score < QUEUE_MIN_SCORE ? `점수 ${ex.score}` : chatty ? '질문 말투 조각(검색어 아님)' : null;
       if (ex.label === '갱신') log.refresh.push({ query: it.query, rank: serp.rank, url: m.scout.ourUrl, why: '자사 1~3위 — 새 글 금지, 갱신만' });
       if (closedWhy && next.status !== 'approved') {
         // 문턱을 하루 넘었다고 바로 버리지 않는다(뉴스 15↔16 출렁임). 첫 닫힘은 hold, 다음 측정에도 닫혀 있으면 rejected. 사람이 넣은 항목은 hold 까지만.
@@ -373,6 +402,7 @@ export function mergeQueue(queue, measured, { today, published = new Map() }) {
     if (m.scout.error || known.has(normKeyword(m.query)) || published.has(normKeyword(m.query))) continue;
     // 실행부가 재기 전에 거르지만, 이 함수만 불러도 자매 주제가 큐에 오르지 않게 한 번 더 막는다
     if (isSisterTopic(m.query)) { log.sisterSkipped.push(m.query); continue; }
+    if (isChattyQuery(m.query)) continue;
     const serp = serpOfScout(m.scout);
     const ex = exposureOf({ track: m.track, serp, demand: m.demand, ledger: m.ledger, unverified: !!m.unverified, inWindow: !!m.inWindow });
     if (ex.label === '갱신' || (serp.rank != null && serp.rank <= 30)) { log.refresh.push({ query: m.query, rank: serp.rank, url: m.scout.ourUrl, why: serp.rank <= 3 ? '자사 1~3위 — 새 글 금지, 갱신만' : '자사 4~30위 — 새 글보다 기존 글 진단 먼저' }); continue; }
