@@ -153,6 +153,8 @@ agent 가 "완료" 보고해도 파일 미존재 가능 → 본문을 agent 출�
 - 무효 클릭·자기 클릭·클릭 유도 문구 절대 금지. 개발·검수는 광고 차단 확장 켠 별도 프로필.
 - **자동화 브라우저(Claude Preview·Chrome MCP)로 프로덕션 광고 페이지 열기 금지** —
   검증은 dist grep·curl·CF 프리뷰(`data-adtest=on`)만. `.env.local` 은 더미 client 유지.
+  발행 뒤 "글이 열리는지" 확인은 curl(상태 코드·<title>)로 하고, 클라우드 루틴처럼 curl 이 네트워크 정책(403)에 막힌 곳은 WebFetch 로 같은 URL 의 HTML 을 받아 제목을 확인한다
+  (2026-10-08 — WebFetch 는 HTML 만 받아 오고 스크립트를 실행하지 않아 광고 요청이 생기지 않는다. 자동화 브라우저는 여전히 금지).
 - CTR 은 KPI 가 아니다 — 관찰만. 개선 시도 금지.
 - 광고·인프라 PR: **draft 생성 + `no-auto-merge` 라벨 필수** (관행 유지 — auto-merge 는
   2026-08-26 부터 opt-in 이지만, draft+라벨이 이중 안전망).
