@@ -31,7 +31,7 @@ const argv = process.argv.slice(2);
 const argNum = (k, d) => { const a = argv.find((x) => x.startsWith(`--${k}=`)); const n = a ? Number(a.slice(k.length + 3)) : d; return Number.isFinite(n) && n > 0 ? n : d; };
 const LIMIT = argNum('limit', 10);
 const WAVES = argNum('waves', 6);
-const GOAL_USD = 200; // 운영자 목표 2026-10-07 (docs/28)
+const GOAL_USD = 100; // 운영자 목표 2026-10-08 "운영을 직접 맡아, 1일 100달러" (docs/28)
 const EYE_TOP = 5;
 const MIN_VOL = 0.5; // 검색량(실업급여 = 100)이 이 값 이상이면 '검색량이 잡힌' 글감 (wave-split.mjs MIN_REL30 과 같음)
 
@@ -89,7 +89,8 @@ function publishCount(articles) {
   const count = (day) => {
     const list = articles.filter((a) => a.tracked && String(a.publishedAt || '').slice(0, 10) === day);
     let routine = 0;
-    for (const a of list) if (/사이클/.test(addedBySubject(a.file))) routine++;
+    // 루틴 PR 제목: "content: 2026-10-07 사이클 …" · "content: 2026-10-08 일일 발행 …" (squash 커밋 제목)
+    for (const a of list) if (/사이클|일일 발행|daily/.test(addedBySubject(a.file))) routine++;
     return { total: list.length, routine, manual: list.length - routine, list };
   };
   return { today: count(TODAY), yday: count(YDAY), cap: capFor(TODAY) };
