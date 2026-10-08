@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // ════════════════════════════════════════════════════════════════════════
 // ops-widget.mjs — "목록" 위젯 HTML 조각 생성 (읽기 전용, API 호출 없음, LLM 0)
 //
@@ -43,7 +42,7 @@ const YDAY = kst(-1);
 const md = (d) => (d ? `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}` : '');
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase();
 const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-const readJson = (p, fb = null) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^﻿/, '')); } catch { return fb; } };
+const readJson = (p, fb = null) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, '')); } catch { return fb; } };
 const r1 = (x) => (x == null || !Number.isFinite(Number(x)) ? null : Math.round(Number(x) * 10) / 10);
 
 // ── 글 frontmatter (필요한 칸만) ─────────────────────────────────────────

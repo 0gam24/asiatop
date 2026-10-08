@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // ════════════════════════════════════════════════════════════════════════
 // next-wave.mjs — 다음에 크게 뜰 주제(묶음) 측정 (공식 네이버 API: 뉴스 검색 + 검색어 트렌드, LLM 0)
 //
@@ -73,7 +72,7 @@ const APPLY_TYPE = /(장려금|수당|급여|계좌|적금|대출|연금|월세|
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase();
 const mean = (a) => (a.length ? a.reduce((s, x) => s + x, 0) / a.length : 0);
 const round1 = (x) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10) / 10);
-const readJson = (p, fb = null) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^﻿/, '')); } catch { return fb; } };
+const readJson = (p, fb = null) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, '')); } catch { return fb; } };
 
 // ── 1) 뉴스 제목에서 묶음 이름 ───────────────────────────────────────────
 const tokensOf = (title) => title.split(/[\s,.·…'"‘’“”[\]()<>!?:;~/|=+→▲▶■◆※-]+/).map((t) => t.trim()).filter(Boolean);

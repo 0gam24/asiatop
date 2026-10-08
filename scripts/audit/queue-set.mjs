@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // ════════════════════════════════════════════════════════════════════════
 // queue-set.mjs — 목록 위젯 버튼이 바꾸는 대기열 값: 운영자 보류·해제, 눈 확인 (API 호출 없음, LLM 0)
 //
@@ -33,7 +32,7 @@ const opt = (k) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : un
 const DRY = args.includes('--dry-run');
 const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
 const daysBetween = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
-const readJson = (p, fb) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^﻿/, '')); } catch { return fb; } };
+const readJson = (p, fb) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, '')); } catch { return fb; } };
 
 export function parseEye(v) {
   const s = String(v ?? '').replace(/["']/g, '').trim();

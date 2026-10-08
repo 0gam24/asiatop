@@ -56,6 +56,14 @@ jobs:
           X_NCP_APIGW_API_KEY: ${{ secrets.X_NCP_APIGW_API_KEY }}
         run: node scripts/audit/next-wave.mjs
 
+      # 매일 자동 선점(2026-10-08): 뜨는 주제와 큰 키워드를 돌아가며 쪼개, 검색량이 잡히면서 자리가 열린 세부 검색어만 대기열에 더한다
+      - name: Pre-empt gap keywords with search volume (official Naver API)
+        continue-on-error: true
+        env:
+          X_NCP_APIGW_API_KEY_ID: ${{ secrets.X_NCP_APIGW_API_KEY_ID }}
+          X_NCP_APIGW_API_KEY: ${{ secrets.X_NCP_APIGW_API_KEY }}
+        run: node scripts/audit/wave-auto.mjs --max-terms 6 --max 6
+
       # targetQuery 글 전부와 rank-targets.json 의 웹문서 순위를 매일 쌓는다(빈틈 글 결과 기록, docs/28 3-2)
       - name: Track Naver web-doc ranks (official Naver API)
         continue-on-error: true
@@ -72,6 +80,7 @@ jobs:
           git config user.email "auto@moneylook"
           git add docs/ops/pipeline-queue.json docs/ops/DAILY-KEYWORDS.md docs/ops/radar/pipeline-seen.json
           git add docs/ops/next-wave.json docs/revenue-log/naver-rank-history.json docs/ops/gap-outcomes.md 2>/dev/null || true
+          git add docs/ops/radar/wave-auto-log.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
             exit 0

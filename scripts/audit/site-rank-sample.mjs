@@ -10,7 +10,11 @@
 // 열림 판정은 우리 순위를 빼고 다시 낸다(우리 글이 1~3위면 scout 가 "갱신 대상"으로 닫기 때문).
 // 웹문서 API 순위는 통합검색 첫 화면 순위와 다르다(docs/26 §2). 애드센스 수치는 없다.
 //
-// 실행: node scripts/audit/site-rank-sample.mjs [--write] [--limit N]
+// 검색량(2026-10-08 추가): 30위 안에 든 글의 검색어를 검색어 트렌드(naver-volume.mjs, 실업급여 30일 평균 = 100)로 재서 rel30 을 붙인다.
+//   순위만으로는 그 자리에 사람이 오는지 모른다(docs/28 1-2). 4~30위 중 검색량이 잡히는 글을 리프레시 먼저 보게 표 맨 위에 따로 뺀다.
+//   데이터랩은 작은 검색어를 0 으로 준다. 0 은 "검색 없음"이 아니라 "이 눈금으로 안 잡힘"이다.
+//   --volume-only  순위는 다시 재지 않고 가장 최근 표본에 검색량만 붙여 다시 쓴다(트렌드 호출만, --write 와 함께)
+// 실행: node scripts/audit/site-rank-sample.mjs [--write] [--limit N] [--volume-only]
 //   --write 없으면 콘솔 요약만. 있으면 docs/revenue-log/site-rank-sample-YYYY-MM-DD.json · docs/ops/naver-striking.md
 // 예산: 글 수만큼 webkr 호출(약 700). 검색 API 무료 일 25,000.
 // ════════════════════════════════════════════════════════════════════════
@@ -20,6 +24,7 @@ import { kstDate, isMain, NaverAuthError, ROOT } from './lib/naver-api.mjs';
 import { scoutMany } from './naver-scout.mjs';
 import { parseArticleMeta } from './naver-ledger.mjs';
 import { verdicts } from './lib/naver-hosts.mjs';
+import { measureVolume } from './naver-volume.mjs';
 
 const ARTICLES = path.join(ROOT, 'src', 'content', 'articles');
 const LOG_DIR = path.join(ROOT, 'docs', 'revenue-log');
@@ -74,7 +79,9 @@ export function diffSamples(prev, rows) {
   return out;
 }
 
-export function renderStriking({ rows, today, diff }) {
+export const VOLUME_MIN = 0.5;
+
+export function renderStriking({ rows, today, diff, volumeAt = null }) {
   const L = [`# 네이버 웹문서 4~30위 글 (${today})`, '',
     '`scripts/audit/site-rank-sample.mjs` 가 만든다(손으로 고치면 다음 실행에 덮인다). 계획 docs/28 §1-5.', '',
     '- 글마다 대표 검색어(targetQuery, 없으면 keywords 첫 항목) 하나를 네이버 공식 웹문서 검색 API 30위까지 잰 값이다. 통합검색 첫 화면 순위와 다르다.',
@@ -88,9 +95,34 @@ export function renderStriking({ rows, today, diff }) {
     if (diff.in10.length || diff.out10.length) L.push('');
   }
   const pick = rows.filter((r) => !r.error && r.rank != null && r.rank >= 4).sort((a, b) => a.rank - b.rank || a.slug.localeCompare(b.slug));
-  L.push(`## 4~30위 ${pick.length}편`, '', '| 순위 | 검색어 | 웹문서 결과 수 | 발행 | 글 |', '|---|---|---|---|---|');
-  for (const r of pick) L.push(`| ${r.rank} | ${r.query} | ${docBand(r.webDocCount)} | ${r.publishedAt || ''} | ${r.slug} |`);
+  const hasVol = pick.some((r) => r.rel30 != null);
+  const vol = (r) => (r.rel30 == null ? '' : String(r.rel30));
+  if (hasVol) {
+    const withVol = pick.filter((r) => (r.rel30 ?? 0) >= VOLUME_MIN).sort((a, b) => b.rel30 - a.rel30 || a.rank - b.rank);
+    L.push(`## 4~30위 중 검색량이 잡히는 글 ${withVol.length}편 (리프레시 먼저)`, '',
+      `- 검색량은 검색어 트렌드 최근 30일, 실업급여 30일 평균 = 100 눈금이다(${VOLUME_MIN} 이상만, 측정 ${volumeAt || today}). 순위와 검색량이 둘 다 측정된 글이라 이 목록부터 고친다.`, '',
+      '| 검색량 | 순위 | 검색어 | 웹문서 결과 수 | 발행 | 글 |', '|---|---|---|---|---|---|');
+    for (const r of withVol) L.push(`| ${r.rel30} | ${r.rank} | ${r.query} | ${docBand(r.webDocCount)} | ${r.publishedAt || ''} | ${r.slug} |`);
+    L.push('');
+  }
+  L.push(`## 4~30위 ${pick.length}편`, '', hasVol ? '| 순위 | 검색어 | 웹문서 결과 수 | 검색량 | 발행 | 글 |' : '| 순위 | 검색어 | 웹문서 결과 수 | 발행 | 글 |', hasVol ? '|---|---|---|---|---|---|' : '|---|---|---|---|---|');
+  for (const r of pick) L.push(hasVol
+    ? `| ${r.rank} | ${r.query} | ${docBand(r.webDocCount)} | ${vol(r)} | ${r.publishedAt || ''} | ${r.slug} |`
+    : `| ${r.rank} | ${r.query} | ${docBand(r.webDocCount)} | ${r.publishedAt || ''} | ${r.slug} |`);
   return L.join('\n') + '\n';
+}
+
+// 30위 안 글의 검색어에 rel30(검색어 트렌드, 실업급여 = 100)을 붙인다. 측정 실패한 검색어는 rel30 을 비운다.
+export async function attachVolume(rows) {
+  const qs = [...new Set(rows.filter((r) => !r.error && r.rank != null).map((r) => r.query))];
+  if (!qs.length) return { measured: 0, calls: 0, window: null };
+  const res = await measureVolume(qs);
+  const by = new Map(res.rows.filter((x) => x.measured && !x.anchor).map((x) => [x.keyword, x]));
+  for (const r of rows) {
+    const v = by.get(r.query);
+    if (v) { r.rel30 = v.rel30 ?? 0; r.ratio7 = v.ratio7 ?? null; }
+  }
+  return { measured: by.size, calls: Math.ceil(qs.length / 4), window: res.window };
 }
 
 async function main() {
@@ -99,6 +131,18 @@ async function main() {
   const write = args.includes('--write');
   const limit = Number(opt('--limit') || Infinity);
   const today = kstDate();
+  if (args.includes('--volume-only')) {
+    const prev = latestSample('9999-12-31');
+    if (!prev?.rows) { console.error('❌ 이전 표본이 없다. 먼저 순위를 재라'); process.exit(1); }
+    const v = await attachVolume(prev.rows);
+    console.log(`검색량: 30위 안 검색어 ${v.measured}개 (트렌드 ${v.calls}회, ${v.window?.start}~${v.window?.end}) · 순위 표본 ${prev.measuredAt}`);
+    if (!write) return;
+    prev.volumeMeasuredAt = today;
+    writeFileSync(path.join(LOG_DIR, `${PREFIX}${prev.measuredAt}.json`), JSON.stringify(prev, null, 1) + '\n');
+    writeFileSync(STRIKING, renderStriking({ rows: prev.rows, today: prev.measuredAt, volumeAt: today, diff: diffSamples(latestSample(prev.measuredAt), prev.rows) }));
+    console.log(`→ docs/revenue-log/${PREFIX}${prev.measuredAt}.json · docs/ops/naver-striking.md (검색량 ${today})`);
+    return;
+  }
   const targets = articleQueries().slice(0, limit);
   const byQuery = new Map();
   for (const t of targets) if (!byQuery.has(t.query)) byQuery.set(t.query, null);
@@ -108,8 +152,10 @@ async function main() {
     const s = byQuery.get(t.query);
     if (!s || s.error) return { ...t, error: s?.error || '측정 없음' };
     const v = verdicts({ ...s, rank: null }, {});
-    return { slug: t.slug, cluster: t.cluster, publishedAt: t.publishedAt, query: t.query, from: t.from, rank: s.rank ?? null, ourUrl: s.ourUrl, webDocCount: s.webDocCount, open: v.verdictT2 === 'open', wallTop5: s.wallTop5 };
+    return { slug: t.slug, cluster: t.cluster, publishedAt: t.publishedAt, query: t.query, from: t.from, rank: s.rank ?? null, ourUrl: s.ourUrl, webDocCount: s.webDocCount, open: v.verdictT2 === 'open', wallTop5: s.wallTop5, rel30: null };
   });
+  const vinfo = await attachVolume(rows);
+  console.log(`검색량: 30위 안 검색어 ${vinfo.measured}개 (트렌드 ${vinfo.calls}회)`);
   const summary = summarize(rows);
   const diff = diffSamples(latestSample(today), rows);
   const pct = (c) => (c.n ? `${((100 * c.top10) / c.n).toFixed(1)}%` : '-');
@@ -119,11 +165,11 @@ async function main() {
   if (diff) console.log(`  지난 표본(${diff.prevDate}) 대비 10위 안 들어옴 ${diff.in10.length} · 빠짐 ${diff.out10.length}`);
   if (!write) return;
   const out = {
-    note: '글마다 대표 검색어 1개의 네이버 공식 웹문서 검색 API 순위(30위까지, null = 밖). open = 우리 순위를 뺀 열림 판정(T2). 통합검색 첫 화면과 다르다. docs/28 §1-5.',
+    note: '글마다 대표 검색어 1개의 네이버 공식 웹문서 검색 API 순위(30위까지, null = 밖). open = 우리 순위를 뺀 열림 판정(T2). rel30 = 30위 안 글만 잰 검색어 트렌드 최근 30일(실업급여 = 100, 0 은 안 잡힘). 통합검색 첫 화면과 다르다. docs/28 §1-5.',
     measuredAt: today, summary, rows,
   };
   writeFileSync(path.join(LOG_DIR, `${PREFIX}${today}.json`), JSON.stringify(out, null, 1) + '\n');
-  writeFileSync(STRIKING, renderStriking({ rows, today, diff }));
+  writeFileSync(STRIKING, renderStriking({ rows, today, diff, volumeAt: today }));
   console.log(`→ docs/revenue-log/${PREFIX}${today}.json · docs/ops/naver-striking.md`);
 }
 
