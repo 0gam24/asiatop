@@ -14,6 +14,75 @@
  "anchor": "실업급여=100",
  "items": [
   {
+   "id": "gap:2026-09-17:햇살론유스-재대출",
+   "query": "햇살론유스 재대출",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "savings",
+   "status": "approved",
+   "autoPick": true,
+   "score": 70,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 58건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 5",
+    "뉴스 벽 없음",
+    "웹문서 4417건",
+    "비슷한 우리 글 1편"
+   ],
+   "condition": "햇살론 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 햇살론 글 6편과 세부 키워드 다르게",
+   "measuredAt": "2026-10-10",
+   "demand": {
+    "kinExact": 58,
+    "blogFreq": 0,
+    "rel30": 1.2,
+    "ratio7": 0.91
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 4417,
+    "openSlots": 5,
+    "wallTop5": 3,
+    "mainGovAbove": 1,
+    "publicAbove": 2,
+    "toolAbove": 0,
+    "fincoAbove": 1,
+    "naverAbove": 0,
+    "newsWall": 0,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "public:kinfa.or.kr",
+     "gov:job.gg.go.kr",
+     "public:chatbot.kinfa.or.kr",
+     "commercial:docs.google.com",
+     "commercial:infofund.co.kr",
+     "press:donkeypress.com",
+     "commercial:rentcar4us.com",
+     "finco:banksalad.com",
+     "commercial:apps.apple.com",
+     "commercial:tufami.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "haetsalon-card-june-self-employed-application",
+     "mid-range-loan-comparison-2026",
+     "misogeumyung-vs-sunshine-loan",
+     "sunshine-loan-17-vs-card-comparison",
+     "sunshine-loan-comparison"
+    ]
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-10-10",
+   "approvedVia": "목록 [발행 지시] 버튼 1번째"
+  },
+  {
    "id": "gap:2026-09-29:주휴수당-매커니즘",
    "query": "주휴수당 매커니즘",
    "altQueries": [],
@@ -139,72 +208,6 @@
      "health-insurance-rate-2027-frozen",
      "health-insurance-reduction",
      "health-insurance-settlement-installment-2026-july"
-    ]
-   }
-  },
-  {
-   "id": "gap:2026-09-17:햇살론유스-재대출",
-   "query": "햇살론유스 재대출",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": "savings",
-   "status": "proposed",
-   "autoPick": true,
-   "score": 70,
-   "label": "높음",
-   "reasons": [
-    "같은 질문 58건(지식iN 상위 100)",
-    "자리 열림",
-    "빈자리 5",
-    "뉴스 벽 없음",
-    "웹문서 4417건",
-    "비슷한 우리 글 1편"
-   ],
-   "condition": "햇살론 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 햇살론 글 6편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-10",
-   "demand": {
-    "kinExact": 58,
-    "blogFreq": 0,
-    "rel30": 1.2,
-    "ratio7": 0.91
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 4417,
-    "openSlots": 5,
-    "wallTop5": 3,
-    "mainGovAbove": 1,
-    "publicAbove": 2,
-    "toolAbove": 0,
-    "fincoAbove": 1,
-    "naverAbove": 0,
-    "newsWall": 0,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "public:kinfa.or.kr",
-     "gov:job.gg.go.kr",
-     "public:chatbot.kinfa.or.kr",
-     "commercial:docs.google.com",
-     "commercial:infofund.co.kr",
-     "press:donkeypress.com",
-     "commercial:rentcar4us.com",
-     "finco:banksalad.com",
-     "commercial:apps.apple.com",
-     "commercial:tufami.com"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "haetsalon-card-june-self-employed-application",
-     "mid-range-loan-comparison-2026",
-     "misogeumyung-vs-sunshine-loan",
-     "sunshine-loan-17-vs-card-comparison",
-     "sunshine-loan-comparison"
     ]
    }
   },
