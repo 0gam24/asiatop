@@ -187,6 +187,44 @@
    "added": [],
    "measured": 1,
    "withVolume": 1
+  },
+  "재산세": {
+   "at": "2026-10-11",
+   "added": [
+    "재산세 카드"
+   ],
+   "measured": 6,
+   "withVolume": 8
+  },
+  "전세사기": {
+   "at": "2026-10-11",
+   "added": [],
+   "measured": 2,
+   "withVolume": 2
+  },
+  "조기재취업수당": {
+   "at": "2026-10-11",
+   "added": [],
+   "measured": 1,
+   "withVolume": 1
+  },
+  "종부세": {
+   "at": "2026-10-11",
+   "added": [],
+   "measured": 4,
+   "withVolume": 4
+  },
+  "주민등록등본 발급": {
+   "at": "2026-10-11",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "청년월세지원": {
+   "at": "2026-10-11",
+   "added": [],
+   "measured": 5,
+   "withVolume": 5
   }
  }
 }
