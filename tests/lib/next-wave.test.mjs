@@ -106,3 +106,23 @@ describe('gap-outcomes rankAt', async () => {
     expect(rankAt(series, '2026-10-06', 3, '2026-10-07')).toBeNull();
   });
 });
+
+describe('wave-auto pickTerms', async () => {
+  const { pickTerms } = await import('../../scripts/audit/wave-auto.mjs');
+  const wave = { items: [
+    { term: '청년미래적금', stage: 'rising', score: 900 },
+    { term: '근로장려금', stage: 'fading', score: 40 },
+    { term: '연말정산', stage: 'soon', score: 170 },
+  ] };
+  const seeds = { seeds: [{ term: '연말정산' }, { term: '퇴직금' }, { term: '주휴수당' }], ignore: ['주휴수당'] };
+  const big = { axes: [{ keywords: [{ keyword: '민생지원금' }, { keyword: '실업급여' }] }] };
+  it('뜨는 묶음을 먼저, 꺾이는 묶음·보류·자매 주제는 빼고 돌아가며 채운다', () => {
+    const r = pickTerms({ wave, seeds, big, log: { terms: {} }, today: '2026-10-08', maxTerms: 4 }).map((x) => x.term);
+    expect(r).toEqual(['청년미래적금', '연말정산', '실업급여', '퇴직금']);
+  });
+  it('7일 안에 쪼갠 주제는 건너뛴다', () => {
+    const log = { terms: { 청년미래적금: { at: '2026-10-05' }, 실업급여: { at: '2026-09-30' } } };
+    const r = pickTerms({ wave, seeds, big, log, today: '2026-10-08', maxTerms: 3 }).map((x) => x.term);
+    expect(r).toEqual(['연말정산', '퇴직금', '실업급여']);
+  });
+});

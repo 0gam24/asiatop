@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // ════════════════════════════════════════════════════════════════════════
 // gap-outcomes.mjs — 빈틈 글 결과표: 고를 때의 측정값 ↔ 발행 뒤 네이버 웹문서 순위 (읽기 전용, API 호출 없음, LLM 0)
 //
@@ -22,7 +21,7 @@ const OUT = path.join(ROOT, 'docs', 'ops', 'gap-outcomes.md');
 const DAYS = [3, 7, 14, 28];
 const TOL = 2;
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase();
-const readJson = (p, fb) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^﻿/, '')); } catch { return fb; } };
+const readJson = (p, fb) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, '')); } catch { return fb; } };
 const dayDiff = (a, b) => Math.round((Date.parse(`${b}T00:00:00Z`) - Date.parse(`${a}T00:00:00Z`)) / 864e5);
 const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
 

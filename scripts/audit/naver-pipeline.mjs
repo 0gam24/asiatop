@@ -46,7 +46,7 @@ const CALENDAR = path.join(OPS, 'landgrab-calendar.json');
 const LOG_DIR = path.join(ROOT, 'docs', 'revenue-log');
 const ARTICLES = path.join(ROOT, 'src', 'content', 'articles');
 
-export const BUDGET = { t2: 50, t3: 10, new: 20, remeasure: 30 };
+export const BUDGET = { t2: 50, t3: 10, new: 20, remeasure: 60 }; // remeasure 30 → 60 (2026-10-08): 매일 자동 선점(wave-auto)이 항목을 더해 승인·제안 항목을 날마다 다시 재야 루틴이 고를 수 있다
 export const QUEUE_MIN_SCORE = 45;      // 이 아래는 큐에 올리지 않는다
 export const AUTOPICK_MIN_SCORE = 55;   // v0.1: 45점은 운영자 지정, 55점부터 자동
 export const NEW_MIN_SCORE = 55;        // 뉴스 신생어는 잡음이 많아 문턱을 높인다

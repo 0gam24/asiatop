@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // ════════════════════════════════════════════════════════════════════════
 // ops-widget.mjs — "목록" 위젯 HTML 조각 생성 (읽기 전용, API 호출 없음, LLM 0)
 //
@@ -32,7 +31,7 @@ const argv = process.argv.slice(2);
 const argNum = (k, d) => { const a = argv.find((x) => x.startsWith(`--${k}=`)); const n = a ? Number(a.slice(k.length + 3)) : d; return Number.isFinite(n) && n > 0 ? n : d; };
 const LIMIT = argNum('limit', 10);
 const WAVES = argNum('waves', 6);
-const GOAL_USD = 200; // 운영자 목표 2026-10-07 (docs/28)
+const GOAL_USD = 100; // 운영자 목표 2026-10-08 "운영을 직접 맡아, 1일 100달러" (docs/28)
 const EYE_TOP = 5;
 const MIN_VOL = 0.5; // 검색량(실업급여 = 100)이 이 값 이상이면 '검색량이 잡힌' 글감 (wave-split.mjs MIN_REL30 과 같음)
 
@@ -43,7 +42,7 @@ const YDAY = kst(-1);
 const md = (d) => (d ? `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}` : '');
 const norm = (s) => String(s ?? '').replace(/\s+/g, '').toLowerCase();
 const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-const readJson = (p, fb = null) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^﻿/, '')); } catch { return fb; } };
+const readJson = (p, fb = null) => { try { return JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, '')); } catch { return fb; } };
 const r1 = (x) => (x == null || !Number.isFinite(Number(x)) ? null : Math.round(Number(x) * 10) / 10);
 
 // ── 글 frontmatter (필요한 칸만) ─────────────────────────────────────────
@@ -90,7 +89,8 @@ function publishCount(articles) {
   const count = (day) => {
     const list = articles.filter((a) => a.tracked && String(a.publishedAt || '').slice(0, 10) === day);
     let routine = 0;
-    for (const a of list) if (/사이클/.test(addedBySubject(a.file))) routine++;
+    // 루틴 PR 제목: "content: 2026-10-07 사이클 …" · "content: 2026-10-08 일일 발행 …" (squash 커밋 제목)
+    for (const a of list) if (/사이클|일일 발행|daily/.test(addedBySubject(a.file))) routine++;
     return { total: list.length, routine, manual: list.length - routine, list };
   };
   return { today: count(TODAY), yday: count(YDAY), cap: capFor(TODAY) };
