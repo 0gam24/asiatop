@@ -225,6 +225,46 @@
    "added": [],
    "measured": 5,
    "withVolume": 5
+  },
+  "퇴사 후 건강보험": {
+   "at": "2026-10-12",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "햇살론": {
+   "at": "2026-10-12",
+   "added": [
+    "햇살론 대환대출"
+   ],
+   "measured": 5,
+   "withVolume": 5
+  },
+  "햇살론유스": {
+   "at": "2026-10-12",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
+  },
+  "확정일자": {
+   "at": "2026-10-12",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
+  },
+  "ETF 추천": {
+   "at": "2026-10-12",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "ISA 계좌": {
+   "at": "2026-10-12",
+   "added": [
+    "ISA 계좌 단점"
+   ],
+   "measured": 4,
+   "withVolume": 4
   }
  }
 }
