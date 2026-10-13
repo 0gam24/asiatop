@@ -5,8 +5,12 @@
  ],
  "terms": {
   "국민연금": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-14",
+   "added": [
+    "국민연금 수령나이"
+   ],
+   "measured": 5,
+   "withVolume": 5
   },
   "실업급여": {
    "at": "2026-10-07",
@@ -73,8 +77,10 @@
    "manual": true
   },
   "근로장려금": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-14",
+   "added": [],
+   "measured": 6,
+   "withVolume": 8
   },
   "자동차세": {
    "at": "2026-10-07",
@@ -85,24 +91,32 @@
    "manual": true
   },
   "청년미래적금": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-14",
+   "added": [],
+   "measured": 6,
+   "withVolume": 8
   },
   "청년도약계좌": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-14",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "연금저축": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-14",
+   "added": [],
+   "measured": 2,
+   "withVolume": 2
   },
   "종합소득세": {
    "at": "2026-10-07",
    "manual": true
   },
   "연말정산": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-14",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "실손보험": {
    "at": "2026-10-08",
