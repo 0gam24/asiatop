@@ -21,10 +21,12 @@ project_context:
     - PUBLIC_ADSENSE_CLIENT (AdSense 게시자 ID, 클라이언트 노출 OK)
     - CF_DEPLOY_HOOK (CF Deploy Hook URL, 비밀, GHA Secrets)
 tools:
-  - view
-  - str_replace
-  - create_file
-  - bash_tool
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # Deploy Agent — 머니룩

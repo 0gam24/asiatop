@@ -17,10 +17,12 @@ project_context:
   font: Pretendard Variable (셀프 호스팅, size-adjust)
   ad_integration: Google AdSense Auto ads 단독 (수동 유닛 2026-08-25 철거 — docs/23)
 tools:
-  - view
-  - str_replace
-  - create_file
-  - bash_tool
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # Performance Agent — 머니룩
