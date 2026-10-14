@@ -60,20 +60,26 @@ describe('getRelatedArticles', () => {
     expect(result.length).toBeLessThanOrEqual(6);
   });
 
-  it('CPC 최상 클러스터는 결과의 절반(올림)을 초과하지 않는다', () => {
-    const current = mkArticle('a', 'tax', { keywords: ['세금'] });
-    const cpcMax = Array.from({ length: 10 }, (_, i) =>
-      mkArticle(`cpc${i}`, 'credit-loan', { keywords: ['세금', 'cpc'] }),
+  it('같은 클러스터 후보가 충분하면 다른 클러스터 글을 섞지 않는다 (CPC 최상 클러스터 포함)', () => {
+    const current = mkArticle('a', 'credit-loan', { keywords: ['대출', '한도'] });
+    const same = Array.from({ length: 8 }, (_, i) =>
+      mkArticle(`loan${i}`, 'credit-loan', { keywords: ['대출'] }),
     );
+    // 키워드가 더 많이 겹쳐도 다른 클러스터(인접 포함)는 끼지 않는다
     const others = Array.from({ length: 5 }, (_, i) =>
-      mkArticle(`oth${i}`, 'tax', { keywords: ['세금'] }),
+      mkArticle(`sav${i}`, 'savings', { keywords: ['대출', '한도'] }),
     );
-    const result = getRelatedArticles(current, [current, ...cpcMax, ...others], 6);
-    const cpcInResult = result.filter((a) =>
-      ['credit-loan', 'insurance-personal'].includes(a.data.cluster),
-    );
-    // limit 6 → 절반은 3
-    expect(cpcInResult.length).toBeLessThanOrEqual(3);
+    const result = getRelatedArticles(current, [current, ...same, ...others], 6);
+    expect(result.length).toBe(6);
+    expect(result.every((a) => a.data.cluster === 'credit-loan')).toBe(true);
+  });
+
+  it('같은 클러스터 안에서는 키워드가 더 겹치는 글이 먼저 온다', () => {
+    const current = mkArticle('a', 'tax', { keywords: ['연말정산', '의료비공제'] });
+    const low = mkArticle('low', 'tax', { keywords: ['양도소득세'] });
+    const high = mkArticle('high', 'tax', { keywords: ['연말정산', '의료비공제'] });
+    const result = getRelatedArticles(current, [current, low, high], 6);
+    expect(result[0]?.id).toBe('high.mdx');
   });
 
   it('본문에 링크된 슬러그(explicit mention)를 우대한다', () => {
@@ -97,5 +103,17 @@ describe('getRelatedArticles', () => {
     const result = getRelatedArticles(current, pool, 6);
     const clusters = new Set(result.map((a) => a.data.cluster));
     expect(clusters.has('gov-support') || clusters.has('tax')).toBe(true);
+  });
+
+  it('인접 클러스터는 최소 개수(4)까지만 채운다', () => {
+    const current = mkArticle('a', 'realestate', { keywords: ['부동산'] });
+    const pool = [
+      current,
+      mkArticle('re1', 'realestate', { keywords: ['부동산'] }),
+      ...Array.from({ length: 10 }, (_, i) => mkArticle(`gov${i}`, 'gov-support', { keywords: ['지원금'] })),
+    ];
+    const result = getRelatedArticles(current, pool, 6);
+    expect(result.length).toBe(4);
+    expect(result[0]?.id).toBe('re1.mdx');
   });
 });

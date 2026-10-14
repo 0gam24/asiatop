@@ -1,0 +1,25 @@
+---
+// 카테고리 글 목록 2페이지부터 (/<cluster>/page/<n>/). 1페이지는 ../index.astro.
+// 2026-10-14 운영자 지시: 한 번에 수십 개 글이 나열되지 않도록 15개 단위 페이지 나눔. sitemap 에서는 뺀다.
+import ClusterArchivePage from '../../../components/ClusterArchivePage.astro';
+import { clusters } from '../../../data/clusters';
+import { clusterPageCount } from '../../../lib/cluster-pages';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('articles', ({ data }) => !data.draft);
+  return clusters.flatMap((cluster) => {
+    const articles = all
+      .filter((a) => a.data.cluster === cluster.slug)
+      .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+    const totalPages = clusterPageCount(articles.length);
+    return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+      params: { cluster: cluster.slug, page: String(i + 2) },
+      props: { cluster, articles, page: i + 2 },
+    }));
+  });
+}
+
+const { cluster, articles, page } = Astro.props;
+---
+<ClusterArchivePage cluster={cluster} articles={articles} page={page} />

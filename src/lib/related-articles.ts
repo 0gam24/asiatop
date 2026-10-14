@@ -1,16 +1,14 @@
 /**
- * 추천 글 알고리즘 v2 (빌드 타임)
+ * 추천 글 알고리즘 v3 (빌드 타임) — 2026-10-14 운영자 지시
+ * ("추천 매칭은 현재 글과 같은 카테고리 안에서 핵심 키워드·태그 유사도가 가장 높은 글 4~6개")
  *
- * 점수 공식:
- *   sameCluster        : +5
+ * 1순위: 같은 클러스터 글만 고른다. 점수 순, 동점이면 최근 글(updatedAt ?? publishedAt) 먼저.
  *   keyword TF-IDF lite: Σ(min(freq_a, freq_b) × idf) × 0.05
- *   recency            : 180일 이내 +1, 365일 이내 +0.5
- *   cpcBoost           : CPC 최상 (credit-loan, insurance-personal) +1
  *   explicitMention    : 후보 글 슬러그가 본문 마크다운 링크에 명시 시 +3
+ * 같은 클러스터 후보가 MIN_SAME_CLUSTER 개보다 적을 때만 인접 클러스터 글을 같은 점수 순으로 채운다.
  *
- * 다양성 캡:
- *   - 추천 N개 중 CPC 최상 글은 최대 ⌈N/2⌉
- *   - 같은 클러스터 글이 부족하면 인접 클러스터로 fill
+ * v2(2026-10-14 이전)에 있던 최근성 가산(+1/+0.5)·CPC 최상 클러스터 가산(+1)·CPC 글 상한(⌈N/2⌉)은 뺐다.
+ * CPC 상한 때문에 credit-loan·insurance-personal 글의 추천에는 같은 클러스터 글이 3개까지만 나왔다.
  */
 
 export interface ArticleLike {
@@ -27,13 +25,8 @@ export interface ArticleLike {
   };
 }
 
-interface ScoredArticle<T extends ArticleLike> {
-  article: T;
-  score: number;
-  isCpcMax: boolean;
-}
-
-const CPC_MAX_CLUSTERS = new Set(['credit-loan', 'insurance-personal']);
+/** 같은 클러스터 후보가 이보다 적으면 인접 클러스터로 이 개수까지 채운다. */
+export const MIN_SAME_CLUSTER = 4;
 
 const ADJACENT: Record<string, readonly string[]> = {
   'credit-loan': ['savings', 'insurance-personal'],
@@ -109,23 +102,11 @@ export function getRelatedArticles<T extends ArticleLike>(
   pool: readonly T[],
   limit: number = 6,
 ): T[] {
-  const now = Date.now();
   const idf = buildIdf(pool);
   const currentFreq = buildTermFreq(current);
   const currentMentions = extractMentions(current.body);
 
-  const scored: ScoredArticle<T>[] = [];
-
-  for (const candidate of pool) {
-    if (candidate.id === current.id) continue;
-    if (candidate.data.draft) continue;
-
-    let score = 0;
-
-    if (candidate.data.cluster === current.data.cluster) {
-      score += 5;
-    }
-
+  const score = (candidate: T): number => {
     const candidateFreq = buildTermFreq(candidate);
     let tfidf = 0;
     for (const [tok, fa] of currentFreq) {
@@ -133,65 +114,25 @@ export function getRelatedArticles<T extends ArticleLike>(
       if (!fb) continue;
       tfidf += Math.min(fa, fb) * (idf.get(tok) ?? 1);
     }
-    score += tfidf * 0.05;
+    const slug = candidate.id.replace(/\.mdx?$/, '');
+    return tfidf * 0.05 + (currentMentions.has(slug) ? 3 : 0);
+  };
+  const refTime = (a: T) => (a.data.updatedAt ?? a.data.publishedAt).valueOf();
+  const rank = (candidates: T[]): T[] =>
+    candidates
+      .map((article) => ({ article, score: score(article) }))
+      .sort((a, b) => b.score - a.score || refTime(b.article) - refTime(a.article))
+      .map((s) => s.article);
+  const eligible = (a: T) => a.id !== current.id && !a.data.draft;
 
-    const refDate = candidate.data.updatedAt ?? candidate.data.publishedAt;
-    const ageDays = (now - refDate.valueOf()) / 86400000;
-    if (ageDays <= 180) score += 1;
-    else if (ageDays <= 365) score += 0.5;
+  const result = rank(pool.filter((a) => eligible(a) && a.data.cluster === current.data.cluster)).slice(0, limit);
 
-    const isCpcMax = CPC_MAX_CLUSTERS.has(candidate.data.cluster);
-    if (isCpcMax) score += 1;
-
-    const candidateSlug = candidate.id.replace(/\.mdx?$/, '');
-    if (currentMentions.has(candidateSlug)) score += 3;
-
-    if (score > 0) {
-      scored.push({ article: candidate, score, isCpcMax });
-    }
-  }
-
-  scored.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    const aDate = (a.article.data.updatedAt ?? a.article.data.publishedAt).valueOf();
-    const bDate = (b.article.data.updatedAt ?? b.article.data.publishedAt).valueOf();
-    return bDate - aDate;
-  });
-
-  const cpcCap = Math.ceil(limit / 2);
-  const result: T[] = [];
-  let cpcCount = 0;
-
-  for (const s of scored) {
-    if (result.length >= limit) break;
-    if (s.isCpcMax && cpcCount >= cpcCap) continue;
-    result.push(s.article);
-    if (s.isCpcMax) cpcCount++;
-  }
-
-  if (result.length < limit) {
-    const adjacent = ADJACENT[current.data.cluster] ?? [];
-    const used = new Set(result.map((a) => a.id));
-    for (const adjSlug of adjacent) {
-      if (result.length >= limit) break;
-      const adjArticles = pool
-        .filter(
-          (a) =>
-            a.data.cluster === adjSlug &&
-            !used.has(a.id) &&
-            a.id !== current.id &&
-            !a.data.draft,
-        )
-        .sort(
-          (a, b) =>
-            (b.data.updatedAt ?? b.data.publishedAt).valueOf() -
-            (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
-        );
-      for (const a of adjArticles) {
-        if (result.length >= limit) break;
-        result.push(a);
-        used.add(a.id);
-      }
+  const minCount = Math.min(MIN_SAME_CLUSTER, limit);
+  if (result.length < minCount) {
+    const adjacent = new Set(ADJACENT[current.data.cluster] ?? []);
+    for (const a of rank(pool.filter((a) => eligible(a) && adjacent.has(a.data.cluster)))) {
+      if (result.length >= minCount) break;
+      result.push(a);
     }
   }
 

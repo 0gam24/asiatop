@@ -1,25 +1,29 @@
 ---
 import { findCluster, clusterAccentDark } from '../data/clusters';
 import { href as normalizeHref } from '../lib/url';
+// description·publishedAt 은 선택 (2026-10-14 운영자 지시): 추천 글·카테고리·전체 글 목록은 요약문을 빼고
+// 제목만 보여 준다. 요약문 원문은 글 상세 페이지에만 남긴다.
 interface Props {
   href: string;
   title: string;
-  description: string;
+  description?: string;
   cluster: string;
-  publishedAt: Date;
+  publishedAt?: Date;
   size?: 'sm' | 'md' | 'lg';
 }
 const { href, title, description, cluster, publishedAt, size = 'md' } = Astro.props;
 const c = findCluster(cluster);
-const dateStr = new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(publishedAt);
+const dateStr = publishedAt
+  ? new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }).format(publishedAt)
+  : null;
 ---
 <a class={`article-card size-${size}`} href={normalizeHref(href)}>
   <div class="meta">
     {c && <span class="tag" style={`--accent-light: ${c.accent}; --accent-dark: ${clusterAccentDark(c.accent)};`}>{c.shortTitle}</span>}
-    <time class="date" datetime={publishedAt.toISOString()}>{dateStr}</time>
+    {publishedAt && dateStr && <time class="date" datetime={publishedAt.toISOString()}>{dateStr}</time>}
   </div>
   <h3>{title}</h3>
-  <p>{description}</p>
+  {description && <p>{description}</p>}
 </a>
 
 <style>

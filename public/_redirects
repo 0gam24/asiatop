@@ -77,6 +77,13 @@
 /gov-support/bokjiro-mobile-application/  /public-services/bokjiro-mobile-9-welfare-integrated/  301
 /gov-support/bokjiro-mobile-application   /public-services/bokjiro-mobile-9-welfare-integrated/  301
 
+# ── 저자 엔티티 단일화 301 (수동 블록 — 2026-10-14 운영자 지시) ──
+# 모든 글의 저자는 2026-08-26 부터 kim-junhyeok(실명). 글이 0편인 저자 페이지는 더 만들지 않는다(src/pages/author/[slug].astro).
+/author/editor-team/     /author/kim-junhyeok/  301
+/author/editor-team      /author/kim-junhyeok/  301
+/author/moneylook-auto/  /author/kim-junhyeok/  301
+/author/moneylook-auto   /author/kim-junhyeok/  301
+
 # ── PRUNING REDIRECTS (자동 생성: scripts/prune/apply-pruning.mjs — 수동 편집 금지) ──
 /credit-loan/credit-inquiry-hard-vs-soft-score/  /credit-loan/  301
 /credit-loan/credit-inquiry-hard-vs-soft-score  /credit-loan/  301

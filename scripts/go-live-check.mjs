@@ -166,7 +166,7 @@ function checkRequiredPages() {
     ['Terms', 'terms/index.html'],
     ['Editorial Policy', 'editorial-policy/index.html'],
     ['Contact', 'contact/index.html'],
-    ['Author 페이지', 'author/editor-team/index.html'],
+    ['Author 페이지', 'author/kim-junhyeok/index.html'],
     ['404', '404.html'],
   ];
   for (const [label, rel] of required) {

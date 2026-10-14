@@ -79,6 +79,8 @@ export default defineConfig({
         !page.includes('/og/') &&
         !page.includes('/404') &&
         !/\/(design-system|search)\/?$/.test(page) &&
+        // 카테고리 목록 2페이지부터(/<cluster>/page/<n>/, 2026-10-14)는 sitemap 에 넣지 않는다 — 글 상세 URL 만 노출
+        !/\/page\/\d+\/?$/.test(page) &&
         // llms*.txt 는 post-build 생성물이라 원래 sitemap 에 없지만 회귀 방어 (검색엔진 noindex 자산)
         !/\/llms(-full|-cluster-[a-z-]+)?\.txt$/.test(page) &&
         !isNoindexedArticle(page),
