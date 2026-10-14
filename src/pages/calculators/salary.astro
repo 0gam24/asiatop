@@ -1,12 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SalaryCalculator, { SALARY_DEFAULTS, calc } from '../../components/SalaryCalculator';
-import withholdingTable from '../../data/income-tax-withholding-table.json';
 import { withholdingIncomeTax } from '../../lib/income-tax-withholding';
 
 const url = new URL('/calculators/salary/', Astro.site).toString();
 
-// 근로소득 간이세액표는 빌드할 때만 여기서 읽는다(클라이언트는 계산 시점에 동적 import).
+// 근로소득 간이세액표를 빌드할 때 읽는다(클라이언트는 계산 시점에 동적 import).
+// 여기서도 동적 import 로 읽는다. 정적 import 를 섞으면 Vite 가 서버 빌드에서 "dynamic import will not move module" 경고를 낸다.
+const { default: withholdingTable } = await import('../../data/income-tax-withholding-table.json');
 // 첫 화면 입력값의 근로소득세와 FAQ 예시 금액을 계산기와 같은 함수·같은 표로 계산해, 화면 출력과 글자가 항상 같게 한다.
 const initialIncomeTax = withholdingIncomeTax(
   withholdingTable,
