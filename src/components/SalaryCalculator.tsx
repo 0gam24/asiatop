@@ -13,9 +13,17 @@ interface CalcResult {
   effectiveRate: number;
 }
 
-const NP_RATE = 0.045;
-const HI_RATE = 0.03545;
-const LTC_RATE = 0.004591;
+// 2026년 근로자 부담 요율
+// 국민연금 9.5%의 절반 (국민연금법 부칙 <법률 제20903호> 제4조제1항)
+const NP_RATE = 0.0475;
+// 국민연금 기준소득월액 상한 (2026.7.1.~2027.6.30., 국민연금공단 안내)
+const NP_CEILING = 6590000;
+// 건강보험 7.19%의 절반 (국민건강보험법 시행령 제44조제1항)
+const HI_RATE = 0.03595;
+// 장기요양보험료 = 건강보험료 × 장기요양보험료율 0.9448% ÷ 건강보험료율 7.19%
+// (노인장기요양보험법 제9조제1항, 같은 법 시행령 제4조)
+const LTC_OF_HI = 0.009448 / 0.0719;
+// 고용보험 실업급여 1.8%의 절반 (고용산재보험료징수법 시행령 제12조제1항제2호)
 const EI_RATE = 0.009;
 
 function estimateIncomeTax(monthlyGross: number): number {
@@ -47,9 +55,10 @@ function estimateIncomeTax(monthlyGross: number): number {
 
 function calc(annualGross: number, dependents: number): CalcResult {
   const monthlyGross = annualGross / 12;
-  const np = Math.min(monthlyGross * NP_RATE, 277650);
+  const npBase = Math.floor(Math.min(monthlyGross, NP_CEILING) / 1000) * 1000;
+  const np = npBase * NP_RATE;
   const hi = monthlyGross * HI_RATE;
-  const ltc = hi * 0.1295;
+  const ltc = hi * LTC_OF_HI;
   const ei = monthlyGross * EI_RATE;
   const incomeTaxBase = estimateIncomeTax(monthlyGross);
   const dependentRebate = dependents * 4000;
@@ -134,9 +143,9 @@ export default function SalaryCalculator() {
           </thead>
           <tbody>
             <tr><td>월 세전 급여</td><td>{fmt(result.monthlyGross)}</td></tr>
-            <tr><td>국민연금 (4.5%)</td><td>−{fmt(result.nationalPension)}</td></tr>
-            <tr><td>건강보험 (3.545%)</td><td>−{fmt(result.healthInsurance)}</td></tr>
-            <tr><td>장기요양 (12.95%)</td><td>−{fmt(result.longTermCare)}</td></tr>
+            <tr><td>국민연금 (4.75%)</td><td>−{fmt(result.nationalPension)}</td></tr>
+            <tr><td>건강보험 (3.595%)</td><td>−{fmt(result.healthInsurance)}</td></tr>
+            <tr><td>장기요양 (약 13.14%)</td><td>−{fmt(result.longTermCare)}</td></tr>
             <tr><td>고용보험 (0.9%)</td><td>−{fmt(result.employmentInsurance)}</td></tr>
             <tr><td>근로소득세 (간이)</td><td>−{fmt(result.incomeTax)}</td></tr>
             <tr><td>지방소득세 (10%)</td><td>−{fmt(result.localTax)}</td></tr>
@@ -146,7 +155,7 @@ export default function SalaryCalculator() {
         </table>
 
         <p className="note">
-          ※ 본 계산기는 2026년 4대보험·근로소득세 간이세액표·지방소득세 기준으로 산정한 <strong>참고용</strong>입니다.
+          ※ 본 계산기는 2026년 4대보험 요율과 근로소득세 간이 추정치·지방소득세로 산정한 <strong>참고용</strong>입니다.
           비과세 항목(식대 월 20만원, 자가운전보조금 등)·연말정산 결과·특수 공제는 미반영. 실제 실수령액은 회사 급여 명세서를 따르세요.
         </p>
       </div>
