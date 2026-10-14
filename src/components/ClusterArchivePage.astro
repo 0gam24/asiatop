@@ -1,0 +1,293 @@
+---
+// 카테고리 글 목록 한 페이지 (src/pages/[cluster]/index.astro = 1페이지, src/pages/[cluster]/page/[page].astro = 2페이지부터).
+// 2026-10-14 운영자 지시: 목록 카드는 요약문 없이 제목만, 15개 단위로 페이지를 나눈다.
+import Base from '../layouts/Base.astro';
+import ArticleCard from './ArticleCard.astro';
+import HeroIllustration from './HeroIllustration.astro';
+import MainBackrefBox from './MainBackrefBox.astro';
+import { clusterAccentDark, type Cluster } from '../data/clusters';
+import { CLUSTER_PAGE_SIZE, clusterPageCount, clusterPageHref } from '../lib/cluster-pages';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  cluster: Cluster;
+  articles: CollectionEntry<'articles'>[];
+  page: number;
+}
+const { cluster, articles, page } = Astro.props;
+
+const total = articles.length;
+const totalPages = clusterPageCount(total);
+const start = (page - 1) * CLUSTER_PAGE_SIZE;
+const items = articles.slice(start, start + CLUSTER_PAGE_SIZE);
+const from = total === 0 ? 0 : start + 1;
+const to = start + items.length;
+const isFirst = page === 1;
+const pageUrl = new URL(clusterPageHref(cluster.slug, page), Astro.site).toString();
+const articleHref = (a: CollectionEntry<'articles'>) => `/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`;
+
+const title = isFirst ? `${cluster.title} | 머니룩` : `${cluster.title} ${page}페이지 | 머니룩`;
+const description = isFirst
+  ? cluster.metaDescription
+  : `${cluster.title} 글 목록 ${page}페이지, 전체 ${total}편 가운데 최신순 ${from}~${to}번째 글입니다. ${cluster.metaDescription}`;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '홈', item: Astro.site?.toString() },
+    { '@type': 'ListItem', position: 2, name: cluster.title, item: new URL(`/${cluster.slug}/`, Astro.site).toString() },
+    ...(isFirst ? [] : [{ '@type': 'ListItem', position: 3, name: `${page}페이지`, item: pageUrl }]),
+  ],
+};
+
+const itemListSchema = {
+  '@type': 'ItemList',
+  numberOfItems: total,
+  itemListElement: items.map((a, i) => ({
+    '@type': 'ListItem',
+    position: start + i + 1,
+    url: new URL(articleHref(a), Astro.site).toString(),
+    name: a.data.title,
+  })),
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: pageUrl,
+  inLanguage: 'ko-KR',
+  about: [
+    // R67 — cluster 자체 entity refs (Wikipedia·정부기관) 를 about 의 첫 항목으로
+    ...(cluster.entityRefs && cluster.entityRefs.length > 0
+      ? [{ '@type': 'Thing', name: cluster.title, sameAs: cluster.entityRefs }]
+      : []),
+    ...cluster.seedKeywords.map((k) => ({ '@type': 'Thing', name: k })),
+  ],
+  mainEntity: itemListSchema,
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.cluster-hero h1', '.cluster-hero p'],
+  },
+};
+
+const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+const prevHref = page > 1 ? new URL(clusterPageHref(cluster.slug, page - 1), Astro.site).toString() : undefined;
+const nextHref = page < totalPages ? new URL(clusterPageHref(cluster.slug, page + 1), Astro.site).toString() : undefined;
+---
+<Base
+  title={title}
+  description={description}
+  jsonLd={[breadcrumbSchema, collectionSchema]}
+  prevHref={prevHref}
+  nextHref={nextHref}
+>
+  <div class="cluster-hero" style={`--accent-light: ${cluster.accent}; --accent-dark: ${clusterAccentDark(cluster.accent)}`}>
+    <div class="container">
+      <nav aria-label="breadcrumb" class="crumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">›</span>
+        {isFirst ? (
+          <span aria-current="page">{cluster.title}</span>
+        ) : (
+          <>
+            <a href={`/${cluster.slug}/`}>{cluster.title}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{page}페이지</span>
+          </>
+        )}
+      </nav>
+      {isFirst && <HeroIllustration cluster={cluster.slug} title={cluster.description} variant="hub" />}
+      <div class="hero-row hero-row-compact">
+        <div>
+          <h1>{isFirst ? cluster.title : `${cluster.title} ${page}페이지`}</h1>
+          <p>{isFirst ? cluster.description : `전체 ${total}편 가운데 최신순 ${from}~${to}번째 글입니다.`}</p>
+        </div>
+      </div>
+      {isFirst && (
+        <>
+          <ul class="seed">
+            {cluster.seedKeywords.map((k) => <li>{k}</li>)}
+          </ul>
+          <MainBackrefBox variant="inline" cluster={cluster.slug as never} />
+        </>
+      )}
+    </div>
+  </div>
+
+  <section class="container section">
+    {items.length > 0 ? (
+      <div class="grid">
+        {items.map((a) => (
+          <ArticleCard
+            href={articleHref(a)}
+            title={a.data.title}
+            cluster={a.data.cluster}
+            publishedAt={a.data.publishedAt}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty">
+        <p>곧 새로운 글이 올라옵니다.</p>
+        <p class="muted">위 키워드의 가이드를 준비 중입니다. 다른 카테고리도 둘러보세요.</p>
+        <a href="/" class="btn">홈으로 돌아가기</a>
+      </div>
+    )}
+
+    {totalPages > 1 && (
+      <nav class="pager" aria-label={`${cluster.title} 글 목록 페이지`}>
+        {page > 1 && <a class="pager-step" href={clusterPageHref(cluster.slug, page - 1)} rel="prev">이전</a>}
+        <ol class="pager-pages">
+          {pages.map((n) => (
+            <li>
+              {n === page ? (
+                <span aria-current="page">{n}</span>
+              ) : (
+                <a href={clusterPageHref(cluster.slug, n)}>{n}</a>
+              )}
+            </li>
+          ))}
+        </ol>
+        {page < totalPages && <a class="pager-step" href={clusterPageHref(cluster.slug, page + 1)} rel="next">다음</a>}
+      </nav>
+    )}
+  </section>
+</Base>
+
+<style>
+.container {
+  max-width: 1200px;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+@media (min-width: 768px) { .container { padding-inline: 2rem; } }
+
+.cluster-hero {
+  --accent: var(--accent-light);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, var(--color-bg)) 0%, var(--color-bg) 100%);
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+[data-theme="dark"] .cluster-hero { --accent: var(--accent-dark); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cluster-hero { --accent: var(--accent-dark); }
+}
+.crumb {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+.crumb a:hover { color: var(--accent); }
+.hero-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+.cluster-hero h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--color-secondary);
+  margin: 0 0 0.4rem;
+}
+.cluster-hero p {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+.seed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.seed li {
+  height: 28px;
+  padding-inline: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-bg);
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  /* 라이트: accent를 어둡게 섞어 가독성 ↑ / 다크: 본문 텍스트 색 사용 */
+  color: color-mix(in oklab, var(--accent) 80%, var(--color-text));
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.section { padding-block: 2.5rem; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 480px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+.pager-pages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.pager a,
+.pager [aria-current="page"] {
+  min-width: 40px;
+  height: 40px;
+  padding-inline: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+.pager a:hover { border-color: var(--color-primary); color: var(--color-primary-700); }
+.pager [aria-current="page"] {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+.empty p { margin: 0 0 0.5rem; }
+.empty .muted { color: var(--color-muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding-inline: 1rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.btn:hover { background: var(--color-primary-600); }
+</style>

@@ -98,7 +98,7 @@ const authorSchema = authorEntry
     }
   : {
       '@type': 'Organization',
-      name: '머니룩 편집팀',
+      name: '머니룩',
       url: new URL('/about/', Astro.site).toString(),
     };
 
@@ -434,7 +434,7 @@ const ageMonths = Math.floor(ageInDays / 30);
     tags: article.data.keywords as string[],
     publishedTime: article.data.publishedAt.toISOString(),
     modifiedTime: (article.data.updatedAt ?? article.data.publishedAt).toISOString(),
-    author: authorEntry?.data.name ?? '머니룩 편집팀',
+    author: authorEntry?.data.name ?? '머니룩',
   }}
   prevHref={prevUrl ?? undefined}
   nextHref={nextUrl ?? undefined}
@@ -601,9 +601,7 @@ const ageMonths = Math.floor(ageInDays / 30);
               <ArticleCard
                 href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`}
                 title={a.data.title}
-                description={a.data.description}
                 cluster={a.data.cluster}
-                publishedAt={a.data.publishedAt}
               />
             ))}
           </div>

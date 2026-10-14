@@ -12,10 +12,16 @@ export async function getStaticPaths() {
   } catch {
     return [];
   }
-  return authors.map((author) => ({
-    params: { slug: author.id },
-    props: { author },
-  }));
+  // 2026-10-14 저자 엔티티 단일화 (운영자 지시): 글이 1편도 없는 저자(editor-team·moneylook-auto)는 페이지를 만들지 않는다.
+  // 옛 주소는 public/_redirects 에서 /author/kim-junhyeok/ 로 301.
+  const published = await getCollection('articles', ({ data }) => !data.draft);
+  const withArticles = new Set(published.map((a) => a.data.author));
+  return authors
+    .filter((author) => withArticles.has(author.id))
+    .map((author) => ({
+      params: { slug: author.id },
+      props: { author },
+    }));
 }
 
 const { author } = Astro.props;
@@ -131,7 +137,6 @@ const topicClusters = author.data.topicAuthority
             <ArticleCard
               href={`/${a.data.cluster}/${a.id.replace(/\.mdx?$/, '')}/`}
               title={a.data.title}
-              description={a.data.description}
               cluster={a.data.cluster}
               publishedAt={a.data.publishedAt}
             />
