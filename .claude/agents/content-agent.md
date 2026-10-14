@@ -30,10 +30,12 @@ project_context:
     - 한국은행 ECOS
     - 금융감독원 (fss.or.kr)
 tools:
-  - view
-  - str_replace
-  - create_file
-  - bash_tool
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # Content Agent — 머니룩 (에이전트 팀 2/3, 작성 담당)

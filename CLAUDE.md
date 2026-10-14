@@ -127,7 +127,7 @@ publishedAt 박은 직후 글 본문의 "D-N", "오늘은 N월 N일" 같은 상�
 
 ## content-agent 사용 후 검증
 
-content-agent 의 `create_file` 결과는 host filesystem 에 반영 안되는 경우 있음 (5/15~5/17 사례).
+content-agent 의 `create_file` 결과가 host filesystem 에 반영 안된 사례가 있었다 (5/15~5/17). 2026-10-10 에는 tools 의 `view`·`str_replace`·`create_file`·`bash_tool` 이 Claude Code 도구 이름이 아니라서 "zero tools" 오류로 아예 뜨지 않았고, 2026-10-14 Read·Write·Edit·Bash·Grep·Glob 으로 바꿨다 (5/15~5/17 사례와의 관계는 확인 안 됨).
 
 agent 호출 후 반드시:
 ```

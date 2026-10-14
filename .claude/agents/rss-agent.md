@@ -16,10 +16,12 @@ project_context:
     - Brave Search Webmaster (Claude 인덱스)
     - IndexNow (즉시 색인 알림)
 tools:
-  - view
-  - str_replace
-  - create_file
-  - bash_tool
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # RSS Agent — 머니룩

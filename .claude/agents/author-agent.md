@@ -17,9 +17,11 @@ project_context:
       jobTitle: TBD
       note: "본인 저자 등록 또는 외부 전문가(공인회계사·세무사·노무사·재무설계사) 위촉 필요"
 tools:
-  - view
-  - str_replace
-  - create_file
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - Glob
 ---
 
 # Author Agent — 머니룩

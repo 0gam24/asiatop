@@ -21,10 +21,12 @@ project_context:
     - OAI-SearchBot
     - CCBot
 tools:
-  - view
-  - str_replace
-  - create_file
-  - bash_tool
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
 ---
 
 # SEO Agent — 머니룩
