@@ -61,8 +61,12 @@
    "manual": true
   },
   "부모급여": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-15",
+   "added": [
+    "부모급여 어린이집"
+   ],
+   "measured": 3,
+   "withVolume": 3
   },
   "ISA": {
    "at": "2026-10-07",
@@ -109,8 +113,10 @@
    "withVolume": 2
   },
   "종합소득세": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-15",
+   "added": [],
+   "measured": 4,
+   "withVolume": 4
   },
   "연말정산": {
    "at": "2026-10-14",
@@ -119,13 +125,13 @@
    "withVolume": 3
   },
   "실손보험": {
-   "at": "2026-10-08",
+   "at": "2026-10-15",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 2,
+   "withVolume": 2
   },
   "부가세 신고": {
-   "at": "2026-10-08",
+   "at": "2026-10-15",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -287,6 +293,18 @@
    ],
    "measured": 4,
    "withVolume": 4
+  },
+  "특판예금": {
+   "at": "2026-10-15",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "부동산담보대출": {
+   "at": "2026-10-15",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
   }
  }
 }
