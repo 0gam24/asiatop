@@ -146,7 +146,7 @@ const nextHref = page < totalPages ? new URL(clusterPageHref(cluster.slug, page 
               {n === page ? (
                 <span aria-current="page">{n}</span>
               ) : (
-                <a href={clusterPageHref(cluster.slug, n)} aria-label={`${n}페이지`}>{n}</a>
+                <a href={clusterPageHref(cluster.slug, n)}>{n}</a>
               )}
             </li>
           ))}
