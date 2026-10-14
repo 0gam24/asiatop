@@ -1,4 +1,8 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterAll } from 'vitest';
+import { spawnSync } from 'node:child_process';
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { href } from '../../src/lib/url.ts';
 import remarkTrailingSlash, { normalizeInternalHref, loadRedirectMap } from '../../src/lib/remark-trailing-slash.mjs';
 
@@ -115,5 +119,40 @@ describe('remark-trailing-slash — url.ts 와 규칙 패리티', () => {
       expect(v.to.endsWith('/')).toBe(true);
       expect(['merge', 'delete']).toContain(v.action);
     }
+  });
+});
+
+// scripts/audit/internal-links.mjs 의 description 판정 — 2026-10-10 content="'50만원당…'" 를 없음으로 오판한 회귀 방지.
+// 페이지 1개짜리 임시 dist 로 게이트를 실제로 돌려 exit code 를 본다.
+describe('internal-links 게이트 — <meta name="description"> content 판정', () => {
+  const SCRIPT = join(process.cwd(), 'scripts/audit/internal-links.mjs');
+  const dists = [];
+  afterAll(() => {
+    for (const dist of dists) rmSync(dist, { recursive: true, force: true });
+  });
+
+  function runGate(meta) {
+    const dist = mkdtempSync(join(tmpdir(), 'internal-links-'));
+    dists.push(dist);
+    writeFileSync(join(dist, 'index.html'), `<!doctype html><html><head><title>테스트</title>${meta}</head><body></body></html>`);
+    return spawnSync(process.execPath, [SCRIPT, '--dist', dist], { encoding: 'utf8' });
+  }
+
+  it.each([
+    ['큰따옴표 값이 작은따옴표로 시작', `<meta name="description" content="'50만원당 1개월' 같은 표현">`],
+    ['작은따옴표 값에 큰따옴표 포함', `<meta name='description' content='"50만원당 1개월" 같은 표현'>`],
+    ['content 가 name 앞', `<meta content="'50만원당 1개월' 같은 표현" name="description">`],
+  ])('%s → 통과', (_, meta) => {
+    const r = runGate(meta);
+    expect(r.status, r.stdout + r.stderr).toBe(0);
+  });
+
+  it.each([
+    ['빈 값', `<meta name="description" content="">`],
+    ['공백만', `<meta name="description" content="   ">`],
+  ])('%s → 없음으로 실패', (_, meta) => {
+    const r = runGate(meta);
+    expect(r.status).toBe(1);
+    expect(r.stdout).toContain('<meta name="description"> 없음: 1개');
   });
 });

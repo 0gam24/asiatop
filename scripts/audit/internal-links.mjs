@@ -14,12 +14,12 @@
  * 래퍼: scripts/check-trailing-slash.sh
  */
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
-import { join, relative, dirname } from 'node:path';
+import { join, relative, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const argIdx = process.argv.indexOf('--dist');
-const DIST = join(ROOT, argIdx !== -1 ? process.argv[argIdx + 1] : 'dist');
+const DIST = resolve(ROOT, argIdx !== -1 ? process.argv[argIdx + 1] : 'dist');
 const SKIP_DIRS = new Set(['pagefind', '_astro']);
 // 검색엔진 소유권 인증 파일 (public/ 정적, 링크되지 않음) — title/description 검사 대상 아님
 const SKIP_FILES_RE = /^(naver[0-9a-f]{16,}|google[0-9a-f]{8,}|BingSiteAuth|yandex_[0-9a-f]+)\.html$/i;
@@ -47,8 +47,9 @@ function* htmlFiles(dir) {
 
 const HREF_RE = /href=(["'])([^"']*)\1/g;
 const TITLE_RE = /<title[^>]*>\s*[^<\s][^<]*<\/title>/i;
-const DESC_RE_A = /<meta\s+[^>]*name=["']description["'][^>]*content=["'][^"']+["']/i;
-const DESC_RE_B = /<meta\s+[^>]*content=["'][^"']+["'][^>]*name=["']description["']/i;
+// content 는 "…" 와 '…' 를 따로 잡아 값 안의 다른 따옴표를 허용한다 (2026-10-10 content="'50만원당…'" 오판). 비었거나 공백만이면 없음.
+const DESC_RE_A = /<meta\s+[^>]*name=["']description["'][^>]*content=(?:"\s*[^"\s][^"]*"|'\s*[^'\s][^']*')/i;
+const DESC_RE_B = /<meta\s+[^>]*content=(?:"\s*[^"\s][^"]*"|'\s*[^'\s][^']*')[^>]*name=["']description["']/i;
 
 /** 페이지 경로(/tax/) 가 dist 에 존재하는지 — directory 포맷이라 index.html 로 판정 */
 const existsCache = new Map();
