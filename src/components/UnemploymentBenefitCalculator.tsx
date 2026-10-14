@@ -9,8 +9,11 @@ interface UnemploymentResult {
   insuredYears: number;
 }
 
-const DAILY_MIN = 64192;
-const DAILY_MAX = 66000;
+// 2026년 1월 1일 이후 이직자 기준
+// 하한: 최저임금 시간급 10,320원(2026년) × 1일 8시간 × 80% (고용보험법 제45조제4항·제46조)
+const DAILY_MIN = 66048;
+// 상한: 기초일액 상한 11만3,500원 × 60% (고용보험법 시행령 제68조제1항)
+const DAILY_MAX = 68100;
 const RATE = 0.6;
 
 function calc(monthlyBeforeTax: number, ageYears: number, insuredMonths: number): UnemploymentResult {
@@ -99,7 +102,7 @@ export default function UnemploymentBenefitCalculator() {
             step={1}
             min={0}
           />
-          <p className="hint">최소 180일(약 6개월) 이상 가입 + 비자발적 이직 시 수급 가능.</p>
+          <p className="hint">이직 전 18개월 중 피보험 단위기간(보수를 받은 날) 180일 이상과 비자발적 이직 등 요건을 갖춰야 수급할 수 있습니다.</p>
         </div>
       </div>
 
@@ -129,10 +132,10 @@ export default function UnemploymentBenefitCalculator() {
         </table>
 
         <p className="note">
-          ※ 2026년 기준 일 구직급여 상한 66,000원·하한 64,192원(최저시급 80% 적용) 가정. 실제 수급 자격은
-          <strong> 비자발적 이직</strong>·<strong>이직 전 18개월 중 180일 이상 피보험 가입</strong>·
+          ※ 2026년 1월 1일 이후 이직자 기준 일 구직급여 상한 68,100원·하한 66,048원(1일 8시간 근무 가정) 적용. 실제 수급 자격은
+          <strong> 비자발적 이직</strong>·<strong>이직 전 18개월 중 피보험 단위기간 180일 이상</strong>·
           <strong>적극적 구직활동</strong> 등 요건 충족 필수. 자세한 산정은
-          <a href="https://www.ei.go.kr" rel="noopener" target="_blank"> 고용보험 홈페이지</a>를 참고하세요.
+          <a href="https://www.work24.go.kr" rel="noopener" target="_blank"> 고용24</a>를 참고하세요.
         </p>
       </div>
     </div>
