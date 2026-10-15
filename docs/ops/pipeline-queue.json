@@ -9,10 +9,76 @@
   "hold 중 holdBy=pipeline 은 naver-pipeline.mjs 재측정에서 한 번 닫힌 항목이다. 다음 측정에서 열리면 proposed 로 돌아오고, 또 닫혀 있으면 rejected(21일 뒤 삭제). 운영자가 건 hold 는 파이프라인이 건드리지 않는다.",
   "hold 중 holdBy=sister 는 자매 사이트 awoo 주제(지자체 지원금·지역화폐·상품권 사용처·반값여행)라 naver-pipeline.mjs 가 뺀 항목이다(2026-09-30 운영자 결정). 다시 재지 않고 마지막 측정 21일 뒤 삭제된다. approved 인 awoo 주제는 상태를 두되 재측정을 멈추고 remeasureWarn 을 남긴다. sisterTop=N 은 웹문서 상위 N위에 자매 사이트가 있어 파이프라인이 autoPick 을 끈 표시다. 자매가 빠지면 autoPick 을 다시 계산하므로, 그런 항목을 확실히 막으려면 autoPick 대신 hold 나 rejected 로 둔다."
  ],
- "updatedAt": "2026-10-15",
+ "updatedAt": "2026-10-16",
  "measuredBy": "naver-pipeline.mjs (naver-scout·naver-ledger·naver-volume + 블로그·지식iN 제목 접미어·지식iN 같은 질문 수)",
  "anchor": "실업급여=100",
  "items": [
+  {
+   "id": "gap:2026-10-15:ISA-ETF-추천",
+   "query": "ISA ETF 추천",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "savings",
+   "status": "proposed",
+   "autoPick": true,
+   "score": 75,
+   "label": "높음",
+   "reasons": [
+    "같은 질문 49건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 8",
+    "상위 5 관공서·공단·도구 없음",
+    "뉴스 벽 없음",
+    "웹문서 12만건"
+   ],
+   "condition": "ISA 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 ISA 글 9편과 세부 키워드 다르게",
+   "measuredAt": "2026-10-16",
+   "demand": {
+    "kinExact": 49,
+    "blogFreq": 3,
+    "rel30": 0.4,
+    "ratio7": 0.64
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 120332,
+    "openSlots": 8,
+    "wallTop5": 0,
+    "mainGovAbove": 0,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 2,
+    "naverAbove": 0,
+    "newsWall": 2,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "ugc:in.naver.com",
+     "commercial:jinipost.com",
+     "finco:kbsec.com",
+     "commercial:macroinsightlab.com",
+     "commercial:etfsim.kr",
+     "commercial:etf-rebalancing.com",
+     "commercial:lilys.ai",
+     "commercial:etf-rebalancing.com",
+     "commercial:mynamuhbegin.com",
+     "finco:truefriend.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "isa-account-comparison",
+     "isa-disadvantages-principal-withdrawal",
+     "isa-discretionary-vs-trust-comparison",
+     "isa-early-termination-tax",
+     "isa-maturity-extension-deadline"
+    ]
+   }
+  },
   {
    "id": "gap:2026-09-30:건보료-차량세금",
    "query": "건보료 차량세금",
@@ -28,13 +94,13 @@
    "label": "높음",
    "reasons": [
     "자리 열림",
-    "빈자리 6",
+    "빈자리 5",
     "상위 5 관공서·공단·도구 없음",
     "뉴스 벽 없음",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "건강보험료 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 건강보험료 글 9편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 11,
     "blogFreq": 0,
@@ -43,12 +109,12 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 60353,
-    "openSlots": 6,
+    "webDocCount": 60736,
+    "openSlots": 5,
     "wallTop5": 0,
     "mainGovAbove": 0,
     "publicAbove": 0,
-    "toolAbove": 0,
+    "toolAbove": 1,
     "fincoAbove": 1,
     "naverAbove": 0,
     "newsWall": 0,
@@ -64,9 +130,9 @@
      "commercial:carlight.kr",
      "press:mlbpark.donga.com",
      "commercial:gggofmoney.co.kr",
+     "tool:k-stock-simulator.com",
      "finco:cardcarcare.com",
-     "press:khan.co.kr",
-     "commercial:a-ha.io"
+     "press:khan.co.kr"
     ]
    },
    "ledger": {
@@ -99,7 +165,7 @@
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "전입신고 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 전입신고 글 4편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 8,
     "blogFreq": 0,
@@ -108,7 +174,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 4740,
+    "webDocCount": 4758,
     "openSlots": 7,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -153,17 +219,16 @@
    "cluster": "savings",
    "status": "proposed",
    "autoPick": false,
-   "score": 70,
-   "label": "높음",
+   "score": 65,
+   "label": "중간",
    "reasons": [
     "같은 질문 26건(지식iN 상위 100)",
     "자리 열림",
     "빈자리 8",
-    "뉴스 벽 없음",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "ISA 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 ISA 글 9편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 26,
     "blogFreq": 0,
@@ -172,7 +237,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 38871,
+    "webDocCount": 38357,
     "openSlots": 8,
     "wallTop5": 1,
     "mainGovAbove": 0,
@@ -180,7 +245,7 @@
     "toolAbove": 1,
     "fincoAbove": 1,
     "naverAbove": 0,
-    "newsWall": 3,
+    "newsWall": 11,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -196,71 +261,6 @@
      "commercial:lilys.ai",
      "commercial:cboard.net",
      "ugc:kin.naver.com"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "isa-account-comparison",
-     "isa-disadvantages-principal-withdrawal",
-     "isa-discretionary-vs-trust-comparison",
-     "isa-early-termination-tax",
-     "isa-maturity-extension-deadline"
-    ]
-   }
-  },
-  {
-   "id": "gap:2026-10-15:ISA-ETF-추천",
-   "query": "ISA ETF 추천",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": "savings",
-   "status": "proposed",
-   "autoPick": true,
-   "score": 70,
-   "label": "높음",
-   "reasons": [
-    "같은 질문 49건(지식iN 상위 100)",
-    "자리 열림",
-    "빈자리 8",
-    "상위 5 관공서·공단·도구 없음",
-    "웹문서 12만건"
-   ],
-   "condition": "ISA 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 ISA 글 9편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-15",
-   "demand": {
-    "kinExact": 49,
-    "blogFreq": 3,
-    "rel30": 0.4,
-    "ratio7": 0.6
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 121423,
-    "openSlots": 8,
-    "wallTop5": 0,
-    "mainGovAbove": 0,
-    "publicAbove": 0,
-    "toolAbove": 0,
-    "fincoAbove": 2,
-    "naverAbove": 0,
-    "newsWall": 4,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "ugc:in.naver.com",
-     "commercial:jinipost.com",
-     "finco:kbsec.com",
-     "commercial:macroinsightlab.com",
-     "commercial:etfsim.kr",
-     "commercial:etf-rebalancing.com",
-     "commercial:lilys.ai",
-     "commercial:etf-rebalancing.com",
-     "commercial:mynamuhbegin.com",
-     "finco:truefriend.com"
     ]
    },
    "ledger": {
@@ -292,7 +292,7 @@
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "주휴수당 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 주휴수당 글 2편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 5,
     "blogFreq": 0,
@@ -301,7 +301,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 12419,
+    "webDocCount": 12349,
     "openSlots": 9,
     "wallTop5": 1,
     "mainGovAbove": 0,
@@ -321,8 +321,8 @@
      "commercial:cboard.net",
      "commercial:cboard.net",
      "commercial:cboard.net",
-     "commercial:market.fornomadlife.com",
      "commercial:bliss.ddgaz0813.com",
+     "commercial:market.fornomadlife.com",
      "commercial:infoworld365.com",
      "commercial:elabor.co.kr"
     ]
@@ -356,7 +356,7 @@
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "햇살론 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 햇살론 글 6편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 34,
     "blogFreq": 0,
@@ -365,7 +365,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 12662,
+    "webDocCount": 12742,
     "openSlots": 10,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -403,6 +403,70 @@
    }
   },
   {
+   "id": "빈틈:재산세 카드",
+   "query": "재산세 카드",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "realestate",
+   "status": "proposed",
+   "autoPick": true,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "재산세",
+   "addedAt": "2026-10-11",
+   "score": 65,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 100건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 4",
+    "웹문서 90만건"
+   ],
+   "condition": "재산세 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 재산세 글 2편과 세부 키워드 다르게. 선점 항목(주제 \"재산세\")",
+   "measuredAt": "2026-10-16",
+   "demand": {
+    "rel30": 2.6,
+    "ratio7": null,
+    "kinExact": 100
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 897252,
+    "openSlots": 4,
+    "wallTop5": 1,
+    "mainGovAbove": 0,
+    "publicAbove": 0,
+    "toolAbove": 2,
+    "fincoAbove": 3,
+    "naverAbove": 0,
+    "newsWall": 9,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "finco:card-gorilla.com",
+     "commercial:thisthatbase.com",
+     "commercial:extrememanual.net",
+     "tool:etax.seoul.go.kr",
+     "commercial:gov.jjyu.co.kr",
+     "gov:seocho.go.kr",
+     "finco:card.kbcard.com",
+     "finco:samsungcard.com",
+     "commercial:consumernews.co.kr",
+     "tool:wetax.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "property-tax-2026-payment-schedule-calculation",
+     "property-tax-july-card-payment-benefits"
+    ]
+   }
+  },
+  {
    "id": "gap:2026-09-30:퇴직금-담보대출",
    "query": "퇴직금 담보대출",
    "altQueries": [],
@@ -417,19 +481,19 @@
     "같은 질문 68건(지식iN 상위 100)",
     "자리 열림",
     "빈자리 5",
-    "웹문서 84만건"
+    "웹문서 83만건"
    ],
    "condition": "퇴직금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 민간 대출 주제 — 운영자 지정 필요. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 퇴직금 글 7편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 68,
     "blogFreq": 4,
     "rel30": 1.4,
-    "ratio7": 0.95
+    "ratio7": 1.01
    },
    "serp": {
     "rank": null,
-    "webDocCount": 840784,
+    "webDocCount": 833098,
     "openSlots": 5,
     "wallTop5": 2,
     "mainGovAbove": 2,
@@ -437,7 +501,7 @@
     "toolAbove": 0,
     "fincoAbove": 1,
     "naverAbove": 0,
-    "newsWall": 5,
+    "newsWall": 7,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -478,24 +542,24 @@
    "score": 60,
    "label": "중간",
    "reasons": [
-    "같은 질문 83건(지식iN 상위 100)",
+    "같은 질문 75건(지식iN 상위 100)",
     "자리 열림",
     "빈자리 4",
     "상위 5 관공서·공단·도구 없음",
     "뉴스 벽 없음",
-    "웹문서 227만건"
+    "웹문서 229만건"
    ],
    "condition": "비상금대출 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 민간 대출 주제 — 운영자 지정 필요. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
-    "kinExact": 83,
+    "kinExact": 75,
     "blogFreq": 7,
     "rel30": 0.1,
-    "ratio7": 1.36
+    "ratio7": 0.9
    },
    "serp": {
     "rank": null,
-    "webDocCount": 2273220,
+    "webDocCount": 2291131,
     "openSlots": 4,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -519,8 +583,8 @@
      "commercial:kspotly.com",
      "commercial:finnq.com",
      "finco:kakaobank.com",
-     "finco:spot.wooribank.com",
-     "ugc:in.naver.com"
+     "ugc:in.naver.com",
+     "finco:spot.wooribank.com"
     ]
    },
    "ledger": {
@@ -548,16 +612,16 @@
     "금융사 8"
    ],
    "condition": "비상금대출 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 민간 대출 주제 — 운영자 지정 필요. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 100,
     "blogFreq": 3,
     "rel30": 0.4,
-    "ratio7": 1.11
+    "ratio7": 1.04
    },
    "serp": {
     "rank": null,
-    "webDocCount": 321034,
+    "webDocCount": 322996,
     "openSlots": 2,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -580,71 +644,9 @@
      "finco:kakaobank.com",
      "finco:banksalad.com",
      "commercial:prettyloan.com",
-     "ugc:kin.naver.com",
      "finco:banksalad.com",
-     "finco:obank.kbstar.com"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": []
-   }
-  },
-  {
-   "id": "빈틈:청년일자리도약장려금 조건",
-   "query": "청년일자리도약장려금 조건",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": null,
-   "status": "proposed",
-   "autoPick": true,
-   "manual": true,
-   "addedBy": "wave-split",
-   "wave": "청년일자리도약장려금",
-   "addedAt": "2026-10-13",
-   "score": 60,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 82건(지식iN 상위 100)",
-    "자리 열림",
-    "빈자리 5",
-    "뉴스 벽 없음",
-    "웹문서 176만건"
-   ],
-   "condition": "청년일자리도약장려금 조건 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 선점 항목(주제 \"청년일자리도약장려금\"). cluster 미정, 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
-   "demand": {
-    "rel30": 1.7,
-    "ratio7": 0.66,
-    "kinExact": 82
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 1764185,
-    "openSlots": 5,
-    "wallTop5": 3,
-    "mainGovAbove": 3,
-    "publicAbove": 0,
-    "toolAbove": 0,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 0,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "gov:work24.go.kr",
-     "gov:work24.go.kr",
-     "commercial:ulsan1.kr",
-     "stale-gov:job.gg.go.kr",
-     "org:fomek.or.kr",
-     "gov:moel.go.kr",
-     "gov:moel.go.kr",
-     "gov:nurinet.ddm.go.kr",
-     "org:seocho.seoulcareerup.or.kr",
-     "stale-gov:job.gg.go.kr"
+     "finco:obank.kbstar.com",
+     "ugc:kin.naver.com"
     ]
    },
    "ledger": {
@@ -671,20 +673,20 @@
     "자리 열림",
     "상위 5 관공서·공단·도구 없음",
     "뉴스 벽 없음",
-    "웹문서 172만건",
+    "웹문서 173만건",
     "금융사 7"
    ],
    "condition": "비상금대출 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 민간 대출 주제 — 운영자 지정 필요. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 100,
     "blogFreq": 5,
     "rel30": 0.3,
-    "ratio7": 0.9
+    "ratio7": 1.08
    },
    "serp": {
     "rank": null,
-    "webDocCount": 1715727,
+    "webDocCount": 1733238,
     "openSlots": 3,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -729,25 +731,25 @@
    "score": 55,
    "label": "중간",
    "reasons": [
-    "같은 질문 61건(지식iN 상위 100)",
+    "같은 질문 60건(지식iN 상위 100)",
     "자리 열림",
-    "빈자리 6",
+    "빈자리 7",
     "뉴스 벽 없음",
     "웹문서 16만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "건강보험료 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 건강보험료 글 9편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
-    "kinExact": 61,
+    "kinExact": 60,
     "blogFreq": 0,
     "rel30": 0,
     "ratio7": 0
    },
    "serp": {
     "rank": null,
-    "webDocCount": 159290,
-    "openSlots": 6,
+    "webDocCount": 157215,
+    "openSlots": 7,
     "wallTop5": 3,
     "mainGovAbove": 1,
     "publicAbove": 0,
@@ -761,15 +763,15 @@
     "warn": [],
     "top10": [
      "commercial:a-ha.io",
-     "tool:gov.kr",
      "tool:geonbocalc.com",
+     "tool:gov.kr",
      "commercial:ai.bznav.com",
      "gov:easylaw.go.kr",
      "commercial:ai.bznav.com",
      "commercial:cboard.net",
      "org:nhimc.or.kr",
      "commercial:ai.bznav.com",
-     "public:nhis.or.kr"
+     "commercial:cboard.net"
     ]
    },
    "ledger": {
@@ -800,7 +802,7 @@
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "연말정산 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 연말정산 글 16편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 9,
     "blogFreq": 0,
@@ -809,12 +811,12 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 49720,
+    "webDocCount": 50998,
     "openSlots": 2,
     "wallTop5": 3,
     "mainGovAbove": 3,
     "publicAbove": 0,
-    "toolAbove": 1,
+    "toolAbove": 0,
     "fincoAbove": 2,
     "naverAbove": 0,
     "newsWall": 0,
@@ -826,11 +828,11 @@
      "gov:nts.go.kr",
      "gov:d.nts.go.kr",
      "finco:cardif.co.kr",
-     "naver:mybiz.pay.naver.com",
      "gov:nts.go.kr",
      "finco:cardif.co.kr",
+     "naver:mybiz.pay.naver.com",
      "org:koreatax.org",
-     "tool:hometax.go.kr",
+     "gov:nts.go.kr",
      "gov:easylaw.go.kr",
      "org:koreatax.org"
     ]
@@ -858,24 +860,24 @@
    "score": 55,
    "label": "중간",
    "reasons": [
-    "같은 질문 80건(지식iN 상위 100)",
+    "같은 질문 79건(지식iN 상위 100)",
     "자리 열림",
     "상위 5 관공서·공단·도구 없음",
     "뉴스 벽 없음",
-    "웹문서 272만건",
+    "웹문서 275만건",
     "금융사 7"
    ],
    "condition": "비상금대출 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 민간 대출 주제 — 운영자 지정 필요. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
-    "kinExact": 80,
+    "kinExact": 79,
     "blogFreq": 4,
     "rel30": 0,
     "ratio7": null
    },
    "serp": {
     "rank": null,
-    "webDocCount": 2723784,
+    "webDocCount": 2749275,
     "openSlots": 3,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -883,7 +885,7 @@
     "toolAbove": 0,
     "fincoAbove": 7,
     "naverAbove": 0,
-    "newsWall": 0,
+    "newsWall": 1,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -899,8 +901,8 @@
      "finco:nhsavingsbank.co.kr",
      "commercial:kbsavings.com",
      "finco:digital.pepperbank.kr",
-     "finco:spot.wooribank.com",
-     "finco:kbthink.com"
+     "finco:kbthink.com",
+     "finco:spot.wooribank.com"
     ]
    },
    "ledger": {
@@ -928,7 +930,7 @@
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "권고사직 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 권고사직 글 6편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 0,
     "blogFreq": 0,
@@ -937,7 +939,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 710,
+    "webDocCount": 718,
     "openSlots": 5,
     "wallTop5": 2,
     "mainGovAbove": 2,
@@ -959,8 +961,8 @@
      "stale-org:pe.knsu.ac.kr",
      "ugc:topko123.tistory.com",
      "gov:record.assembly.go.kr",
-     "commercial:gworkingmom.net",
-     "gov:edu.sje.go.kr"
+     "gov:weather.go.kr",
+     "commercial:gworkingmom.net"
     ]
    },
    "ledger": {
@@ -971,73 +973,6 @@
      "recommended-resignation-case-judgment",
      "recommended-resignation-refusal-dismissal-path",
      "recommended-resignation-unemployment-eligibility"
-    ]
-   }
-  },
-  {
-   "id": "빈틈:재산세 카드",
-   "query": "재산세 카드",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": "realestate",
-   "status": "proposed",
-   "autoPick": true,
-   "manual": true,
-   "addedBy": "wave-split",
-   "wave": "재산세",
-   "addedAt": "2026-10-11",
-   "score": 55,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 100건(지식iN 상위 100)",
-    "자리 열림",
-    "빈자리 6",
-    "웹문서 89만건",
-    "금융사 4"
-   ],
-   "condition": "재산세 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 재산세 글 2편과 세부 키워드 다르게. 선점 항목(주제 \"재산세\")",
-   "measuredAt": "2026-10-15",
-   "demand": {
-    "rel30": 2.8,
-    "ratio7": 0,
-    "kinExact": 100
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 892154,
-    "openSlots": 6,
-    "wallTop5": 1,
-    "mainGovAbove": 0,
-    "publicAbove": 0,
-    "toolAbove": 1,
-    "fincoAbove": 4,
-    "naverAbove": 0,
-    "newsWall": 7,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [
-     "금융사 4 — 상업 의도, 광고 블록이 위에 설 수 있다"
-    ],
-    "top10": [
-     "finco:card-gorilla.com",
-     "commercial:thisthatbase.com",
-     "stale-finco:card-gorilla.com",
-     "commercial:extrememanual.net",
-     "tool:etax.seoul.go.kr",
-     "finco:card.kbcard.com",
-     "commercial:gov.jjyu.co.kr",
-     "finco:samsungcard.com",
-     "commercial:consumernews.co.kr",
-     "commercial:awoo.or.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "property-tax-2026-payment-schedule-calculation",
-     "property-tax-july-card-payment-benefits"
     ]
    }
   },
@@ -1057,11 +992,11 @@
     "빈자리 7",
     "상위 5 관공서·공단·도구 없음",
     "뉴스 벽 없음",
-    "웹문서 75만건",
+    "웹문서 76만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "신용점수 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 신용점수 글 4편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 0,
     "blogFreq": 0,
@@ -1070,7 +1005,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 751909,
+    "webDocCount": 760670,
     "openSlots": 7,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -1085,13 +1020,13 @@
     "warn": [],
     "top10": [
      "ugc:namu.wiki",
+     "commercial:daegusubway.co.kr",
      "finco:card.hyundaicard.com",
      "commercial:help.3o3.co.kr",
      "commercial:naver-me.com",
      "commercial:ezloan.io",
      "finco:contents.kakaopay.com",
      "commercial:hinpost.com",
-     "commercial:ajd.co.kr",
      "finco:cardif.co.kr",
      "commercial:credit.co.kr"
     ]
@@ -1115,34 +1050,34 @@
    "cluster": "unemployment",
    "status": "proposed",
    "autoPick": false,
-   "score": 50,
+   "score": 55,
    "label": "중간",
    "reasons": [
-    "같은 질문 84건(지식iN 상위 100)",
+    "같은 질문 81건(지식iN 상위 100)",
     "자리 열림",
     "빈자리 7",
-    "웹문서 41만건",
+    "웹문서 42만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "권고사직 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 권고사직 글 6편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
-    "kinExact": 84,
+    "kinExact": 81,
     "blogFreq": 0,
     "rel30": 0,
     "ratio7": null
    },
    "serp": {
     "rank": null,
-    "webDocCount": 414827,
+    "webDocCount": 416354,
     "openSlots": 7,
-    "wallTop5": 2,
-    "mainGovAbove": 2,
+    "wallTop5": 1,
+    "mainGovAbove": 1,
     "publicAbove": 0,
     "toolAbove": 0,
     "fincoAbove": 0,
     "naverAbove": 0,
-    "newsWall": 6,
+    "newsWall": 7,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -1152,8 +1087,8 @@
      "commercial:help.3o3.co.kr",
      "gov:1350.moel.go.kr",
      "commercial:awoo.or.kr",
-     "gov:1350.moel.go.kr",
      "commercial:findsemusa.com",
+     "gov:1350.moel.go.kr",
      "gov:work24.go.kr",
      "commercial:findsemusa.com",
      "commercial:findsemusa.com",
@@ -1183,15 +1118,16 @@
    "score": 50,
    "label": "중간",
    "reasons": [
+    "자매 사이트 awoo 상위 3위, 같은 계정 자리 중복",
     "같은 질문 30건(지식iN 상위 100)",
     "자리 열림",
     "빈자리 5",
     "뉴스 벽 없음",
-    "웹문서 343만건",
+    "웹문서 345만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "근로장려금 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 근로장려금 글 12편과 세부 키워드 다르게. 검색 신호 없음(검색량 눈금·블로그 제목 모두 0, 지식iN 질문만 있음) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 30,
     "blogFreq": 0,
@@ -1200,7 +1136,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 3433422,
+    "webDocCount": 3452474,
     "openSlots": 5,
     "wallTop5": 3,
     "mainGovAbove": 2,
@@ -1216,8 +1152,8 @@
     "top10": [
      "tool:hometax.go.kr",
      "gov:nts.go.kr",
-     "gov:nts.go.kr",
      "commercial:awoo.or.kr",
+     "gov:nts.go.kr",
      "commercial:gobang.kr",
      "ugc:namu.wiki",
      "org:esingo.or.kr",
@@ -1252,11 +1188,11 @@
     "자리 열림",
     "빈자리 10",
     "상위 5 관공서·공단·도구 없음",
-    "웹문서 19만건",
+    "웹문서 18만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "ETF 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 ETF 글 5편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 0,
     "blogFreq": 0,
@@ -1265,7 +1201,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 185452,
+    "webDocCount": 183110,
     "openSlots": 10,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -1273,7 +1209,7 @@
     "toolAbove": 0,
     "fincoAbove": 0,
     "naverAbove": 0,
-    "newsWall": 8,
+    "newsWall": 9,
     "eyeOffset": null,
     "verdictT1": "open",
     "verdictT2": "open",
@@ -1282,11 +1218,11 @@
      "commercial:jinipost.com",
      "commercial:kiwoometf.com",
      "ugc:namu.wiki",
-     "commercial:plusetf.co.kr",
      "commercial:jinipost.com",
-     "commercial:kiwoometf.com",
+     "commercial:plusetf.co.kr",
      "commercial:kiwoometf.com",
      "commercial:etf-rebalancing.com",
+     "commercial:kiwoometf.com",
      "commercial:etf-rebalancing.com",
      "commercial:goldkimp.com"
     ]
@@ -1318,11 +1254,11 @@
     "빈자리 8",
     "상위 5 관공서·공단·도구 없음",
     "뉴스 벽 없음",
-    "웹문서 131만건",
+    "웹문서 132만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "신용점수 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 신용점수 글 4편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 0,
     "blogFreq": 0,
@@ -1331,7 +1267,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 1311417,
+    "webDocCount": 1323026,
     "openSlots": 8,
     "wallTop5": 0,
     "mainGovAbove": 0,
@@ -1384,21 +1320,21 @@
    "reasons": [
     "같은 질문 100건(지식iN 상위 100)",
     "자리 열림",
-    "웹문서 106만건"
+    "웹문서 107만건"
    ],
    "condition": "전입신고 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 전입신고 글 4편과 세부 키워드 다르게. 선점 항목(다음 물결 \"전입신고\"), 운영자 [발행 지시]로만 쓴다",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "rel30": 7.8,
-    "ratio7": 0.83,
+    "ratio7": 0.78,
     "kinExact": 100
    },
    "serp": {
     "rank": null,
-    "webDocCount": 1061231,
-    "openSlots": 3,
-    "wallTop5": 2,
-    "mainGovAbove": 1,
+    "webDocCount": 1069542,
+    "openSlots": 2,
+    "wallTop5": 3,
+    "mainGovAbove": 2,
     "publicAbove": 0,
     "toolAbove": 2,
     "fincoAbove": 0,
@@ -1409,7 +1345,6 @@
     "verdictT2": "open",
     "warn": [],
     "top10": [
-     "ugc:brunch.co.kr",
      "gov:easylaw.go.kr",
      "commercial:goldpond.kr",
      "tool:gov.kr",
@@ -1417,6 +1352,7 @@
      "gov:easylaw.go.kr",
      "gov:council.gwangju.go.kr",
      "tool:gov.kr",
+     "gov:easylaw.go.kr",
      "gov:easylaw.go.kr",
      "gov:easylaw.go.kr"
     ]
@@ -1440,16 +1376,17 @@
    "cluster": "savings",
    "status": "proposed",
    "autoPick": false,
-   "score": 45,
+   "score": 50,
    "label": "중간",
    "reasons": [
     "자리 열림",
+    "빈자리 4",
     "상위 5 관공서·공단·도구 없음",
     "검색 신호 없음(눈금·블로그 제목)",
     "금융사 6"
    ],
    "condition": "ISA 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 ISA 글 7편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 2,
     "blogFreq": 0,
@@ -1458,8 +1395,8 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 30768,
-    "openSlots": 3,
+    "webDocCount": 30593,
+    "openSlots": 4,
     "wallTop5": 0,
     "mainGovAbove": 0,
     "publicAbove": 0,
@@ -1480,10 +1417,10 @@
      "finco:kebhana.com",
      "commercial:fundsupermarket.wooriib.com",
      "finco:kbsec.com",
+     "org:kareit.or.kr",
      "finco:kbthink.com",
      "finco:securities.miraeasset.com",
-     "org:kareit.or.kr",
-     "public:dis.kofia.or.kr"
+     "commercial:ai.bznav.com"
     ]
    },
    "ledger": {
@@ -1494,6 +1431,68 @@
      "isa-discretionary-vs-trust-comparison",
      "isa-early-termination-tax",
      "isa-maturity-extension-deadline"
+    ]
+   }
+  },
+  {
+   "id": "빈틈:부모급여 어린이집",
+   "query": "부모급여 어린이집",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": "gov-support",
+   "status": "proposed",
+   "autoPick": false,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "부모급여",
+   "addedAt": "2026-10-15",
+   "score": 50,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 26건(지식iN 상위 100)",
+    "자리 열림",
+    "웹문서 258만건"
+   ],
+   "condition": "부모급여 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 부모급여 글 1편과 세부 키워드 다르게. 선점 항목(주제 \"부모급여\")",
+   "measuredAt": "2026-10-16",
+   "demand": {
+    "rel30": 0.8,
+    "ratio7": 1.07,
+    "kinExact": 26
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 2584829,
+    "openSlots": 3,
+    "wallTop5": 3,
+    "mainGovAbove": 3,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 10,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "gov:bucheon.go.kr",
+     "commercial:gov.jjyu.co.kr",
+     "gov:korea.kr",
+     "gov:incheon.go.kr",
+     "ugc:namu.wiki",
+     "gov:goyang.go.kr",
+     "gov:news.seoul.go.kr",
+     "gov:mokpo.go.kr",
+     "commercial:gov.jjyu.co.kr",
+     "gov:gyeyang.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "parental-benefit-2026-infant-cash"
     ]
    }
   },
@@ -1512,11 +1511,11 @@
     "자리 열림",
     "빈자리 6",
     "뉴스 벽 없음",
-    "웹문서 461만건",
+    "웹문서 481만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "연말정산 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 연말정산 글 16편과 세부 키워드 다르게",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 6,
     "blogFreq": 0,
@@ -1525,7 +1524,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 4613096,
+    "webDocCount": 4809381,
     "openSlots": 6,
     "wallTop5": 2,
     "mainGovAbove": 2,
@@ -1577,11 +1576,11 @@
     "자리 열림",
     "빈자리 5",
     "뉴스 벽 없음",
-    "웹문서 174만건",
+    "웹문서 176만건",
     "검색 신호 없음(눈금·블로그 제목)"
    ],
    "condition": "신용점수 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 특정 금융사 권유·\"가능\" 표현 금지(금소법 가드), 정보 프레임. 기존 신용점수 글 4편과 세부 키워드 다르게. 수요 신호 없음(같은 질문·블로그 제목·검색량 모두 미미) — 운영자 지정 필요",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "kinExact": 0,
     "blogFreq": 0,
@@ -1590,7 +1589,7 @@
    },
    "serp": {
     "rank": null,
-    "webDocCount": 1738724,
+    "webDocCount": 1755356,
     "openSlots": 5,
     "wallTop5": 1,
     "mainGovAbove": 0,
@@ -1605,15 +1604,15 @@
     "warn": [],
     "top10": [
      "finco:banksalad.com",
-     "commercial:ajd.co.kr",
      "public:gongsi.crefia.or.kr",
      "commercial:info.dasgno.com",
+     "commercial:ajd.co.kr",
      "finco:card.hyundaicard.com",
      "commercial:kbcapital.co.kr",
      "public:gongsi.crefia.or.kr",
      "finco:card-gorilla.com",
-     "stale-press:chosun.com",
-     "commercial:dapjimoa.com"
+     "commercial:dapjimoa.com",
+     "stale-press:chosun.com"
     ]
    },
    "ledger": {
@@ -1699,30 +1698,30 @@
    "manual": true,
    "addedBy": "wave-split",
    "wave": "전입신고",
-   "score": 10,
+   "score": 5,
    "label": "낮음",
    "reasons": [
-    "웹문서 263만건",
+    "웹문서 265만건",
     "검색량 눈금 12.9"
    ],
    "condition": "전입신고 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 전입신고 글 4편과 세부 키워드 다르게. 선점 항목(다음 물결 \"전입신고\"), 운영자 [발행 지시]로만 쓴다",
-   "measuredAt": "2026-10-15",
+   "measuredAt": "2026-10-16",
    "demand": {
     "rel30": 12.9,
     "ratio7": 0.69,
-    "kinExact": 4
+    "kinExact": 6
    },
    "serp": {
     "rank": null,
-    "webDocCount": 2629863,
-    "openSlots": 2,
+    "webDocCount": 2649476,
+    "openSlots": 1,
     "wallTop5": 3,
     "mainGovAbove": 2,
     "publicAbove": 0,
     "toolAbove": 3,
     "fincoAbove": 0,
     "naverAbove": 0,
-    "newsWall": 13,
+    "newsWall": 12,
     "eyeOffset": null,
     "verdictT1": "closed",
     "verdictT2": "closed",
@@ -1731,13 +1730,13 @@
      "tool:gov.kr",
      "law:mylawstory.com",
      "gov:easylaw.go.kr",
-     "ugc:blog.naver.com",
      "gov:yongin.go.kr",
      "ugc:namu.wiki",
      "gov:gc.go.kr",
      "tool:gov.kr",
      "gov:cheongju.go.kr",
-     "tool:gov.kr"
+     "tool:gov.kr",
+     "gov:krdict.korean.go.kr"
     ]
    },
    "ledger": {
@@ -1750,7 +1749,7 @@
     ]
    },
    "holdBy": "pipeline",
-   "holdReason": "재측정 2026-10-15: 도구 3"
+   "holdReason": "재측정 2026-10-16: 도구 3"
   },
   {
    "id": "gap:2026-10-07:권고사직-거부",
@@ -3080,6 +3079,70 @@
    },
    "slug": "isa-disadvantages-principal-withdrawal",
    "publishedAt": "2026-10-13"
+  },
+  {
+   "id": "빈틈:청년일자리도약장려금 조건",
+   "query": "청년일자리도약장려금 조건",
+   "altQueries": [],
+   "track": "T2",
+   "family": "A",
+   "cluster": null,
+   "status": "published",
+   "autoPick": true,
+   "manual": true,
+   "addedBy": "wave-split",
+   "wave": "청년일자리도약장려금",
+   "addedAt": "2026-10-13",
+   "score": 60,
+   "label": "중간",
+   "reasons": [
+    "같은 질문 82건(지식iN 상위 100)",
+    "자리 열림",
+    "빈자리 5",
+    "뉴스 벽 없음",
+    "웹문서 176만건"
+   ],
+   "condition": "청년일자리도약장려금 조건 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 선점 항목(주제 \"청년일자리도약장려금\"). cluster 미정, 운영자 지정 필요",
+   "measuredAt": "2026-10-15",
+   "demand": {
+    "rel30": 1.7,
+    "ratio7": 0.66,
+    "kinExact": 82
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 1764185,
+    "openSlots": 5,
+    "wallTop5": 3,
+    "mainGovAbove": 3,
+    "publicAbove": 0,
+    "toolAbove": 0,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 0,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "gov:work24.go.kr",
+     "gov:work24.go.kr",
+     "commercial:ulsan1.kr",
+     "stale-gov:job.gg.go.kr",
+     "org:fomek.or.kr",
+     "gov:moel.go.kr",
+     "gov:moel.go.kr",
+     "gov:nurinet.ddm.go.kr",
+     "org:seocho.seoulcareerup.or.kr",
+     "stale-gov:job.gg.go.kr"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": []
+   },
+   "slug": "youth-job-leap-subsidy-2026-conditions",
+   "publishedAt": "2026-10-16"
   },
   {
    "id": "gap:2026-09-28:조기재취업수당-신청",
@@ -5069,69 +5132,6 @@
    },
    "rejectedReason": "재측정 2026-09-28: 7일 기사 21",
    "rejectedBy": "pipeline"
-  },
-  {
-   "id": "빈틈:부모급여 어린이집",
-   "query": "부모급여 어린이집",
-   "altQueries": [],
-   "track": "T2",
-   "family": "A",
-   "cluster": "gov-support",
-   "status": "proposed",
-   "autoPick": false,
-   "manual": true,
-   "addedBy": "wave-split",
-   "wave": "부모급여",
-   "addedAt": "2026-10-15",
-   "score": 50,
-   "label": "중간",
-   "reasons": [
-    "같은 질문 26건(지식iN 상위 100)",
-    "자리 열림",
-    "웹문서 254만건"
-   ],
-   "condition": "부모급여 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 기존 부모급여 글 1편과 세부 키워드 다르게. 선점 항목(주제 \"부모급여\")",
-   "measuredAt": "2026-10-15",
-   "demand": {
-    "rel30": 0.8,
-    "ratio7": 0.89,
-    "born": false,
-    "kinExact": 26
-   },
-   "serp": {
-    "rank": null,
-    "openSlots": 3,
-    "wallTop5": 3,
-    "mainGovAbove": 3,
-    "publicAbove": 0,
-    "toolAbove": 0,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 12,
-    "eyeOffset": null,
-    "webDocCount": 2543442,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "gov:bucheon.go.kr",
-     "commercial:gov.jjyu.co.kr",
-     "gov:korea.kr",
-     "ugc:namu.wiki",
-     "gov:goyang.go.kr",
-     "gov:incheon.go.kr",
-     "gov:news.seoul.go.kr",
-     "gov:mokpo.go.kr",
-     "commercial:gov.jjyu.co.kr",
-     "gov:gyeyang.go.kr"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "parental-benefit-2026-infant-cash"
-    ]
-   }
   }
  ]
 }

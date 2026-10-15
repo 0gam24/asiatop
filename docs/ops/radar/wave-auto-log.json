@@ -13,12 +13,16 @@
    "withVolume": 5
   },
   "실업급여": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-16",
+   "added": [],
+   "measured": 6,
+   "withVolume": 6
   },
   "기초연금": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-16",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "주휴수당": {
    "at": "2026-10-07",
@@ -53,8 +57,10 @@
    "manual": true
   },
   "본인부담상한제": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-16",
+   "added": [],
+   "measured": 1,
+   "withVolume": 1
   },
   "아동수당": {
    "at": "2026-10-07",
@@ -77,8 +83,10 @@
    "manual": true
   },
   "건강보험료": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-16",
+   "added": [],
+   "measured": 5,
+   "withVolume": 5
   },
   "근로장려금": {
    "at": "2026-10-14",
@@ -197,10 +205,10 @@
    "withVolume": 1
   },
   "자녀장려금": {
-   "at": "2026-10-08",
+   "at": "2026-10-16",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 0,
+   "withVolume": 0
   },
   "자동차세 연납": {
    "at": "2026-10-08",
@@ -302,6 +310,12 @@
   },
   "부동산담보대출": {
    "at": "2026-10-15",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "사회보험료": {
+   "at": "2026-10-16",
    "added": [],
    "measured": 0,
    "withVolume": 0
