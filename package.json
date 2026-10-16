@@ -31,6 +31,7 @@
     "audit:widget": "node scripts/audit/ops-widget.mjs",
     "audit:wave": "node scripts/audit/next-wave.mjs",
     "audit:wave:split": "node scripts/audit/wave-split.mjs",
+    "audit:longtail": "node scripts/audit/naver-longtail.mjs",
     "audit:queue:set": "node scripts/audit/queue-set.mjs",
     "audit:gap:outcomes": "node scripts/audit/gap-outcomes.mjs",
     "audit:revenue": "node scripts/audit/revenue-pull.mjs",

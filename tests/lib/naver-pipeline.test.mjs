@@ -1,10 +1,11 @@
 /**
  * naver-pipeline 단위 테스트 — 접미어 채굴·점수·큐 병합 (docs/ops/KEYWORD-PLAN-2026-09-15.md §6-2~6-4)
- * 점수식은 2026-09-17 수동 v0.1 대기열 9건(docs/ops/pipeline-queue.json)과 같은 값이 나와야 한다.
+ * 점수식은 2026-09-17 수동 v0.1 대기열 9건(docs/ops/pipeline-queue.json)에서 출발했다.
+ * v0.3 (2026-10-16 운영자 지시 "이제는 지식인 질문은 중요하지 않아"): 지식iN 몫(같은 질문 20건 이상 10 · 5건 이상 5)이 빠지고 3단어 이상 +10.
  */
 import { describe, it, expect } from 'vitest';
 import {
-  suffixesOf, mineSuffixes, foldNearDuplicates, roundRobin, kinExactCount,
+  suffixesOf, mineSuffixes, foldNearDuplicates, roundRobin, wordCount,
   exposureOf, autoPickOf, mergeQueue, renderReport, headsOf, templateSuffixes,
   isSisterTopic, regionOf, sisterTopOf, SISTER_README, isChattyQuery, conditionOf,
 } from '../../scripts/audit/naver-pipeline.mjs';
@@ -35,12 +36,12 @@ describe('suffixesOf', () => {
 });
 
 describe('mineSuffixes', () => {
-  it('블로그·지식iN 합산 3회 이상만 남기고 빈도순으로', () => {
+  it('블로그·웹문서 제목 합산 3회 이상만 남기고 빈도순으로 (v0.3: 지식iN 제목 대신 웹문서 제목)', () => {
     const blog = ['확정일자 부여현황 떼는 법', '확정일자 부여현황 확인', '확정일자 받는법'];
-    const kin = ['확정일자 부여현황 어디서', '확정일자 효력 언제부터'];
-    const r = mineSuffixes('확정일자', { blogTitles: blog, kinTitles: kin });
+    const web = ['확정일자 부여현황 열람 신청', '확정일자 효력 언제부터'];
+    const r = mineSuffixes('확정일자', { blogTitles: blog, webTitles: web });
     expect(r.map((x) => x.suffix)).toEqual(['부여현황']);
-    expect(r[0]).toMatchObject({ blogFreq: 2, kinFreq: 1, freq: 3 });
+    expect(r[0]).toMatchObject({ blogFreq: 2, webFreq: 1, freq: 3 });
   });
 });
 
@@ -59,11 +60,6 @@ describe('foldNearDuplicates · roundRobin', () => {
   });
 });
 
-describe('kinExactCount', () => {
-  it('쿼리의 모든 낱말을 담은 제목만 센다(띄어쓰기 무시)', () => {
-    expect(kinExactCount('청약통장 비대면 해지', ['청약통장 비대면해지 되나요', '청약통장 해지', '<b>청약통장</b> 해지 비대면으로'])).toBe(2);
-  });
-});
 
 describe('big-keywords 입력', () => {
   const big = { axes: [{ id: 'A4', clusters: ['realestate'], keywords: [{ keyword: '확정일자', aliases: ['전입신고'] }] }], intentTemplates: { calc: ['얼마', '월급 {n}만원'] } };
@@ -73,7 +69,7 @@ describe('big-keywords 입력', () => {
   it('{n} 템플릿은 뺀다', () => { expect(templateSuffixes(big)).toEqual(['얼마']); });
 });
 
-// 2026-09-17 수동 v0.1 실측값 → 기대 점수
+// 2026-09-17 수동 v0.1 실측값 → v0.1 점수 (v0.3 기대값 = v0.1 점수 − 지식iN 몫)
 const V01 = [
   ['확정일자 부여현황', 75, { openSlots: 3, wallTop5: 1, newsWall: 1, fincoAbove: 0 }, { kinExact: 62 }, 0],
   ['청년도약계좌 조건', 70, { openSlots: 4, wallTop5: 2, newsWall: 14, fincoAbove: 3 }, { kinExact: 100 }, 0],
@@ -86,19 +82,31 @@ const V01 = [
   ['청약통장 종류', 45, { openSlots: 2, wallTop5: 2, newsWall: 4, fincoAbove: 5 }, { kinExact: 54 }, 1],
 ];
 
+const kinPts = (kin) => (kin >= 20 ? 10 : kin >= 5 ? 5 : 0);
+
 describe('exposureOf', () => {
-  // v0.2 의 검색 신호 감점은 따로 시험한다. 여기서는 신호(블로그 제목 3회)를 넣어 v0.1 식만 본다.
-  it.each(V01)('%s = %i점 (v0.1 과 같다)', (_q, want, serp, demand, adjacent) => {
+  // v0.2 의 검색 신호 감점은 따로 시험한다. 여기서는 신호(블로그 제목 3회)를 넣어 v0.1 식에서 지식iN 몫만 빠지는지 본다(쿼리를 넘기지 않으면 낱말 수 가점 없음).
+  it.each(V01)('%s: v0.1 %i점에서 지식iN 몫만 빠진다 (v0.3)', (_q, v01, serp, demand, adjacent) => {
     const r = exposureOf({ track: 'T2', serp: { rank: null, verdictT1: 'open', verdictT2: 'open', ...serp }, demand: { blogFreq: 3, ...demand }, ledger: { adjacent } });
-    expect(r.score).toBe(want);
+    expect(r.score).toBe(v01 - kinPts(demand.kinExact));
     expect(r.open).toBe(true);
+    expect(r.reasons.some((x) => /같은 질문|지식iN/.test(x))).toBe(false);
+  });
+  it('3단어 이상이면 +10 (v0.3, 사이트 표본 3단어 이상·열림 10위 안 24.1% vs 1~2단어·열림 4.7%)', () => {
+    const base = { track: 'T2', serp: { verdictT2: 'open', openSlots: 2, wallTop5: 3, newsWall: 15 }, demand: { blogFreq: 3 } };
+    expect(exposureOf(base).score).toBe(55);
+    expect(exposureOf({ ...base, query: '실손보험 청구 서류' }).score).toBe(65);
+    expect(exposureOf({ ...base, query: '실손보험 청구 서류' }).reasons).toContain('3단어 이상');
+    expect(exposureOf({ ...base, query: '연말정산 서류' }).score).toBe(55);
+    expect(wordCount(' 청년미래적금  중도해지 불이익 ')).toBe(3);
   });
   it('자사 1~3위는 0점, 갱신으로', () => {
     expect(exposureOf({ serp: { rank: 2, verdictT2: 'closed' } })).toMatchObject({ score: 0, label: '갱신', open: false });
   });
-  it('실유입과 지식iN 은 큰 쪽 한 번만 더한다', () => {
+  it('실유입은 수요 점수로 더하고 지식iN 같은 질문 수는 더하지 않는다 (v0.3)', () => {
     const base = { track: 'T2', serp: { verdictT2: 'open', openSlots: 0, wallTop5: 5 } };
     expect(exposureOf({ ...base, demand: { kinExact: 50, inbound7d: 200 } }).score).toBe(50);
+    expect(exposureOf({ ...base, demand: { kinExact: 50 } }).score).toBe(30);
   });
   it('T1·NEW 는 verdictT1 을 본다', () => {
     expect(exposureOf({ track: 'NEW', serp: { verdictT1: 'open', verdictT2: 'closed' }, unverified: true }).open).toBe(true);
@@ -109,25 +117,25 @@ describe('exposureOf', () => {
     expect(exposureOf({ track: 'T2', serp: { verdictT2: 'open', openSlots: 1, wallTop5: 3 }, demand: sig }).label).toBe('중간');
   });
   // v0.2 (2026-10-07): 웹문서 결과 수 가감 · 검색량 눈금 수요 점수
-  const open85 = { track: 'T2', serp: { verdictT2: 'open', openSlots: 9, wallTop5: 0, newsWall: 0 }, demand: { kinExact: 29, blogFreq: 3 } };
+  const open75 = { track: 'T2', serp: { verdictT2: 'open', openSlots: 9, wallTop5: 0, newsWall: 0 }, demand: { kinExact: 29, blogFreq: 3 } };
   it('웹문서 결과 수: 3만 미만 +5 · 10만 미만 0 · 100만 미만 -10 · 그 이상 -15 · 값 없으면 그대로', () => {
-    const at = (n) => exposureOf({ ...open85, serp: { ...open85.serp, webDocCount: n } }).score;
-    expect(exposureOf(open85).score).toBe(85);
-    expect(at(5952)).toBe(90);
-    expect(at(62119)).toBe(85);
-    expect(at(266791)).toBe(75);
-    expect(at(1795109)).toBe(70);
-    expect(exposureOf({ ...open85, serp: { ...open85.serp, webDocCount: 1795109 } }).reasons).toContain('웹문서 180만건');
+    const at = (n) => exposureOf({ ...open75, serp: { ...open75.serp, webDocCount: n } }).score;
+    expect(exposureOf(open75).score).toBe(75);
+    expect(at(5952)).toBe(80);
+    expect(at(62119)).toBe(75);
+    expect(at(266791)).toBe(65);
+    expect(at(1795109)).toBe(60);
+    expect(exposureOf({ ...open75, serp: { ...open75.serp, webDocCount: 1795109 } }).reasons).toContain('웹문서 180만건');
   });
   it('검색 신호(눈금·블로그 제목 3회·실유입)가 없으면 -10, 결과 수가 적어도 더하지 않는다', () => {
-    const noSig = { ...open85, demand: { kinExact: 7 } };
-    expect(exposureOf(noSig).score).toBe(70);
+    const noSig = { ...open75, demand: { kinExact: 7 } };
+    expect(exposureOf(noSig).score).toBe(65);
     expect(exposureOf(noSig).reasons).toContain('검색 신호 없음(눈금·블로그 제목)');
-    expect(exposureOf({ ...noSig, serp: { ...open85.serp, webDocCount: 17 } }).score).toBe(70);
+    expect(exposureOf({ ...noSig, serp: { ...open75.serp, webDocCount: 17 } }).score).toBe(65);
     expect(exposureOf({ ...noSig, demand: { kinExact: 7, rel30: 0.1 } }).score).toBe(80);
-    expect(exposureOf({ ...noSig, demand: { kinExact: 7, inbound7d: 3 } }).score).toBe(80);
+    expect(exposureOf({ ...noSig, demand: { kinExact: 7, inbound7d: 3 } }).score).toBe(75);
   });
-  it('검색량 눈금은 지식iN·실유입과 큰 쪽 한 번만 더한다', () => {
+  it('검색량 눈금은 실유입과 큰 쪽 한 번만 더하고 지식iN 은 보지 않는다', () => {
     const base = { track: 'T2', serp: { verdictT2: 'open', openSlots: 0, wallTop5: 5 } };
     expect(exposureOf({ ...base, demand: { kinExact: 0, rel30: 5.7 } }).score).toBe(50);
     expect(exposureOf({ ...base, demand: { kinExact: 0, rel30: 0.3 } }).score).toBe(45);
@@ -180,7 +188,7 @@ describe('autoPickOf', () => {
 
 const scout = (over = {}) => ({ rank: null, openSlots: 4, wallTop5: 1, mainGovAbove: 1, publicAbove: 0, toolAbove: 0, fincoAbove: 0, naverAbove: 0, newsWall: 2, verdictT1: 'open', verdictT2: 'open', reason: [], warn: [], above: [{ kind: 'ugc', host: 'blog.naver.com' }], ...over });
 const ledger = (over = {}) => ({ verdict: 'PASS', program: '확정일자', adjacent: 0, sameProgram: 2, relatedSlugs: ['a'], ...over });
-const meas = (query, over = {}) => ({ query, track: 'T2', cluster: 'realestate', altQueries: [], scout: scout(over.scout), ledger: ledger(over.ledger), demand: { kinExact: 30, rel30: 1.2, ...(over.demand || {}) }, ...over.top });
+const meas = (query, over = {}) => ({ query, track: 'T2', cluster: 'realestate', altQueries: [], scout: scout(over.scout), ledger: ledger(over.ledger), demand: { rel30: 1.2, ...(over.demand || {}) }, ...over.top }); // v0.3: 파이프라인은 지식iN 을 재지 않는다
 
 describe('mergeQueue', () => {
   const today = '2026-09-18';
@@ -233,14 +241,15 @@ describe('mergeQueue', () => {
   });
   it('재측정은 조건·eyeOffset·autoPick=false 를 지키고 approved 상태는 바꾸지 않는다', () => {
     const items = [
-      { id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: false, measuredAt: '2026-09-10', condition: '운영자 지정 필요', serp: { eyeOffset: 1 }, demand: { blogFreq: 6 } },
+      { id: 'a', query: 'x y', track: 'T2', status: 'proposed', autoPick: false, measuredAt: '2026-09-10', condition: '운영자 지정 필요', serp: { eyeOffset: 1 }, demand: { blogFreq: 6, kinExact: 30 } },
       { id: 'b', query: 'p q', track: 'T2', status: 'approved', autoPick: true, measuredAt: '2026-09-10' },
     ];
     const { queue } = mergeQueue({ items }, [meas('x y'), meas('p q', { scout: { verdictT2: 'closed', reason: ['빈자리 0'] } })], { today });
     const x = queue.items.find((i) => i.id === 'a');
     expect(x).toMatchObject({ autoPick: false, condition: '운영자 지정 필요', measuredAt: today, score: 90 });
     expect(x.serp.eyeOffset).toBe(1);
-    expect(x.demand).toMatchObject({ blogFreq: 6, kinExact: 30 });
+    expect(x.demand).toMatchObject({ blogFreq: 6, rel30: 1.2 });
+    expect(x.demand.kinExact).toBeUndefined(); // v0.3: 지난 측정의 지식iN 값도 지운다
     const p = queue.items.find((i) => i.id === 'b');
     expect(p.status).toBe('approved');
     expect(p.remeasureWarn).toContain('빈자리 0');
@@ -290,7 +299,7 @@ describe('mergeQueue', () => {
   });
   it('승인 → 제안 → 보류 → 발행 → 거절 순, 같은 상태는 점수순', () => {
     const items = [{ id: 'p', query: 'pub', status: 'published', publishedAt: today }, { id: 'a', query: 'app', status: 'approved', score: 50, measuredAt: today }];
-    const { queue } = mergeQueue({ items }, [meas('n1', { demand: { kinExact: 0 } }), meas('n2')], { today });
+    const { queue } = mergeQueue({ items }, [meas('n1', { demand: { rel30: 0.3 } }), meas('n2')], { today });
     expect(queue.items.map((i) => i.query)).toEqual(['app', 'n2', 'n1', 'pub']);
   });
 });
