@@ -64,3 +64,25 @@ describe('toQueueItem', () => {
     expect(it0.demand).toEqual({ rel30: 0.21, ratio7: 1.1, activeDays30: 12 });
   });
 });
+
+describe('찾아가기 검색어 · 한 글 묶기 · 기존 글 겹침', async () => {
+  const { isNavigational, foldLongtails, coveredBy } = await import('../../scripts/audit/naver-longtail.mjs');
+  it('연락처·누리집 위치를 찾는 검색어', () => {
+    expect(isNavigational('국민연금 공단 고객센터')).toBe(true);
+    expect(isNavigational('국민연금 공단 지사찾기')).toBe(true);
+    expect(isNavigational('국민연금 공단 지사 찾기')).toBe(true);
+    expect(isNavigational('국민연금 조기수령 신청방법')).toBe(false);
+  });
+  it('한쪽 낱말이 다른 쪽에 다 들어 있거나 발급 경로 낱말만 다르면 앞 항목에 묶는다', () => {
+    const rows = ['근로소득 원천징수영수증 발급', '근로소득 원천징수영수증 발급방법', '근로소득 원천징수영수증 홈택스', '근로소득 원천징수영수증 연말정산', '퇴직금 세금 공제']
+      .map((query) => ({ query, head: query.startsWith('퇴직금') ? '퇴직금' : '근로소득 원천징수영수증' }));
+    const out = foldLongtails(rows);
+    expect(out.map((x) => x.query)).toEqual(['근로소득 원천징수영수증 발급', '근로소득 원천징수영수증 연말정산', '퇴직금 세금 공제']);
+    expect(out[0].altQueries).toEqual(['근로소득 원천징수영수증 발급방법', '근로소득 원천징수영수증 홈택스']);
+  });
+  it('2낱말 이상 targetQuery 를 품거나 그 안에 들면 기존 글 갱신으로', () => {
+    const index = [{ query: 'ISA 계좌 단점', slug: 'isa-account-cons' }, { query: '청년미래적금', slug: 'yfs' }];
+    expect(coveredBy('ISA 계좌 장단점', index)?.slug).toBe('isa-account-cons');
+    expect(coveredBy('ISA 계좌 개설방법', index)).toBeNull();
+  });
+});

@@ -58,6 +58,10 @@ const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
 const round2 = (x) => Math.round(x * 100) / 100;
 const pct = (o) => (o && o.n ? Math.round((o.top10 / o.n) * 1000) / 10 : null);
 
+// 찾아가기 검색어(기관 연락처·누리집 위치). 2026-10-12 사이트 표본에 이런 대표 검색어 글이 없어(찾기류 2편, 둘 다 30위 밖)
+// 같은 조건 비율을 그대로 쓸 근거가 없다. 대기열에 자동으로 넣지 않고 따로 적는다.
+export const NAVIGATIONAL = /고객센터|콜센터|전화번호|상담전화|지사\s?찾기|홈페이지|바로가기|로그인/;
+export const isNavigational = (q) => NAVIGATIONAL.test(String(q || ''));
 export const wordsOf = (q) => String(q || '').trim().split(/\s+/).filter(Boolean).length;
 export const cellOf = (words, open) => `${words >= 3 ? '3단어 이상' : '1~2단어'} · ${open ? '열림' : '닫힘'}`;
 export const bandOf = (n) => (n == null ? '?' : n < 30000 ? '3만 미만' : n < 100000 ? '3만~10만' : n < 300000 ? '10만~30만' : n < 1000000 ? '30만~100만' : '100만 이상');
@@ -136,12 +140,27 @@ export function headList({ only = null } = {}) {
   return [...set.values()].filter((h) => !isSisterTopic(h));
 }
 
-// 헤드 → cluster (big-keywords 축의 첫 cluster, 없으면 next-wave 항목의 cluster)
-export function clusterMap() {
-  const m = new Map();
-  for (const h of headsOf(readJson(BIG, { axes: [] }))) if (h.cluster) m.set(normKeyword(h.head), h.cluster);
-  for (const w of readJson(WAVE, { items: [] }).items || []) if (w.cluster && !m.has(normKeyword(w.term))) m.set(normKeyword(w.term), w.cluster);
-  return m;
+// 헤드 → cluster. 그 헤드가 제목·targetQuery·keywords 에 든 우리 글에서 가장 많은 cluster(wave-split scanArticles 와 같은 셈),
+// 그런 글이 없으면 big-keywords 축의 첫 cluster, 그다음 next-wave 항목의 cluster.
+export function clusterMap(heads = headList()) {
+  const metas = [];
+  for (const f of readdirSync(ARTICLES)) {
+    if (!f.endsWith('.mdx')) continue;
+    const m = parseArticleMeta(readFileSync(path.join(ARTICLES, f), 'utf8'));
+    if (m?.cluster) metas.push({ cluster: m.cluster, hay: normKeyword([m.title, m.targetQuery, ...(m.keywords || [])].join(' ')) });
+  }
+  const axis = new Map();
+  for (const h of headsOf(readJson(BIG, { axes: [] }))) if (h.cluster) axis.set(normKeyword(h.head), h.cluster);
+  for (const w of readJson(WAVE, { items: [] }).items || []) if (w.cluster && !axis.has(normKeyword(w.term))) axis.set(normKeyword(w.term), w.cluster);
+  const out = new Map();
+  for (const h of heads) {
+    const k = normKeyword(h);
+    const count = new Map();
+    for (const m of metas) if (m.hay.includes(k)) count.set(m.cluster, (count.get(m.cluster) ?? 0) + 1);
+    const top = [...count.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? axis.get(k) ?? null;
+    if (top) out.set(k, top);
+  }
+  return out;
 }
 
 function usedTargets() {
@@ -153,6 +172,19 @@ function usedTargets() {
   }
   return used;
 }
+
+// 우리 글 targetQuery(2낱말 이상) 중 이 검색어를 품거나 이 검색어에 품기는 글 ("ISA 계좌 단점" ↔ "ISA 계좌 장단점").
+// 있으면 새 글 대신 그 글 갱신 후보로 돌린다.
+export function targetIndex(dir = ARTICLES) {
+  const out = [];
+  for (const f of readdirSync(dir)) {
+    if (!f.endsWith('.mdx')) continue;
+    const m = parseArticleMeta(readFileSync(path.join(dir, f), 'utf8'));
+    if (m?.targetQuery && toks(m.targetQuery).length >= 2) out.push({ query: m.targetQuery, slug: f.replace(/\.mdx$/, ''), cluster: m.cluster ?? null });
+  }
+  return out;
+}
+export const coveredBy = (query, index) => index.find((t) => covers(t.query, query) || covers(query, t.query)) ?? null;
 
 const serpOf = (sc) => ({
   rank: sc.rank ?? null, openSlots: sc.openSlots, wallTop5: sc.wallTop5, mainGovAbove: sc.mainGovAbove, publicAbove: sc.publicAbove,
@@ -167,6 +199,7 @@ export async function findLongtails({ heads, maxBases = MAX_BASES, minActive = M
   const queue = readJson(QUEUE, { items: [] });
   const known = new Set((queue.items || []).flatMap(queriesOf));
   const used = usedTargets();
+  const tindex = targetIndex();
   const entries = buildLedger();
   const dropped = { chatty: 0, sister: 0, used: 0, queued: 0 };
   const seen = new Set();
@@ -248,8 +281,10 @@ export async function findLongtails({ heads, maxBases = MAX_BASES, minActive = M
     const lg = checkCandidate(entries, { query: c.query, family });
     const sis = sisterTopOf(serp.top10);
     let status = 'new';
-    if (serp.rank != null && serp.rank <= 3) status = 'top3';
+    if (isNavigational(c.query)) status = 'nav';
+    else if (serp.rank != null && serp.rank <= 3) status = 'top3';
     else if (serp.rank != null && serp.rank <= 30) status = 'refresh';
+    else if (coveredBy(c.query, tindex)) status = 'covered';
     else if (lg.verdict === 'VETO') status = 'veto';
     else if (sis) status = 'sister';
     else if (isCommercialLoan(c.query)) status = 'loan';
@@ -260,6 +295,7 @@ export async function findLongtails({ heads, maxBases = MAX_BASES, minActive = M
       ledger: { verdict: lg.verdict, program: lg.program, adjacent: (lg.adjacent || []).length, relatedSlugs: (lg.matches || []).slice(0, 5).map((x) => x.slug) },
       ...(sis ? { sisterTop: sis } : {}),
       ...(serp.rank ? { ourUrl: sc.ourUrl } : {}),
+      ...(status === 'covered' ? { coveredBy: coveredBy(c.query, tindex) } : {}),
     });
     if ((i + 1) % 50 === 0) log(`  정찰 ${i + 1}/${alive.length}`);
     await sleep(150);
@@ -270,12 +306,27 @@ export async function findLongtails({ heads, maxBases = MAX_BASES, minActive = M
 }
 
 // ── 대기열에 넣기 (3단어 이상 새 글 후보만) ───────────────────────────────────
+// 한 글이 될 검색어 묶기: 같은 헤드에서 한쪽 낱말이 모두 다른 쪽 낱말 안에 들어 있으면("발급" ⊂ "발급방법", "인터넷 발급")
+// 앞(순위가 높은) 항목의 altQueries 로 넣는다. 발급 경로 낱말(홈택스·인터넷·온라인·모바일·정부24·앱)은 빼고 견준다
+// ("원천징수영수증 홈택스" 와 "원천징수영수증 발급" 은 같은 글). rows 는 이미 줄 세운 순서라고 본다.
+const CHANNEL = new Set(['홈택스', '인터넷', '온라인', '모바일', '정부24', '앱']);
+const toks = (q) => q.split(/\s+/).filter((t) => t && !CHANNEL.has(t));
+const covers = (a, b) => { const tb = toks(b); return toks(a).every((t) => tb.some((x) => x.includes(t))); };
+export function foldLongtails(rows) {
+  const kept = [];
+  for (const r of rows) {
+    const host = kept.find((k) => k.head === r.head && (covers(k.query, r.query) || covers(r.query, k.query)));
+    if (host) host.altQueries.push(r.query); else kept.push({ ...r, altQueries: [] });
+  }
+  return kept;
+}
+
 export function toQueueItem(r, today, { cluster = null } = {}) {
   const demand = { rel30: r.demand.rel30 ?? 0, ratio7: r.demand.ratio7 ?? null, activeDays30: r.demand.activeDays30 ?? 0 };
   const ex = exposureOf({ track: 'T2', query: r.query, serp: r.serp, demand, ledger: { adjacent: r.ledger.adjacent } });
   const why = `${r.site.cell} 우리 글 ${r.site.cellN}편 중 ${r.site.cellTop10}편 10위 안(${r.site.cellRate}%)`;
   return {
-    id: `빈틈:${r.query}`, query: r.query, altQueries: [], track: 'T2', family: r.family, cluster, status: 'proposed',
+    id: `빈틈:${r.query}`, query: r.query, altQueries: r.altQueries || [], track: 'T2', family: r.family, cluster, status: 'proposed',
     autoPick: autoPickOf({ score: ex.score, track: 'T2', query: r.query, unverified: false, ledgerVerdict: r.ledger.verdict, demand }),
     manual: true, addedBy: 'naver-longtail', addedAt: today,
     score: ex.score, label: ex.label, reasons: [why, ...ex.reasons].slice(0, 6),
@@ -313,9 +364,11 @@ export function renderReport(res, { today, added = [] }) {
   sect('새 글 후보 · 3단어 이상', res.rows.filter((r) => r.status === 'new' && r.words >= 3));
   sect('새 글 후보 · 2단어', res.rows.filter((r) => r.status === 'new' && r.words < 3));
   sect('우리 글이 4~30위 · 기존 글 갱신', res.rows.filter((r) => r.status === 'refresh'));
+  sect('이미 쓴 글의 검색어와 겹침 · 기존 글 갱신', res.rows.filter((r) => r.status === 'covered'));
   sect('같은 세부 주제 글이 이미 있음 · 기존 글 갱신(잠금 장부)', res.rows.filter((r) => r.status === 'veto'));
   sect('이미 3위 안', res.rows.filter((r) => r.status === 'top3'));
   sect('운영자 지정 · 민간 대출', res.rows.filter((r) => r.status === 'loan'));
+  sect('찾아가기 검색어 · 같은 종류 우리 글이 표본에 없어 비율 근거 없음(운영자 지정)', res.rows.filter((r) => r.status === 'nav'));
   sect('자매 사이트가 상위 3위 안', res.rows.filter((r) => r.status === 'sister'));
   if (added.length) { L.push(`대기열에 넣음 ${added.length}건: ${added.map((x) => x.query).join(' · ')}`); L.push(''); }
   L.push(`호출: 검색 ${res.calls.search}회 · 트렌드 ${res.calls.trend}회. 뺀 후보: 질문 말투 ${res.dropped.chatty} · 자매 주제 ${res.dropped.sister} · 이미 쓴 검색어 ${res.dropped.used} · 이미 대기열 ${res.dropped.queued}`);
@@ -339,8 +392,9 @@ async function main() {
     const queue = readJson(QUEUE, null);
     if (!queue) throw new Error('docs/ops/pipeline-queue.json 을 읽지 못했다');
     // 3단어 이상·열림 새 글 후보 중 대기열 점수 문턱(45) 이상만 넣는다(문턱 아래는 다음 날 파이프라인 재측정에서 보류로 돌아간다)
-    const clusters = clusterMap();
-    for (const r of res.rows.filter((x) => x.status === 'new' && x.words >= 3 && x.open)) {
+    const clusters = clusterMap(heads);
+    // 한 글이 될 검색어는 묶어서 한 항목으로(앞 항목의 altQueries)
+    for (const r of foldLongtails(res.rows.filter((x) => x.status === 'new' && x.words >= 3 && x.open))) {
       if (added.length >= addN) break;
       const item = toQueueItem(r, today, { cluster: clusters.get(normKeyword(r.head)) ?? null });
       if (item.score < QUEUE_MIN_SCORE) continue;

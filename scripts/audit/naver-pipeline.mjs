@@ -203,7 +203,8 @@ export function exposureOf({ track = 'T2', query = '', serp = {}, demand = {}, l
 
 // 기계가 1차 출처를 정할 수 없는 주제: 지자체·차수가 갈리는 지원금 류는 운영자 지정이 있어야 쓴다 (v0.1 민생지원금)
 const NEEDS_OPERATOR = /지원금|소비\s?쿠폰|지역화폐|상품권|바우처/;
-const SALES_INTENT = /대출|보험|카드|적금|예금|계좌|통장/;
+// ETF·펀드·"추천" 검색어도 상품 권유로 읽히기 쉬워 정보 프레임 조건을 붙인다 (2026-10-16, 롱키워드 "연금저축 ETF 추천")
+const SALES_INTENT = /대출|보험|카드|적금|예금|계좌|통장|ETF|펀드|추천/;
 // 정책 대출이 아닌 대출 쿼리는 금소법·불법사금융 광고 가드(safe-expression)에 걸리기 쉬워 운영자가 고른다
 const POLICY_LOAN = /버팀목|디딤돌|햇살론|신생아\s?특례|보금자리|특례보금자리|새희망홀씨|소액생계비/;
 export const isCommercialLoan = (q) => /대출|대환|카드론|현금서비스/.test(q) && !POLICY_LOAN.test(q);
