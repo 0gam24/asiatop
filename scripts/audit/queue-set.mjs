@@ -50,7 +50,7 @@ export function rescore(it, eyeOffset) {
   const reasons = it.reasons || [];
   const adjacent = Number((reasons.find((r) => /비슷한 우리 글 \d+편/.test(r)) || '').match(/(\d+)편/)?.[1] || 0);
   const inWindow = reasons.includes('창 안');
-  const base = { track: it.track, demand: it.demand || {}, ledger: { ...(it.ledger || {}), adjacent }, unverified: !!it.unverified, inWindow };
+  const base = { track: it.track, query: it.query, demand: it.demand || {}, ledger: { ...(it.ledger || {}), adjacent }, unverified: !!it.unverified, inWindow };
   const before = exposureOf({ ...base, serp: { ...(it.serp || {}) } });
   const after = exposureOf({ ...base, serp: { ...(it.serp || {}), eyeOffset: eyeOffset || null } });
   // 다시 계산한 옛 점수가 저장된 점수와 같을 때만 새 계산을 믿는다. 다르면 눈 확인 가점만 바꾼다.

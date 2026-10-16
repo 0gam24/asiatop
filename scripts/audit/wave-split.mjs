@@ -8,17 +8,17 @@
 // 0.5(실업급여 = 100) 이상인 검색어가 하나도 없었다. 30위 안 96편 중에서도 8편뿐이다. 이기는 자리가 거의 검색되지 않는 말이었다.
 //
 // 순서
-//   1) 변형: "{주제} {의도}"(신청·조건·대상·기간·서류·계산·환급·미납·연장·해지·변경·조회…) + 지식iN·블로그 제목 100건씩에서
-//      주제 바로 뒤에 3번 이상 붙는 말(naver-pipeline.mjs mineSuffixes).
+//   1) 변형: "{주제} {의도}"(신청·조건·대상·기간·서류·계산·환급·미납·연장·해지·변경·조회…) + 블로그·웹문서 제목 100건씩에서
+//      주제 바로 뒤에 3번 이상 붙는 말(naver-pipeline.mjs mineSuffixes). 2026-10-16 부터 지식iN 은 쓰지 않는다(운영자 지시).
 //   2) 거르기: 이미 글이 있는 targetQuery · 대기열에 있는 검색어 · 자매 awoo 주제 · 잠금 장부 VETO.
 //   3) 검색어 트렌드(실업급여 = 100)로 검색량을 재고, 0.5 이상인 것만 검색량 순으로 max 건 실측한다.
-//   4) 실측: 웹문서 검색(naver-scout.mjs)·뉴스 7일·지식iN 같은 질문 수 → exposureOf 점수.
+//   4) 실측: 웹문서 검색(naver-scout.mjs)·뉴스 7일 → exposureOf 점수(3단어 이상 가점 포함).
 //   5) 자리가 열리고(T2 open) 점수 45 이상이고 우리 글이 30위 안에 없는 것만 큐에 넣는다.
 //      id "빈틈:<검색어>", manual:true(파이프라인이 닫혀도 지우지 않고 hold 까지만). autoPick 은 파이프라인과 같은 autoPickOf 로 정한다
 //      (2026-10-08 운영자 "운영을 직접 맡아" 이후. 그 전에는 선점 항목을 운영자 [발행 지시]로만 썼다).
 //
 // 실행: node scripts/audit/wave-split.mjs --term "연말정산" [--max 8] [--dry-run]   (pnpm audit:wave:split)
-// 호출: 지식iN·블로그 2회 + 트렌드 약 (후보÷4)회 + 실측 건당 3회. 실측 상한 12건.
+// 호출: 블로그·웹문서 2회 + 트렌드 약 (후보÷4)회 + 실측 건당 2회. 실측 상한 12건.
 // ════════════════════════════════════════════════════════════════════════
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
@@ -26,7 +26,7 @@ import { naverSearch, stripTags, sleep, kstDate, isMain, NaverAuthError, ROOT } 
 import { scoutQuery } from './naver-scout.mjs';
 import { measureVolume } from './naver-volume.mjs';
 import { buildLedger, checkCandidate, classifyFamily, normKeyword, parseArticleMeta } from './naver-ledger.mjs';
-import { exposureOf, autoPickOf, conditionOf, kinExactCount, mineSuffixes, isSisterTopic, sisterTopOf, sisterTopReason, queriesOf, QUEUE_MIN_SCORE } from './naver-pipeline.mjs';
+import { exposureOf, autoPickOf, conditionOf, mineSuffixes, isSisterTopic, sisterTopOf, sisterTopReason, queriesOf, QUEUE_MIN_SCORE } from './naver-pipeline.mjs';
 
 export const QUEUE = path.join(ROOT, 'docs', 'ops', 'pipeline-queue.json');
 const WAVE = path.join(ROOT, 'docs', 'ops', 'next-wave.json');
@@ -46,7 +46,8 @@ const serpOf = (sc) => ({
 });
 
 async function titlesOf(ep, query) {
-  const j = await naverSearch(ep, query, { display: 100, sort: 'sim' });
+  // 웹문서 검색은 sort 인자가 없다(정확도순 고정)
+  const j = await naverSearch(ep, query, ep === 'webkr' ? { display: 100 } : { display: 100, sort: 'sim' });
   return (j.items || []).map((x) => stripTags(x.title));
 }
 
@@ -85,9 +86,9 @@ export async function splitTerm(term, { queue, entries, max = 8, today = kstDate
   const cluster = seed?.cluster ?? w?.cluster ?? scan.cluster;
 
   // 1) 변형
-  const [kinTitles, blogTitles] = [await titlesOf('kin', t), await titlesOf('blog', t)];
+  const [webTitles, blogTitles] = [await titlesOf('webkr', t), await titlesOf('blog', t)];
   out.calls += 2;
-  const mined = mineSuffixes(t, { blogTitles, kinTitles }, { min: 3 }).slice(0, 12).map((r) => r.suffix);
+  const mined = mineSuffixes(t, { blogTitles, webTitles }, { min: 3 }).slice(0, 12).map((r) => r.suffix);
   const variants = [...new Set([...mined, ...INTENTS].map((s) => `${t} ${s}`))];
   out.variants = variants.length;
 
@@ -120,12 +121,11 @@ export async function splitTerm(term, { queue, entries, max = 8, today = kstDate
   // 4) 실측 · 5) 큐
   for (const c of withVol.slice(0, cap)) {
     const sc = await scoutQuery(c.query);
-    const kin = sc.error ? [] : await titlesOf('kin', c.query);
-    out.calls += 3;
+    out.calls += 2;
     if (sc.error) { out.rows.push([c.query, c.demand.rel30, '측정 실패', sc.error]); continue; }
     const serp = serpOf(sc);
-    const demand = { ...c.demand, kinExact: kinExactCount(c.query, kin) };
-    const ex = exposureOf({ track: 'T2', serp, demand, ledger: c.ledger });
+    const demand = { ...c.demand };
+    const ex = exposureOf({ track: 'T2', query: c.query, serp, demand, ledger: c.ledger });
     const open = sc.verdictT2 === 'open';
     let result;
     if (serp.rank != null && serp.rank <= 30) result = `우리 글 ${serp.rank}위, 새 글 대신 기존 글 갱신`;
@@ -148,7 +148,7 @@ export async function splitTerm(term, { queue, entries, max = 8, today = kstDate
       out.added.push(item);
       result = `넣음 (점수 ${ex.score}${autoPick ? ', 자동 선택' : ''})`;
     }
-    out.rows.push([c.query, c.demand.rel30, result, `지식iN ${demand.kinExact} · 빈자리 ${serp.openSlots ?? 0} · 관공서 ${serp.wallTop5 ?? 0}`]);
+    out.rows.push([c.query, c.demand.rel30, result, `빈자리 ${serp.openSlots ?? 0} · 관공서 ${serp.wallTop5 ?? 0} · 결과 ${serp.webDocCount ?? '?'}건`]);
     await sleep(150);
   }
   return out;
@@ -168,7 +168,7 @@ export function printSplit(r, { dry = false } = {}) {
     for (const [q, why] of r.skipped.slice(0, 30)) console.log(`- ${q}: ${why}`);
     if (r.skipped.length > 30) console.log(`- … 외 ${r.skipped.length - 30}개`);
   }
-  console.log(`호출 약 ${r.calls}회 (지식iN·블로그·웹문서·뉴스·트렌드)`);
+  console.log(`호출 약 ${r.calls}회 (블로그·웹문서·뉴스·트렌드)`);
 }
 
 async function main() {

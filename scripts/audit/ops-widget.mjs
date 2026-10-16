@@ -12,6 +12,9 @@
 //   docs/ops/next-wave.json        다음에 크게 뜰 주제 (next-wave.mjs, 없으면 그 칸을 뺀다)
 //   docs/ops/radar/eye-offset.json 운영자 눈 확인 기록 (queue-set.mjs)
 //   docs/ops/cadence.json          오늘 신규 상한
+//   docs/revenue-log/site-rank-sample-*.json  가장 최근 사이트 순위 표본 — 같은 조건(낱말 수 × 자리 열림) 우리 글의 10위 안 비율
+// 롱키워드 칸 (2026-10-16 운영자 지시 "지식인 질문은 중요하지 않아, 네이버 상위 노출 가능한 롱키워드"): naver-longtail.mjs 가 넣은 항목을
+//   같은 조건 10위 안 비율 → 검색량 순으로 맨 위에 보인다. 지식iN 숫자는 보이지 않는다.
 //   src/content/articles/*.mdx     발행 여부(targetQuery)·오늘 발행 수 (git 추적 파일만)
 //   docs/revenue-log/private/deep-*.json  최근 7일 애드센스 수익 (gitignore. 값은 stdout 에만 나가고 파일로 남기지 않는다)
 //
@@ -34,6 +37,7 @@ const WAVES = argNum('waves', 6);
 const GOAL_USD = 100; // 운영자 목표 2026-10-08 "운영을 직접 맡아, 1일 100달러" (docs/28)
 const EYE_TOP = 5;
 const MIN_VOL = 0.5; // 검색량(실업급여 = 100)이 이 값 이상이면 '검색량이 잡힌' 글감 (wave-split.mjs MIN_REL30 과 같음)
+const LONG_LIMIT = argNum('longtail', 15);
 
 const DAY = 864e5;
 const kst = (offset = 0) => new Date(Date.now() + 9 * 3600e3 + offset * DAY).toISOString().slice(0, 10);
@@ -113,6 +117,35 @@ function revenue7() {
   return { avg, from: d[0].DATE, to: d.at(-1).DATE };
 }
 
+// ── 이 사이트 실측 10위 안 비율 (가장 최근 site-rank-sample, naver-longtail.mjs 와 같은 셈) ──────────
+const LOG_DIR = path.join(ROOT, 'docs', 'revenue-log');
+const wordsOf = (q) => String(q || '').trim().split(/\s+/).filter(Boolean).length;
+const cellOf = (words, open) => `${words >= 3 ? '3단어 이상' : '1~2단어'} · ${open ? '열림' : '닫힘'}`;
+function siteRates() {
+  let f = null;
+  try { f = readdirSync(LOG_DIR).filter((x) => /^site-rank-sample-\d{4}-\d{2}-\d{2}\.json$/.test(x)).sort().pop(); } catch { return null; }
+  const j = f ? readJson(path.join(LOG_DIR, f), null) : null;
+  if (!j?.rows) return null;
+  const cell = new Map();
+  for (const r of j.rows) {
+    if (r.webDocCount == null) continue;
+    const k = cellOf(wordsOf(r.query), !!r.open);
+    const o = cell.get(k) || { n: 0, top10: 0 };
+    o.n++; if (r.rank != null && r.rank > 0 && r.rank <= 10) o.top10++;
+    cell.set(k, o);
+  }
+  return { at: j.measuredAt, cell };
+}
+const RATES = siteRates();
+function rateOf(it) {
+  if (!RATES) return null;
+  const open = (it.track === 'T2' || !it.track ? it.serp?.verdictT2 : it.serp?.verdictT1) === 'open';
+  const cell = cellOf(wordsOf(it.query), open);
+  const o = RATES.cell.get(cell);
+  return o ? { cell, n: o.n, top10: o.top10, pct: o.n ? Math.round((o.top10 / o.n) * 1000) / 10 : 0 } : null;
+}
+const fmtN = (n) => (n == null ? '?' : n >= 10000 ? `${Math.round(n / 10000)}만` : String(n));
+
 // ── 빈틈 대기열 ────────────────────────────────────────────────────────
 const KIND = { gov: '관공서', 'stale-gov': '관공서', public: '공공기관', org: '단체', press: '언론', 'stale-press': '언론', ugc: '커뮤니티·위키', commercial: '일반 사이트', 'stale-commercial': '일반 사이트', tool: '계산기·도구', finco: '금융사', law: '법률', naver: '네이버', sister: '자매 사이트', ours: '우리' };
 function top10Line(top10 = []) {
@@ -129,7 +162,7 @@ function designationReason(it) {
   const c = String(it.condition || '');
   const out = [];
   if (/민간 대출/.test(c)) out.push('민간 대출');
-  if (/수요 신호 없음/.test(c)) out.push('질문·검색량 적음');
+  if (/수요 신호 없음|검색 신호 없음/.test(c)) out.push('검색량 안 잡힘');
   if ((it.reasons || []).some((r) => /자매 사이트/.test(r))) out.push('awoo가 3위 안');
   if (/지자체·어느 차수|지원금/.test(c) && !out.length) out.push('지원금류');
   if (it.ledger?.verdict && it.ledger.verdict !== 'PASS') out.push(`장부 ${it.ledger.verdict}`);
@@ -155,8 +188,9 @@ function gapRow(it, idx, eyeLog) {
   const d = it.demand || {};
   const s = it.serp || {};
   const hi = (it.score ?? 0) >= 70;
+  const rt = rateOf(it);
   const facts = [
-    `지식iN 같은 질문 ${d.kinExact ?? 0}건`,
+    rt ? `${rt.cell}: 우리 글 ${rt.n}편 중 ${rt.top10}편 10위 안` : `${wordsOf(it.query)}단어`,
     `뺏을 수 있는 자리 ${s.openSlots ?? 0}`,
     `위 5개 중 관공서·공단·도구 ${s.wallTop5 ?? 0}`,
     s.newsWall != null ? `최근 7일 기사 ${s.newsWall}건` : null,
@@ -178,6 +212,26 @@ function gapRow(it, idx, eyeLog) {
 <div class="sub">${esc(facts)}</div>
 <div class="mut">${esc(`${vol} · ${rank}${top3 ? ` · 1~3위: ${top3}` : ''}${comp ? ` · 위 10개: ${comp}` : ''}`)}</div>
 ${eye}</div><div class="btns">${btn('발행 지시 ↗', `발행: ${it.query}. 목록 버튼 지시, 큐 id ${it.id}`)}${btn('보류', `보류: ${it.query}. 목록 버튼, 큐를 hold 로`)}</div></div>`;
+}
+
+// 롱키워드 칸 한 줄: 같은 조건 10위 안 비율 · 결과 수 · 관공서 · 검색량(값 있는 날)
+function longRow(it) {
+  const d = it.demand || {};
+  const s = it.serp || {};
+  const rt = rateOf(it);
+  const facts = [
+    rt ? `${rt.cell}: 우리 글 ${rt.n}편 중 ${rt.top10}편 10위 안` : null,
+    s.webDocCount != null ? `웹문서 ${fmtN(s.webDocCount)}건` : null,
+    `위 5개 중 관공서·공단·도구 ${s.wallTop5 ?? 0}`,
+  ].filter(Boolean).join(' · ');
+  const vol = `검색량 ${d.rel30 ?? 0} (실업급여 = 100)${d.activeDays30 != null ? ` · 최근 30일 중 ${d.activeDays30}일 검색됨` : ''}`;
+  const rank = s.rank ? `우리 글 ${s.rank}위` : '우리 글 30위 밖';
+  const top3 = top3Line(s.top10);
+  return `<div class="row"><div class="l">
+<div><span class="q">${esc(it.query)}</span><span class="tag ${(rt?.pct ?? 0) >= 20 ? 't-hi' : 't-mid'}">${esc(rt ? `같은 조건 ${rt.pct}%` : '조건 표본 없음')}</span>${it.status === 'approved' ? '<span class="tag t-acc">승인됨</span>' : ''}</div>
+<div class="sub">${esc(facts)}</div>
+<div class="mut">${esc(`${vol} · ${rank}${top3 ? ` · 1~3위: ${top3}` : ''}`)}</div>
+</div><div class="btns">${btn('발행 지시 ↗', `발행: ${it.query}. 목록 버튼 지시(롱키워드), 큐 id ${it.id}`)}${btn('보류', `보류: ${it.query}. 목록 버튼, 큐를 hold 로`)}</div></div>`;
 }
 
 const STAGE = { rising: ['지금 뜨는 중', 't-hi'], soon: ['곧 뜸', 't-mid'], growing: ['커지는 중', 't-acc'], thin: ['큰데 우리 글 적음', 't-mid'] };
@@ -212,9 +266,14 @@ function render() {
   // 정렬(2026-10-07 운영자 "네이버 상위 노출할 빈틈"): 승인 → 검색량이 잡힌 것(MIN_VOL 이상)을 점수 순. 검색량이 데이터랩에 안 잡힌 자동 글감은 아래로 접는다
   const hasVol = (it) => (it.demand?.rel30 ?? 0) >= MIN_VOL;
   const eligible = live.filter((it) => (it.status === 'approved' || (it.status === 'proposed' && (it.autoPick || isWave(it)))) && !isUsed(it));
-  const byScore = (a, b) => b.score - a.score || (b.demand?.rel30 ?? 0) - (a.demand?.rel30 ?? 0) || (b.demand?.kinExact ?? 0) - (a.demand?.kinExact ?? 0);
-  const picks = eligible.filter((it) => it.status === 'approved' || hasVol(it)).sort((a, b) => (a.status === 'approved' ? 0 : 1) - (b.status === 'approved' ? 0 : 1) || byScore(a, b));
-  const noVol = eligible.filter((it) => it.status !== 'approved' && !hasVol(it)).sort(byScore);
+  const byScore = (a, b) => b.score - a.score || (b.demand?.rel30 ?? 0) - (a.demand?.rel30 ?? 0);
+  // 롱키워드(naver-longtail.mjs) 제안 항목은 따로 맨 위 칸에. 승인된 것은 아래 승인 칸에 그대로 둔다
+  const isLongtail = (it) => it.addedBy === 'naver-longtail';
+  const longtail = eligible.filter((it) => it.status === 'proposed' && isLongtail(it))
+    .sort((a, b) => (rateOf(b)?.pct ?? 0) - (rateOf(a)?.pct ?? 0) || (b.demand?.rel30 ?? 0) - (a.demand?.rel30 ?? 0));
+  const longShown = longtail.slice(0, LONG_LIMIT);
+  const picks = eligible.filter((it) => !(it.status === 'proposed' && isLongtail(it))).filter((it) => it.status === 'approved' || hasVol(it)).sort((a, b) => (a.status === 'approved' ? 0 : 1) - (b.status === 'approved' ? 0 : 1) || byScore(a, b));
+  const noVol = eligible.filter((it) => it.status !== 'approved' && !isLongtail(it) && !hasVol(it)).sort(byScore);
   const shown = picks.slice(0, LIMIT);
   const manual = live.filter((it) => it.status === 'proposed' && !it.autoPick && !isWave(it) && !isUsed(it)).sort((a, b) => b.score - a.score);
   const publishedToday = (queue.items || []).filter((it) => [it.query, ...(it.altQueries || [])].some((q) => todayQ.has(norm(q))));
@@ -223,7 +282,7 @@ function render() {
   const rev = revenue7();
 
   const h = [];
-  h.push(`<h2 class="sr-only">${esc(`${TODAY} 네이버 빈틈 글감 ${picks.length}건과 다음에 크게 뜰 주제`)}</h2>`);
+  h.push(`<h2 class="sr-only">${esc(`${TODAY} 네이버 롱키워드 ${longtail.length}건, 빈틈 글감 ${picks.length}건과 다음에 크게 뜰 주제`)}</h2>`);
   h.push(`<style>
 .w{font-size:14px;line-height:1.55}
 .hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--text-secondary);padding:2px 0 10px}
@@ -247,11 +306,17 @@ function render() {
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 </style>`);
   h.push('<div class="w">');
-  h.push(`<div class="hd"><span>${esc(`오늘 쓸 글감 ${picks.length}건 · 자리 열리고 검색량이 잡힌 것 · 큐 ${md(queue.updatedAt)} 측정`)}</span><span>${esc(countLine(pc))}</span></div>`);
+  h.push(`<div class="hd"><span>${esc(`롱키워드 ${longtail.length}건 · 그 밖의 글감 ${picks.length}건 · 큐 ${md(queue.updatedAt)} 측정`)}</span><span>${esc(countLine(pc))}</span></div>`);
   if (!fresh) h.push(`<div class="sub" style="color:var(--text-danger);padding:0 0 8px">${esc(`오늘(${md(TODAY)}) 측정분이 아직 없습니다. 큐는 ${queue.updatedAt ?? '없음'} 측정입니다.`)}</div>`);
   if (rev) {
     const pct = Math.min(100, (rev.avg / GOAL_USD) * 100);
     h.push(`<div class="goal"><div class="g1"><span style="font-weight:500">목표 하루 ${GOAL_USD}달러</span><span>${esc(`최근 7일 하루 평균 $${rev.avg.toFixed(2)} (${md(rev.from)}~${md(rev.to)} 애드센스 측정)`)}</span></div><div class="bar"><span style="width:${pct.toFixed(2)}%"></span></div><div class="mut">${esc('주제별 1000회당 수익은 아직 모릅니다(애드센스 글별 보고서에 머니룩 글 0행). 그래서 돈 되는 순 정렬은 하지 않았습니다.')}</div></div>`);
+  }
+  if (longtail.length) {
+    h.push(`<div class="sec">${esc(`롱키워드 · 같은 조건 우리 글의 웹문서 10위 안 비율 순, 같으면 검색량 순${RATES?.at ? ` (사이트 표본 ${md(String(RATES.at).slice(0, 10))})` : ''}`)}</div>`);
+    longShown.forEach((it) => h.push(longRow(it)));
+    if (longtail.length > longShown.length) h.push(`<div class="note"><div>${esc(`나머지 롱키워드 ${longtail.length - longShown.length}건 (누르면 발행 지시)`)}<div class="chips">${longtail.slice(longShown.length).map((x) => btn(`${x.query} · ${rateOf(x)?.pct ?? '?'}%`, `발행: ${x.query}. 목록 버튼 지시(롱키워드), 큐 id ${x.id}`)).join('')}</div></div></div>`);
+    h.push(`<div class="sec">${esc('그 밖의 글감 · 자리 열리고 검색량 0.5 이상')}</div>`);
   }
   if (!shown.length) h.push(`<div class="row"><div class="sub">${esc('자리가 열리고 검색량이 잡힌 오늘 글감이 없습니다. 아래 접어 둔 글감이나 다음 물결의 선점으로 채울 수 있습니다.')}</div></div>`);
   shown.forEach((it, i) => h.push(gapRow(it, i, eyeLog)));
