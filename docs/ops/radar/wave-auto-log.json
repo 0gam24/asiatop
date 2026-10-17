@@ -31,16 +31,22 @@
    "withVolume": 2
   },
   "최저임금": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-18",
+   "added": [],
+   "measured": 1,
+   "withVolume": 1
   },
   "퇴직금": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-18",
+   "added": [],
+   "measured": 6,
+   "withVolume": 7
   },
   "청년월세": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-18",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "전입신고": {
    "at": "2026-10-17",
@@ -91,8 +97,10 @@
    "manual": true
   },
   "청약통장": {
-   "at": "2026-10-07",
-   "manual": true
+   "at": "2026-10-18",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "건강보험료": {
    "at": "2026-10-16",
@@ -167,10 +175,12 @@
    "withVolume": 1
   },
   "권고사직": {
-   "at": "2026-10-08",
-   "added": [],
-   "measured": 0,
-   "withVolume": 0
+   "at": "2026-10-18",
+   "added": [
+    "권고사직 사직서"
+   ],
+   "measured": 1,
+   "withVolume": 1
   },
   "디딤돌대출": {
    "at": "2026-10-08",
@@ -253,10 +263,10 @@
    "withVolume": 1
   },
   "종부세": {
-   "at": "2026-10-11",
+   "at": "2026-10-18",
    "added": [],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 5,
+   "withVolume": 5
   },
   "주민등록등본 발급": {
    "at": "2026-10-11",
