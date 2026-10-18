@@ -169,10 +169,10 @@
    "withVolume": 0
   },
   "국민연금 보험료": {
-   "at": "2026-10-08",
+   "at": "2026-10-19",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 0,
+   "withVolume": 0
   },
   "권고사직": {
    "at": "2026-10-18",
@@ -183,26 +183,29 @@
    "withVolume": 1
   },
   "디딤돌대출": {
-   "at": "2026-10-08",
+   "at": "2026-10-19",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 5,
+   "withVolume": 5
   },
   "버팀목전세자금대출": {
-   "at": "2026-10-08",
+   "at": "2026-10-19",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "비상금대출": {
-   "at": "2026-10-08",
+   "at": "2026-10-19",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "신용점수": {
-   "at": "2026-10-08",
-   "added": [],
+   "at": "2026-10-19",
+   "added": [
+    "신용점수 등급표",
+    "신용점수 조회"
+   ],
    "measured": 2,
    "withVolume": 2
   },
@@ -287,12 +290,12 @@
    "withVolume": 0
   },
   "햇살론": {
-   "at": "2026-10-12",
+   "at": "2026-10-19",
    "added": [
-    "햇살론 대환대출"
+    "햇살론 일반"
    ],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 6,
+   "withVolume": 6
   },
   "햇살론유스": {
    "at": "2026-10-12",
