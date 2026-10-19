@@ -210,28 +210,30 @@
    "withVolume": 2
   },
   "신용점수 올리기": {
-   "at": "2026-10-08",
+   "at": "2026-10-20",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "실손보험 청구": {
-   "at": "2026-10-08",
+   "at": "2026-10-20",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "연차수당": {
-   "at": "2026-10-08",
+   "at": "2026-10-20",
    "added": [],
-   "measured": 0,
-   "withVolume": 0
+   "measured": 3,
+   "withVolume": 3
   },
   "원천징수영수증": {
-   "at": "2026-10-08",
-   "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "at": "2026-10-20",
+   "added": [
+    "원천징수영수증 홈택스"
+   ],
+   "measured": 3,
+   "withVolume": 3
   },
   "자녀장려금": {
    "at": "2026-10-16",
@@ -240,18 +242,16 @@
    "withVolume": 0
   },
   "자동차세 연납": {
-   "at": "2026-10-08",
+   "at": "2026-10-20",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "재산세": {
-   "at": "2026-10-11",
-   "added": [
-    "재산세 카드"
-   ],
-   "measured": 6,
-   "withVolume": 8
+   "at": "2026-10-20",
+   "added": [],
+   "measured": 5,
+   "withVolume": 5
   },
   "전세사기": {
    "at": "2026-10-11",
