@@ -58,9 +58,11 @@ const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
 const round2 = (x) => Math.round(x * 100) / 100;
 const pct = (o) => (o && o.n ? Math.round((o.top10 / o.n) * 1000) / 10 : null);
 
-// 찾아가기 검색어(기관 연락처·누리집 위치). 2026-10-12 사이트 표본에 이런 대표 검색어 글이 없어(찾기류 2편, 둘 다 30위 밖)
-// 같은 조건 비율을 그대로 쓸 근거가 없다. 대기열에 자동으로 넣지 않고 따로 적는다.
-export const NAVIGATIONAL = /고객센터|콜센터|전화번호|상담전화|지사\s?찾기|홈페이지|바로가기|로그인/;
+// 기관을 찾거나 기관에 지원하는 검색어(연락처·누리집·사무소 위치·채용·연봉). 2026-10-12 사이트 표본에 이런 대표 검색어 글이 없어
+// (찾기류 2편, 둘 다 30위 밖) 같은 조건 비율을 그대로 쓸 근거가 없다. 대기열에 자동으로 넣지 않고 따로 적는다.
+// 2026-10-19 측정에서 "국민연금 공단 연봉"·"국민연금 공단 경인지역본부"가 자동 선택으로 들어와 지역본부·오시는 길·기관 채용/연봉을 더했다
+// (10-19 표본의 연봉 검색어는 연봉제·연봉협상 같은 직장인 쪽뿐, 기관 연봉·채용 글은 없음).
+export const NAVIGATIONAL = /고객센터|콜센터|전화번호|상담전화|지사\s?찾기|지역본부|홈페이지|바로가기|로그인|오시는\s?길|(공단|공사|공기업|은행)\s?(채용|연봉|초봉|공채|신입|인턴)/;
 export const isNavigational = (q) => NAVIGATIONAL.test(String(q || ''));
 export const wordsOf = (q) => String(q || '').trim().split(/\s+/).filter(Boolean).length;
 export const cellOf = (words, open) => `${words >= 3 ? '3단어 이상' : '1~2단어'} · ${open ? '열림' : '닫힘'}`;
@@ -368,7 +370,7 @@ export function renderReport(res, { today, added = [] }) {
   sect('같은 세부 주제 글이 이미 있음 · 기존 글 갱신(잠금 장부)', res.rows.filter((r) => r.status === 'veto'));
   sect('이미 3위 안', res.rows.filter((r) => r.status === 'top3'));
   sect('운영자 지정 · 민간 대출', res.rows.filter((r) => r.status === 'loan'));
-  sect('찾아가기 검색어 · 같은 종류 우리 글이 표본에 없어 비율 근거 없음(운영자 지정)', res.rows.filter((r) => r.status === 'nav'));
+  sect('기관 찾기·채용 검색어(연락처·위치·누리집·채용·연봉) · 같은 종류 우리 글이 표본에 없어 비율 근거 없음(운영자 지정)', res.rows.filter((r) => r.status === 'nav'));
   sect('자매 사이트가 상위 3위 안', res.rows.filter((r) => r.status === 'sister'));
   if (added.length) { L.push(`대기열에 넣음 ${added.length}건: ${added.map((x) => x.query).join(' · ')}`); L.push(''); }
   L.push(`호출: 검색 ${res.calls.search}회 · 트렌드 ${res.calls.trend}회. 뺀 후보: 질문 말투 ${res.dropped.chatty} · 자매 주제 ${res.dropped.sister} · 이미 쓴 검색어 ${res.dropped.used} · 이미 대기열 ${res.dropped.queued}`);
