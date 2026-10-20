@@ -5,12 +5,10 @@
  ],
  "terms": {
   "국민연금": {
-   "at": "2026-10-14",
-   "added": [
-    "국민연금 수령나이"
-   ],
-   "measured": 5,
-   "withVolume": 5
+   "at": "2026-10-21",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "실업급여": {
    "at": "2026-10-16",
@@ -109,10 +107,10 @@
    "withVolume": 5
   },
   "근로장려금": {
-   "at": "2026-10-14",
+   "at": "2026-10-21",
    "added": [],
    "measured": 6,
-   "withVolume": 8
+   "withVolume": 7
   },
   "자동차세": {
    "at": "2026-10-07",
@@ -139,7 +137,7 @@
    "withVolume": 3
   },
   "연금저축": {
-   "at": "2026-10-14",
+   "at": "2026-10-21",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -151,10 +149,10 @@
    "withVolume": 4
   },
   "연말정산": {
-   "at": "2026-10-14",
+   "at": "2026-10-21",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 4,
+   "withVolume": 4
   },
   "실손보험": {
    "at": "2026-10-15",
@@ -254,13 +252,15 @@
    "withVolume": 5
   },
   "전세사기": {
-   "at": "2026-10-11",
-   "added": [],
+   "at": "2026-10-21",
+   "added": [
+    "전세사기 최소보장제"
+   ],
    "measured": 2,
    "withVolume": 2
   },
   "조기재취업수당": {
-   "at": "2026-10-11",
+   "at": "2026-10-21",
    "added": [],
    "measured": 1,
    "withVolume": 1
