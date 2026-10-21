@@ -72,6 +72,11 @@ describe('찾아가기 검색어 · 한 글 묶기 · 기존 글 겹침', async 
     expect(isNavigational('국민연금 공단 지사찾기')).toBe(true);
     expect(isNavigational('국민연금 공단 지사 찾기')).toBe(true);
     expect(isNavigational('국민연금 조기수령 신청방법')).toBe(false);
+    expect(isNavigational('국민연금 공단 경인지역본부')).toBe(true);
+    expect(isNavigational('국민연금 공단 연봉')).toBe(true);
+    expect(isNavigational('국민연금 공단 채용')).toBe(true);
+    expect(isNavigational('연봉 협상 시기')).toBe(false);
+    expect(isNavigational('실업급여 구직활동 면접')).toBe(false);
   });
   it('한쪽 낱말이 다른 쪽에 다 들어 있거나 발급 경로 낱말만 다르면 앞 항목에 묶는다', () => {
     const rows = ['근로소득 원천징수영수증 발급', '근로소득 원천징수영수증 발급방법', '근로소득 원천징수영수증 홈택스', '근로소득 원천징수영수증 연말정산', '퇴직금 세금 공제']
