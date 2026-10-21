@@ -143,7 +143,7 @@
    "withVolume": 2
   },
   "종합소득세": {
-   "at": "2026-10-15",
+   "at": "2026-10-22",
    "added": [],
    "measured": 4,
    "withVolume": 4
@@ -155,13 +155,15 @@
    "withVolume": 4
   },
   "실손보험": {
-   "at": "2026-10-15",
-   "added": [],
+   "at": "2026-10-22",
+   "added": [
+    "실손보험 추천"
+   ],
    "measured": 2,
    "withVolume": 2
   },
   "부가세 신고": {
-   "at": "2026-10-15",
+   "at": "2026-10-22",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -272,19 +274,19 @@
    "withVolume": 5
   },
   "주민등록등본 발급": {
-   "at": "2026-10-11",
+   "at": "2026-10-22",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "청년월세지원": {
-   "at": "2026-10-11",
+   "at": "2026-10-22",
    "added": [],
    "measured": 5,
    "withVolume": 5
   },
   "퇴사 후 건강보험": {
-   "at": "2026-10-12",
+   "at": "2026-10-22",
    "added": [],
    "measured": 0,
    "withVolume": 0
