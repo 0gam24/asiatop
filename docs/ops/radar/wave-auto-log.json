@@ -69,7 +69,7 @@
    "manual": true
   },
   "본인부담상한제": {
-   "at": "2026-10-16",
+   "at": "2026-10-23",
    "added": [],
    "measured": 1,
    "withVolume": 1
@@ -236,10 +236,10 @@
    "withVolume": 3
   },
   "자녀장려금": {
-   "at": "2026-10-16",
+   "at": "2026-10-23",
    "added": [],
-   "measured": 0,
-   "withVolume": 0
+   "measured": 2,
+   "withVolume": 2
   },
   "자동차세 연납": {
    "at": "2026-10-20",
@@ -300,30 +300,35 @@
    "withVolume": 6
   },
   "햇살론유스": {
-   "at": "2026-10-12",
-   "added": [],
+   "at": "2026-10-23",
+   "added": [
+    "햇살론유스 조건",
+    "햇살론유스 신청",
+    "햇살론유스 대상"
+   ],
    "measured": 3,
    "withVolume": 3
   },
   "확정일자": {
-   "at": "2026-10-12",
+   "at": "2026-10-23",
    "added": [],
    "measured": 3,
    "withVolume": 3
   },
   "ETF 추천": {
-   "at": "2026-10-12",
+   "at": "2026-10-23",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "ISA 계좌": {
-   "at": "2026-10-12",
+   "at": "2026-10-23",
    "added": [
-    "ISA 계좌 단점"
+    "ISA 계좌 장점",
+    "ISA 계좌 개편"
    ],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 5,
+   "withVolume": 5
   },
   "청년일자리도약장려금": {
    "at": "2026-10-13",
