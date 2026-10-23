@@ -11,16 +11,16 @@
    "withVolume": 3
   },
   "실업급여": {
-   "at": "2026-10-16",
+   "at": "2026-10-24",
    "added": [],
    "measured": 6,
-   "withVolume": 6
+   "withVolume": 8
   },
   "기초연금": {
-   "at": "2026-10-16",
+   "at": "2026-10-24",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "주휴수당": {
    "at": "2026-10-17",
@@ -83,10 +83,8 @@
    "withVolume": 4
   },
   "부모급여": {
-   "at": "2026-10-15",
-   "added": [
-    "부모급여 어린이집"
-   ],
+   "at": "2026-10-24",
+   "added": [],
    "measured": 3,
    "withVolume": 3
   },
@@ -101,10 +99,10 @@
    "withVolume": 3
   },
   "건강보험료": {
-   "at": "2026-10-16",
+   "at": "2026-10-24",
    "added": [],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 6,
+   "withVolume": 7
   },
   "근로장려금": {
    "at": "2026-10-21",
@@ -125,16 +123,18 @@
    "withVolume": 5
   },
   "청년미래적금": {
-   "at": "2026-10-14",
+   "at": "2026-10-24",
    "added": [],
    "measured": 6,
    "withVolume": 8
   },
   "청년도약계좌": {
-   "at": "2026-10-14",
-   "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "at": "2026-10-24",
+   "added": [
+    "청년도약계좌 정부기여금"
+   ],
+   "measured": 6,
+   "withVolume": 7
   },
   "연금저축": {
    "at": "2026-10-21",
