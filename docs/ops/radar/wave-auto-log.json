@@ -47,19 +47,19 @@
    "withVolume": 3
   },
   "전입신고": {
-   "at": "2026-10-17",
+   "at": "2026-10-25",
    "added": [],
    "measured": 2,
    "withVolume": 2
   },
   "여권 재발급": {
-   "at": "2026-10-17",
+   "at": "2026-10-25",
    "added": [],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 6,
+   "withVolume": 6
   },
   "운전면허 갱신": {
-   "at": "2026-10-17",
+   "at": "2026-10-25",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -75,12 +75,10 @@
    "withVolume": 1
   },
   "아동수당": {
-   "at": "2026-10-17",
-   "added": [
-    "아동수당 계좌변경"
-   ],
-   "measured": 4,
-   "withVolume": 4
+   "at": "2026-10-25",
+   "added": [],
+   "measured": 3,
+   "withVolume": 3
   },
   "부모급여": {
    "at": "2026-10-24",
@@ -115,12 +113,12 @@
    "manual": true
   },
   "전세보증보험": {
-   "at": "2026-10-17",
+   "at": "2026-10-25",
    "added": [
-    "전세보증보험 비용"
+    "전세보증보험 가입방법"
    ],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 3,
+   "withVolume": 3
   },
   "청년미래적금": {
    "at": "2026-10-24",
@@ -268,10 +266,12 @@
    "withVolume": 1
   },
   "종부세": {
-   "at": "2026-10-18",
-   "added": [],
-   "measured": 5,
-   "withVolume": 5
+   "at": "2026-10-25",
+   "added": [
+    "종부세 개편"
+   ],
+   "measured": 4,
+   "withVolume": 4
   },
   "주민등록등본 발급": {
    "at": "2026-10-22",

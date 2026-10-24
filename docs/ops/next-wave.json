@@ -8,11 +8,11 @@
   "seen = 뉴스 제목 첫 관측일·일별 제목 수(30일 보존). 자매 awoo 주제와 지원금·바우처·상품권·쿠폰은 뽑지 않는다."
  ],
  "meta": {
-  "measuredAt": "2026-10-24",
+  "measuredAt": "2026-10-25",
   "anchor": "실업급여 최근 28일 평균 = 100",
   "window": {
-   "start": "2026-08-29",
-   "end": "2026-10-23",
+   "start": "2026-08-30",
+   "end": "2026-10-24",
    "days": 56
   },
   "lastYear": {
@@ -30,26 +30,144 @@
   },
   "families": 43,
   "measured": 43,
-  "newsTitles": 2597
+  "newsTitles": 2589
  },
  "items": [
   {
-   "term": "자녀장려금",
+   "term": "아동수당",
    "stage": "rising",
-   "score": 14.8,
-   "level": 10.6,
-   "base": 7.3,
+   "score": 42.4,
+   "level": 30.3,
+   "base": 22.3,
    "growth": 1.4,
    "fromZero": false,
    "weekly": [
-    34.8,
-    11.5,
-    7.5,
-    3.5,
-    5.1,
-    4,
-    12.9,
-    10.6
+    68.5,
+    26.5,
+    25.2,
+    32.6,
+    23.9,
+    19.7,
+    23.2,
+    30.3
+   ],
+   "season": {
+    "up": 1.3,
+    "peakMonth": 12,
+    "lastYear": 23.1
+   },
+   "mentions": 0,
+   "firstSeen": "2026-09-07",
+   "isNew": false,
+   "posts": 6,
+   "lastPost": "2026-10-09",
+   "cluster": "gov-support",
+   "queued": 1,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "아동수당",
+    "아동수당 신청"
+   ],
+   "sample": []
+  },
+  {
+   "term": "부모급여",
+   "stage": "rising",
+   "score": 36.1,
+   "level": 25.8,
+   "base": 19,
+   "growth": 1.4,
+   "fromZero": false,
+   "weekly": [
+    27.3,
+    13.3,
+    14.2,
+    22.3,
+    15.9,
+    21,
+    20,
+    25.8
+   ],
+   "season": null,
+   "mentions": 0,
+   "firstSeen": "2026-09-07",
+   "isNew": false,
+   "posts": 4,
+   "lastPost": "2026-10-05",
+   "cluster": "gov-support",
+   "queued": 0,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "부모급여",
+    "부모급여 신청"
+   ],
+   "sample": []
+  },
+  {
+   "term": "본인부담상한제",
+   "stage": "rising",
+   "score": 31.6,
+   "level": 22.6,
+   "base": 16.5,
+   "growth": 1.4,
+   "fromZero": false,
+   "weekly": [
+    98.7,
+    57.8,
+    32,
+    23.9,
+    20.2,
+    12.6,
+    16.7,
+    22.6
+   ],
+   "season": {
+    "up": 0.9,
+    "peakMonth": 12,
+    "lastYear": 14.9
+   },
+   "mentions": 2,
+   "firstSeen": "2026-10-16",
+   "isNew": false,
+   "posts": 3,
+   "lastPost": "2026-10-05",
+   "cluster": "insurance-labor",
+   "queued": 0,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "본인부담상한제"
+   ],
+   "sample": [
+    "[2026년 국감] 저소득층 울리는 본인부담상한제… 실손보험 꼼수 지적",
+    "건보공단, 본인부담상한제·실손보험 연계구조 개편 추진"
+   ]
+  },
+  {
+   "term": "자녀장려금",
+   "stage": "rising",
+   "score": 16.4,
+   "level": 10.9,
+   "base": 7.4,
+   "growth": 1.5,
+   "fromZero": false,
+   "weekly": [
+    29.9,
+    10.4,
+    7.2,
+    3.3,
+    5,
+    4.1,
+    13,
+    10.9
    ],
    "season": {
     "up": 1.9,
@@ -77,29 +195,71 @@
    ]
   },
   {
+   "term": "연말정산",
+   "stage": "soon",
+   "score": 203.8,
+   "level": 19.6,
+   "base": 18,
+   "growth": 1.1,
+   "fromZero": false,
+   "weekly": [
+    14.3,
+    13.8,
+    14,
+    12.3,
+    16.4,
+    17.9,
+    19.6,
+    19.6
+   ],
+   "season": {
+    "up": 10.4,
+    "peakMonth": 12,
+    "lastYear": 14.9
+   },
+   "mentions": 13,
+   "firstSeen": "2026-09-07",
+   "isNew": false,
+   "posts": 39,
+   "lastPost": "2026-10-23",
+   "cluster": "tax",
+   "queued": 1,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "연말정산"
+   ],
+   "sample": [
+    "연말정산 '자녀공제' 늘어날까…'20세'→'26세' 개정 추진",
+    "연말정산 세액공제법 담았다...한투운용, 연금투자 가이드북 배포"
+   ]
+  },
+  {
    "term": "근로장려금",
    "stage": "soon",
-   "score": 190.8,
-   "level": 73.4,
-   "base": 76,
+   "score": 195.5,
+   "level": 75.2,
+   "base": 74.4,
    "growth": 1,
    "fromZero": false,
    "weekly": [
-    1216.9,
-    512.6,
-    282,
-    74.7,
-    89.6,
-    66.5,
-    72,
-    73.4
+    1174.9,
+    474.2,
+    246.2,
+    70.2,
+    86.9,
+    66.3,
+    70,
+    75.2
    ],
    "season": {
     "up": 2.6,
     "peakMonth": 11,
     "lastYear": 71.7
    },
-   "mentions": 18,
+   "mentions": 17,
    "firstSeen": "2026-09-07",
    "isNew": false,
    "posts": 14,
@@ -120,64 +280,22 @@
    ]
   },
   {
-   "term": "연말정산",
-   "stage": "soon",
-   "score": 185.1,
-   "level": 17.8,
-   "base": 18.2,
-   "growth": 1,
-   "fromZero": false,
-   "weekly": [
-    14.4,
-    14.2,
-    14.2,
-    12.4,
-    16.8,
-    17.9,
-    19.9,
-    17.8
-   ],
-   "season": {
-    "up": 10.4,
-    "peakMonth": 12,
-    "lastYear": 14.9
-   },
-   "mentions": 15,
-   "firstSeen": "2026-09-07",
-   "isNew": false,
-   "posts": 39,
-   "lastPost": "2026-10-23",
-   "cluster": "tax",
-   "queued": 1,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "연말정산"
-   ],
-   "sample": [
-    "연말정산 '자녀공제' 늘어날까…'20세'→'26세' 개정 추진",
-    "연말정산 세액공제법 담았다...한투운용, 연금투자 가이드북 배포"
-   ]
-  },
-  {
    "term": "연금저축",
    "stage": "soon",
-   "score": 35.2,
-   "level": 22,
-   "base": 28.4,
-   "growth": 0.8,
+   "score": 37.6,
+   "level": 23.5,
+   "base": 27.5,
+   "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    30.9,
-    31.9,
-    26.1,
-    24.6,
-    30.9,
+    29.8,
+    31.1,
+    25.8,
+    24.3,
+    29.9,
     26.7,
-    27.5,
-    22
+    25.9,
+    23.5
    ],
    "season": {
     "up": 1.6,
@@ -203,20 +321,20 @@
   {
    "term": "종합소득세",
    "stage": "soon",
-   "score": 30.1,
-   "level": 13.7,
-   "base": 18.5,
-   "growth": 0.7,
+   "score": 31.7,
+   "level": 14.4,
+   "base": 18.1,
+   "growth": 0.8,
    "fromZero": false,
    "weekly": [
-    39.4,
-    22.5,
-    22.8,
-    16.8,
-    21.2,
-    16.4,
-    17.9,
-    13.7
+    38.5,
+    21.8,
+    22.3,
+    16,
+    20.8,
+    16.2,
+    17.4,
+    14.4
    ],
    "season": {
     "up": 2.2,
@@ -245,20 +363,20 @@
   {
    "term": "실손보험",
    "stage": "soon",
-   "score": 27,
-   "level": 16.9,
-   "base": 18.5,
-   "growth": 0.9,
+   "score": 28.5,
+   "level": 17.8,
+   "base": 18.3,
+   "growth": 1,
    "fromZero": false,
    "weekly": [
-    20.5,
-    19.9,
+    20,
+    19.3,
+    20.3,
+    15.8,
     20.4,
-    16.8,
-    20.9,
-    15,
-    19.8,
-    16.9
+    15.1,
+    19.4,
+    17.8
    ],
    "season": {
     "up": 1.6,
@@ -287,20 +405,20 @@
   {
    "term": "종부세",
    "stage": "soon",
-   "score": 9.4,
-   "level": 4.7,
-   "base": 6.9,
+   "score": 9.8,
+   "level": 4.9,
+   "base": 6.6,
    "growth": 0.7,
    "fromZero": false,
    "weekly": [
-    35.2,
-    19.8,
-    15.6,
-    7.6,
-    8.8,
+    34.7,
+    19.1,
+    15.1,
+    7.4,
+    8.3,
     5.9,
-    5.9,
-    4.7
+    5.7,
+    4.9
    ],
    "season": {
     "up": 2,
@@ -326,23 +444,23 @@
   {
    "term": "국민연금",
    "stage": "growing",
-   "score": 383.9,
-   "level": 319.9,
-   "base": 261,
-   "growth": 1.2,
+   "score": 434.6,
+   "level": 334.3,
+   "base": 261.2,
+   "growth": 1.3,
    "fromZero": false,
    "weekly": [
-    296.4,
-    238.5,
-    202,
-    165.6,
-    254.7,
-    181.2,
-    347,
-    319.9
+    283.4,
+    232.3,
+    197.5,
+    162,
+    250.8,
+    176,
+    356.7,
+    334.3
    ],
    "season": null,
-   "mentions": 78,
+   "mentions": 79,
    "firstSeen": "2026-09-07",
    "isNew": false,
    "posts": 40,
@@ -366,71 +484,108 @@
    ]
   },
   {
-   "term": "본인부담상한제",
+   "term": "신용점수",
    "stage": "growing",
-   "score": 25.3,
-   "level": 21.1,
-   "base": 17.5,
+   "score": 26.6,
+   "level": 22.2,
+   "base": 18.4,
    "growth": 1.2,
    "fromZero": false,
    "weekly": [
-    100.3,
-    60.4,
-    33.9,
-    23.5,
-    22.7,
-    12.8,
-    16.9,
-    21.1
+    18.8,
+    20.5,
+    19.8,
+    20.8,
+    18.7,
+    17.5,
+    19.1,
+    22.2
+   ],
+   "season": {
+    "up": 0.9,
+    "peakMonth": 11,
+    "lastYear": 18.9
+   },
+   "mentions": 0,
+   "firstSeen": null,
+   "isNew": false,
+   "posts": 8,
+   "lastPost": "2026-10-06",
+   "cluster": "credit-loan",
+   "queued": 4,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "신용점수"
+   ],
+   "sample": []
+  },
+  {
+   "term": "부가세 신고",
+   "stage": "growing",
+   "score": 8.8,
+   "level": 6.8,
+   "base": 5.3,
+   "growth": 1.3,
+   "fromZero": false,
+   "weekly": [
+    3.9,
+    3.1,
+    3,
+    2.6,
+    4.5,
+    4.4,
+    6.9,
+    6.8
    ],
    "season": {
     "up": 0.9,
     "peakMonth": 12,
-    "lastYear": 14.9
+    "lastYear": 5.5
    },
-   "mentions": 2,
-   "firstSeen": "2026-10-16",
+   "mentions": 0,
+   "firstSeen": null,
    "isNew": false,
-   "posts": 3,
-   "lastPost": "2026-10-05",
-   "cluster": "insurance-labor",
+   "posts": 16,
+   "lastPost": "2026-10-21",
+   "cluster": "tax",
    "queued": 0,
    "calendar": null,
    "sources": [
     "감시 목록"
    ],
    "keywords": [
-    "본인부담상한제"
+    "부가세 신고",
+    "부가세신고"
    ],
-   "sample": [
-    "[2026년 국감] 저소득층 울리는 본인부담상한제… 실손보험 꼼수 지적",
-    "건보공단, 본인부담상한제·실손보험 연계구조 개편 추진"
-   ]
+   "sample": []
   },
   {
    "term": "실업급여",
    "stage": "steady",
-   "score": 111.2,
-   "level": 139,
-   "base": 177.4,
+   "score": 117.5,
+   "level": 146.9,
+   "base": 174.6,
    "growth": 0.8,
    "fromZero": false,
    "weekly": [
-    290.1,
-    211.4,
-    179.8,
-    127.3,
-    204.2,
-    150.2,
-    177.7,
-    139
+    288.4,
+    203.2,
+    175.8,
+    122.1,
+    202.7,
+    146.6,
+    174.4,
+    146.9
    ],
    "season": {
     "up": 1.1,
     "peakMonth": 12,
     "lastYear": 131.4
    },
-   "mentions": 26,
+   "mentions": 28,
    "firstSeen": "2026-09-07",
    "isNew": false,
    "posts": 35,
@@ -446,27 +601,69 @@
     "실업급여 신청"
    ],
    "sample": [
-    "\"레전드도 실업급여 받는다\"…'야생마' LG 이상훈이 전한 가슴 뭉클한 '...",
-    "美 캘리포니아 공무원 수만 명 하루 총파업…차량등록·실업급여 업무 ..."
+    "“퇴사하면 돈 주고, 버티면 뭐 주나요?”…실업급여 논란에 나온 파격...",
+    "\"퍼주기 실업급여 대신 2년 버티면 목돈\"… '일하는 청년' 보상안 터졌다"
+   ]
+  },
+  {
+   "term": "자동차보험",
+   "stage": "steady",
+   "score": 91.3,
+   "level": 101.4,
+   "base": 111.8,
+   "growth": 0.9,
+   "fromZero": false,
+   "weekly": [
+    114.8,
+    110,
+    107,
+    93.9,
+    116.7,
+    101.2,
+    117.5,
+    101.4
+   ],
+   "season": {
+    "up": 1.1,
+    "peakMonth": 12,
+    "lastYear": 66
+   },
+   "mentions": 8,
+   "firstSeen": "2026-10-11",
+   "isNew": false,
+   "posts": 15,
+   "lastPost": "2026-10-19",
+   "cluster": "auto",
+   "queued": 0,
+   "calendar": null,
+   "sources": [
+    "뉴스"
+   ],
+   "keywords": [
+    "자동차보험"
+   ],
+   "sample": [
+    "자동차보험 손해율 한숨 돌렸지만…누적은 여전히 84.7%",
+    "자동차보험은 언제부터 손보사의 골칫거리가 됐나 [옛날신문보기]"
    ]
   },
   {
    "term": "디딤돌대출",
    "stage": "steady",
-   "score": 57,
-   "level": 63.3,
-   "base": 66.8,
-   "growth": 0.9,
+   "score": 65.5,
+   "level": 65.5,
+   "base": 66,
+   "growth": 1,
    "fromZero": false,
    "weekly": [
-    77.5,
-    70.3,
-    64.1,
-    49.8,
-    71.6,
-    60.1,
-    68.8,
-    63.3
+    75.1,
+    68.1,
+    63.1,
+    47.4,
+    71.2,
+    59.2,
+    67.7,
+    65.5
    ],
    "season": {
     "up": 0.9,
@@ -491,102 +688,22 @@
    "sample": []
   },
   {
-   "term": "ISA 계좌",
-   "stage": "steady",
-   "score": 37,
-   "level": 52.8,
-   "base": 78.3,
-   "growth": 0.7,
-   "fromZero": false,
-   "weekly": [
-    100.8,
-    81.7,
-    65.1,
-    62.7,
-    85.5,
-    76.8,
-    72.7,
-    52.8
-   ],
-   "season": {
-    "up": 1.3,
-    "peakMonth": 12,
-    "lastYear": 153.1
-   },
-   "mentions": 0,
-   "firstSeen": null,
-   "isNew": false,
-   "posts": 12,
-   "lastPost": "2026-10-16",
-   "cluster": "savings",
-   "queued": 9,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "ISA 계좌",
-    "ISA계좌",
-    "ISA 계좌 신청"
-   ],
-   "sample": []
-  },
-  {
-   "term": "최저임금",
-   "stage": "steady",
-   "score": 35.3,
-   "level": 44.1,
-   "base": 53.9,
-   "growth": 0.8,
-   "fromZero": false,
-   "weekly": [
-    64,
-    59.4,
-    51.2,
-    35.7,
-    58.9,
-    47.4,
-    55.5,
-    44.1
-   ],
-   "season": {
-    "up": 1.2,
-    "peakMonth": 12,
-    "lastYear": 35.2
-   },
-   "mentions": 0,
-   "firstSeen": null,
-   "isNew": false,
-   "posts": 6,
-   "lastPost": "2026-09-09",
-   "cluster": "unemployment",
-   "queued": 1,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "최저임금"
-   ],
-   "sample": []
-  },
-  {
    "term": "기초연금",
    "stage": "steady",
-   "score": 35,
-   "level": 43.8,
-   "base": 51.6,
-   "growth": 0.8,
+   "score": 50.5,
+   "level": 50.5,
+   "base": 49.7,
+   "growth": 1,
    "fromZero": false,
    "weekly": [
-    138.2,
-    64.7,
-    48.3,
-    51.3,
-    61.5,
-    46.7,
-    46.6,
-    43.8
+    124.3,
+    60.3,
+    47.6,
+    52.5,
+    59.3,
+    44,
+    45.8,
+    50.5
    ],
    "season": {
     "up": 1.2,
@@ -614,22 +731,102 @@
    ]
   },
   {
+   "term": "최저임금",
+   "stage": "steady",
+   "score": 43.1,
+   "level": 47.9,
+   "base": 53.2,
+   "growth": 0.9,
+   "fromZero": false,
+   "weekly": [
+    63,
+    57.4,
+    50,
+    34,
+    58.7,
+    47.3,
+    53.7,
+    47.9
+   ],
+   "season": {
+    "up": 1.2,
+    "peakMonth": 12,
+    "lastYear": 35.2
+   },
+   "mentions": 0,
+   "firstSeen": null,
+   "isNew": false,
+   "posts": 6,
+   "lastPost": "2026-09-09",
+   "cluster": "unemployment",
+   "queued": 1,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "최저임금"
+   ],
+   "sample": []
+  },
+  {
+   "term": "ISA 계좌",
+   "stage": "steady",
+   "score": 37.9,
+   "level": 54.1,
+   "base": 76.2,
+   "growth": 0.7,
+   "fromZero": false,
+   "weekly": [
+    97.3,
+    78.6,
+    64,
+    62.7,
+    83.5,
+    74.9,
+    70.1,
+    54.1
+   ],
+   "season": {
+    "up": 1.3,
+    "peakMonth": 12,
+    "lastYear": 153.1
+   },
+   "mentions": 0,
+   "firstSeen": null,
+   "isNew": false,
+   "posts": 12,
+   "lastPost": "2026-10-16",
+   "cluster": "savings",
+   "queued": 9,
+   "calendar": null,
+   "sources": [
+    "감시 목록"
+   ],
+   "keywords": [
+    "ISA 계좌",
+    "ISA계좌",
+    "ISA 계좌 신청"
+   ],
+   "sample": []
+  },
+  {
    "term": "주휴수당",
    "stage": "steady",
-   "score": 34.2,
-   "level": 42.7,
-   "base": 54.7,
+   "score": 35,
+   "level": 43.8,
+   "base": 53.9,
    "growth": 0.8,
    "fromZero": false,
    "weekly": [
-    73.1,
-    64.7,
-    56.7,
-    43,
-    59,
-    51.8,
-    53.3,
-    42.7
+    72,
+    62.1,
+    55.1,
+    40.8,
+    59.2,
+    51.5,
+    51.1,
+    43.8
    ],
    "season": {
     "up": 1,
@@ -654,61 +851,22 @@
    "sample": []
   },
   {
-   "term": "신용점수",
-   "stage": "steady",
-   "score": 22.8,
-   "level": 20.7,
-   "base": 18.6,
-   "growth": 1.1,
-   "fromZero": false,
-   "weekly": [
-    19,
-    21.1,
-    20.2,
-    21.5,
-    18.7,
-    17.9,
-    19.1,
-    20.7
-   ],
-   "season": {
-    "up": 0.9,
-    "peakMonth": 11,
-    "lastYear": 18.9
-   },
-   "mentions": 0,
-   "firstSeen": null,
-   "isNew": false,
-   "posts": 8,
-   "lastPost": "2026-10-06",
-   "cluster": "credit-loan",
-   "queued": 4,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "신용점수"
-   ],
-   "sample": []
-  },
-  {
    "term": "햇살론",
    "stage": "steady",
-   "score": 21.2,
-   "level": 23.5,
-   "base": 25.9,
-   "growth": 0.9,
+   "score": 25,
+   "level": 25,
+   "base": 25.6,
+   "growth": 1,
    "fromZero": false,
    "weekly": [
-    26.4,
-    25.6,
-    26.4,
-    19,
-    27.5,
+    25.3,
+    25.3,
+    26,
+    18.1,
+    27.1,
     20.8,
-    29.4,
-    23.5
+    28.8,
+    25
    ],
    "season": {
     "up": 1,
@@ -732,69 +890,29 @@
    "sample": []
   },
   {
-   "term": "아동수당",
+   "term": "퇴직연금",
    "stage": "steady",
-   "score": 17.7,
-   "level": 19.7,
-   "base": 22.9,
+   "score": 21.5,
+   "level": 23.9,
+   "base": 25.5,
    "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    81.4,
-    29.1,
-    25.3,
-    33.3,
-    24.8,
-    20.2,
-    23.5,
-    19.7
-   ],
-   "season": {
-    "up": 1.3,
-    "peakMonth": 12,
-    "lastYear": 23.1
-   },
-   "mentions": 0,
-   "firstSeen": "2026-09-07",
-   "isNew": false,
-   "posts": 6,
-   "lastPost": "2026-10-09",
-   "cluster": "gov-support",
-   "queued": 1,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "아동수당",
-    "아동수당 신청"
-   ],
-   "sample": []
-  },
-  {
-   "term": "퇴직연금",
-   "stage": "steady",
-   "score": 17.7,
-   "level": 22.1,
-   "base": 26.1,
-   "growth": 0.8,
-   "fromZero": false,
-   "weekly": [
-    29.1,
-    30.1,
-    26.5,
-    21.6,
-    28.5,
-    22.4,
-    27.3,
-    22.1
+    28.8,
+    28.9,
+    26.1,
+    21.1,
+    28.1,
+    21.8,
+    26.7,
+    23.9
    ],
    "season": {
     "up": 1.2,
     "peakMonth": 12,
     "lastYear": 31.8
    },
-   "mentions": 52,
+   "mentions": 56,
    "firstSeen": "2026-09-07",
    "isNew": false,
    "posts": 16,
@@ -815,64 +933,22 @@
    ]
   },
   {
-   "term": "정기예금",
-   "stage": "steady",
-   "score": 17.6,
-   "level": 22,
-   "base": 26.3,
-   "growth": 0.8,
-   "fromZero": false,
-   "weekly": [
-    31,
-    27.8,
-    26.8,
-    22.4,
-    29.8,
-    20.9,
-    28.3,
-    22
-   ],
-   "season": {
-    "up": 1.4,
-    "peakMonth": 12,
-    "lastYear": 15.1
-   },
-   "mentions": 8,
-   "firstSeen": "2026-10-11",
-   "isNew": false,
-   "posts": 3,
-   "lastPost": "2026-10-18",
-   "cluster": "savings",
-   "queued": 0,
-   "calendar": null,
-   "sources": [
-    "뉴스"
-   ],
-   "keywords": [
-    "정기예금"
-   ],
-   "sample": [
-    "부산은행, 부산불꽃축제에 정기예금·주택청약 신규가입 고객 초청",
-    "3개월만 맡겨도 이자가 3.4%...우리은행서 출시한 '정기예금' 뭐길래"
-   ]
-  },
-  {
    "term": "건강보험료",
    "stage": "steady",
-   "score": 15.5,
-   "level": 17.2,
-   "base": 18.2,
-   "growth": 0.9,
+   "score": 18.9,
+   "level": 18.9,
+   "base": 18,
+   "growth": 1,
    "fromZero": false,
    "weekly": [
     20.9,
-    22.7,
-    13.9,
-    12.8,
-    19.3,
-    16.3,
-    19.1,
-    17.2
+    22,
+    13.4,
+    12.5,
+    19.5,
+    15.9,
+    18.7,
+    18.9
    ],
    "season": {
     "up": 1.3,
@@ -901,20 +977,20 @@
   {
    "term": "전세보증보험",
    "stage": "steady",
-   "score": 15.3,
-   "level": 17,
+   "score": 15.6,
+   "level": 17.3,
    "base": 18.9,
    "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    22.1,
-    19.9,
-    18.2,
-    13,
+    21.4,
+    19.4,
+    17.7,
+    12.2,
+    20.2,
+    16.7,
     19.7,
-    17.2,
-    19.9,
-    17
+    17.3
    ],
    "season": {
     "up": 0.9,
@@ -940,20 +1016,20 @@
   {
    "term": "퇴직금",
    "stage": "steady",
-   "score": 14.4,
-   "level": 16,
-   "base": 18.7,
+   "score": 15,
+   "level": 16.7,
+   "base": 18.4,
    "growth": 0.9,
    "fromZero": false,
    "weekly": [
+    19.5,
+    19.6,
     20.1,
-    20.1,
-    20.4,
-    17.1,
-    19.8,
-    15.9,
-    20.3,
-    16
+    16.3,
+    19.6,
+    15.7,
+    20,
+    16.7
    ],
    "season": {
     "up": 0.8,
@@ -977,62 +1053,22 @@
    "sample": []
   },
   {
-   "term": "부모급여",
-   "stage": "steady",
-   "score": 12.8,
-   "level": 16,
-   "base": 19.2,
-   "growth": 0.8,
-   "fromZero": false,
-   "weekly": [
-    33.7,
-    13.7,
-    14.7,
-    22.4,
-    16.1,
-    18.9,
-    22.7,
-    16
-   ],
-   "season": {
-    "up": 1.4,
-    "peakMonth": 12,
-    "lastYear": 12.4
-   },
-   "mentions": 0,
-   "firstSeen": "2026-09-07",
-   "isNew": false,
-   "posts": 4,
-   "lastPost": "2026-10-05",
-   "cluster": "gov-support",
-   "queued": 0,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "부모급여",
-    "부모급여 신청"
-   ],
-   "sample": []
-  },
-  {
    "term": "권고사직",
    "stage": "steady",
-   "score": 10.3,
-   "level": 11.4,
-   "base": 12.9,
-   "growth": 0.9,
+   "score": 12.3,
+   "level": 12.3,
+   "base": 12.8,
+   "growth": 1,
    "fromZero": false,
    "weekly": [
-    13.3,
-    14.3,
-    14.2,
-    8.3,
-    14.2,
-    10.5,
+    13.1,
+    14.7,
+    13.1,
+    7.8,
+    14.5,
+    9.9,
     13.9,
-    11.4
+    12.3
    ],
    "season": {
     "up": 1.2,
@@ -1042,10 +1078,10 @@
    "mentions": 0,
    "firstSeen": null,
    "isNew": false,
-   "posts": 7,
-   "lastPost": "2026-10-20",
+   "posts": 8,
+   "lastPost": "2026-10-24",
    "cluster": "unemployment",
-   "queued": 4,
+   "queued": 3,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -1058,20 +1094,20 @@
   {
    "term": "조기재취업수당",
    "stage": "steady",
-   "score": 7.4,
-   "level": 8.2,
-   "base": 9.3,
+   "score": 7.7,
+   "level": 8.6,
+   "base": 9.2,
    "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    15.8,
-    10.8,
-    10,
-    7.8,
+    15.9,
     10.5,
-    7.5,
-    10.1,
-    8.2
+    9.7,
+    7.6,
+    10.2,
+    7.2,
+    10.2,
+    8.6
    ],
    "season": {
     "up": 0.9,
@@ -1096,69 +1132,71 @@
    "sample": []
   },
   {
-   "term": "부가세 신고",
+   "term": "청약통장",
    "stage": "steady",
-   "score": 6.6,
-   "level": 6,
-   "base": 5.3,
-   "growth": 1.1,
+   "score": 7.4,
+   "level": 10.5,
+   "base": 15.9,
+   "growth": 0.7,
    "fromZero": false,
    "weekly": [
-    3.9,
-    3.3,
-    3.1,
-    2.6,
-    4.6,
-    4.3,
-    6.9,
-    6
+    29.3,
+    24.7,
+    22,
+    16.4,
+    22.8,
+    11.9,
+    13.1,
+    10.5
    ],
    "season": {
-    "up": 0.9,
+    "up": 1,
     "peakMonth": 12,
-    "lastYear": 5.5
+    "lastYear": 11.9
    },
-   "mentions": 0,
-   "firstSeen": null,
+   "mentions": 10,
+   "firstSeen": "2026-09-07",
    "isNew": false,
-   "posts": 16,
-   "lastPost": "2026-10-21",
-   "cluster": "tax",
+   "posts": 13,
+   "lastPost": "2026-10-24",
+   "cluster": "realestate",
    "queued": 0,
    "calendar": null,
    "sources": [
     "감시 목록"
    ],
    "keywords": [
-    "부가세 신고",
-    "부가세신고"
+    "청약통장"
    ],
-   "sample": []
+   "sample": [
+    "[단독] 외국인에 청약통장 115만 건…\"쓸모도 없는데\"",
+    "집 마련 계획 없는데 청약통장 유지해야 할까"
+   ]
   },
   {
    "term": "소득세",
    "stage": "steady",
-   "score": 4.6,
-   "level": 6.6,
-   "base": 8.8,
-   "growth": 0.7,
+   "score": 6.8,
+   "level": 7.6,
+   "base": 8.6,
+   "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    9.3,
     9.1,
-    8.7,
-    9.3,
+    8.9,
+    8.5,
+    9,
     9.4,
-    8.7,
-    8.2,
-    6.6
+    8.8,
+    7.7,
+    7.6
    ],
    "season": {
     "up": 1.1,
     "peakMonth": 12,
     "lastYear": 8.8
    },
-   "mentions": 15,
+   "mentions": 14,
    "firstSeen": "2026-09-07",
    "isNew": false,
    "posts": 65,
@@ -1180,20 +1218,20 @@
   {
    "term": "햇살론특례",
    "stage": "steady",
-   "score": 4.6,
-   "level": 5.8,
-   "base": 7.2,
-   "growth": 0.8,
+   "score": 5.5,
+   "level": 6.1,
+   "base": 7.1,
+   "growth": 0.9,
    "fromZero": false,
    "weekly": [
     7.1,
-    7,
+    6.9,
+    7.7,
+    5.2,
     7.8,
-    5.4,
-    7.9,
-    5.7,
-    8,
-    5.8
+    5.6,
+    7.8,
+    6.1
    ],
    "season": null,
    "mentions": 8,
@@ -1218,20 +1256,20 @@
   {
    "term": "버팀목전세자금대출",
    "stage": "steady",
-   "score": 4.3,
-   "level": 6.1,
-   "base": 8.2,
+   "score": 4.2,
+   "level": 6,
+   "base": 8.1,
    "growth": 0.7,
    "fromZero": false,
    "weekly": [
     8.9,
-    9,
-    8.2,
-    6.4,
     8.5,
+    8,
+    6.2,
+    8.4,
     7.7,
-    8.6,
-    6.1
+    8.4,
+    6
    ],
    "season": null,
    "mentions": 0,
@@ -1260,17 +1298,17 @@
    "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    2.6,
-    2.6,
-    2.9,
-    2.1,
+    2.4,
+    2.7,
+    2.8,
+    2,
     2.5,
     2.3,
-    2.8,
+    2.7,
     2.3
    ],
    "season": null,
-   "mentions": 21,
+   "mentions": 14,
    "firstSeen": "2026-09-07",
    "isNew": false,
    "posts": 7,
@@ -1293,23 +1331,23 @@
   {
    "term": "청년월세",
    "stage": "steady",
-   "score": 0.8,
-   "level": 1.2,
-   "base": 1.7,
-   "growth": 0.7,
+   "score": 1.4,
+   "level": 1.5,
+   "base": 1.6,
+   "growth": 0.9,
    "fromZero": false,
    "weekly": [
-    3.4,
-    3.4,
-    9.1,
+    3.3,
     3.5,
-    2.2,
+    8.7,
+    3.5,
+    2.1,
+    1.4,
     1.3,
-    1.5,
-    1.2
+    1.5
    ],
    "season": null,
-   "mentions": 2,
+   "mentions": 1,
    "firstSeen": "2026-10-14",
    "isNew": false,
    "posts": 2,
@@ -1325,27 +1363,26 @@
     "청년월세 신청"
    ],
    "sample": [
-    "홍지선 장관 \"청년월세 소득기준 내년 완화…전월세 안심신탁 연내 공모...",
     "기획처, 청년월세 지원 예산 75.6% 집행…연말 이·불용 줄인다"
    ]
   },
   {
    "term": "고용보험료",
    "stage": "steady",
-   "score": 0.8,
-   "level": 1.2,
+   "score": 1.4,
+   "level": 1.5,
    "base": 1.6,
-   "growth": 0.7,
+   "growth": 0.9,
    "fromZero": false,
    "weekly": [
     2.6,
-    2,
-    1.6,
+    1.9,
+    1.5,
     1.1,
     2,
-    1.3,
+    1.2,
     1.6,
-    1.2
+    1.5
    ],
    "season": null,
    "mentions": 16,
@@ -1370,20 +1407,20 @@
   {
    "term": "자동차세 연납",
    "stage": "steady",
-   "score": 0.4,
-   "level": 0.7,
-   "base": 1.2,
-   "growth": 0.6,
+   "score": 0.6,
+   "level": 0.8,
+   "base": 1.1,
+   "growth": 0.7,
    "fromZero": false,
    "weekly": [
-    1.2,
-    1.2,
-    1.9,
+    1.1,
     1.2,
     1.8,
+    1.2,
+    1.7,
     0.7,
     1,
-    0.7
+    0.8
    ],
    "season": null,
    "mentions": 0,
@@ -1483,6 +1520,44 @@
    ]
   },
   {
+   "term": "미환급금",
+   "stage": "steady",
+   "score": 0,
+   "level": 0,
+   "base": 0,
+   "growth": null,
+   "fromZero": false,
+   "weekly": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "season": null,
+   "mentions": 11,
+   "firstSeen": "2026-10-13",
+   "isNew": false,
+   "posts": 0,
+   "lastPost": null,
+   "cluster": null,
+   "queued": 0,
+   "calendar": null,
+   "sources": [
+    "뉴스"
+   ],
+   "keywords": [
+    "미환급금"
+   ],
+   "sample": [
+    "포항시 남구청, 지방세 미환급금 1억5100만원 찾아주기 나서",
+    "통신 3사 미환급금 30억 원...\"환급 절차 자동화해야\""
+   ]
+  },
+  {
    "term": "우대예금",
    "stage": "steady",
    "score": 0,
@@ -1521,7 +1596,7 @@
    ]
   },
   {
-   "term": "미환급금",
+   "term": "효행장려금",
    "stage": "steady",
    "score": 0,
    "level": 0,
@@ -1529,48 +1604,10 @@
    "growth": null,
    "fromZero": false,
    "weekly": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "season": null,
-   "mentions": 10,
-   "firstSeen": "2026-10-13",
-   "isNew": false,
-   "posts": 0,
-   "lastPost": null,
-   "cluster": null,
-   "queued": 0,
-   "calendar": null,
-   "sources": [
-    "뉴스"
-   ],
-   "keywords": [
-    "미환급금"
-   ],
-   "sample": [
-    "포항시 남구청, 지방세 미환급금 1억5100만원 찾아주기 나서",
-    "통신3사 미환급금 30억원, 'SKT 14억 최다'···\"미온적 환급기준 바꿔..."
-   ]
-  },
-  {
-   "term": "효행장려금",
-   "stage": "steady",
-   "score": 0,
-   "level": 0,
-   "base": 0.1,
-   "growth": 0,
-   "fromZero": false,
-   "weekly": [
-    0.4,
+    0.5,
     0.4,
     0.3,
-    0.1,
+    0,
     0.1,
     0,
     0.1,
@@ -1600,20 +1637,20 @@
   {
    "term": "청년미래적금",
    "stage": "fading",
-   "score": 111.8,
-   "level": 372.6,
-   "base": 1355.9,
+   "score": 106.3,
+   "level": 354.2,
+   "base": 1332.7,
    "growth": 0.3,
    "fromZero": false,
    "weekly": [
-    505.9,
-    391.3,
-    500.2,
-    394.6,
-    607.3,
-    1610,
-    1850.5,
-    372.6
+    498.4,
+    370.1,
+    495.4,
+    391,
+    608.9,
+    1616,
+    1773,
+    354.2
    ],
    "season": null,
    "mentions": 2,
@@ -1639,20 +1676,20 @@
   {
    "term": "청년도약계좌",
    "stage": "fading",
-   "score": 23.5,
-   "level": 47,
-   "base": 101.4,
+   "score": 23.7,
+   "level": 47.4,
+   "base": 98.9,
    "growth": 0.5,
    "fromZero": false,
    "weekly": [
-    70.7,
-    67.1,
-    70.2,
+    69.1,
+    65.6,
+    68.7,
     61.2,
-    88.1,
-    105,
-    111,
-    47
+    86.5,
+    103.9,
+    106.4,
+    47.4
    ],
    "season": {
     "up": 0.9,
@@ -1665,7 +1702,7 @@
    "posts": 11,
    "lastPost": "2026-10-06",
    "cluster": "savings",
-   "queued": 0,
+   "queued": 1,
    "calendar": null,
    "sources": [
     "감시 목록"
@@ -1679,64 +1716,22 @@
    ]
   },
   {
-   "term": "청약통장",
-   "stage": "fading",
-   "score": 6.2,
-   "level": 10.3,
-   "base": 16.6,
-   "growth": 0.6,
-   "fromZero": false,
-   "weekly": [
-    30.4,
-    25.2,
-    23.2,
-    16.3,
-    24.1,
-    11.9,
-    13.6,
-    10.3
-   ],
-   "season": {
-    "up": 1,
-    "peakMonth": 12,
-    "lastYear": 11.9
-   },
-   "mentions": 10,
-   "firstSeen": "2026-09-07",
-   "isNew": false,
-   "posts": 12,
-   "lastPost": "2026-10-23",
-   "cluster": "realestate",
-   "queued": 1,
-   "calendar": null,
-   "sources": [
-    "감시 목록"
-   ],
-   "keywords": [
-    "청약통장"
-   ],
-   "sample": [
-    "[단독] 외국인에 청약통장 115만 건…\"쓸모도 없는데\"",
-    "집 마련 계획 없는데 청약통장 유지해야 할까"
-   ]
-  },
-  {
    "term": "재산세",
    "stage": "fading",
-   "score": 2.4,
-   "level": 12.1,
-   "base": 52.9,
-   "growth": 0.2,
+   "score": 3.8,
+   "level": 12.5,
+   "base": 49.8,
+   "growth": 0.3,
    "fromZero": false,
    "weekly": [
-    28.9,
-    87.5,
-    140.7,
-    90.4,
-    131.6,
-    13.8,
-    13.3,
-    12.1
+    29,
+    93.5,
+    139.5,
+    84.4,
+    123.5,
+    12.9,
+    13.1,
+    12.5
    ],
    "season": {
     "up": 0.5,
@@ -2033,7 +2028,8 @@
     "2026-10-15": 1,
     "2026-10-16": 1,
     "2026-10-19": 5,
-    "2026-10-23": 1
+    "2026-10-23": 1,
+    "2026-10-24": 1
    }
   },
   "상속세": {
@@ -2046,7 +2042,8 @@
     "2026-10-12": 1,
     "2026-10-16": 1,
     "2026-10-22": 1,
-    "2026-10-23": 4
+    "2026-10-23": 4,
+    "2026-10-24": 1
    }
   },
   "증여세": {
@@ -2246,7 +2243,9 @@
     "2026-10-20": 3,
     "2026-10-21": 4,
     "2026-10-22": 15,
-    "2026-10-23": 33
+    "2026-10-23": 33,
+    "2026-10-25": 1,
+    "2026-10-24": 3
    }
   },
   "관리하연금": {
@@ -2420,7 +2419,8 @@
     "2026-10-20": 45,
     "2026-10-21": 28,
     "2026-10-22": 94,
-    "2026-10-23": 31
+    "2026-10-23": 31,
+    "2026-10-24": 7
    }
   },
   "노후연금": {
@@ -2573,7 +2573,8 @@
     "2026-10-18": 1,
     "2026-10-19": 2,
     "2026-10-22": 1,
-    "2026-10-23": 1
+    "2026-10-23": 1,
+    "2026-10-24": 4
    }
   },
   "사회보험": {
@@ -2598,7 +2599,8 @@
     "2026-10-19": 12,
     "2026-10-21": 15,
     "2026-10-20": 6,
-    "2026-10-22": 2
+    "2026-10-22": 2,
+    "2026-10-24": 1
    }
   },
   "보험금환급금": {
@@ -2622,7 +2624,8 @@
    "firstSeen": "2026-09-07",
    "daily": {
     "2026-09-29": 3,
-    "2026-10-14": 1
+    "2026-10-14": 1,
+    "2026-10-24": 1
    }
   },
   "꼼수급여": {
@@ -2902,7 +2905,8 @@
     "2026-10-11": 1,
     "2026-10-20": 28,
     "2026-10-21": 7,
-    "2026-10-23": 1
+    "2026-10-23": 1,
+    "2026-10-24": 1
    }
   },
   "많네전세": {
@@ -3181,7 +3185,6 @@
     "2026-10-03": 1,
     "2026-09-27": 1,
     "2026-09-26": 1,
-    "2026-09-24": 4,
     "2026-10-09": 2,
     "2026-10-11": 1,
     "2026-10-13": 2,
@@ -3525,20 +3528,6 @@
    "firstSeen": "2026-09-07",
    "daily": {
     "2026-09-25": 1
-   }
-  },
-  "홈택스지방세": {
-   "term": "홈택스 지방세",
-   "firstSeen": "2026-09-07",
-   "daily": {
-    "2026-09-24": 1
-   }
-  },
-  "백수읍지방세": {
-   "term": "백수읍 지방세",
-   "firstSeen": "2026-09-07",
-   "daily": {
-    "2026-09-24": 1
    }
   },
   "하반기지방세": {
@@ -4980,7 +4969,8 @@
     "2026-10-14": 5,
     "2026-10-15": 12,
     "2026-10-18": 2,
-    "2026-10-23": 9
+    "2026-10-23": 9,
+    "2026-10-25": 1
    }
   },
   "잠자지방세": {
@@ -5390,7 +5380,8 @@
    "firstSeen": "2026-10-15",
    "daily": {
     "2026-10-14": 2,
-    "2026-10-15": 1
+    "2026-10-15": 1,
+    "2026-10-24": 1
    }
   },
   "캐시백소득공제": {
@@ -7155,7 +7146,8 @@
    "term": "자동 정산",
    "firstSeen": "2026-10-21",
    "daily": {
-    "2026-10-20": 1
+    "2026-10-20": 1,
+    "2026-10-24": 1
    }
   },
   "세대보험료": {
@@ -7219,7 +7211,8 @@
    "term": "씨마른 전세",
    "firstSeen": "2026-10-21",
    "daily": {
-    "2026-10-20": 1
+    "2026-10-20": 1,
+    "2026-10-24": 1
    }
   },
   "분양가상한제": {
@@ -7383,7 +7376,8 @@
    "firstSeen": "2026-10-21",
    "daily": {
     "2026-10-20": 1,
-    "2026-10-22": 1
+    "2026-10-22": 1,
+    "2026-10-24": 1
    }
   },
   "사라지고월세": {
@@ -7954,7 +7948,8 @@
    "firstSeen": "2026-10-23",
    "daily": {
     "2026-10-23": 1,
-    "2026-10-22": 1
+    "2026-10-22": 1,
+    "2026-10-24": 1
    }
   },
   "신문세액공제": {
@@ -8033,7 +8028,8 @@
    "term": "줄고 월세",
    "firstSeen": "2026-10-23",
    "daily": {
-    "2026-10-22": 1
+    "2026-10-22": 1,
+    "2026-10-24": 1
    }
   },
   "국토부장관전세": {
@@ -8587,7 +8583,8 @@
    "term": "임대사업자 대출",
    "firstSeen": "2026-10-24",
    "daily": {
-    "2026-10-23": 1
+    "2026-10-23": 1,
+    "2026-10-24": 1
    }
   },
   "빚투대출": {
@@ -8756,6 +8753,62 @@
    "firstSeen": "2026-10-24",
    "daily": {
     "2026-10-23": 1
+   }
+  },
+  "세액감면": {
+   "term": "세액 감면",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "집주인전세": {
+   "term": "집주인 전세",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "급감하며월세": {
+   "term": "급감하며 월세",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "늘려전세": {
+   "term": "늘려 전세",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "월급통장": {
+   "term": "월급 통장",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "메트로타워청약": {
+   "term": "메트로타워 청약",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "자차보험": {
+   "term": "자차보험",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
+   }
+  },
+  "온라인감면": {
+   "term": "온라인 감면",
+   "firstSeen": "2026-10-25",
+   "daily": {
+    "2026-10-24": 1
    }
   }
  }
