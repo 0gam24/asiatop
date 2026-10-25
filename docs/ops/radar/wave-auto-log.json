@@ -23,16 +23,16 @@
    "withVolume": 2
   },
   "주휴수당": {
-   "at": "2026-10-17",
+   "at": "2026-10-26",
    "added": [],
    "measured": 2,
    "withVolume": 2
   },
   "최저임금": {
-   "at": "2026-10-18",
+   "at": "2026-10-26",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 2,
+   "withVolume": 2
   },
   "퇴직금": {
    "at": "2026-10-18",
@@ -41,7 +41,7 @@
    "withVolume": 7
   },
   "청년월세": {
-   "at": "2026-10-18",
+   "at": "2026-10-26",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -91,10 +91,12 @@
    "manual": true
   },
   "청약통장": {
-   "at": "2026-10-18",
-   "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "at": "2026-10-26",
+   "added": [
+    "청약통장 해지"
+   ],
+   "measured": 2,
+   "withVolume": 2
   },
   "건강보험료": {
    "at": "2026-10-24",
@@ -173,12 +175,10 @@
    "withVolume": 0
   },
   "권고사직": {
-   "at": "2026-10-18",
-   "added": [
-    "권고사직 사직서"
-   ],
-   "measured": 1,
-   "withVolume": 1
+   "at": "2026-10-26",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
   },
   "디딤돌대출": {
    "at": "2026-10-19",
@@ -199,13 +199,10 @@
    "withVolume": 0
   },
   "신용점수": {
-   "at": "2026-10-19",
-   "added": [
-    "신용점수 등급표",
-    "신용점수 조회"
-   ],
-   "measured": 2,
-   "withVolume": 2
+   "at": "2026-10-26",
+   "added": [],
+   "measured": 1,
+   "withVolume": 1
   },
   "신용점수 올리기": {
    "at": "2026-10-20",
