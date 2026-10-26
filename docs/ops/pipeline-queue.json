@@ -186,6 +186,90 @@
    "approvedVia": "채팅 지시 \"오늘 네이버에 상위 노출될 수 있는 롱키워드 찾아서 발행해\" (2026-10-25 신규 상한 2편은 09:05 루틴이 이미 씀 → 다음 루틴) 2번째"
   },
   {
+   "id": "빈틈:연말정산 환급금 조회",
+   "query": "연말정산 환급금 조회",
+   "altQueries": [],
+   "track": "T2",
+   "family": "B",
+   "cluster": "tax",
+   "status": "approved",
+   "autoPick": true,
+   "manual": true,
+   "addedBy": "naver-longtail",
+   "addedAt": "2026-10-25",
+   "score": 75,
+   "label": "높음",
+   "reasons": [
+    "자리 열림",
+    "3단어 이상",
+    "빈자리 7",
+    "뉴스 벽 없음",
+    "웹문서 81만건",
+    "검색량 눈금 4.3"
+   ],
+   "condition": "연말정산 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 롱키워드 항목(앞말 \"연말정산\")",
+   "measuredAt": "2026-10-26",
+   "demand": {
+    "rel30": 4.3,
+    "ratio7": 1.08,
+    "activeDays30": 30
+   },
+   "serp": {
+    "rank": null,
+    "webDocCount": 809271,
+    "openSlots": 7,
+    "wallTop5": 3,
+    "mainGovAbove": 1,
+    "publicAbove": 0,
+    "toolAbove": 2,
+    "fincoAbove": 0,
+    "naverAbove": 0,
+    "newsWall": 1,
+    "eyeOffset": null,
+    "verdictT1": "open",
+    "verdictT2": "open",
+    "warn": [],
+    "top10": [
+     "tool:hometax.go.kr",
+     "commercial:magazine.bizforms.co.kr",
+     "commercial:moneyconnet.com",
+     "tool:hometax.go.kr",
+     "gov:nts.go.kr",
+     "commercial:help.3o3.co.kr",
+     "commercial:awoo.or.kr",
+     "stale-commercial:nicesongtoyou.com",
+     "commercial:play.google.com",
+     "commercial:play.google.com"
+    ]
+   },
+   "ledger": {
+    "verdict": "PASS",
+    "relatedSlugs": [
+     "dependent-deduction-guide",
+     "dual-employment-year-end-tax-combined-filing",
+     "holiday-bonus-tax-withholding-year-end",
+     "hometax-mobile-guide",
+     "long-term-mortgage-interest-deduction-2026"
+    ]
+   },
+   "longtail": {
+    "words": 3,
+    "site": {
+     "cell": "3단어 이상 · 열림",
+     "cellN": 101,
+     "cellTop10": 30,
+     "cellRate": 29.7,
+     "band": "30만~100만",
+     "bandN": 189,
+     "bandTop10": 11,
+     "bandRate": 5.8
+    }
+   },
+   "approvedBy": "operator",
+   "approvedAt": "2026-10-26",
+   "approvedVia": "목록 [발행 지시] 버튼(롱키워드) 1번째, 2026-10-26 09:17 KST. 오늘 2자리는 09:05 루틴이 먼저 승인된 2건으로 씀 → 다음 날 첫 자리"
+  },
+  {
    "id": "빈틈:국민연금 조기수령 장단점",
    "query": "국민연금 조기수령 장단점",
    "altQueries": [],
@@ -560,87 +644,6 @@
      "bandN": 95,
      "bandTop10": 8,
      "bandRate": 8.4
-    }
-   }
-  },
-  {
-   "id": "빈틈:연말정산 환급금 조회",
-   "query": "연말정산 환급금 조회",
-   "altQueries": [],
-   "track": "T2",
-   "family": "B",
-   "cluster": "tax",
-   "status": "proposed",
-   "autoPick": true,
-   "manual": true,
-   "addedBy": "naver-longtail",
-   "addedAt": "2026-10-25",
-   "score": 75,
-   "label": "높음",
-   "reasons": [
-    "자리 열림",
-    "3단어 이상",
-    "빈자리 7",
-    "뉴스 벽 없음",
-    "웹문서 81만건",
-    "검색량 눈금 4.3"
-   ],
-   "condition": "연말정산 의 금액·기한·대상은 소관 부처·공단 공고와 법령 원문에서 확인한 뒤 단정 표기. 롱키워드 항목(앞말 \"연말정산\")",
-   "measuredAt": "2026-10-26",
-   "demand": {
-    "rel30": 4.3,
-    "ratio7": 1.08,
-    "activeDays30": 30
-   },
-   "serp": {
-    "rank": null,
-    "webDocCount": 809271,
-    "openSlots": 7,
-    "wallTop5": 3,
-    "mainGovAbove": 1,
-    "publicAbove": 0,
-    "toolAbove": 2,
-    "fincoAbove": 0,
-    "naverAbove": 0,
-    "newsWall": 1,
-    "eyeOffset": null,
-    "verdictT1": "open",
-    "verdictT2": "open",
-    "warn": [],
-    "top10": [
-     "tool:hometax.go.kr",
-     "commercial:magazine.bizforms.co.kr",
-     "commercial:moneyconnet.com",
-     "tool:hometax.go.kr",
-     "gov:nts.go.kr",
-     "commercial:help.3o3.co.kr",
-     "commercial:awoo.or.kr",
-     "stale-commercial:nicesongtoyou.com",
-     "commercial:play.google.com",
-     "commercial:play.google.com"
-    ]
-   },
-   "ledger": {
-    "verdict": "PASS",
-    "relatedSlugs": [
-     "dependent-deduction-guide",
-     "dual-employment-year-end-tax-combined-filing",
-     "holiday-bonus-tax-withholding-year-end",
-     "hometax-mobile-guide",
-     "long-term-mortgage-interest-deduction-2026"
-    ]
-   },
-   "longtail": {
-    "words": 3,
-    "site": {
-     "cell": "3단어 이상 · 열림",
-     "cellN": 101,
-     "cellTop10": 30,
-     "cellRate": 29.7,
-     "band": "30만~100만",
-     "bandN": 189,
-     "bandTop10": 11,
-     "bandRate": 5.8
     }
    }
   },
