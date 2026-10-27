@@ -5,10 +5,10 @@
  ],
  "terms": {
   "국민연금": {
-   "at": "2026-10-21",
+   "at": "2026-10-28",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 4,
+   "withVolume": 4
   },
   "실업급여": {
    "at": "2026-10-24",
@@ -107,7 +107,7 @@
    "withVolume": 7
   },
   "근로장려금": {
-   "at": "2026-10-21",
+   "at": "2026-10-28",
    "added": [],
    "measured": 6,
    "withVolume": 7
@@ -139,10 +139,10 @@
    "withVolume": 7
   },
   "연금저축": {
-   "at": "2026-10-21",
+   "at": "2026-10-28",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "종합소득세": {
    "at": "2026-10-22",
@@ -151,10 +151,10 @@
    "withVolume": 4
   },
   "연말정산": {
-   "at": "2026-10-21",
+   "at": "2026-10-28",
    "added": [],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 3,
+   "withVolume": 3
   },
   "실손보험": {
    "at": "2026-10-22",
@@ -209,13 +209,13 @@
    "withVolume": 1
   },
   "신용점수 올리기": {
-   "at": "2026-10-20",
+   "at": "2026-10-28",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "실손보험 청구": {
-   "at": "2026-10-20",
+   "at": "2026-10-28",
    "added": [],
    "measured": 1,
    "withVolume": 1
