@@ -145,10 +145,10 @@
    "withVolume": 3
   },
   "종합소득세": {
-   "at": "2026-10-22",
+   "at": "2026-10-29",
    "added": [],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 3,
+   "withVolume": 3
   },
   "연말정산": {
    "at": "2026-10-28",
@@ -157,12 +157,10 @@
    "withVolume": 3
   },
   "실손보험": {
-   "at": "2026-10-22",
-   "added": [
-    "실손보험 추천"
-   ],
-   "measured": 2,
-   "withVolume": 2
+   "at": "2026-10-29",
+   "added": [],
+   "measured": 1,
+   "withVolume": 1
   },
   "부가세 신고": {
    "at": "2026-10-22",
@@ -221,18 +219,18 @@
    "withVolume": 1
   },
   "연차수당": {
-   "at": "2026-10-20",
-   "added": [],
+   "at": "2026-10-29",
+   "added": [
+    "연차수당 미지급"
+   ],
    "measured": 3,
    "withVolume": 3
   },
   "원천징수영수증": {
-   "at": "2026-10-20",
-   "added": [
-    "원천징수영수증 홈택스"
-   ],
-   "measured": 3,
-   "withVolume": 3
+   "at": "2026-10-29",
+   "added": [],
+   "measured": 2,
+   "withVolume": 2
   },
   "자녀장려금": {
    "at": "2026-10-23",
@@ -241,13 +239,13 @@
    "withVolume": 2
   },
   "자동차세 연납": {
-   "at": "2026-10-20",
+   "at": "2026-10-29",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "재산세": {
-   "at": "2026-10-20",
+   "at": "2026-10-29",
    "added": [],
    "measured": 5,
    "withVolume": 5
