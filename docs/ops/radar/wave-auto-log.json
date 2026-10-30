@@ -71,10 +71,10 @@
    "manual": true
   },
   "본인부담상한제": {
-   "at": "2026-10-23",
+   "at": "2026-10-31",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 0,
+   "withVolume": 0
   },
   "아동수당": {
    "at": "2026-10-25",
@@ -279,13 +279,13 @@
    "withVolume": 0
   },
   "청년월세지원": {
-   "at": "2026-10-22",
+   "at": "2026-10-31",
    "added": [],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 4,
+   "withVolume": 4
   },
   "퇴사 후 건강보험": {
-   "at": "2026-10-22",
+   "at": "2026-10-31",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -297,17 +297,15 @@
    "withVolume": 4
   },
   "햇살론유스": {
-   "at": "2026-10-23",
+   "at": "2026-10-31",
    "added": [
-    "햇살론유스 조건",
-    "햇살론유스 신청",
-    "햇살론유스 대상"
+    "햇살론유스 심사기간"
    ],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "확정일자": {
-   "at": "2026-10-23",
+   "at": "2026-10-31",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -358,6 +356,12 @@
    "added": [],
    "measured": 3,
    "withVolume": 3
+  },
+  "퇴직연금": {
+   "at": "2026-10-31",
+   "added": [],
+   "measured": 5,
+   "withVolume": 5
   }
  }
 }
