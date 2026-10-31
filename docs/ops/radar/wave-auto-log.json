@@ -17,10 +17,10 @@
    "withVolume": 8
   },
   "기초연금": {
-   "at": "2026-10-24",
+   "at": "2026-11-01",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "주휴수당": {
    "at": "2026-10-26",
@@ -77,7 +77,7 @@
    "withVolume": 0
   },
   "아동수당": {
-   "at": "2026-10-25",
+   "at": "2026-11-01",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -311,16 +311,16 @@
    "withVolume": 3
   },
   "ETF 추천": {
-   "at": "2026-10-23",
+   "at": "2026-11-01",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "ISA 계좌": {
-   "at": "2026-10-23",
+   "at": "2026-11-01",
    "added": [
-    "ISA 계좌 장점",
-    "ISA 계좌 개편"
+    "ISA 계좌 이전",
+    "ISA 계좌 중도인출"
    ],
    "measured": 5,
    "withVolume": 5
@@ -362,6 +362,18 @@
    "added": [],
    "measured": 5,
    "withVolume": 5
+  },
+  "유족연금": {
+   "at": "2026-11-01",
+   "added": [],
+   "measured": 2,
+   "withVolume": 2
+  },
+  "장기요양보험료": {
+   "at": "2026-11-01",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
   }
  }
 }
