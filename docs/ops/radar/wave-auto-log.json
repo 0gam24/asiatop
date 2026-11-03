@@ -23,10 +23,10 @@
    "withVolume": 3
   },
   "주휴수당": {
-   "at": "2026-10-26",
+   "at": "2026-11-04",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "최저임금": {
    "at": "2026-11-02",
@@ -139,10 +139,10 @@
    "withVolume": 6
   },
   "연금저축": {
-   "at": "2026-10-28",
+   "at": "2026-11-04",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "종합소득세": {
    "at": "2026-10-29",
@@ -151,10 +151,10 @@
    "withVolume": 3
   },
   "연말정산": {
-   "at": "2026-10-28",
+   "at": "2026-11-04",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "실손보험": {
    "at": "2026-10-29",
@@ -175,7 +175,7 @@
    "withVolume": 0
   },
   "권고사직": {
-   "at": "2026-10-26",
+   "at": "2026-11-04",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -201,7 +201,7 @@
    "withVolume": 0
   },
   "신용점수": {
-   "at": "2026-10-26",
+   "at": "2026-11-04",
    "added": [],
    "measured": 1,
    "withVolume": 1
@@ -265,12 +265,10 @@
    "withVolume": 1
   },
   "종부세": {
-   "at": "2026-10-25",
-   "added": [
-    "종부세 개편"
-   ],
-   "measured": 4,
-   "withVolume": 4
+   "at": "2026-11-04",
+   "added": [],
+   "measured": 2,
+   "withVolume": 2
   },
   "주민등록등본 발급": {
    "at": "2026-10-30",
