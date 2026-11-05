@@ -5,10 +5,10 @@
  ],
  "terms": {
   "국민연금": {
-   "at": "2026-10-28",
+   "at": "2026-11-06",
    "added": [],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 5,
+   "withVolume": 5
   },
   "실업급여": {
    "at": "2026-11-02",
@@ -105,10 +105,10 @@
    "withVolume": 6
   },
   "근로장려금": {
-   "at": "2026-10-28",
+   "at": "2026-11-06",
    "added": [],
    "measured": 6,
-   "withVolume": 7
+   "withVolume": 6
   },
   "자동차세": {
    "at": "2026-10-07",
@@ -187,16 +187,18 @@
    "withVolume": 2
   },
   "버팀목전세자금대출": {
-   "at": "2026-10-27",
+   "at": "2026-11-06",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 1,
+   "withVolume": 1
   },
   "비상금대출": {
-   "at": "2026-10-27",
-   "added": [],
-   "measured": 0,
-   "withVolume": 0
+   "at": "2026-11-06",
+   "added": [
+    "비상금대출 추천"
+   ],
+   "measured": 1,
+   "withVolume": 1
   },
   "신용점수": {
    "at": "2026-11-04",
@@ -205,7 +207,7 @@
    "withVolume": 1
   },
   "신용점수 올리기": {
-   "at": "2026-10-28",
+   "at": "2026-11-06",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -367,6 +369,12 @@
   },
   "장기요양보험료": {
    "at": "2026-11-01",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "동행사랑적금": {
+   "at": "2026-11-06",
    "added": [],
    "measured": 0,
    "withVolume": 0
