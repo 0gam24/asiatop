@@ -48,7 +48,10 @@ const CALENDAR = path.join(OPS, 'landgrab-calendar.json');
 const LOG_DIR = path.join(ROOT, 'docs', 'revenue-log');
 const ARTICLES = path.join(ROOT, 'src', 'content', 'articles');
 
-export const BUDGET = { t2: 50, t3: 10, new: 20, remeasure: 60 }; // remeasure 30 → 60 (2026-10-08): 매일 자동 선점(wave-auto)이 항목을 더해 승인·제안 항목을 날마다 다시 재야 루틴이 고를 수 있다
+// remeasure 30 → 60 (2026-10-08): 매일 자동 선점(wave-auto)이 항목을 더해 승인·제안 항목을 날마다 다시 재야 루틴이 고를 수 있다.
+// 60 → 120 (2026-10-26): 롱키워드(naver-longtail.mjs) 항목이 더해져 10-26 재측정 대상이 83건이었는데 60건만 재서
+// 24건(어제 넣은 롱키워드 17건 포함)이 "오늘 측정분만" 규칙에서 빠졌다. 1건 = 웹문서·뉴스 2회라 120건이어도 검색 무료 한도(일 25,000) 안이다.
+export const BUDGET = { t2: 50, t3: 10, new: 20, remeasure: 120 };
 export const QUEUE_MIN_SCORE = 45;      // 이 아래는 큐에 올리지 않는다
 export const AUTOPICK_MIN_SCORE = 55;   // v0.1: 45점은 운영자 지정, 55점부터 자동
 export const NEW_MIN_SCORE = 55;        // 뉴스 신생어는 잡음이 많아 문턱을 높인다
