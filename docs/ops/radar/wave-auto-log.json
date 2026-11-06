@@ -163,7 +163,7 @@
    "withVolume": 2
   },
   "부가세 신고": {
-   "at": "2026-10-30",
+   "at": "2026-11-07",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -213,21 +213,19 @@
    "withVolume": 0
   },
   "실손보험 청구": {
-   "at": "2026-10-28",
+   "at": "2026-11-07",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "연차수당": {
-   "at": "2026-10-29",
-   "added": [
-    "연차수당 미지급"
-   ],
+   "at": "2026-11-07",
+   "added": [],
    "measured": 3,
    "withVolume": 3
   },
   "원천징수영수증": {
-   "at": "2026-10-29",
+   "at": "2026-11-07",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -239,16 +237,16 @@
    "withVolume": 2
   },
   "자동차세 연납": {
-   "at": "2026-10-29",
+   "at": "2026-11-07",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "재산세": {
-   "at": "2026-10-29",
+   "at": "2026-11-07",
    "added": [],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 3,
+   "withVolume": 3
   },
   "전세사기": {
    "at": "2026-10-30",
