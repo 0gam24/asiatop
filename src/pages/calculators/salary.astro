@@ -1,8 +1,54 @@
 ---
 import Base from '../../layouts/Base.astro';
-import SalaryCalculator from '../../components/SalaryCalculator';
+import SalaryCalculator, { SALARY_DEFAULTS, calc } from '../../components/SalaryCalculator';
+import { withholdingIncomeTax } from '../../lib/income-tax-withholding';
 
 const url = new URL('/calculators/salary/', Astro.site).toString();
+
+// 근로소득 간이세액표를 빌드할 때 읽는다(클라이언트는 계산 시점에 동적 import).
+// 여기서도 동적 import 로 읽는다. 정적 import 를 섞으면 Vite 가 서버 빌드에서 "dynamic import will not move module" 경고를 낸다.
+const { default: withholdingTable } = await import('../../data/income-tax-withholding-table.json');
+// 첫 화면 입력값의 근로소득세와 FAQ 예시 금액을 계산기와 같은 함수·같은 표로 계산해, 화면 출력과 글자가 항상 같게 한다.
+const initialIncomeTax = withholdingIncomeTax(
+  withholdingTable,
+  SALARY_DEFAULTS.annualGross / 12,
+  SALARY_DEFAULTS.family,
+  SALARY_DEFAULTS.children,
+);
+const must = (n: number | null): number => {
+  if (n === null) throw new Error('salary.astro: 예시 금액 계산 실패');
+  return n;
+};
+/** 공제대상가족 1명(본인만), 8세 이상 20세 이하 자녀 0명, 비과세 0원 기준 계산기 출력 */
+const exampleFor = (annualGross: number) => {
+  const r = calc(annualGross, withholdingIncomeTax(withholdingTable, annualGross / 12, 1, 0));
+  const incomeTax = must(r.incomeTax);
+  const localTax = must(r.localTax);
+  const total = must(r.totalDeduction);
+  return {
+    gross: r.monthlyGross,
+    incomeTax,
+    localTax,
+    total,
+    insurance: total - incomeTax - localTax,
+    net: must(r.netMonthly),
+  };
+};
+const won = (n: number) => new Intl.NumberFormat('ko-KR').format(n);
+const ex40 = exampleFor(40000000);
+const ex50 = exampleFor(50000000);
+const ex60 = exampleFor(60000000);
+
+const faqItems = [
+  {
+    q: '연봉 4천만원 직장인 월 실수령액은 얼마인가요?',
+    a: `공제대상가족 1명(본인만), 8세 이상 20세 이하 자녀 0명, 비과세 급여 0원으로 이 계산기에 넣으면 월 실수령액은 ${won(ex40.net)}원입니다. 월 세전 ${won(ex40.gross)}원에서 4대보험(국민연금·건강·장기요양·고용) ${won(ex40.insurance)}원, 근로소득세 ${won(ex40.incomeTax)}원, 지방소득세 ${won(ex40.localTax)}원을 합한 ${won(ex40.total)}원이 빠집니다. 근로소득세는 근로소득 간이세액표에서 찾은 금액이라, 같은 연봉이라도 공제대상가족이 많거나 식대 같은 비과세 급여가 있으면 줄 수 있습니다.`,
+  },
+  {
+    q: '연봉이 오른 만큼 실수령액이 늘지 않는 이유는?',
+    a: `근로소득에 붙는 소득세는 종합소득 과세표준이 커질수록 높은 세율 구간(6%·15%·24%·35%·38%·40%·42%·45%)이 적용되는 누진 구조입니다(소득세법 제55조). 이 계산기에 공제대상가족 1명으로 연봉 5,000만원과 6,000만원을 넣으면 월 세전 급여는 ${won(ex60.gross - ex50.gross)}원 늘지만, 그중 근로소득세·지방소득세 ${won(ex60.incomeTax + ex60.localTax - ex50.incomeTax - ex50.localTax)}원과 4대보험 ${won(ex60.insurance - ex50.insurance)}원이 빠져 월 실수령액은 ${won(ex60.net - ex50.net)}원 늘어납니다.`,
+  },
+];
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -29,24 +75,11 @@ const tool = {
 const faq = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: '연봉 4천만원 직장인 월 실수령액은 얼마인가요?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '부양가족 1명 기준 약 295만원입니다. 4대보험 약 32만원과 소득세·지방세 약 7만원이 차감되어 세전 333만원에서 약 295만원이 손에 들어옵니다. 회사의 비과세 식대·복리후생에 따라 차이날 수 있습니다.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '연봉이 오르면 실수령액이 거의 안 오르는 이유는?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '한국 소득세는 누진세 구조라 연봉이 일정 구간을 넘으면 세율이 6%→15%→24%→35%로 단계적으로 상승합니다. 그래서 연봉 1억 직전·이후에서 추가 인상분의 세율이 24~35%로 높아져 체감 실수령 인상률이 낮아집니다.',
-      },
-    },
-  ],
+  mainEntity: faqItems.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
 
 const howTo = {
@@ -68,8 +101,8 @@ const howTo = {
     {
       '@type': 'HowToStep',
       position: 2,
-      name: '부양가족 수 선택',
-      text: '본인 포함 부양가족 수를 선택합니다. 자녀·배우자가 있으면 인적공제로 세금이 줄어듭니다.',
+      name: '공제대상가족 수 입력',
+      text: '본인과 배우자를 각각 1명으로 센 공제대상가족 수와, 그중 8세 이상 20세 이하 자녀 수를 입력합니다. 근로소득 간이세액표는 공제대상가족 수가 늘면 세액이 줄거나 그대로이고, 자녀 수에 따라 정해진 금액을 세액에서 더 뺍니다.',
       url: `${url}#step-dependents`,
     },
     {
@@ -103,21 +136,28 @@ const howTo = {
       </nav>
       <h1>연봉 실수령액 계산기</h1>
       <p class="lede">
-        2026년 기준 4대보험 요율과 근로소득세 간이 추정치·지방소득세를 적용해 월 실수령액을 즉시 계산합니다.
+        2026년 기준 4대보험 요율과 근로소득 간이세액표(2026년 3월 1일 이후 원천징수분)·지방소득세를 적용해 월 실수령액을 즉시 계산합니다.
         연봉만 입력하면 끝.
       </p>
     </div>
   </section>
 
   <section class="container body">
-    <SalaryCalculator client:visible />
+    <SalaryCalculator client:visible initialIncomeTax={initialIncomeTax} />
 
     <article class="explainer">
       <h2>이 계산기는 어떤 항목을 반영하나요?</h2>
       <p>
         2026년 근로자 부담 4대보험 요율(국민연금 4.75%, 건강보험 3.595%, 장기요양 건강보험료의 약 13.14%, 고용보험 0.9%)과
-        국민연금 기준소득월액 상한 659만원(2026년 7월~2027년 6월)을 적용합니다. 근로소득세는 국세청 간이세액표가 아니라
-        연봉에 기본세율을 적용한 간이 추정치이며, 부양가족 1명당 월 4,000원을 빼서 반영합니다.
+        국민연금 기준소득월액 상한 659만원(2026년 7월~2027년 6월)을 적용합니다.
+      </p>
+      <p>
+        근로소득세는 소득세법 시행령 [별표 2] 근로소득 간이세액표(2026. 2. 27. 개정, 2026년 3월 1일 이후 원천징수분부터 적용)에서
+        월급여액(연봉 ÷ 12)과 공제대상가족 수로 찾은 세액(100%)입니다. 표의 비고에 따라 8세 이상 20세 이하 자녀가 있으면
+        자녀 1명 20,830원, 2명 45,830원, 3명 이상은 45,830원에 2명을 넘는 자녀 1명당 33,330원을 더한 금액을 빼고(빼고 남은 금액이
+        음수면 0원), 월급여액 1,000만원 초과와 공제대상가족 11명 초과는 표에 적힌 계산식으로 구합니다. 11명 초과 계산식의 결과가
+        0원보다 작은 경우는 원문에 규정이 없어 0원으로 표시합니다. 지방소득세는 근로소득세의 10%이며 10원 미만은 버립니다.
+        원문은 <a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%86%8C%EB%93%9D%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EB%A0%B9" rel="noopener" target="_blank">국가법령정보센터 소득세법 시행령</a>의 별표 2에서 볼 수 있습니다.
       </p>
       <h2>실제 급여명세서와 차이가 날 수 있는 이유는?</h2>
       <ul>
@@ -126,6 +166,13 @@ const howTo = {
         <li>연말정산으로 환급·추가 납부되는 금액</li>
         <li>임원·고소득자의 국민연금 상한 적용</li>
       </ul>
+      <h2>자주 묻는 질문</h2>
+      {faqItems.map((f) => (
+        <>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </>
+      ))}
       <p class="disclaimer">
         본 계산은 <strong>참고용</strong>입니다. 정확한 실수령액은 회사 급여명세서 또는
         <a href="https://www.nts.go.kr" rel="noopener" target="_blank">국세청 홈택스</a>·
@@ -175,6 +222,13 @@ const howTo = {
   margin: 1.75rem 0 0.5rem;
   color: var(--color-secondary);
   letter-spacing: -0.025em;
+}
+.explainer h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.25rem 0 0.35rem;
+  color: var(--color-secondary);
+  letter-spacing: -0.02em;
 }
 .explainer p, .explainer ul {
   font-size: 0.95rem;
@@ -228,6 +282,17 @@ const howTo = {
   font-weight: 600;
   background: var(--color-bg);
   color: var(--color-text);
+}
+:global(.calc .field-group) {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+:global(.calc .field .hint) {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin: 0.3rem 0 0;
 }
 :global(.calc .field input:focus) {
   outline: 2px solid var(--color-primary);
