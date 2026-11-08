@@ -29,7 +29,7 @@
    "withVolume": 3
   },
   "최저임금": {
-   "at": "2026-11-02",
+   "at": "2026-11-09",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -69,7 +69,7 @@
    "manual": true
   },
   "본인부담상한제": {
-   "at": "2026-10-31",
+   "at": "2026-11-09",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -255,10 +255,10 @@
    "withVolume": 1
   },
   "조기재취업수당": {
-   "at": "2026-10-30",
+   "at": "2026-11-09",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 2,
+   "withVolume": 2
   },
   "종부세": {
    "at": "2026-11-04",
@@ -267,19 +267,19 @@
    "withVolume": 2
   },
   "주민등록등본 발급": {
-   "at": "2026-10-30",
+   "at": "2026-11-09",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "청년월세지원": {
-   "at": "2026-10-31",
+   "at": "2026-11-09",
    "added": [],
    "measured": 4,
    "withVolume": 4
   },
   "퇴사 후 건강보험": {
-   "at": "2026-10-31",
+   "at": "2026-11-09",
    "added": [],
    "measured": 0,
    "withVolume": 0
