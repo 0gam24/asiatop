@@ -11,7 +11,7 @@
    "withVolume": 5
   },
   "실업급여": {
-   "at": "2026-11-02",
+   "at": "2026-11-11",
    "added": [],
    "measured": 6,
    "withVolume": 9
@@ -121,28 +121,26 @@
    "withVolume": 2
   },
   "청년미래적금": {
-   "at": "2026-11-02",
+   "at": "2026-11-11",
    "added": [
-    "청년미래적금 가입조건"
+    "청년미래적금 해지"
    ],
    "measured": 6,
-   "withVolume": 8
+   "withVolume": 7
   },
   "청년도약계좌": {
-   "at": "2026-11-02",
+   "at": "2026-11-11",
    "added": [
-    "청년도약계좌 중도해지",
-    "청년도약계좌 신청",
-    "청년도약계좌 신청기간"
+    "청년도약계좌 중도인출"
    ],
-   "measured": 6,
-   "withVolume": 6
+   "measured": 3,
+   "withVolume": 3
   },
   "연금저축": {
-   "at": "2026-11-04",
+   "at": "2026-11-11",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "종합소득세": {
    "at": "2026-11-05",
@@ -151,7 +149,7 @@
    "withVolume": 2
   },
   "연말정산": {
-   "at": "2026-11-04",
+   "at": "2026-11-11",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -261,7 +259,7 @@
    "withVolume": 2
   },
   "종부세": {
-   "at": "2026-11-04",
+   "at": "2026-11-11",
    "added": [],
    "measured": 2,
    "withVolume": 2
