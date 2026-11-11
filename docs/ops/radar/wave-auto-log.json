@@ -47,22 +47,22 @@
    "withVolume": 3
   },
   "전입신고": {
-   "at": "2026-11-03",
-   "added": [],
-   "measured": 2,
-   "withVolume": 2
-  },
-  "여권 재발급": {
-   "at": "2026-11-03",
-   "added": [],
-   "measured": 4,
-   "withVolume": 4
-  },
-  "운전면허 갱신": {
-   "at": "2026-11-03",
+   "at": "2026-11-12",
    "added": [],
    "measured": 3,
    "withVolume": 3
+  },
+  "여권 재발급": {
+   "at": "2026-11-12",
+   "added": [],
+   "measured": 6,
+   "withVolume": 6
+  },
+  "운전면허 갱신": {
+   "at": "2026-11-12",
+   "added": [],
+   "measured": 2,
+   "withVolume": 2
   },
   "주민등록등본": {
    "at": "2026-10-07",
@@ -115,7 +115,7 @@
    "manual": true
   },
   "전세보증보험": {
-   "at": "2026-11-03",
+   "at": "2026-11-12",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -143,10 +143,10 @@
    "withVolume": 3
   },
   "종합소득세": {
-   "at": "2026-11-05",
+   "at": "2026-11-12",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "연말정산": {
    "at": "2026-11-11",
@@ -155,10 +155,10 @@
    "withVolume": 2
   },
   "실손보험": {
-   "at": "2026-11-05",
+   "at": "2026-11-12",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 1,
+   "withVolume": 1
   },
   "부가세 신고": {
    "at": "2026-11-07",
