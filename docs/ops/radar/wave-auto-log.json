@@ -23,10 +23,10 @@
    "withVolume": 4
   },
   "주휴수당": {
-   "at": "2026-11-04",
+   "at": "2026-11-13",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "최저임금": {
    "at": "2026-11-09",
@@ -35,10 +35,10 @@
    "withVolume": 3
   },
   "퇴직금": {
-   "at": "2026-11-03",
+   "at": "2026-11-13",
    "added": [],
    "measured": 6,
-   "withVolume": 7
+   "withVolume": 6
   },
   "청년월세": {
    "at": "2026-11-05",
@@ -105,10 +105,10 @@
    "withVolume": 4
   },
   "근로장려금": {
-   "at": "2026-11-06",
+   "at": "2026-11-13",
    "added": [],
    "measured": 6,
-   "withVolume": 6
+   "withVolume": 9
   },
   "자동차세": {
    "at": "2026-10-07",
@@ -167,13 +167,13 @@
    "withVolume": 0
   },
   "국민연금 보험료": {
-   "at": "2026-11-05",
+   "at": "2026-11-13",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "권고사직": {
-   "at": "2026-11-04",
+   "at": "2026-11-13",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -199,10 +199,10 @@
    "withVolume": 1
   },
   "신용점수": {
-   "at": "2026-11-04",
+   "at": "2026-11-13",
    "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "measured": 0,
+   "withVolume": 0
   },
   "신용점수 올리기": {
    "at": "2026-11-06",
