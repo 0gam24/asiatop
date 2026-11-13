@@ -5,10 +5,10 @@
  ],
  "terms": {
   "국민연금": {
-   "at": "2026-11-06",
+   "at": "2026-11-14",
    "added": [],
-   "measured": 5,
-   "withVolume": 5
+   "measured": 4,
+   "withVolume": 4
   },
   "실업급여": {
    "at": "2026-11-11",
@@ -41,10 +41,10 @@
    "withVolume": 6
   },
   "청년월세": {
-   "at": "2026-11-05",
+   "at": "2026-11-14",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "전입신고": {
    "at": "2026-11-12",
@@ -91,12 +91,10 @@
    "manual": true
   },
   "청약통장": {
-   "at": "2026-11-05",
-   "added": [
-    "청약통장 납입횟수"
-   ],
-   "measured": 2,
-   "withVolume": 2
+   "at": "2026-11-14",
+   "added": [],
+   "measured": 1,
+   "withVolume": 1
   },
   "건강보험료": {
    "at": "2026-11-10",
@@ -179,24 +177,22 @@
    "withVolume": 0
   },
   "디딤돌대출": {
-   "at": "2026-11-05",
+   "at": "2026-11-14",
    "added": [],
    "measured": 2,
    "withVolume": 2
   },
   "버팀목전세자금대출": {
-   "at": "2026-11-06",
+   "at": "2026-11-14",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "비상금대출": {
-   "at": "2026-11-06",
-   "added": [
-    "비상금대출 추천"
-   ],
-   "measured": 1,
-   "withVolume": 1
+   "at": "2026-11-14",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
   },
   "신용점수": {
    "at": "2026-11-13",
