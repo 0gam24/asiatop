@@ -17,10 +17,10 @@
    "withVolume": 9
   },
   "기초연금": {
-   "at": "2026-11-08",
+   "at": "2026-11-15",
    "added": [],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 2,
+   "withVolume": 2
   },
   "주휴수당": {
    "at": "2026-11-13",
@@ -75,7 +75,7 @@
    "withVolume": 0
   },
   "아동수당": {
-   "at": "2026-11-08",
+   "at": "2026-11-15",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -159,7 +159,7 @@
    "withVolume": 1
   },
   "부가세 신고": {
-   "at": "2026-11-07",
+   "at": "2026-11-15",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -201,13 +201,13 @@
    "withVolume": 0
   },
   "신용점수 올리기": {
-   "at": "2026-11-06",
+   "at": "2026-11-15",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "실손보험 청구": {
-   "at": "2026-11-07",
+   "at": "2026-11-15",
    "added": [],
    "measured": 1,
    "withVolume": 1
@@ -303,7 +303,7 @@
    "withVolume": 0
   },
   "ISA 계좌": {
-   "at": "2026-11-08",
+   "at": "2026-11-15",
    "added": [],
    "measured": 3,
    "withVolume": 3
