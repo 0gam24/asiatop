@@ -29,7 +29,7 @@
    "withVolume": 2
   },
   "최저임금": {
-   "at": "2026-11-09",
+   "at": "2026-11-16",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -213,34 +213,34 @@
    "withVolume": 1
   },
   "연차수당": {
-   "at": "2026-11-07",
+   "at": "2026-11-16",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "원천징수영수증": {
-   "at": "2026-11-07",
+   "at": "2026-11-16",
    "added": [],
    "measured": 2,
    "withVolume": 2
   },
   "자녀장려금": {
-   "at": "2026-11-08",
+   "at": "2026-11-16",
    "added": [],
    "measured": 2,
    "withVolume": 2
   },
   "자동차세 연납": {
-   "at": "2026-11-07",
+   "at": "2026-11-16",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "재산세": {
-   "at": "2026-11-07",
+   "at": "2026-11-16",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "전세사기": {
    "at": "2026-11-08",
