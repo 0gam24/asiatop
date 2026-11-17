@@ -69,7 +69,7 @@
    "manual": true
   },
   "본인부담상한제": {
-   "at": "2026-11-09",
+   "at": "2026-11-17",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -243,13 +243,13 @@
    "withVolume": 2
   },
   "전세사기": {
-   "at": "2026-11-08",
+   "at": "2026-11-17",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "조기재취업수당": {
-   "at": "2026-11-09",
+   "at": "2026-11-17",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -261,7 +261,7 @@
    "withVolume": 2
   },
   "주민등록등본 발급": {
-   "at": "2026-11-09",
+   "at": "2026-11-17",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -279,10 +279,12 @@
    "withVolume": 0
   },
   "햇살론": {
-   "at": "2026-11-10",
-   "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "at": "2026-11-17",
+   "added": [
+    "햇살론 뱅크"
+   ],
+   "measured": 5,
+   "withVolume": 5
   },
   "햇살론유스": {
    "at": "2026-11-10",
@@ -369,6 +371,12 @@
    "added": [],
    "measured": 0,
    "withVolume": 0
+  },
+  "전월세": {
+   "at": "2026-11-17",
+   "added": [],
+   "measured": 4,
+   "withVolume": 4
   }
  }
 }
