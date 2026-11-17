@@ -119,12 +119,10 @@
    "withVolume": 2
   },
   "청년미래적금": {
-   "at": "2026-11-11",
-   "added": [
-    "청년미래적금 해지"
-   ],
-   "measured": 6,
-   "withVolume": 7
+   "at": "2026-11-18",
+   "added": [],
+   "measured": 5,
+   "withVolume": 5
   },
   "청년도약계좌": {
    "at": "2026-11-11",
@@ -135,10 +133,10 @@
    "withVolume": 3
   },
   "연금저축": {
-   "at": "2026-11-11",
+   "at": "2026-11-18",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "종합소득세": {
    "at": "2026-11-12",
@@ -147,10 +145,10 @@
    "withVolume": 3
   },
   "연말정산": {
-   "at": "2026-11-11",
+   "at": "2026-11-18",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 4,
+   "withVolume": 4
   },
   "실손보험": {
    "at": "2026-11-12",
@@ -255,10 +253,10 @@
    "withVolume": 2
   },
   "종부세": {
-   "at": "2026-11-11",
+   "at": "2026-11-18",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "주민등록등본 발급": {
    "at": "2026-11-17",
@@ -267,13 +265,13 @@
    "withVolume": 0
   },
   "청년월세지원": {
-   "at": "2026-11-09",
+   "at": "2026-11-18",
    "added": [],
-   "measured": 4,
-   "withVolume": 4
+   "measured": 3,
+   "withVolume": 3
   },
   "퇴사 후 건강보험": {
-   "at": "2026-11-09",
+   "at": "2026-11-18",
    "added": [],
    "measured": 0,
    "withVolume": 0
