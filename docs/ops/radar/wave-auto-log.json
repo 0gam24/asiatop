@@ -11,7 +11,7 @@
    "withVolume": 4
   },
   "실업급여": {
-   "at": "2026-11-11",
+   "at": "2026-11-20",
    "added": [],
    "measured": 6,
    "withVolume": 9
@@ -47,22 +47,22 @@
    "withVolume": 2
   },
   "전입신고": {
-   "at": "2026-11-12",
+   "at": "2026-11-20",
    "added": [],
    "measured": 3,
    "withVolume": 3
   },
   "여권 재발급": {
-   "at": "2026-11-12",
+   "at": "2026-11-20",
    "added": [],
-   "measured": 6,
-   "withVolume": 6
+   "measured": 5,
+   "withVolume": 5
   },
   "운전면허 갱신": {
-   "at": "2026-11-12",
+   "at": "2026-11-20",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "주민등록등본": {
    "at": "2026-10-07",
@@ -113,7 +113,7 @@
    "manual": true
   },
   "전세보증보험": {
-   "at": "2026-11-12",
+   "at": "2026-11-20",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -125,12 +125,12 @@
    "withVolume": 5
   },
   "청년도약계좌": {
-   "at": "2026-11-11",
+   "at": "2026-11-20",
    "added": [
-    "청년도약계좌 중도인출"
+    "청년도약계좌 청년미래적금"
    ],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 1,
+   "withVolume": 1
   },
   "연금저축": {
    "at": "2026-11-18",
