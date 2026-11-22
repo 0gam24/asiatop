@@ -17,7 +17,7 @@
    "withVolume": 9
   },
   "기초연금": {
-   "at": "2026-11-15",
+   "at": "2026-11-23",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -29,7 +29,7 @@
    "withVolume": 2
   },
   "최저임금": {
-   "at": "2026-11-16",
+   "at": "2026-11-23",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -41,7 +41,7 @@
    "withVolume": 5
   },
   "청년월세": {
-   "at": "2026-11-14",
+   "at": "2026-11-23",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -91,10 +91,12 @@
    "manual": true
   },
   "청약통장": {
-   "at": "2026-11-14",
-   "added": [],
-   "measured": 1,
-   "withVolume": 1
+   "at": "2026-11-23",
+   "added": [
+    "청약통장 해지방법"
+   ],
+   "measured": 2,
+   "withVolume": 2
   },
   "건강보험료": {
    "at": "2026-11-19",
@@ -181,13 +183,13 @@
    "withVolume": 2
   },
   "버팀목전세자금대출": {
-   "at": "2026-11-14",
+   "at": "2026-11-23",
    "added": [],
    "measured": 1,
    "withVolume": 1
   },
   "비상금대출": {
-   "at": "2026-11-14",
+   "at": "2026-11-23",
    "added": [],
    "measured": 0,
    "withVolume": 0
