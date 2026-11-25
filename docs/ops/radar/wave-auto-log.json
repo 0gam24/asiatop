@@ -135,7 +135,7 @@
    "withVolume": 1
   },
   "연금저축": {
-   "at": "2026-11-18",
+   "at": "2026-11-25",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -147,8 +147,10 @@
    "withVolume": 2
   },
   "연말정산": {
-   "at": "2026-11-18",
-   "added": [],
+   "at": "2026-11-25",
+   "added": [
+    "연말정산 신청기간"
+   ],
    "measured": 4,
    "withVolume": 4
   },
@@ -219,13 +221,13 @@
    "withVolume": 3
   },
   "원천징수영수증": {
-   "at": "2026-11-16",
+   "at": "2026-11-25",
    "added": [],
    "measured": 2,
    "withVolume": 2
   },
   "자녀장려금": {
-   "at": "2026-11-16",
+   "at": "2026-11-25",
    "added": [],
    "measured": 2,
    "withVolume": 2
@@ -237,10 +239,10 @@
    "withVolume": 1
   },
   "재산세": {
-   "at": "2026-11-16",
+   "at": "2026-11-25",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 3,
+   "withVolume": 3
   },
   "전세사기": {
    "at": "2026-11-17",
@@ -255,10 +257,12 @@
    "withVolume": 2
   },
   "종부세": {
-   "at": "2026-11-18",
-   "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "at": "2026-11-25",
+   "added": [
+    "종부세 고지서"
+   ],
+   "measured": 6,
+   "withVolume": 7
   },
   "주민등록등본 발급": {
    "at": "2026-11-17",
