@@ -69,10 +69,12 @@
    "manual": true
   },
   "본인부담상한제": {
-   "at": "2026-11-17",
-   "added": [],
-   "measured": 0,
-   "withVolume": 0
+   "at": "2026-11-26",
+   "added": [
+    "본인부담상한제 소득분위"
+   ],
+   "measured": 1,
+   "withVolume": 1
   },
   "아동수당": {
    "at": "2026-11-22",
@@ -81,10 +83,12 @@
    "withVolume": 4
   },
   "부모급여": {
-   "at": "2026-11-19",
-   "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "at": "2026-11-26",
+   "added": [
+    "부모급여 언제까지"
+   ],
+   "measured": 3,
+   "withVolume": 3
   },
   "ISA": {
    "at": "2026-10-07",
@@ -155,10 +159,10 @@
    "withVolume": 4
   },
   "실손보험": {
-   "at": "2026-11-19",
+   "at": "2026-11-26",
    "added": [],
-   "measured": 3,
-   "withVolume": 3
+   "measured": 2,
+   "withVolume": 2
   },
   "부가세 신고": {
    "at": "2026-11-24",
@@ -245,7 +249,7 @@
    "withVolume": 3
   },
   "전세사기": {
-   "at": "2026-11-17",
+   "at": "2026-11-26",
    "added": [],
    "measured": 1,
    "withVolume": 1
@@ -357,10 +361,12 @@
    "withVolume": 5
   },
   "유족연금": {
-   "at": "2026-11-01",
-   "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "at": "2026-11-26",
+   "added": [
+    "유족연금 조건"
+   ],
+   "measured": 1,
+   "withVolume": 1
   },
   "장기요양보험료": {
    "at": "2026-11-01",
@@ -388,6 +394,12 @@
   },
   "삼쩜삼 환급": {
    "at": "2026-11-21",
+   "added": [],
+   "measured": 0,
+   "withVolume": 0
+  },
+  "고용보험료": {
+   "at": "2026-11-26",
    "added": [],
    "measured": 0,
    "withVolume": 0
