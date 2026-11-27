@@ -103,10 +103,10 @@
    "withVolume": 2
   },
   "건강보험료": {
-   "at": "2026-11-19",
+   "at": "2026-11-27",
    "added": [],
    "measured": 6,
-   "withVolume": 6
+   "withVolume": 7
   },
   "근로장려금": {
    "at": "2026-11-21",
@@ -125,7 +125,7 @@
    "withVolume": 2
   },
   "청년미래적금": {
-   "at": "2026-11-18",
+   "at": "2026-11-27",
    "added": [],
    "measured": 5,
    "withVolume": 5
@@ -255,10 +255,10 @@
    "withVolume": 1
   },
   "조기재취업수당": {
-   "at": "2026-11-17",
+   "at": "2026-11-27",
    "added": [],
-   "measured": 2,
-   "withVolume": 2
+   "measured": 1,
+   "withVolume": 1
   },
   "종부세": {
    "at": "2026-11-25",
@@ -269,19 +269,19 @@
    "withVolume": 7
   },
   "주민등록등본 발급": {
-   "at": "2026-11-17",
+   "at": "2026-11-27",
    "added": [],
    "measured": 0,
    "withVolume": 0
   },
   "청년월세지원": {
-   "at": "2026-11-18",
+   "at": "2026-11-27",
    "added": [],
    "measured": 3,
    "withVolume": 3
   },
   "퇴사 후 건강보험": {
-   "at": "2026-11-18",
+   "at": "2026-11-27",
    "added": [],
    "measured": 0,
    "withVolume": 0
