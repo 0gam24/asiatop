@@ -109,7 +109,7 @@
    "withVolume": 7
   },
   "근로장려금": {
-   "at": "2026-11-21",
+   "at": "2026-11-28",
    "added": [],
    "measured": 6,
    "withVolume": 7
@@ -171,7 +171,7 @@
    "withVolume": 0
   },
   "국민연금 보험료": {
-   "at": "2026-11-21",
+   "at": "2026-11-28",
    "added": [],
    "measured": 0,
    "withVolume": 0
@@ -201,10 +201,10 @@
    "withVolume": 0
   },
   "신용점수": {
-   "at": "2026-11-21",
+   "at": "2026-11-28",
    "added": [],
-   "measured": 0,
-   "withVolume": 0
+   "measured": 1,
+   "withVolume": 1
   },
   "신용점수 올리기": {
    "at": "2026-11-24",
@@ -297,15 +297,15 @@
    "withVolume": 4
   },
   "햇살론유스": {
-   "at": "2026-11-19",
+   "at": "2026-11-28",
    "added": [
-    "햇살론유스 대출"
+    "햇살론유스 부결"
    ],
    "measured": 1,
    "withVolume": 1
   },
   "확정일자": {
-   "at": "2026-11-19",
+   "at": "2026-11-28",
    "added": [],
    "measured": 3,
    "withVolume": 3
@@ -393,7 +393,7 @@
    "withVolume": 4
   },
   "삼쩜삼 환급": {
-   "at": "2026-11-21",
+   "at": "2026-11-28",
    "added": [],
    "measured": 0,
    "withVolume": 0
